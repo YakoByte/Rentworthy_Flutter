@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:rentworthy/presentation/loading/login/login_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../application/onboarding/onboarding_service.dart';
 import '../../../data/onboarding/shared_pref/shared_pref.dart';
 import '../../../model/onboarding/onboarding.dart';
 import '../../../utils/common_components/common_navigator.dart';
+import '../register/register_screen.dart';
 
 part 'onboarding_screen_controller.freezed.dart';
 part 'onboarding_screen_controller.g.dart';
@@ -52,7 +52,7 @@ class OnBoardingScreenController extends _$OnBoardingScreenController {
     state = const AsyncLoading();
     if (currentpageIndex == 2) {
       PreferenceManagerUtils.setIsOnboarding(true);
-      CommonNavigatior(child: LoginScreen());
+      CommonNavigatior(child: RegisterScreen());
     } else {
       pageController.animateToPage(currentpageIndex + 1,
           duration: const Duration(milliseconds: 400),

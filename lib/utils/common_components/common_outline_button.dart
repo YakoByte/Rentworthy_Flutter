@@ -25,6 +25,7 @@ class CommonOutlineButton extends ConsumerWidget {
   BorderSide? side;
   TextStyle textStyle;
   void Function() onPressed;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final h = MediaQuery.of(context).size.height;
@@ -38,7 +39,7 @@ class CommonOutlineButton extends ConsumerWidget {
         onPressed: onPressed,
         child: Center(
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               prefix != null
                   ? Container(
@@ -46,19 +47,14 @@ class CommonOutlineButton extends ConsumerWidget {
                   : const SizedBox.shrink(),
               Container(
                 width: prefix != null
-                    ? containerwidth > w * 0.4
+                    ? text.length < 10
                         ? containerwidth / 1.5
                         : null
                     : null,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      text,
-                      textAlign: TextAlign.center,
-                      style: textStyle,
-                    ),
-                  ],
+                child: Text(
+                  text,
+                  textAlign: TextAlign.center,
+                  style: textStyle,
                 ),
               ),
               suffix != null

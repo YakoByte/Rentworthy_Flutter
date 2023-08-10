@@ -14,5 +14,10 @@ class AppImg {
   static const String detectotpimg = "${imgpath}detectotpimg.png";
   static const String loginimg = "${imgpath}loginimg.png";
 
-  static const String a = "${iconpath}a.png";
+  static const String eye_hide = "${iconpath}hide.png";
+  static const String eye_view = "${iconpath}view.png";
+  static const String apple = "${iconpath}apple.png";
+  static const String fb = "${iconpath}fb.png";
+  static const String google = "${iconpath}google.png";
+  static const String mobile = "${iconpath}mobile.png";
 }

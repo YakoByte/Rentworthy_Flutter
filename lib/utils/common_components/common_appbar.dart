@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:rentworthy/utils/common_components/common_text.dart';
 
 import '../color.dart';
 
@@ -7,7 +7,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   String? title;
   bool? leadingicon;
   bool? centerTitle;
-  Color? backgroundColor;
+  Color backgroundColor;
   Widget? leadicon;
   String? appbarWidth;
 
@@ -18,7 +18,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.leadicon,
       this.centerTitle,
       this.leadingicon,
-      this.backgroundColor})
+      required this.backgroundColor})
       : super(key: key);
 
   @override
@@ -26,10 +26,10 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return AppBar(
-      backgroundColor:
-          backgroundColor == null ? AppColors.white : backgroundColor,
-      elevation: 5,
-      scrolledUnderElevation: 5,
+      backgroundColor: backgroundColor,
+      elevation: 0,
+      toolbarHeight: height * 0.06,
+      scrolledUnderElevation: 0,
       automaticallyImplyLeading: false,
       actions: <Widget>[
         Container(
@@ -39,12 +39,13 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
             children: [
               title != null
                   ? Expanded(
-                      child: Text(title!,
-                          style: GoogleFonts.openSans(
-                              textStyle: TextStyle(
-                                  color: AppColors.colorPrimary,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: width * 0.035))),
+                      child: Text(
+                        title!,
+                        style: ptSansTextStyle(
+                            color: AppColors.black,
+                            fontSize: height * 0.025,
+                            fontWeight: FontWeight.w700),
+                      ),
                     )
                   : SizedBox(),
               if (leadicon != null) leadicon!,
@@ -61,8 +62,8 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Center(
                 child: Center(
                   child: Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                    color: AppColors.colorSecondary,
+                    Icons.arrow_back,
+                    color: AppColors.black,
                     size: height * 0.03,
                   ),
                 ),

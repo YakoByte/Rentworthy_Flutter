@@ -42,7 +42,7 @@ class _MyAppState extends ConsumerState<MyApp> {
   }
 
   void initialization() async {
-    Timer(const Duration(seconds: 1), () {
+    Timer(const Duration(seconds: 2), () {
       FlutterNativeSplash.remove();
     });
   }

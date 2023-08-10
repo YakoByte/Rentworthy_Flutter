@@ -7,7 +7,7 @@ part of 'loading_screen_controller.dart';
 // **************************************************************************
 
 String _$loadingScreenControllerHash() =>
-    r'1dbe7143886ed5712856535ffeac929c8bcdb801';
+    r'76d4c211fff06e791ce26834d99051da2bb375c5';
 
 /// See also [LoadingScreenController].
 @ProviderFor(LoadingScreenController)

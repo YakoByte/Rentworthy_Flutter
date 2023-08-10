@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:rentworthy/presentation/loading/login/login_screen.dart';
 import 'package:rentworthy/presentation/loading/onboarding/onboarding_screen.dart';
+import 'package:rentworthy/presentation/loading/register/register_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../data/onboarding/shared_pref/shared_pref.dart';
@@ -21,7 +21,7 @@ class LoadingScreenController extends _$LoadingScreenController {
           Navigator.pushAndRemoveUntil(
               Globals.navigatorKey.currentContext!,
               PageTransition(
-                  child: const LoginScreen(),
+                  child: const RegisterScreen(),
                   type: PageTransitionType.fade,
                   duration: const Duration(milliseconds: 400)),
               (Route<dynamic> route) => false);

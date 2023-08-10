@@ -1,0 +1,426 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rentworthy/presentation/loading/register/register_screen_controller.dart';
+import 'package:rentworthy/utils/common_components/back_gradient.dart';
+import 'package:rentworthy/utils/common_components/common_button.dart';
+import 'package:rentworthy/utils/common_components/text_input_field.dart';
+import 'package:rentworthy/utils/text.dart';
+
+import '../../../utils/color.dart';
+import '../../../utils/common_components/common_navigator.dart';
+import '../../../utils/common_components/common_text.dart';
+import '../../../utils/common_components/rent_lend_enjoy_icon.dart';
+import '../../../utils/images.dart';
+import '../login_method/login_method_screen.dart';
+
+class RegisterScreen extends ConsumerWidget {
+  const RegisterScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final asyncState = ref.watch(registerScreenControllerProvider);
+    controller() => ref.read(registerScreenControllerProvider.notifier);
+    final h = MediaQuery.of(context).size.height;
+    final w = MediaQuery.of(context).size.width;
+
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        width: w,
+        height: h,
+        color: AppColors.white,
+        child: Stack(
+          children: [
+            const Positioned(
+                left: 0, right: 0, top: 0, bottom: 0, child: BackGradient()),
+            Positioned(
+                top: h * 0.1,
+                bottom: h * 0.1,
+                left: w * 0.1,
+                right: w * 0.1,
+                child: const RentLendEnjoyIcon()),
+            Positioned(
+              bottom: -h * 0.072,
+              left: 0,
+              right: 0,
+              top: 0,
+              child: Align(
+                alignment: const AlignmentDirectional(0.0, 0.7),
+                child: AnimatedBuilder(
+                  animation: controller().animation!,
+                  builder: (context, child) {
+                    return Transform.translate(
+                      offset: Offset(0, (controller().animation!.value) * h),
+                      child: Container(
+                        height: h * 0.75,
+                        width: w,
+                        decoration: BoxDecoration(
+                            color: AppColors.white,
+                            borderRadius: BorderRadius.circular(h * 0.025)),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: w * 0.05, vertical: h * 0.02),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: w * 0.9,
+                                height: h * 0.05,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(h * 0.05),
+                                  border: Border.all(
+                                    color: AppColors.bordercolor,
+                                    width: 1,
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    CommonButton(
+                                        containerwidth:
+                                            controller().isbusinessreg == false
+                                                ? w * 0.47
+                                                : w * 0.43,
+                                        containerheight: h * 0.05,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(h * 0.05),
+                                            gradient: controller().isbusinessreg ==
+                                                    false
+                                                ? const LinearGradient(
+                                                    begin: Alignment.centerLeft,
+                                                    end: Alignment.centerRight,
+                                                    colors: [
+                                                        AppColors.colorPrimary,
+                                                        AppColors.colorSecondary
+                                                      ])
+                                                : null),
+                                        backgroundColor: AppColors.transparent,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(h * 0.05),
+                                        ),
+                                        text: AppText.reg_individual,
+                                        textStyle: ptSansTextStyle(
+                                            color: controller().isbusinessreg ==
+                                                    false
+                                                ? AppColors.white
+                                                : AppColors.black
+                                                    .withOpacity(0.4),
+                                            fontSize: h * 0.018,
+                                            fontWeight:
+                                                controller().isbusinessreg == false
+                                                    ? FontWeight.w700
+                                                    : FontWeight.w400),
+                                        onPressed: () {
+                                          controller().onRegtype(val: false);
+                                        }),
+                                    CommonButton(
+                                        containerwidth:
+                                            controller().isbusinessreg == true
+                                                ? w * 0.46
+                                                : w * 0.41,
+                                        containerheight: h * 0.05,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(h * 0.05),
+                                            gradient: controller()
+                                                        .isbusinessreg ==
+                                                    true
+                                                ? const LinearGradient(
+                                                    begin: Alignment.centerLeft,
+                                                    end: Alignment.centerRight,
+                                                    colors: [
+                                                        AppColors.colorPrimary,
+                                                        AppColors.colorSecondary
+                                                      ])
+                                                : null),
+                                        backgroundColor: AppColors.transparent,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(h * 0.05),
+                                        ),
+                                        text: AppText.reg_business,
+                                        textStyle: ptSansTextStyle(
+                                            color:
+                                                controller().isbusinessreg == true
+                                                    ? AppColors.white
+                                                    : AppColors.black
+                                                        .withOpacity(0.4),
+                                            fontSize: h * 0.018,
+                                            fontWeight:
+                                                controller().isbusinessreg == true
+                                                    ? FontWeight.w700
+                                                    : FontWeight.w400),
+                                        onPressed: () {
+                                          controller().onRegtype(val: true);
+                                        }),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: h * 0.2,
+                                child: Column(
+                                  children: [
+                                    TextInputField(
+                                        hintText: AppText.email_or_uname,
+                                        lableText: AppText.enteremail_or_uname,
+                                        hintStyle: ptSansTextStyle(
+                                            color: AppColors.textcolor1,
+                                            fontSize: h * 0.018,
+                                            fontWeight: FontWeight.w400),
+                                        textstyle: ptSansTextStyle(
+                                            color: AppColors.colorSecondary,
+                                            fontSize: h * 0.019,
+                                            fontWeight: FontWeight.w500),
+                                        lableStyle: ptSansTextStyle(
+                                            color: AppColors.colorPrimary,
+                                            fontSize: h * 0.021,
+                                            fontWeight: FontWeight.w400),
+                                        errorText: "",
+                                        errorStyle: ptSansTextStyle(
+                                            color: AppColors.red,
+                                            fontSize: h * 0.019,
+                                            fontWeight: FontWeight.w400),
+                                        controller:
+                                            controller().emailController,
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        containerwidth: w,
+                                        containerheight: h * 0.06,
+                                        containercolor: AppColors.white,
+                                        textCapitalization:
+                                            TextCapitalization.none),
+                                    TextInputField(
+                                        hintText: AppText.password,
+                                        lableText: AppText.enterPassword,
+                                        hintStyle: ptSansTextStyle(
+                                            color: AppColors.textcolor1,
+                                            fontSize: h * 0.018,
+                                            fontWeight: FontWeight.w400),
+                                        textstyle: ptSansTextStyle(
+                                            color: AppColors.colorSecondary,
+                                            fontSize: h * 0.019,
+                                            fontWeight: FontWeight.w500),
+                                        lableStyle: ptSansTextStyle(
+                                            color: AppColors.colorPrimary,
+                                            fontSize: h * 0.021,
+                                            fontWeight: FontWeight.w400),
+                                        errorText: "",
+                                        errorStyle: ptSansTextStyle(
+                                            color: AppColors.red,
+                                            fontSize: h * 0.019,
+                                            fontWeight: FontWeight.w400),
+                                        controller: controller().passController,
+                                        keyboardType:
+                                            TextInputType.visiblePassword,
+                                        suffixicon: Container(
+                                          width: h * 0.04,
+                                          height: h * 0.04,
+                                          child: Center(
+                                            child: Image.asset(
+                                              !controller().iseyehide
+                                                  ? AppImg.eye_hide
+                                                  : AppImg.eye_view,
+                                              fit: BoxFit.cover,
+                                              color: !controller().iseyehide
+                                                  ? AppColors.textcolor1
+                                                  : AppColors.colorPrimary,
+                                              width: h * 0.032,
+                                              height: h * 0.032,
+                                            ),
+                                          ),
+                                        ),
+                                        suffixonTap: () {
+                                          controller().onEyeTap(
+                                              val: !controller().iseyehide
+                                                  ? true
+                                                  : false);
+                                        },
+                                        maxLines: 1,
+                                        obscureText: !controller().iseyehide,
+                                        containerwidth: w,
+                                        containerheight: h * 0.06,
+                                        containercolor: AppColors.white,
+                                        textCapitalization:
+                                            TextCapitalization.none),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: h * 0.18,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: w * 0.03),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          CommonText(
+                                              style: ptSansTextStyle(
+                                                  color: AppColors.textcolor1,
+                                                  fontSize: h * 0.018,
+                                                  fontWeight: FontWeight.w400),
+                                              text: AppText.forgotpassword),
+                                        ],
+                                      ),
+                                    ),
+                                    CommonButton(
+                                        containerwidth: w * 0.8,
+                                        containerheight: h * 0.06,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(h * 0.05),
+                                            gradient: const LinearGradient(
+                                                begin: Alignment.centerLeft,
+                                                end: Alignment.centerRight,
+                                                colors: [
+                                                  AppColors.colorPrimary,
+                                                  AppColors.colorSecondary
+                                                ])),
+                                        backgroundColor: AppColors.transparent,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(h * 0.05),
+                                        ),
+                                        text: AppText.register,
+                                        textStyle: ptSansTextStyle(
+                                            color: AppColors.white,
+                                            fontSize: h * 0.019,
+                                            fontWeight: FontWeight.w700),
+                                        onPressed: () {}),
+                                    Column(
+                                      children: [
+                                        CommonText(
+                                            style: ptSansTextStyle(
+                                                color: AppColors.black
+                                                    .withOpacity(0.4),
+                                                fontSize: h * 0.02,
+                                                fontWeight: FontWeight.w400),
+                                            text: AppText.or),
+                                        InkWell(
+                                          onTap: () {
+                                            CommonNavigatior(
+                                                child:
+                                                    const LoginMethodScreen());
+                                          },
+                                          child: SizedBox(
+                                            width: w * 0.8,
+                                            height: h * 0.03,
+                                            child: RichText(
+                                              textAlign: TextAlign.center,
+                                              text: TextSpan(
+                                                text: AppText.alreadyhaveacc,
+                                                style: ptSansTextStyle(
+                                                    color: AppColors.black
+                                                        .withOpacity(0.4),
+                                                    fontSize: h * 0.018,
+                                                    decoration: TextDecoration
+                                                        .underline,
+                                                    decorationColor:
+                                                        AppColors.textcolor1,
+                                                    decorationThickness: 1,
+                                                    decorationStyle:
+                                                        TextDecorationStyle
+                                                            .solid,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                                children: <TextSpan>[
+                                                  TextSpan(
+                                                      text: AppText.signin,
+                                                      style: ptSansTextStyle(
+                                                          foreground: Paint()
+                                                            ..shader =
+                                                                const LinearGradient(
+                                                              colors: <Color>[
+                                                                AppColors
+                                                                    .colorPrimary,
+                                                                AppColors
+                                                                    .colorSecondary
+                                                              ],
+                                                            ).createShader(
+                                                                    const Rect
+                                                                            .fromLTRB(
+                                                                        100,
+                                                                        0,
+                                                                        300,
+                                                                        20)),
+                                                          fontSize: h * 0.018,
+                                                          decorationColor: AppColors
+                                                              .colorSecondary,
+                                                          decorationThickness:
+                                                              1,
+                                                          decorationStyle:
+                                                              TextDecorationStyle
+                                                                  .solid,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .underline,
+                                                          fontWeight:
+                                                              FontWeight.w400)),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: h * 0.1),
+                              Column(
+                                children: [
+                                  CommonText(
+                                    text: "${AppText.accepting}",
+                                    style: ptSansTextStyle(
+                                        color: AppColors.black.withOpacity(0.4),
+                                        fontSize: h * 0.018,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  ShaderMask(
+                                    shaderCallback: (Rect bounds) {
+                                      return const LinearGradient(
+                                          begin: Alignment.centerLeft,
+                                          end: Alignment.centerRight,
+                                          colors: [
+                                            AppColors.colorPrimary,
+                                            AppColors.colorSecondary
+                                          ]).createShader(bounds);
+                                    },
+                                    child: CommonText(
+                                        text: AppText.privacypolicy,
+                                        style: ptSansTextStyle(
+                                            color: AppColors.white,
+                                            fontSize: h * 0.017,
+                                            decorationColor: AppColors.white,
+                                            decorationThickness: 1,
+                                            decorationStyle:
+                                                TextDecorationStyle.solid,
+                                            decoration:
+                                                TextDecoration.underline,
+                                            fontWeight: FontWeight.w500)),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -54,15 +54,23 @@ class CommonButton extends ConsumerWidget {
                   : const SizedBox.shrink(),
               text == "" && centericon != null
                   ? centericon!
-                  : Expanded(
-                      child: Text(
-                        text,
-                        textAlign: prefixicon == null && suffixicon == null
-                            ? TextAlign.center
-                            : TextAlign.start,
-                        style: textStyle,
-                      ),
-                    ),
+                  : prefixicon != null
+                      ? Text(
+                          text,
+                          textAlign: prefixicon == null && suffixicon == null
+                              ? TextAlign.center
+                              : TextAlign.start,
+                          style: textStyle,
+                        )
+                      : Expanded(
+                          child: Text(
+                            text,
+                            textAlign: prefixicon == null && suffixicon == null
+                                ? TextAlign.center
+                                : TextAlign.start,
+                            style: textStyle,
+                          ),
+                        ),
               suffixicon != null
                   ? Container(
                       width: text.length > 10 ? w * 0.1 : w * 0.06,

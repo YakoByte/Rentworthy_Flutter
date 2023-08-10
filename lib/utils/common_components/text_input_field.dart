@@ -142,24 +142,24 @@ class TextInputField extends StatelessWidget {
                                 fontSize: height * 0.018,
                                 fontWeight: FontWeight.w700,
                                 color: AppColors.black)),
-                titlesuffix == '' || titlesuffix == null
-                    ? Padding(
-                        padding: EdgeInsets.symmetric(vertical: height * 0.008),
-                        child: SizedBox(
-                          height: height * 0.025,
-                        ),
-                      )
-                    : InkWell(
-                        onTap: () {},
-                        child: Padding(
-                          padding:
-                              EdgeInsets.symmetric(vertical: height * 0.008),
-                          child: Image.asset(
-                            color: AppColors.black,
-                            titlesuffix!,
-                            height: height * 0.025,
-                          ),
-                        )),
+                // titlesuffix == '' || titlesuffix == null
+                //     ? Padding(
+                //         padding: EdgeInsets.symmetric(vertical: height * 0.008),
+                //         child: SizedBox(
+                //           height: height * 0.025,
+                //         ),
+                //       )
+                //     : InkWell(
+                //         onTap: () {},
+                //         child: Padding(
+                //           padding:
+                //               EdgeInsets.symmetric(vertical: height * 0.008),
+                //           child: Image.asset(
+                //             color: AppColors.black,
+                //             titlesuffix!,
+                //             height: height * 0.025,
+                //           ),
+                //         )),
               ],
             ),
           ),
@@ -168,23 +168,6 @@ class TextInputField extends StatelessWidget {
           height:
               isdescription == true ? null : containerheight ?? height * 0.06,
           decoration: BoxDecoration(
-            // boxShadow: [
-            //   BoxShadow(
-            //     color: AppColors.grey.withOpacity(0.4),
-            //     offset: const Offset(
-            //       3.0,
-            //       3.0,
-            //     ),
-            //     blurRadius: 7.0,
-            //     spreadRadius: 1.5,
-            //   ), //BoxShadow
-            //   const BoxShadow(
-            //     color: Colors.white,
-            //     offset: Offset(0.0, 0.0),
-            //     blurRadius: 0.0,
-            //     spreadRadius: 0.0,
-            //   ), //BoxShadow
-            // ],
             color: containercolor,
             border: containerborder,
             borderRadius: BorderRadius.circular(15),
@@ -193,9 +176,6 @@ class TextInputField extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                width: width * 0.009,
-              ),
               prefix ?? const SizedBox(),
               Expanded(
                 child: SizedBox(
@@ -204,59 +184,56 @@ class TextInputField extends StatelessWidget {
                       ? null
                       : containerheight ?? height * 0.06,
                   child: Center(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: width * 0.03),
-                      child: TextFormField(
-                        readOnly: readonly!,
-                        enabled: enabled,
-                        style: textstyle ??
+                    child: TextFormField(
+                      readOnly: readonly!,
+                      enabled: enabled,
+                      style: textstyle ??
+                          TextStyle(
+                              fontSize: height * 0.019,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.black),
+                      onTap: onTap,
+                      textCapitalization: textCapitalization,
+                      textAlignVertical: TextAlignVertical.center,
+                      controller: controller,
+                      focusNode: focusNode,
+                      onChanged: onChanged,
+                      scrollPhysics:
+                          scrollPhysics ?? const NeverScrollableScrollPhysics(),
+                      obscureText: obscureText!,
+                      keyboardType: keyboardType,
+                      textInputAction: textInputAction,
+                      maxLines: maxLines,
+                      cursorColor: AppColors.colorPrimary,
+                      maxLength: maxLength,
+                      cursorHeight: height * 0.02,
+                      decoration: InputDecoration(
+                        labelText: lableText,
+                        labelStyle: lableStyle,
+                        hintText: hintText,
+                        contentPadding: EdgeInsets.zero,
+                        hintStyle: hintStyle ??
                             TextStyle(
-                                fontSize: height * 0.019,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.black),
-                        onTap: onTap,
-                        textCapitalization: textCapitalization,
-                        textAlignVertical: TextAlignVertical.center,
-                        controller: controller,
-                        focusNode: focusNode,
-                        onChanged: onChanged,
-                        scrollPhysics:
-                            scrollPhysics ?? NeverScrollableScrollPhysics(),
-                        obscureText: obscureText!,
-                        keyboardType: keyboardType,
-                        textInputAction: textInputAction,
-                        maxLines: maxLines,
-                        cursorColor: AppColors.colorPrimary,
-                        maxLength: maxLength,
-                        decoration: InputDecoration(
-                          labelText: lableText,
-                          labelStyle: lableStyle,
-                          hintText: hintText,
-                          hintStyle: hintStyle ??
-                              TextStyle(
-                                  fontSize: height * 0.018,
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColors.grey),
-                          suffixIcon: suffixicon,
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                            color: AppColors.grey,
-                          )),
-                          disabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                            color: AppColors.grey,
-                          )),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                            color: AppColors.colorPrimary,
-                          )),
-                          border: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                            color: AppColors.grey,
-                          )),
-                          counterText: "",
-                          isDense: true,
-                        ),
+                                fontSize: height * 0.018,
+                                fontWeight: FontWeight.w400,
+                                color: AppColors.grey),
+                        suffixIcon: suffixicon != null
+                            ? InkWell(onTap: suffixonTap, child: suffixicon)
+                            : suffixicon,
+                        enabledBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: AppColors.bordercolor, width: 1)),
+                        disabledBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: AppColors.bordercolor, width: 1)),
+                        focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: AppColors.colorPrimary, width: 1)),
+                        border: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: AppColors.bordercolor, width: 1)),
+                        counterText: "",
+                        isDense: true,
                       ),
                     ),
                   ),
