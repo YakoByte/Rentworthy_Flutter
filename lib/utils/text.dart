@@ -3,10 +3,27 @@ class AppText {
 
   static const String app_name = "Rent Worthy";
   static const String nodata = "No Data Found";
+  static const String film = "Films & Photography";
+  static const String partyevents = "Party & Events";
+  static const String homeoutdoor = "Home & Outdoors";
+  static const String electronics = "Electronics";
+  static const String toprent = "Top Rentals";
+  static const String music = "Musical Instruments";
+  static const String cleaning = "Cleaning Equipment";
+  static const String clothing = "Clothing & Accesories";
+  static const String heavymachine = "Heavy Machinery";
+  static const String newmarket = "New to Market";
   static const String rent = "Rent";
   static const String lend = "Lend";
   static const String enjoy = "Enjoy";
   static const String next = "Next";
+  static const String home = "Home";
+  static const String chats = "Chats";
+  static const String bookings = "Bookings";
+  static const String account = "Account";
+  static const String categories = "Categories";
+  static const String viewall = "View All";
+
   static const String getstarted = "Get Started";
   static const String reg_individual = "  Register as Individual";
   static const String reg_business = "  Register as Business";
@@ -40,4 +57,7 @@ class AppText {
   static const String loremipsum2 =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
   static const String email = "Email Id";
+  static const String letsstart = "Let’s start making the most ";
+  static const String outofthings = "out of things.";
+  static const String comingsoon = "Coming Soon";
 }

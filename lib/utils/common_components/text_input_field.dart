@@ -28,7 +28,9 @@ class TextInputField extends StatelessWidget {
   final scrollPhysics;
   final enabled;
   final containerborder;
+  BorderRadiusGeometry? borderRadius;
   final bool? readonly;
+  final bool? underline;
   final Widget? suffixicon;
 
   // double? iconSize;
@@ -53,9 +55,11 @@ class TextInputField extends StatelessWidget {
     required this.hintText,
     required this.controller,
     this.lableText,
+    this.underline,
     this.focusNode,
     this.titlesuffix,
     this.isdescription,
+    this.borderRadius,
 
     // this.onTapIcon,
     this.onTap,
@@ -170,7 +174,7 @@ class TextInputField extends StatelessWidget {
           decoration: BoxDecoration(
             color: containercolor,
             border: containerborder,
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: borderRadius ?? BorderRadius.circular(15),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -207,34 +211,54 @@ class TextInputField extends StatelessWidget {
                       cursorColor: AppColors.colorPrimary,
                       maxLength: maxLength,
                       cursorHeight: height * 0.02,
-                      decoration: InputDecoration(
-                        labelText: lableText,
-                        labelStyle: lableStyle,
-                        hintText: hintText,
-                        contentPadding: EdgeInsets.zero,
-                        hintStyle: hintStyle ??
-                            TextStyle(
-                                fontSize: height * 0.018,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.grey),
-                        suffixIcon: suffixicon != null
-                            ? InkWell(onTap: suffixonTap, child: suffixicon)
-                            : suffixicon,
-                        enabledBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: AppColors.bordercolor, width: 1)),
-                        disabledBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: AppColors.bordercolor, width: 1)),
-                        focusedBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: AppColors.colorPrimary, width: 1)),
-                        border: const UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: AppColors.bordercolor, width: 1)),
-                        counterText: "",
-                        isDense: true,
-                      ),
+                      decoration: underline == false
+                          ? InputDecoration(
+                              border: InputBorder.none,
+                              labelText: lableText,
+                              labelStyle: lableStyle,
+                              hintText: hintText,
+                              contentPadding: EdgeInsets.zero,
+                              hintStyle: hintStyle ??
+                                  TextStyle(
+                                      fontSize: height * 0.018,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColors.grey),
+                              suffixIcon: suffixicon != null
+                                  ? InkWell(
+                                      onTap: suffixonTap, child: suffixicon)
+                                  : suffixicon,
+                              counterText: "",
+                              isDense: true,
+                            )
+                          : InputDecoration(
+                              labelText: lableText,
+                              labelStyle: lableStyle,
+                              hintText: hintText,
+                              contentPadding: EdgeInsets.zero,
+                              hintStyle: hintStyle ??
+                                  TextStyle(
+                                      fontSize: height * 0.018,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColors.grey),
+                              suffixIcon: suffixicon != null
+                                  ? InkWell(
+                                      onTap: suffixonTap, child: suffixicon)
+                                  : suffixicon,
+                              enabledBorder: const UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: AppColors.bordercolor, width: 1)),
+                              disabledBorder: const UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: AppColors.bordercolor, width: 1)),
+                              focusedBorder: const UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: AppColors.colorPrimary, width: 1)),
+                              border: const UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: AppColors.bordercolor, width: 1)),
+                              counterText: "",
+                              isDense: true,
+                            ),
                     ),
                   ),
                 ),

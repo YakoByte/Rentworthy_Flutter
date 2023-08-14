@@ -9,6 +9,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   bool? centerTitle;
   Color backgroundColor;
   Widget? leadicon;
+  Widget? suffixicon;
   String? appbarWidth;
 
   CommonAppBar(
@@ -16,6 +17,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.title,
       this.appbarWidth,
       this.leadicon,
+      this.suffixicon,
       this.centerTitle,
       this.leadingicon,
       required this.backgroundColor})
@@ -25,51 +27,53 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    return AppBar(
-      backgroundColor: backgroundColor,
-      elevation: 0,
-      toolbarHeight: height * 0.06,
-      scrolledUnderElevation: 0,
-      automaticallyImplyLeading: false,
-      actions: <Widget>[
-        Container(
-          width: leadingicon != true ? width : width * 0.85,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              title != null
-                  ? Expanded(
-                      child: Text(
-                        title!,
-                        style: ptSansTextStyle(
-                            color: AppColors.black,
-                            fontSize: height * 0.025,
-                            fontWeight: FontWeight.w700),
-                      ),
-                    )
-                  : SizedBox(),
-              if (leadicon != null) leadicon!,
-            ],
+    return SafeArea(
+      child: AppBar(
+        backgroundColor: backgroundColor,
+        elevation: 0,
+        toolbarHeight: height * 0.06,
+        scrolledUnderElevation: 0,
+        automaticallyImplyLeading: false,
+        actions: <Widget>[
+          Container(
+            width: leadingicon != true ? width : width * 0.85,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                title != null
+                    ? Expanded(
+                        child: Text(
+                          title!,
+                          style: ptSansTextStyle(
+                              color: AppColors.black,
+                              fontSize: height * 0.025,
+                              fontWeight: FontWeight.w700),
+                        ),
+                      )
+                    : SizedBox(),
+                if (suffixicon != null) suffixicon!,
+              ],
+            ),
           ),
-        ),
-      ],
-      leading: leadingicon != true
-          ? null
-          : GestureDetector(
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-              child: Center(
+        ],
+        leading: leadingicon != true
+            ? leadicon
+            : GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
                 child: Center(
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: AppColors.black,
-                    size: height * 0.03,
+                  child: Center(
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: AppColors.black,
+                      size: height * 0.03,
+                    ),
                   ),
                 ),
               ),
-            ),
-      centerTitle: centerTitle,
+        centerTitle: centerTitle,
+      ),
     );
   }
 

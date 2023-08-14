@@ -13,16 +13,17 @@ class AppColors {
   static const Color grey = Color(0xFFEAEAEA);
   static const Color blue = Color(0xFF30CDFF);
   static const Color textcolor = Color(0xFF5A5A5A);
+  static const Color gray = Color(0xFF7A7A7A);
   static const Color textcolor1 = Color(0xFFA5A5A5);
   static const Color bordercolor = Color(0xFFDFDFDF);
-
+  static const Color yellow = Color(0xFFF7D03F);
   static const Color fbblue = Color(0xFF1877F2);
 
   static const Color backgroundField = Color(0xFFF9F9FB);
   static const Color iconGrey = Color(0xFFB1B8C7);
   static const Color textBlack = Color(0xFF171717);
   static const Color textBlack1 = Color(0xFF1F1F39);
-  static const Color yellow = Color(0xFFECBE13);
+
   static const Color green = Color(0xFF3DCD88);
 
   static const Color red = Color(0xFFEB0B0B);

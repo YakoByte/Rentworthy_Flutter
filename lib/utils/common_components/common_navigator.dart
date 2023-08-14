@@ -1,9 +1,11 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../globals.dart';
 
-CommonNavigatior({required Widget child}) {
+CommonNavigatior({required BuildContext context, required Widget child}) {
+  // Navigator.push(Globals.navigatorKey.currentContext!,
+  //     MaterialPageRoute(builder: (context) => child));
   Navigator.push(
       Globals.navigatorKey.currentContext!,
       PageTransition(

@@ -148,10 +148,10 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
                         ),
                       ),
                       CommonButton(
-                          containerwidth: w,
+                          containerwidth: w * 0.8,
                           containerheight: h * 0.06,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(h * 0.006),
                               gradient: const LinearGradient(
                                   begin: Alignment.centerLeft,
                                   end: Alignment.centerRight,
@@ -161,15 +161,16 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
                                   ])),
                           backgroundColor: AppColors.transparent,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
+                            borderRadius: BorderRadius.circular(h * 0.006),
+                          ),
                           text: AppText.next,
                           textStyle: ptSansTextStyle(
                               color: AppColors.white,
-                              fontSize: h * 0.025,
+                              fontSize: h * 0.019,
                               fontWeight: FontWeight.w700),
                           onPressed: () {
                             controller().onSendOtp();
-                          })
+                          }),
                     ],
                   ),
                 )),

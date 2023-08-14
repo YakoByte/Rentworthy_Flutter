@@ -15,6 +15,9 @@ class RegisterScreenController extends _$RegisterScreenController {
   bool _iseyehide = false;
 
   bool get iseyehide => _iseyehide;
+  bool _issignin = false;
+
+  bool get issignin => _issignin;
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
@@ -37,6 +40,14 @@ class RegisterScreenController extends _$RegisterScreenController {
     state = const AsyncLoading();
     debugPrint('onRegtype $val');
     _isbusinessreg = val;
+
+    state = const AsyncValue.data(null);
+  }
+
+  onisSignin({required bool val}) async {
+    state = const AsyncLoading();
+    debugPrint('onisSignin $val');
+    _issignin = val;
 
     state = const AsyncValue.data(null);
   }

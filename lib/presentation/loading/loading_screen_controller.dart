@@ -14,7 +14,7 @@ class LoadingScreenController extends _$LoadingScreenController {
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 2), () {
       PreferenceManagerUtils.getIsOnboarding().then((value) {
         if (value == true) {
           print("Loading Screen");

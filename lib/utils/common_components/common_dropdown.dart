@@ -126,8 +126,8 @@ class CommonDropdown extends ConsumerWidget {
                         ),
                         child: icon ??
                             Icon(
-                              Icons.arrow_drop_down_outlined,
-                              color: AppColors.grey,
+                              Icons.arrow_drop_down,
+                              color: AppColors.black,
                             ),
                       ),
                       iconDisabledColor: icondisablecolor,
@@ -146,10 +146,7 @@ class CommonDropdown extends ConsumerWidget {
                           ? alignment!
                           : AlignmentDirectional.center,
                       borderRadius: borderRadius,
-                      underline: Divider(
-                        color: AppColors.grey,
-                        thickness: height * 0.0011,
-                      ),
+                      underline: SizedBox.shrink(),
                       value: dropdownValue,
                       onChanged: onChanged,
                       items: itemslist
