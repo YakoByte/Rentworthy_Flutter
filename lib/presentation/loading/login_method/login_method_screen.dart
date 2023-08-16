@@ -54,7 +54,7 @@ class LoginMethodScreen extends ConsumerWidget {
                         fontSize: h * 0.019,
                         fontWeight: FontWeight.w700),
                     onPressed: () {
-                      CommonNavigatior(
+                      commonNavigator(
                           context: context, child: LoginPhoneScreen());
                     }),
                 CommonOutlineButton(

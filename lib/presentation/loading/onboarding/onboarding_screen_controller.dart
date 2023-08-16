@@ -10,7 +10,6 @@ import '../../../utils/globals.dart';
 import '../register/register_screen.dart';
 
 part 'onboarding_screen_controller.freezed.dart';
-
 part 'onboarding_screen_controller.g.dart';
 
 @freezed
@@ -54,7 +53,7 @@ class OnBoardingScreenController extends _$OnBoardingScreenController {
     state = const AsyncLoading();
     if (currentpageIndex == 2) {
       PreferenceManagerUtils.setIsOnboarding(true);
-      CommonNavigatior(
+      commonNavigator(
           context: Globals.navigatorKey.currentContext!,
           child: RegisterScreen());
     } else {

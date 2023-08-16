@@ -14,9 +14,14 @@ class AppImg {
   static const String detectotpimg = "${imgpath}detectotpimg.png";
   static const String loginimg = "${imgpath}loginimg.png";
   static const String homeimg = "${imgpath}homeimg.png";
+  static const String announcement = "${imgpath}announcement.png";
+  static const String homelist = "${imgpath}homelist.png";
+  static const String footer = "${imgpath}footer.png";
 
   static const String account = "${iconpath}account.png";
   static const String booking = "${iconpath}booking.png";
+  static const String sort = "${iconpath}sort.png";
+  static const String filter = "${iconpath}filter.png";
   static const String chat = "${iconpath}chat.png";
   static const String home = "${iconpath}home.png";
   static const String eye_hide = "${iconpath}hide.png";
@@ -25,6 +30,7 @@ class AppImg {
   static const String bell = "${iconpath}bell.png";
   static const String fb = "${iconpath}fb.png";
   static const String google = "${iconpath}google.png";
+  static const String lightning = "${iconpath}lightning.png";
   static const String mobile = "${iconpath}mobile.png";
   static const String menu = "${iconpath}menu.png";
   static const String plus = "${iconpath}plus.png";

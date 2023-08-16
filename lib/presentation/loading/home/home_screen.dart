@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rentworthy/presentation/loading/home/categories/categories.dart';
+import 'package:rentworthy/presentation/loading/home/categories/home_appbar.dart';
 import 'package:rentworthy/utils/color.dart';
-import 'package:rentworthy/utils/common_components/common_dropdown.dart';
-import 'package:rentworthy/utils/common_components/common_text.dart';
-import 'package:rentworthy/utils/images.dart';
+import 'package:rentworthy/utils/common_components/common_carouselslider.dart';
 
-import '../../../utils/common_components/text_input_field.dart';
+import '../../../utils/common_components/common_text.dart';
+import '../../../utils/images.dart';
 import '../../../utils/text.dart';
+import 'categories/categories.dart';
+import 'categories/home_search.dart';
 import 'home_screen_controller.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -27,176 +28,291 @@ class HomeScreen extends ConsumerWidget {
         height: h,
         color: AppColors.white,
         child: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: w * 0.05),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                /// Appbar
+                const HomeAppBar(),
+
+                /// Search
+                const HomeSearch(),
+
+                /// Categories
+                Categories(
+                  isFeature: false,
+                  title: AppText.categories,
+                  isViewAll: true,
+                  height: h * 0.27,
+                  favList: [],
+                  isCategory: true,
+                  padding: EdgeInsets.only(top: h * 0.02),
+                  shrinkWrap: true,
+                  width: w,
+                  nameList: controller().nameList,
+                  scrollDirection: Axis.vertical,
+                  imgList: controller().imgList,
+                ),
+
+                /// Carousel
+                CommonCarousel(
+                  enlargeFactor: 0.3,
+                  containerheight: h * 0.18,
+                  containerwidth: w,
+                  viewportFraction: 0.9,
+                  scrollDirection: Axis.horizontal,
+                  autoPlayCurve: Curves.bounceIn,
+                  aspectRatio: 1 / 1,
+                  enableInfiniteScroll: false,
+                  autoPlay: false,
+                  reverse: false,
+                  padding: EdgeInsets.zero,
+                  carouselHeight: h * 0.18,
+                  carouselController: controller().carouselController,
+                  disableGesture: false,
+                  itemCount: 3,
+                  itemBuilder: (BuildContext context, int itemIndex,
+                          int pageViewIndex) =>
+                      Container(
+                    height: h * 0.18,
+                    margin: EdgeInsets.symmetric(horizontal: w * 0.02),
+                    decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              AppColors.colorPrimary,
+                              AppColors.colorSecondary
+                            ]),
+                        borderRadius: BorderRadius.circular(16)),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: w * 0.025,
+                        vertical: h * 0.01,
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Image.asset(
-                            AppImg.menu,
-                            height: h * 0.03,
-                          ),
-                          CommonDropdown(
-                              onChanged: (value) {
-                                controller().onValSelect(val: value!);
-                              },
-                              elevation: 0,
-                              dropdownValue: controller().selectedLocation,
-                              prefix: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.location_on_sharp,
-                                      color: AppColors.black, size: h * 0.025),
-                                ],
-                              ),
-                              icon: Icon(Icons.keyboard_arrow_down_sharp,
-                                  color: AppColors.black, size: h * 0.025),
-                              isExpanded: true,
-                              itemslist: controller().locationList,
-                              isDense: false,
-                              containerwidth: w * 0.5,
-                              containerheight: h * 0.07,
-                              containercolor: AppColors.white,
-                              textstyle: ptSansTextStyle(
-                                  color: AppColors.black.withOpacity(0.4),
-                                  fontSize: h * 0.02,
-                                  fontWeight: FontWeight.w700)),
-                        ],
-                      ),
-                      Image.asset(
-                        AppImg.bell,
-                        height: h * 0.04,
-                      ),
-                    ],
-                  ),
-                  Container(
-                    height: h * 0.33,
-                    width: w,
-                    child: Stack(
-                      children: [
-                        Container(
-                          height: h * 0.29,
-                          width: w,
-                          decoration: BoxDecoration(
-                              gradient: const LinearGradient(
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                  colors: [
-                                    AppColors.colorPrimary,
-                                    AppColors.colorSecondary
-                                  ]),
-                              borderRadius: BorderRadius.circular(16)),
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                                left: w * 0.04, bottom: h * 0.02),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: w * 0.4,
-                                  child: RichText(
-                                    textAlign: TextAlign.start,
-                                    text: TextSpan(
-                                      text: AppText.letsstart,
+                          Container(
+                            width: w * 0.35,
+                            child: RichText(
+                              textAlign: TextAlign.start,
+                              text: TextSpan(
+                                text: "${AppText.onlymay}\n",
+                                style: ptSansTextStyle(
+                                    color: AppColors.white,
+                                    fontSize: h * 0.016,
+                                    fontWeight: FontWeight.w400),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: "${AppText.sonyps}\n",
                                       style: ptSansTextStyle(
                                           color: AppColors.white,
-                                          fontSize: h * 0.026,
-                                          fontWeight: FontWeight.w400),
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                            text: AppText.outofthings,
-                                            style: ptSansTextStyle(
-                                                color: AppColors.yellow,
-                                                fontSize: h * 0.026,
-                                                fontWeight: FontWeight.w400)),
-                                      ],
-                                    ),
+                                          fontSize: h * 0.022,
+                                          fontWeight: FontWeight.w700)),
+                                  TextSpan(
+                                    text: AppText.permonth,
+                                    style: ptSansTextStyle(
+                                        color: AppColors.white,
+                                        fontSize: h * 0.015,
+                                        fontWeight: FontWeight.w400),
                                   ),
-                                ),
-                                Image.asset(AppImg.homeimg,
-                                    height: h * 0.25, width: w * 0.45)
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
+                          Image.asset(AppImg.announcement,
+                              height: h * 0.32, width: w * 0.45)
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
 
-                        ///search bar
-                        Positioned(
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Card(
-                                elevation: 1,
-                                color: AppColors.white,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50)),
-                                child: TextInputField(
-                                  hintText: 'Search',
-                                  controller: controller().searchController,
-                                  keyboardType: TextInputType.text,
-                                  containerwidth: w * 0.8,
-                                  containerheight: h * 0.07,
-                                  underline: false,
-                                  containercolor: AppColors.white,
-                                  bordercolor: AppColors.white,
-                                  borderRadius: BorderRadius.circular(50),
-                                  onChanged: (str) {
-                                    controller().filterSearchResults(
-                                        controller().searchController.text);
-                                  },
-                                  suffixicon: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.mic,
-                                          color:
-                                              AppColors.gray.withOpacity(0.6),
-                                          size: h * 0.03),
-                                    ],
-                                  ),
-                                  textCapitalization: TextCapitalization.none,
-                                  textstyle: TextStyle(
-                                      fontSize: w * 0.04,
-                                      color: AppColors.gray.withOpacity(0.4),
-                                      fontWeight: FontWeight.w700),
-                                  titletextstyle: TextStyle(
-                                      fontSize: w * 0.04,
-                                      color: AppColors.gray.withOpacity(0.4),
-                                      fontWeight: FontWeight.w700),
-                                  hintStyle: TextStyle(
-                                      fontSize: w * 0.04,
-                                      color: AppColors.gray.withOpacity(0.4),
-                                      fontWeight: FontWeight.w700),
-                                  errorStyle: TextStyle(
-                                      fontSize: w * 0.04,
-                                      color: AppColors.gray.withOpacity(0.4),
-                                      fontWeight: FontWeight.w700),
-                                  prefix: Padding(
-                                    padding: EdgeInsets.all(w * 0.03),
-                                    child: Icon(
-                                      Icons.search,
-                                      size: h * 0.03,
-                                      color: AppColors.gray.withOpacity(0.6),
+                /// Featured Ads
+                Categories(
+                  isFeature: true,
+                  title: AppText.featuredads,
+                  isViewAll: false,
+                  isCategory: false,
+                  shrinkWrap: false,
+                  width: w,
+                  height: h * 0.31,
+                  scrollDirection: Axis.horizontal,
+                  nameList: controller().nameList,
+                  imgList: controller().imgList,
+                  favList: controller().getfeatureadfavlist,
+                  contheight: h * 0.3,
+                  contwidth: w * 0.45,
+                  type: 0,
+                  contColor: AppColors.white,
+                  borderRadius: BorderRadius.circular(14),
+                ),
+
+                ///Promote your ad in Featured
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: w * 0.05, vertical: h * 0.01),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      CommonText(
+                          text: AppText.promoteurad,
+                          style: ptSansTextStyle(
+                            color: AppColors.black.withOpacity(0.8),
+                            fontSize: h * 0.022,
+                            fontWeight: FontWeight.w700,
+                          )),
+                      Icon(
+                        Icons.add,
+                        color: AppColors.black,
+                        size: h * 0.03,
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  height: h * 0.25,
+                  width: w,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                          AppColors.colorPrimary,
+                          AppColors.colorSecondary
+                        ]),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: h * 0.01,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CommonCarousel(
+                          enlargeFactor: 0.4,
+                          containerheight: h * 0.2,
+                          containerwidth: w,
+                          viewportFraction: w / (w * 2),
+                          scrollDirection: Axis.horizontal,
+                          autoPlayCurve: Curves.bounceIn,
+                          onPageChanged: (index, reason) {
+                            controller().onPageChanged(index);
+                          },
+                          aspectRatio: 1 / 1,
+                          enableInfiniteScroll: false,
+                          autoPlay: false,
+                          reverse: false,
+                          padding: EdgeInsets.zero,
+                          carouselHeight: h * 0.2,
+                          carouselController: controller().carouselController,
+                          disableGesture: false,
+                          itemCount: controller().imgList.length,
+                          itemBuilder: (BuildContext context, int itemIndex,
+                                  int pageViewIndex) =>
+                              Padding(
+                            padding: EdgeInsets.symmetric(vertical: w * 0.01),
+                            child: Container(
+                                height: h * 0.2,
+                                width: h * 0.2,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(14),
+                                    color: AppColors.white),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Center(
+                                      child: Image.asset(
+                                          controller().imgList[pageViewIndex],
+                                          height: h * 0.1,
+                                          width: w * 0.3),
                                     ),
-                                  ),
-                                ),
-                              ),
-                            ],
+                                    CommonText(
+                                        text: controller()
+                                            .nameList[pageViewIndex],
+                                        style: ptSansTextStyle(
+                                          color:
+                                              AppColors.black.withOpacity(0.8),
+                                          fontSize: h * 0.015,
+                                          fontWeight: FontWeight.w400,
+                                        )),
+                                  ],
+                                )),
                           ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(
+                              controller().imgList.length,
+                              (index) => Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: w * 0.02),
+                                    child: Container(
+                                      height: h * 0.01,
+                                      width: h * 0.01,
+                                      decoration: BoxDecoration(
+                                          color: controller()
+                                                      .getcurrentPageIndex ==
+                                                  index
+                                              ? AppColors.yellow
+                                              : AppColors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(30)),
+                                    ),
+                                  )),
                         ),
                       ],
                     ),
                   ),
-                  Categories(),
-                ],
-              ),
+                ),
+
+                /// Nearby ads
+                Categories(
+                  isFeature: false,
+                  title: AppText.nearbyads,
+                  isViewAll: true,
+                  isCategory: false,
+                  favList: controller().getnearbyadfavlist,
+                  shrinkWrap: false,
+                  width: w,
+                  type: 1,
+                  height: h * 0.31,
+                  scrollDirection: Axis.horizontal,
+                  nameList: controller().nameList,
+                  imgList: controller().imgList,
+                  contheight: h * 0.3,
+                  contwidth: w * 0.45,
+                  contColor: AppColors.white,
+                  borderRadius: BorderRadius.circular(14),
+                ),
+
+                /// Popular ads
+                Categories(
+                  isFeature: false,
+                  title: AppText.popularads,
+                  isViewAll: true,
+                  type: 2,
+                  favList: controller().getpopularfavlist,
+                  isCategory: false,
+                  shrinkWrap: false,
+                  width: w,
+                  height: h * 0.31,
+                  scrollDirection: Axis.horizontal,
+                  nameList: controller().nameList,
+                  imgList: controller().imgList,
+                  contheight: h * 0.3,
+                  contwidth: w * 0.45,
+                  contColor: AppColors.white,
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                Image.asset(AppImg.footer,
+                    height: h * 0.4, width: w, fit: BoxFit.fill),
+              ],
             ),
           ),
         ),

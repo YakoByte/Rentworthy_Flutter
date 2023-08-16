@@ -10,8 +10,10 @@ class AppColors {
   static const Color colorPrimary = Color(0xFF7028E4);
   static const Color colorSecondary = Color(0xFFFF7B70);
   static const Color pink = Color(0xFFFF3EAA);
+  static const Color selectedstar = Color(0xFFFA533A);
   static const Color grey = Color(0xFFEAEAEA);
   static const Color blue = Color(0xFF30CDFF);
+  static const Color starcolor = Color(0xFFC6C6C6);
   static const Color textcolor = Color(0xFF5A5A5A);
   static const Color gray = Color(0xFF7A7A7A);
   static const Color textcolor1 = Color(0xFFA5A5A5);

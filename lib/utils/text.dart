@@ -16,13 +16,23 @@ class AppText {
   static const String rent = "Rent";
   static const String lend = "Lend";
   static const String enjoy = "Enjoy";
+  static const String featured = "Featured";
   static const String next = "Next";
   static const String home = "Home";
   static const String chats = "Chats";
+  static const String perday = "Per Day";
+  static const String extendedrental = "**Extended rental available";
+  static const String forpermonth = "For Per Month";
   static const String bookings = "Bookings";
   static const String account = "Account";
   static const String categories = "Categories";
+  static const String featuredads = "Featured Ads";
+  static const String nearbyads = "Nearby Ads";
+  static const String popularads = "Popular Ads";
   static const String viewall = "View All";
+  static const String thane = " Thane West...";
+  static const String promoteurad = "Promote your ad in Featured";
+  static const String price25k = "\$ 25,000 ";
 
   static const String getstarted = "Get Started";
   static const String reg_individual = "  Register as Individual";
@@ -60,4 +70,7 @@ class AppText {
   static const String letsstart = "Let’s start making the most ";
   static const String outofthings = "out of things.";
   static const String comingsoon = "Coming Soon";
+  static const String onlymay = "Only in May";
+  static const String sonyps = "Sony PS5 + TV";
+  static const String permonth = "for \$ 3,000 per month";
 }

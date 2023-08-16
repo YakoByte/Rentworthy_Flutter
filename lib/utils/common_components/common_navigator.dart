@@ -3,7 +3,7 @@ import 'package:page_transition/page_transition.dart';
 
 import '../globals.dart';
 
-CommonNavigatior({required BuildContext context, required Widget child}) {
+commonNavigator({required BuildContext context, required Widget child}) {
   // Navigator.push(Globals.navigatorKey.currentContext!,
   //     MaterialPageRoute(builder: (context) => child));
   Navigator.push(

@@ -7,7 +7,7 @@ part of 'bottom_bar_controller.dart';
 // **************************************************************************
 
 String _$bottomBarControllerHash() =>
-    r'68504e8590b3ea0646f8aa4e7f9466f5edec5795';
+    r'a7ce07bac4a9837f3c8784c5a301f91c11b39c14';
 
 /// See also [BottomBarController].
 @ProviderFor(BottomBarController)

@@ -28,7 +28,7 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
     state = const AsyncLoading();
     debugPrint('onSendOtp');
     // _issendotp = true;
-    CommonNavigatior(
+    commonNavigator(
         context: Globals.navigatorKey.currentContext!,
         child: const BottomBar());
     debugPrint('onSendOtp1');

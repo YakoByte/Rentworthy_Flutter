@@ -4,10 +4,10 @@ import 'package:rentworthy/utils/images.dart';
 import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'home_screen_controller.g.dart';
+part 'view_all_category_controller.g.dart';
 
 @riverpod
-class HomeScreenController extends _$HomeScreenController {
+class ViewAllCategoryController extends _$ViewAllCategoryController {
   final List<String> _locationList = [
     'Wagle state',
     'Mumbra',
@@ -15,6 +15,56 @@ class HomeScreenController extends _$HomeScreenController {
     'Dadar',
     'Mahim',
   ];
+  List<String> filterlist = [
+    "Filter",
+    "Color",
+    "Price",
+    "Categories",
+  ];
+
+  List<String> get getfilterlist => filterlist;
+  List<String> carlist = [
+    "Mercedes",
+    "MG",
+    "Kia",
+    "Hyundai",
+    "Tata",
+    "Honda",
+    "Suzuki",
+    "AUdi",
+    "BMW",
+    "Ford",
+    "Toyota",
+    "Renault",
+    "Porsche",
+    "Ferrari",
+    "Volvo",
+  ];
+
+  List<String> get getcarlist => carlist;
+  String? selectedfilter;
+  TextEditingController searchController = TextEditingController();
+
+  String get getselectedfilter => selectedfilter!;
+  List<bool>? favlist;
+
+  List<bool> get getfavlist => favlist!;
+  List<String> sortlist = [
+    "Sort By",
+    "Price: high to low",
+    "Price: low to high",
+    "Ratings",
+    "Popularity",
+    "Discount",
+  ];
+
+  List<String> get getsortlist => sortlist;
+  String? selectedsortby;
+
+  String get getselectedselectedsortby => selectedsortby!;
+  List<String> searchitems = [];
+
+  List<String> get getsearchitems => searchitems;
   List<bool>? featureadfavlist;
 
   List<bool> get getfeatureadfavlist => featureadfavlist!;
@@ -62,17 +112,19 @@ class HomeScreenController extends _$HomeScreenController {
   String? _selectedLocation;
 
   String? get selectedLocation => _selectedLocation;
-  TextEditingController searchController = TextEditingController();
-  List<String> searchitems = [];
+
   int currentpageIndex = 0;
 
   int get getcurrentPageIndex => currentpageIndex;
 
-  List<String> get getsearchitems => searchitems;
-
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
+
+    selectedfilter = filterlist[0];
+    selectedsortby = sortlist[0];
+    favlist = List.generate(carlist.length, (index) => false);
+    state = const AsyncValue.data(null);
     _selectedLocation = _locationList[0];
     popularfavlist = List.generate(_imgList.length, (index) => false);
     featureadfavlist = List.generate(_imgList.length, (index) => false);
@@ -80,27 +132,41 @@ class HomeScreenController extends _$HomeScreenController {
     state = const AsyncValue.data(null);
   }
 
-  onFavTap(int index, int type) {
+  onchangefilter(
+    val,
+  ) {
     state = const AsyncLoading();
-    if (type == 0) {
-      if (featureadfavlist![index] == true) {
-        featureadfavlist![index] = false;
-      } else {
-        featureadfavlist![index] = true;
-      }
-    } else if (type == 1) {
-      if (nearbyadfavlist![index] == true) {
-        nearbyadfavlist![index] = false;
-      } else {
-        nearbyadfavlist![index] = true;
-      }
-    } else if (type == 2) {
-      if (popularfavlist![index] == true) {
-        popularfavlist![index] = false;
-      } else {
-        popularfavlist![index] = true;
-      }
+    selectedfilter = val;
+    state = const AsyncValue.data(null);
+  }
+
+  void filterSearchResults(String query) {
+    state = const AsyncLoading();
+    searchitems = carlist
+        .where((item) => item.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+    print("searchitems $searchitems");
+    state = const AsyncValue.data(null);
+  }
+
+  onFavTap(
+    int index,
+  ) {
+    state = const AsyncLoading();
+    if (favlist![index] == true) {
+      favlist![index] = false;
+    } else {
+      favlist![index] = true;
     }
+
+    state = const AsyncValue.data(null);
+  }
+
+  onchangesorting(
+    val,
+  ) {
+    state = const AsyncLoading();
+    selectedsortby = val;
 
     state = const AsyncValue.data(null);
   }
@@ -108,15 +174,6 @@ class HomeScreenController extends _$HomeScreenController {
   onPageChanged(int index) async {
     state = const AsyncLoading();
     currentpageIndex = index;
-    state = const AsyncValue.data(null);
-  }
-
-  void filterSearchResults(String query) {
-    state = const AsyncLoading();
-    // searchitems = carlist
-    //     .where((item) => item.toLowerCase().contains(query.toLowerCase()))
-    //     .toList();
-    print("searchitems $searchitems");
     state = const AsyncValue.data(null);
   }
 

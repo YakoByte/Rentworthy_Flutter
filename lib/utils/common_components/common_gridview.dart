@@ -12,7 +12,9 @@ class CommonGridView extends ConsumerWidget {
   double mainAxisSpacing = 0.0;
   double crossAxisSpacing = 0.0;
   double childAspectRatio = 1.0;
+  double maxCrossAxisExtent = 1.0;
   double? mainAxisExtent;
+  ScrollPhysics? physics;
   Widget? Function(BuildContext, int) itemBuilder;
 
   CommonGridView(
@@ -26,8 +28,10 @@ class CommonGridView extends ConsumerWidget {
       required this.crossAxisSpacing,
       required this.mainAxisSpacing,
       required this.crossAxisCount,
+      required this.maxCrossAxisExtent,
       required this.width,
       required this.height,
+      required this.physics,
       required this.itemBuilder})
       : super(key: key);
 
@@ -42,12 +46,14 @@ class CommonGridView extends ConsumerWidget {
         scrollDirection: scrollDirection,
         shrinkWrap: shrinkWrap,
         itemBuilder: itemBuilder,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: crossAxisCount,
+        physics: physics,
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          // crossAxisCount: crossAxisCount,
           crossAxisSpacing: crossAxisSpacing,
           mainAxisSpacing: mainAxisSpacing,
           childAspectRatio: childAspectRatio,
           mainAxisExtent: mainAxisExtent,
+          maxCrossAxisExtent: maxCrossAxisExtent,
         ),
       ),
     );

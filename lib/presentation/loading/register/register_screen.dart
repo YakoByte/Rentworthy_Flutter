@@ -70,7 +70,7 @@ class RegisterScreen extends ConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           controller().issignin
-                              ? LoginMethodScreen()
+                              ? const LoginMethodScreen()
                               : Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
@@ -254,7 +254,7 @@ class RegisterScreen extends ConsumerWidget {
                                                     controller().passController,
                                                 keyboardType: TextInputType
                                                     .visiblePassword,
-                                                suffixicon: Container(
+                                                suffixicon: SizedBox(
                                                   width: h * 0.04,
                                                   height: h * 0.04,
                                                   child: Center(
@@ -363,7 +363,7 @@ class RegisterScreen extends ConsumerWidget {
                                                 onTap: () {
                                                   controller()
                                                       .onisSignin(val: true);
-                                                  // CommonNavigatior(
+                                                  // CommonNavigator(
                                                   //     context: context,
                                                   //     child: const LoginMethodScreen());
                                                 },
@@ -440,7 +440,7 @@ class RegisterScreen extends ConsumerWidget {
                           Column(
                             children: [
                               CommonText(
-                                text: "${AppText.accepting}",
+                                text: AppText.accepting,
                                 style: ptSansTextStyle(
                                     color: AppColors.black.withOpacity(0.4),
                                     fontSize: h * 0.018,

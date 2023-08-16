@@ -59,6 +59,7 @@ class _MyAppState extends ConsumerState<MyApp> {
       theme: ThemeData(
           fontFamily: GoogleFonts.ptSans().fontFamily, useMaterial3: true),
       home: const LoadingScreen(),
+      // home: const ViewAllCategory(),
     );
   }
 }

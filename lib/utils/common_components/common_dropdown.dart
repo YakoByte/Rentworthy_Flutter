@@ -29,7 +29,7 @@ class CommonDropdown extends ConsumerWidget {
   Color? icondisablecolor;
 
   double containerwidth;
-  double? containerheight;
+  double containerheight;
 
   Color? containercolor;
 
@@ -42,6 +42,7 @@ class CommonDropdown extends ConsumerWidget {
   EdgeInsetsGeometry? padding;
   Widget? prefix;
   String? titlesuffix;
+  BoxBorder? border;
 
   CommonDropdown({
     Key? key,
@@ -49,6 +50,7 @@ class CommonDropdown extends ConsumerWidget {
     required this.onChanged,
     this.onTap,
     this.hint,
+    this.border,
     required this.elevation,
     this.itemHeight,
     this.focusNode,
@@ -69,7 +71,7 @@ class CommonDropdown extends ConsumerWidget {
     this.icondisablecolor,
     this.icon,
     required this.containerwidth,
-    this.containerheight,
+    required this.containerheight,
     required this.containercolor,
     this.titleText,
     required this.textstyle,
@@ -86,77 +88,78 @@ class CommonDropdown extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        // Padding(
-        //   padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-        //   child: Text(
-        //     titleText!,
-        //     style: titletextstyle,
-        //   ),
-        // ),
         Container(
           width: containerwidth,
           height: containerheight ?? height * 0.06,
           decoration: BoxDecoration(
             color: containercolor,
-            borderRadius: BorderRadius.circular(25),
+            border: border,
+            borderRadius: borderRadius,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                width: width * 0.02,
+                width: width * 0.03,
               ),
-              prefix != null ? prefix! : SizedBox.shrink(),
+              prefix != null
+                  ? SizedBox(
+                      height: containerheight, child: Center(child: prefix!))
+                  : const SizedBox.shrink(),
               Expanded(
-                child: Container(
-                  width: containerwidth ?? width * 0.58,
-                  height: containerheight ?? height * 0.07,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: width * 0.025),
-                    child: DropdownButton<String>(
-                      onTap: onTap,
-                      elevation: elevation!,
-                      style: textstyle,
-                      hint: hint,
-                      icon: Padding(
-                        padding: EdgeInsets.only(
-                          right: width * 0.023,
-                          left: width * 0.023,
-                        ),
-                        child: icon ??
-                            Icon(
-                              Icons.arrow_drop_down,
-                              color: AppColors.black,
-                            ),
+                child: SizedBox(
+                  width: containerwidth,
+                  height: containerheight,
+                  child: DropdownButton<String>(
+                    onTap: onTap,
+                    elevation: elevation!,
+                    style: textstyle,
+                    hint: hint,
+                    icon: Padding(
+                      padding: EdgeInsets.only(
+                        right: width * 0.023,
+                        left: width * 0.023,
                       ),
-                      iconDisabledColor: icondisablecolor,
-                      iconEnabledColor: iconcolor,
-                      iconSize: iconSize != null ? iconSize! : height * 0.04,
-                      isDense: isDense,
-                      isExpanded: isExpanded,
-                      itemHeight: itemHeight,
-                      focusColor: focusColor,
-                      focusNode: focusNode,
-                      autofocus: autofocus,
-                      dropdownColor: dropdownColor,
-                      menuMaxHeight: menuMaxHeight,
-                      enableFeedback: enableFeedback,
-                      alignment: alignment != null
-                          ? alignment!
-                          : AlignmentDirectional.center,
-                      borderRadius: borderRadius,
-                      underline: SizedBox.shrink(),
-                      value: dropdownValue,
-                      onChanged: onChanged,
-                      items: itemslist
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value, style: textstyle),
-                        );
-                      }).toList(),
+                      child: icon ??
+                          const Icon(
+                            Icons.arrow_drop_down,
+                            color: AppColors.black,
+                          ),
                     ),
+                    iconDisabledColor: icondisablecolor,
+                    iconEnabledColor: iconcolor,
+                    iconSize: iconSize != null ? iconSize! : height * 0.04,
+                    isDense: isDense,
+                    isExpanded: isExpanded,
+                    itemHeight: itemHeight,
+                    focusColor: focusColor,
+                    focusNode: focusNode,
+                    autofocus: autofocus,
+                    dropdownColor: dropdownColor,
+                    menuMaxHeight: menuMaxHeight,
+                    enableFeedback: enableFeedback,
+                    alignment: alignment != null
+                        ? alignment!
+                        : AlignmentDirectional.center,
+                    borderRadius: borderRadius,
+                    underline: const SizedBox.shrink(),
+                    value: dropdownValue,
+                    onChanged: onChanged,
+                    items:
+                        itemslist.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: SizedBox(
+                            height: containerheight,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(child: Text(value, style: textstyle)),
+                              ],
+                            )),
+                      );
+                    }).toList(),
                   ),
                 ),
               ),
