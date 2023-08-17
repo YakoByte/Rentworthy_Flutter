@@ -16,6 +16,8 @@ class AppText {
   static const String rent = "Rent";
   static const String lend = "Lend";
   static const String enjoy = "Enjoy";
+  static const String dummytext =
+      "Amet minim mollit non deserunt ullamco est sitaliqua dolor do amet sint. Velit officiaconsequat duis enim velit mollit.sitaliqua dolor do amet sint. Velit officiaconsequat duis enim velit mollit.";
   static const String featured = "Featured";
   static const String next = "Next";
   static const String home = "Home";
@@ -35,6 +37,10 @@ class AppText {
   static const String price25k = "\$ 25,000 ";
 
   static const String getstarted = "Get Started";
+  static const String resend = "Resend Code";
+  static const String welcomeRent = "Welcome to Rentworthy";
+  static const String wearetrying = "We are trying to detect code";
+  static const String sentotp = "We sent a 4-digit code to ";
   static const String reg_individual = "  Register as Individual";
   static const String reg_business = "  Register as Business";
   static const String enteremail_or_uname = "Enter email or username";
@@ -53,6 +59,17 @@ class AppText {
   static const String apple = "Apple";
   static const String facebook = "Facebook";
   static const String phone = "Phone";
+  static const String addtofavorite = "Add to favorite";
+  static const String share = "Share";
+  static const String reportthisad = "Report this Ad";
+  static const String totalpayable = "Total payable";
+  static const String day = "\$ 200 / day";
+  static const String tampaflorida = "Tampa, Florida";
+  static const String adpostedat = "Ad posted at";
+  static const String postedon = "Posted On: 01/05/2023";
+  static const String hamzaali = "Hamza Ali";
+  static const String postedby = "Posted by";
+  static const String rentnow = "Rent Now";
   static const String continuewith = "Continue With ";
   static const String accepting = "If you continue, you are accepting";
   static const String privacypolicy =

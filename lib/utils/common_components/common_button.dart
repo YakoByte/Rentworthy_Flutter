@@ -47,10 +47,13 @@ class CommonButton extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               prefixicon != null
-                  ? Container(
-                      width: w * 0.1,
-                      height: containerheight,
-                      child: prefixicon!)
+                  ? Padding(
+                      padding: EdgeInsets.only(right: w * 0.02),
+                      child: Container(
+                          width: w * 0.15,
+                          height: containerheight,
+                          child: prefixicon!),
+                    )
                   : const SizedBox.shrink(),
               text == "" && centericon != null
                   ? centericon!

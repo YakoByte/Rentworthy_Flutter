@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rentworthy/utils/common_components/common_text.dart';
 
 import '../color.dart';
 
@@ -11,6 +10,8 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget? leadicon;
   Widget? suffixicon;
   String? appbarWidth;
+  EdgeInsetsGeometry padding;
+  TextStyle? textstyle;
 
   CommonAppBar(
       {Key? key,
@@ -19,6 +20,8 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.leadicon,
       this.suffixicon,
       this.centerTitle,
+      this.textstyle,
+      required this.padding,
       this.leadingicon,
       required this.backgroundColor})
       : super(key: key);
@@ -31,48 +34,50 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: AppBar(
         backgroundColor: backgroundColor,
         elevation: 0,
-        toolbarHeight: height * 0.06,
+        toolbarHeight: height * 0.08,
         scrolledUnderElevation: 0,
         automaticallyImplyLeading: false,
         actions: <Widget>[
-          Container(
-            width: leadingicon != true ? width : width * 0.85,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                title != null
-                    ? Expanded(
-                        child: Text(
-                          title!,
-                          style: ptSansTextStyle(
-                              color: AppColors.black,
-                              fontSize: height * 0.025,
-                              fontWeight: FontWeight.w700),
+          SizedBox(
+            width: width,
+            child: Padding(
+              padding: padding,
+              child: Row(
+                mainAxisAlignment: suffixicon == null
+                    ? MainAxisAlignment.start
+                    : MainAxisAlignment.spaceBetween,
+                children: [
+                  leadicon != null
+                      ? leadicon!
+                      : Padding(
+                          padding: padding,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Center(
+                              child: Center(
+                                child: Icon(
+                                  Icons.arrow_back,
+                                  color: AppColors.black,
+                                  size: height * 0.03,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
-                      )
-                    : SizedBox(),
-                if (suffixicon != null) suffixicon!,
-              ],
+                  title != null
+                      ? Text(
+                          title!,
+                          style: textstyle,
+                        )
+                      : const SizedBox(),
+                  if (suffixicon != null) suffixicon!,
+                ],
+              ),
             ),
           ),
         ],
-        leading: leadingicon != true
-            ? leadicon
-            : GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: Center(
-                  child: Center(
-                    child: Icon(
-                      Icons.arrow_back,
-                      color: AppColors.black,
-                      size: height * 0.03,
-                    ),
-                  ),
-                ),
-              ),
-        centerTitle: centerTitle,
       ),
     );
   }

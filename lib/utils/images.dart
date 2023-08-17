@@ -17,12 +17,15 @@ class AppImg {
   static const String announcement = "${imgpath}announcement.png";
   static const String homelist = "${imgpath}homelist.png";
   static const String footer = "${imgpath}footer.png";
+  static const String xbox = "${imgpath}xbox.png";
 
+  static const String editoutline = "${iconpath}editoutline.png";
   static const String account = "${iconpath}account.png";
   static const String booking = "${iconpath}booking.png";
   static const String sort = "${iconpath}sort.png";
   static const String filter = "${iconpath}filter.png";
   static const String chat = "${iconpath}chat.png";
+  static const String chat1 = "${iconpath}chat1.png";
   static const String home = "${iconpath}home.png";
   static const String eye_hide = "${iconpath}hide.png";
   static const String eye_view = "${iconpath}view.png";

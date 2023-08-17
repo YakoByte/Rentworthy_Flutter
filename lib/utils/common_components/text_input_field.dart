@@ -104,20 +104,23 @@ class TextInputField extends StatelessWidget {
     }
 
     return Container(
+      width: containerwidth,
       padding: EdgeInsets.symmetric(
           horizontal: width * 0.03, vertical: height * 0.002),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text(
-            errorText!,
-            style: errorStyle ??
-                TextStyle(
-                    fontSize: height * 0.018,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.red),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
+          Expanded(
+            child: Text(
+              errorText!,
+              style: errorStyle ??
+                  TextStyle(
+                      fontSize: height * 0.018,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.red),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ],
       ),

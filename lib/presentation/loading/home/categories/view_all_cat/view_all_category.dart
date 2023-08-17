@@ -1,6 +1,8 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rentworthy/presentation/loading/home/categories/view_all_cat/view_all_category_controller.dart';
+import 'package:rentworthy/utils/common_components/common_button.dart';
 import 'package:rentworthy/utils/images.dart';
 
 import '../../../../../utils/color.dart';
@@ -8,7 +10,9 @@ import '../../../../../utils/common_components/common_dropdown.dart';
 import '../../../../../utils/common_components/common_listview.dart';
 import '../../../../../utils/common_components/common_searchbar.dart';
 import '../../../../../utils/common_components/common_text.dart';
+import '../../../../../utils/common_components/open_container_wrapper/open_container_wrapper.dart';
 import '../../../../../utils/text.dart';
+import '../cat_details/category_details_screen.dart';
 
 class ViewAllCategory extends ConsumerWidget {
   const ViewAllCategory({super.key});
@@ -148,161 +152,216 @@ class ViewAllCategory extends ConsumerWidget {
                           width: w,
                           height: h * 0.75,
                           itemBuilder: (context, index) {
-                            return Card(
-                              color: AppColors.white,
-                              elevation: 5,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14)),
-                              child: Container(
-                                height: h * 0.17,
-                                width: w,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(14),
-                                    color: AppColors.white),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: w * 0.02, vertical: h * 0.01),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      ClipRRect(
+                            return OpenContainerWrapper(
+                              closedBuilder: (BuildContext context,
+                                  void Function() action) {
+                                return Card(
+                                  color: AppColors.white,
+                                  elevation: 5,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(14)),
+                                  child: Container(
+                                    height: h * 0.17,
+                                    width: w,
+                                    decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(14),
-                                        child: Image.asset(
-                                          AppImg.homelist,
-                                          height: h * 0.14,
-                                          width: h * 0.13,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                      Column(
+                                        color: AppColors.white),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: w * 0.02,
+                                          vertical: h * 0.01),
+                                      child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
+                                            MainAxisAlignment.spaceBetween,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                            CrossAxisAlignment.center,
                                         children: [
-                                          CommonText(
-                                            style: TextStyle(
-                                                fontSize: w * 0.04,
-                                                color: AppColors.black,
-                                                fontWeight: FontWeight.w700),
-                                            text: controller()
-                                                    .getsearchitems
-                                                    .isNotEmpty
-                                                ? controller()
-                                                    .getsearchitems[index]
-                                                : controller()
-                                                    .getcarlist[index],
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(14),
+                                            child: Image.asset(
+                                              AppImg.homelist,
+                                              height: h * 0.14,
+                                              width: h * 0.13,
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
-                                          IntrinsicHeight(
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                CommonText(
-                                                  text: AppText.price25k,
-                                                  style: ptSansTextStyle(
-                                                      fontSize: h * 0.018,
-                                                      color: AppColors.black,
-                                                      fontWeight:
-                                                          FontWeight.w700),
-                                                ),
-                                                VerticalDivider(
-                                                  color: AppColors.black
-                                                      .withOpacity(0.3),
-                                                  width: 1,
-                                                  thickness: 1,
-                                                ),
-                                                Row(
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              CommonText(
+                                                style: TextStyle(
+                                                    fontSize: w * 0.04,
+                                                    color: AppColors.black,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                                text: controller()
+                                                        .getsearchitems
+                                                        .isNotEmpty
+                                                    ? controller()
+                                                        .getsearchitems[index]
+                                                    : controller()
+                                                        .getcarlist[index],
+                                              ),
+                                              IntrinsicHeight(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
-                                                    ShaderMask(
-                                                      shaderCallback:
-                                                          (Rect bounds) {
-                                                        return const LinearGradient(
-                                                            begin: Alignment
-                                                                .centerLeft,
-                                                            end: Alignment
-                                                                .centerRight,
-                                                            colors: [
-                                                              AppColors
-                                                                  .colorPrimary,
-                                                              AppColors
-                                                                  .colorSecondary
-                                                            ]).createShader(
-                                                            bounds);
-                                                      },
-                                                      child: Icon(
-                                                          Icons
-                                                              .location_on_outlined,
-                                                          color:
-                                                              AppColors.white,
-                                                          size: h * 0.025),
-                                                    ),
                                                     CommonText(
-                                                      text: AppText.thane,
-                                                      style: TextStyle(
-                                                          fontSize: w * 0.04,
-                                                          color: AppColors.black
-                                                              .withOpacity(0.4),
+                                                      text: AppText.price25k,
+                                                      style: ptSansTextStyle(
+                                                          fontSize: h * 0.018,
+                                                          color:
+                                                              AppColors.black,
                                                           fontWeight:
-                                                              FontWeight.w400),
+                                                              FontWeight.w700),
+                                                    ),
+                                                    VerticalDivider(
+                                                      color: AppColors.black
+                                                          .withOpacity(0.3),
+                                                      width: 1,
+                                                      thickness: 1,
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        ShaderMask(
+                                                          shaderCallback:
+                                                              (Rect bounds) {
+                                                            return const LinearGradient(
+                                                                begin: Alignment
+                                                                    .centerLeft,
+                                                                end: Alignment
+                                                                    .centerRight,
+                                                                colors: [
+                                                                  AppColors
+                                                                      .colorPrimary,
+                                                                  AppColors
+                                                                      .colorSecondary
+                                                                ]).createShader(
+                                                                bounds);
+                                                          },
+                                                          child: Icon(
+                                                              Icons
+                                                                  .location_on_outlined,
+                                                              color: AppColors
+                                                                  .white,
+                                                              size: h * 0.025),
+                                                        ),
+                                                        CommonText(
+                                                          text: AppText.thane,
+                                                          style: TextStyle(
+                                                              fontSize:
+                                                                  w * 0.04,
+                                                              color: AppColors
+                                                                  .black
+                                                                  .withOpacity(
+                                                                      0.4),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ],
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                              CommonText(
+                                                text: AppText.perday,
+                                                style: TextStyle(
+                                                    fontSize: w * 0.04,
+                                                    color: AppColors.black
+                                                        .withOpacity(0.4),
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                              CommonText(
+                                                text: AppText.extendedrental,
+                                                style: TextStyle(
+                                                    fontSize: w * 0.04,
+                                                    color: AppColors.black
+                                                        .withOpacity(0.4),
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                            ],
                                           ),
-                                          CommonText(
-                                            text: AppText.perday,
-                                            style: TextStyle(
-                                                fontSize: w * 0.04,
-                                                color: AppColors.black
-                                                    .withOpacity(0.4),
-                                                fontWeight: FontWeight.w400),
-                                          ),
-                                          CommonText(
-                                            text: AppText.extendedrental,
-                                            style: TextStyle(
-                                                fontSize: w * 0.04,
-                                                color: AppColors.black
-                                                    .withOpacity(0.4),
-                                                fontWeight: FontWeight.w400),
-                                          ),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              CommonButton(
+                                                containerwidth: h * 0.055,
+                                                containerheight: h * 0.055,
+                                                backgroundColor: controller()
+                                                                .getfavlist[
+                                                            index] ==
+                                                        false
+                                                    ? AppColors.starcolor
+                                                    : AppColors.selectedstar,
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            100)),
+                                                text: "",
+                                                centericon: Center(
+                                                  child: Icon(
+                                                    Icons.star,
+                                                    color: AppColors.white,
+                                                    size: h * 0.024,
+                                                  ),
+                                                ),
+                                                textStyle: TextStyle(),
+                                                onPressed: () {
+                                                  controller().onFavTap(index);
+                                                },
+                                                // GestureDetector(
+                                                //   onTap: () {
+                                                //     controller().onFavTap(index);
+                                                //   },
+                                                //   child: Container(
+                                                //     height: h * 0.04,
+                                                //     width: h * 0.04,
+                                                //     decoration: BoxDecoration(
+                                                //         shape: BoxShape.circle,
+                                                //         color: controller()
+                                                //                         .getfavlist[
+                                                //                     index] ==
+                                                //                 false
+                                                //             ? AppColors.starcolor
+                                                //             : AppColors.selectedstar),
+                                                //     child: Center(
+                                                //         child: Icon(Icons.star,
+                                                //             size: h * 0.03,
+                                                //             color: AppColors.white)),
+                                                //   ),
+                                                // ),
+                                              )
+                                            ],
+                                          )
                                         ],
                                       ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              controller().onFavTap(index);
-                                            },
-                                            child: Container(
-                                              height: h * 0.04,
-                                              width: h * 0.04,
-                                              decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: controller()
-                                                                  .getfavlist[
-                                                              index] ==
-                                                          false
-                                                      ? AppColors.starcolor
-                                                      : AppColors.selectedstar),
-                                              child: Center(
-                                                  child: Icon(Icons.star,
-                                                      size: h * 0.03,
-                                                      color: AppColors.white)),
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    ],
+                                    ),
                                   ),
-                                ),
+                                );
+                              },
+                              transitionType: ContainerTransitionType.fade,
+                              onClosed: (bool? data) {
+                                if (data ?? false) {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                    content: Text('Marked as done!'),
+                                  ));
+                                }
+                              },
+                              child: CategoryDetailsScreen(
+                                title: controller().getsearchitems.isNotEmpty
+                                    ? controller().getsearchitems[index]
+                                    : controller().getcarlist[index],
                               ),
                             );
                           }),

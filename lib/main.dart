@@ -58,6 +58,7 @@ class _MyAppState extends ConsumerState<MyApp> {
       useInheritedMediaQuery: true,
       theme: ThemeData(
           fontFamily: GoogleFonts.ptSans().fontFamily, useMaterial3: true),
+      // home: CategoryDetailsScreen(title: "Xbox"),
       home: const LoadingScreen(),
       // home: const ViewAllCategory(),
     );

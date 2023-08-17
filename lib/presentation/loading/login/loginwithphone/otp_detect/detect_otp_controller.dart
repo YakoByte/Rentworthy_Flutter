@@ -1,38 +1,58 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:rentworthy/presentation/loading/login/loginwithphone/findlocation/find_location.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../../utils/common_components/common_tickerprovider.dart';
+import '../../../../../utils/common_components/common_navigator.dart';
+import '../../../../../utils/globals.dart';
 
+part 'detect_otp_controller.freezed.dart';
 part 'detect_otp_controller.g.dart';
+
+@freezed
+class DetectOtpState with _$DetectOtpState {
+  const factory DetectOtpState({
+    int? start,
+  }) = _DetectOtpState;
+
+  const DetectOtpState._();
+}
 
 @riverpod
 class DetectOtpController extends _$DetectOtpController {
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController countryCodeController = TextEditingController();
-  bool _issendotp = false;
-
-  bool get issendotp => _issendotp;
-  AnimationController? animationController;
-  Animation<double>? animation;
+  Timer? _timer;
+  int _start = 60;
 
   @override
-  FutureOr<void> build() async {
+  FutureOr<DetectOtpState> build() async {
     state = const AsyncLoading();
-    animationController = AnimationController(
-        vsync: CommonTickerProvider(), duration: Duration(seconds: 3));
-    animation = Tween<double>(begin: 0, end: -300).animate(animationController!)
-      ..addListener(() {
-        // print(animation!.value);
-        state = const AsyncValue.data(null);
-      });
-    _issendotp = false;
-    state = const AsyncValue.data(null);
+    startTimer();
+
+    return DetectOtpState(start: _start);
   }
 
-  onSendOtp() async {
+  void startTimer() {
     state = const AsyncLoading();
-    _issendotp = true;
-
-    state = const AsyncValue.data(null);
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (_start == 0) {
+          timer.cancel();
+          FocusScope.of(Globals.navigatorKey.currentContext!)
+              .requestFocus(FocusNode());
+          commonNavigator(
+              context: Globals.navigatorKey.currentContext!,
+              child: FindLocation());
+        } else {
+          _start--;
+          print("_start $_start");
+        }
+        state = AsyncValue.data(state.value!.copyWith(start: _start));
+      },
+    );
+    state = const AsyncLoading();
   }
 }

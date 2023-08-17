@@ -7,12 +7,12 @@ part of 'detect_otp_controller.dart';
 // **************************************************************************
 
 String _$detectOtpControllerHash() =>
-    r'7190254ae7be9d460fff0ad9647737b51158493d';
+    r'93fd753ef2e89e53c82fe7c316cc5553d0ab439c';
 
 /// See also [DetectOtpController].
 @ProviderFor(DetectOtpController)
-final detectOtpControllerProvider =
-    AutoDisposeAsyncNotifierProvider<DetectOtpController, void>.internal(
+final detectOtpControllerProvider = AutoDisposeAsyncNotifierProvider<
+    DetectOtpController, DetectOtpState>.internal(
   DetectOtpController.new,
   name: r'detectOtpControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -22,6 +22,6 @@ final detectOtpControllerProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$DetectOtpController = AutoDisposeAsyncNotifier<void>;
+typedef _$DetectOtpController = AutoDisposeAsyncNotifier<DetectOtpState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

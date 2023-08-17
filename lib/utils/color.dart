@@ -15,11 +15,14 @@ class AppColors {
   static const Color blue = Color(0xFF30CDFF);
   static const Color starcolor = Color(0xFFC6C6C6);
   static const Color textcolor = Color(0xFF5A5A5A);
+  static const Color dotcolor = Color(0xFFDBDBDB);
   static const Color gray = Color(0xFF7A7A7A);
   static const Color textcolor1 = Color(0xFFA5A5A5);
   static const Color bordercolor = Color(0xFFDFDFDF);
   static const Color yellow = Color(0xFFF7D03F);
   static const Color fbblue = Color(0xFF1877F2);
+  static const Color shimmergrey = Color(0xFFB9B9B9);
+  static const Color blueindicator = Color(0xFF135EA9);
 
   static const Color backgroundField = Color(0xFFF9F9FB);
   static const Color iconGrey = Color(0xFFB1B8C7);
@@ -30,7 +33,6 @@ class AppColors {
 
   static const Color red = Color(0xFFEB0B0B);
 
-  static const Color greycolorhint = Color(0xFFB2B2B2);
   static const Color greyColor = Color(0xFF808080);
   static const Color greybgColor = Color(0xFFEEEEEE);
 }

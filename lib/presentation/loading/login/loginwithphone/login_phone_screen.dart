@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rentworthy/utils/common_components/common_appbar.dart';
 import 'package:rentworthy/utils/text.dart';
 
+import '../../../../application/onboarding/validate/validate.dart';
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_button.dart';
 import '../../../../utils/common_components/common_text.dart';
@@ -30,9 +31,14 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
       resizeToAvoidBottomInset: true,
       backgroundColor: AppColors.white,
       appBar: CommonAppBar(
+        padding: EdgeInsets.symmetric(horizontal: w * 0.03),
         backgroundColor: AppColors.white,
         title: AppText.signin,
         leadingicon: true,
+        textstyle: ptSansTextStyle(
+            color: AppColors.black,
+            fontSize: h * 0.025,
+            fontWeight: FontWeight.w600),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -98,7 +104,20 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
                                         color: AppColors.colorPrimary,
                                         fontSize: h * 0.021,
                                         fontWeight: FontWeight.w400),
-                                    errorText: "",
+                                    errorText: controller().issubmit == true
+                                        ? validate(controller()
+                                            .countryCodeController
+                                            .text)
+                                        : null,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        controller().issubmit == true
+                                            ? validate(controller()
+                                                .countryCodeController
+                                                .text)
+                                            : null;
+                                      });
+                                    },
                                     errorStyle: ptSansTextStyle(
                                         color: AppColors.red,
                                         fontSize: h * 0.019,
@@ -130,14 +149,26 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
                                         color: AppColors.colorPrimary,
                                         fontSize: h * 0.021,
                                         fontWeight: FontWeight.w400),
-                                    errorText: "",
+                                    errorText: controller().issubmit == true
+                                        ? validatephone(
+                                            controller().phoneController.text)
+                                        : null,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        controller().issubmit == true
+                                            ? validatephone(controller()
+                                                .phoneController
+                                                .text)
+                                            : null;
+                                      });
+                                    },
                                     errorStyle: ptSansTextStyle(
                                         color: AppColors.red,
-                                        fontSize: h * 0.019,
+                                        fontSize: h * 0.017,
                                         fontWeight: FontWeight.w400),
                                     controller: controller().phoneController,
                                     keyboardType: TextInputType.phone,
-                                    containerwidth: w * 0.65,
+                                    containerwidth: w * 0.6,
                                     containerheight: h * 0.06,
                                     containercolor: AppColors.white,
                                     textCapitalization:

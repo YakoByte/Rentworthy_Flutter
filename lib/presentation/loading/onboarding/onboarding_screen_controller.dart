@@ -53,6 +53,8 @@ class OnBoardingScreenController extends _$OnBoardingScreenController {
     state = const AsyncLoading();
     if (currentpageIndex == 2) {
       PreferenceManagerUtils.setIsOnboarding(true);
+      FocusScope.of(Globals.navigatorKey.currentContext!)
+          .requestFocus(FocusNode());
       commonNavigator(
           context: Globals.navigatorKey.currentContext!,
           child: RegisterScreen());

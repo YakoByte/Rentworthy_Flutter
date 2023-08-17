@@ -59,6 +59,7 @@ class HomeScreen extends ConsumerWidget {
                   enlargeFactor: 0.3,
                   containerheight: h * 0.18,
                   containerwidth: w,
+                  gradient: false,
                   viewportFraction: 0.9,
                   scrollDirection: Axis.horizontal,
                   autoPlayCurve: Curves.bounceIn,
@@ -128,6 +129,7 @@ class HomeScreen extends ConsumerWidget {
                       ),
                     ),
                   ),
+                  dotindicator: false,
                 ),
 
                 /// Featured Ads
@@ -195,6 +197,8 @@ class HomeScreen extends ConsumerWidget {
                       children: [
                         CommonCarousel(
                           enlargeFactor: 0.4,
+                          dotindicator: true,
+                          gradient: false,
                           containerheight: h * 0.2,
                           containerwidth: w,
                           viewportFraction: w / (w * 2),
@@ -207,63 +211,40 @@ class HomeScreen extends ConsumerWidget {
                           enableInfiniteScroll: false,
                           autoPlay: false,
                           reverse: false,
-                          padding: EdgeInsets.zero,
+                          getcurrentPageIndex: controller().getcurrentPageIndex,
+                          padding: EdgeInsets.only(bottom: h * 0.015),
                           carouselHeight: h * 0.2,
                           carouselController: controller().carouselController,
                           disableGesture: false,
                           itemCount: controller().imgList.length,
                           itemBuilder: (BuildContext context, int itemIndex,
                                   int pageViewIndex) =>
-                              Padding(
-                            padding: EdgeInsets.symmetric(vertical: w * 0.01),
-                            child: Container(
-                                height: h * 0.2,
-                                width: h * 0.2,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(14),
-                                    color: AppColors.white),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Center(
-                                      child: Image.asset(
-                                          controller().imgList[pageViewIndex],
-                                          height: h * 0.1,
-                                          width: w * 0.3),
-                                    ),
-                                    CommonText(
-                                        text: controller()
-                                            .nameList[pageViewIndex],
-                                        style: ptSansTextStyle(
-                                          color:
-                                              AppColors.black.withOpacity(0.8),
-                                          fontSize: h * 0.015,
-                                          fontWeight: FontWeight.w400,
-                                        )),
-                                  ],
-                                )),
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: List.generate(
-                              controller().imgList.length,
-                              (index) => Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: w * 0.02),
-                                    child: Container(
-                                      height: h * 0.01,
-                                      width: h * 0.01,
-                                      decoration: BoxDecoration(
-                                          color: controller()
-                                                      .getcurrentPageIndex ==
-                                                  index
-                                              ? AppColors.yellow
-                                              : AppColors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(30)),
-                                    ),
+                              Container(
+                                  height: h * 0.2,
+                                  width: h * 0.2,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(14),
+                                      color: AppColors.white),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Center(
+                                        child: Image.asset(
+                                            controller().imgList[pageViewIndex],
+                                            height: h * 0.1,
+                                            width: w * 0.3),
+                                      ),
+                                      CommonText(
+                                          text: controller()
+                                              .nameList[pageViewIndex],
+                                          style: ptSansTextStyle(
+                                            color: AppColors.black
+                                                .withOpacity(0.8),
+                                            fontSize: h * 0.015,
+                                            fontWeight: FontWeight.w400,
+                                          )),
+                                    ],
                                   )),
                         ),
                       ],

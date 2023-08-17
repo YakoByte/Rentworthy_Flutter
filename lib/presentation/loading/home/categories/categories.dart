@@ -1,15 +1,17 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rentworthy/presentation/loading/home/categories/category_details_screen.dart';
+import 'package:rentworthy/presentation/loading/home/categories/cat_details/category_details_screen.dart';
 import 'package:rentworthy/presentation/loading/home/categories/view_all_cat/view_all_category.dart';
 import 'package:rentworthy/utils/common_components/common_listview.dart';
 import 'package:rentworthy/utils/common_components/common_navigator.dart';
 
 import '../../../../utils/color.dart';
+import '../../../../utils/common_components/common_button.dart';
 import '../../../../utils/common_components/common_gridview.dart';
 import '../../../../utils/common_components/common_text.dart';
 import '../../../../utils/common_components/open_container_wrapper/open_container_wrapper.dart';
+import '../../../../utils/globals.dart';
 import '../../../../utils/images.dart';
 import '../../../../utils/text.dart';
 import '../home_screen_controller.dart';
@@ -81,6 +83,8 @@ class Categories extends ConsumerWidget {
                 if (isViewAll == true)
                   InkWell(
                     onTap: () {
+                      FocusScope.of(Globals.navigatorKey.currentContext!)
+                          .requestFocus(FocusNode());
                       commonNavigator(
                           context: context, child: ViewAllCategory());
                     },
@@ -173,7 +177,7 @@ class Categories extends ConsumerWidget {
                       ));
                     }
                   },
-                  child: const CategoryDetailsScreen(),
+                  child: ViewAllCategory(),
                 );
               },
               childAspectRatio: 0.6,
@@ -193,199 +197,270 @@ class Categories extends ConsumerWidget {
                 width: width,
                 height: height,
                 itemBuilder: (context, index) {
-                  return Card(
-                    color: contColor,
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: borderRadius!,
-                    ),
-                    child: Container(
-                      width: contwidth,
-                      height: contheight,
-                      decoration: BoxDecoration(
+                  return OpenContainerWrapper(
+                    closedBuilder:
+                        (BuildContext context, void Function() action) {
+                      return Card(
                         color: contColor,
-                        borderRadius: borderRadius,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: w * 0.02,
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: borderRadius!,
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: h * 0.01),
-                              child: Stack(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                        child: Container(
+                          width: contwidth,
+                          height: contheight,
+                          decoration: BoxDecoration(
+                            color: contColor,
+                            borderRadius: borderRadius,
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: w * 0.02,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(vertical: h * 0.01),
+                                  child: Stack(
                                     children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(14),
-                                        child: Image.asset(
-                                          AppImg.homelist,
-                                          height: contheight! * 0.6,
-                                          width: contwidth! * 0.85,
-                                          fit: BoxFit.cover,
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(14),
+                                            child: Image.asset(
+                                              AppImg.homelist,
+                                              height: contheight! * 0.6,
+                                              width: contwidth! * 0.85,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Positioned(
+                                        top: h * 0.01,
+                                        right: isFeature == true ? 0 : w * 0.05,
+                                        left: isFeature == true ? 0 : w * 0.05,
+                                        child: Row(
+                                          mainAxisAlignment: isFeature == true
+                                              ? MainAxisAlignment.spaceEvenly
+                                              : MainAxisAlignment.end,
+                                          children: [
+                                            if (isFeature == true)
+                                              Container(
+                                                height: h * 0.03,
+                                                width: contwidth! * 0.5,
+                                                decoration: BoxDecoration(
+                                                    color: AppColors.yellow,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            3)),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Image.asset(
+                                                      AppImg.lightning,
+                                                      height: h * 0.02,
+                                                    ),
+                                                    CommonText(
+                                                        text: AppText.featured,
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: ptSansTextStyle(
+                                                          color: AppColors.black
+                                                              .withOpacity(0.8),
+                                                          fontSize: h * 0.014,
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                        )),
+                                                  ],
+                                                ),
+                                              ),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                CommonButton(
+                                                  containerwidth: h * 0.06,
+                                                  containerheight: h * 0.06,
+                                                  backgroundColor:
+                                                      favList[index] == false
+                                                          ? AppColors.starcolor
+                                                          : AppColors
+                                                              .selectedstar,
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              1000)),
+                                                  text: "",
+                                                  centericon: Center(
+                                                    child: Icon(
+                                                      Icons.star,
+                                                      color: AppColors.white,
+                                                      size: h * 0.022,
+                                                    ),
+                                                  ),
+                                                  textStyle: TextStyle(),
+                                                  onPressed: () {
+                                                    controller()
+                                                        .onFavTap(index, type!);
+                                                  },
+                                                  // GestureDetector(
+                                                  //   onTap: () {
+                                                  //     controller().onFavTap(index);
+                                                  //   },
+                                                  //   child: Container(
+                                                  //     height: h * 0.04,
+                                                  //     width: h * 0.04,
+                                                  //     decoration: BoxDecoration(
+                                                  //         shape: BoxShape.circle,
+                                                  //         color: controller()
+                                                  //                         .getfavlist[
+                                                  //                     index] ==
+                                                  //                 false
+                                                  //             ? AppColors.starcolor
+                                                  //             : AppColors.selectedstar),
+                                                  //     child: Center(
+                                                  //         child: Icon(Icons.star,
+                                                  //             size: h * 0.03,
+                                                  //             color: AppColors.white)),
+                                                  //   ),
+                                                  // ),
+                                                ),
+                                                // GestureDetector(
+                                                //   onTap: () {
+                                                //     controller()
+                                                //         .onFavTap(index, type!);
+                                                //   },
+                                                //   child: Container(
+                                                //     height: h * 0.04,
+                                                //     width: h * 0.04,
+                                                //     decoration: BoxDecoration(
+                                                //         shape: BoxShape.circle,
+                                                //         color: favList![index] ==
+                                                //                 false
+                                                //             ? AppColors.starcolor
+                                                //             : AppColors
+                                                //                 .selectedstar),
+                                                //     child: Center(
+                                                //       child: Icon(Icons.star,
+                                                //           color: AppColors.white,
+                                                //           size: h * 0.025),
+                                                //     ),
+                                                //   ),
+                                                // ),
+                                              ],
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ],
                                   ),
-                                  Positioned(
-                                    top: h * 0.01,
-                                    right: isFeature == true ? 0 : w * 0.05,
-                                    left: isFeature == true ? 0 : w * 0.05,
-                                    child: Row(
-                                      mainAxisAlignment: isFeature == true
-                                          ? MainAxisAlignment.spaceEvenly
-                                          : MainAxisAlignment.end,
-                                      children: [
-                                        if (isFeature == true)
-                                          Container(
-                                            height: h * 0.03,
-                                            width: contwidth! * 0.5,
-                                            decoration: BoxDecoration(
-                                                color: AppColors.yellow,
-                                                borderRadius:
-                                                    BorderRadius.circular(3)),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Image.asset(
-                                                  AppImg.lightning,
-                                                  height: h * 0.02,
-                                                ),
-                                                CommonText(
-                                                    text: AppText.featured,
-                                                    textAlign: TextAlign.center,
-                                                    style: ptSansTextStyle(
-                                                      color: AppColors.black
-                                                          .withOpacity(0.8),
-                                                      fontSize: h * 0.014,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                    )),
-                                              ],
-                                            ),
-                                          ),
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
+                                ),
+                                Container(
+                                  height: h * 0.03,
+                                  width: contwidth,
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: CommonText(
+                                            text: nameList[index],
+                                            style: ptSansTextStyle(
+                                              color: AppColors.black
+                                                  .withOpacity(0.8),
+                                              fontSize: h * 0.02,
+                                              fontWeight: FontWeight.w700,
+                                            )),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                IntrinsicHeight(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      CommonText(
+                                        text: AppText.price25k,
+                                        style: ptSansTextStyle(
+                                            fontSize: h * 0.018,
+                                            color: AppColors.black,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                      VerticalDivider(
+                                        color: AppColors.black.withOpacity(0.3),
+                                        width: 1,
+                                        thickness: 1,
+                                      ),
+                                      ShaderMask(
+                                        shaderCallback: (Rect bounds) {
+                                          return const LinearGradient(
+                                              begin: Alignment.centerLeft,
+                                              end: Alignment.centerRight,
+                                              colors: [
+                                                AppColors.colorPrimary,
+                                                AppColors.colorSecondary
+                                              ]).createShader(bounds);
+                                        },
+                                        child: Icon(Icons.location_on_outlined,
+                                            color: AppColors.white,
+                                            size: h * 0.025),
+                                      ),
+                                      Container(
+                                        width: w * 0.18,
+                                        child: Row(
                                           children: [
-                                            GestureDetector(
-                                              onTap: () {
-                                                controller()
-                                                    .onFavTap(index, type!);
-                                              },
-                                              child: Container(
-                                                height: h * 0.04,
-                                                width: h * 0.04,
-                                                decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    color: favList![index] ==
-                                                            false
-                                                        ? AppColors.starcolor
-                                                        : AppColors
-                                                            .selectedstar),
-                                                child: Center(
-                                                  child: Icon(Icons.star,
-                                                      color: AppColors.white,
-                                                      size: h * 0.025),
-                                                ),
+                                            Flexible(
+                                              child: CommonText(
+                                                text: AppText.thane,
+                                                maxLines: 1,
+                                                style: ptSansTextStyle(
+                                                    fontSize: h * 0.015,
+                                                    color: AppColors.black
+                                                        .withOpacity(0.3),
+                                                    fontWeight:
+                                                        FontWeight.w400),
                                               ),
                                             ),
                                           ],
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                                CommonText(
+                                  text: AppText.forpermonth,
+                                  style: TextStyle(
+                                      fontSize: w * 0.04,
+                                      color: AppColors.black.withOpacity(0.3),
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ],
                             ),
-                            Container(
-                              height: h * 0.03,
-                              width: contwidth,
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: CommonText(
-                                        text: nameList[index],
-                                        style: ptSansTextStyle(
-                                          color:
-                                              AppColors.black.withOpacity(0.8),
-                                          fontSize: h * 0.02,
-                                          fontWeight: FontWeight.w700,
-                                        )),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            IntrinsicHeight(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  CommonText(
-                                    text: AppText.price25k,
-                                    style: ptSansTextStyle(
-                                        fontSize: h * 0.018,
-                                        color: AppColors.black,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                  VerticalDivider(
-                                    color: AppColors.black.withOpacity(0.3),
-                                    width: 1,
-                                    thickness: 1,
-                                  ),
-                                  ShaderMask(
-                                    shaderCallback: (Rect bounds) {
-                                      return const LinearGradient(
-                                          begin: Alignment.centerLeft,
-                                          end: Alignment.centerRight,
-                                          colors: [
-                                            AppColors.colorPrimary,
-                                            AppColors.colorSecondary
-                                          ]).createShader(bounds);
-                                    },
-                                    child: Icon(Icons.location_on_outlined,
-                                        color: AppColors.white,
-                                        size: h * 0.025),
-                                  ),
-                                  Container(
-                                    width: w * 0.18,
-                                    child: Row(
-                                      children: [
-                                        Flexible(
-                                          child: CommonText(
-                                            text: AppText.thane,
-                                            maxLines: 1,
-                                            style: ptSansTextStyle(
-                                                fontSize: h * 0.015,
-                                                color: AppColors.black
-                                                    .withOpacity(0.3),
-                                                fontWeight: FontWeight.w400),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            CommonText(
-                              text: AppText.forpermonth,
-                              style: TextStyle(
-                                  fontSize: w * 0.04,
-                                  color: AppColors.black.withOpacity(0.3),
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
+                      );
+                    },
+                    transitionType: ContainerTransitionType.fade,
+                    onClosed: (bool? data) {
+                      if (data ?? false) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text('Marked as done!'),
+                        ));
+                      }
+                    },
+                    child: CategoryDetailsScreen(
+                      title: nameList[index],
                     ),
                   );
                 })

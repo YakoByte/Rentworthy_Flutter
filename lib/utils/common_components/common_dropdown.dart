@@ -104,8 +104,12 @@ class CommonDropdown extends ConsumerWidget {
                 width: width * 0.03,
               ),
               prefix != null
-                  ? SizedBox(
-                      height: containerheight, child: Center(child: prefix!))
+                  ? Padding(
+                      padding: EdgeInsets.only(right: width * 0.025),
+                      child: SizedBox(
+                          height: containerheight,
+                          child: Center(child: prefix!)),
+                    )
                   : const SizedBox.shrink(),
               Expanded(
                 child: SizedBox(

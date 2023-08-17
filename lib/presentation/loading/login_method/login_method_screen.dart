@@ -9,6 +9,7 @@ import '../../../utils/color.dart';
 import '../../../utils/common_components/common_button.dart';
 import '../../../utils/common_components/common_navigator.dart';
 import '../../../utils/common_components/common_text.dart';
+import '../../../utils/globals.dart';
 import '../login/loginwithphone/login_phone_screen.dart';
 import '../register/register_screen_controller.dart';
 
@@ -54,6 +55,8 @@ class LoginMethodScreen extends ConsumerWidget {
                         fontSize: h * 0.019,
                         fontWeight: FontWeight.w700),
                     onPressed: () {
+                      FocusScope.of(Globals.navigatorKey.currentContext!)
+                          .requestFocus(FocusNode());
                       commonNavigator(
                           context: context, child: LoginPhoneScreen());
                     }),
