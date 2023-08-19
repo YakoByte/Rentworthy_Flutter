@@ -43,36 +43,43 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
             child: Padding(
               padding: padding,
               child: Row(
-                mainAxisAlignment: suffixicon == null
+                mainAxisAlignment: suffixicon == null && centerTitle == false
                     ? MainAxisAlignment.start
                     : MainAxisAlignment.spaceBetween,
                 children: [
                   leadicon != null
                       ? leadicon!
-                      : Padding(
-                          padding: padding,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Center(
-                              child: Center(
-                                child: Icon(
-                                  Icons.arrow_back,
-                                  color: AppColors.black,
-                                  size: height * 0.03,
+                      : leadingicon == false
+                          ? SizedBox()
+                          : Padding(
+                              padding: padding,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Center(
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.arrow_back,
+                                      color: AppColors.black,
+                                      size: height * 0.03,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
                   title != null
                       ? Text(
                           title!,
                           style: textstyle,
                         )
                       : const SizedBox(),
-                  if (suffixicon != null) suffixicon!,
+                  suffixicon != null
+                      ? suffixicon!
+                      : SizedBox(
+                          height: height * 0.03,
+                          width: height * 0.04,
+                        ),
                 ],
               ),
             ),

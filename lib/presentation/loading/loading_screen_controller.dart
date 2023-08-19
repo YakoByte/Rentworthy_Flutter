@@ -31,36 +31,12 @@ class LoadingScreenController extends _$LoadingScreenController {
               Globals.navigatorKey.currentContext!,
               PageTransition(
                   child: const OnBoardingScreen(),
-                  type: PageTransitionType.fade,
+                  type: PageTransitionType.rightToLeftWithFade,
                   duration: const Duration(milliseconds: 400)),
               (Route<dynamic> route) => false);
         }
       });
     });
     state = const AsyncValue.data(null);
-
-    // PreferenceManagerUtils.getIsLogin().then((value) {
-    //   Future.delayed(const Duration(seconds: 2), () {
-    //     if (value == true) {
-    //       WidgetsBinding.instance.addPostFrameCallback((_) {
-    //         Navigator.pushAndRemoveUntil(
-    //             Globals.navigatorKey.currentContext!,
-    //             MaterialPageRoute(
-    //                 builder: (BuildContext context) => HomeScreen()),
-    //             (Route<dynamic> route) => false);
-    //       });
-    //     } else {
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   Navigator.pushAndRemoveUntil(
-    //       Globals.navigatorKey.currentContext!,
-    //       PageTransition(
-    //           child: LoginScreen(),
-    //           type: PageTransitionType.fade,
-    //           duration: const Duration(milliseconds: 400)),
-    //       (Route<dynamic> route) => false);
-    //   });
-    // }
-    // });
-    // });
   }
 }

@@ -18,8 +18,10 @@ class AppImg {
   static const String homelist = "${imgpath}homelist.png";
   static const String footer = "${imgpath}footer.png";
   static const String xbox = "${imgpath}xbox.png";
+  static const String nochat = "${imgpath}nochat.png";
 
   static const String editoutline = "${iconpath}editoutline.png";
+  static const String checkall = "${iconpath}checkall.png";
   static const String account = "${iconpath}account.png";
   static const String booking = "${iconpath}booking.png";
   static const String sort = "${iconpath}sort.png";

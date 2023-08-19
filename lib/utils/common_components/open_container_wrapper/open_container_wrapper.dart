@@ -8,11 +8,13 @@ class OpenContainerWrapper extends ConsumerWidget {
   final CloseContainerBuilder closedBuilder;
   final ContainerTransitionType transitionType;
   final ClosedCallback<bool?> onClosed;
+  Duration transitionDuration;
 
   OpenContainerWrapper({
     super.key,
     required this.child,
     required this.closedBuilder,
+    required this.transitionDuration,
     required this.transitionType,
     required this.onClosed,
   });
@@ -23,26 +25,18 @@ class OpenContainerWrapper extends ConsumerWidget {
       transitionType: transitionType,
       openElevation: 0,
       closedElevation: 0,
-      middleColor: AppColors.white,
-      clipBehavior: Clip.antiAlias,
+      middleColor: AppColors.transparent,
+      clipBehavior: Clip.none,
       routeSettings: RouteSettings(name: 'openContainer'),
-      closedShape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(0),
-        ),
-      ),
-      openShape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(0),
-        ),
-      ),
+      closedShape: const RoundedRectangleBorder(),
+      openShape: const RoundedRectangleBorder(),
       openBuilder: (BuildContext context, VoidCallback _) {
         return child;
       },
       useRootNavigator: true,
-      transitionDuration: const Duration(seconds: 1),
+      transitionDuration: transitionDuration,
       openColor: AppColors.transparent,
-      closedColor: AppColors.white,
+      closedColor: AppColors.transparent,
       onClosed: onClosed,
       tappable: true,
       closedBuilder: closedBuilder,

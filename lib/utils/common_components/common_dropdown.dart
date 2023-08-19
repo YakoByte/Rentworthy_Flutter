@@ -43,6 +43,8 @@ class CommonDropdown extends ConsumerWidget {
   Widget? prefix;
   String? titlesuffix;
   BoxBorder? border;
+  bool? checkboxval;
+  void Function(bool)? onchange;
 
   CommonDropdown({
     Key? key,
@@ -51,9 +53,11 @@ class CommonDropdown extends ConsumerWidget {
     this.onTap,
     this.hint,
     this.border,
+    this.checkboxval,
     required this.elevation,
     this.itemHeight,
     this.focusNode,
+    this.onchange,
     this.menuMaxHeight,
     this.enableFeedback = false,
     required this.isExpanded,
@@ -150,18 +154,45 @@ class CommonDropdown extends ConsumerWidget {
                     underline: const SizedBox.shrink(),
                     value: dropdownValue,
                     onChanged: onChanged,
-                    items:
-                        itemslist.map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: SizedBox(
+                    selectedItemBuilder: (BuildContext context) {
+                      return itemslist.map<Widget>((String item) {
+                        return SizedBox(
                             height: containerheight,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Expanded(child: Text(value, style: textstyle)),
+                                Expanded(
+                                  child:
+                                      Text(item, maxLines: 1, style: textstyle),
+                                ),
                               ],
-                            )),
+                            ));
+                      }).toList();
+                    },
+                    items:
+                        itemslist.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Center(
+                          child: SizedBox(
+                              height: containerheight,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: Text(value,
+                                        maxLines: 1, style: textstyle),
+                                  ),
+                                  // if (checkboxval != null)
+                                  //   Checkbox(
+                                  //     value: checkboxval,
+                                  //     onChanged: (value) {
+                                  //       onchange!(value!);
+                                  //     },
+                                  //   )
+                                ],
+                              )),
+                        ),
                       );
                     }).toList(),
                   ),

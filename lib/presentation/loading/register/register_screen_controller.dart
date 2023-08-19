@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../utils/common_components/common_tickerprovider.dart';
@@ -8,8 +8,8 @@ part 'register_screen_controller.g.dart';
 @riverpod
 class RegisterScreenController extends _$RegisterScreenController {
   bool _isbusinessreg = false;
-  AnimationController? animationController;
-  Animation<double>? animation;
+
+  late TabController tabController;
 
   bool get isbusinessreg => _isbusinessreg;
   bool _iseyehide = false;
@@ -25,13 +25,12 @@ class RegisterScreenController extends _$RegisterScreenController {
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
-    animationController = AnimationController(
-        vsync: CommonTickerProvider(), duration: Duration(seconds: 3));
-    animation = Tween<double>(begin: 0, end: -300).animate(animationController!)
-      ..addListener(() {
-        // print(animation!.value);
-        state = const AsyncValue.data(null);
-      });
+
+    tabController = TabController(
+      initialIndex: 0,
+      length: 2,
+      vsync: CommonTickerProvider(),
+    );
 
     state = const AsyncValue.data(null);
   }

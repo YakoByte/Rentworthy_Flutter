@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rentworthy/presentation/loading/home/categories/home_appbar.dart';
 import 'package:rentworthy/utils/color.dart';
@@ -33,10 +34,28 @@ class HomeScreen extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 /// Appbar
-                const HomeAppBar(),
+                const HomeAppBar()
+                    .animate()
+                    .fadeIn(duration: 50.ms)
+                    .then(delay: 50.ms)
+                    .slideX(
+                      begin: 1,
+                      end: 0,
+                      curve: Curves.easeInOutCubic,
+                      duration: 300.ms,
+                    ),
 
                 /// Search
-                const HomeSearch(),
+                const HomeSearch()
+                    .animate()
+                    .fadeIn(duration: 50.ms)
+                    .then(delay: 50.ms)
+                    .slideX(
+                      begin: 1,
+                      end: 0,
+                      curve: Curves.easeInOutCubic,
+                      duration: 500.ms,
+                    ),
 
                 /// Categories
                 Categories(
@@ -46,13 +65,19 @@ class HomeScreen extends ConsumerWidget {
                   height: h * 0.27,
                   favList: [],
                   isCategory: true,
-                  padding: EdgeInsets.only(top: h * 0.02),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: w * 0.05, vertical: h * 0.015),
                   shrinkWrap: true,
                   width: w,
                   nameList: controller().nameList,
                   scrollDirection: Axis.vertical,
                   imgList: controller().imgList,
-                ),
+                ).animate().fadeIn(duration: 300.ms).then(delay: 300.ms).slideX(
+                      begin: 1,
+                      end: 0,
+                      curve: Curves.easeInOutCubic,
+                      duration: 600.ms,
+                    ),
 
                 /// Carousel
                 CommonCarousel(
@@ -67,7 +92,7 @@ class HomeScreen extends ConsumerWidget {
                   enableInfiniteScroll: false,
                   autoPlay: false,
                   reverse: false,
-                  padding: EdgeInsets.zero,
+                  padding: EdgeInsets.symmetric(vertical: h * 0.01),
                   carouselHeight: h * 0.18,
                   carouselController: controller().carouselController,
                   disableGesture: false,
@@ -88,7 +113,7 @@ class HomeScreen extends ConsumerWidget {
                         borderRadius: BorderRadius.circular(16)),
                     child: Padding(
                       padding: EdgeInsets.symmetric(
-                        horizontal: w * 0.025,
+                        horizontal: w * 0.026,
                         vertical: h * 0.01,
                       ),
                       child: Row(
@@ -130,7 +155,12 @@ class HomeScreen extends ConsumerWidget {
                     ),
                   ),
                   dotindicator: false,
-                ),
+                ).animate().fadeIn(duration: 400.ms).then(delay: 400.ms).slideX(
+                      begin: 1,
+                      end: 0,
+                      curve: Curves.easeInOutCubic,
+                      duration: 600.ms,
+                    ),
 
                 /// Featured Ads
                 Categories(
@@ -140,62 +170,63 @@ class HomeScreen extends ConsumerWidget {
                   isCategory: false,
                   shrinkWrap: false,
                   width: w,
-                  height: h * 0.31,
+                  height: h * 0.35,
                   scrollDirection: Axis.horizontal,
                   nameList: controller().nameList,
                   imgList: controller().imgList,
                   favList: controller().getfeatureadfavlist,
-                  contheight: h * 0.3,
+                  contheight: h * 0.32,
                   contwidth: w * 0.45,
                   type: 0,
                   contColor: AppColors.white,
                   borderRadius: BorderRadius.circular(14),
-                ),
+                ).animate().fadeIn(duration: 500.ms).then(delay: 500.ms).slideX(
+                      begin: 1,
+                      end: 0,
+                      curve: Curves.easeInOutCubic,
+                      duration: 600.ms,
+                    ),
 
                 ///Promote your ad in Featured
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: w * 0.05, vertical: h * 0.01),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                  padding: EdgeInsets.symmetric(vertical: h * 0.015),
+                  child: Column(
                     children: [
-                      CommonText(
-                          text: AppText.promoteurad,
-                          style: ptSansTextStyle(
-                            color: AppColors.black.withOpacity(0.8),
-                            fontSize: h * 0.022,
-                            fontWeight: FontWeight.w700,
-                          )),
-                      Icon(
-                        Icons.add,
-                        color: AppColors.black,
-                        size: h * 0.03,
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  height: h * 0.25,
-                  width: w,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [
-                          AppColors.colorPrimary,
-                          AppColors.colorSecondary
-                        ]),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: h * 0.01,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CommonCarousel(
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: w * 0.05, vertical: h * 0.015),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            CommonText(
+                                text: AppText.promoteurad,
+                                style: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.8),
+                                  fontSize: h * 0.022,
+                                  fontWeight: FontWeight.w700,
+                                )),
+                            Icon(
+                              Icons.add,
+                              color: AppColors.black,
+                              size: h * 0.03,
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        height: h * 0.25,
+                        width: w,
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [
+                                AppColors.colorPrimary,
+                                AppColors.colorSecondary
+                              ]),
+                        ),
+                        child: CommonCarousel(
                           enlargeFactor: 0.4,
                           dotindicator: true,
                           gradient: false,
@@ -212,7 +243,7 @@ class HomeScreen extends ConsumerWidget {
                           autoPlay: false,
                           reverse: false,
                           getcurrentPageIndex: controller().getcurrentPageIndex,
-                          padding: EdgeInsets.only(bottom: h * 0.015),
+                          padding: EdgeInsets.symmetric(vertical: h * 0.015),
                           carouselHeight: h * 0.2,
                           carouselController: controller().carouselController,
                           disableGesture: false,
@@ -222,6 +253,8 @@ class HomeScreen extends ConsumerWidget {
                               Container(
                                   height: h * 0.2,
                                   width: h * 0.2,
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: w * 0.02),
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(14),
                                       color: AppColors.white),
@@ -238,6 +271,7 @@ class HomeScreen extends ConsumerWidget {
                                       CommonText(
                                           text: controller()
                                               .nameList[pageViewIndex],
+                                          textAlign: TextAlign.center,
                                           style: ptSansTextStyle(
                                             color: AppColors.black
                                                 .withOpacity(0.8),
@@ -247,52 +281,94 @@ class HomeScreen extends ConsumerWidget {
                                     ],
                                   )),
                         ),
-                      ],
-                    ),
-                  ),
+                      ),
+                    ],
+                  )
+                      .animate()
+                      .fadeIn(duration: 600.ms)
+                      .then(delay: 600.ms)
+                      .slideX(
+                        begin: 1,
+                        end: 0,
+                        curve: Curves.easeInOutCubic,
+                        duration: 600.ms,
+                      ),
                 ),
 
                 /// Nearby ads
-                Categories(
-                  isFeature: false,
-                  title: AppText.nearbyads,
-                  isViewAll: true,
-                  isCategory: false,
-                  favList: controller().getnearbyadfavlist,
-                  shrinkWrap: false,
-                  width: w,
-                  type: 1,
-                  height: h * 0.31,
-                  scrollDirection: Axis.horizontal,
-                  nameList: controller().nameList,
-                  imgList: controller().imgList,
-                  contheight: h * 0.3,
-                  contwidth: w * 0.45,
-                  contColor: AppColors.white,
-                  borderRadius: BorderRadius.circular(14),
+                Padding(
+                  padding: EdgeInsets.only(bottom: h * 0.015),
+                  child: Categories(
+                    isFeature: false,
+                    title: AppText.nearbyads,
+                    isViewAll: true,
+                    isCategory: false,
+                    favList: controller().getnearbyadfavlist,
+                    shrinkWrap: false,
+                    width: w,
+                    type: 1,
+                    height: h * 0.35,
+                    scrollDirection: Axis.horizontal,
+                    nameList: controller().nameList,
+                    imgList: controller().imgList,
+                    contheight: h * 0.32,
+                    contwidth: w * 0.45,
+                    contColor: AppColors.white,
+                    borderRadius: BorderRadius.circular(14),
+                  )
+                      .animate()
+                      .fadeIn(duration: 700.ms)
+                      .then(delay: 700.ms)
+                      .slideX(
+                        begin: 1,
+                        end: 0,
+                        curve: Curves.easeInOutCubic,
+                        duration: 600.ms,
+                      ),
                 ),
 
                 /// Popular ads
-                Categories(
-                  isFeature: false,
-                  title: AppText.popularads,
-                  isViewAll: true,
-                  type: 2,
-                  favList: controller().getpopularfavlist,
-                  isCategory: false,
-                  shrinkWrap: false,
-                  width: w,
-                  height: h * 0.31,
-                  scrollDirection: Axis.horizontal,
-                  nameList: controller().nameList,
-                  imgList: controller().imgList,
-                  contheight: h * 0.3,
-                  contwidth: w * 0.45,
-                  contColor: AppColors.white,
-                  borderRadius: BorderRadius.circular(14),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: h * 0.005),
+                  child: Categories(
+                    isFeature: false,
+                    title: AppText.popularads,
+                    isViewAll: true,
+                    type: 2,
+                    favList: controller().getpopularfavlist,
+                    isCategory: false,
+                    shrinkWrap: false,
+                    width: w,
+                    height: h * 0.35,
+                    scrollDirection: Axis.horizontal,
+                    nameList: controller().nameList,
+                    imgList: controller().imgList,
+                    contheight: h * 0.32,
+                    contwidth: w * 0.45,
+                    contColor: AppColors.white,
+                    borderRadius: BorderRadius.circular(14),
+                  )
+                      .animate()
+                      .fadeIn(duration: 600.ms)
+                      .then(delay: 600.ms)
+                      .slideX(
+                        begin: 1,
+                        end: 0,
+                        curve: Curves.easeInOutCubic,
+                        duration: 600.ms,
+                      ),
                 ),
                 Image.asset(AppImg.footer,
-                    height: h * 0.4, width: w, fit: BoxFit.fill),
+                        height: h * 0.4, width: w, fit: BoxFit.fill)
+                    .animate()
+                    .fadeIn(duration: 900.ms)
+                    .then(delay: 900.ms)
+                    .slideX(
+                      begin: 1,
+                      end: 0,
+                      curve: Curves.easeInOutCubic,
+                      duration: 600.ms,
+                    ),
               ],
             ),
           ),

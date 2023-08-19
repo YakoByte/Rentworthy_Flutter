@@ -2,10 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:rentworthy/presentation/loading/login/loginwithphone/findlocation/find_location.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../../utils/common_components/common_navigator.dart';
 import '../../../../../utils/globals.dart';
 
 part 'detect_otp_controller.freezed.dart';
@@ -22,7 +20,7 @@ class DetectOtpState with _$DetectOtpState {
 
 @riverpod
 class DetectOtpController extends _$DetectOtpController {
-  Timer? _timer;
+  Timer? timer;
   int _start = 60;
 
   @override
@@ -36,19 +34,19 @@ class DetectOtpController extends _$DetectOtpController {
   void startTimer() {
     state = const AsyncLoading();
     const oneSec = Duration(seconds: 1);
-    _timer = Timer.periodic(
+    timer = Timer.periodic(
       oneSec,
       (Timer timer) {
         if (_start == 0) {
           timer.cancel();
+          timer.cancel();
           FocusScope.of(Globals.navigatorKey.currentContext!)
               .requestFocus(FocusNode());
-          commonNavigator(
-              context: Globals.navigatorKey.currentContext!,
-              child: FindLocation());
         } else {
           _start--;
           print("_start $_start");
+          print("_timer ${timer!.tick}");
+          print("_timer ${((timer!.tick * 1) / 10).toStringAsFixed(1)}");
         }
         state = AsyncValue.data(state.value!.copyWith(start: _start));
       },

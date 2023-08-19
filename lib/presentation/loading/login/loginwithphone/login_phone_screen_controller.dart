@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../application/onboarding/validate/validate.dart';
@@ -35,6 +36,7 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
       FocusScope.of(Globals.navigatorKey.currentContext!)
           .requestFocus(FocusNode());
       commonNavigator(
+          type: PageTransitionType.rightToLeftWithFade,
           context: Globals.navigatorKey.currentContext!,
           child: DetectOtp(
             phoneNo: countryCodeController.text + phoneController.text,

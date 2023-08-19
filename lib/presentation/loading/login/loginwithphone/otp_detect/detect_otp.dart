@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rentworthy/presentation/loading/bottombar/bottom_bar.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:rentworthy/utils/images.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_appbar.dart';
@@ -11,6 +11,7 @@ import '../../../../../utils/common_components/common_navigator.dart';
 import '../../../../../utils/common_components/common_text.dart';
 import '../../../../../utils/text.dart';
 import '../../../error/error_screen.dart';
+import '../findlocation/find_location.dart';
 import 'detect_otp_controller.dart';
 
 class DetectOtp extends ConsumerWidget {
@@ -93,21 +94,28 @@ class DetectOtp extends ConsumerWidget {
                   child: Image.asset(AppImg.detectotpimg,
                       height: h * 0.35, width: w * 0.5, fit: BoxFit.contain),
                 ),
-                StepProgressIndicator(
-                  totalSteps: 100,
-                  currentStep: 32,
-                  size: h * 0.045,
-                  padding: 0,
-                  selectedColor: AppColors.yellow,
-                  unselectedColor: AppColors.blueindicator.withOpacity(0.2),
-                  roundedEdges: Radius.circular(4),
-                  selectedGradientColor: LinearGradient(
+                LinearPercentIndicator(
+                  width: w * 0.9,
+                  animation: true,
+                  barRadius: Radius.circular(4),
+                  lineHeight: h * 0.045,
+                  animateFromLastPercent: true,
+                  animationDuration: 2000,
+                  addAutomaticKeepAlive: true,
+                  linearGradient: LinearGradient(
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                       colors: [
                         AppColors.colorPrimary,
                         AppColors.colorSecondary
                       ]),
+                  // percent: 0.9,
+                  percent: controller().timer!.isActive
+                      ? double.parse(((controller().timer!.tick * 1) / 60)
+                          .toStringAsFixed(1))
+                      : 1.0,
+                  backgroundColor: AppColors.blueindicator.withOpacity(0.2),
+                  linearStrokeCap: LinearStrokeCap.roundAll,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: h * 0.01),
@@ -137,7 +145,10 @@ class DetectOtp extends ConsumerWidget {
                 InkWell(
                   onTap: () {
                     FocusScope.of(context).requestFocus(FocusNode());
-                    commonNavigator(context: context, child: BottomBar());
+                    commonNavigator(
+                        type: PageTransitionType.rightToLeftWithFade,
+                        context: context,
+                        child: FindLocation());
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

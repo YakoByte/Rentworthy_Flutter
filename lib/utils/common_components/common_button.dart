@@ -49,10 +49,7 @@ class CommonButton extends ConsumerWidget {
               prefixicon != null
                   ? Padding(
                       padding: EdgeInsets.only(right: w * 0.02),
-                      child: Container(
-                          width: w * 0.15,
-                          height: containerheight,
-                          child: prefixicon!),
+                      child: prefixicon!,
                     )
                   : const SizedBox.shrink(),
               text == "" && centericon != null

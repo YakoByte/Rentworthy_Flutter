@@ -37,7 +37,8 @@ class HomeSearch extends ConsumerWidget {
                       ]),
                   borderRadius: BorderRadius.circular(16)),
               child: Padding(
-                padding: EdgeInsets.only(left: w * 0.04, bottom: h * 0.02),
+                padding: EdgeInsets.only(
+                    left: w * 0.045, bottom: h * 0.025, top: h * 0.01),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

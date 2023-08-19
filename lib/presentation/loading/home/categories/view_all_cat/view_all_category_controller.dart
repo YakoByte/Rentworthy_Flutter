@@ -65,6 +65,10 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
   List<String> searchitems = [];
 
   List<String> get getsearchitems => searchitems;
+  bool? checkboxitems = false;
+
+  bool get getcheckboxitems => checkboxitems!;
+
   List<bool>? featureadfavlist;
 
   List<bool> get getfeatureadfavlist => featureadfavlist!;
@@ -137,6 +141,15 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
   ) {
     state = const AsyncLoading();
     selectedfilter = val;
+    state = const AsyncValue.data(null);
+  }
+
+  onchangecheckbox(
+    val,
+  ) {
+    state = const AsyncLoading();
+    checkboxitems = val;
+    print("checkboxitems $checkboxitems");
     state = const AsyncValue.data(null);
   }
 

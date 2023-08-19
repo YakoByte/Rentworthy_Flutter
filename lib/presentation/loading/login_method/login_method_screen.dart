@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:rentworthy/utils/common_components/common_outline_button.dart';
 import 'package:rentworthy/utils/images.dart';
 import 'package:rentworthy/utils/text.dart';
@@ -58,7 +59,9 @@ class LoginMethodScreen extends ConsumerWidget {
                       FocusScope.of(Globals.navigatorKey.currentContext!)
                           .requestFocus(FocusNode());
                       commonNavigator(
-                          context: context, child: LoginPhoneScreen());
+                          type: PageTransitionType.rightToLeftWithFade,
+                          context: context,
+                          child: LoginPhoneScreen());
                     }),
                 CommonOutlineButton(
                   containerwidth: w * 0.8,

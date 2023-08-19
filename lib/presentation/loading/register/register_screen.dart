@@ -40,10 +40,9 @@ class RegisterScreen extends ConsumerWidget {
               right: w * 0.1,
               child: const RentLendEnjoyIcon()
                   .animate()
-                  .fadeIn(duration: 400.ms)
                   .then(delay: 1.seconds)
                   .slideY(
-                    begin: 0.435,
+                    begin: 0.4355,
                     end: 0,
                     curve: Curves.easeInOutCubic,
                     duration: 800.ms,
@@ -88,92 +87,164 @@ class RegisterScreen extends ConsumerWidget {
                                           width: 1,
                                         ),
                                       ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          CommonButton(
-                                              containerwidth: controller().isbusinessreg == false
-                                                  ? w * 0.47
-                                                  : w * 0.43,
-                                              containerheight: h * 0.05,
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(
-                                                      h * 0.05),
-                                                  gradient: controller().isbusinessreg == false
-                                                      ? const LinearGradient(
-                                                          begin: Alignment.centerLeft,
-                                                          end: Alignment.centerRight,
-                                                          colors: [
-                                                              AppColors
-                                                                  .colorPrimary,
-                                                              AppColors
-                                                                  .colorSecondary
-                                                            ])
-                                                      : null),
-                                              backgroundColor:
-                                                  AppColors.transparent,
-                                              shape: RoundedRectangleBorder(
+                                      child: Container(
+                                        child: TabBar(
+                                            controller:
+                                                controller().tabController,
+                                            unselectedLabelStyle:
+                                                ptSansTextStyle(
+                                                    foreground: Paint()
+                                                      ..shader =
+                                                          const LinearGradient(
+                                                        colors: <Color>[
+                                                          AppColors
+                                                              .colorPrimary,
+                                                          AppColors
+                                                              .colorSecondary
+                                                        ],
+                                                      ).createShader(const Rect
+                                                                  .fromLTRB(
+                                                              150, 0, 250, 20)),
+                                                    fontSize: h * 0.019,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                            dividerColor: Colors.transparent,
+                                            unselectedLabelColor:
+                                                AppColors.transparent,
+                                            indicatorSize:
+                                                TabBarIndicatorSize.tab,
+                                            labelStyle: ptSansTextStyle(
+                                                color: AppColors.white,
+                                                fontSize: h * 0.025,
+                                                fontWeight: FontWeight.w700),
+                                            indicator: BoxDecoration(
+                                                gradient:
+                                                    LinearGradient(colors: [
+                                                  AppColors.colorPrimary,
+                                                  AppColors.colorSecondary,
+                                                ]),
                                                 borderRadius:
-                                                    BorderRadius.circular(
-                                                        h * 0.05),
+                                                    BorderRadius.circular(50),
+                                                color: Colors.redAccent),
+                                            tabs: [
+                                              Tab(
+                                                child: Align(
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    AppText.reg_individual,
+                                                    style: ptSansTextStyle(
+                                                        color: AppColors.white,
+                                                        overflow: TextOverflow
+                                                            .visible,
+                                                        fontSize: w * 0.037,
+                                                        fontWeight:
+                                                            FontWeight.w700),
+                                                  ),
+                                                ),
                                               ),
-                                              text: AppText.reg_individual,
-                                              textStyle: ptSansTextStyle(
-                                                  color: controller().isbusinessreg == false
-                                                      ? AppColors.white
-                                                      : AppColors.black
-                                                          .withOpacity(0.4),
-                                                  fontSize: h * 0.018,
-                                                  fontWeight: controller().isbusinessreg == false
-                                                      ? FontWeight.w700
-                                                      : FontWeight.w400),
-                                              onPressed: () {
-                                                controller()
-                                                    .onRegtype(val: false);
-                                              }),
-                                          CommonButton(
-                                              containerwidth: controller().isbusinessreg == true
-                                                  ? w * 0.46
-                                                  : w * 0.41,
-                                              containerheight: h * 0.05,
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(
-                                                      h * 0.05),
-                                                  gradient: controller().isbusinessreg == true
-                                                      ? const LinearGradient(
-                                                          begin: Alignment.centerLeft,
-                                                          end: Alignment.centerRight,
-                                                          colors: [
-                                                              AppColors
-                                                                  .colorPrimary,
-                                                              AppColors
-                                                                  .colorSecondary
-                                                            ])
-                                                      : null),
-                                              backgroundColor:
-                                                  AppColors.transparent,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        h * 0.05),
+                                              Tab(
+                                                child: Align(
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    AppText.reg_business,
+                                                    style: ptSansTextStyle(
+                                                        color: AppColors.white,
+                                                        overflow: TextOverflow
+                                                            .visible,
+                                                        fontSize: w * 0.037,
+                                                        fontWeight:
+                                                            FontWeight.w700),
+                                                  ),
+                                                ),
                                               ),
-                                              text: AppText.reg_business,
-                                              textStyle: ptSansTextStyle(
-                                                  color: controller().isbusinessreg == true
-                                                      ? AppColors.white
-                                                      : AppColors.black
-                                                          .withOpacity(0.4),
-                                                  fontSize: h * 0.018,
-                                                  fontWeight: controller().isbusinessreg == true
-                                                      ? FontWeight.w700
-                                                      : FontWeight.w400),
-                                              onPressed: () {
-                                                controller()
-                                                    .onRegtype(val: true);
-                                              }),
-                                        ],
+                                            ]),
                                       ),
+                                      // child: Row(
+                                      //   mainAxisAlignment:
+                                      //       MainAxisAlignment.spaceBetween,
+                                      //   children: [
+                                      //     CommonButton(
+                                      //         containerwidth: controller().isbusinessreg == false
+                                      //             ? w * 0.47
+                                      //             : w * 0.43,
+                                      //         containerheight: h * 0.05,
+                                      //         decoration: BoxDecoration(
+                                      //             borderRadius: BorderRadius.circular(
+                                      //                 h * 0.05),
+                                      //             gradient: controller().isbusinessreg == false
+                                      //                 ? const LinearGradient(
+                                      //                     begin: Alignment.centerLeft,
+                                      //                     end: Alignment.centerRight,
+                                      //                     colors: [
+                                      //                         AppColors
+                                      //                             .colorPrimary,
+                                      //                         AppColors
+                                      //                             .colorSecondary
+                                      //                       ])
+                                      //                 : null),
+                                      //         backgroundColor:
+                                      //             AppColors.transparent,
+                                      //         shape: RoundedRectangleBorder(
+                                      //           borderRadius:
+                                      //               BorderRadius.circular(
+                                      //                   h * 0.05),
+                                      //         ),
+                                      //         text: AppText.reg_individual,
+                                      //         textStyle: ptSansTextStyle(
+                                      //             color: controller().isbusinessreg == false
+                                      //                 ? AppColors.white
+                                      //                 : AppColors.black
+                                      //                     .withOpacity(0.4),
+                                      //             fontSize: h * 0.018,
+                                      //             fontWeight: controller().isbusinessreg == false
+                                      //                 ? FontWeight.w700
+                                      //                 : FontWeight.w400),
+                                      //         onPressed: () {
+                                      //           controller()
+                                      //               .onRegtype(val: false);
+                                      //         }),
+                                      //     CommonButton(
+                                      //         containerwidth: controller().isbusinessreg == true
+                                      //             ? w * 0.46
+                                      //             : w * 0.41,
+                                      //         containerheight: h * 0.05,
+                                      //         decoration: BoxDecoration(
+                                      //             borderRadius: BorderRadius.circular(
+                                      //                 h * 0.05),
+                                      //             gradient: controller().isbusinessreg == true
+                                      //                 ? const LinearGradient(
+                                      //                     begin: Alignment.centerLeft,
+                                      //                     end: Alignment.centerRight,
+                                      //                     colors: [
+                                      //                         AppColors
+                                      //                             .colorPrimary,
+                                      //                         AppColors
+                                      //                             .colorSecondary
+                                      //                       ])
+                                      //                 : null),
+                                      //         backgroundColor:
+                                      //             AppColors.transparent,
+                                      //         shape: RoundedRectangleBorder(
+                                      //           borderRadius:
+                                      //               BorderRadius.circular(
+                                      //                   h * 0.05),
+                                      //         ),
+                                      //         text: AppText.reg_business,
+                                      //         textStyle: ptSansTextStyle(
+                                      //             color: controller().isbusinessreg == true
+                                      //                 ? AppColors.white
+                                      //                 : AppColors.black
+                                      //                     .withOpacity(0.4),
+                                      //             fontSize: h * 0.018,
+                                      //             fontWeight: controller().isbusinessreg == true
+                                      //                 ? FontWeight.w700
+                                      //                 : FontWeight.w400),
+                                      //         onPressed: () {
+                                      //           controller()
+                                      //               .onRegtype(val: true);
+                                      //         }),
+                                      //   ],
+                                      // ),
                                     ),
 
                                     ///input fields
@@ -348,7 +419,10 @@ class RegisterScreen extends ConsumerWidget {
                                                   color: AppColors.white,
                                                   fontSize: h * 0.019,
                                                   fontWeight: FontWeight.w700),
-                                              onPressed: () {}),
+                                              onPressed: () {
+                                                controller()
+                                                    .onisSignin(val: true);
+                                              }),
                                           Column(
                                             children: [
                                               CommonText(

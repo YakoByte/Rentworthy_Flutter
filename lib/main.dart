@@ -6,10 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rentworthy/presentation/loading/loading_screen.dart';
 import 'package:rentworthy/utils/globals.dart';
 import 'package:rentworthy/utils/state_logger.dart';
 import 'package:rentworthy/utils/text.dart';
+
+import 'presentation/loading/loading_screen.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -59,8 +60,15 @@ class _MyAppState extends ConsumerState<MyApp> {
       theme: ThemeData(
           fontFamily: GoogleFonts.ptSans().fontFamily, useMaterial3: true),
       // home: CategoryDetailsScreen(title: "Xbox"),
-      home: const LoadingScreen(),
-      // home: const ViewAllCategory(),
+      home: LoadingScreen(),
+      // home: DetectOtp(
+      //   phoneNo: '+918585858585',
+      // ),
+      // home: const FindLocation(),
+      // home: const BottomBar(),
+      // home: ViewAllCategory(
+      //   title: 'df',
+      // ),
     );
   }
 }

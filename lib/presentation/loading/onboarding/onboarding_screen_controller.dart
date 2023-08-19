@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../application/onboarding/onboarding_service.dart';
@@ -56,6 +57,7 @@ class OnBoardingScreenController extends _$OnBoardingScreenController {
       FocusScope.of(Globals.navigatorKey.currentContext!)
           .requestFocus(FocusNode());
       commonNavigator(
+          type: PageTransitionType.rightToLeftWithFade,
           context: Globals.navigatorKey.currentContext!,
           child: RegisterScreen());
     } else {

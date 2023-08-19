@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rentworthy/utils/color.dart';
 import 'package:rentworthy/utils/common_components/common_button.dart';
+import 'package:rentworthy/utils/common_components/common_iconbutton.dart';
 import 'package:rentworthy/utils/common_components/common_text.dart';
 import 'package:rentworthy/utils/text.dart';
 import 'package:shimmer/shimmer.dart';
@@ -52,11 +54,12 @@ class CategoryDetailsScreen extends ConsumerWidget {
               child: Image.asset(AppImg.chat1,
                   color: AppColors.white, height: h * 0.045)),
         ),
-      ),
+      ).animate().fadeIn(duration: 150.ms).then(delay: 150.ms).slideY(
+          begin: 3, end: 0, curve: Curves.easeInOutCubic, duration: 1000.ms),
       appBar: CommonAppBar(
           backgroundColor: AppColors.white,
           centerTitle: true,
-          title: title,
+          title: AppText.subcat,
           leadingicon: true,
           padding: EdgeInsets.symmetric(
             horizontal: w * 0.035,
@@ -66,7 +69,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
             color: AppColors.white,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(h * 0.01)),
-            child: CommonButton(
+            child: CommonIconButton(
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -83,16 +86,14 @@ class CategoryDetailsScreen extends ConsumerWidget {
                 },
                 child: Center(
                   child: Icon(Icons.arrow_back_ios_new_outlined,
-                      color: AppColors.white, size: w * 0.035),
+                      color: AppColors.white, size: h * 0.026),
                 ),
               ),
-              containerwidth: h * 0.07,
-              containerheight: h * 0.07,
+              containerwidth: h * 0.06,
+              containerheight: h * 0.06,
               backgroundColor: AppColors.white,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(h * 0.01)),
-              textStyle: TextStyle(fontSize: h * 0.02),
-              text: '',
             ),
           ),
           textstyle: ptSansTextStyle(
@@ -110,7 +111,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
             color: AppColors.white,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(h * 0.01)),
-            child: CommonButton(
+            child: CommonIconButton(
               onPressed: () {
                 const CommonPopup();
               },
@@ -126,23 +127,13 @@ class CategoryDetailsScreen extends ConsumerWidget {
                   ).createShader(bounds);
                 },
                 child: Icon(Icons.more_vert,
-                    color: AppColors.white, size: w * 0.035),
+                    color: AppColors.white, size: h * 0.03),
               ),
-              containerwidth: h * 0.07,
-              containerheight: h * 0.07,
+              containerwidth: h * 0.06,
+              containerheight: h * 0.06,
               backgroundColor: AppColors.white,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(h * 0.01)),
-              textStyle: ptSansTextStyle(
-                  foreground: Paint()
-                    ..shader = const LinearGradient(
-                      colors: <Color>[
-                        AppColors.colorPrimary,
-                        AppColors.colorSecondary
-                      ],
-                    ).createShader(const Rect.fromLTRB(100, 0, 300, 20)),
-                  fontSize: h * 0.02),
-              text: '',
             ),
           )),
       body: Container(
@@ -185,179 +176,223 @@ class CategoryDetailsScreen extends ConsumerWidget {
                     children: [
                       Center(
                         child: Image.asset(AppImg.xbox,
-                            height: h * 0.4, width: w * 0.5, fit: BoxFit.cover),
+                            height: h * 0.3, width: w * 0.8, fit: BoxFit.cover),
                       ),
                     ],
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: h * 0.02),
-                  child: CommonText(
-                      text: title,
-                      style: ptSansTextStyle(
-                        color: AppColors.black.withOpacity(0.6),
-                        fontSize: h * 0.035,
-                        fontWeight: FontWeight.w700,
-                      )),
-                ),
-                CommonText(
-                    text: AppText.dummytext,
-                    style: ptSansTextStyle(
-                      color: AppColors.black.withOpacity(0.4),
-                      fontSize: h * 0.025,
-                      fontWeight: FontWeight.w400,
-                    )),
-                Card(
-                  color: AppColors.white,
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Container(
-                    height: h * 0.15,
-                    width: w,
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.circular(10),
+                ).animate().fadeIn(duration: 150.ms).then(delay: 150.ms).slideY(
+                    begin: 3,
+                    end: 0,
+                    curve: Curves.easeInOutCubic,
+                    duration: 1000.ms),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: h * 0.02),
+                      child: CommonText(
+                          text: title,
+                          style: ptSansTextStyle(
+                            color: AppColors.black.withOpacity(0.6),
+                            fontSize: h * 0.035,
+                            fontWeight: FontWeight.w700,
+                          )),
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: w * 0.035),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(right: w * 0.03),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(h * 0.1),
-                                  child: Image.asset(
-                                    AppImg.homelist,
-                                    height: h * 0.08,
-                                    width: h * 0.08,
-                                    fit: BoxFit.cover,
+                    CommonText(
+                        text: AppText.dummytext,
+                        style: ptSansTextStyle(
+                          color: AppColors.black.withOpacity(0.4),
+                          fontSize: h * 0.025,
+                          fontWeight: FontWeight.w400,
+                        )),
+                  ],
+                ).animate().fadeIn(duration: 350.ms).then(delay: 350.ms).slideY(
+                    begin: 3,
+                    end: 0,
+                    curve: Curves.easeInOutCubic,
+                    duration: 1100.ms),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: h * 0.012),
+                  child: Card(
+                    color: AppColors.white,
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Container(
+                      height: h * 0.13,
+                      width: w,
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: w * 0.02),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(right: w * 0.016),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(1000),
+                                    child: Image.asset(
+                                      AppImg.homelist,
+                                      height: h * 0.09,
+                                      width: h * 0.09,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
+                                Container(
+                                  width: w * 0.45,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      CommonText(
-                                          text: AppText.postedby,
-                                          style: ptSansTextStyle(
-                                            color: AppColors.black
-                                                .withOpacity(0.4),
-                                            fontSize: h * 0.021,
-                                            fontWeight: FontWeight.w400,
-                                          )),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: CommonText(
+                                                text: AppText.postedby,
+                                                maxLines: 1,
+                                                style: ptSansTextStyle(
+                                                  color: AppColors.black
+                                                      .withOpacity(0.4),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  fontSize: h * 0.021,
+                                                  fontWeight: FontWeight.w400,
+                                                )),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: CommonText(
+                                                text: AppText.hamzaali,
+                                                maxLines: 1,
+                                                style: ptSansTextStyle(
+                                                  color: AppColors.black
+                                                      .withOpacity(0.8),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  fontSize: h * 0.021,
+                                                  fontWeight: FontWeight.w400,
+                                                )),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: CommonText(
+                                                text: AppText.postedon,
+                                                maxLines: 1,
+                                                style: ptSansTextStyle(
+                                                  color: AppColors.black
+                                                      .withOpacity(0.4),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  fontSize: h * 0.018,
+                                                  fontWeight: FontWeight.w400,
+                                                )),
+                                          ),
+                                        ],
+                                      ),
                                     ],
                                   ),
-                                  Row(
-                                    children: [
-                                      CommonText(
-                                          text: AppText.hamzaali,
-                                          style: ptSansTextStyle(
-                                            color: AppColors.black
-                                                .withOpacity(0.8),
-                                            fontSize: h * 0.021,
-                                            fontWeight: FontWeight.w400,
-                                          )),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      CommonText(
-                                          text: AppText.postedon,
-                                          style: ptSansTextStyle(
-                                            color: AppColors.black
-                                                .withOpacity(0.4),
-                                            fontSize: h * 0.021,
-                                            fontWeight: FontWeight.w400,
-                                          )),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          CommonButton(
-                              containerwidth: h * 0.08,
-                              containerheight: h * 0.08,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
-                                  gradient: const LinearGradient(
-                                      begin: Alignment.centerLeft,
-                                      end: Alignment.centerRight,
+                                ),
+                              ],
+                            ),
+                            CommonIconButton(
+                                containerwidth: h * 0.07,
+                                containerheight: h * 0.07,
+                                backgroundColor: AppColors.transparent,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    gradient: const LinearGradient(
+                                        begin: Alignment.centerLeft,
+                                        end: Alignment.centerRight,
+                                        colors: [
+                                          AppColors.colorPrimary,
+                                          AppColors.colorSecondary
+                                        ])),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(100)),
+                                centericon: ShaderMask(
+                                  shaderCallback: (Rect bounds) {
+                                    return const LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
                                       colors: [
-                                        AppColors.colorPrimary,
-                                        AppColors.colorSecondary
-                                      ])),
-                              backgroundColor: AppColors.transparent,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(100)),
-                              text: "",
-                              centericon: ShaderMask(
-                                shaderCallback: (Rect bounds) {
-                                  return const LinearGradient(
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                    colors: [
-                                      AppColors.white,
-                                      AppColors.yellow,
-                                    ],
-                                  ).createShader(bounds);
-                                },
-                                child: Icon(Icons.call_outlined,
-                                    color: AppColors.white, size: h * 0.04),
-                              ),
-                              textStyle: const TextStyle(),
-                              onPressed: () {})
-                        ],
+                                        AppColors.white,
+                                        AppColors.yellow,
+                                      ],
+                                    ).createShader(bounds);
+                                  },
+                                  child: Icon(Icons.call_outlined,
+                                      color: AppColors.white, size: h * 0.04),
+                                ),
+                                onPressed: () {}),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Card(
-                  color: AppColors.white,
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Container(
-                    height: h * 0.13,
-                    width: w,
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: w * 0.06),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CommonText(
-                              text: AppText.adpostedat,
-                              style: ptSansTextStyle(
-                                color: AppColors.black.withOpacity(0.6),
-                                fontSize: h * 0.025,
-                                fontWeight: FontWeight.w600,
-                              )),
-                          CommonText(
-                              text: AppText.tampaflorida,
-                              style: ptSansTextStyle(
-                                color: AppColors.black,
-                                fontSize: h * 0.035,
-                                fontWeight: FontWeight.w700,
-                              )),
-                        ],
+                ).animate().fadeIn(duration: 450.ms).then(delay: 450.ms).slideY(
+                    begin: 3,
+                    end: 0,
+                    curve: Curves.easeInOutCubic,
+                    duration: 1200.ms),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: h * 0.008),
+                  child: Card(
+                    color: AppColors.white,
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                    child: Container(
+                      height: h * 0.13,
+                      width: w,
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: w * 0.06),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CommonText(
+                                text: AppText.adpostedat,
+                                style: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.6),
+                                  fontSize: h * 0.025,
+                                  fontWeight: FontWeight.w600,
+                                )),
+                            CommonText(
+                                text: AppText.tampaflorida,
+                                style: ptSansTextStyle(
+                                  color: AppColors.black,
+                                  fontSize: h * 0.035,
+                                  fontWeight: FontWeight.w700,
+                                )),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
+                ).animate().fadeIn(duration: 550.ms).then(delay: 550.ms).slideY(
+                    begin: 3,
+                    end: 0,
+                    curve: Curves.easeInOutCubic,
+                    duration: 1300.ms),
                 SizedBox(
                   height: h * 0.15,
                 ),
@@ -386,7 +421,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                     ),
                     CommonButton(
                         containerwidth: w * 0.45,
-                        containerheight: h * 0.07,
+                        containerheight: h * 0.075,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(h * 0.006),
                             gradient: const LinearGradient(
@@ -428,7 +463,11 @@ class CategoryDetailsScreen extends ConsumerWidget {
                             fontWeight: FontWeight.w700),
                         onPressed: () {}),
                   ],
-                )
+                ).animate().fadeIn(duration: 650.ms).then(delay: 650.ms).slideY(
+                    begin: 3,
+                    end: 0,
+                    curve: Curves.easeInOutCubic,
+                    duration: 1400.ms)
               ],
             ),
           ),

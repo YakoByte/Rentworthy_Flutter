@@ -23,18 +23,18 @@ class BottomBar extends ConsumerWidget {
     controller() => ref.read(bottomBarControllerProvider.notifier);
     return Scaffold(
       body: controller().getselectedIndex == 0
-          ? const HomeScreen()
+          ? HomeScreen()
           : controller().getselectedIndex == 1
-              ? const ChatScreen()
+              ? ChatScreen()
               : controller().getselectedIndex == 2
-                  ? const BookingScreen()
+                  ? BookingScreen()
                   : controller().getselectedIndex == 3
-                      ? const AccountScreen()
+                      ? AccountScreen()
                       : controller().getselectedIndex == 4
-                          ? const SellScreen()
+                          ? SellScreen()
                           : null,
 
-      //  selectedBottomNav.Page,
+      //selectedBottomNav.Page,
       bottomNavigationBar: SafeArea(
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -42,9 +42,7 @@ class BottomBar extends ConsumerWidget {
             controller().geticonlist.length,
             (index) => InkWell(
                 onTap: () {
-                  controller().onItemTapped(
-                    index,
-                  );
+                  controller().onItemTapped(index);
                 },
                 child: Padding(
                   padding: index == 1
@@ -100,12 +98,10 @@ class BottomBar extends ConsumerWidget {
                                     controller().geticonlist[index],
                                     height: h * 0.03,
                                     width: w * 0.05,
-                                    color: index ==
-                                            controller().getselectedIndex
-                                        ? AppColors.white
-                                        : index == 0
-                                            ? AppColors.black.withOpacity(0.8)
-                                            : AppColors.black,
+                                    color:
+                                        index == controller().getselectedIndex
+                                            ? AppColors.white
+                                            : AppColors.black.withOpacity(0.8),
                                   ),
                                 ),
                               )),
@@ -234,7 +230,7 @@ class BottomBar extends ConsumerWidget {
                       ).createShader(bounds);
                     },
                     child: Text(
-                      "Sell",
+                      "List",
                       style: TextStyle(
                         fontSize: w * 0.025,
                         color: controller().getselectedIndex == 4
