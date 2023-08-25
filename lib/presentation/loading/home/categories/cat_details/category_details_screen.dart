@@ -10,7 +10,6 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../../../../utils/common_components/common_appbar.dart';
 import '../../../../../utils/common_components/common_carouselslider.dart';
-import '../../../../../utils/common_components/common_popup.dart';
 import '../../../../../utils/images.dart';
 import 'category_details_screen_controller.dart';
 
@@ -30,7 +29,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
       backgroundColor: AppColors.white,
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
       floatingActionButton: Padding(
-        padding: EdgeInsets.only(top: h * 0.5),
+        padding: EdgeInsets.only(top: h * 0.7),
         child: CommonButton(
           decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(100)),
@@ -46,13 +45,13 @@ class CategoryDetailsScreen extends ConsumerWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
           backgroundColor: AppColors.transparent,
-          containerwidth: h * 0.085,
-          containerheight: h * 0.085,
+          containerwidth: h * 0.068,
+          containerheight: h * 0.068,
           text: '',
-          textStyle: const TextStyle(),
+          textStyle: ptSansTextStyle(),
           centericon: Center(
               child: Image.asset(AppImg.chat1,
-                  color: AppColors.white, height: h * 0.045)),
+                  color: AppColors.white, height: h * 0.035)),
         ),
       ).animate().fadeIn(duration: 150.ms).then(delay: 150.ms).slideY(
           begin: 3, end: 0, curve: Curves.easeInOutCubic, duration: 1000.ms),
@@ -60,7 +59,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
           backgroundColor: AppColors.white,
           centerTitle: true,
           title: AppText.subcat,
-          leadingicon: true,
+          leadingicon: false,
           padding: EdgeInsets.symmetric(
             horizontal: w * 0.035,
           ),
@@ -112,9 +111,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(h * 0.01)),
             child: CommonIconButton(
-              onPressed: () {
-                const CommonPopup();
-              },
+              onPressed: () {},
               centericon: ShaderMask(
                 shaderCallback: (Rect bounds) {
                   return const LinearGradient(
@@ -194,7 +191,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                           text: title,
                           style: ptSansTextStyle(
                             color: AppColors.black.withOpacity(0.6),
-                            fontSize: h * 0.035,
+                            fontSize: h * 0.033,
                             fontWeight: FontWeight.w700,
                           )),
                     ),
@@ -202,7 +199,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                         text: AppText.dummytext,
                         style: ptSansTextStyle(
                           color: AppColors.black.withOpacity(0.4),
-                          fontSize: h * 0.025,
+                          fontSize: h * 0.023,
                           fontWeight: FontWeight.w400,
                         )),
                   ],
@@ -219,7 +216,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
                     child: Container(
-                      height: h * 0.13,
+                      height: h * 0.11,
                       width: w,
                       decoration: BoxDecoration(
                         color: AppColors.white,
@@ -228,7 +225,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: w * 0.02),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Row(
@@ -240,8 +237,8 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                     borderRadius: BorderRadius.circular(1000),
                                     child: Image.asset(
                                       AppImg.homelist,
-                                      height: h * 0.09,
-                                      width: h * 0.09,
+                                      height: h * 0.075,
+                                      width: h * 0.075,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -264,7 +261,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                                       .withOpacity(0.4),
                                                   overflow:
                                                       TextOverflow.ellipsis,
-                                                  fontSize: h * 0.021,
+                                                  fontSize: h * 0.02,
                                                   fontWeight: FontWeight.w400,
                                                 )),
                                           ),
@@ -281,7 +278,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                                       .withOpacity(0.8),
                                                   overflow:
                                                       TextOverflow.ellipsis,
-                                                  fontSize: h * 0.021,
+                                                  fontSize: h * 0.02,
                                                   fontWeight: FontWeight.w400,
                                                 )),
                                           ),
@@ -298,7 +295,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                                       .withOpacity(0.4),
                                                   overflow:
                                                       TextOverflow.ellipsis,
-                                                  fontSize: h * 0.018,
+                                                  fontSize: h * 0.017,
                                                   fontWeight: FontWeight.w400,
                                                 )),
                                           ),
@@ -310,8 +307,8 @@ class CategoryDetailsScreen extends ConsumerWidget {
                               ],
                             ),
                             CommonIconButton(
-                                containerwidth: h * 0.07,
-                                containerheight: h * 0.07,
+                                containerwidth: h * 0.06,
+                                containerheight: h * 0.06,
                                 backgroundColor: AppColors.transparent,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100),
@@ -336,7 +333,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                     ).createShader(bounds);
                                   },
                                   child: Icon(Icons.call_outlined,
-                                      color: AppColors.white, size: h * 0.04),
+                                      color: AppColors.white, size: h * 0.035),
                                 ),
                                 onPressed: () {}),
                           ],
@@ -357,7 +354,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
                     child: Container(
-                      height: h * 0.13,
+                      height: h * 0.11,
                       width: w,
                       decoration: BoxDecoration(
                         color: AppColors.white,
@@ -373,14 +370,14 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                 text: AppText.adpostedat,
                                 style: ptSansTextStyle(
                                   color: AppColors.black.withOpacity(0.6),
-                                  fontSize: h * 0.025,
+                                  fontSize: h * 0.024,
                                   fontWeight: FontWeight.w600,
                                 )),
                             CommonText(
                                 text: AppText.tampaflorida,
                                 style: ptSansTextStyle(
                                   color: AppColors.black,
-                                  fontSize: h * 0.035,
+                                  fontSize: h * 0.034,
                                   fontWeight: FontWeight.w700,
                                 )),
                           ],
@@ -407,21 +404,21 @@ class CategoryDetailsScreen extends ConsumerWidget {
                             text: AppText.day,
                             style: ptSansTextStyle(
                               color: AppColors.black.withOpacity(0.6),
-                              fontSize: h * 0.035,
+                              fontSize: h * 0.03,
                               fontWeight: FontWeight.w700,
                             )),
                         CommonText(
                             text: AppText.totalpayable,
                             style: ptSansTextStyle(
                               color: AppColors.black.withOpacity(0.4),
-                              fontSize: h * 0.025,
+                              fontSize: h * 0.023,
                               fontWeight: FontWeight.w500,
                             )),
                       ],
                     ),
                     CommonButton(
                         containerwidth: w * 0.45,
-                        containerheight: h * 0.075,
+                        containerheight: h * 0.071,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(h * 0.006),
                             gradient: const LinearGradient(
@@ -436,12 +433,14 @@ class CategoryDetailsScreen extends ConsumerWidget {
                           borderRadius: BorderRadius.circular(h * 0.006),
                         ),
                         prefixicon: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              width: h * 0.05,
-                              height: h * 0.05,
+                              width: h * 0.04,
+                              height: h * 0.04,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
+                                  borderRadius: BorderRadius.circular(1000),
                                   color: AppColors.white.withOpacity(0.4)),
                               child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -450,7 +449,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                     Icon(
                                       Icons.attach_money,
                                       color: AppColors.white,
-                                      size: h * 0.03,
+                                      size: h * 0.025,
                                     ),
                                   ]),
                             ),
@@ -460,7 +459,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                         textStyle: ptSansTextStyle(
                             color: AppColors.white,
                             fontSize: h * 0.019,
-                            fontWeight: FontWeight.w700),
+                            fontWeight: FontWeight.w500),
                         onPressed: () {}),
                   ],
                 ).animate().fadeIn(duration: 650.ms).then(delay: 650.ms).slideY(

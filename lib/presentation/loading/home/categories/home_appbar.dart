@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rentworthy/utils/globals.dart';
 
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_dropdown.dart';
@@ -24,10 +25,15 @@ class HomeAppBar extends ConsumerWidget {
         children: [
           Row(
             children: [
-              Image.asset(
-                AppImg.menu,
-                height: h * 0.03,
-                width: h * 0.03,
+              InkWell(
+                onTap: () {
+                  Globals.scaffoldKey.currentState!.openDrawer();
+                },
+                child: Image.asset(
+                  AppImg.menu,
+                  height: h * 0.03,
+                  width: h * 0.03,
+                ),
               ),
               CommonDropdown(
                   onChanged: (value) {

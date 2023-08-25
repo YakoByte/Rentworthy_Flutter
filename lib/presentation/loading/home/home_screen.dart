@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rentworthy/presentation/loading/home/categories/home_appbar.dart';
+import 'package:rentworthy/presentation/loading/home/categories/home_nav_drawer.dart';
 import 'package:rentworthy/utils/color.dart';
 import 'package:rentworthy/utils/common_components/common_carouselslider.dart';
+import 'package:rentworthy/utils/globals.dart';
 
 import '../../../utils/common_components/common_text.dart';
 import '../../../utils/images.dart';
@@ -22,8 +24,19 @@ class HomeScreen extends ConsumerWidget {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     return Scaffold(
+      key: Globals.scaffoldKey,
       backgroundColor: AppColors.white,
       resizeToAvoidBottomInset: true,
+      drawerScrimColor: AppColors.black.withOpacity(0.4),
+      drawer: HomeNavDrawer()
+          .animate()
+          .fadeIn(duration: 30.ms)
+          .then(delay: 20.ms)
+          .slideX(
+              begin: -1,
+              end: 0,
+              curve: Curves.easeInOutCubic,
+              duration: 400.ms),
       body: Container(
         width: w,
         height: h,
@@ -59,11 +72,15 @@ class HomeScreen extends ConsumerWidget {
 
                 /// Categories
                 Categories(
+                  isFavIcon: true,
                   isFeature: false,
+                  isextended: false,
+                  isTopPadding: false,
                   title: AppText.categories,
                   isViewAll: true,
                   height: h * 0.27,
                   favList: [],
+                  onCardPressed: () {},
                   isCategory: true,
                   padding: EdgeInsets.symmetric(
                       horizontal: w * 0.05, vertical: h * 0.015),
@@ -164,7 +181,11 @@ class HomeScreen extends ConsumerWidget {
 
                 /// Featured Ads
                 Categories(
+                  isFavIcon: true,
                   isFeature: true,
+                  isTopPadding: false,
+                  onCardPressed: () {},
+                  isextended: false,
                   title: AppText.featuredads,
                   isViewAll: false,
                   isCategory: false,
@@ -299,10 +320,14 @@ class HomeScreen extends ConsumerWidget {
                 Padding(
                   padding: EdgeInsets.only(bottom: h * 0.015),
                   child: Categories(
+                    isFavIcon: true,
                     isFeature: false,
+                    onCardPressed: () {},
                     title: AppText.nearbyads,
                     isViewAll: true,
+                    isextended: false,
                     isCategory: false,
+                    isTopPadding: false,
                     favList: controller().getnearbyadfavlist,
                     shrinkWrap: false,
                     width: w,
@@ -331,9 +356,13 @@ class HomeScreen extends ConsumerWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: h * 0.005),
                   child: Categories(
+                    isFavIcon: true,
+                    onCardPressed: () {},
                     isFeature: false,
+                    isextended: false,
                     title: AppText.popularads,
                     isViewAll: true,
+                    isTopPadding: false,
                     type: 2,
                     favList: controller().getpopularfavlist,
                     isCategory: false,

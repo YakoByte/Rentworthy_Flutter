@@ -21,6 +21,9 @@ class UnreadChat extends ConsumerWidget {
         children: <Widget>[
           Container(
             child: TabBar(
+                indicatorWeight: 0,
+                indicatorPadding: EdgeInsets.symmetric(
+                    vertical: h * 0.005, horizontal: w * 0.03),
                 unselectedLabelStyle: ptSansTextStyle(
                     foreground: Paint()
                       ..shader = const LinearGradient(

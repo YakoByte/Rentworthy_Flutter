@@ -7,7 +7,7 @@ part of 'register_screen_controller.dart';
 // **************************************************************************
 
 String _$registerScreenControllerHash() =>
-    r'7f58a3fa29f3f6d2a53a8dcb69af323414a5eddd';
+    r'd19dbb77b03fc714cc4ff568b490d5a16809ebb5';
 
 /// See also [RegisterScreenController].
 @ProviderFor(RegisterScreenController)

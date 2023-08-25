@@ -7,7 +7,9 @@ class CommonListView extends ConsumerWidget {
   bool shrinkWrap;
   double width;
   double height;
+  ScrollController? controller;
   EdgeInsetsGeometry? padding;
+  ScrollPhysics? physics;
   Widget? Function(BuildContext, int) itemBuilder;
 
   CommonListView(
@@ -18,6 +20,8 @@ class CommonListView extends ConsumerWidget {
       required this.padding,
       required this.width,
       required this.height,
+      this.controller,
+      this.physics,
       required this.itemBuilder})
       : super(key: key);
 
@@ -28,7 +32,9 @@ class CommonListView extends ConsumerWidget {
       height: height,
       padding: padding,
       child: ListView.builder(
+          controller: controller,
           itemCount: itemCount,
+          physics: physics,
           scrollDirection: scrollDirection,
           shrinkWrap: shrinkWrap,
           itemBuilder: itemBuilder),

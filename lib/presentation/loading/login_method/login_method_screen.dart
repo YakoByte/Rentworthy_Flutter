@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:rentworthy/utils/common_components/common_outline_button.dart';
 import 'package:rentworthy/utils/images.dart';
@@ -72,6 +73,17 @@ class LoginMethodScreen extends ConsumerWidget {
                     side: const BorderSide(
                         color: AppColors.colorPrimary, width: 2),
                   ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: GradientBoxBorder(
+                      gradient: LinearGradient(colors: [
+                        AppColors.colorPrimary,
+                        AppColors.colorSecondary
+                      ]),
+                      width: 2.5,
+                    ),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
                   prefix: Center(
                     child: Image.asset(
                       AppImg.google,
@@ -90,8 +102,7 @@ class LoginMethodScreen extends ConsumerWidget {
                       fontSize: h * 0.019,
                       fontWeight: FontWeight.w700),
                   onPressed: () {},
-                  side:
-                      const BorderSide(color: AppColors.colorPrimary, width: 2),
+                  side: BorderSide.none,
                 ),
                 CommonOutlineButton(
                     containerwidth: w * 0.8,

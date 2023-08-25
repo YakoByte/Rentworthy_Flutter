@@ -17,12 +17,13 @@ class ChatScreen extends ConsumerWidget {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: AppColors.white,
       appBar: CommonAppBar(
           title: AppText.chats,
           textstyle: ptSansTextStyle(
               color: AppColors.black,
-              fontSize: h * 0.022,
-              fontWeight: FontWeight.w700),
+              fontSize: h * 0.028,
+              fontWeight: FontWeight.w600),
           leadingicon: false,
           centerTitle: false,
           padding: EdgeInsets.symmetric(horizontal: w * 0.025),

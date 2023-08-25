@@ -12,6 +12,7 @@ class CommonOutlineButton extends ConsumerWidget {
     required this.textStyle,
     this.prefix,
     this.suffix,
+    this.decoration,
     required this.side,
     required this.onPressed,
   }) : super(key: key);
@@ -23,6 +24,7 @@ class CommonOutlineButton extends ConsumerWidget {
   Widget? suffix;
   String text;
   BorderSide? side;
+  Decoration? decoration;
   TextStyle textStyle;
   void Function() onPressed;
 
@@ -30,7 +32,8 @@ class CommonOutlineButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
-    return SizedBox(
+    return Container(
+      decoration: decoration,
       width: containerwidth,
       height: containerheight,
       child: OutlinedButton(

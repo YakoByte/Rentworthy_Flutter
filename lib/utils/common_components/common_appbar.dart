@@ -4,14 +4,18 @@ import '../color.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   String? title;
-  bool? leadingicon;
+  bool leadingicon;
   bool? centerTitle;
   Color backgroundColor;
   Widget? leadicon;
+  Widget? centerwidget;
+
   Widget? suffixicon;
   String? appbarWidth;
   EdgeInsetsGeometry padding;
   TextStyle? textstyle;
+  double? elevation;
+  double? scrolledUnderElevation;
 
   CommonAppBar(
       {Key? key,
@@ -19,10 +23,13 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.appbarWidth,
       this.leadicon,
       this.suffixicon,
+      this.scrolledUnderElevation,
+      this.elevation,
       this.centerTitle,
+      this.centerwidget,
       this.textstyle,
       required this.padding,
-      this.leadingicon,
+      required this.leadingicon,
       required this.backgroundColor})
       : super(key: key);
 
@@ -33,9 +40,9 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
     return SafeArea(
       child: AppBar(
         backgroundColor: backgroundColor,
-        elevation: 0,
+        elevation: elevation ?? 0,
         toolbarHeight: height * 0.08,
-        scrolledUnderElevation: 0,
+        scrolledUnderElevation: scrolledUnderElevation ?? 0,
         automaticallyImplyLeading: false,
         actions: <Widget>[
           SizedBox(
@@ -44,42 +51,128 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
               padding: padding,
               child: Row(
                 mainAxisAlignment: suffixicon == null && centerTitle == false
-                    ? MainAxisAlignment.start
+                    ? centerwidget != null
+                        ? MainAxisAlignment.start
+                        : MainAxisAlignment.start
                     : MainAxisAlignment.spaceBetween,
                 children: [
-                  leadicon != null
-                      ? leadicon!
-                      : leadingicon == false
-                          ? SizedBox()
-                          : Padding(
-                              padding: padding,
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Center(
+                  if (centerTitle == false)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        leadicon != null
+                            ? leadingicon == false
+                                ? leadicon!
+                                : Row(
+                                    children: [
+                                      Padding(
+                                        padding: padding,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Center(
+                                            child: Center(
+                                              child: Icon(
+                                                Icons.arrow_back,
+                                                color: AppColors.black,
+                                                size: height * 0.03,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      leadicon!
+                                    ],
+                                  )
+                            : leadingicon == false
+                                ? SizedBox()
+                                : Padding(
+                                    padding: padding,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Center(
+                                        child: Center(
+                                          child: Icon(
+                                            Icons.arrow_back,
+                                            color: AppColors.black,
+                                            size: height * 0.03,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                        title != null
+                            ? centerwidget == null
+                                ? Text(
+                                    title!,
+                                    style: textstyle,
+                                  )
+                                : centerwidget!
+                            : centerwidget == null
+                                ? const SizedBox()
+                                : centerwidget!,
+                      ],
+                    ),
+                  if (centerTitle == true)
+                    leadicon != null
+                        ? leadingicon == false
+                            ? leadicon!
+                            : Row(
+                                children: [
+                                  Padding(
+                                    padding: padding,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Center(
+                                        child: Center(
+                                          child: Icon(
+                                            Icons.arrow_back,
+                                            color: AppColors.black,
+                                            size: height * 0.03,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  leadicon!
+                                ],
+                              )
+                        : leadingicon == false
+                            ? SizedBox()
+                            : Padding(
+                                padding: padding,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).pop();
+                                  },
                                   child: Center(
-                                    child: Icon(
-                                      Icons.arrow_back,
-                                      color: AppColors.black,
-                                      size: height * 0.03,
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.arrow_back,
+                                        color: AppColors.black,
+                                        size: height * 0.03,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                  title != null
-                      ? Text(
-                          title!,
-                          style: textstyle,
-                        )
-                      : const SizedBox(),
-                  suffixicon != null
-                      ? suffixicon!
-                      : SizedBox(
-                          height: height * 0.03,
-                          width: height * 0.04,
-                        ),
+                  if (centerTitle == true)
+                    title != null
+                        ? centerwidget == null
+                            ? Text(
+                                title!,
+                                style: textstyle,
+                              )
+                            : centerwidget!
+                        : centerwidget == null
+                            ? const SizedBox()
+                            : centerwidget!,
+                  suffixicon != null ? suffixicon! : SizedBox(),
                 ],
               ),
             ),

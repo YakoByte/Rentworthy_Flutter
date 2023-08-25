@@ -65,7 +65,6 @@ TextStyle ptSansTextStyle({
 }
 
 Text CommonText({
-  required TextStyle style,
   StrutStyle? strutStyle,
   TextAlign? textAlign,
   TextDirection? textDirection,
@@ -79,6 +78,7 @@ Text CommonText({
   TextHeightBehavior? textHeightBehavior,
   Color? selectionColor,
   required String text,
+  required TextStyle style,
 }) {
   return Text(
     text,

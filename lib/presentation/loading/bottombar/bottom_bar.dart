@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:rentworthy/utils/images.dart';
 
 import '../../../utils/color.dart';
+import '../../../utils/common_components/common_text.dart';
 import '../account/account_screen.dart';
 import '../booking/booking_screen.dart';
 import '../chat/chat_screen.dart';
@@ -11,17 +13,18 @@ import '../sell/sell_screen.dart';
 import 'bottom_bar_controller.dart';
 
 class BottomBar extends ConsumerWidget {
-  const BottomBar({
-    Key? key,
-  }) : super(key: key);
+  BottomBar({Key? key, this.index}) : super(key: key);
+  int? index;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
-    final asyncState = ref.watch(bottomBarControllerProvider);
-    controller() => ref.read(bottomBarControllerProvider.notifier);
+    final asyncState = ref.watch(bottomBarControllerProvider(index: index));
+    controller() =>
+        ref.read(bottomBarControllerProvider(index: index).notifier);
     return Scaffold(
+      backgroundColor: AppColors.white,
       body: controller().getselectedIndex == 0
           ? HomeScreen()
           : controller().getselectedIndex == 1
@@ -36,11 +39,17 @@ class BottomBar extends ConsumerWidget {
 
       //selectedBottomNav.Page,
       bottomNavigationBar: SafeArea(
+        top: false,
+        right: false,
+        left: false,
+        bottom: true,
+        maintainBottomViewPadding: true,
+        minimum: EdgeInsets.only(bottom: h * 0.005),
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           ...List.generate(
             controller().geticonlist.length,
-            (index) => InkWell(
+            (index) => GestureDetector(
                 onTap: () {
                   controller().onItemTapped(index);
                 },
@@ -51,9 +60,9 @@ class BottomBar extends ConsumerWidget {
                           ? EdgeInsets.only(left: w * 0.02)
                           : EdgeInsets.zero,
                   child: Container(
-                    height: h * 0.1,
+                    height: h * 0.08,
                     width: w * 0.23,
-                    color: AppColors.transparent,
+                    color: AppColors.white,
                     child: Padding(
                       padding: index == 1
                           ? EdgeInsets.only(right: w * 0.05)
@@ -74,30 +83,18 @@ class BottomBar extends ConsumerWidget {
                                       end: Alignment.bottomRight,
                                       colors: [
                                         index == controller().getselectedIndex
-                                            ? index == 0
-                                                ? AppColors.colorPrimary
-                                                    .withOpacity(0.7)
-                                                : AppColors.colorPrimary
-                                            : index == 0
-                                                ? AppColors.black
-                                                    .withOpacity(0.8)
-                                                : AppColors.black,
+                                            ? AppColors.colorPrimary
+                                            : AppColors.black.withOpacity(0.8),
                                         index == controller().getselectedIndex
-                                            ? index == 0
-                                                ? AppColors.colorSecondary
-                                                    .withOpacity(0.7)
-                                                : AppColors.colorSecondary
-                                            : index == 0
-                                                ? AppColors.black
-                                                    .withOpacity(0.8)
-                                                : AppColors.black,
+                                            ? AppColors.colorSecondary
+                                            : AppColors.black.withOpacity(0.8),
                                       ],
                                     ).createShader(bounds);
                                   },
                                   child: Image.asset(
                                     controller().geticonlist[index],
                                     height: h * 0.03,
-                                    width: w * 0.05,
+                                    width: h * 0.03,
                                     color:
                                         index == controller().getselectedIndex
                                             ? AppColors.white
@@ -123,8 +120,12 @@ class BottomBar extends ConsumerWidget {
                               },
                               child: Text(
                                 controller().gettablist[index],
-                                style: TextStyle(
-                                  fontSize: w * 0.023,
+                                style: ptSansTextStyle(
+                                  fontSize: w * 0.025,
+                                  fontWeight:
+                                      index == controller().getselectedIndex
+                                          ? FontWeight.w600
+                                          : FontWeight.w500,
                                   color: index == controller().getselectedIndex
                                       ? AppColors.colorSecondary
                                       : AppColors.black.withOpacity(0.8),
@@ -146,97 +147,86 @@ class BottomBar extends ConsumerWidget {
       floatingActionButton: Visibility(
         visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
         child: Padding(
-          padding: EdgeInsets.only(bottom: h * 0.02),
+          padding: EdgeInsets.only(bottom: h * 0.025),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
-                height: h * 0.073,
-                width: h * 0.073,
-                decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
+                height: h * 0.065,
+                width: h * 0.065,
+                decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(500)),
+                    border: GradientBoxBorder(
+                      gradient: LinearGradient(colors: [
                         AppColors.colorPrimary,
                         AppColors.colorSecondary
-                      ],
+                      ]),
+                      width: 4,
                     )),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: h * 0.06,
-                      width: h * 0.06,
-                      child: FloatingActionButton(
-                        backgroundColor: AppColors.white,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(500)),
-                        ),
-                        onPressed: () async {
-                          controller().onItemTapped(
-                            4,
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ShaderMask(
-                            shaderCallback: (Rect bounds) {
-                              return LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: [
-                                  controller().getselectedIndex == 4
-                                      ? AppColors.colorPrimary
-                                      : AppColors.black.withOpacity(0.7),
-                                  controller().getselectedIndex == 4
-                                      ? AppColors.colorSecondary
-                                      : AppColors.black.withOpacity(0.7),
-                                ],
-                              ).createShader(bounds);
-                            },
-                            child: Image.asset(
-                              AppImg.plus,
-                              color: controller().getselectedIndex == 4
+                child: FloatingActionButton(
+                  backgroundColor: AppColors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(500)),
+                  ),
+                  onPressed: () async {
+                    controller().onItemTapped(
+                      4,
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ShaderMask(
+                      shaderCallback: (Rect bounds) {
+                        return LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              controller().getselectedIndex == 4
                                   ? AppColors.colorPrimary
-                                  : AppColors.black,
-                              height: h * 0.03,
-                            ),
-                          ),
-                        ),
+                                  : AppColors.black.withOpacity(0.7),
+                              controller().getselectedIndex == 4
+                                  ? AppColors.colorSecondary
+                                  : AppColors.black.withOpacity(0.7),
+                            ]).createShader(const Rect.fromLTRB(5, 0, 20, 300));
+                      },
+                      child: Image.asset(
+                        AppImg.plus,
+                        color: AppColors.white,
+                        height: h * 0.03,
+                        width: h * 0.03,
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: h * 0.005),
-                child: Center(
-                  child: ShaderMask(
-                    shaderCallback: (Rect bounds) {
-                      return LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          controller().getselectedIndex == 4
-                              ? AppColors.colorPrimary
-                              : AppColors.black.withOpacity(0.8),
-                          controller().getselectedIndex == 4
-                              ? AppColors.colorSecondary
-                              : AppColors.black.withOpacity(0.8),
-                        ],
-                      ).createShader(bounds);
-                    },
-                    child: Text(
-                      "List",
-                      style: TextStyle(
-                        fontSize: w * 0.025,
-                        color: controller().getselectedIndex == 4
+                padding: EdgeInsets.only(top: h * 0.01),
+                child: ShaderMask(
+                  shaderCallback: (Rect bounds) {
+                    return LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        controller().getselectedIndex == 4
+                            ? AppColors.colorPrimary
+                            : AppColors.black.withOpacity(0.8),
+                        controller().getselectedIndex == 4
                             ? AppColors.colorSecondary
                             : AppColors.black.withOpacity(0.8),
-                      ),
+                      ],
+                    ).createShader(bounds);
+                  },
+                  child: Text(
+                    "List",
+                    style: ptSansTextStyle(
+                      fontSize: w * 0.025,
+                      fontWeight: 4 == controller().getselectedIndex
+                          ? FontWeight.w600
+                          : FontWeight.w500,
+                      color: controller().getselectedIndex == 4
+                          ? AppColors.colorSecondary
+                          : AppColors.black.withOpacity(0.8),
                     ),
                   ),
                 ),

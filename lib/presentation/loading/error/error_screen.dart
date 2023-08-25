@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../utils/common_components/common_text.dart';
+
 class ErrorScreenV1 extends ConsumerStatefulWidget {
   const ErrorScreenV1({
     super.key,
@@ -47,10 +49,10 @@ class _ErrorScreenV1State extends ConsumerState<ErrorScreenV1> {
                   isExpanded: _isOpen[0],
                   canTapOnHeader: true,
                   headerBuilder: (context, isExpanded) {
-                    return const Center(
+                    return Center(
                       child: Text(
                         'Exception',
-                        style: TextStyle(fontSize: 25),
+                        style: ptSansTextStyle(fontSize: 25),
                       ),
                     );
                   },
@@ -69,10 +71,10 @@ class _ErrorScreenV1State extends ConsumerState<ErrorScreenV1> {
                   isExpanded: _isOpen[1],
                   canTapOnHeader: true,
                   headerBuilder: (context, isExpanded) {
-                    return const Center(
+                    return Center(
                       child: Text(
                         'StackTrace',
-                        style: TextStyle(fontSize: 25),
+                        style: ptSansTextStyle(fontSize: 25),
                       ),
                     );
                   },
@@ -108,6 +110,7 @@ class ErrorScreen extends ConsumerWidget {
     required this.backgroundColor,
     required this.color,
   });
+
   static const path = 'error';
   static const name = path;
 
@@ -165,7 +168,7 @@ class ErrorView extends StatelessWidget {
             maxLines: 5,
             text: TextSpan(
               text: text,
-              style: TextStyle(
+              style: ptSansTextStyle(
                 color: color ?? Colors.black,
               ),
             ),

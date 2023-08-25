@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:rentworthy/presentation/loading/account/setting/privacy_policy/privacy_policy.dart';
 import 'package:rentworthy/presentation/loading/register/register_screen_controller.dart';
 import 'package:rentworthy/utils/common_components/back_gradient.dart';
 import 'package:rentworthy/utils/common_components/common_button.dart';
+import 'package:rentworthy/utils/common_components/common_navigator.dart';
 import 'package:rentworthy/utils/common_components/text_input_field.dart';
 import 'package:rentworthy/utils/text.dart';
 
@@ -24,6 +27,7 @@ class RegisterScreen extends ConsumerWidget {
     final w = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: AppColors.white,
       resizeToAvoidBottomInset: false,
       body: Container(
         width: w,
@@ -103,7 +107,7 @@ class RegisterScreen extends ConsumerWidget {
                                                               .colorSecondary
                                                         ],
                                                       ).createShader(const Rect
-                                                                  .fromLTRB(
+                                                              .fromLTRB(
                                                               150, 0, 250, 20)),
                                                     fontSize: h * 0.019,
                                                     fontWeight:
@@ -159,92 +163,6 @@ class RegisterScreen extends ConsumerWidget {
                                               ),
                                             ]),
                                       ),
-                                      // child: Row(
-                                      //   mainAxisAlignment:
-                                      //       MainAxisAlignment.spaceBetween,
-                                      //   children: [
-                                      //     CommonButton(
-                                      //         containerwidth: controller().isbusinessreg == false
-                                      //             ? w * 0.47
-                                      //             : w * 0.43,
-                                      //         containerheight: h * 0.05,
-                                      //         decoration: BoxDecoration(
-                                      //             borderRadius: BorderRadius.circular(
-                                      //                 h * 0.05),
-                                      //             gradient: controller().isbusinessreg == false
-                                      //                 ? const LinearGradient(
-                                      //                     begin: Alignment.centerLeft,
-                                      //                     end: Alignment.centerRight,
-                                      //                     colors: [
-                                      //                         AppColors
-                                      //                             .colorPrimary,
-                                      //                         AppColors
-                                      //                             .colorSecondary
-                                      //                       ])
-                                      //                 : null),
-                                      //         backgroundColor:
-                                      //             AppColors.transparent,
-                                      //         shape: RoundedRectangleBorder(
-                                      //           borderRadius:
-                                      //               BorderRadius.circular(
-                                      //                   h * 0.05),
-                                      //         ),
-                                      //         text: AppText.reg_individual,
-                                      //         textStyle: ptSansTextStyle(
-                                      //             color: controller().isbusinessreg == false
-                                      //                 ? AppColors.white
-                                      //                 : AppColors.black
-                                      //                     .withOpacity(0.4),
-                                      //             fontSize: h * 0.018,
-                                      //             fontWeight: controller().isbusinessreg == false
-                                      //                 ? FontWeight.w700
-                                      //                 : FontWeight.w400),
-                                      //         onPressed: () {
-                                      //           controller()
-                                      //               .onRegtype(val: false);
-                                      //         }),
-                                      //     CommonButton(
-                                      //         containerwidth: controller().isbusinessreg == true
-                                      //             ? w * 0.46
-                                      //             : w * 0.41,
-                                      //         containerheight: h * 0.05,
-                                      //         decoration: BoxDecoration(
-                                      //             borderRadius: BorderRadius.circular(
-                                      //                 h * 0.05),
-                                      //             gradient: controller().isbusinessreg == true
-                                      //                 ? const LinearGradient(
-                                      //                     begin: Alignment.centerLeft,
-                                      //                     end: Alignment.centerRight,
-                                      //                     colors: [
-                                      //                         AppColors
-                                      //                             .colorPrimary,
-                                      //                         AppColors
-                                      //                             .colorSecondary
-                                      //                       ])
-                                      //                 : null),
-                                      //         backgroundColor:
-                                      //             AppColors.transparent,
-                                      //         shape: RoundedRectangleBorder(
-                                      //           borderRadius:
-                                      //               BorderRadius.circular(
-                                      //                   h * 0.05),
-                                      //         ),
-                                      //         text: AppText.reg_business,
-                                      //         textStyle: ptSansTextStyle(
-                                      //             color: controller().isbusinessreg == true
-                                      //                 ? AppColors.white
-                                      //                 : AppColors.black
-                                      //                     .withOpacity(0.4),
-                                      //             fontSize: h * 0.018,
-                                      //             fontWeight: controller().isbusinessreg == true
-                                      //                 ? FontWeight.w700
-                                      //                 : FontWeight.w400),
-                                      //         onPressed: () {
-                                      //           controller()
-                                      //               .onRegtype(val: true);
-                                      //         }),
-                                      //   ],
-                                      // ),
                                     ),
 
                                     ///input fields
@@ -520,27 +438,41 @@ class RegisterScreen extends ConsumerWidget {
                                     fontSize: h * 0.018,
                                     fontWeight: FontWeight.w500),
                               ),
-                              ShaderMask(
-                                shaderCallback: (Rect bounds) {
-                                  return const LinearGradient(
-                                      begin: Alignment.centerLeft,
-                                      end: Alignment.centerRight,
-                                      colors: [
-                                        AppColors.colorPrimary,
-                                        AppColors.colorSecondary
-                                      ]).createShader(bounds);
+                              GestureDetector(
+                                onTap: () {
+                                  commonNavigator(
+                                    context: context,
+                                    child: PrivacyPolicy(),
+                                    type:
+                                        PageTransitionType.rightToLeftWithFade,
+                                  );
                                 },
-                                child: CommonText(
-                                    text: AppText.privacypolicy,
-                                    style: ptSansTextStyle(
-                                        color: AppColors.white,
-                                        fontSize: h * 0.017,
-                                        decorationColor: AppColors.white,
-                                        decorationThickness: 1,
-                                        decorationStyle:
-                                            TextDecorationStyle.solid,
-                                        decoration: TextDecoration.underline,
-                                        fontWeight: FontWeight.w500)),
+                                child: SizedBox(
+                                  height: h * 0.025,
+                                  child: ShaderMask(
+                                    shaderCallback: (Rect bounds) {
+                                      return const LinearGradient(
+                                          begin: Alignment.centerLeft,
+                                          end: Alignment.centerRight,
+                                          colors: [
+                                            AppColors.colorPrimary,
+                                            AppColors.colorSecondary
+                                          ]).createShader(bounds);
+                                    },
+                                    child: CommonText(
+                                        text: AppText.privacypolicy,
+                                        style: ptSansTextStyle(
+                                            color: AppColors.white,
+                                            fontSize: h * 0.017,
+                                            decorationColor: AppColors.white,
+                                            decorationThickness: 1,
+                                            decorationStyle:
+                                                TextDecorationStyle.solid,
+                                            decoration:
+                                                TextDecoration.underline,
+                                            fontWeight: FontWeight.w500)),
+                                  ),
+                                ),
                               ),
                             ],
                           ),

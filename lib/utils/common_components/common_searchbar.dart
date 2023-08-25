@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rentworthy/utils/common_components/text_input_field.dart';
 
 import '../color.dart';
+import 'common_text.dart';
 
 class CommonSearchBar extends ConsumerWidget {
   TextEditingController searchController;
@@ -50,19 +51,19 @@ class CommonSearchBar extends ConsumerWidget {
               ],
             ),
             textCapitalization: TextCapitalization.none,
-            textstyle: TextStyle(
+            textstyle: ptSansTextStyle(
                 fontSize: w * 0.04,
                 color: AppColors.gray.withOpacity(0.4),
                 fontWeight: FontWeight.w700),
-            titletextstyle: TextStyle(
+            titletextstyle: ptSansTextStyle(
                 fontSize: w * 0.04,
                 color: AppColors.gray.withOpacity(0.4),
                 fontWeight: FontWeight.w700),
-            hintStyle: TextStyle(
+            hintStyle: ptSansTextStyle(
                 fontSize: w * 0.04,
                 color: AppColors.gray.withOpacity(0.4),
                 fontWeight: FontWeight.w700),
-            errorStyle: TextStyle(
+            errorStyle: ptSansTextStyle(
                 fontSize: w * 0.04,
                 color: AppColors.gray.withOpacity(0.4),
                 fontWeight: FontWeight.w700),

@@ -41,10 +41,10 @@ class SellingMeeting extends ConsumerWidget {
                     fontWeight: FontWeight.w400)),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: h * 0.01),
+            padding: EdgeInsets.symmetric(vertical: h * 0.015),
             child: CommonButton(
-                containerwidth: w * 0.6,
-                containerheight: h * 0.06,
+                containerwidth: w * 0.5,
+                containerheight: h * 0.055,
                 backgroundColor: AppColors.transparent,
                 decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(4)),

@@ -31,7 +31,13 @@ class BottomBarController extends _$BottomBarController {
   int get getselectedIndex => _selectedIndex;
 
   @override
-  FutureOr<void> build() async {}
+  FutureOr<void> build({int? index}) async {
+    state = AsyncLoading();
+    if (index != null) {
+      _selectedIndex = index;
+    }
+    state = AsyncValue.data(null);
+  }
 
   void onItemTapped(
     int index,

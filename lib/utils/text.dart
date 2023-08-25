@@ -3,7 +3,7 @@ class AppText {
 
   static const String app_name = "Rent Worthy";
   static const String nodata = "No Data Found";
-  static const String film = "Films & Photography fdf gdgf";
+  static const String film = "Films & Photography";
   static const String partyevents = "Party & Events";
   static const String homeoutdoor = "Home & Outdoors";
   static const String electronics = "Electronics";
@@ -14,10 +14,41 @@ class AppText {
   static const String heavymachine = "Heavy Machinery";
   static const String newmarket = "New to Market";
   static const String rent = "Rent";
+  static const String rental = "Rental";
+  static const String request = "Request";
+  static const String rented = "Rented";
+  static const String requested = "Requested";
+  static const String contactus = "Contact Us";
+  static const String myaddress = "My Addresses";
+  static const String reviews = "Reviews";
+  static const String writereviews = "Write a Review";
+  static const String userreviews = "User Reviews";
+  static const String statisticsreport = "Statistics & Reports";
+  static const String useract = "User Activity";
+  static const String privacy = "Privacy";
+  static const String whatareyouoffering = "What are you offering?";
+  static const String createpass = "Create password";
+  static const String notification = "Notification";
+  static const String recommendations = "Recommendations";
+  static const String receiverecommendations =
+      "Receive recommendations based on your activity ";
+  static const String receiveupdates = "Receive updates & offers";
+  static const String getnotified =
+      "Get notified for special offers, updates and more";
+  static const String recommendation =
+      "Recommendations & Special communicatios";
+  static const String logout = "Logout";
+  static const String logoutall = "Logout from all devices";
+  static const String dltacc = "Delete account";
+  static const String urname = "Your Name";
+  static const String smthingabtyou = "Somithing about you";
+  static const String custrating = "Custom Rating";
   static const String startsell = "Start Selling";
+  static const String startrent = "Start Renting";
   static const String startmsg = "Start Messaging";
   static const String lend = "Lend";
   static const String enjoy = "Enjoy";
+  static const String summary = "Summary";
   static const String quickfilter = "Quick Filters";
   static const String sellmsg =
       "As soon as someone sends you a message, it’ll start appearing here";
@@ -34,12 +65,35 @@ class AppText {
   static const String forpermonth = "For Per Month";
   static const String bookings = "Bookings";
   static const String account = "Account";
-  static const String categories = "Categories";
+  static const String orders = "Orders";
+  static const String others = "Others";
+  static const String myact = "My Activities";
+  static const String myads = "My Ads";
+  static const String mylisting = "My Listing";
+  static const String adspostedbyyou = "Ads Posted By You";
+  static const String msgandnotification = "Messages & Notifications";
+  static const String chatalert = "Chats, Alerts, Notifications, Etc";
+  static const String howitworks = "How it works?";
+  static const String forbusiness = "For Business";
+  static const String rateus = "Rate Us On Playstore";
+
+  static const String blogs = "Blogs";
+  static const String star5 = "5 Star";
+  static const String star4 = "4 Star";
+  static const String star3 = "3 Star";
+  static const String star2 = "2 Star";
+  static const String star1 = "1 Star";
+  static const String basedonrev = "Based on 34 Reviews";
+  static const String faqs = "FAQ's";
+  static const String tns = "Terms & Service";
   static const String featuredads = "Featured Ads";
   static const String nearbyads = "Nearby Ads";
   static const String popularads = "Popular Ads";
   static const String viewall = "View All";
+  static const String businesshrs = "Business Hours";
+  static const String opentime = "9 am to 8 pm - Open all days of week";
   static const String thane = " Thane West...";
+  static const String addreview = "Add Review";
   static const String promoteurad = "Promote your ad in Featured";
   static const String price25k = "\$ 25,000 ";
 
@@ -55,8 +109,12 @@ class AppText {
   static const String reg_business = "  Register as Business";
   static const String enteremail_or_uname = "Enter email or username";
   static const String email_or_uname = "Email or Username";
-  static const String enterPassword = "Enter  Password";
+  static const String enterPassword = "Enter Password";
+  static const String newPassword = "New Password";
+  static const String confirmPassword = "Confirm New Password";
   static const String enterphone = "Enter your phone number";
+  static const String entername = "Enter your Name";
+  static const String knowus = "Anything else you,d like us to know?";
   static const String wesendotp =
       "We’ll send you a verification code on the same number.";
   static const String phoneno = "Phone Number";
@@ -64,31 +122,85 @@ class AppText {
   static const String country = "Country";
   static const String password = "Password";
   static const String register = "Register";
+  static const String yourstatistics = "Your Statistics";
+  static const String welcomeback = "Welcome back!";
   static const String or = "OR";
   static const String all = "All";
+  static const String writeabouttheproduct = "Write about the product";
+  static const String ads = "Ads";
+  static const String fav = "Favorites";
   static const String unread = "Unread";
   static const String meeting = "Meeting";
   static const String selling = "Selling";
+  static const String setting = "Settings";
+  static const String backprof = "Back to Profile";
+  static const String yourverified = "Congratulations!! You’re verified now.";
+  static const String verfynow = "Verify Now";
+  static const String verifyid = "You can verify your ID with";
+  static const String needverify = "We need to verify your ID";
+  static const String entereinnumber = "Enter Your EIN Number";
+  static const String writeeinnumber = "Write EIN Number";
+  static const String writehere = "Write here";
+  static const String verifyprof =
+      "In order to Rent or lend items on Rentworthy you must verify your profile";
+  static const String idverification = "ID Verification";
+  static const String privacylogout = "Privacy And logout";
+  static const String helpsupport = "Help & Support";
+  static const String helplegalterms = "Help center and legal terms";
+  static const String selectlang = "Select Language";
+  static const String eng = "English";
+  static const String hindi = "हिंदी";
 
   static const String google = "Google";
   static const String apple = "Apple";
   static const String facebook = "Facebook";
   static const String findloc = "Find My Location";
   static const String phone = "Phone";
+  static const String wehavecovered =
+      "We have covered you, no need to worry about that anymore. Book and schedule the things you need to make your next trip worthy of remembering.";
   static const String addtofavorite = "Add to favorite";
   static const String share = "Share";
   static const String subcat = "Subcategory";
   static const String cat = "Category";
+  static const String contactusoon = "we'll contact you soon";
+  static const String thankresponse = "Thank you for your response";
+  static const String useanymore = "Let go of what you don’t use anymore";
+  static const String haventlisted = "You haven’t listed anything yet";
+  static const String haventliked = "You haven’t liked anything yet";
+  static const String collectthing =
+      "Collect all the things you like in one place";
   static const String reportthisad = "Report this Ad";
+  static const String categories = "Categories";
+  static const String eleccarbike = "Electronics, Cars, Bike, Games...";
+  static const String report = "Report";
   static const String totalpayable = "Total payable";
   static const String day = "\$ 200 / day";
   static const String tampaflorida = "Tampa, Florida";
   static const String adpostedat = "Ad posted at";
   static const String postedon = "Posted On: 01/05/2023";
   static const String hamzaali = "Hamza Ali";
+  static const String myaccunt = "My Account";
+  static const String userverified = "User Verified";
+  static const String viewandeditprof = "View & Edit Profile";
+  static const String prof = "Profile";
+  static const String basicinfo = "Basic information";
+  static const String continfo = "Contact information";
+  static const String enternewpass = "Please enter your new password";
+  static const String verifiedemail =
+      "You have verified your email. it’s important to allow usto securely communicate with you.";
+  static const String editprof = "Edit Profile";
+  static const String membersince = "Member since Apr 2020";
+  static const String prductlist = "0 Product listed";
   static const String postedby = "Posted by";
+  static const String post = "Post";
+  static const String discover = "Discover";
   static const String rentnow = "Rent Now";
+  static const String save = "Save";
+  static const String submit = "Submit";
+  static const String nexthindi = "आगे बढ़े";
+  static const String continueeng = "Continue";
   static const String continuewith = "Continue With ";
+  static const String plantrip = "Planning A Trip?";
   static const String accepting = "If you continue, you are accepting";
   static const String privacypolicy =
       "Rent Worthy Terms and Conditions and Privacy Policy";
@@ -106,6 +218,7 @@ class AppText {
   static const String outofthings = "out of things.";
   static const String comingsoon = "Coming Soon";
   static const String onlymay = "Only in May";
+  static const String privacypolcy = "Privacy Policy";
   static const String sonyps = "Sony PS5 + TV";
   static const String permonth = "for \$ 3,000 per month";
 }

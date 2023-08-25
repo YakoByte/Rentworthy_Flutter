@@ -8,18 +8,24 @@ class AppColors {
   static const Color transparent = Colors.transparent;
 
   static const Color colorPrimary = Color(0xFF7028E4);
+  static const Color colorPrimarylight = Color(0xFF7869CA);
   static const Color colorSecondary = Color(0xFFFF7B70);
+  static const Color colorSecondarydark = Color(0xFFED5443);
+  static const Color sendmsg = Color(0xFFCEDCFF);
+  static const Color recmsg = Color(0xFFFACEC9);
   static const Color pink = Color(0xFFFF3EAA);
   static const Color selectedstar = Color(0xFFFA533A);
   static const Color grey = Color(0xFFEAEAEA);
   static const Color blue = Color(0xFF30CDFF);
   static const Color starcolor = Color(0xFFC6C6C6);
+  static const Color backcolor = Color(0xFFF7F7F8);
   static const Color textcolor = Color(0xFF5A5A5A);
   static const Color dotcolor = Color(0xFFDBDBDB);
   static const Color gray = Color(0xFF7A7A7A);
   static const Color textcolor1 = Color(0xFFA5A5A5);
   static const Color bordercolor = Color(0xFFDFDFDF);
   static const Color yellow = Color(0xFFF7D03F);
+  static const Color amber = Color(0xFFF6B926);
   static const Color fbblue = Color(0xFF1877F2);
   static const Color shimmergrey = Color(0xFFB9B9B9);
   static const Color blueindicator = Color(0xFF135EA9);
