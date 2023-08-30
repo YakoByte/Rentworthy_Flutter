@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,6 +13,9 @@ import 'package:rentworthy/utils/state_logger.dart';
 import 'package:rentworthy/utils/text.dart';
 
 void main() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(
@@ -60,11 +64,21 @@ class _MyAppState extends ConsumerState<MyApp> {
           fontFamily: GoogleFonts.ptSans().fontFamily, useMaterial3: true),
       // home: CategoryDetailsScreen(title: "Xbox"),
       home: LoadingScreen(),
+      // home: LoginPhoneScreen(),
+      // home: AccountVerification(
+      //   email: 'm@gmail.com',
+      // ),
       // home: DetectOtp(
       //   phoneNo: '+918585858585',
       // ),
       // home: const FindLocation(),
-      // home: BottomBar(),
+      // home: BottomBar(index: 0),
+      // home: PostUrAds(
+      //   type: 'Music',
+      // ),
+      // home: LoadingScreen(),
+      // home: AddAddressScreen(),
+      // home: MyHomePage(),
       // home: ViewAllCategory(
       //   title: 'df',
       // ),

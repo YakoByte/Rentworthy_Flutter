@@ -29,10 +29,11 @@ class Categories extends ConsumerWidget {
   List imgList;
   Widget? favrow;
   List nameList;
+  List<AnimationController> animatecontrollerlist;
   List favList;
   Axis scrollDirection;
   double width;
-  void Function() onCardPressed;
+  void Function(int) onFavPressed;
   int? type;
   Widget? lastrow;
   double height;
@@ -47,10 +48,11 @@ class Categories extends ConsumerWidget {
       required this.title,
       required this.shrinkWrap,
       required this.isFavIcon,
+      required this.animatecontrollerlist,
       required this.isTopPadding,
       required this.isextended,
       required this.width,
-      required this.onCardPressed,
+      required this.onFavPressed,
       this.type,
       this.favrow,
       this.lastrow,
@@ -142,7 +144,9 @@ class Categories extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   InkWell(
-                    onTap: onCardPressed,
+                    onTap: () {
+                      onFavPressed(index);
+                    },
                     child: Container(
                       width: w * 0.25,
                       height: h * 0.12,
@@ -154,23 +158,6 @@ class Categories extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          // Padding(
-                          //   padding: EdgeInsets.symmetric(vertical: h * 0.005),
-                          //   child: Container(
-                          //     height: h * 0.055,
-                          //     width: h * 0.055,
-                          //     decoration: BoxDecoration(
-                          //       color: AppColors.colorPrimary,
-                          //       borderRadius: BorderRadius.circular(100),
-                          //     ),
-                          //     child: Center(
-                          //       child: Image.asset(
-                          //         imgList[index],
-                          //         height: h * 0.03,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
                           CommonIconButton(
                               containerwidth: h * 0.055,
                               containerheight: h * 0.055,
@@ -230,213 +217,9 @@ class Categories extends ConsumerWidget {
                   transitionDuration: Duration(milliseconds: 800),
                   closedBuilder:
                       (BuildContext context, void Function() action) {
-                    // return Padding(
-                    //   padding: EdgeInsets.only(
-                    //     left: index == 0 ? w * 0.05 : w * 0.02,
-                    //   ),
-                    //   child: Card(
-                    //     color: contColor,
-                    //     elevation: 5,
-                    //     shape: RoundedRectangleBorder(
-                    //       borderRadius: borderRadius!,
-                    //     ),
-                    //     child: Container(
-                    //       width: contwidth,
-                    //       height: contheight,
-                    //       decoration: BoxDecoration(
-                    //         color: contColor,
-                    //         borderRadius: borderRadius,
-                    //       ),
-                    //       child: Padding(
-                    //         padding: EdgeInsets.symmetric(
-                    //           horizontal: w * 0.02,
-                    //         ),
-                    //         child: Column(
-                    //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //           crossAxisAlignment: CrossAxisAlignment.start,
-                    //           children: [
-                    //             Padding(
-                    //               padding:
-                    //                   EdgeInsets.symmetric(vertical: h * 0.014),
-                    //               child: Stack(
-                    //                 children: [
-                    //                   Row(
-                    //                     mainAxisAlignment:
-                    //                         MainAxisAlignment.center,
-                    //                     children: [
-                    //                       ClipRRect(
-                    //                         borderRadius:
-                    //                             BorderRadius.circular(14),
-                    //                         child: Image.asset(
-                    //                           AppImg.homelist,
-                    //                           height: contwidth! * 0.85,
-                    //                           width: contwidth! * 0.85,
-                    //                           fit: BoxFit.cover,
-                    //                         ),
-                    //                       ),
-                    //                     ],
-                    //                   ),
-                    //                   Positioned(
-                    //                     top: h * 0.01,
-                    //                     right: isFeature == true ? 0 : w * 0.05,
-                    //                     left: isFeature == true ? 0 : w * 0.05,
-                    //                     child: Row(
-                    //                       mainAxisAlignment: isFeature == true
-                    //                           ? MainAxisAlignment.spaceEvenly
-                    //                           : MainAxisAlignment.end,
-                    //                       children: [
-                    //                         if (isFeature == true)
-                    //                           Container(
-                    //                             height: h * 0.03,
-                    //                             width: contwidth! * 0.45,
-                    //                             decoration: BoxDecoration(
-                    //                                 color: AppColors.yellow,
-                    //                                 borderRadius:
-                    //                                     BorderRadius.circular(
-                    //                                         3)),
-                    //                             child: Row(
-                    //                               mainAxisAlignment:
-                    //                                   MainAxisAlignment
-                    //                                       .spaceEvenly,
-                    //                               crossAxisAlignment:
-                    //                                   CrossAxisAlignment.center,
-                    //                               children: [
-                    //                                 Image.asset(
-                    //                                   AppImg.lightning,
-                    //                                   height: h * 0.02,
-                    //                                 ),
-                    //                                 CommonText(
-                    //                                     text: AppText.featured,
-                    //                                     textAlign:
-                    //                                         TextAlign.center,
-                    //                                     style: ptSansTextStyle(
-                    //                                       color: AppColors.black
-                    //                                           .withOpacity(0.8),
-                    //                                       fontSize: h * 0.014,
-                    //                                       fontWeight:
-                    //                                           FontWeight.w700,
-                    //                                     )),
-                    //                               ],
-                    //                             ),
-                    //                           ),
-                    //                         Column(
-                    //                           mainAxisAlignment:
-                    //                               MainAxisAlignment.start,
-                    //                           children: [
-                    //                             CommonIconButton(
-                    //                               containerwidth: h * 0.03,
-                    //                               containerheight: h * 0.03,
-                    //                               backgroundColor:
-                    //                                   favList[index] == false
-                    //                                       ? AppColors.starcolor
-                    //                                       : AppColors
-                    //                                           .selectedstar,
-                    //                               shape: RoundedRectangleBorder(
-                    //                                   borderRadius:
-                    //                                       BorderRadius.circular(
-                    //                                           1000)),
-                    //                               centericon: Center(
-                    //                                 child: Icon(
-                    //                                   Icons.star,
-                    //                                   color: AppColors.white,
-                    //                                   size: h * 0.011,
-                    //                                 ),
-                    //                               ),
-                    //                               onPressed: () {
-                    //                                 controller()
-                    //                                     .onFavTap(index, type!);
-                    //                               },
-                    //                             ),
-                    //                           ],
-                    //                         ),
-                    //                       ],
-                    //                     ),
-                    //                   ),
-                    //                 ],
-                    //               ),
-                    //             ),
-                    //             Row(
-                    //               children: [
-                    //                 Flexible(
-                    //                   child: CommonText(
-                    //                       text: nameList[index],
-                    //                       maxLines: 1,
-                    //                       style: ptSansTextStyle(
-                    //                         color: AppColors.black
-                    //                             .withOpacity(0.8),
-                    //                         fontSize: h * 0.02,
-                    //                         overflow: TextOverflow.ellipsis,
-                    //                         fontWeight: FontWeight.w700,
-                    //                       )),
-                    //                 ),
-                    //               ],
-                    //             ),
-                    //             Container(
-                    //               width: contwidth,
-                    //               child: IntrinsicHeight(
-                    //                 child: Row(
-                    //                   mainAxisAlignment:
-                    //                       MainAxisAlignment.spaceBetween,
-                    //                   children: [
-                    //                     CommonText(
-                    //                       text: AppText.price25k,
-                    //                       style: ptSansTextStyle(
-                    //                           fontSize: h * 0.018,
-                    //                           color: AppColors.black,
-                    //                           fontWeight: FontWeight.w700),
-                    //                     ),
-                    //                     VerticalDivider(
-                    //                       color:
-                    //                           AppColors.black.withOpacity(0.3),
-                    //                       width: 1,
-                    //                       thickness: 1,
-                    //                     ),
-                    //                     ShaderMask(
-                    //                       shaderCallback: (Rect bounds) {
-                    //                         return const LinearGradient(
-                    //                             begin: Alignment.centerLeft,
-                    //                             end: Alignment.centerRight,
-                    //                             colors: [
-                    //                               AppColors.colorPrimary,
-                    //                               AppColors.colorSecondary
-                    //                             ]).createShader(bounds);
-                    //                       },
-                    //                       child: Icon(
-                    //                           Icons.location_on_outlined,
-                    //                           color: AppColors.white,
-                    //                           size: h * 0.025),
-                    //                     ),
-                    //                     Expanded(
-                    //                       child: CommonText(
-                    //                         text: AppText.thane,
-                    //                         maxLines: 1,
-                    //                         style: ptSansTextStyle(
-                    //                             fontSize: h * 0.015,
-                    //                             color: AppColors.black
-                    //                                 .withOpacity(0.3),
-                    //                             overflow: TextOverflow.ellipsis,
-                    //                             fontWeight: FontWeight.w400),
-                    //                       ),
-                    //                     ),
-                    //                   ],
-                    //                 ),
-                    //               ),
-                    //             ),
-                    //             CommonText(
-                    //               text: AppText.forpermonth,
-                    //               style: ptSansTextStyle(
-                    //                   fontSize: w * 0.04,
-                    //                   color: AppColors.black.withOpacity(0.3),
-                    //                   fontWeight: FontWeight.w400),
-                    //             ),
-                    //           ],
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // );
                     return HorizonVertList(
                       favrow: favrow,
+                      animatecontrollerlist: animatecontrollerlist,
                       isTopPadding: isTopPadding,
                       title: title,
                       isextended: isextended,
@@ -444,7 +227,9 @@ class Categories extends ConsumerWidget {
                       shrinkWrap: shrinkWrap,
                       width: width,
                       borderRadius: borderRadius ?? BorderRadius.circular(10),
-                      onPressed: onCardPressed,
+                      onPressed: () {
+                        onFavPressed(index);
+                      },
                       index: index,
                       height: height,
                       lastrow: lastrow,

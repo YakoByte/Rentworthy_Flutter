@@ -14,17 +14,23 @@ import '../../../utils/color.dart';
 import '../../../utils/common_components/common_text.dart';
 import '../../../utils/common_components/rent_lend_enjoy_icon.dart';
 import '../../../utils/images.dart';
-import '../login_method/login_method_screen.dart';
+import '../login/loginwithphone/login_method/login_method_screen.dart';
 
-class RegisterScreen extends ConsumerWidget {
+class RegisterScreen extends ConsumerStatefulWidget {
   const RegisterScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends ConsumerState<RegisterScreen> {
+  @override
+  Widget build(BuildContext context) {
     final asyncState = ref.watch(registerScreenControllerProvider);
     controller() => ref.read(registerScreenControllerProvider.notifier);
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
+    print("tab is ${controller().tabController.index}");
 
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -82,7 +88,7 @@ class RegisterScreen extends ConsumerWidget {
                                     /// select register method
                                     Container(
                                       width: w * 0.9,
-                                      height: h * 0.05,
+                                      height: h * 0.06,
                                       decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(h * 0.05),
@@ -95,21 +101,16 @@ class RegisterScreen extends ConsumerWidget {
                                         child: TabBar(
                                             controller:
                                                 controller().tabController,
+                                            onTap: (val) {
+                                              controller().onTabTap(val: val);
+                                            },
                                             unselectedLabelStyle:
                                                 ptSansTextStyle(
-                                                    foreground: Paint()
-                                                      ..shader =
-                                                          const LinearGradient(
-                                                        colors: <Color>[
-                                                          AppColors
-                                                              .colorPrimary,
-                                                          AppColors
-                                                              .colorSecondary
-                                                        ],
-                                                      ).createShader(const Rect
-                                                              .fromLTRB(
-                                                              150, 0, 250, 20)),
-                                                    fontSize: h * 0.019,
+                                                    color: AppColors.black
+                                                        .withOpacity(0.4),
+                                                    overflow:
+                                                        TextOverflow.visible,
+                                                    fontSize: w * 0.035,
                                                     fontWeight:
                                                         FontWeight.w500),
                                             dividerColor: Colors.transparent,
@@ -137,12 +138,21 @@ class RegisterScreen extends ConsumerWidget {
                                                   child: Text(
                                                     AppText.reg_individual,
                                                     style: ptSansTextStyle(
-                                                        color: AppColors.white,
+                                                        color: controller()
+                                                                    .selectedtab ==
+                                                                0
+                                                            ? AppColors.white
+                                                            : AppColors.black
+                                                                .withOpacity(
+                                                                    0.4),
                                                         overflow: TextOverflow
                                                             .visible,
-                                                        fontSize: w * 0.037,
-                                                        fontWeight:
-                                                            FontWeight.w700),
+                                                        fontSize: w * 0.035,
+                                                        fontWeight: controller()
+                                                                    .selectedtab ==
+                                                                0
+                                                            ? FontWeight.w700
+                                                            : FontWeight.w400),
                                                   ),
                                                 ),
                                               ),
@@ -152,12 +162,21 @@ class RegisterScreen extends ConsumerWidget {
                                                   child: Text(
                                                     AppText.reg_business,
                                                     style: ptSansTextStyle(
-                                                        color: AppColors.white,
+                                                        color: controller()
+                                                                    .selectedtab ==
+                                                                1
+                                                            ? AppColors.white
+                                                            : AppColors.black
+                                                                .withOpacity(
+                                                                    0.4),
                                                         overflow: TextOverflow
                                                             .visible,
-                                                        fontSize: w * 0.037,
-                                                        fontWeight:
-                                                            FontWeight.w700),
+                                                        fontSize: w * 0.035,
+                                                        fontWeight: controller()
+                                                                    .selectedtab ==
+                                                                1
+                                                            ? FontWeight.w700
+                                                            : FontWeight.w400),
                                                   ),
                                                 ),
                                               ),
@@ -176,6 +195,14 @@ class RegisterScreen extends ConsumerWidget {
                                               MainAxisAlignment.spaceEvenly,
                                           children: [
                                             TextInputField(
+                                                enableunderlinecolor:
+                                                    AppColors.bordercolor,
+                                                disableunderlinecolor:
+                                                    AppColors.bordercolor,
+                                                focusunderlinecolor:
+                                                    AppColors.bordercolor,
+                                                underlinecolor:
+                                                    AppColors.bordercolor,
                                                 hintText:
                                                     AppText.email_or_uname,
                                                 lableText:
@@ -186,14 +213,12 @@ class RegisterScreen extends ConsumerWidget {
                                                     fontWeight:
                                                         FontWeight.w400),
                                                 textstyle: ptSansTextStyle(
-                                                    color: AppColors
-                                                        .colorSecondary,
+                                                    color: AppColors.textcolor1,
                                                     fontSize: h * 0.019,
                                                     fontWeight:
                                                         FontWeight.w500),
                                                 lableStyle: ptSansTextStyle(
-                                                    color:
-                                                        AppColors.colorPrimary,
+                                                    color: AppColors.textcolor1,
                                                     fontSize: h * 0.021,
                                                     fontWeight:
                                                         FontWeight.w400),
@@ -213,6 +238,14 @@ class RegisterScreen extends ConsumerWidget {
                                                 textCapitalization:
                                                     TextCapitalization.none),
                                             TextInputField(
+                                                enableunderlinecolor:
+                                                    AppColors.bordercolor,
+                                                disableunderlinecolor:
+                                                    AppColors.bordercolor,
+                                                focusunderlinecolor:
+                                                    AppColors.bordercolor,
+                                                underlinecolor:
+                                                    AppColors.bordercolor,
                                                 hintText: AppText.password,
                                                 lableText:
                                                     AppText.enterPassword,
@@ -222,14 +255,12 @@ class RegisterScreen extends ConsumerWidget {
                                                     fontWeight:
                                                         FontWeight.w400),
                                                 textstyle: ptSansTextStyle(
-                                                    color: AppColors
-                                                        .colorSecondary,
+                                                    color: AppColors.textcolor1,
                                                     fontSize: h * 0.019,
                                                     fontWeight:
                                                         FontWeight.w500),
                                                 lableStyle: ptSansTextStyle(
-                                                    color:
-                                                        AppColors.colorPrimary,
+                                                    color: AppColors.textcolor1,
                                                     fontSize: h * 0.021,
                                                     fontWeight:
                                                         FontWeight.w400),
@@ -252,11 +283,8 @@ class RegisterScreen extends ConsumerWidget {
                                                           ? AppImg.eye_hide
                                                           : AppImg.eye_view,
                                                       fit: BoxFit.cover,
-                                                      color: !controller()
-                                                              .iseyehide
-                                                          ? AppColors.textcolor1
-                                                          : AppColors
-                                                              .colorPrimary,
+                                                      color:
+                                                          AppColors.textcolor1,
                                                       width: h * 0.032,
                                                       height: h * 0.032,
                                                     ),

@@ -122,7 +122,7 @@ class FindLocation extends ConsumerWidget {
                           // ref.read(dialogServiceProvider).requestLocationPermission();
                           commonNavigator(
                               context: context,
-                              child: BottomBar(),
+                              child: BottomBar(index: 0),
                               type: PageTransitionType.rightToLeftWithFade);
                         }),
                   ],

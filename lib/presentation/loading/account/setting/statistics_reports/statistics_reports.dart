@@ -349,7 +349,8 @@ class StatisticsReports extends ConsumerWidget {
                           child: Container(
                             height: h * 0.1,
                             width: w,
-                            padding: EdgeInsets.all(w * 0.04),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: w * 0.04, vertical: h * 0.015),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color: AppColors.white,

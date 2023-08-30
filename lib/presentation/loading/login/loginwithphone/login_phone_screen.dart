@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rentworthy/utils/common_components/common_appbar.dart';
-import 'package:rentworthy/utils/text.dart';
 
 import '../../../../application/onboarding/validate/validate.dart';
 import '../../../../utils/color.dart';
+import '../../../../utils/common_components/common_appbar.dart';
 import '../../../../utils/common_components/common_button.dart';
 import '../../../../utils/common_components/common_text.dart';
 import '../../../../utils/common_components/text_input_field.dart';
 import '../../../../utils/images.dart';
+import '../../../../utils/text.dart';
 import 'login_phone_screen_controller.dart';
 
 class LoginPhoneScreen extends ConsumerStatefulWidget {
@@ -33,16 +33,23 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
       appBar: CommonAppBar(
         padding: EdgeInsets.symmetric(horizontal: w * 0.03),
         backgroundColor: AppColors.white,
-        title: AppText.signin,
+        centerTitle: false,
         leadingicon: true,
-        textstyle: ptSansTextStyle(
-            color: AppColors.black,
-            fontSize: h * 0.025,
-            fontWeight: FontWeight.w600),
+        centerwidget: CommonText(
+            text: AppText.signin,
+            style: ptSansTextStyle(
+                color: AppColors.black,
+                fontSize: h * 0.025,
+                fontWeight: FontWeight.w600)),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            Divider(
+              color: AppColors.black.withOpacity(0.1),
+              height: h * 0.01,
+              thickness: 1,
+            ),
             Container(
                 width: w,
                 height: h * 0.85,
@@ -86,6 +93,11 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 TextInputField(
+                                    enableunderlinecolor: AppColors.bordercolor,
+                                    disableunderlinecolor:
+                                        AppColors.bordercolor,
+                                    focusunderlinecolor: AppColors.bordercolor,
+                                    underlinecolor: AppColors.bordercolor,
                                     hintText: AppText.countrycode,
                                     titleText: AppText.country,
                                     titletextstyle: ptSansTextStyle(
@@ -97,11 +109,11 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
                                         fontSize: h * 0.018,
                                         fontWeight: FontWeight.w400),
                                     textstyle: ptSansTextStyle(
-                                        color: AppColors.colorSecondary,
+                                        color: AppColors.textcolor1,
                                         fontSize: h * 0.019,
                                         fontWeight: FontWeight.w500),
                                     lableStyle: ptSansTextStyle(
-                                        color: AppColors.colorPrimary,
+                                        color: AppColors.textcolor1,
                                         fontSize: h * 0.021,
                                         fontWeight: FontWeight.w400),
                                     errorText: controller().issubmit == true
@@ -131,6 +143,11 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
                                     textCapitalization:
                                         TextCapitalization.none),
                                 TextInputField(
+                                    enableunderlinecolor: AppColors.bordercolor,
+                                    disableunderlinecolor:
+                                        AppColors.bordercolor,
+                                    focusunderlinecolor: AppColors.bordercolor,
+                                    underlinecolor: AppColors.bordercolor,
                                     hintText: AppText.enterphone,
                                     titleText: AppText.phoneno,
                                     titletextstyle: ptSansTextStyle(
@@ -142,11 +159,11 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
                                         fontSize: h * 0.018,
                                         fontWeight: FontWeight.w400),
                                     textstyle: ptSansTextStyle(
-                                        color: AppColors.colorSecondary,
+                                        color: AppColors.textcolor1,
                                         fontSize: h * 0.019,
                                         fontWeight: FontWeight.w500),
                                     lableStyle: ptSansTextStyle(
-                                        color: AppColors.colorPrimary,
+                                        color: AppColors.textcolor1,
                                         fontSize: h * 0.021,
                                         fontWeight: FontWeight.w400),
                                     errorText: controller().issubmit == true

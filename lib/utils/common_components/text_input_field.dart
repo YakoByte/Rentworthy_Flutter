@@ -165,29 +165,32 @@ class TextInputField extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         if (titleText != null || titlesuffix != null)
-          Container(
-            width: containerwidth,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                titleText == '' || titleText == null
-                    ? const SizedBox.shrink()
-                    : Text(titleText!,
-                        style: titletextstyle ??
-                            ptSansTextStyle(
-                                fontSize: height * 0.018,
-                                fontWeight: FontWeight.w700,
-                                color: AppColors.black)),
-              ],
+          Padding(
+            padding: containerborder != null
+                ? EdgeInsets.only(top: height * 0.005, bottom: height * 0.005)
+                : EdgeInsets.zero,
+            child: Container(
+              width: containerwidth,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  titleText == '' || titleText == null
+                      ? const SizedBox.shrink()
+                      : CommonText(
+                          text: titleText!,
+                          style: titletextstyle ??
+                              ptSansTextStyle(
+                                  fontSize: height * 0.018,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.black)),
+                ],
+              ),
             ),
           ),
         Container(
           width: containerwidth,
-          height: isdescription == true
-              ? controller!.text.length > (maxLength! / 2.8)
-                  ? null
-                  : containerheight
-              : containerheight ?? height * 0.06,
+          height:
+              isdescription == true ? null : containerheight ?? height * 0.06,
           decoration: BoxDecoration(
             color: containercolor,
             border: containerborder,
@@ -202,9 +205,7 @@ class TextInputField extends StatelessWidget {
                 child: SizedBox(
                   width: width * 0.54,
                   height: isdescription == true
-                      ? controller!.text.length > (maxLength! / 2.8)
-                          ? null
-                          : containerheight
+                      ? null
                       : containerheight ?? height * 0.06,
                   child: center == false
                       ? TextFormField(
@@ -247,7 +248,7 @@ class TextInputField extends StatelessWidget {
                                           onTap: suffixonTap, child: suffixicon)
                                       : suffixicon,
                                   counterText: counterText ?? "",
-                                  isDense: false,
+                                  isDense: true,
                                 )
                               : InputDecoration(
                                   labelText: lableText,
@@ -276,7 +277,7 @@ class TextInputField extends StatelessWidget {
                                   focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                           color: focusunderlinecolor ??
-                                              AppColors.colorPrimary,
+                                              AppColors.bordercolor,
                                           width: 1)),
                                   border: UnderlineInputBorder(
                                       borderSide: BorderSide(
@@ -317,7 +318,8 @@ class TextInputField extends StatelessWidget {
                                     labelText: lableText,
                                     labelStyle: lableStyle,
                                     hintText: hintText,
-                                    contentPadding: EdgeInsets.zero,
+                                    contentPadding:
+                                        EdgeInsets.only(left: width * 0.025),
                                     hintStyle: hintStyle ??
                                         ptSansTextStyle(
                                             fontSize: height * 0.018,
@@ -329,7 +331,7 @@ class TextInputField extends StatelessWidget {
                                             child: suffixicon)
                                         : suffixicon,
                                     counterText: counterText ?? "",
-                                    isDense: false,
+                                    isDense: true,
                                   )
                                 : InputDecoration(
                                     labelText: lableText,

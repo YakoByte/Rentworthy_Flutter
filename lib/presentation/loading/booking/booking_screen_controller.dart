@@ -4,6 +4,8 @@ import 'package:rentworthy/utils/images.dart';
 import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../utils/common_components/common_tickerprovider.dart';
+
 part 'booking_screen_controller.g.dart';
 
 @riverpod
@@ -15,6 +17,8 @@ class BookingScreenController extends _$BookingScreenController {
     'Dadar',
     'Mahim',
   ];
+  List<AnimationController>? animatecontrollerlist = [];
+
   List<String> filterlist = [
     "Filter",
     "Color",
@@ -23,32 +27,12 @@ class BookingScreenController extends _$BookingScreenController {
   ];
 
   List<String> get getfilterlist => filterlist;
-  List<String> carlist = [
-    "Mercedes",
-    "MG",
-    "Kia",
-    "Hyundai",
-    "Tata",
-    "Honda",
-    "Suzuki",
-    "AUdi",
-    "BMW",
-    "Ford",
-    "Toyota",
-    "Renault",
-    "Porsche",
-    "Ferrari",
-    "Volvo",
-  ];
 
-  List<String> get getcarlist => carlist;
   String? selectedfilter;
   TextEditingController searchController = TextEditingController();
 
   String get getselectedfilter => selectedfilter!;
-  List<bool>? favlist;
 
-  List<bool> get getfavlist => favlist!;
   List<String> sortlist = [
     "Sort By",
     "Price: high to low",
@@ -127,12 +111,27 @@ class BookingScreenController extends _$BookingScreenController {
 
     selectedfilter = filterlist[0];
     selectedsortby = sortlist[0];
-    favlist = List.generate(carlist.length, (index) => false);
+
     state = const AsyncValue.data(null);
     _selectedLocation = _locationList[0];
     popularfavlist = List.generate(_imgList.length, (index) => false);
     featureadfavlist = List.generate(_imgList.length, (index) => false);
     nearbyadfavlist = List.generate(_imgList.length, (index) => false);
+    for (int i = 0; i < _nameList.length; i++) {
+      animatecontrollerlist!.add(AnimationController(
+        vsync: CommonTickerProvider(),
+        duration: Duration(
+            milliseconds:
+                ((i == 0 ? i + 2 : i + 1) + 5) * int.parse("${i + 3}0")),
+      ));
+      Future.delayed(const Duration(milliseconds: 400), () {
+        animatecontrollerlist![0].forward();
+      });
+      if (i != (animatecontrollerlist!.length - 1)) {
+        animatecontrollerlist![i + 1].forward();
+      }
+    }
+
     state = const AsyncValue.data(null);
   }
 
@@ -153,28 +152,6 @@ class BookingScreenController extends _$BookingScreenController {
     state = const AsyncValue.data(null);
   }
 
-  void filterSearchResults(String query) {
-    state = const AsyncLoading();
-    searchitems = carlist
-        .where((item) => item.toLowerCase().contains(query.toLowerCase()))
-        .toList();
-    print("searchitems $searchitems");
-    state = const AsyncValue.data(null);
-  }
-
-  onFavTap(
-    int index,
-  ) {
-    state = const AsyncLoading();
-    if (favlist![index] == true) {
-      favlist![index] = false;
-    } else {
-      favlist![index] = true;
-    }
-
-    state = const AsyncValue.data(null);
-  }
-
   onchangesorting(
     val,
   ) {
@@ -187,6 +164,16 @@ class BookingScreenController extends _$BookingScreenController {
   onPageChanged(int index) async {
     state = const AsyncLoading();
     currentpageIndex = index;
+    state = const AsyncValue.data(null);
+  }
+
+  onFav(int index) async {
+    state = const AsyncLoading();
+    if (featureadfavlist![index] == true) {
+      featureadfavlist![index] = false;
+    } else {
+      featureadfavlist![index] = true;
+    }
     state = const AsyncValue.data(null);
   }
 

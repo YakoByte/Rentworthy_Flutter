@@ -1,6 +1,7 @@
-import 'package:rentworthy/utils/images.dart';
-import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../utils/images.dart';
+import '../../../utils/text.dart';
 
 part 'bottom_bar_controller.g.dart';
 
@@ -33,11 +34,55 @@ class BottomBarController extends _$BottomBarController {
   @override
   FutureOr<void> build({int? index}) async {
     state = AsyncLoading();
-    if (index != null) {
-      _selectedIndex = index;
-    }
+    print("indexindex $index");
+
+    _selectedIndex = index!;
+
     state = AsyncValue.data(null);
   }
+
+  // Widget buildSelectedScreen() {
+  //   final selectedScreen = _selectedIndex;
+  //
+  //   Widget screen;
+  //   switch (selectedScreen) {
+  //     case 0:
+  //       screen = HomeScreen();
+  //       break;
+  //     case 1:
+  //       screen = ChatScreen(frombottom: true);
+  //       break;
+  //     case 2:
+  //       screen = _buildBookingScreenWithTransition();
+  //       break;
+  //     case 3:
+  //       screen = AccountScreen();
+  //       break;
+  //     case 4:
+  //       screen = SellScreen();
+  //       break;
+  //     default:
+  //       screen = Container(); // Handle any other cases here
+  //   }
+  //   return screen;
+  // }
+  //
+  // PageRouteBuilder _buildBookingScreenWithTransition(Widget child) {
+  //   return PageRouteBuilder(
+  //     pageBuilder: (context, animation, secondaryAnimation) => child,
+  //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+  //       const begin = Offset(1.0, 0.0);
+  //       const end = Offset.zero;
+  //       const curve = Curves.easeInOut;
+  //
+  //       var tween =
+  //       Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+  //       var offsetAnimation = animation.drive(tween);
+  //
+  //       return SlideTransition(position: offsetAnimation, child: child);
+  //     },
+  //   );
+  // }
 
   void onItemTapped(
     int index,

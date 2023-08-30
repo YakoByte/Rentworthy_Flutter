@@ -7,7 +7,7 @@ part of 'contact_us_controller.dart';
 // **************************************************************************
 
 String _$contactUsControllerHash() =>
-    r'da198514ecdf145f3a5494c5ee5b0e5eae1821c9';
+    r'23d5dee4b0fb29173b8c348a71139fe66f2fa9a8';
 
 /// See also [ContactUsController].
 @ProviderFor(ContactUsController)

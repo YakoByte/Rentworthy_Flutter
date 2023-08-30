@@ -60,7 +60,7 @@ class WriteReviewScreen extends ConsumerWidget {
               child: Column(
                 children: [
                   Container(
-                    height: h * 0.2,
+                    height: h * 0.22,
                     width: w,
                     padding: EdgeInsets.symmetric(
                         horizontal: w * 0.04, vertical: h * 0.01),

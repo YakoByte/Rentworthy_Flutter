@@ -1,9 +1,11 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rentworthy/presentation/loading/home/categories/categories.dart';
 import 'package:rentworthy/presentation/loading/home/categories/view_all_cat/view_all_category_controller.dart';
 import 'package:rentworthy/utils/images.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_appbar.dart';
@@ -91,187 +93,209 @@ class ViewAllCategory extends ConsumerWidget {
               left: 0,
               right: 0,
               bottom: 0,
-              child: Column(
-                children: [
-                  DefaultTabController(
-                    length: 4,
-                    child: SingleChildScrollView(
-                      physics: NeverScrollableScrollPhysics(),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Container(
-                            color: AppColors.white,
-                            child: TabBar(
-                                isScrollable: true,
-                                indicatorSize: TabBarIndicatorSize.tab,
-                                dividerColor: AppColors.transparent,
-                                labelStyle: ptSansTextStyle(
-                                    color: AppColors.black.withOpacity(0.5),
-                                    fontSize: h * 0.019,
-                                    fontWeight: FontWeight.w700),
-                                unselectedLabelStyle: ptSansTextStyle(
-                                    color: AppColors.black.withOpacity(0.5),
-                                    fontSize: h * 0.019,
-                                    fontWeight: FontWeight.w500),
-                                tabs: [
-                                  Tab(
-                                    child: Row(
-                                      children: [
-                                        Image.asset(AppImg.all,
-                                            height: h * 0.021),
-                                        CommonText(
-                                            text: "All",
-                                            style: ptSansTextStyle(
-                                              color: AppColors.black
-                                                  .withOpacity(0.5),
-                                              fontSize: h * 0.019,
-                                            ))
-                                      ],
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    DefaultTabController(
+                      length: 4,
+                      child: SingleChildScrollView(
+                        physics: NeverScrollableScrollPhysics(),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Container(
+                              color: AppColors.white,
+                              child: TabBar(
+                                  isScrollable: true,
+                                  indicatorSize: TabBarIndicatorSize.tab,
+                                  dividerColor: AppColors.transparent,
+                                  labelStyle: ptSansTextStyle(
+                                      color: AppColors.black.withOpacity(0.5),
+                                      fontSize: h * 0.019,
+                                      fontWeight: FontWeight.w700),
+                                  unselectedLabelStyle: ptSansTextStyle(
+                                      color: AppColors.black.withOpacity(0.5),
+                                      fontSize: h * 0.019,
+                                      fontWeight: FontWeight.w500),
+                                  tabs: [
+                                    Tab(
+                                      child: Row(
+                                        children: [
+                                          Image.asset(AppImg.all,
+                                              height: h * 0.021),
+                                          CommonText(
+                                              text: "All",
+                                              style: ptSansTextStyle(
+                                                color: AppColors.black
+                                                    .withOpacity(0.5),
+                                                fontSize: h * 0.019,
+                                              ))
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Tab(
-                                    child: Row(
-                                      children: [
-                                        Image.asset(AppImg.fridge,
-                                            height: h * 0.023),
-                                        CommonText(
-                                            text: "Electronics",
-                                            style: ptSansTextStyle(
-                                              color: AppColors.black
-                                                  .withOpacity(0.5),
-                                              fontSize: h * 0.019,
-                                            ))
-                                      ],
+                                    Tab(
+                                      child: Row(
+                                        children: [
+                                          Image.asset(AppImg.fridge,
+                                              height: h * 0.023),
+                                          CommonText(
+                                              text: "Electronics",
+                                              style: ptSansTextStyle(
+                                                color: AppColors.black
+                                                    .withOpacity(0.5),
+                                                fontSize: h * 0.019,
+                                              ))
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Tab(
-                                    child: Row(
-                                      children: [
-                                        Image.asset(AppImg.car,
-                                            height: h * 0.023),
-                                        CommonText(
-                                            text: "Cars",
-                                            style: ptSansTextStyle(
-                                              color: AppColors.black
-                                                  .withOpacity(0.5),
-                                              fontSize: h * 0.019,
-                                            ))
-                                      ],
+                                    Tab(
+                                      child: Row(
+                                        children: [
+                                          Image.asset(AppImg.car,
+                                              height: h * 0.023),
+                                          CommonText(
+                                              text: "Cars",
+                                              style: ptSansTextStyle(
+                                                color: AppColors.black
+                                                    .withOpacity(0.5),
+                                                fontSize: h * 0.019,
+                                              ))
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Tab(
-                                    child: Row(
-                                      children: [
-                                        Image.asset(AppImg.bicycle,
-                                            height: h * 0.023),
-                                        CommonText(
-                                            text: "Bikes",
-                                            style: ptSansTextStyle(
-                                              color: AppColors.black
-                                                  .withOpacity(0.5),
-                                              fontSize: h * 0.019,
-                                            ))
-                                      ],
+                                    Tab(
+                                      child: Row(
+                                        children: [
+                                          Image.asset(AppImg.bicycle,
+                                              height: h * 0.023),
+                                          CommonText(
+                                              text: "Bikes",
+                                              style: ptSansTextStyle(
+                                                color: AppColors.black
+                                                    .withOpacity(0.5),
+                                                fontSize: h * 0.019,
+                                              ))
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ]),
-                          ),
-                          Container(
-                            height: h * 0.67,
-                            child: TabBarView(children: [
-                              Container(
-                                width: w,
-                                height: h,
-                                child: Categories(
-                                    isFavIcon: true,
-                                    isextended: false,
-                                    title: "",
-                                    onCardPressed: () {},
-                                    shrinkWrap: true,
-                                    width: w,
-                                    isTopPadding: false,
-                                    height:
-                                        controller().imgList.length * h * 0.067,
-                                    favList: controller().getfavlist,
-                                    scrollDirection: Axis.vertical,
-                                    nameList: controller().nameList,
-                                    imgList: controller().imgList,
-                                    isCategory: false,
-                                    isFeature: false,
-                                    isViewAll: false),
-                              ),
-                              Container(
-                                width: w,
-                                height: h,
-                                child: Categories(
-                                    isFavIcon: true,
-                                    isextended: false,
-                                    title: "",
-                                    onCardPressed: () {},
-                                    shrinkWrap: true,
-                                    width: w,
-                                    isTopPadding: false,
-                                    height:
-                                        controller().imgList.length * h * 0.067,
-                                    favList: controller().getfavlist,
-                                    scrollDirection: Axis.vertical,
-                                    nameList: controller().nameList,
-                                    imgList: controller().imgList,
-                                    isCategory: false,
-                                    isFeature: false,
-                                    isViewAll: false),
-                              ),
-                              Container(
-                                width: w,
-                                height: h,
-                                child: Categories(
-                                    isFavIcon: true,
-                                    isextended: false,
-                                    title: "",
-                                    onCardPressed: () {},
-                                    shrinkWrap: true,
-                                    width: w,
-                                    isTopPadding: false,
-                                    height:
-                                        controller().imgList.length * h * 0.067,
-                                    favList: controller().getfavlist,
-                                    scrollDirection: Axis.vertical,
-                                    nameList: controller().nameList,
-                                    imgList: controller().imgList,
-                                    isCategory: false,
-                                    isFeature: false,
-                                    isViewAll: false),
-                              ),
-                              Container(
-                                width: w,
-                                height: h,
-                                child: Categories(
-                                    isFavIcon: true,
-                                    isextended: false,
-                                    title: "",
-                                    onCardPressed: () {},
-                                    shrinkWrap: true,
-                                    width: w,
-                                    isTopPadding: false,
-                                    height:
-                                        controller().imgList.length * h * 0.067,
-                                    favList: controller().getfavlist,
-                                    scrollDirection: Axis.vertical,
-                                    nameList: controller().nameList,
-                                    imgList: controller().imgList,
-                                    isCategory: false,
-                                    isFeature: false,
-                                    isViewAll: false),
-                              ),
-                            ]),
-                          ),
-                        ],
+                                  ]),
+                            ),
+                            Container(
+                              height: h * 0.67,
+                              child: TabBarView(children: [
+                                Container(
+                                  width: w,
+                                  height: h,
+                                  child: Categories(
+                                      animatecontrollerlist:
+                                          controller().animatecontrollerlist!,
+                                      isFavIcon: true,
+                                      isextended: false,
+                                      title: "",
+                                      onFavPressed: (index) {
+                                        controller().onFavTap(index);
+                                      },
+                                      shrinkWrap: true,
+                                      width: w,
+                                      isTopPadding: false,
+                                      height: controller().imgList.length *
+                                          h *
+                                          0.067,
+                                      favList: controller().getfavlist,
+                                      scrollDirection: Axis.vertical,
+                                      nameList: controller().nameList,
+                                      imgList: controller().imgList,
+                                      isCategory: false,
+                                      isFeature: false,
+                                      isViewAll: false),
+                                ),
+                                Container(
+                                  width: w,
+                                  height: h,
+                                  child: Categories(
+                                      animatecontrollerlist:
+                                          controller().animatecontrollerlist!,
+                                      isFavIcon: true,
+                                      isextended: false,
+                                      title: "",
+                                      onFavPressed: (index) {
+                                        controller().onFavTap(index);
+                                      },
+                                      shrinkWrap: true,
+                                      width: w,
+                                      isTopPadding: false,
+                                      height: controller().imgList.length *
+                                          h *
+                                          0.067,
+                                      favList: controller().getfavlist,
+                                      scrollDirection: Axis.vertical,
+                                      nameList: controller().nameList,
+                                      imgList: controller().imgList,
+                                      isCategory: false,
+                                      isFeature: false,
+                                      isViewAll: false),
+                                ),
+                                Container(
+                                  width: w,
+                                  height: h,
+                                  child: Categories(
+                                      animatecontrollerlist:
+                                          controller().animatecontrollerlist!,
+                                      isFavIcon: true,
+                                      isextended: false,
+                                      title: "",
+                                      onFavPressed: (index) {
+                                        controller().onFavTap(index);
+                                      },
+                                      shrinkWrap: true,
+                                      width: w,
+                                      isTopPadding: false,
+                                      height: controller().imgList.length *
+                                          h *
+                                          0.067,
+                                      favList: controller().getfavlist,
+                                      scrollDirection: Axis.vertical,
+                                      nameList: controller().nameList,
+                                      imgList: controller().imgList,
+                                      isCategory: false,
+                                      isFeature: false,
+                                      isViewAll: false),
+                                ),
+                                Container(
+                                  width: w,
+                                  height: h,
+                                  child: Categories(
+                                      animatecontrollerlist:
+                                          controller().animatecontrollerlist!,
+                                      isFavIcon: true,
+                                      isextended: false,
+                                      title: "",
+                                      onFavPressed: (index) {
+                                        controller().onFavTap(index);
+                                      },
+                                      shrinkWrap: true,
+                                      width: w,
+                                      isTopPadding: false,
+                                      height: controller().imgList.length *
+                                          h *
+                                          0.067,
+                                      favList: controller().getfavlist,
+                                      scrollDirection: Axis.vertical,
+                                      nameList: controller().nameList,
+                                      imgList: controller().imgList,
+                                      isCategory: false,
+                                      isFeature: false,
+                                      isViewAll: false),
+                                ),
+                              ]),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
 
@@ -311,22 +335,93 @@ class ViewAllCategory extends ConsumerWidget {
                           ),
                           borderRadius: BorderRadius.circular(8)),
                       child: CommonDropdown(
-                        onChanged: (str) {
-                          controller().onchangefilter(
-                            str,
-                          );
+                        dropdownsuffix: Checkbox(
+                          value: false,
+                          activeColor: AppColors.colorPrimary,
+                          side: BorderSide(
+                              color: AppColors.black.withOpacity(0.4),
+                              width: 1),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4)),
+                          onChanged: (_) {},
+                        ),
+                        dropdowntitle: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  width: w * 0.45,
+                                  child: SfSlider(
+                                    min: 0.0,
+                                    max: 100.0,
+                                    value: 4.0,
+                                    trackShape: SfTrackShape(),
+                                    showTicks: false,
+                                    showLabels: false,
+                                    enableTooltip: false,
+                                    minorTicksPerInterval: 1,
+                                    onChanged: (dynamic value) {},
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: h * 0.015, horizontal: w * 0.025),
+                              child: Row(
+                                children: [
+                                  CommonText(
+                                    text: "Price: \u{20B9}0 - \u{20B9}5,000 ",
+                                    style: ptSansTextStyle(
+                                        color: AppColors.black.withOpacity(0.4),
+                                        fontSize: h * 0.02,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        items: controller().getfilterlist,
+                        selectedItem: controller().getselectedfilter,
+                        dropdownDecoratorProps: DropDownDecoratorProps(
+                            textAlignVertical: TextAlignVertical.bottom,
+                            dropdownSearchDecoration: InputDecoration(
+                              border: InputBorder.none,
+                              prefixIcon: SizedBox(
+                                height: h * 0.03,
+                                width: h * 0.03,
+                                child: Center(
+                                  child: Image.asset(AppImg.filter,
+                                      color: AppColors.black,
+                                      height: h * 0.025),
+                                ),
+                              ),
+                              hintText: "Select Filter",
+                              hintStyle: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.4),
+                                  fontSize: h * 0.017,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            baseStyle: ptSansTextStyle(
+                                color: AppColors.black.withOpacity(0.4),
+                                fontSize: h * 0.02,
+                                fontWeight: FontWeight.w700)),
+                        clearButtonProps: ClearButtonProps(isVisible: false),
+                        dropdownButtonProps: DropdownButtonProps(
+                          icon: SizedBox(
+                            height: h * 0.03,
+                            width: h * 0.03,
+                            child: Center(
+                              child: Icon(Icons.keyboard_arrow_down_sharp,
+                                  color: AppColors.black, size: h * 0.025),
+                            ),
+                          ),
+                        ),
+                        onChangedsearch: (str) {
+                          controller().onValSelect(val: str!);
                         },
-                        isExpanded: true,
-                        itemslist: controller().getfilterlist,
-                        isDense: false,
-                        dropdownValue: controller().getselectedfilter,
-                        containerwidth: w * 0.45,
-                        containerheight: h * 0.06,
-                        borderRadius: BorderRadius.circular(8),
-                        textstyle: ptSansTextStyle(
-                            color: AppColors.black.withOpacity(0.4),
-                            fontSize: h * 0.02,
-                            fontWeight: FontWeight.w700),
+                        enabled: true,
                         prefix: SizedBox(
                           height: h * 0.03,
                           width: h * 0.03,
@@ -335,14 +430,10 @@ class ViewAllCategory extends ConsumerWidget {
                                 color: AppColors.black, height: h * 0.025),
                           ),
                         ),
-                        icon: SizedBox(
-                          height: h * 0.03,
-                          width: h * 0.03,
-                          child: Center(
-                            child: Icon(Icons.keyboard_arrow_down_sharp,
-                                color: AppColors.black, size: h * 0.025),
-                          ),
-                        ),
+                        isExpanded: true,
+                        containerwidth: w * 0.45,
+                        containerheight: h * 0.06,
+                        borderRadius: BorderRadius.circular(8),
                         containercolor: AppColors.white,
                         elevation: 5,
                       ),
@@ -355,40 +446,69 @@ class ViewAllCategory extends ConsumerWidget {
                           ),
                           borderRadius: BorderRadius.circular(8)),
                       child: CommonDropdown(
-                        onChanged: (str) {
+                        selectedItem: controller().getselectedsortby,
+                        items: controller().getsortlist,
+                        dropdownsuffix: Checkbox(
+                          value: false,
+                          activeColor: AppColors.colorPrimary,
+                          side: BorderSide(
+                              color: AppColors.black.withOpacity(0.4),
+                              width: 1),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4)),
+                          onChanged: (_) {},
+                        ),
+                        dropdownDecoratorProps: DropDownDecoratorProps(
+                            textAlignVertical: TextAlignVertical.bottom,
+                            dropdownSearchDecoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Sort By",
+                              prefixIcon: SizedBox(
+                                height: h * 0.03,
+                                width: h * 0.03,
+                                child: Center(
+                                  child: Image.asset(AppImg.sort,
+                                      color: AppColors.black,
+                                      height: h * 0.025),
+                                ),
+                              ),
+                              hintStyle: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.4),
+                                  fontSize: h * 0.017,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            baseStyle: ptSansTextStyle(
+                                color: AppColors.black.withOpacity(0.4),
+                                fontSize: h * 0.02,
+                                fontWeight: FontWeight.w700)),
+                        clearButtonProps: ClearButtonProps(isVisible: false),
+                        dropdownButtonProps: DropdownButtonProps(
+                          icon: SizedBox(
+                            height: h * 0.03,
+                            width: h * 0.03,
+                            child: Center(
+                              child: Icon(Icons.keyboard_arrow_down_sharp,
+                                  color: AppColors.black, size: h * 0.025),
+                            ),
+                          ),
+                        ),
+                        onChangedsearch: (str) {
                           controller().onchangesorting(
                             str,
                           );
                         },
-                        dropdownValue: controller().getselectedselectedsortby,
-                        checkboxval: controller().getcheckboxitems,
-                        onchange: (val) {
-                          controller().onchangecheckbox(val);
-                        },
-                        isExpanded: true,
-                        itemslist: controller().getsortlist,
-                        isDense: false,
-                        containerwidth: w * 0.45,
-                        containerheight: h * 0.06,
-                        borderRadius: BorderRadius.circular(8),
-                        containercolor: AppColors.white,
-                        textstyle: ptSansTextStyle(
-                            color: AppColors.black.withOpacity(0.4),
-                            overflow: TextOverflow.ellipsis,
-                            fontSize: h * 0.02,
-                            fontWeight: FontWeight.w700),
+                        enabled: true,
                         prefix: SizedBox(
                           height: h * 0.03,
                           width: h * 0.03,
                           child: Image.asset(AppImg.sort,
                               color: AppColors.black, height: h * 0.025),
                         ),
-                        icon: SizedBox(
-                          height: h * 0.03,
-                          width: h * 0.03,
-                          child: Icon(Icons.keyboard_arrow_down_sharp,
-                              color: AppColors.black, size: h * 0.025),
-                        ),
+                        isExpanded: true,
+                        containerwidth: w * 0.45,
+                        containerheight: h * 0.06,
+                        borderRadius: BorderRadius.circular(8),
+                        containercolor: AppColors.white,
                         elevation: 5,
                       ),
                     ),

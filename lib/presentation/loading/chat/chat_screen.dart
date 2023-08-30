@@ -10,7 +10,9 @@ import '../../../utils/common_components/common_text.dart';
 import 'all/all_chat.dart';
 
 class ChatScreen extends ConsumerWidget {
-  const ChatScreen({super.key});
+  bool frombottom;
+
+  ChatScreen({super.key, required this.frombottom});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,12 +21,21 @@ class ChatScreen extends ConsumerWidget {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: CommonAppBar(
-          title: AppText.chats,
-          textstyle: ptSansTextStyle(
-              color: AppColors.black,
-              fontSize: h * 0.028,
-              fontWeight: FontWeight.w600),
-          leadingicon: false,
+          centerwidget: CommonText(
+              text: AppText.chats,
+              style: ptSansTextStyle(
+                  color: AppColors.black,
+                  fontSize: h * 0.028,
+                  fontWeight: FontWeight.w600)),
+          // .animate()
+          // .fadeIn(duration: 100.ms)
+          // .then(delay: 100.ms)
+          // .slideY(
+          //     begin: 10,
+          //     end: 0,
+          //     curve: Curves.easeInOutCubic,
+          //     duration: 1000.ms),
+          leadingicon: !frombottom,
           centerTitle: false,
           padding: EdgeInsets.symmetric(horizontal: w * 0.025),
           backgroundColor: AppColors.white),
@@ -65,6 +76,14 @@ class ChatScreen extends ConsumerWidget {
                           Tab(text: AppText.selling),
                         ]),
                   ),
+                  // .animate()
+                  // .fadeIn(duration: 110.ms)
+                  // .then(delay: 110.ms)
+                  // .slideY(
+                  //     begin: 14,
+                  //     end: 0,
+                  //     curve: Curves.easeInOutCubic,
+                  //     duration: 1000.ms),
                   Padding(
                     padding: EdgeInsets.symmetric(
                         vertical: h * 0.02, horizontal: w * 0.021),
@@ -75,6 +94,14 @@ class ChatScreen extends ConsumerWidget {
                             fontSize: h * 0.02,
                             fontWeight: FontWeight.w700)),
                   ),
+                  // .animate()
+                  // .fadeIn(duration: 120.ms)
+                  // .then(delay: 120.ms)
+                  // .slideY(
+                  //     begin: 14,
+                  //     end: 0,
+                  //     curve: Curves.easeInOutCubic,
+                  //     duration: 1000.ms),
                   Container(
                     height: h * 0.75,
                     child: TabBarView(children: [

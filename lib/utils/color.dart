@@ -30,7 +30,7 @@ class AppColors {
   static const Color shimmergrey = Color(0xFFB9B9B9);
   static const Color blueindicator = Color(0xFF135EA9);
 
-  static const Color backgroundField = Color(0xFFF9F9FB);
+  static const Color backgroundField = Color(0xFFF9F9F9);
   static const Color iconGrey = Color(0xFFB1B8C7);
   static const Color textBlack = Color(0xFF171717);
   static const Color textBlack1 = Color(0xFF1F1F39);

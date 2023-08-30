@@ -88,8 +88,10 @@ class AccountScreen extends ConsumerWidget {
                     subTitle: AppText.eng,
                   ),
                   Container(
-                    height: h * 0.31,
+                    height: h * 0.28,
                     width: w,
+                    padding: EdgeInsets.symmetric(
+                        horizontal: w * 0.025, vertical: h * 0.01),
                     decoration: BoxDecoration(
                         gradient: const LinearGradient(
                             begin: Alignment.centerLeft,
@@ -99,62 +101,75 @@ class AccountScreen extends ConsumerWidget {
                               AppColors.colorSecondary
                             ]),
                         borderRadius: BorderRadius.circular(4)),
-                    child: Column(
+                    child: Stack(
                       children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              children: [
-                                Container(
-                                  width: w * 0.37,
-                                  child: RichText(
-                                    textAlign: TextAlign.start,
-                                    text: TextSpan(
-                                      text: "${AppText.plantrip}\n",
+                        Positioned(
+                          left: 0,
+                          right: w * 0.45,
+                          top: 0,
+                          bottom: h * 0.06,
+                          child: Center(
+                            child: SizedBox(
+                              width: w * 0.35,
+                              child: RichText(
+                                textAlign: TextAlign.start,
+                                text: TextSpan(
+                                  text: "${AppText.plantrip}\n",
+                                  style: ptSansTextStyle(
+                                      color: AppColors.white,
+                                      fontSize: h * 0.022,
+                                      fontWeight: FontWeight.w700),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                      text: AppText.wehavecovered,
                                       style: ptSansTextStyle(
                                           color: AppColors.white,
-                                          fontSize: h * 0.022,
-                                          fontWeight: FontWeight.w700),
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                          text: AppText.wehavecovered,
-                                          style: ptSansTextStyle(
-                                              color: AppColors.white,
-                                              fontSize: h * 0.016,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ],
+                                          fontSize: h * 0.014,
+                                          fontWeight: FontWeight.w400),
                                     ),
-                                  ),
+                                  ],
                                 ),
-                                CommonButton(
-                                    containerwidth: w * 0.37,
-                                    containerheight: h * 0.05,
-                                    backgroundColor: AppColors.white,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(50)),
-                                    text: AppText.startrent,
-                                    textStyle: ptSansTextStyle(
-                                        foreground: Paint()
-                                          ..shader = const LinearGradient(
-                                            colors: <Color>[
-                                              AppColors.colorPrimary,
-                                              AppColors.colorSecondary
-                                            ],
-                                          ).createShader(const Rect.fromLTRB(
-                                              20, 0, 300, 20)),
-                                        fontSize: h * 0.019,
-                                        fontWeight: FontWeight.w600),
-                                    onPressed: () {}),
-                              ],
+                              ),
                             ),
-                            Image.asset(AppImg.accoutimg,
-                                height: h * 0.3, width: w * 0.45)
-                          ],
+                          ),
                         ),
+                        Positioned(
+                          left: 0,
+                          right: w * 0.4,
+                          bottom: 0,
+                          top: h * 0.15,
+                          child: Center(
+                            child: CommonButton(
+                                containerwidth: w * 0.42,
+                                containerheight: h * 0.05,
+                                backgroundColor: AppColors.white,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50)),
+                                text: AppText.startrent,
+                                textStyle: ptSansTextStyle(
+                                    foreground: Paint()
+                                      ..shader = const LinearGradient(
+                                        colors: <Color>[
+                                          AppColors.colorPrimary,
+                                          AppColors.colorSecondary
+                                        ],
+                                      ).createShader(
+                                          const Rect.fromLTRB(20, 0, 150, 20)),
+                                    fontSize: h * 0.019,
+                                    fontWeight: FontWeight.w500),
+                                onPressed: () {}),
+                          ),
+                        ),
+                        Positioned(
+                          right: 0,
+                          left: w * 0.37,
+                          bottom: h * 0.08,
+                          top: 0,
+                          child: Center(
+                            child: Image.asset(AppImg.accoutimg,
+                                height: h * 0.17, width: w * 0.55),
+                          ),
+                        )
                       ],
                     ),
                   )

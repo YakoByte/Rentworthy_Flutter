@@ -269,10 +269,12 @@ class ViewProfile extends ConsumerWidget {
                 height: h * 0.59,
                 child: controller().getproductlist.isNotEmpty
                     ? Categories(
+                        animatecontrollerlist:
+                            controller().animatecontrollerlist!,
                         isFavIcon: true,
                         title: "",
                         isextended: false,
-                        onCardPressed: () {},
+                        onFavPressed: (int) {},
                         shrinkWrap: true,
                         width: w,
                         isTopPadding: false,

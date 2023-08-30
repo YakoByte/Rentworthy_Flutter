@@ -12,6 +12,7 @@ import 'package:rentworthy/presentation/loading/account/view_profile/view_profil
 import 'package:rentworthy/utils/common_components/common_navigator.dart';
 import 'package:rentworthy/utils/common_components/icon_text.dart';
 
+import '../../../../application/onboarding/dialog/dialod_service.dart';
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_button.dart';
 import '../../../../utils/common_components/common_text.dart';
@@ -136,12 +137,12 @@ class HomeNavDrawer extends ConsumerWidget {
                     ///categories
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
-                        commonNavigator(
-                          context: context,
-                          child: ViewProfile(),
-                          type: PageTransitionType.rightToLeftWithFade,
-                        );
+                        ref.read(dialogServiceProvider).rentScreeningDialog();
+                        // commonNavigator(
+                        //   context: context,
+                        //   child: ViewProfile(),
+                        //   type: PageTransitionType.rightToLeftWithFade,
+                        // );
                       },
                       child: Padding(
                         padding: EdgeInsets.symmetric(
@@ -168,13 +169,15 @@ class HomeNavDrawer extends ConsumerWidget {
                                         title: AppText.categories,
                                         subtitle: AppText.eleccarbike,
                                         onTap: () {
-                                          Navigator.pop(context);
-                                          commonNavigator(
-                                            context: context,
-                                            child: ViewProfile(),
-                                            type: PageTransitionType
-                                                .rightToLeftWithFade,
-                                          );
+                                          ref
+                                              .read(dialogServiceProvider)
+                                              .rentScreeningDialog();
+                                          // commonNavigator(
+                                          //   context: context,
+                                          //   child: ViewProfile(),
+                                          //   type: PageTransitionType
+                                          //       .rightToLeftWithFade,
+                                          // );
                                         },
                                         titleStyle: ptSansTextStyle(
                                           color:
@@ -201,8 +204,8 @@ class HomeNavDrawer extends ConsumerWidget {
                         ),
                       )
                           .animate()
-                          .fadeIn(duration: 130.ms)
-                          .then(delay: 130.ms)
+                          .fadeIn(duration: 110.ms)
+                          .then(delay: 110.ms)
                           .slideX(
                             begin: 1,
                             end: 0,
@@ -212,52 +215,42 @@ class HomeNavDrawer extends ConsumerWidget {
                     ),
 
                     ///my activities
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                        commonNavigator(
-                          context: context,
-                          child: ViewProfile(),
-                          type: PageTransitionType.rightToLeftWithFade,
-                        );
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: h * 0.01,
-                          horizontal: w * 0.032,
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: h * 0.01,
+                        horizontal: w * 0.032,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          CommonText(
+                              text: AppText.myact,
+                              style: ptSansTextStyle(
+                                color: AppColors.black.withOpacity(0.4),
+                                overflow: TextOverflow.ellipsis,
+                                fontSize: h * 0.021,
+                                fontWeight: FontWeight.w600,
+                              )),
+                        ],
+                      ),
+                    )
+                        .animate()
+                        .fadeIn(duration: 120.ms)
+                        .then(delay: 120.ms)
+                        .slideX(
+                          begin: 1,
+                          end: 0,
+                          curve: Curves.easeInOutCubic,
+                          duration: 500.ms,
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            CommonText(
-                                text: AppText.myact,
-                                style: ptSansTextStyle(
-                                  color: AppColors.black.withOpacity(0.4),
-                                  overflow: TextOverflow.ellipsis,
-                                  fontSize: h * 0.021,
-                                  fontWeight: FontWeight.w600,
-                                )),
-                          ],
-                        ),
-                      )
-                          .animate()
-                          .fadeIn(duration: 160.ms)
-                          .then(delay: 160.ms)
-                          .slideX(
-                            begin: 1,
-                            end: 0,
-                            curve: Curves.easeInOutCubic,
-                            duration: 500.ms,
-                          ),
-                    ),
                     Divider(
                       color: AppColors.black.withOpacity(0.1),
                       height: h * 0.01,
                       thickness: 1,
                     )
                         .animate()
-                        .fadeIn(duration: 160.ms)
-                        .then(delay: 160.ms)
+                        .fadeIn(duration: 120.ms)
+                        .then(delay: 120.ms)
                         .slideX(
                           begin: 1,
                           end: 0,
@@ -268,12 +261,11 @@ class HomeNavDrawer extends ConsumerWidget {
                     ///my orders
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
-                        commonNavigator(
-                          context: context,
-                          child: ViewProfile(),
-                          type: PageTransitionType.rightToLeftWithFade,
-                        );
+                        // commonNavigator(
+                        //   context: context,
+                        //   child: ViewProfile(),
+                        //   type: PageTransitionType.rightToLeftWithFade,
+                        // );
                       },
                       child: Padding(
                         padding: EdgeInsets.symmetric(
@@ -300,8 +292,8 @@ class HomeNavDrawer extends ConsumerWidget {
                         ),
                       )
                           .animate()
-                          .fadeIn(duration: 190.ms)
-                          .then(delay: 190.ms)
+                          .fadeIn(duration: 130.ms)
+                          .then(delay: 130.ms)
                           .slideX(
                             begin: 1,
                             end: 0,
@@ -313,7 +305,6 @@ class HomeNavDrawer extends ConsumerWidget {
                     ///my ads
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
                         commonNavigator(
                           context: context,
                           child: MyAds(),
@@ -347,7 +338,6 @@ class HomeNavDrawer extends ConsumerWidget {
                                         title: AppText.myads,
                                         subtitle: AppText.adspostedbyyou,
                                         onTap: () {
-                                          Navigator.pop(context);
                                           commonNavigator(
                                             context: context,
                                             child: MyAds(),
@@ -377,8 +367,8 @@ class HomeNavDrawer extends ConsumerWidget {
                         ),
                       )
                           .animate()
-                          .fadeIn(duration: 300.ms)
-                          .then(delay: 300.ms)
+                          .fadeIn(duration: 140.ms)
+                          .then(delay: 140.ms)
                           .slideX(
                             begin: 1,
                             end: 0,
@@ -390,12 +380,11 @@ class HomeNavDrawer extends ConsumerWidget {
                     ///messages and notifications
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
-                        commonNavigator(
-                          context: context,
-                          child: ViewProfile(),
-                          type: PageTransitionType.rightToLeftWithFade,
-                        );
+                        // commonNavigator(
+                        //   context: context,
+                        //   child: ViewProfile(),
+                        //   type: PageTransitionType.rightToLeftWithFade,
+                        // );
                       },
                       child: Padding(
                         padding: EdgeInsets.symmetric(
@@ -423,13 +412,12 @@ class HomeNavDrawer extends ConsumerWidget {
                                         title: AppText.msgandnotification,
                                         subtitle: AppText.chatalert,
                                         onTap: () {
-                                          Navigator.pop(context);
-                                          commonNavigator(
-                                            context: context,
-                                            child: ViewProfile(),
-                                            type: PageTransitionType
-                                                .rightToLeftWithFade,
-                                          );
+                                          // commonNavigator(
+                                          //   context: context,
+                                          //   child: ViewProfile(),
+                                          //   type: PageTransitionType
+                                          //       .rightToLeftWithFade,
+                                          // );
                                         },
                                         titleStyle: ptSansTextStyle(
                                           color:
@@ -453,8 +441,8 @@ class HomeNavDrawer extends ConsumerWidget {
                         ),
                       )
                           .animate()
-                          .fadeIn(duration: 350.ms)
-                          .then(delay: 350.ms)
+                          .fadeIn(duration: 150.ms)
+                          .then(delay: 150.ms)
                           .slideX(
                             begin: 1,
                             end: 0,
@@ -464,52 +452,42 @@ class HomeNavDrawer extends ConsumerWidget {
                     ),
 
                     ///others
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                        commonNavigator(
-                          context: context,
-                          child: ViewProfile(),
-                          type: PageTransitionType.rightToLeftWithFade,
-                        );
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              vertical: h * 0.005,
-                              horizontal: w * 0.032,
-                            ),
-                            child: CommonText(
-                                text: AppText.others,
-                                style: ptSansTextStyle(
-                                  color: AppColors.black.withOpacity(0.4),
-                                  overflow: TextOverflow.ellipsis,
-                                  fontSize: h * 0.021,
-                                  fontWeight: FontWeight.w600,
-                                )),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: h * 0.005,
+                            horizontal: w * 0.032,
                           ),
-                        ],
-                      )
-                          .animate()
-                          .fadeIn(duration: 400.ms)
-                          .then(delay: 400.ms)
-                          .slideX(
-                            begin: 1,
-                            end: 0,
-                            curve: Curves.easeInOutCubic,
-                            duration: 500.ms,
-                          ),
-                    ),
+                          child: CommonText(
+                              text: AppText.others,
+                              style: ptSansTextStyle(
+                                color: AppColors.black.withOpacity(0.4),
+                                overflow: TextOverflow.ellipsis,
+                                fontSize: h * 0.021,
+                                fontWeight: FontWeight.w600,
+                              )),
+                        ),
+                      ],
+                    )
+                        .animate()
+                        .fadeIn(duration: 160.ms)
+                        .then(delay: 160.ms)
+                        .slideX(
+                          begin: 1,
+                          end: 0,
+                          curve: Curves.easeInOutCubic,
+                          duration: 500.ms,
+                        ),
                     Divider(
                       color: AppColors.black.withOpacity(0.1),
                       height: h * 0.02,
                       thickness: 1,
                     )
                         .animate()
-                        .fadeIn(duration: 400.ms)
-                        .then(delay: 400.ms)
+                        .fadeIn(duration: 170.ms)
+                        .then(delay: 170.ms)
                         .slideX(
                           begin: 1,
                           end: 0,
@@ -520,12 +498,11 @@ class HomeNavDrawer extends ConsumerWidget {
                     ///how it works
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
-                        commonNavigator(
-                          context: context,
-                          child: ViewProfile(),
-                          type: PageTransitionType.rightToLeftWithFade,
-                        );
+                        // commonNavigator(
+                        //   context: context,
+                        //   child: ViewProfile(),
+                        //   type: PageTransitionType.rightToLeftWithFade,
+                        // );
                       },
                       child: Padding(
                         padding: EdgeInsets.symmetric(
@@ -553,8 +530,8 @@ class HomeNavDrawer extends ConsumerWidget {
                         ),
                       )
                           .animate()
-                          .fadeIn(duration: 450.ms)
-                          .then(delay: 450.ms)
+                          .fadeIn(duration: 180.ms)
+                          .then(delay: 180.ms)
                           .slideX(
                             begin: 1,
                             end: 0,
@@ -566,12 +543,11 @@ class HomeNavDrawer extends ConsumerWidget {
                     ///for business
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
-                        commonNavigator(
-                          context: context,
-                          child: ViewProfile(),
-                          type: PageTransitionType.rightToLeftWithFade,
-                        );
+                        // commonNavigator(
+                        //   context: context,
+                        //   child: ViewProfile(),
+                        //   type: PageTransitionType.rightToLeftWithFade,
+                        // );
                       },
                       child: Padding(
                         padding: EdgeInsets.symmetric(
@@ -598,8 +574,8 @@ class HomeNavDrawer extends ConsumerWidget {
                         ),
                       )
                           .animate()
-                          .fadeIn(duration: 500.ms)
-                          .then(delay: 500.ms)
+                          .fadeIn(duration: 190.ms)
+                          .then(delay: 190.ms)
                           .slideX(
                             begin: 1,
                             end: 0,
@@ -611,7 +587,6 @@ class HomeNavDrawer extends ConsumerWidget {
                     ///rate us
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
                         commonNavigator(
                           context: context,
                           child: WriteReviewScreen(),
@@ -644,8 +619,8 @@ class HomeNavDrawer extends ConsumerWidget {
                         ),
                       )
                           .animate()
-                          .fadeIn(duration: 550.ms)
-                          .then(delay: 550.ms)
+                          .fadeIn(duration: 200.ms)
+                          .then(delay: 200.ms)
                           .slideX(
                             begin: 1,
                             end: 0,
@@ -657,7 +632,6 @@ class HomeNavDrawer extends ConsumerWidget {
                     ///my address
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
                         commonNavigator(
                           context: context,
                           child: MyAddressesScreen(),
@@ -690,8 +664,8 @@ class HomeNavDrawer extends ConsumerWidget {
                         ),
                       )
                           .animate()
-                          .fadeIn(duration: 600.ms)
-                          .then(delay: 600.ms)
+                          .fadeIn(duration: 210.ms)
+                          .then(delay: 210.ms)
                           .slideX(
                             begin: 1,
                             end: 0,
@@ -703,12 +677,11 @@ class HomeNavDrawer extends ConsumerWidget {
                     ///blog
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
-                        commonNavigator(
-                          context: context,
-                          child: ViewProfile(),
-                          type: PageTransitionType.rightToLeftWithFade,
-                        );
+                        // commonNavigator(
+                        //   context: context,
+                        //   child: ViewProfile(),
+                        //   type: PageTransitionType.rightToLeftWithFade,
+                        // );
                       },
                       child: Padding(
                         padding: EdgeInsets.symmetric(
@@ -736,8 +709,8 @@ class HomeNavDrawer extends ConsumerWidget {
                         ),
                       )
                           .animate()
-                          .fadeIn(duration: 650.ms)
-                          .then(delay: 650.ms)
+                          .fadeIn(duration: 220.ms)
+                          .then(delay: 220.ms)
                           .slideX(
                             begin: 1,
                             end: 0,
@@ -749,12 +722,11 @@ class HomeNavDrawer extends ConsumerWidget {
                     ///faqs
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
-                        commonNavigator(
-                          context: context,
-                          child: ViewProfile(),
-                          type: PageTransitionType.rightToLeftWithFade,
-                        );
+                        // commonNavigator(
+                        //   context: context,
+                        //   child: ViewProfile(),
+                        //   type: PageTransitionType.rightToLeftWithFade,
+                        // );
                       },
                       child: Padding(
                         padding: EdgeInsets.symmetric(
@@ -782,8 +754,8 @@ class HomeNavDrawer extends ConsumerWidget {
                         ),
                       )
                           .animate()
-                          .fadeIn(duration: 700.ms)
-                          .then(delay: 700.ms)
+                          .fadeIn(duration: 230.ms)
+                          .then(delay: 230.ms)
                           .slideX(
                             begin: 1,
                             end: 0,
@@ -795,7 +767,6 @@ class HomeNavDrawer extends ConsumerWidget {
                     ///settings
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
                         commonNavigator(
                           context: context,
                           child: SettingScreen(),
@@ -828,8 +799,8 @@ class HomeNavDrawer extends ConsumerWidget {
                         ),
                       )
                           .animate()
-                          .fadeIn(duration: 750.ms)
-                          .then(delay: 750.ms)
+                          .fadeIn(duration: 240.ms)
+                          .then(delay: 240.ms)
                           .slideX(
                             begin: 1,
                             end: 0,
@@ -841,7 +812,6 @@ class HomeNavDrawer extends ConsumerWidget {
                     ///terms and service
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
                         commonNavigator(
                           context: context,
                           child: TermsService(),
@@ -873,8 +843,8 @@ class HomeNavDrawer extends ConsumerWidget {
                         ),
                       )
                           .animate()
-                          .fadeIn(duration: 800.ms)
-                          .then(delay: 800.ms)
+                          .fadeIn(duration: 250.ms)
+                          .then(delay: 250.ms)
                           .slideX(
                             begin: 1,
                             end: 0,
@@ -886,7 +856,6 @@ class HomeNavDrawer extends ConsumerWidget {
                     ///privacy policy
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
                         commonNavigator(
                           context: context,
                           child: PrivacyPolicy(),
@@ -918,8 +887,8 @@ class HomeNavDrawer extends ConsumerWidget {
                         ),
                       )
                           .animate()
-                          .fadeIn(duration: 850.ms)
-                          .then(delay: 850.ms)
+                          .fadeIn(duration: 260.ms)
+                          .then(delay: 260.ms)
                           .slideX(
                             begin: 1,
                             end: 0,
@@ -930,8 +899,8 @@ class HomeNavDrawer extends ConsumerWidget {
 
                     ///contact us
                     CommonButton(
-                            containerwidth: w * 0.35,
-                            containerheight: h * 0.07,
+                            containerwidth: w * 0.45,
+                            containerheight: h * 0.06,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(11),
                                 gradient: const LinearGradient(
@@ -956,7 +925,6 @@ class HomeNavDrawer extends ConsumerWidget {
                                 fontSize: h * 0.019,
                                 fontWeight: FontWeight.w700),
                             onPressed: () {
-                              Navigator.pop(context);
                               commonNavigator(
                                 context: context,
                                 child: ContactUsScreen(),
@@ -964,8 +932,8 @@ class HomeNavDrawer extends ConsumerWidget {
                               );
                             })
                         .animate()
-                        .fadeIn(duration: 900.ms)
-                        .then(delay: 900.ms)
+                        .fadeIn(duration: 270.ms)
+                        .then(delay: 270.ms)
                         .slideX(
                           begin: 1,
                           end: 0,

@@ -10,9 +10,13 @@ class AllChatController extends _$AllChatController {
   bool _isbusinessreg = false;
 
   late TabController tabController;
+  List<AnimationController>? animatecontrollerlist = [];
 
   bool get isbusinessreg => _isbusinessreg;
   bool _iseyehide = false;
+  int _selectedTab = 0;
+
+  int get selectedtab => _selectedTab;
 
   bool get iseyehide => _iseyehide;
   bool _issignin = false;
@@ -31,6 +35,33 @@ class AllChatController extends _$AllChatController {
       length: 3,
       vsync: CommonTickerProvider(),
     );
+    tabController.addListener(() {
+      onTabTap(val: tabController.index);
+      state = const AsyncLoading();
+      state = const AsyncValue.data(null);
+    });
+    for (int i = 0; i < 13; i++) {
+      animatecontrollerlist!.add(AnimationController(
+        vsync: CommonTickerProvider(),
+        duration: Duration(milliseconds: int.parse("${i + 1}0")),
+      ));
+
+      Future.delayed(const Duration(milliseconds: 100), () {
+        animatecontrollerlist![0].forward();
+      });
+    }
+    ref.onDispose(() {
+      for (int i = 0; i < 13; i++) {
+        animatecontrollerlist![i].dispose();
+      }
+    });
+    state = const AsyncValue.data(null);
+  }
+
+  onTabTap({required int val}) async {
+    state = const AsyncLoading();
+    debugPrint('_selectedTab $val');
+    _selectedTab = val;
 
     state = const AsyncValue.data(null);
   }

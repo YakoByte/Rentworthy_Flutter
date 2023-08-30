@@ -4,6 +4,8 @@ import 'package:rentworthy/utils/images.dart';
 import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../utils/common_components/common_tickerprovider.dart';
+
 part 'home_screen_controller.g.dart';
 
 @riverpod
@@ -70,6 +72,7 @@ class HomeScreenController extends _$HomeScreenController {
   int get getcurrentPageIndex => currentpageIndex;
 
   List<String> get getsearchitems => searchitems;
+  List<AnimationController>? animatecontrollerlist = [];
 
   @override
   FutureOr<void> build() async {
@@ -78,6 +81,20 @@ class HomeScreenController extends _$HomeScreenController {
     popularfavlist = List.generate(_imgList.length, (index) => false);
     featureadfavlist = List.generate(_imgList.length, (index) => false);
     nearbyadfavlist = List.generate(_imgList.length, (index) => false);
+    for (int i = 0; i < _nameList.length; i++) {
+      animatecontrollerlist!.add(AnimationController(
+        vsync: CommonTickerProvider(),
+        duration: Duration(
+            milliseconds:
+                ((i == 0 ? i + 2 : i + 1) + 5) * int.parse("${i + 3}0")),
+      ));
+      Future.delayed(const Duration(milliseconds: 400), () {
+        animatecontrollerlist![0].forward();
+      });
+      if (i != (animatecontrollerlist!.length - 1)) {
+        animatecontrollerlist![i + 1].forward();
+      }
+    }
     state = const AsyncValue.data(null);
   }
 

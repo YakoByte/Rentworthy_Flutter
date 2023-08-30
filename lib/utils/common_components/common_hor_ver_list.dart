@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../color.dart';
 import '../images.dart';
 import '../text.dart';
-import 'common_iconbutton.dart';
 import 'common_text.dart';
 
 class HorizonVertList extends ConsumerWidget {
@@ -15,6 +14,7 @@ class HorizonVertList extends ConsumerWidget {
   bool isFeature;
   bool isTopPadding;
   bool isFavIcon;
+  List<AnimationController> animatecontrollerlist;
   bool shrinkWrap;
   bool isextended;
   Widget? lastrow;
@@ -44,6 +44,7 @@ class HorizonVertList extends ConsumerWidget {
       required this.index,
       required this.isFavIcon,
       required this.isTopPadding,
+      required this.animatecontrollerlist,
       required this.isextended,
       this.type,
       this.lastrow,
@@ -151,23 +152,28 @@ class HorizonVertList extends ConsumerWidget {
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      CommonIconButton(
-                                        containerwidth: h * 0.03,
-                                        containerheight: h * 0.03,
-                                        backgroundColor: favList[index] == false
-                                            ? AppColors.starcolor
-                                            : AppColors.selectedstar,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(1000)),
-                                        centericon: Center(
-                                          child: Icon(
-                                            Icons.star,
-                                            color: AppColors.white,
-                                            size: h * 0.011,
+                                      GestureDetector(
+                                        onTap: onPressed,
+                                        child: CircleAvatar(
+                                          backgroundColor:
+                                              favList[index] == false
+                                                  ? AppColors.starcolor
+                                                  : AppColors.selectedstar,
+                                          radius: h * 0.023,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.star,
+                                                color: AppColors.white,
+                                                size: h * 0.03,
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                        onPressed: onPressed,
                                       ),
                                     ],
                                   ),
@@ -275,7 +281,9 @@ class HorizonVertList extends ConsumerWidget {
                         children: [
                           if (isFavIcon == false && favrow != null) favrow!,
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: isFavIcon == false
+                                ? MainAxisAlignment.start
+                                : MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Container(
@@ -293,7 +301,6 @@ class HorizonVertList extends ConsumerWidget {
                                 ),
                               ),
                               Container(
-                                height: h * 0.12,
                                 width: w * 0.5,
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
@@ -403,38 +410,40 @@ class HorizonVertList extends ConsumerWidget {
                                   ),
                                 ),
                               ),
-                              Container(
-                                height: h * 0.12,
-                                width: w * 0.12,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    if (isFavIcon == true)
-                                      CommonIconButton(
-                                        containerwidth: h * 0.035,
-                                        containerheight: h * 0.035,
-                                        backgroundColor: favList[index] == false
-                                            ? AppColors.starcolor
-                                            : AppColors.selectedstar,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(1000)),
-                                        centericon: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Icon(
-                                              Icons.star,
-                                              color: AppColors.white,
-                                              size: h * 0.014,
+                              if (isFavIcon == true)
+                                Container(
+                                  height: h * 0.12,
+                                  width: w * 0.12,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      if (isFavIcon == true)
+                                        GestureDetector(
+                                          onTap: onPressed,
+                                          child: CircleAvatar(
+                                            backgroundColor:
+                                                favList[index] == false
+                                                    ? AppColors.starcolor
+                                                    : AppColors.selectedstar,
+                                            radius: h * 0.023,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons.star,
+                                                  color: AppColors.white,
+                                                  size: h * 0.03,
+                                                ),
+                                              ],
                                             ),
-                                          ],
+                                          ),
                                         ),
-                                        onPressed: onPressed,
-                                      ),
-                                  ],
-                                ),
-                              )
+                                    ],
+                                  ),
+                                )
                             ],
                           ),
                         ],
@@ -442,7 +451,14 @@ class HorizonVertList extends ConsumerWidget {
                     ),
                   ),
                 ))
-            .animate()
+            .animate(
+                controller: animatecontrollerlist![index],
+                onComplete: (controller1) {
+                  for (int i = 0; i < (animatecontrollerlist.length - 1); i++) {
+                    animatecontrollerlist![i + 1].forward();
+                  }
+                },
+                autoPlay: false)
             .fadeIn(duration: ((index * 40) + 100).ms)
             .then(delay: ((index * 40) + 100).ms)
             .slideX(

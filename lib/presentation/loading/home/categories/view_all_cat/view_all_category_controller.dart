@@ -4,6 +4,8 @@ import 'package:rentworthy/utils/images.dart';
 import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../../utils/common_components/common_tickerprovider.dart';
+
 part 'view_all_category_controller.g.dart';
 
 @riverpod
@@ -16,10 +18,11 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
     'Mahim',
   ];
   List<String> filterlist = [
-    "Filter",
-    "Color",
-    "Price",
-    "Categories",
+    "Distance",
+    "Pricing",
+    "Pickup Only",
+    "Delivery Only",
+    "Both Pickup & Delivery",
   ];
 
   List<String> get getfilterlist => filterlist;
@@ -50,18 +53,16 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
 
   List<bool> get getfavlist => favlist!;
   List<String> sortlist = [
-    "Sort By",
-    "Price: high to low",
-    "Price: low to high",
-    "Ratings",
-    "Popularity",
-    "Discount",
+    "New listings",
+    "Best Reviews",
+    "Most Expensive",
+    "Least Expensive",
   ];
 
   List<String> get getsortlist => sortlist;
   String? selectedsortby;
 
-  String get getselectedselectedsortby => selectedsortby!;
+  String get getselectedsortby => selectedsortby!;
   List<String> searchitems = [];
 
   List<String> get getsearchitems => searchitems;
@@ -81,6 +82,7 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
   List<bool> get getpopularfavlist => popularfavlist!;
 
   List<String> get locationList => _locationList;
+  List<AnimationController>? animatecontrollerlist = [];
 
   CarouselController carouselController = CarouselController();
   PageController pageController = PageController();
@@ -130,9 +132,24 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
     favlist = List.generate(carlist.length, (index) => false);
     state = const AsyncValue.data(null);
     _selectedLocation = _locationList[0];
+
     popularfavlist = List.generate(_imgList.length, (index) => false);
     featureadfavlist = List.generate(_imgList.length, (index) => false);
     nearbyadfavlist = List.generate(_imgList.length, (index) => false);
+    for (int i = 0; i < _nameList.length; i++) {
+      animatecontrollerlist!.add(AnimationController(
+        vsync: CommonTickerProvider(),
+        duration: Duration(
+            milliseconds:
+                ((i == 0 ? i + 2 : i + 1) + 5) * int.parse("${i + 3}0")),
+      ));
+      Future.delayed(const Duration(milliseconds: 400), () {
+        animatecontrollerlist![0].forward();
+      });
+      if (i != (animatecontrollerlist!.length - 1)) {
+        animatecontrollerlist![i + 1].forward();
+      }
+    }
     state = const AsyncValue.data(null);
   }
 

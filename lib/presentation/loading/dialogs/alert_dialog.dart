@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../color.dart';
-import '../images.dart';
-import '../text.dart';
-import 'common_text.dart';
+import '../../../utils/color.dart';
+import '../../../utils/common_components/common_text.dart';
+import '../../../utils/images.dart';
+import '../../../utils/text.dart';
 
-class CommonAlertDialog extends ConsumerWidget {
-  const CommonAlertDialog({super.key});
+class ContactUsAlertDialog extends ConsumerWidget {
+  const ContactUsAlertDialog({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

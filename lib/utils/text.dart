@@ -7,6 +7,8 @@ class AppText {
   static const String partyevents = "Party & Events";
   static const String homeoutdoor = "Home & Outdoors";
   static const String electronics = "Electronics";
+  static const String addnewaddress = "Add a new address";
+  static const String addaddress = "Add address";
   static const String toprent = "Top Rentals";
   static const String music = "Musical Instruments";
   static const String cleaning = "Cleaning Equipment";
@@ -14,6 +16,23 @@ class AppText {
   static const String heavymachine = "Heavy Machinery";
   static const String newmarket = "New to Market";
   static const String rent = "Rent";
+  static const String dates = "Dates";
+  static const String prerent = "Pre Rental Screening Questions";
+  static const String verifystatus = "Verify the status of the item";
+  static const String cosmeticissue =
+      "Are there any cosmetic issues with the item?";
+  static const String aestheticprob = "What is the aesthetic problem?";
+  static const String itemwork = "Does the item work as it was stated online?";
+  static const String whatsprob = "What is the problem?";
+  static const String missingpart = "Are any part of the items missing?";
+  static const String whatmissingpart = "What parts were missing?";
+  static const String uploadimg = "Upload Image ";
+  static const String nolongneed = "No longer needed";
+  static const String norental = "Not able to rental requirements.";
+  static const String nolongwork =
+      "Day(s) I had chosen for the rentals no longer works.";
+  static const String givetextbox =
+      "Other ( Please Explain) give them a text box that allows them to explain";
   static const String rental = "Rental";
   static const String request = "Request";
   static const String rented = "Rented";
@@ -38,9 +57,16 @@ class AppText {
   static const String recommendation =
       "Recommendations & Special communicatios";
   static const String logout = "Logout";
+  static const String price = "Price*";
   static const String logoutall = "Logout from all devices";
   static const String dltacc = "Delete account";
   static const String urname = "Your Name";
+  static const String reasoncancel = "Reason for cancellation";
+  static const String desc = "Description";
+  static const String itemname = "Item Name*";
+  static const String city = "City*";
+  static const String state = "State*";
+  static const String adtitle = "Ad Title*";
   static const String smthingabtyou = "Somithing about you";
   static const String custrating = "Custom Rating";
   static const String startsell = "Start Selling";
@@ -77,6 +103,7 @@ class AppText {
   static const String forbusiness = "For Business";
   static const String rateus = "Rate Us On Playstore";
 
+  static const String block = "Block";
   static const String blogs = "Blogs";
   static const String star5 = "5 Star";
   static const String star4 = "4 Star";
@@ -90,6 +117,7 @@ class AppText {
   static const String nearbyads = "Nearby Ads";
   static const String popularads = "Popular Ads";
   static const String viewall = "View All";
+  static const String reqnewcode = "Request a new code";
   static const String businesshrs = "Business Hours";
   static const String opentime = "9 am to 8 pm - Open all days of week";
   static const String thane = " Thane West...";
@@ -109,10 +137,14 @@ class AppText {
   static const String reg_business = "  Register as Business";
   static const String enteremail_or_uname = "Enter email or username";
   static const String email_or_uname = "Email or Username";
+  static const String enterEmail = "Enter Email";
+  static const String enterappid = "Enter Apple id";
   static const String enterPassword = "Enter Password";
   static const String newPassword = "New Password";
   static const String confirmPassword = "Confirm New Password";
   static const String enterphone = "Enter your phone number";
+  static const String enteremailtosignin = "Enter your email to Sign in";
+  static const String enterappidtosignin = "Enter your Apple ID to Sign in";
   static const String entername = "Enter your Name";
   static const String knowus = "Anything else you,d like us to know?";
   static const String wesendotp =
@@ -136,6 +168,7 @@ class AppText {
   static const String backprof = "Back to Profile";
   static const String yourverified = "Congratulations!! You’re verified now.";
   static const String verfynow = "Verify Now";
+  static const String verfy = "Verify";
   static const String verifyid = "You can verify your ID with";
   static const String needverify = "We need to verify your ID";
   static const String entereinnumber = "Enter Your EIN Number";
@@ -162,6 +195,8 @@ class AppText {
   static const String share = "Share";
   static const String subcat = "Subcategory";
   static const String cat = "Category";
+  static const String orderconfirm = "Your Order is Confirmed!";
+  static const String thanksfororder = "Thanks For Your Order";
   static const String contactusoon = "we'll contact you soon";
   static const String thankresponse = "Thank you for your response";
   static const String useanymore = "Let go of what you don’t use anymore";
@@ -173,6 +208,7 @@ class AppText {
   static const String categories = "Categories";
   static const String eleccarbike = "Electronics, Cars, Bike, Games...";
   static const String report = "Report";
+  static const String reportuser = "Report User";
   static const String totalpayable = "Total payable";
   static const String day = "\$ 200 / day";
   static const String tampaflorida = "Tampa, Florida";
@@ -196,6 +232,7 @@ class AppText {
   static const String discover = "Discover";
   static const String rentnow = "Rent Now";
   static const String save = "Save";
+  static const String saveaddress = "Save Address";
   static const String submit = "Submit";
   static const String nexthindi = "आगे बढ़े";
   static const String continueeng = "Continue";
@@ -208,12 +245,17 @@ class AppText {
   static const String donthaveacc = "Don’t have an account? ";
   static const String regnow = "Register now";
   static const String signin = "Sign in";
+  static const String posturad = "Post your ad";
+  static const String productaval = "Product Availability";
+  static const String setprice = "Set a Price";
+  static const String includesomedet = "Include Some Details";
   static const String forgotpassword = "Forgot password?";
   static const String loremipsum =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
   static const String loremipsum2 =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
   static const String email = "Email Id";
+  static const String appid = "Apple Id";
   static const String letsstart = "Let’s start making the most ";
   static const String outofthings = "out of things.";
   static const String comingsoon = "Coming Soon";

@@ -116,6 +116,22 @@ class ContactUsController extends _$ContactUsController {
 
   List<String> get nameList => _nameList;
   String? _selectedLocation;
+  String _selectedreason = AppText.nolongneed;
+
+  String get selectedreason => _selectedreason;
+
+  int _selectedcosmetic = 0;
+
+  int get selectedcosmetic => _selectedcosmetic;
+  int _selecteditemwork = 0;
+  TextEditingController cosmeticcontroller = TextEditingController();
+  TextEditingController itemworkscontroller = TextEditingController();
+  TextEditingController missingcontroller = TextEditingController();
+
+  int get selecteditemwork => _selecteditemwork;
+  int _selectedmssing = 0;
+
+  int get selectedmssing => _selectedmssing;
 
   String? get selectedLocation => _selectedLocation;
 
@@ -143,6 +159,38 @@ class ContactUsController extends _$ContactUsController {
   ) {
     state = const AsyncLoading();
     selectedfilter = val;
+    state = const AsyncValue.data(null);
+  }
+
+  onreasonSelected(
+    val,
+  ) {
+    state = const AsyncLoading();
+    _selectedreason = val;
+    state = const AsyncValue.data(null);
+  }
+
+  oncosmeticval(
+    val,
+  ) {
+    state = const AsyncLoading();
+    _selectedcosmetic = val;
+    state = const AsyncValue.data(null);
+  }
+
+  onitemworksval(
+    val,
+  ) {
+    state = const AsyncLoading();
+    _selecteditemwork = val;
+    state = const AsyncValue.data(null);
+  }
+
+  onmissingval(
+    val,
+  ) {
+    state = const AsyncLoading();
+    _selectedmssing = val;
     state = const AsyncValue.data(null);
   }
 

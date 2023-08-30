@@ -3,17 +3,20 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:rentworthy/presentation/loading/login/loginwithphone/add_another_acc/login_with_apple.dart';
+import 'package:rentworthy/presentation/loading/login/loginwithphone/add_another_acc/login_with_fb.dart';
 import 'package:rentworthy/utils/common_components/common_outline_button.dart';
 import 'package:rentworthy/utils/images.dart';
 import 'package:rentworthy/utils/text.dart';
 
-import '../../../utils/color.dart';
-import '../../../utils/common_components/common_button.dart';
-import '../../../utils/common_components/common_navigator.dart';
-import '../../../utils/common_components/common_text.dart';
-import '../../../utils/globals.dart';
-import '../login/loginwithphone/login_phone_screen.dart';
-import '../register/register_screen_controller.dart';
+import '../../../../../utils/color.dart';
+import '../../../../../utils/common_components/common_button.dart';
+import '../../../../../utils/common_components/common_navigator.dart';
+import '../../../../../utils/common_components/common_text.dart';
+import '../../../../../utils/globals.dart';
+import '../../../register/register_screen_controller.dart';
+import '../add_another_acc/add_another_acc.dart';
+import '../login_phone_screen.dart';
 
 class LoginMethodScreen extends ConsumerWidget {
   const LoginMethodScreen({super.key});
@@ -50,7 +53,11 @@ class LoginMethodScreen extends ConsumerWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(h * 0.006),
                     ),
-                    prefixicon: Image.asset(AppImg.mobile),
+                    prefixicon: Image.asset(
+                      AppImg.mobile,
+                      color: AppColors.white,
+                      height: h * 0.03,
+                    ),
                     text: AppText.continuewith + AppText.phone,
                     textStyle: ptSansTextStyle(
                         color: AppColors.white,
@@ -101,7 +108,14 @@ class LoginMethodScreen extends ConsumerWidget {
                         ).createShader(const Rect.fromLTRB(100, 0, 250, 20)),
                       fontSize: h * 0.019,
                       fontWeight: FontWeight.w700),
-                  onPressed: () {},
+                  onPressed: () {
+                    FocusScope.of(Globals.navigatorKey.currentContext!)
+                        .requestFocus(FocusNode());
+                    commonNavigator(
+                        type: PageTransitionType.rightToLeftWithFade,
+                        context: context,
+                        child: AddAnotheerAcc());
+                  },
                   side: BorderSide.none,
                 ),
                 CommonOutlineButton(
@@ -125,7 +139,14 @@ class LoginMethodScreen extends ConsumerWidget {
                         color: AppColors.black,
                         fontSize: h * 0.019,
                         fontWeight: FontWeight.w700),
-                    onPressed: () {}),
+                    onPressed: () {
+                      FocusScope.of(Globals.navigatorKey.currentContext!)
+                          .requestFocus(FocusNode());
+                      commonNavigator(
+                          type: PageTransitionType.rightToLeftWithFade,
+                          context: context,
+                          child: LoginApple());
+                    }),
                 CommonOutlineButton(
                     containerwidth: w * 0.8,
                     containerheight: h * 0.06,
@@ -146,7 +167,14 @@ class LoginMethodScreen extends ConsumerWidget {
                         color: AppColors.fbblue,
                         fontSize: h * 0.019,
                         fontWeight: FontWeight.w700),
-                    onPressed: () {}),
+                    onPressed: () {
+                      FocusScope.of(Globals.navigatorKey.currentContext!)
+                          .requestFocus(FocusNode());
+                      commonNavigator(
+                          type: PageTransitionType.rightToLeftWithFade,
+                          context: context,
+                          child: LoginFB());
+                    }),
               ],
             ),
           ),

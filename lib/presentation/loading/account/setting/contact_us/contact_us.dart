@@ -185,7 +185,33 @@ class ContactUsScreen extends ConsumerWidget {
                         fontSize: h * 0.019,
                         fontWeight: FontWeight.w700),
                     onPressed: () {
-                      ref.read(dialogServiceProvider).alertdialog();
+                      ref.read(dialogServiceProvider).contactusalertdialog();
+                      // ref.read(dialogServiceProvider).selectDatedialog();
+                      // ref.read(dialogServiceProvider).orderconfirmalertdialog();
+                      // ref.read(dialogServiceProvider).rentScreeningDialog(
+                      //     cosmeticcontroller: controller().cosmeticcontroller,
+                      //     itemworkscontroller: controller().itemworkscontroller,
+                      //     missingcontroller: controller().missingcontroller,
+                      //     cosmeticValue: controller().selectedcosmetic,
+                      //     oncosmeticval: (val) {
+                      //       print("val is $val");
+                      //       controller().oncosmeticval(val);
+                      //     },
+                      //     itemworks: controller().selecteditemwork,
+                      //     onitemworksval: (val) {
+                      //       print("val is $val");
+                      //       controller().onitemworksval(val);
+                      //     },
+                      //     missingval: controller().selectedmssing,
+                      //     onmissingval: (val) {
+                      //       print("val is $val");
+                      //       controller().onmissingval(val);
+                      //     });
+                      // ref.read(dialogServiceProvider).cancelbookingalertdialog();
+                      //     groupValue: controller().selectedreason!,
+                      //     onChangedval: (val) {
+                      //       controller().onreasonSelected(val);
+                      //     });
                     }),
               ),
             ],

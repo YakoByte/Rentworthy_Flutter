@@ -9,6 +9,7 @@ class AppImg {
   static const String applogo = "${imgpath}applogo.png";
   static const String applogowhite = "${imgpath}applogowhite.png";
   static const String boardimg = "${imgpath}boardimg.png";
+
   static const String boardimg1 = "${imgpath}boardimg1.png";
   static const String boardimg2 = "${imgpath}boardimg2.png";
   static const String detectotpimg = "${imgpath}detectotpimg.png";
@@ -21,8 +22,9 @@ class AppImg {
   static const String nochat = "${imgpath}nochat.png";
   static const String favimg = "${imgpath}favimg.png";
   static const String getintouch = "${imgpath}getintouch.png";
+  static const String confirmorder = "${imgpath}confirmorder.png";
   static const String searchengines = "${imgpath}searchengines.png";
-  static const String accoutimg = "${imgpath}accoutimg.png";
+  static const String accoutimg = "${imgpath}accouting.png";
   static const String statisticcharacter = "${imgpath}statisticcharacter.png";
   static const String idvergreen = "${imgpath}idvergreen.png";
   static const String idverpurple = "${imgpath}idverpurple.png";
@@ -30,6 +32,9 @@ class AppImg {
   static const String contactus = "${imgpath}contactus.png";
   static const String termsnservice = "${imgpath}termsnservice.png";
 
+  static const String uploadimg = "${iconpath}uploadimg.png";
+  static const String editnote = "${iconpath}editnote.png";
+  static const String reportuser = "${iconpath}reportuser.png";
   static const String gamecontroller = "${iconpath}gamecontroller.png";
   static const String roundchat = "${iconpath}roundchat.png";
   static const String accountarrow = "${iconpath}accountarrow.png";

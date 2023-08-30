@@ -72,6 +72,7 @@ class HomeScreen extends ConsumerWidget {
 
                 /// Categories
                 Categories(
+                  animatecontrollerlist: [],
                   isFavIcon: true,
                   isFeature: false,
                   isextended: false,
@@ -80,7 +81,7 @@ class HomeScreen extends ConsumerWidget {
                   isViewAll: true,
                   height: h * 0.27,
                   favList: [],
-                  onCardPressed: () {},
+                  onFavPressed: (index) {},
                   isCategory: true,
                   padding: EdgeInsets.symmetric(
                       horizontal: w * 0.05, vertical: h * 0.015),
@@ -181,10 +182,13 @@ class HomeScreen extends ConsumerWidget {
 
                 /// Featured Ads
                 Categories(
+                  animatecontrollerlist: [],
                   isFavIcon: true,
                   isFeature: true,
                   isTopPadding: false,
-                  onCardPressed: () {},
+                  onFavPressed: (index) {
+                    controller().onFavTap(index, 0);
+                  },
                   isextended: false,
                   title: AppText.featuredads,
                   isViewAll: false,
@@ -320,9 +324,12 @@ class HomeScreen extends ConsumerWidget {
                 Padding(
                   padding: EdgeInsets.only(bottom: h * 0.015),
                   child: Categories(
+                    animatecontrollerlist: [],
                     isFavIcon: true,
                     isFeature: false,
-                    onCardPressed: () {},
+                    onFavPressed: (index) {
+                      controller().onFavTap(index, 1);
+                    },
                     title: AppText.nearbyads,
                     isViewAll: true,
                     isextended: false,
@@ -356,8 +363,8 @@ class HomeScreen extends ConsumerWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: h * 0.005),
                   child: Categories(
+                    animatecontrollerlist: [],
                     isFavIcon: true,
-                    onCardPressed: () {},
                     isFeature: false,
                     isextended: false,
                     title: AppText.popularads,
@@ -376,6 +383,9 @@ class HomeScreen extends ConsumerWidget {
                     contwidth: w * 0.45,
                     contColor: AppColors.white,
                     borderRadius: BorderRadius.circular(14),
+                    onFavPressed: (index) {
+                      controller().onFavTap(index, 2);
+                    },
                   )
                       .animate()
                       .fadeIn(duration: 600.ms)

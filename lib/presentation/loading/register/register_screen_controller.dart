@@ -18,6 +18,9 @@ class RegisterScreenController extends _$RegisterScreenController {
   bool _issignin = false;
 
   bool get issignin => _issignin;
+  int _selectedTab = 0;
+
+  int get selectedtab => _selectedTab;
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
@@ -55,6 +58,14 @@ class RegisterScreenController extends _$RegisterScreenController {
     state = const AsyncLoading();
     debugPrint('onEyeTap $val');
     _iseyehide = val;
+
+    state = const AsyncValue.data(null);
+  }
+
+  onTabTap({required int val}) async {
+    state = const AsyncLoading();
+    debugPrint('_selectedTab $val');
+    _selectedTab = val;
 
     state = const AsyncValue.data(null);
   }

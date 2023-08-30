@@ -12,18 +12,31 @@ part 'login_phone_screen_controller.g.dart';
 @riverpod
 class LoginPhoneScreenController extends _$LoginPhoneScreenController {
   TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   TextEditingController countryCodeController =
       TextEditingController(text: "+91");
 
   bool _issubmit = false;
 
   bool get issubmit => _issubmit;
+  bool _iseyehide = false;
+
+  bool get iseyehide => _iseyehide;
 
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
 
     // _issendotp = false;
+    state = const AsyncValue.data(null);
+  }
+
+  onEyeTap({required bool val}) async {
+    state = const AsyncLoading();
+    debugPrint('onEyeTap $val');
+    _iseyehide = val;
+
     state = const AsyncValue.data(null);
   }
 

@@ -1,8 +1,14 @@
 import 'package:carousel_slider/carousel_controller.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:rentworthy/utils/common_components/icon_text.dart';
+import 'package:rentworthy/utils/globals.dart';
 import 'package:rentworthy/utils/images.dart';
 import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+
+import '../../../../../utils/color.dart';
+import '../../../../../utils/common_components/common_text.dart';
 
 part 'category_details_screen_controller.g.dart';
 
@@ -16,6 +22,9 @@ class CategoryDetailsController extends _$CategoryDetailsController {
     'Mahim',
   ];
   List<bool>? featureadfavlist;
+  DateRangePickerController _pickerController = DateRangePickerController();
+
+  DateRangePickerController get pickerController => _pickerController;
 
   List<bool> get getfeatureadfavlist => featureadfavlist!;
 
@@ -30,7 +39,9 @@ class CategoryDetailsController extends _$CategoryDetailsController {
 
   CarouselController carouselController = CarouselController();
   PageController pageController = PageController();
+  List<PopupMenuItem> _popupitemList = [];
 
+  List<PopupMenuItem> get popupitemList => _popupitemList;
   final List<String> _imgList = [
     AppImg.movie,
     AppImg.party,
@@ -73,6 +84,61 @@ class CategoryDetailsController extends _$CategoryDetailsController {
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
+    final h = MediaQuery.of(Globals.navigatorKey.currentContext!).size.height;
+    final w = MediaQuery.of(Globals.navigatorKey.currentContext!).size.width;
+    _popupitemList = [
+      PopupMenuItem(
+        value: 1,
+        child: IconText(
+          isCenter: false,
+          title: AppText.addtofavorite,
+          textStyle: ptSansTextStyle(
+              fontSize: w * 0.035,
+              overflow: TextOverflow.ellipsis,
+              color: AppColors.black,
+              fontWeight: FontWeight.w600),
+          subimg: false,
+          preimg: true,
+          preicon: Icons.star_border,
+          preiconsize: h * 0.03,
+          preimgcolor: AppColors.black.withOpacity(0.8),
+        ),
+      ),
+      PopupMenuItem(
+        value: 2,
+        child: IconText(
+          isCenter: false,
+          title: AppText.share,
+          textStyle: ptSansTextStyle(
+              fontSize: w * 0.035,
+              overflow: TextOverflow.ellipsis,
+              color: AppColors.black,
+              fontWeight: FontWeight.w600),
+          subimg: false,
+          preimg: true,
+          preicon: Icons.share_outlined,
+          preiconsize: h * 0.03,
+          preimgcolor: AppColors.black.withOpacity(0.8),
+        ),
+      ),
+      PopupMenuItem(
+        value: 3,
+        child: IconText(
+          isCenter: false,
+          title: AppText.reportthisad,
+          textStyle: ptSansTextStyle(
+              fontSize: w * 0.035,
+              overflow: TextOverflow.ellipsis,
+              color: AppColors.black,
+              fontWeight: FontWeight.w600),
+          subimg: false,
+          preimg: true,
+          preicon: Icons.block_flipped,
+          preiconsize: h * 0.03,
+          preimgcolor: AppColors.black.withOpacity(0.8),
+        ),
+      ),
+    ];
     _selectedLocation = _locationList[0];
     popularfavlist = List.generate(_imgList.length, (index) => false);
     featureadfavlist = List.generate(_imgList.length, (index) => false);

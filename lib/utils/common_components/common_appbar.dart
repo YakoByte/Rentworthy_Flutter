@@ -54,7 +54,9 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
                     ? centerwidget != null
                         ? MainAxisAlignment.start
                         : MainAxisAlignment.start
-                    : MainAxisAlignment.spaceBetween,
+                    : suffixicon == null
+                        ? MainAxisAlignment.spaceAround
+                        : MainAxisAlignment.spaceBetween,
                 children: [
                   if (centerTitle == false)
                     Row(
@@ -172,7 +174,11 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
                         : centerwidget == null
                             ? const SizedBox()
                             : centerwidget!,
-                  suffixicon != null ? suffixicon! : SizedBox(),
+                  suffixicon != null
+                      ? suffixicon!
+                      : SizedBox(
+                          width: width * 0.05,
+                        ),
                 ],
               ),
             ),

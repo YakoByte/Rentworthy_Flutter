@@ -13,22 +13,26 @@ import '../sell/sell_screen.dart';
 import 'bottom_bar_controller.dart';
 
 class BottomBar extends ConsumerWidget {
-  BottomBar({Key? key, this.index}) : super(key: key);
-  int? index;
+  BottomBar({Key? key, required this.index}) : super(key: key);
+  int index;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
+    print("index is=-=-= $index");
     final asyncState = ref.watch(bottomBarControllerProvider(index: index));
     controller() =>
         ref.read(bottomBarControllerProvider(index: index).notifier);
+
     return Scaffold(
       backgroundColor: AppColors.white,
       body: controller().getselectedIndex == 0
           ? HomeScreen()
           : controller().getselectedIndex == 1
-              ? ChatScreen()
+              ? ChatScreen(
+                  frombottom: true,
+                )
               : controller().getselectedIndex == 2
                   ? BookingScreen()
                   : controller().getselectedIndex == 3

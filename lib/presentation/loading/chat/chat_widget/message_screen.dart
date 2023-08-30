@@ -5,6 +5,7 @@ import 'package:rentworthy/utils/color.dart';
 import '../../../../utils/common_components/common_appbar.dart';
 import '../../../../utils/common_components/common_iconbutton.dart';
 import '../../../../utils/common_components/common_listview.dart';
+import '../../../../utils/common_components/common_popup.dart';
 import '../../../../utils/common_components/common_text.dart';
 import '../../../../utils/common_components/common_title_subtitle.dart';
 import '../../../../utils/common_components/text_input_field.dart';
@@ -65,17 +66,17 @@ class _MessageScreenState extends ConsumerState<MessageScreen> {
         suffixicon: Container(
           width: w * 0.2,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CommonIconButton(
-                  containerwidth: h * 0.045,
-                  containerheight: h * 0.045,
-                  backgroundColor: AppColors.white,
-                  shape: const RoundedRectangleBorder(),
-                  centericon: Icon(Icons.call,
-                      color: AppColors.black.withOpacity(0.6), size: h * 0.025),
-                  onPressed: () {}),
+              // CommonIconButton(
+              //     containerwidth: h * 0.045,
+              //     containerheight: h * 0.045,
+              //     backgroundColor: AppColors.white,
+              //     shape: const RoundedRectangleBorder(),
+              //     centericon: Icon(Icons.call,
+              //         color: AppColors.black.withOpacity(0.6), size: h * 0.025),
+              //     onPressed: () {}),
               CommonIconButton(
                   containerwidth: h * 0.045,
                   containerheight: h * 0.045,
@@ -86,7 +87,12 @@ class _MessageScreenState extends ConsumerState<MessageScreen> {
                     color: AppColors.black.withOpacity(0.6),
                     size: h * 0.025,
                   ),
-                  onPressed: () {}),
+                  onPressed: () {
+                    CommonPopup(
+                        position: RelativeRect.fromLTRB(
+                            w * 0.5, 0, w * 0.02, h * 0.8),
+                        items: controller().popupitemList);
+                  }),
             ],
           ),
         ),

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:rentworthy/application/onboarding/dialog/dialod_service.dart';
 import 'package:rentworthy/utils/color.dart';
 import 'package:rentworthy/utils/common_components/common_button.dart';
 import 'package:rentworthy/utils/common_components/common_iconbutton.dart';
+import 'package:rentworthy/utils/common_components/common_navigator.dart';
+import 'package:rentworthy/utils/common_components/common_popup.dart';
 import 'package:rentworthy/utils/common_components/common_text.dart';
 import 'package:rentworthy/utils/text.dart';
 import 'package:shimmer/shimmer.dart';
@@ -11,6 +15,7 @@ import 'package:shimmer/shimmer.dart';
 import '../../../../../utils/common_components/common_appbar.dart';
 import '../../../../../utils/common_components/common_carouselslider.dart';
 import '../../../../../utils/images.dart';
+import '../../../chat/chat_screen.dart';
 import 'category_details_screen_controller.dart';
 
 class CategoryDetailsScreen extends ConsumerWidget {
@@ -41,7 +46,13 @@ class CategoryDetailsScreen extends ConsumerWidget {
                   AppColors.colorSecondary,
                 ],
               )),
-          onPressed: () {},
+          onPressed: () {
+            commonNavigator(
+              context: context,
+              child: ChatScreen(frombottom: false),
+              type: PageTransitionType.rightToLeftWithFade,
+            );
+          },
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
           backgroundColor: AppColors.transparent,
@@ -111,7 +122,12 @@ class CategoryDetailsScreen extends ConsumerWidget {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(h * 0.01)),
             child: CommonIconButton(
-              onPressed: () {},
+              onPressed: () async {
+                CommonPopup(
+                    position:
+                        RelativeRect.fromLTRB(w * 0.5, 0, w * 0.02, h * 0.8),
+                    items: controller().popupitemList);
+              },
               centericon: ShaderMask(
                 shaderCallback: (Rect bounds) {
                   return const LinearGradient(
@@ -417,8 +433,8 @@ class CategoryDetailsScreen extends ConsumerWidget {
                       ],
                     ),
                     CommonButton(
-                        containerwidth: w * 0.45,
-                        containerheight: h * 0.071,
+                        containerwidth: w * 0.48,
+                        containerheight: h * 0.069,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(h * 0.006),
                             gradient: const LinearGradient(
@@ -436,22 +452,20 @@ class CategoryDetailsScreen extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Container(
-                              width: h * 0.04,
-                              height: h * 0.04,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(1000),
-                                  color: AppColors.white.withOpacity(0.4)),
+                            CircleAvatar(
+                              backgroundColor: AppColors.white.withOpacity(0.4),
+                              radius: h * 0.023,
                               child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.attach_money,
-                                      color: AppColors.white,
-                                      size: h * 0.025,
-                                    ),
-                                  ]),
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.attach_money,
+                                    color: AppColors.white,
+                                    size: h * 0.03,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -460,7 +474,9 @@ class CategoryDetailsScreen extends ConsumerWidget {
                             color: AppColors.white,
                             fontSize: h * 0.019,
                             fontWeight: FontWeight.w500),
-                        onPressed: () {}),
+                        onPressed: () {
+                          ref.read(dialogServiceProvider).selectDatedialog();
+                        }),
                   ],
                 ).animate().fadeIn(duration: 650.ms).then(delay: 650.ms).slideY(
                     begin: 3,
