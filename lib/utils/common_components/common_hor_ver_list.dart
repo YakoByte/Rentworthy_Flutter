@@ -453,11 +453,12 @@ class HorizonVertList extends ConsumerWidget {
                 ))
             .animate(
                 controller: animatecontrollerlist![index],
-                onComplete: (controller1) {
-                  for (int i = 0; i < (animatecontrollerlist.length - 1); i++) {
-                    animatecontrollerlist![i + 1].forward();
-                  }
-                },
+
+                // onComplete: (controller1) {
+                //   for (int i = 0; i < (animatecontrollerlist.length - 1); i++) {
+                //     animatecontrollerlist![i + 1].forward();
+                //   }
+                // },
                 autoPlay: false)
             .fadeIn(duration: ((index * 40) + 100).ms)
             .then(delay: ((index * 40) + 100).ms)

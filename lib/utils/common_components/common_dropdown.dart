@@ -1,9 +1,9 @@
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../color.dart';
 import 'common_text.dart';
+import 'dropdown/dropdown_search.dart';
 
 class CommonDropdown extends ConsumerWidget {
   void Function(String?)? onChanged;
@@ -151,6 +151,7 @@ class CommonDropdown extends ConsumerWidget {
                 child: Container(
                   width: containerwidth,
                   height: containerheight,
+                  color: containercolor,
                   child: DropdownSearch<String>(
                     onSaved: onSaved,
                     validator: validator,
@@ -172,8 +173,12 @@ class CommonDropdown extends ConsumerWidget {
                     popupProps: PopupProps.menu(
                       fit: FlexFit.loose,
                       title: dropdowntitle,
-
-                      //comment this if you want that the items do not takes all available height
+                      containerBuilder: (context, child) {
+                        return Container(
+                          color: containercolor,
+                          child: child,
+                        );
+                      },
                       itemBuilder: (context, item, isSelected) {
                         return Padding(
                           padding: EdgeInsets.symmetric(
@@ -181,6 +186,7 @@ class CommonDropdown extends ConsumerWidget {
                               horizontal: width * 0.025),
                           child: Container(
                             height: height * 0.025,
+                            color: containercolor,
                             child: Row(
                               children: [
                                 dropdownicon != null
@@ -226,15 +232,15 @@ class CommonDropdown extends ConsumerWidget {
   }
 
   Widget _style(BuildContext context, String? selectedItem) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    final h = MediaQuery.of(context).size.height;
+    final w = MediaQuery.of(context).size.width;
     return Padding(
-      padding: EdgeInsets.only(left: width * 0.02),
+      padding: EdgeInsets.only(left: w * 0.02),
       child: Text(
         selectedItem!,
         style: ptSansTextStyle(
             color: AppColors.black.withOpacity(0.8),
-            fontSize: height * 0.02,
+            fontSize: w * 0.04,
             fontWeight: FontWeight.w700),
       ),
     );

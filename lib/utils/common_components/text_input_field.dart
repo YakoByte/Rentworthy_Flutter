@@ -129,15 +129,17 @@ class TextInputField extends StatelessWidget {
         children: [
           errorText == null
               ? SizedBox()
-              : Text(
-                  errorText!,
-                  style: errorStyle ??
-                      ptSansTextStyle(
-                          fontSize: height * 0.018,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.red),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+              : Expanded(
+                  child: Text(
+                    errorText!,
+                    style: errorStyle ??
+                        ptSansTextStyle(
+                            fontSize: height * 0.018,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.red),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
           isCounter == false
               ? SizedBox()

@@ -8,7 +8,8 @@ class AppText {
   static const String homeoutdoor = "Home & Outdoors";
   static const String electronics = "Electronics";
   static const String addnewaddress = "Add a new address";
-  static const String addaddress = "Add address";
+  static const String addaddress = "Add Address";
+  static const String cancelorder = "Cancel Order";
   static const String toprent = "Top Rentals";
   static const String music = "Musical Instruments";
   static const String cleaning = "Cleaning Equipment";
@@ -16,7 +17,9 @@ class AppText {
   static const String heavymachine = "Heavy Machinery";
   static const String newmarket = "New to Market";
   static const String rent = "Rent";
+  static const String add = "Add";
   static const String dates = "Dates";
+  static const String edit = "Edit";
   static const String prerent = "Pre Rental Screening Questions";
   static const String verifystatus = "Verify the status of the item";
   static const String cosmeticissue =
@@ -104,6 +107,7 @@ class AppText {
   static const String rateus = "Rate Us On Playstore";
 
   static const String block = "Block";
+  static const String chatnow = "Chat Now";
   static const String blogs = "Blogs";
   static const String star5 = "5 Star";
   static const String star4 = "4 Star";
@@ -245,6 +249,7 @@ class AppText {
   static const String donthaveacc = "Don’t have an account? ";
   static const String regnow = "Register now";
   static const String signin = "Sign in";
+  static const String list = "List";
   static const String posturad = "Post your ad";
   static const String productaval = "Product Availability";
   static const String setprice = "Set a Price";

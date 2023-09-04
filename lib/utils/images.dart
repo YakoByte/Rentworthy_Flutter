@@ -9,6 +9,9 @@ class AppImg {
   static const String applogo = "${imgpath}applogo.png";
   static const String applogowhite = "${imgpath}applogowhite.png";
   static const String boardimg = "${imgpath}boardimg.png";
+  static const String visa = "${imgpath}visa.png";
+  static const String paypal = "${imgpath}paypal.png";
+  static const String mastercard = "${imgpath}mastercard.png";
 
   static const String boardimg1 = "${imgpath}boardimg1.png";
   static const String boardimg2 = "${imgpath}boardimg2.png";
@@ -33,6 +36,7 @@ class AppImg {
   static const String termsnservice = "${imgpath}termsnservice.png";
 
   static const String uploadimg = "${iconpath}uploadimg.png";
+  static const String calendarclock = "${iconpath}calendarclock.png";
   static const String editnote = "${iconpath}editnote.png";
   static const String reportuser = "${iconpath}reportuser.png";
   static const String gamecontroller = "${iconpath}gamecontroller.png";
