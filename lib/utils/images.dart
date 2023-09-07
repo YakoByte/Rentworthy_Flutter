@@ -12,7 +12,6 @@ class AppImg {
   static const String visa = "${imgpath}visa.png";
   static const String paypal = "${imgpath}paypal.png";
   static const String mastercard = "${imgpath}mastercard.png";
-
   static const String boardimg1 = "${imgpath}boardimg1.png";
   static const String boardimg2 = "${imgpath}boardimg2.png";
   static const String detectotpimg = "${imgpath}detectotpimg.png";
@@ -35,6 +34,7 @@ class AppImg {
   static const String contactus = "${imgpath}contactus.png";
   static const String termsnservice = "${imgpath}termsnservice.png";
 
+  static const String table = "${iconpath}table.png";
   static const String uploadimg = "${iconpath}uploadimg.png";
   static const String calendarclock = "${iconpath}calendarclock.png";
   static const String editnote = "${iconpath}editnote.png";
@@ -51,6 +51,7 @@ class AppImg {
   static const String account = "${iconpath}account.png";
   static const String booking = "${iconpath}booking.png";
   static const String all = "${iconpath}all.png";
+  static const String accountoff = "${iconpath}accountoff.svg";
   static const String bicycle = "${iconpath}bicycle.png";
   static const String car = "${iconpath}car.png";
   static const String fridge = "${iconpath}fridge.png";
@@ -65,11 +66,14 @@ class AppImg {
   static const String filter = "${iconpath}filter.png";
   static const String chat = "${iconpath}chat.png";
   static const String chat1 = "${iconpath}chat1.png";
+  static const String addchat = "${iconpath}addchat.png";
   static const String home = "${iconpath}home.png";
   static const String eye_hide = "${iconpath}hide.png";
   static const String eye_view = "${iconpath}view.png";
   static const String apple = "${iconpath}apple.png";
   static const String bell = "${iconpath}bell.png";
+  static const String bell_outline = "${iconpath}bell_outline.png";
+  static const String arrowRise = "${iconpath}arrowRise.png";
   static const String fb = "${iconpath}fb.png";
   static const String google = "${iconpath}google.png";
   static const String lightning = "${iconpath}lightning.png";
@@ -86,4 +90,12 @@ class AppImg {
   static const String homeoutdoor = "${iconpath}homeoutdoor.png";
   static const String party = "${iconpath}party.png";
   static const String movie = "${iconpath}movie.png";
+  static const String identificationCard = "${iconpath}identificationCard.png";
+  static const String identificationBadge =
+      "${iconpath}identificationBadge.png";
+  static const String chats = "${iconpath}chats.png";
+  static const String document = "${iconpath}document.png";
+  static const String copy = "${iconpath}copy.png";
+  static const String trendingup = "${iconpath}trendingup.png";
+  static const String chartPieSlice = "${iconpath}chartPieSlice.png";
 }

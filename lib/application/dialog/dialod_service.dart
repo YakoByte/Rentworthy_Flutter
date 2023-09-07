@@ -4,6 +4,8 @@ import 'package:permission_handler/permission_handler.dart';
 import '../../../utils/common_components/common_text.dart';
 import '../../../utils/globals.dart';
 
+import '../../presentation/business_prof/business_dialogs/pre_rent_screen_que.dart';
+import '../../presentation/business_prof/business_dialogs/register_complaint.dart';
 import '../../presentation/indi_prof/dialogs/alert_dialog.dart';
 import '../../presentation/indi_prof/dialogs/cancel_booking_dialog.dart';
 import '../../presentation/indi_prof/dialogs/order_confirm.dart';
@@ -37,6 +39,8 @@ abstract class DialogService {
   });
 
   Future<void> rentScreeningDialog();
+  Future<void> businessrentScreeningDialog();
+  Future<void> registerComplaintDialog();
 }
 
 class DialogServiceV1 implements DialogService {
@@ -119,6 +123,24 @@ class DialogServiceV1 implements DialogService {
         barrierDismissible: true,
         builder: (BuildContext context) {
           return RentScreeningDialog();
+        }));
+  }
+
+  Future<void> businessrentScreeningDialog() async {
+    return (await showDialog(
+        context: Globals.navigatorKey.currentContext!,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return BusinessRentScreeningDialog();
+        }));
+  }
+
+  Future<void> registerComplaintDialog() async {
+    return (await showDialog(
+        context: Globals.navigatorKey.currentContext!,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return RegisterComplaintDialog();
         }));
   }
 

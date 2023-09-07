@@ -46,10 +46,11 @@ class TextInputField extends StatelessWidget {
   final String? appimge;
   final double containerwidth;
   final double? containerheight;
-
-  // Color? iconcolor;
   final Color? containercolor;
   final Color? bordercolor;
+
+  // Color? iconcolor;
+
   final TextStyle? textstyle;
   final TextStyle? titletextstyle;
   final TextStyle? hintStyle;

@@ -200,6 +200,7 @@ class CommonDropdown extends ConsumerWidget {
                                               color: AppColors.black
                                                   .withOpacity(0.8),
                                               fontSize: height * 0.02,
+                                              overflow: TextOverflow.ellipsis,
                                               fontWeight: FontWeight.w600),
                                         ),
                                       )
@@ -209,6 +210,7 @@ class CommonDropdown extends ConsumerWidget {
                                             color: AppColors.black
                                                 .withOpacity(0.8),
                                             fontSize: height * 0.02,
+                                            overflow: TextOverflow.ellipsis,
                                             fontWeight: FontWeight.w600),
                                       ),
                                 dropdownsuffix != null
@@ -241,6 +243,7 @@ class CommonDropdown extends ConsumerWidget {
         style: ptSansTextStyle(
             color: AppColors.black.withOpacity(0.8),
             fontSize: w * 0.04,
+            overflow: TextOverflow.ellipsis,
             fontWeight: FontWeight.w700),
       ),
     );
@@ -257,6 +260,7 @@ class CommonDropdown extends ConsumerWidget {
           Text(
             selectedItem!,
             style: ptSansTextStyle(
+                overflow: TextOverflow.ellipsis,
                 color: AppColors.black.withOpacity(0.8),
                 fontSize: height * 0.02,
                 fontWeight: FontWeight.w700),

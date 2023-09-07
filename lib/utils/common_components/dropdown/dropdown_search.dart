@@ -672,9 +672,10 @@ class DropdownSearchState<T> extends State<DropdownSearch<T>> {
       if (widget.onChanged != null) {
         print("onChanged $getSelectedItem");
         widget.onChanged!(getSelectedItem);
-      } else if (widget.onChangedMultiSelection != null)
+      } else if (widget.onChangedMultiSelection != null) {
         print("onChangedMultiSelection $selectedItems");
-      widget.onChangedMultiSelection!(selectedItems);
+        widget.onChangedMultiSelection!(selectedItems);
+      }
     }
 
     if (widget.onBeforeChange != null) {

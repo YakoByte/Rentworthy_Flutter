@@ -7,7 +7,7 @@ part of 'account_verification_bsns_controller.dart';
 // **************************************************************************
 
 String _$businessAccountVerificationControllerHash() =>
-    r'4c183b3e34728ae76750ce6c7fc1c7d3d94980d9';
+    r'aa912adc4a3a01f537eb564421d6c80e550d702a';
 
 /// See also [BusinessAccountVerificationController].
 @ProviderFor(BusinessAccountVerificationController)

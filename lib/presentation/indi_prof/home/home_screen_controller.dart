@@ -17,8 +17,9 @@ class HomeScreenController extends _$HomeScreenController {
     'Dadar',
     'Mahim',
   ];
-  List<bool>? featureadfavlist;
+
   ScrollController scrollController = ScrollController();
+  List<bool>? featureadfavlist;
 
   List<bool> get getfeatureadfavlist => featureadfavlist!;
 

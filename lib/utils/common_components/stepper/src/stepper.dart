@@ -225,7 +225,7 @@ class _CupertinoStepperState extends State<CupertinoStepper>
         return Text(
           '${index + 1}',
           style: TextStyle(
-              fontSize: _kStepFontSize,
+              fontSize: widget.iconsize,
               color: isActive
                   ? CupertinoDynamicColor.resolve(
                       CupertinoColors.white, context)

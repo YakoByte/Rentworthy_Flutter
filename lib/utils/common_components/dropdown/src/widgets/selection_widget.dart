@@ -84,8 +84,9 @@ class SelectionWidgetState<T> extends State<SelectionWidget<T>> {
   void dispose() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       print("on dis drop ");
-
-      onValidate();
+      if (widget.isMultiSelectionMode == true) {
+        onValidate();
+      }
     });
     _itemsStream.close();
     _debounce?.cancel();

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../utils/color.dart';
+import '../../../../utils/common_components/common_iconbutton.dart';
+import '../../../../utils/common_components/common_popup.dart';
 import '../../../../utils/common_components/common_text.dart';
 import '../../../../utils/common_components/icon_text.dart';
 import '../../../../utils/images.dart';
@@ -11,11 +13,14 @@ class ProfileImgName extends ConsumerWidget {
   String name;
   void Function()? onTap;
   bool? verified;
-
+  bool? vertbtn;
+  List<PopupMenuEntry<dynamic>>? items;
   ProfileImgName(
       {super.key,
       required this.name,
       required this.onTap,
+      this.items,
+      this.vertbtn,
       required this.verified});
 
   @override
@@ -94,38 +99,60 @@ class ProfileImgName extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ShaderMask(
-                shaderCallback: (Rect bounds) {
-                  return const LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [
-                        AppColors.colorPrimary,
-                        AppColors.colorSecondary
-                      ]).createShader(bounds);
-                },
-                child: Row(
-                  children: [
-                    CommonText(
-                        text: name,
-                        maxLines: 1,
-                        style: ptSansTextStyle(
-                          color: AppColors.white,
-                          decorationColor: AppColors.colorSecondary,
-                          decorationThickness: 1,
-                          decorationStyle: TextDecorationStyle.solid,
-                          decoration: TextDecoration.underline,
-                          fontSize: h * 0.018,
-                          fontWeight: FontWeight.w600,
-                        )),
-                    Icon(
-                      Icons.arrow_forward_ios_outlined,
+              vertbtn == true
+                  ? Card(
+                      elevation: 2,
                       color: AppColors.white,
-                      size: h * 0.017,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(h * 0.01)),
+                      child: CommonIconButton(
+                        onPressed: () async {
+                          CommonPopup(
+                              position: RelativeRect.fromLTRB(
+                                  w * 0.5, 0, w * 0.02, h * 0.8),
+                              items: items!);
+                        },
+                        centericon: Icon(Icons.more_vert,
+                            color: AppColors.black, size: h * 0.03),
+                        containerwidth: h * 0.06,
+                        containerheight: h * 0.06,
+                        backgroundColor: AppColors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(h * 0.01)),
+                      ),
+                    )
+                  : ShaderMask(
+                      shaderCallback: (Rect bounds) {
+                        return const LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              AppColors.colorPrimary,
+                              AppColors.colorSecondary
+                            ]).createShader(bounds);
+                      },
+                      child: Row(
+                        children: [
+                          CommonText(
+                              text: name,
+                              maxLines: 1,
+                              style: ptSansTextStyle(
+                                color: AppColors.white,
+                                decorationColor: AppColors.colorSecondary,
+                                decorationThickness: 1,
+                                decorationStyle: TextDecorationStyle.solid,
+                                decoration: TextDecoration.underline,
+                                fontSize: h * 0.018,
+                                fontWeight: FontWeight.w600,
+                              )),
+                          Icon(
+                            Icons.arrow_forward_ios_outlined,
+                            color: AppColors.white,
+                            size: h * 0.017,
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ),
             ],
           ),
         ),

@@ -5,7 +5,7 @@ import '../color.dart';
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   String? title;
   bool leadingicon;
-  bool? centerTitle;
+  bool centerTitle;
   Color backgroundColor;
   Widget? leadicon;
   Widget? centerwidget;
@@ -25,7 +25,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.suffixicon,
       this.scrolledUnderElevation,
       this.elevation,
-      this.centerTitle,
+      required this.centerTitle,
       this.centerwidget,
       this.textstyle,
       required this.padding,

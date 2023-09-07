@@ -252,7 +252,7 @@ class AppText {
   static const String list = "List";
   static const String posturad = "Post your ad";
   static const String productaval = "Product Availability";
-  static const String setprice = "Set a Price";
+  static const String setprice = "Set A Price";
   static const String includesomedet = "Include Some Details";
   static const String forgotpassword = "Forgot password?";
   static const String loremipsum =

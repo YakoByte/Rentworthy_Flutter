@@ -71,27 +71,6 @@ class AllChatController extends _$AllChatController {
     state = const AsyncValue.data(null);
   }
 
-  onRegtype({required bool val}) async {
-    state = const AsyncLoading();
-    debugPrint('onRegtype $val');
-    _isbusinessreg = val;
 
-    state = const AsyncValue.data(null);
-  }
 
-  onisSignin({required bool val}) async {
-    state = const AsyncLoading();
-    debugPrint('onisSignin $val');
-    _issignin = val;
-
-    state = const AsyncValue.data(null);
-  }
-
-  onEyeTap({required bool val}) async {
-    state = const AsyncLoading();
-    debugPrint('onEyeTap $val');
-    _iseyehide = val;
-
-    state = const AsyncValue.data(null);
-  }
 }

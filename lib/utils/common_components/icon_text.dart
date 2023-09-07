@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../color.dart';
 import 'common_text.dart';
@@ -52,98 +53,109 @@ class IconText extends ConsumerWidget {
           : MainAxisAlignment.center,
       children: [
         preimg == true
-            ? Padding(
-                padding: EdgeInsets.only(right: w * 0.03),
-                child: preshadermask == true
-                    ? preimgname != null
-                        ? ShaderMask(
-                            shaderCallback: (Rect bounds) {
-                              return const LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: [
-                                  AppColors.colorPrimary,
-                                  AppColors.colorSecondary,
-                                ],
-                              ).createShader(bounds);
-                            },
-                            child: Image.asset(
-                              preimgname!,
-                              color: preimgcolor,
-                              height: preiconsize,
-                              width: preiconsize,
-                            ),
-                          )
-                        : ShaderMask(
-                            shaderCallback: (Rect bounds) {
-                              return const LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: [
-                                  AppColors.colorPrimary,
-                                  AppColors.colorSecondary,
-                                ],
-                              ).createShader(bounds);
-                            },
-                            child: Icon(preicon,
-                                color: preimgcolor, size: preiconsize))
-                    : preimgname != null
+            ? preshadermask == true
+                ? preimgname != null
+                    ? ShaderMask(
+                        shaderCallback: (Rect bounds) {
+                          return const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              AppColors.colorPrimary,
+                              AppColors.colorSecondary,
+                            ],
+                          ).createShader(bounds);
+                        },
+                        child: preimgname!.split('.').last == "png"
+                            ? Image.asset(
+                                preimgname!,
+                                color: preimgcolor,
+                                height: preiconsize,
+                                width: preiconsize,
+                              )
+                            : SvgPicture.asset(
+                                preimgname!,
+                                color: preimgcolor,
+                                height: preiconsize,
+                                width: preiconsize,
+                              ),
+                      )
+                    : ShaderMask(
+                        shaderCallback: (Rect bounds) {
+                          return const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              AppColors.colorPrimary,
+                              AppColors.colorSecondary,
+                            ],
+                          ).createShader(bounds);
+                        },
+                        child: Icon(preicon,
+                            color: preimgcolor, size: preiconsize))
+                : preimgname != null
+                    ? preimgname!.split('.').last == "png"
                         ? Image.asset(
                             preimgname!,
                             color: preimgcolor,
                             height: preiconsize,
                             width: preiconsize,
                           )
-                        : Icon(preicon, color: preimgcolor, size: preiconsize),
-              )
+                        : SvgPicture.asset(
+                            preimgname!,
+                            color: preimgcolor,
+                            height: preiconsize,
+                            width: preiconsize,
+                          )
+                    : Icon(preicon, color: preimgcolor, size: preiconsize)
             : SizedBox(),
-        CommonText(
-            text: title, textAlign: textAlign, maxLines: 1, style: textStyle),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: w * 0.01),
+          child: CommonText(
+              text: title, textAlign: textAlign, maxLines: 1, style: textStyle),
+        ),
         subimg == true
-            ? Padding(
-                padding: EdgeInsets.only(left: w * 0.02),
-                child: subshadermask == true
-                    ? subimgname != null
-                        ? ShaderMask(
-                            shaderCallback: (Rect bounds) {
-                              return const LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: [
-                                  AppColors.colorPrimary,
-                                  AppColors.colorSecondary,
-                                ],
-                              ).createShader(bounds);
-                            },
-                            child: Image.asset(
-                              subimgname!,
-                              color: subimgcolor,
-                              height: subiconsize,
-                              width: subiconsize,
-                            ),
-                          )
-                        : ShaderMask(
-                            shaderCallback: (Rect bounds) {
-                              return const LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: [
-                                  AppColors.colorPrimary,
-                                  AppColors.colorSecondary,
-                                ],
-                              ).createShader(bounds);
-                            },
-                            child: Icon(subicon,
-                                color: subimgcolor, size: subiconsize))
-                    : subimgname != null
-                        ? Image.asset(
-                            subimgname!,
-                            color: subimgcolor,
-                            height: subiconsize,
-                            width: subiconsize,
-                          )
-                        : Icon(subicon, color: subimgcolor, size: subiconsize),
-              )
+            ? subshadermask == true
+                ? subimgname != null
+                    ? ShaderMask(
+                        shaderCallback: (Rect bounds) {
+                          return const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              AppColors.colorPrimary,
+                              AppColors.colorSecondary,
+                            ],
+                          ).createShader(bounds);
+                        },
+                        child: Image.asset(
+                          subimgname!,
+                          color: subimgcolor,
+                          height: subiconsize,
+                          width: subiconsize,
+                        ),
+                      )
+                    : ShaderMask(
+                        shaderCallback: (Rect bounds) {
+                          return const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              AppColors.colorPrimary,
+                              AppColors.colorSecondary,
+                            ],
+                          ).createShader(bounds);
+                        },
+                        child: Icon(subicon,
+                            color: subimgcolor, size: subiconsize))
+                : subimgname != null
+                    ? Image.asset(
+                        subimgname!,
+                        color: subimgcolor,
+                        height: subiconsize,
+                        width: subiconsize,
+                      )
+                    : Icon(subicon, color: subimgcolor, size: subiconsize)
             : SizedBox(),
       ],
     );

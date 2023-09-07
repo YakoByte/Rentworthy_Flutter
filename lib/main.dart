@@ -8,6 +8,9 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rentworthy/presentation/both_prof/loading/loading_screen.dart';
+import 'package:rentworthy/presentation/business_prof/admin_panel/admin_panel.dart';
+import 'package:rentworthy/presentation/business_prof/business_category_details/business_category_details_screen.dart';
+import 'package:rentworthy/presentation/business_prof/track_item/track_item_screen.dart';
 import 'package:rentworthy/utils/globals.dart';
 import 'package:rentworthy/utils/state_logger.dart';
 import 'package:rentworthy/utils/text.dart';
@@ -66,6 +69,7 @@ class _MyAppState extends ConsumerState<MyApp> {
           fontFamily: GoogleFonts.ptSans().fontFamily, useMaterial3: true),
       // home: CategoryDetailsScreen(title: "Xbox"),
       home: LoadingScreen(),
+      // home: TrackItem(),
       // home: LoginPhoneScreen(),
       // home: ProductAvailabliity(),
       // home: AccountVerification(

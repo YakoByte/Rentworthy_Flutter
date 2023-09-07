@@ -47,6 +47,8 @@ dependencies:
   syncfusion_flutter_datepicker: ^22.2.11
   persistent_bottom_nav_bar: ^5.0.2
   table_calendar: ^3.0.9
+  syncfusion_flutter_charts: ^22.2.12
+  flutter_circle_chart: ^1.0.0
 #  smart_auth: ^1.1.1
 
 dev_dependencies:
@@ -87,4 +89,3 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-
