@@ -2,23 +2,20 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_circle_chart/flutter_circle_chart.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rentworthy/utils/common_components/common_appbar.dart';
 import 'package:rentworthy/utils/common_components/icon_text.dart';
 import 'package:rentworthy/utils/images.dart';
-import 'package:rentworthy/utils/text.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 import 'dart:math' as math;
 
 import '../../../utils/color.dart';
 import '../../../utils/common_components/common_carouselslider.dart';
-import '../../../utils/common_components/common_searchbar.dart';
 import '../../../utils/common_components/common_text.dart';
 import '../../../utils/globals.dart';
 import '../../indi_prof/home/categories/categories.dart';
+import '../business_category_details/business_category_details_screen.dart';
 import '../business_widgets/business_nav_drawer.dart';
 import '../business_widgets/business_search.dart';
+import '../charts_widget/charts.dart';
 import 'admin_panel_controller.dart';
 
 class AdminPanel extends ConsumerWidget {
@@ -60,15 +57,17 @@ class AdminPanel extends ConsumerWidget {
                   containerheight: h * 0.18,
                   containerwidth: w,
                   gradient: false,
-                  viewportFraction: 0.6,
+                  viewportFraction: 0.9,
                   scrollDirection: Axis.horizontal,
                   autoPlayCurve: Curves.bounceIn,
                   aspectRatio: 16 / 9,
                   enableInfiniteScroll: false,
                   autoPlay: false,
                   reverse: false,
-                  padding: EdgeInsets.symmetric(vertical: h * 0.01),
-                  carouselHeight: h * 0.15,
+                  padding: EdgeInsets.symmetric(
+                    vertical: h * 0.01,
+                  ),
+                  carouselHeight: h * 0.19,
                   carouselController: controller().carouselController,
                   disableGesture: false,
                   itemCount: 3,
@@ -77,8 +76,9 @@ class AdminPanel extends ConsumerWidget {
                       Column(
                     children: [
                       Container(
-                        width: w * 0.55,
-                        height: itemIndex == 0 ? h * 0.1 : h * 0.14,
+                        width: w,
+                        margin: EdgeInsets.symmetric(horizontal: w * 0.02),
+                        height: itemIndex == 0 ? h * 0.13 : h * 0.16,
                         decoration: BoxDecoration(
                             color: AppColors.adminColor.withOpacity(0.4),
                             borderRadius: BorderRadius.circular(16)),
@@ -135,6 +135,7 @@ class AdminPanel extends ConsumerWidget {
                       curve: Curves.easeInOutCubic,
                       duration: 600.ms,
                     ),
+
                 // SfCartesianChart(
                 //   title: ChartTitle(text: "Column Chart"),
                 //   series: <ChartSeries>[
@@ -167,23 +168,401 @@ class AdminPanel extends ConsumerWidget {
                 //     ),
                 //   ),
                 // ),
-                CommonText(
-                  text: AppText.comingsoon,
-                  style: ptSansTextStyle(
-                      foreground: Paint()
-                        ..shader = const LinearGradient(
-                          colors: <Color>[
-                            AppColors.colorPrimary,
-                            AppColors.colorSecondary
+                Container(
+                        height: h * 0.3,
+                        width: w,
+                        padding: EdgeInsets.symmetric(
+                            horizontal: w * 0.03, vertical: h * 0.02),
+                        decoration: BoxDecoration(
+                            color: AppColors.chartgrey,
+                            borderRadius: BorderRadius.circular(16)),
+                        child: controller().buildDefaultColumnChart(type: 0))
+                    .animate()
+                    .fadeIn(duration: 450.ms)
+                    .then(delay: 450.ms)
+                    .slideX(
+                      begin: 3,
+                      end: 0,
+                      curve: Curves.easeInOutCubic,
+                      duration: 550.ms,
+                    ),
+                // CommonText(
+                //   text: AppText.comingsoon,
+                //   style: ptSansTextStyle(
+                //       foreground: Paint()
+                //         ..shader = const LinearGradient(
+                //           colors: <Color>[
+                //             AppColors.colorPrimary,
+                //             AppColors.colorSecondary
+                //           ],
+                //         ).createShader(const Rect.fromLTRB(100, 0, 350, 20)),
+                //       fontSize: h * 0.05,
+                //       fontWeight: FontWeight.w700),
+                // ).animate().fadeIn(duration: 500.ms).then(delay: 500.ms).slideX(
+                //       begin: 3,
+                //       end: 0,
+                //       curve: Curves.easeInOutCubic,
+                //       duration: 600.ms,
+                //     ),
+                Container(
+                        height: h * 0.34,
+                        width: w,
+                        margin: EdgeInsets.only(top: h * 0.02),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: w * 0.03, vertical: h * 0.02),
+                        decoration: BoxDecoration(
+                            color: AppColors.chartgrey,
+                            borderRadius: BorderRadius.circular(16)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CommonText(
+                                text: 'Traffic by Location',
+                                style: ptSansTextStyle(
+                                  color: AppColors.black,
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: h * 0.023,
+                                  fontWeight: FontWeight.w600,
+                                )),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: h * 0.25,
+                                  width: w * 0.4,
+                                  child:
+                                      SfCircularChart(series: <CircularSeries>[
+                                    DoughnutSeries<ChartData, String>(
+                                        radius: '100%',
+                                        innerRadius: '60%',
+                                        dataSource: [
+                                          ChartData(
+                                              x: 'United States',
+                                              y: 38.6,
+                                              color: Color.fromRGBO(
+                                                  186, 237, 189, 1)),
+                                          ChartData(
+                                              x: 'Canada',
+                                              y: 30.8,
+                                              color: Color.fromRGBO(
+                                                  255, 202, 198, 1)),
+                                          ChartData(
+                                              x: 'Other',
+                                              y: 8.1,
+                                              color: Color.fromRGBO(
+                                                  217, 206, 234, 1)),
+                                          ChartData(
+                                              x: 'Mexico',
+                                              y: 22.5,
+                                              color: Color.fromRGBO(
+                                                  204, 189, 227, 1)),
+                                        ],
+                                        strokeColor: AppColors.chartgrey,
+                                        strokeWidth: h * 0.005,
+                                        pointColorMapper: (ChartData data, _) =>
+                                            data.color,
+                                        xValueMapper: (ChartData data, _) =>
+                                            data.x,
+                                        yValueMapper: (ChartData data, _) =>
+                                            data.y,
+
+                                        // Corner style of doughnut segment
+                                        cornerStyle: CornerStyle.bothCurve)
+                                  ]),
+                                ),
+                                Container(
+                                  width: w * 0.45,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                right: w * 0.05),
+                                            child: Row(
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: w * 0.02,
+                                                      vertical: h * 0.008),
+                                                  child: Container(
+                                                    height: h * 0.015,
+                                                    width: h * 0.015,
+                                                    decoration: BoxDecoration(
+                                                        color: Color.fromRGBO(
+                                                            186, 237, 189, 1),
+                                                        shape: BoxShape.circle),
+                                                  ),
+                                                ),
+                                                CommonText(
+                                                    text: "United States",
+                                                    style: ptSansTextStyle(
+                                                      color: AppColors.black,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      fontSize: w * 0.035,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    )),
+                                              ],
+                                            ),
+                                          ),
+                                          CommonText(
+                                              text: "38.6%",
+                                              style: ptSansTextStyle(
+                                                color: AppColors.black,
+                                                overflow: TextOverflow.ellipsis,
+                                                fontSize: w * 0.035,
+                                                fontWeight: FontWeight.w500,
+                                              )),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                right: w * 0.05),
+                                            child: Row(
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: w * 0.02,
+                                                      vertical: h * 0.008),
+                                                  child: Container(
+                                                    height: h * 0.015,
+                                                    width: h * 0.015,
+                                                    decoration: BoxDecoration(
+                                                        color: Color.fromRGBO(
+                                                            255, 202, 198, 1),
+                                                        shape: BoxShape.circle),
+                                                  ),
+                                                ),
+                                                CommonText(
+                                                    text: "Canada",
+                                                    style: ptSansTextStyle(
+                                                      color: AppColors.black,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      fontSize: w * 0.035,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    )),
+                                              ],
+                                            ),
+                                          ),
+                                          CommonText(
+                                              text: "22.5%",
+                                              style: ptSansTextStyle(
+                                                color: AppColors.black,
+                                                overflow: TextOverflow.ellipsis,
+                                                fontSize: w * 0.035,
+                                                fontWeight: FontWeight.w500,
+                                              )),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                right: w * 0.05),
+                                            child: Row(
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: w * 0.02,
+                                                      vertical: h * 0.008),
+                                                  child: Container(
+                                                    height: h * 0.015,
+                                                    width: h * 0.015,
+                                                    decoration: BoxDecoration(
+                                                        color: Color.fromRGBO(
+                                                            204, 189, 227, 1),
+                                                        shape: BoxShape.circle),
+                                                  ),
+                                                ),
+                                                CommonText(
+                                                    text: "Mexico",
+                                                    style: ptSansTextStyle(
+                                                      color: AppColors.black,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      fontSize: w * 0.035,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    )),
+                                              ],
+                                            ),
+                                          ),
+                                          CommonText(
+                                              text: "30.8%",
+                                              style: ptSansTextStyle(
+                                                color: AppColors.black,
+                                                overflow: TextOverflow.ellipsis,
+                                                fontSize: w * 0.035,
+                                                fontWeight: FontWeight.w500,
+                                              )),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                right: w * 0.05),
+                                            child: Row(
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: w * 0.02,
+                                                      vertical: h * 0.008),
+                                                  child: Container(
+                                                    height: h * 0.015,
+                                                    width: h * 0.015,
+                                                    decoration: BoxDecoration(
+                                                        color: Color.fromRGBO(
+                                                            217, 206, 234, 1),
+                                                        shape: BoxShape.circle),
+                                                  ),
+                                                ),
+                                                CommonText(
+                                                    text: "Other",
+                                                    style: ptSansTextStyle(
+                                                      color: AppColors.black,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      fontSize: w * 0.035,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    )),
+                                              ],
+                                            ),
+                                          ),
+                                          CommonText(
+                                              text: "8.1%",
+                                              style: ptSansTextStyle(
+                                                color: AppColors.black,
+                                                overflow: TextOverflow.ellipsis,
+                                                fontSize: w * 0.035,
+                                                fontWeight: FontWeight.w500,
+                                              )),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
-                        ).createShader(const Rect.fromLTRB(100, 0, 350, 20)),
-                      fontSize: h * 0.05,
-                      fontWeight: FontWeight.w700),
-                ).animate().fadeIn(duration: 500.ms).then(delay: 500.ms).slideX(
+                        ))
+                    .animate()
+                    .fadeIn(duration: 500.ms)
+                    .then(delay: 500.ms)
+                    .slideX(
                       begin: 3,
                       end: 0,
                       curve: Curves.easeInOutCubic,
                       duration: 600.ms,
+                    ),
+                Container(
+                        height: h * 0.45,
+                        width: w,
+                        padding: EdgeInsets.symmetric(vertical: h * 0.02),
+                        decoration: BoxDecoration(
+                            color: AppColors.white,
+                            borderRadius: BorderRadius.circular(16)),
+                        child: Column(
+                          children: [
+                            Container(
+                                height: h * 0.32,
+                                child: controller()
+                                    .buildDefaultColumnChart(type: 1)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Column(
+                                  children: [
+                                    CommonText(
+                                        text: "\$ 75, 000",
+                                        style: ptSansTextStyle(
+                                          color: AppColors.black,
+                                          overflow: TextOverflow.ellipsis,
+                                          fontSize: h * 0.025,
+                                          fontWeight: FontWeight.w600,
+                                        )),
+                                    CommonText(
+                                        text: "Annually",
+                                        style: ptSansTextStyle(
+                                          color: AppColors.black,
+                                          overflow: TextOverflow.ellipsis,
+                                          fontSize: h * 0.023,
+                                          fontWeight: FontWeight.w500,
+                                        )),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    CommonText(
+                                        text: "\$ 50, 800",
+                                        style: ptSansTextStyle(
+                                          color: AppColors.black,
+                                          overflow: TextOverflow.ellipsis,
+                                          fontSize: h * 0.025,
+                                          fontWeight: FontWeight.w600,
+                                        )),
+                                    CommonText(
+                                        text: "Monthly",
+                                        style: ptSansTextStyle(
+                                          color: AppColors.black,
+                                          overflow: TextOverflow.ellipsis,
+                                          fontSize: h * 0.023,
+                                          fontWeight: FontWeight.w500,
+                                        )),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    CommonText(
+                                        text: "\$ 24, 200",
+                                        style: ptSansTextStyle(
+                                          color: AppColors.black,
+                                          overflow: TextOverflow.ellipsis,
+                                          fontSize: h * 0.025,
+                                          fontWeight: FontWeight.w600,
+                                        )),
+                                    CommonText(
+                                        text: "Weekly",
+                                        style: ptSansTextStyle(
+                                          color: AppColors.black,
+                                          overflow: TextOverflow.ellipsis,
+                                          fontSize: h * 0.023,
+                                          fontWeight: FontWeight.w500,
+                                        )),
+                                  ],
+                                ),
+                              ],
+                            )
+                          ],
+                        ))
+                    .animate()
+                    .fadeIn(duration: 550.ms)
+                    .then(delay: 550.ms)
+                    .slideX(
+                      begin: 3,
+                      end: 0,
+                      curve: Curves.easeInOutCubic,
+                      duration: 650.ms,
                     ),
 
                 /// Recent Rental

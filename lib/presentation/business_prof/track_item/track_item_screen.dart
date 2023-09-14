@@ -645,40 +645,40 @@ class TrackItem extends ConsumerWidget {
                                                                 )),
                                                           ],
                                                         ),
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            CommonText(
-                                                                text:
-                                                                    "Shipping: ",
-                                                                style:
-                                                                    ptSansTextStyle(
-                                                                  color:
-                                                                      AppColors
-                                                                          .black,
-                                                                  fontSize:
-                                                                      w * 0.03,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                )),
-                                                            CommonText(
-                                                                text: "\$ 0.00",
-                                                                style:
-                                                                    ptSansTextStyle(
-                                                                  color:
-                                                                      AppColors
-                                                                          .black,
-                                                                  fontSize:
-                                                                      w * 0.03,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                )),
-                                                          ],
-                                                        ),
+                                                        // Row(
+                                                        //   mainAxisAlignment:
+                                                        //       MainAxisAlignment
+                                                        //           .spaceBetween,
+                                                        //   children: [
+                                                        //     CommonText(
+                                                        //         text:
+                                                        //             "Shipping: ",
+                                                        //         style:
+                                                        //             ptSansTextStyle(
+                                                        //           color:
+                                                        //               AppColors
+                                                        //                   .black,
+                                                        //           fontSize:
+                                                        //               w * 0.03,
+                                                        //           fontWeight:
+                                                        //               FontWeight
+                                                        //                   .w500,
+                                                        //         )),
+                                                        //     CommonText(
+                                                        //         text: "\$ 0.00",
+                                                        //         style:
+                                                        //             ptSansTextStyle(
+                                                        //           color:
+                                                        //               AppColors
+                                                        //                   .black,
+                                                        //           fontSize:
+                                                        //               w * 0.03,
+                                                        //           fontWeight:
+                                                        //               FontWeight
+                                                        //                   .w500,
+                                                        //         )),
+                                                        //   ],
+                                                        // ),
                                                         Row(
                                                           mainAxisAlignment:
                                                               MainAxisAlignment

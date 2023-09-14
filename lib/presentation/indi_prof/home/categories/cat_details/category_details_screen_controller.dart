@@ -5,11 +5,10 @@ import 'package:rentworthy/utils/globals.dart';
 import 'package:rentworthy/utils/images.dart';
 import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-
 import '../../../../../application/dialog/dialod_service.dart';
 import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_text.dart';
+import '../../../dialogs/widgets/date_picker/date_picker_manager.dart';
 
 part 'category_details_screen_controller.g.dart';
 

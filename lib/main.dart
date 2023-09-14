@@ -68,7 +68,8 @@ class _MyAppState extends ConsumerState<MyApp> {
       theme: ThemeData(
           fontFamily: GoogleFonts.ptSans().fontFamily, useMaterial3: true),
       // home: CategoryDetailsScreen(title: "Xbox"),
-      home: LoadingScreen(),
+      home: const LoadingScreen(),
+      // home: AdminPanel(),
       // home: TrackItem(),
       // home: LoginPhoneScreen(),
       // home: ProductAvailabliity(),

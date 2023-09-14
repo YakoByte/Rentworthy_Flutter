@@ -1,9 +1,6 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-
-import '../../../../utils/common_components/common_tickerprovider.dart';
 import '../../../application/dialog/dialod_service.dart';
 import '../../../utils/color.dart';
 import '../../../utils/common_components/common_text.dart';
@@ -11,6 +8,7 @@ import '../../../utils/common_components/icon_text.dart';
 import '../../../utils/globals.dart';
 import '../../../utils/images.dart';
 import '../../../utils/text.dart';
+import '../../indi_prof/dialogs/widgets/date_picker/date_picker_manager.dart';
 
 part 'business_category_details_screen_controller.g.dart';
 

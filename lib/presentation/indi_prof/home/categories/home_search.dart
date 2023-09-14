@@ -75,14 +75,25 @@ class HomeSearch extends ConsumerWidget {
               bottom: 0,
               left: 0,
               right: 0,
-              child: CommonSearchBar(
-                containerwidth: w * 0.8,
-                containerheight: h * 0.07,
-                searchController: controller().searchController,
-                onsearchChanged: (str) {
-                  controller()
-                      .filterSearchResults(controller().searchController.text);
-                },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Card(
+                    elevation: 3,
+                    color: AppColors.transparent,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50)),
+                    child: CommonSearchBar(
+                      containerwidth: w * 0.8,
+                      containerheight: h * 0.07,
+                      searchController: controller().searchController,
+                      onsearchChanged: (str) {
+                        controller().filterSearchResults(
+                            controller().searchController.text);
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

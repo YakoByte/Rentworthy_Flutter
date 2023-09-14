@@ -24,7 +24,10 @@ import '../../../utils/globals.dart';
 import '../../../utils/images.dart';
 import '../../../utils/text.dart';
 import '../../indi_prof/account/view_profile/view_profile.dart';
+import '../admin_panel/admin_panel_controller.dart';
 import '../business_widgets/business_nav_drawer.dart';
+import '../charts_widget/charts.dart';
+import '../charts_widget/sparkcharts.dart';
 import 'business_category_details_screen_controller.dart';
 
 class BusinessCategoryDetails extends ConsumerWidget {
@@ -297,7 +300,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                   ),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: w * 0.4,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -404,7 +407,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   child: Container(
-                    height: h * 0.4,
+                    height: h * 0.6,
                     width: w,
                     decoration: BoxDecoration(
                       color: AppColors.white,
@@ -414,9 +417,10 @@ class BusinessCategoryDetails extends ConsumerWidget {
                       padding: EdgeInsets.symmetric(
                           horizontal: w * 0.035, vertical: h * 0.015),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               CommonText(
@@ -429,6 +433,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                     fontWeight: FontWeight.w600,
                                   )),
                               Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   CommonDropdown(
                                     selectedItem: controller().selectedsorted,
@@ -439,25 +444,18 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                 TextAlignVertical.bottom,
                                             dropdownSearchDecoration:
                                                 InputDecoration(
-                                              prefixIcon: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  CommonText(
-                                                      text: "Sort By:",
-                                                      maxLines: 1,
-                                                      style: ptSansTextStyle(
-                                                        color: AppColors.black
-                                                            .withOpacity(0.6),
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        fontSize: h * 0.02,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      )),
-                                                ],
-                                              ),
                                               border: InputBorder.none,
+                                              prefix: CommonText(
+                                                  text: "Sort By:",
+                                                  maxLines: 1,
+                                                  style: ptSansTextStyle(
+                                                    color: AppColors.black
+                                                        .withOpacity(0.6),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    fontSize: h * 0.02,
+                                                    fontWeight: FontWeight.w600,
+                                                  )),
                                               hintText: "Select Location",
                                               hintStyle: ptSansTextStyle(
                                                   color: AppColors.black
@@ -475,12 +473,12 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                     dropdownButtonProps: DropdownButtonProps(
                                       icon: Column(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.end,
+                                            MainAxisAlignment.center,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
                                           Container(
-                                            height: h * 0.04,
+                                            height: h * 0.03,
                                             color: AppColors.white,
                                             child: Icon(
                                                 Icons.keyboard_arrow_down_sharp,
@@ -496,7 +494,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                     enabled: true,
                                     isExpanded: true,
                                     containerwidth: w * 0.4,
-                                    containerheight: h * 0.075,
+                                    containerheight: h * 0.06,
                                     containercolor: AppColors.white,
                                     elevation: 0,
                                   ),
@@ -565,20 +563,144 @@ class BusinessCategoryDetails extends ConsumerWidget {
                               ),
                             ],
                           ),
-                          CommonText(
-                            text: AppText.comingsoon,
-                            style: ptSansTextStyle(
-                                foreground: Paint()
-                                  ..shader = const LinearGradient(
-                                    colors: <Color>[
-                                      AppColors.colorPrimary,
-                                      AppColors.colorSecondary
-                                    ],
-                                  ).createShader(
-                                      const Rect.fromLTRB(100, 0, 350, 20)),
-                                fontSize: h * 0.05,
-                                fontWeight: FontWeight.w700),
+                          SizedBox(
+                            height: h * 0.15,
+                            width: w,
+                            child: SfSparkAreaChart(
+                                axisLineWidth: 0,
+                                // 69DE94
+                                // lowPointColor: ,
+                                color: AppColors.darkgreen.withOpacity(0.4),
+                                borderColor: AppColors.darkgreen,
+                                borderWidth: 2,
+                                lowPointColor: AppColors.colorSecondary,
+                                highPointColor: AppColors.colorPrimary,
+                                data: <double>[
+                                  0,
+                                  3,
+                                  2,
+                                  4,
+                                  5,
+                                  10,
+                                  8,
+                                  9,
+                                  12,
+                                  10,
+                                  11,
+                                  8.5,
+                                  9,
+                                  3,
+                                  4.5,
+                                  4,
+                                  1,
+                                  0
+                                ]),
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: w * 0.02,
+                                        vertical: h * 0.008),
+                                    child: Container(
+                                      height: h * 0.02,
+                                      width: h * 0.02,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: AppColors.lightgreen,
+                                              width: 3.5),
+                                          color: AppColors.darkgreen,
+                                          shape: BoxShape.circle),
+                                    ),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      CommonText(
+                                          text: "3,526.56",
+                                          style: ptSansTextStyle(
+                                            color: AppColors.black,
+                                            overflow: TextOverflow.ellipsis,
+                                            fontSize: h * 0.025,
+                                            fontWeight: FontWeight.w600,
+                                          )),
+                                      CommonText(
+                                          text: "Net Profit",
+                                          style: ptSansTextStyle(
+                                            color: AppColors.black,
+                                            overflow: TextOverflow.ellipsis,
+                                            fontSize: h * 0.023,
+                                            fontWeight: FontWeight.w500,
+                                          )),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: w * 0.02,
+                                        vertical: h * 0.008),
+                                    child: Container(
+                                      height: h * 0.02,
+                                      width: h * 0.02,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: AppColors.lightred,
+                                              width: 3.5),
+                                          color: AppColors.red,
+                                          shape: BoxShape.circle),
+                                    ),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      CommonText(
+                                          text: "3,526.56",
+                                          style: ptSansTextStyle(
+                                            color: AppColors.black,
+                                            overflow: TextOverflow.ellipsis,
+                                            fontSize: h * 0.025,
+                                            fontWeight: FontWeight.w600,
+                                          )),
+                                      CommonText(
+                                          text: "Net Revenue",
+                                          style: ptSansTextStyle(
+                                            color: AppColors.black,
+                                            overflow: TextOverflow.ellipsis,
+                                            fontSize: h * 0.023,
+                                            fontWeight: FontWeight.w500,
+                                          )),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          // CommonText(22C55E
+                          //   text: AppText.comingsoon,
+                          //   style: ptSansTextStyle(
+                          //       foreground: Paint()
+                          //         ..shader = const LinearGradient(
+                          //           colors: <Color>[
+                          //             AppColors.colorPrimary,
+                          //             AppColors.colorSecondary
+                          //           ],
+                          //         ).createShader(
+                          //             const Rect.fromLTRB(100, 0, 350, 20)),
+                          //       fontSize: h * 0.05,
+                          //       fontWeight: FontWeight.w700),
+                          // ),
                         ],
                       ),
                     ),
@@ -592,122 +714,535 @@ class BusinessCategoryDetails extends ConsumerWidget {
                         end: 0,
                         curve: Curves.easeInOutCubic,
                         duration: 1300.ms),
-                // Card(
-                //   color: AppColors.white,
-                //   elevation: 5,
-                //   shape: RoundedRectangleBorder(
-                //       borderRadius: BorderRadius.circular(10)),
-                //   child: Container(
-                //     height: h * 0.4,
-                //     width: w,
-                //     decoration: BoxDecoration(
-                //       color: AppColors.white,
-                //       borderRadius: BorderRadius.circular(10),
-                //     ),
-                //     child: Padding(
-                //       padding: EdgeInsets.symmetric(
-                //           horizontal: w * 0.035, vertical: h * 0.015),
-                //       child: Column(
-                //         mainAxisAlignment: MainAxisAlignment.center,
-                //         children: [
-                //           CommonText(
-                //             text: AppText.comingsoon,
-                //             style: ptSansTextStyle(
-                //                 foreground: Paint()
-                //                   ..shader = const LinearGradient(
-                //                     colors: <Color>[
-                //                       AppColors.colorPrimary,
-                //                       AppColors.colorSecondary
-                //                     ],
-                //                   ).createShader(
-                //                       const Rect.fromLTRB(100, 0, 350, 20)),
-                //                 fontSize: h * 0.05,
-                //                 fontWeight: FontWeight.w700),
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //   ),
-                // ).animate().fadeIn(duration: 450.ms).then(delay: 450.ms).slideY(
-                //     begin: 3,
-                //     end: 0,
-                //     curve: Curves.easeInOutCubic,
-                //     duration: 1200.ms),
-                // Card(
-                //   color: AppColors.white,
-                //   elevation: 5,
-                //   shape: RoundedRectangleBorder(
-                //       borderRadius: BorderRadius.circular(10)),
-                //   child: Container(
-                //     height: h * 0.4,
-                //     width: w,
-                //     decoration: BoxDecoration(
-                //       color: AppColors.white,
-                //       borderRadius: BorderRadius.circular(10),
-                //     ),
-                //     child: Padding(
-                //       padding: EdgeInsets.symmetric(
-                //           horizontal: w * 0.035, vertical: h * 0.015),
-                //       child: Column(
-                //         mainAxisAlignment: MainAxisAlignment.start,
-                //         children: [
-                //           Row(
-                //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //             children: [
-                //               CommonText(
-                //                   text: "Current Statistic",
-                //                   maxLines: 1,
-                //                   style: ptSansTextStyle(
-                //                     color: AppColors.black.withOpacity(0.8),
-                //                     overflow: TextOverflow.ellipsis,
-                //                     fontSize: h * 0.03,
-                //                     fontWeight: FontWeight.w600,
-                //                   )),
-                //               CommonIconButton(
-                //                   containerwidth: w * 0.08,
-                //                   containerheight: h * 0.06,
-                //                   backgroundColor: AppColors.white,
-                //                   shape: LinearBorder.none,
-                //                   centericon: Column(
-                //                     mainAxisAlignment: MainAxisAlignment.center,
-                //                     crossAxisAlignment:
-                //                         CrossAxisAlignment.center,
-                //                     children: [
-                //                       Icon(Icons.more_vert,
-                //                           color:
-                //                               AppColors.black.withOpacity(0.8),
-                //                           size: h * 0.03),
-                //                     ],
-                //                   ),
-                //                   onPressed: () {}),
-                //             ],
-                //           ),
-                //           SizedBox(
-                //             height: h * 0.1,
-                //           ),
-                //           CommonText(
-                //             text: AppText.comingsoon,
-                //             style: ptSansTextStyle(
-                //                 foreground: Paint()
-                //                   ..shader = const LinearGradient(
-                //                     colors: <Color>[
-                //                       AppColors.colorPrimary,
-                //                       AppColors.colorSecondary
-                //                     ],
-                //                   ).createShader(
-                //                       const Rect.fromLTRB(100, 0, 350, 20)),
-                //                 fontSize: h * 0.05,
-                //                 fontWeight: FontWeight.w700),
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //   ),
-                // ).animate().fadeIn(duration: 450.ms).then(delay: 450.ms).slideY(
-                //     begin: 3,
-                //     end: 0,
-                //     curve: Curves.easeInOutCubic,
-                //     duration: 1200.ms),
+                Card(
+                  color: AppColors.white,
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Container(
+                    height: h * 0.45,
+                    width: w,
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: w * 0.035, vertical: h * 0.03),
+                      child: SfCartesianChart(
+                        plotAreaBorderWidth: 0,
+                        primaryXAxis: CategoryAxis(
+                            rangePadding: ChartRangePadding.auto,
+                            labelStyle: ptSansTextStyle(
+                              color: AppColors.black.withOpacity(0.4),
+                              overflow: TextOverflow.ellipsis,
+                              fontSize: w * 0.03,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            majorGridLines: const MajorGridLines(width: 0),
+                            majorTickLines: const MajorTickLines(size: 0)),
+                        primaryYAxis: NumericAxis(
+                            interval: 5,
+                            rangePadding: ChartRangePadding.auto,
+                            labelStyle: ptSansTextStyle(
+                              color: AppColors.black.withOpacity(0.4),
+                              overflow: TextOverflow.ellipsis,
+                              fontSize: w * 0.03,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            axisLine: const AxisLine(width: 0),
+                            labelFormat: '{value}k',
+                            majorTickLines: const MajorTickLines(size: 0)),
+                        series: <ColumnSeries<ChartSampleData, String>>[
+                          ColumnSeries<ChartSampleData, String>(
+                            dataSource: <ChartSampleData>[
+                              ChartSampleData(x: "Feb", y: 16),
+                              ChartSampleData(x: "Mar", y: 19),
+                              ChartSampleData(x: "Apr", y: 10),
+                              ChartSampleData(x: "May", y: 14),
+                              ChartSampleData(x: "Jun", y: 17),
+                              ChartSampleData(x: "Jul ", y: 19),
+                            ],
+                            name: 'Traffic by Device',
+                            width: 1,
+                            spacing: w * 0.0023,
+                            color: AppColors.fbblue,
+                            xValueMapper: (ChartSampleData sales, _) =>
+                                sales.x.toString(),
+                            yValueMapper: (ChartSampleData sales, _) => sales.y,
+                            dataLabelSettings: DataLabelSettings(
+                                isVisible: false,
+                                textStyle: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.6),
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: h * 0.023,
+                                  fontWeight: FontWeight.w600,
+                                )),
+                          ),
+                          ColumnSeries<ChartSampleData, String>(
+                            dataSource: <ChartSampleData>[
+                              ChartSampleData(x: "Feb", y: 18),
+                              ChartSampleData(x: "Mar", y: 16),
+                              ChartSampleData(x: "Apr", y: 17),
+                              ChartSampleData(x: "May", y: 16),
+                              ChartSampleData(x: "Jun", y: 18),
+                              ChartSampleData(x: "Jul ", y: 17),
+                            ],
+                            name: 'Traffic by Device',
+                            width: 1,
+                            spacing: w * 0.0023,
+                            color: AppColors.darkgreen,
+                            xValueMapper: (ChartSampleData sales, _) =>
+                                sales.x.toString(),
+                            yValueMapper: (ChartSampleData sales, _) => sales.y,
+                            dataLabelSettings: DataLabelSettings(
+                                isVisible: false,
+                                textStyle: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.6),
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: h * 0.023,
+                                  fontWeight: FontWeight.w600,
+                                )),
+                          ),
+                          ColumnSeries<ChartSampleData, String>(
+                            width: 1,
+                            spacing: w * 0.0023,
+                            dataSource: <ChartSampleData>[
+                              ChartSampleData(x: "Feb", y: 10),
+                              ChartSampleData(x: "Mar", y: 12),
+                              ChartSampleData(x: "Apr", y: 18),
+                              ChartSampleData(x: "May", y: 19),
+                              ChartSampleData(x: "Jun", y: 14),
+                              ChartSampleData(x: "Jul ", y: 10),
+                            ],
+                            name: 'Traffic by Device',
+                            color: AppColors.amber,
+                            xValueMapper: (ChartSampleData sales, _) =>
+                                sales.x.toString(),
+                            yValueMapper: (ChartSampleData sales, _) => sales.y,
+                            dataLabelSettings: DataLabelSettings(
+                                isVisible: false,
+                                textStyle: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.6),
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: h * 0.023,
+                                  fontWeight: FontWeight.w600,
+                                )),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ).animate().fadeIn(duration: 450.ms).then(delay: 450.ms).slideY(
+                    begin: 3,
+                    end: 0,
+                    curve: Curves.easeInOutCubic,
+                    duration: 1200.ms),
+                Card(
+                  color: AppColors.white,
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Container(
+                    height: h * 0.8,
+                    width: w,
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: w * 0.035, vertical: h * 0.015),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              CommonText(
+                                  text: "Current Statistic",
+                                  maxLines: 1,
+                                  style: ptSansTextStyle(
+                                    color: AppColors.black.withOpacity(0.8),
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: h * 0.03,
+                                    fontWeight: FontWeight.w600,
+                                  )),
+                              CommonIconButton(
+                                  containerwidth: w * 0.08,
+                                  containerheight: h * 0.06,
+                                  backgroundColor: AppColors.white,
+                                  shape: LinearBorder.none,
+                                  centericon: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.more_vert,
+                                          color:
+                                              AppColors.black.withOpacity(0.8),
+                                          size: h * 0.03),
+                                    ],
+                                  ),
+                                  onPressed: () {}),
+                            ],
+                          ),
+                          SfCircularChart(series: <CircularSeries>[
+                            DoughnutSeries<ChartData, String>(
+                                dataSource: [
+                                  ChartData(
+                                      x: 'David',
+                                      y: 25,
+                                      color: AppColors.fbblue),
+                                  ChartData(
+                                      x: 'Steve',
+                                      y: 28.9,
+                                      color: AppColors.darkgreen),
+                                  ChartData(
+                                      x: 'Others',
+                                      y: 21.81,
+                                      color: AppColors.amberdark),
+                                  ChartData(
+                                      x: 'Jack',
+                                      y: 13.59,
+                                      color: AppColors.orng),
+                                  ChartData(
+                                      x: 'Jack',
+                                      y: 10.93,
+                                      color: AppColors.colorSecondarydark),
+                                ],
+                                dataLabelSettings: DataLabelSettings(
+                                  isVisible: true,
+                                  builder: (data, point, series, pointIndex,
+                                      seriesIndex) {
+                                    return Container(
+                                      child: Text(
+                                        "${data.y}%",
+                                        style: ptSansTextStyle(
+                                          color: AppColors.white,
+                                          overflow: TextOverflow.ellipsis,
+                                          fontSize: h * 0.015,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                innerRadius: '65%',
+                                pointColorMapper: (ChartData data, _) =>
+                                    data.color,
+                                xValueMapper: (ChartData data, _) => data.x,
+                                yValueMapper: (ChartData data, _) => data.y,
+                                // Radius of doughnut
+                                radius: '100%')
+                          ]),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(right: w * 0.05),
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: w * 0.02,
+                                              vertical: h * 0.008),
+                                          child: Container(
+                                            height: h * 0.02,
+                                            width: h * 0.02,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: Color.fromRGBO(
+                                                        191, 219, 254, 1),
+                                                    width: 3.5),
+                                                color: AppColors.fbblue,
+                                                shape: BoxShape.circle),
+                                          ),
+                                        ),
+                                        CommonText(
+                                            text: "Income",
+                                            style: ptSansTextStyle(
+                                              color: AppColors.black,
+                                              overflow: TextOverflow.ellipsis,
+                                              fontSize: h * 0.023,
+                                              fontWeight: FontWeight.w500,
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                  IconText(
+                                      title: "43.29%",
+                                      textStyle: ptSansTextStyle(
+                                        color: AppColors.fbblue,
+                                        overflow: TextOverflow.ellipsis,
+                                        fontSize: h * 0.023,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      preicon: Icons.trending_up_rounded,
+                                      preimgcolor: AppColors.fbblue,
+                                      subimg: false,
+                                      preimg: true),
+                                ],
+                              ),
+                              CommonText(
+                                  text: "\$161,466.24",
+                                  style: ptSansTextStyle(
+                                    color: AppColors.black,
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: h * 0.023,
+                                    fontWeight: FontWeight.w500,
+                                  )),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(right: w * 0.05),
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: w * 0.02,
+                                              vertical: h * 0.008),
+                                          child: Container(
+                                            height: h * 0.02,
+                                            width: h * 0.02,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: AppColors.lightgreen,
+                                                    width: 3.5),
+                                                color: AppColors.darkgreen,
+                                                shape: BoxShape.circle),
+                                          ),
+                                        ),
+                                        CommonText(
+                                            text: "Income",
+                                            style: ptSansTextStyle(
+                                              color: AppColors.black,
+                                              overflow: TextOverflow.ellipsis,
+                                              fontSize: h * 0.023,
+                                              fontWeight: FontWeight.w500,
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                  IconText(
+                                      title: "36.16%",
+                                      textStyle: ptSansTextStyle(
+                                        color: AppColors.darkgreen,
+                                        overflow: TextOverflow.ellipsis,
+                                        fontSize: h * 0.023,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      preicon: Icons.trending_up_rounded,
+                                      preimgcolor: AppColors.darkgreen,
+                                      subimg: false,
+                                      preimg: true),
+                                ],
+                              ),
+                              CommonText(
+                                  text: "\$56,411.33",
+                                  style: ptSansTextStyle(
+                                    color: AppColors.black,
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: h * 0.023,
+                                    fontWeight: FontWeight.w500,
+                                  )),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(right: w * 0.05),
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: w * 0.02,
+                                              vertical: h * 0.008),
+                                          child: Container(
+                                            height: h * 0.02,
+                                            width: h * 0.02,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: AppColors.lightred,
+                                                    width: 3.5),
+                                                color: AppColors.red,
+                                                shape: BoxShape.circle),
+                                          ),
+                                        ),
+                                        CommonText(
+                                            text: "Income",
+                                            style: ptSansTextStyle(
+                                              color: AppColors.black,
+                                              overflow: TextOverflow.ellipsis,
+                                              fontSize: h * 0.023,
+                                              fontWeight: FontWeight.w500,
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                  IconText(
+                                      title: "40.22%",
+                                      textStyle: ptSansTextStyle(
+                                        color: AppColors.red,
+                                        overflow: TextOverflow.ellipsis,
+                                        fontSize: h * 0.023,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      preicon: Icons.trending_up_rounded,
+                                      preimgcolor: AppColors.red,
+                                      subimg: false,
+                                      preimg: true),
+                                ],
+                              ),
+                              CommonText(
+                                  text: "\$81,981.22",
+                                  style: ptSansTextStyle(
+                                    color: AppColors.black,
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: h * 0.023,
+                                    fontWeight: FontWeight.w500,
+                                  )),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(right: w * 0.05),
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: w * 0.02,
+                                              vertical: h * 0.008),
+                                          child: Container(
+                                            height: h * 0.02,
+                                            width: h * 0.02,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: Color.fromRGBO(
+                                                        254, 215, 170, 1),
+                                                    width: 3.5),
+                                                color: AppColors.orng,
+                                                shape: BoxShape.circle),
+                                          ),
+                                        ),
+                                        CommonText(
+                                            text: "Income",
+                                            style: ptSansTextStyle(
+                                              color: AppColors.black,
+                                              overflow: TextOverflow.ellipsis,
+                                              fontSize: h * 0.023,
+                                              fontWeight: FontWeight.w500,
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                  IconText(
+                                      title: "25.53%",
+                                      textStyle: ptSansTextStyle(
+                                        color: AppColors.orng,
+                                        overflow: TextOverflow.ellipsis,
+                                        fontSize: h * 0.023,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      preicon: Icons.trending_up_rounded,
+                                      preimgcolor: AppColors.orng,
+                                      subimg: false,
+                                      preimg: true),
+                                ],
+                              ),
+                              CommonText(
+                                  text: "\$12,432.51",
+                                  style: ptSansTextStyle(
+                                    color: AppColors.black,
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: h * 0.023,
+                                    fontWeight: FontWeight.w500,
+                                  )),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(right: w * 0.05),
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: w * 0.02,
+                                              vertical: h * 0.008),
+                                          child: Container(
+                                            height: h * 0.02,
+                                            width: h * 0.02,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: Color.fromRGBO(
+                                                        254, 240, 138, 1),
+                                                    width: 3.5),
+                                                color: AppColors.amberdark,
+                                                shape: BoxShape.circle),
+                                          ),
+                                        ),
+                                        CommonText(
+                                            text: "Income",
+                                            style: ptSansTextStyle(
+                                              color: AppColors.black,
+                                              overflow: TextOverflow.ellipsis,
+                                              fontSize: h * 0.023,
+                                              fontWeight: FontWeight.w500,
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                  IconText(
+                                      title: "25.53%",
+                                      textStyle: ptSansTextStyle(
+                                        color: AppColors.amberdark,
+                                        overflow: TextOverflow.ellipsis,
+                                        fontSize: h * 0.023,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      preicon: Icons.trending_up_rounded,
+                                      preimgcolor: AppColors.amberdark,
+                                      subimg: false,
+                                      preimg: true),
+                                ],
+                              ),
+                              CommonText(
+                                  text: "\$12,432.51",
+                                  style: ptSansTextStyle(
+                                    color: AppColors.black,
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: h * 0.023,
+                                    fontWeight: FontWeight.w500,
+                                  )),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ).animate().fadeIn(duration: 450.ms).then(delay: 450.ms).slideY(
+                    begin: 3,
+                    end: 0,
+                    curve: Curves.easeInOutCubic,
+                    duration: 1200.ms),
                 Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: w * 0.01, vertical: h * 0.01),
@@ -739,7 +1274,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
+                      SizedBox(
                         width: w * 0.25,
                         child: Padding(
                           padding: EdgeInsets.symmetric(vertical: h * 0.01),
@@ -759,7 +1294,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                       color: AppColors.black,
                                       fontSize: w * 0.075,
                                       fontWeight: FontWeight.w600)),
-                              Container(
+                              SizedBox(
                                 width: w * 0.23,
                                 child: Row(
                                   children: [
@@ -1012,12 +1547,12 @@ class BusinessCategoryDetails extends ConsumerWidget {
                         curve: Curves.easeInOutCubic,
                         duration: 1500.ms),
                 CommonListView(
-                        itemCount: 6,
+                        itemCount: 3,
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         padding: EdgeInsets.zero,
                         width: w,
-                        height: (h * 0.35) * 6,
+                        height: (h * 0.35) * 3,
                         physics: NeverScrollableScrollPhysics(),
                         itemBuilder: (BuildContext context, int index) {
                           return Padding(
@@ -1205,7 +1740,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                 ],
                               ).createShader(
                                   const Rect.fromLTRB(40, 0, 100, 20)),
-                            fontSize: h * 0.03,
+                            fontSize: h * 0.025,
                             fontWeight: FontWeight.w700),
                       ),
                     ],
@@ -1234,4 +1769,12 @@ class BusinessCategoryDetails extends ConsumerWidget {
       ),
     );
   }
+}
+
+class ChartData {
+  ChartData({required this.x, required this.y, required this.color});
+
+  final String x;
+  final double y;
+  final Color color;
 }

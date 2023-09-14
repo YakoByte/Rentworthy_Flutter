@@ -2,7 +2,8 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:table_calendar/table_calendar.dart';
+
+import 'table_calendar/table_calendar.dart';
 
 part 'product_availablity_screen_controller.g.dart';
 

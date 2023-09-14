@@ -5,10 +5,9 @@ import 'package:rentworthy/utils/globals.dart';
 import 'package:rentworthy/utils/images.dart';
 import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-
 import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_text.dart';
+import '../../../dialogs/widgets/date_picker/date_picker_manager.dart';
 
 part 'rent_now_screen_controller.g.dart';
 
@@ -22,7 +21,8 @@ class RentNowController extends _$RentNowController {
     'Mahim',
   ];
   List<bool>? featureadfavlist;
-  DateRangePickerController _pickerController = DateRangePickerController();
+  final DateRangePickerController _pickerController =
+      DateRangePickerController();
 
   DateRangePickerController get pickerController => _pickerController;
 

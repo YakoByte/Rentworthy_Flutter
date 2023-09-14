@@ -3,13 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rentworthy/presentation/indi_prof/sell/product_availablity/product_availablity_screen_controller.dart';
 import 'package:rentworthy/utils/common_components/icon_text.dart';
 import 'package:rentworthy/utils/images.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_appbar.dart';
 import '../../../../utils/common_components/common_button.dart';
 import '../../../../utils/common_components/common_text.dart';
 import '../../../../utils/text.dart';
+import 'table_calendar/table_calendar.dart';
 
 class ProductAvailabliity extends ConsumerWidget {
   const ProductAvailabliity({super.key});
@@ -146,6 +146,8 @@ class ProductAvailabliity extends ConsumerWidget {
                         selectedDayPredicate: (day) =>
                             isSameDay(controller().selectedDay, day),
                         calendarStyle: CalendarStyle(
+                            defaultDecoration: BoxDecoration(),
+                            weekendDecoration: BoxDecoration(),
                             outsideDaysVisible: false,
                             defaultTextStyle: ptSansTextStyle(
                                 color: AppColors.black,

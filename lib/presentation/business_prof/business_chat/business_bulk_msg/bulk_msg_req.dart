@@ -126,9 +126,11 @@ class _BulkMsgReqState extends ConsumerState<BulkMsgReq> {
                               fontWeight: FontWeight.w400,
                             )),
                         Checkbox(
-                            value: controller().getisSelected,
+                            value: controller().getselectuser[index],
                             tristate: true,
-                            onChanged: (bool? v) {}),
+                            onChanged: (bool? v) {
+                              controller().selectUser(index);
+                            }),
                       ],
                     );
                   }),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:rentworthy/presentation/business_prof/statistics_reports/statistics_reports_screen_controller.dart';
 
 import '../../../utils/color.dart';
@@ -15,6 +16,8 @@ import '../../../utils/text.dart';
 import '../../indi_prof/home/categories/categories.dart';
 import '../business_widgets/business_nav_drawer.dart';
 import '../business_widgets/business_search.dart';
+import '../charts_widget/charts.dart';
+import '../charts_widget/sparkcharts.dart';
 
 class BusinessSandReport extends ConsumerWidget {
   const BusinessSandReport({super.key});
@@ -55,7 +58,7 @@ class BusinessSandReport extends ConsumerWidget {
                 child: Column(
                   children: [
                     Card(
-                      elevation: 3,
+                      elevation: 2,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -75,7 +78,7 @@ class BusinessSandReport extends ConsumerWidget {
                                 height: h * 0.17,
                                 width: w * 0.2,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.vertical(
+                                  borderRadius: const BorderRadius.vertical(
                                     top: Radius.circular(8),
                                   ),
                                   color: AppColors.colorSecondarydark
@@ -115,7 +118,7 @@ class BusinessSandReport extends ConsumerWidget {
                       ),
                     ),
                     Card(
-                      elevation: 3,
+                      elevation: 2,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -330,20 +333,120 @@ class BusinessSandReport extends ConsumerWidget {
                         ),
                       ],
                     ),
-                    CommonText(
-                      text: AppText.comingsoon,
-                      style: ptSansTextStyle(
-                          foreground: Paint()
-                            ..shader = const LinearGradient(
-                              colors: <Color>[
-                                AppColors.colorPrimary,
-                                AppColors.colorSecondary
-                              ],
-                            ).createShader(
-                                const Rect.fromLTRB(100, 0, 350, 20)),
-                          fontSize: h * 0.05,
-                          fontWeight: FontWeight.w700),
+                    // SfCartesianChart(
+                    //   plotAreaBorderWidth: 0,
+                    //   primaryXAxis: NumericAxis(
+                    //     majorGridLines: const MajorGridLines(width: 0),
+                    //     interval: 1,
+                    //   ),
+                    //   primaryYAxis: NumericAxis(
+                    //       labelFormat: '{value}%',
+                    //       minimum: -0.1,
+                    //       maximum: 0.2,
+                    //       interval: 0.1,
+                    //       majorTickLines: const MajorTickLines(size: 0)),
+                    //   series: <SplineSeries<_ChartData, num>>[
+                    //     SplineSeries<_ChartData, num>(
+                    //
+                    //         /// To set the spline type here.
+                    //         splineType: SplineType.clamped,
+                    //         dataSource: <_ChartData>[
+                    //           _ChartData(2011, 0.05),
+                    //           _ChartData(2011.25, 0),
+                    //           _ChartData(2011.50, 0.03),
+                    //           _ChartData(2011.75, 0),
+                    //           _ChartData(2012, 0.04),
+                    //           _ChartData(2012.25, 0.02),
+                    //           _ChartData(2012.50, -0.01),
+                    //           _ChartData(2012.75, 0.01),
+                    //           _ChartData(2013, -0.08),
+                    //           _ChartData(2013.25, -0.02),
+                    //           _ChartData(2013.50, 0.03),
+                    //           _ChartData(2013.75, 0.05),
+                    //           _ChartData(2014, 0.04),
+                    //           _ChartData(2014.25, 0.02),
+                    //           _ChartData(2014.50, 0.04),
+                    //           _ChartData(2014.75, 0),
+                    //           _ChartData(2015, 0.02),
+                    //           _ChartData(2015.25, 0.10),
+                    //           _ChartData(2015.50, 0.09),
+                    //           _ChartData(2015.75, 0.11),
+                    //           _ChartData(2016, 0.12),
+                    //         ],
+                    //         xValueMapper: (_ChartData sales, _) => sales.x,
+                    //         yValueMapper: (_ChartData sales, _) => sales.y,
+                    //         width: 2)
+                    //   ],
+                    //   tooltipBehavior: TooltipBehavior(
+                    //       enable: true, header: '', canShowMarker: false),
+                    // ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.lightback,
+                        border: GradientBoxBorder(
+                            gradient: LinearGradient(colors: [
+                          AppColors.colorPrimary,
+                          AppColors.colorSecondary,
+                        ])),
+                      ),
+                      child: SfSparkLineChart(
+                        axisLineWidth: 0,
+                        width: w * 0.008,
+                        color: AppColors.colorPrimary,
+                        trackball: SparkChartTrackball(
+                            shouldAlwaysShow: true,
+                            width: w * 0.007,
+                            backgroundColor: AppColors.red.withOpacity(0.8),
+                            borderColor:
+                                AppColors.colorPrimary.withOpacity(0.4),
+                            color: AppColors.colorPrimary.withOpacity(0.4),
+                            labelStyle: const TextStyle(color: AppColors.white),
+                            activationMode: SparkChartActivationMode.tap),
+                        marker: const SparkChartMarker(
+                            shape: SparkChartMarkerShape.diamond,
+                            displayMode: SparkChartMarkerDisplayMode.none),
+                        data: const <double>[
+                          5,
+                          6,
+                          5,
+                          7,
+                          4,
+                          3,
+                          9,
+                          5,
+                          6,
+                          5,
+                          7,
+                          8,
+                          4,
+                          5,
+                          3,
+                          4,
+                          11,
+                          10,
+                          2,
+                          12,
+                          4,
+                          7,
+                          6,
+                          8
+                        ],
+                      ),
                     ),
+                    // CommonText(
+                    //   text: AppText.comingsoon,
+                    //   style: ptSansTextStyle(
+                    //       foreground: Paint()
+                    //         ..shader = const LinearGradient(
+                    //           colors: <Color>[
+                    //             AppColors.colorPrimary,
+                    //             AppColors.colorSecondary
+                    //           ],
+                    //         ).createShader(
+                    //             const Rect.fromLTRB(100, 0, 350, 20)),
+                    //       fontSize: h * 0.05,
+                    //       fontWeight: FontWeight.w700),
+                    // ),
                   ],
                 ),
               ).animate().fadeIn(duration: 400.ms).then(delay: 400.ms).slideX(
@@ -513,7 +616,7 @@ class BusinessSandReport extends ConsumerWidget {
 
               /// Featured Ads
               Categories(
-                animatecontrollerlist: [],
+                animatecontrollerlist: const [],
                 isFavIcon: true,
                 isFeature: true,
                 isTopPadding: false,
@@ -544,7 +647,7 @@ class BusinessSandReport extends ConsumerWidget {
               Padding(
                 padding: EdgeInsets.only(bottom: h * 0.015),
                 child: Categories(
-                  animatecontrollerlist: [],
+                  animatecontrollerlist: const [],
                   isFavIcon: true,
                   isFeature: false,
                   onFavPressed: (index) {
@@ -583,7 +686,7 @@ class BusinessSandReport extends ConsumerWidget {
               Padding(
                 padding: EdgeInsets.only(top: h * 0.005, bottom: h * 0.015),
                 child: Categories(
-                  animatecontrollerlist: [],
+                  animatecontrollerlist: const [],
                   isFavIcon: true,
                   isFeature: false,
                   isextended: false,
@@ -623,4 +726,11 @@ class BusinessSandReport extends ConsumerWidget {
       ),
     );
   }
+}
+
+class _ChartData {
+  _ChartData(this.x, this.y);
+
+  final double x;
+  final double y;
 }

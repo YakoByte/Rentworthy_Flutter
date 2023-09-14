@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:rentworthy/utils/common_components/common_navigator.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import '../../../application/dialog/dialod_service.dart';
 import '../../../utils/color.dart';
 import '../../../utils/common_components/common_button.dart';
@@ -10,6 +9,8 @@ import '../../../utils/common_components/common_text.dart';
 import '../../../utils/text.dart';
 import '../home/categories/cat_details/category_details_screen_controller.dart';
 import '../home/categories/rent_now/rent_now_screen.dart';
+import 'widgets/date_picker/date_picker.dart';
+import 'widgets/date_picker/date_picker_manager.dart';
 
 class SelectDateDialog extends ConsumerStatefulWidget {
   SelectDateDialog({
@@ -105,7 +106,7 @@ class _SelectDateDialogState extends ConsumerState<SelectDateDialog> {
                     monthFormat: 'MMMM',
                     selectionRadius: 10.0,
                     onViewChanged: (DateRangePickerViewChangedArgs args) {},
-                    selectionMode: DateRangePickerSelectionMode.multiRange,
+                    selectionMode: DateRangePickerSelectionMode.range,
                     todayHighlightColor: AppColors.textBlack,
                     enablePastDates: true,
                     showNavigationArrow: false,
@@ -125,10 +126,9 @@ class _SelectDateDialogState extends ConsumerState<SelectDateDialog> {
                           textclr: AppColors.white);
                     },
                     showTodayButton: false,
-                    selectionColor: AppColors.indigo,
                     rangeSelectionColor: AppColors.dotcolor.withOpacity(0.4),
-                    startRangeSelectionColor: AppColors.indigo,
-                    endRangeSelectionColor: AppColors.indigo,
+                    startRangeSelectionColor: AppColors.white,
+                    endRangeSelectionColor: AppColors.white,
                     onSelectionChanged:
                         (DateRangePickerSelectionChangedArgs args) {
                       // print('selectionChanged');
