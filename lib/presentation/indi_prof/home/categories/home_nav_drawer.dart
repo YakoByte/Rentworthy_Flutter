@@ -268,29 +268,29 @@ class HomeNavDrawer extends ConsumerWidget {
                         // );
                       },
                       child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: w * 0.032, vertical: h * 0.011),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: IconText(
-                                  isCenter: false,
-                                  title: AppText.orders,
-                                  textStyle: ptSansTextStyle(
-                                    color: AppColors.black.withOpacity(0.8),
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: h * 0.021,
-                                    fontWeight: FontWeight.w600,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: w * 0.032, vertical: h * 0.011),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(right: w * 0.03),
+                                    child: Image.asset(
+                                      AppImg.gift,
+                                      height: h * 0.03,
+                                      width: h * 0.03,
+                                    ),
                                   ),
-                                  preimgname: AppImg.gift,
-                                  preiconsize: h * 0.028,
-                                  subimg: false,
-                                  preimg: true),
-                            ),
-                          ],
-                        ),
-                      )
+                                  CommonText(
+                                      text: AppText.orders,
+                                      style: ptSansTextStyle(
+                                        color: AppColors.black.withOpacity(0.8),
+                                        overflow: TextOverflow.ellipsis,
+                                        fontSize: h * 0.021,
+                                        fontWeight: FontWeight.w600,
+                                      )),
+                                ],
+                              ))
                           .animate()
                           .fadeIn(duration: 130.ms)
                           .then(delay: 130.ms)
@@ -510,22 +510,22 @@ class HomeNavDrawer extends ConsumerWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: IconText(
-                                  isCenter: false,
-                                  title: AppText.howitworks,
-                                  textStyle: ptSansTextStyle(
-                                    color: AppColors.black.withOpacity(0.8),
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: h * 0.021,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                  preimgname: AppImg.slideshow,
-                                  preiconsize: h * 0.028,
-                                  preimgcolor: AppColors.black.withOpacity(0.6),
-                                  subimg: false,
-                                  preimg: true),
+                            Padding(
+                              padding: EdgeInsets.only(right: w * 0.03),
+                              child: Image.asset(
+                                AppImg.slideshow,
+                                height: h * 0.03,
+                                width: h * 0.03,
+                              ),
                             ),
+                            CommonText(
+                                text: AppText.howitworks,
+                                style: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.8),
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: h * 0.021,
+                                  fontWeight: FontWeight.w600,
+                                )),
                           ],
                         ),
                       )
@@ -555,21 +555,22 @@ class HomeNavDrawer extends ConsumerWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: IconText(
-                                  isCenter: false,
-                                  title: AppText.forbusiness,
-                                  textStyle: ptSansTextStyle(
-                                    color: AppColors.black.withOpacity(0.8),
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: h * 0.021,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                  preimgname: AppImg.rs,
-                                  preiconsize: h * 0.028,
-                                  subimg: false,
-                                  preimg: true),
+                            Padding(
+                              padding: EdgeInsets.only(right: w * 0.03),
+                              child: Image.asset(
+                                AppImg.rs,
+                                height: h * 0.03,
+                                width: h * 0.03,
+                              ),
                             ),
+                            CommonText(
+                                text: AppText.forbusiness,
+                                style: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.8),
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: h * 0.021,
+                                  fontWeight: FontWeight.w600,
+                                )),
                           ],
                         ),
                       )
@@ -599,22 +600,22 @@ class HomeNavDrawer extends ConsumerWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: IconText(
-                                  isCenter: false,
-                                  title: AppText.rateus,
-                                  textStyle: ptSansTextStyle(
-                                    color: AppColors.black.withOpacity(0.8),
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: h * 0.021,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                  preicon: Icons.star,
-                                  preiconsize: h * 0.028,
-                                  preimgcolor: AppColors.black.withOpacity(0.6),
-                                  subimg: false,
-                                  preimg: true),
+                            Padding(
+                              padding: EdgeInsets.only(right: w * 0.03),
+                              child: Icon(
+                                Icons.star,
+                                color: AppColors.black.withOpacity(0.6),
+                                size: h * 0.03,
+                              ),
                             ),
+                            CommonText(
+                                text: AppText.rateus,
+                                style: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.8),
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: h * 0.021,
+                                  fontWeight: FontWeight.w600,
+                                )),
                           ],
                         ),
                       )
@@ -644,22 +645,22 @@ class HomeNavDrawer extends ConsumerWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: IconText(
-                                  isCenter: false,
-                                  title: AppText.myaddress,
-                                  textStyle: ptSansTextStyle(
-                                    color: AppColors.black.withOpacity(0.8),
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: h * 0.021,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                  preicon: Icons.location_on,
-                                  preiconsize: h * 0.028,
-                                  preimgcolor: AppColors.black.withOpacity(0.6),
-                                  subimg: false,
-                                  preimg: true),
+                            Padding(
+                              padding: EdgeInsets.only(right: w * 0.03),
+                              child: Icon(
+                                Icons.location_on,
+                                size: h * 0.03,
+                                color: AppColors.black.withOpacity(0.6),
+                              ),
                             ),
+                            CommonText(
+                                text: AppText.myaddress,
+                                style: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.8),
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: h * 0.021,
+                                  fontWeight: FontWeight.w600,
+                                )),
                           ],
                         ),
                       )
@@ -689,22 +690,22 @@ class HomeNavDrawer extends ConsumerWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: IconText(
-                                  isCenter: false,
-                                  title: AppText.blogs,
-                                  textStyle: ptSansTextStyle(
-                                    color: AppColors.black.withOpacity(0.8),
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: h * 0.021,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                  preimgname: AppImg.blog,
-                                  preiconsize: h * 0.028,
-                                  preimgcolor: AppColors.black.withOpacity(0.6),
-                                  subimg: false,
-                                  preimg: true),
+                            Padding(
+                              padding: EdgeInsets.only(right: w * 0.03),
+                              child: Image.asset(
+                                AppImg.blog,
+                                height: h * 0.03,
+                                width: h * 0.03,
+                              ),
                             ),
+                            CommonText(
+                                text: AppText.blogs,
+                                style: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.8),
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: h * 0.021,
+                                  fontWeight: FontWeight.w600,
+                                )),
                           ],
                         ),
                       )
@@ -734,22 +735,22 @@ class HomeNavDrawer extends ConsumerWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: IconText(
-                                  isCenter: false,
-                                  title: AppText.faqs,
-                                  textStyle: ptSansTextStyle(
-                                    color: AppColors.black.withOpacity(0.8),
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: h * 0.021,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                  preicon: Icons.help,
-                                  preiconsize: h * 0.028,
-                                  preimgcolor: AppColors.black.withOpacity(0.6),
-                                  subimg: false,
-                                  preimg: true),
+                            Padding(
+                              padding: EdgeInsets.only(right: w * 0.03),
+                              child: Icon(
+                                Icons.help,
+                                size: h * 0.03,
+                                color: AppColors.black.withOpacity(0.6),
+                              ),
                             ),
+                            CommonText(
+                                text: AppText.faqs,
+                                style: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.8),
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: h * 0.021,
+                                  fontWeight: FontWeight.w600,
+                                )),
                           ],
                         ),
                       )
@@ -779,22 +780,22 @@ class HomeNavDrawer extends ConsumerWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: IconText(
-                                  isCenter: false,
-                                  title: AppText.setting,
-                                  textStyle: ptSansTextStyle(
-                                    color: AppColors.black.withOpacity(0.8),
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: h * 0.021,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                  preicon: Icons.settings,
-                                  preiconsize: h * 0.028,
-                                  preimgcolor: AppColors.black.withOpacity(0.6),
-                                  subimg: false,
-                                  preimg: true),
+                            Padding(
+                              padding: EdgeInsets.only(right: w * 0.03),
+                              child: Icon(
+                                Icons.settings,
+                                size: h * 0.03,
+                                color: AppColors.black.withOpacity(0.6),
+                              ),
                             ),
+                            CommonText(
+                                text: AppText.setting,
+                                style: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.8),
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: h * 0.021,
+                                  fontWeight: FontWeight.w600,
+                                )),
                           ],
                         ),
                       )
@@ -824,21 +825,22 @@ class HomeNavDrawer extends ConsumerWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: IconText(
-                                  isCenter: false,
-                                  title: AppText.tns,
-                                  textStyle: ptSansTextStyle(
-                                    color: AppColors.black.withOpacity(0.8),
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: h * 0.021,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                  preimgname: AppImg.notes,
-                                  preiconsize: h * 0.028,
-                                  subimg: false,
-                                  preimg: true),
+                            Padding(
+                              padding: EdgeInsets.only(right: w * 0.03),
+                              child: Image.asset(
+                                AppImg.notes,
+                                height: h * 0.03,
+                                width: h * 0.03,
+                              ),
                             ),
+                            CommonText(
+                                text: AppText.tns,
+                                style: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.8),
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: h * 0.021,
+                                  fontWeight: FontWeight.w600,
+                                )),
                           ],
                         ),
                       )
@@ -868,21 +870,22 @@ class HomeNavDrawer extends ConsumerWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: IconText(
-                                  isCenter: false,
-                                  title: AppText.privacypolcy,
-                                  textStyle: ptSansTextStyle(
-                                    color: AppColors.black.withOpacity(0.8),
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: h * 0.021,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                  preimgname: AppImg.notes,
-                                  preiconsize: h * 0.028,
-                                  subimg: false,
-                                  preimg: true),
+                            Padding(
+                              padding: EdgeInsets.only(right: w * 0.03),
+                              child: Image.asset(
+                                AppImg.notes,
+                                height: h * 0.03,
+                                width: h * 0.03,
+                              ),
                             ),
+                            CommonText(
+                                text: AppText.privacypolcy,
+                                style: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.8),
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: h * 0.021,
+                                  fontWeight: FontWeight.w600,
+                                )),
                           ],
                         ),
                       )

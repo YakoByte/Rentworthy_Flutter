@@ -20,14 +20,9 @@ class HomeAppBar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncState = ref.watch(homeScreenControllerProvider);
     controller() => ref.read(homeScreenControllerProvider.notifier);
-    final h = MediaQuery
-        .of(context)
-        .size
-        .height;
-    final w = MediaQuery
-        .of(context)
-        .size
-        .width;
+
+    final h = MediaQuery.of(context).size.height;
+    final w = MediaQuery.of(context).size.width;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: w * 0.05),
@@ -51,7 +46,6 @@ class HomeAppBar extends ConsumerWidget {
                   ),
                 ),
               ),
-
               CommonDropdown(
                 selectedItem: controller().selectedLocation!,
                 items: controller().locationList,
@@ -77,7 +71,7 @@ class HomeAppBar extends ConsumerWidget {
                             text: "Use current location",
                             style: ptSansTextStyle(
                                 color: AppColors.black.withOpacity(0.8),
-                                fontSize: h * 0.02,
+                                fontSize: w * 0.04,
                                 fontWeight: FontWeight.w600),
                           ),
                         ],

@@ -219,8 +219,8 @@ class TrackItem extends ConsumerWidget {
                               padding: EdgeInsets.symmetric(vertical: h * 0.02),
                               child: Container(
                                 height: controller().isInvoiceTap == false
-                                    ? h * 0.78
-                                    : h * 0.9,
+                                    ? h * 0.8
+                                    : h * 0.92,
                                 decoration: BoxDecoration(
                                   color: AppColors.white,
                                   border: Border.all(
