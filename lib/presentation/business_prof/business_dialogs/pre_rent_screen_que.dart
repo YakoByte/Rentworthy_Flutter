@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rentworthy/utils/common_components/icon_text.dart';
 import 'package:rentworthy/utils/images.dart';
 
+import '../../../application/dialog/dialod_service.dart';
 import '../../../utils/color.dart';
 import '../../../utils/common_components/common_button.dart';
 import '../../../utils/common_components/common_text.dart';
@@ -487,7 +488,9 @@ class _BusinessRentScreeningDialogState
                         color: AppColors.white,
                         fontSize: h * 0.019,
                         fontWeight: FontWeight.w700),
-                    onPressed: () {}),
+                    onPressed: () {
+                      ref.read(dialogServiceProvider).registerComplaintDialog();
+                    }),
               ],
             ),
           ),

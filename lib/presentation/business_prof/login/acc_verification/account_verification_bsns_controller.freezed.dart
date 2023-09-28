@@ -60,25 +60,25 @@ class _$BusinessAccountVerificationStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_BusinessAccountVerificationStateCopyWith<$Res>
+abstract class _$$BusinessAccountVerificationStateImplCopyWith<$Res>
     implements $BusinessAccountVerificationStateCopyWith<$Res> {
-  factory _$$_BusinessAccountVerificationStateCopyWith(
-          _$_BusinessAccountVerificationState value,
-          $Res Function(_$_BusinessAccountVerificationState) then) =
-      __$$_BusinessAccountVerificationStateCopyWithImpl<$Res>;
+  factory _$$BusinessAccountVerificationStateImplCopyWith(
+          _$BusinessAccountVerificationStateImpl value,
+          $Res Function(_$BusinessAccountVerificationStateImpl) then) =
+      __$$BusinessAccountVerificationStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int? start});
 }
 
 /// @nodoc
-class __$$_BusinessAccountVerificationStateCopyWithImpl<$Res>
+class __$$BusinessAccountVerificationStateImplCopyWithImpl<$Res>
     extends _$BusinessAccountVerificationStateCopyWithImpl<$Res,
-        _$_BusinessAccountVerificationState>
-    implements _$$_BusinessAccountVerificationStateCopyWith<$Res> {
-  __$$_BusinessAccountVerificationStateCopyWithImpl(
-      _$_BusinessAccountVerificationState _value,
-      $Res Function(_$_BusinessAccountVerificationState) _then)
+        _$BusinessAccountVerificationStateImpl>
+    implements _$$BusinessAccountVerificationStateImplCopyWith<$Res> {
+  __$$BusinessAccountVerificationStateImplCopyWithImpl(
+      _$BusinessAccountVerificationStateImpl _value,
+      $Res Function(_$BusinessAccountVerificationStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -86,7 +86,7 @@ class __$$_BusinessAccountVerificationStateCopyWithImpl<$Res>
   $Res call({
     Object? start = freezed,
   }) {
-    return _then(_$_BusinessAccountVerificationState(
+    return _then(_$BusinessAccountVerificationStateImpl(
       start: freezed == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
@@ -97,9 +97,9 @@ class __$$_BusinessAccountVerificationStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_BusinessAccountVerificationState
+class _$BusinessAccountVerificationStateImpl
     extends _BusinessAccountVerificationState {
-  const _$_BusinessAccountVerificationState({this.start}) : super._();
+  const _$BusinessAccountVerificationStateImpl({this.start}) : super._();
 
   @override
   final int? start;
@@ -113,7 +113,7 @@ class _$_BusinessAccountVerificationState
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BusinessAccountVerificationState &&
+            other is _$BusinessAccountVerificationStateImpl &&
             (identical(other.start, start) || other.start == start));
   }
 
@@ -123,23 +123,23 @@ class _$_BusinessAccountVerificationState
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BusinessAccountVerificationStateCopyWith<
-          _$_BusinessAccountVerificationState>
-      get copyWith => __$$_BusinessAccountVerificationStateCopyWithImpl<
-          _$_BusinessAccountVerificationState>(this, _$identity);
+  _$$BusinessAccountVerificationStateImplCopyWith<
+          _$BusinessAccountVerificationStateImpl>
+      get copyWith => __$$BusinessAccountVerificationStateImplCopyWithImpl<
+          _$BusinessAccountVerificationStateImpl>(this, _$identity);
 }
 
 abstract class _BusinessAccountVerificationState
     extends BusinessAccountVerificationState {
   const factory _BusinessAccountVerificationState({final int? start}) =
-      _$_BusinessAccountVerificationState;
+      _$BusinessAccountVerificationStateImpl;
   const _BusinessAccountVerificationState._() : super._();
 
   @override
   int? get start;
   @override
   @JsonKey(ignore: true)
-  _$$_BusinessAccountVerificationStateCopyWith<
-          _$_BusinessAccountVerificationState>
+  _$$BusinessAccountVerificationStateImplCopyWith<
+          _$BusinessAccountVerificationStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

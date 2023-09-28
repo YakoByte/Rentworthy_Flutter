@@ -17,7 +17,9 @@ class AppText {
   static const String heavymachine = "Heavy Machinery";
   static const String newmarket = "New to Market";
   static const String rent = "Rent";
+  static const String remove = "Remove";
   static const String add = "Add";
+  static const String important = "Important";
   static const String dates = "Dates";
   static const String edit = "Edit";
   static const String prerent = "Pre Rental Screening Questions";
@@ -197,6 +199,7 @@ class AppText {
       "We have covered you, no need to worry about that anymore. Book and schedule the things you need to make your next trip worthy of remembering.";
   static const String addtofavorite = "Add to favorite";
   static const String share = "Share";
+  static const String brand = "Brand";
   static const String subcat = "Subcategory";
   static const String cat = "Category";
   static const String orderconfirm = "Your Order is Confirmed!";

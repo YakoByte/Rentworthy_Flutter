@@ -47,12 +47,7 @@ class BusinessSearch extends ConsumerWidget {
             containerheight: h * 0.055,
             containercolor: AppColors.black.withOpacity(0.1),
             borderRadius: BorderRadius.circular(10),
-            suffixicon: CommonText(
-                text: "⌘/",
-                style: ptSansTextStyle(
-                    color: AppColors.black.withOpacity(0.2),
-                    fontSize: h * 0.027,
-                    fontWeight: FontWeight.w500)),
+            suffixicon: SizedBox(),
             bordercolor: AppColors.black.withOpacity(0.1),
             searchController: controller().searchController,
             onsearchChanged: (str) {

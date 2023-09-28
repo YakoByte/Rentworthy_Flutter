@@ -105,33 +105,72 @@ class _RegisterComplaintDialogState
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: h * 0.02),
-                        child: Container(
-                          height: h * 0.2,
-                          width: h * 0.2,
-                          decoration: BoxDecoration(
-                            color: AppColors.grey,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Image.asset(AppImg.uploadimg,
-                                  height: h * 0.04, width: h * 0.04),
-                              Padding(
-                                padding: EdgeInsets.only(top: h * 0.01),
-                                child: CommonText(
-                                    text: "Upload Image",
-                                    style: ptSansTextStyle(
-                                        color: AppColors.black.withOpacity(0.8),
-                                        fontSize: h * 0.019,
-                                        fontWeight: FontWeight.w600)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: h * 0.02, horizontal: w * 0.01),
+                            child: Container(
+                              height: h * 0.18,
+                              width: h * 0.18,
+                              decoration: BoxDecoration(
+                                color: AppColors.grey,
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                            ],
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Image.asset(AppImg.uploadimg,
+                                      height: h * 0.04, width: h * 0.04),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: h * 0.01),
+                                    child: CommonText(
+                                        text: "Upload Image",
+                                        style: ptSansTextStyle(
+                                            color: AppColors.black
+                                                .withOpacity(0.8),
+                                            fontSize: h * 0.019,
+                                            fontWeight: FontWeight.w600)),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: h * 0.02, horizontal: w * 0.01),
+                            child: Container(
+                              height: h * 0.18,
+                              width: h * 0.18,
+                              decoration: BoxDecoration(
+                                color: AppColors.grey,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.video_call_rounded,
+                                    size: h * 0.04,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: h * 0.01),
+                                    child: CommonText(
+                                        text: "Upload Video",
+                                        style: ptSansTextStyle(
+                                            color: AppColors.black
+                                                .withOpacity(0.8),
+                                            fontSize: h * 0.019,
+                                            fontWeight: FontWeight.w600)),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       TextInputField(
                           isCounter: true,

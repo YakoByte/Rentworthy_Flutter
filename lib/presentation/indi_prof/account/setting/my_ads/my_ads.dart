@@ -73,9 +73,9 @@ class MyAds extends ConsumerWidget {
                                 const Rect.fromLTRB(100, 0, 150, 20)),
                           fontSize: h * 0.02,
                           fontWeight: FontWeight.w700),
-                      tabs: [
-                        const Tab(text: AppText.ads),
-                        const Tab(text: AppText.fav),
+                      tabs: const [
+                        Tab(text: AppText.ads),
+                        Tab(text: AppText.fav),
                       ]),
                 ),
                 Container(
@@ -213,37 +213,30 @@ class MyAds extends ConsumerWidget {
                                               ],
                                             ),
                                           ),
-                                          CommonButton(
-                                              containerwidth: w * 0.15,
-                                              containerheight: h * 0.035,
-                                              backgroundColor: AppColors
-                                                  .starcolor
+                                          Container(
+                                              width: w * 0.15,
+                                              height: h * 0.035,
+                                              color: AppColors.starcolor
                                                   .withOpacity(0.7),
-                                              shape: LinearBorder.none,
-                                              text: "Active",
-                                              textStyle: ptSansTextStyle(
-                                                  color: AppColors.black
-                                                      .withOpacity(0.4),
-                                                  fontSize: h * 0.012,
-                                                  fontWeight: FontWeight.w700),
-                                              onPressed: () {}),
+                                              child: Center(
+                                                child: CommonText(
+                                                    text: "Active",
+                                                    style: ptSansTextStyle(
+                                                        color: AppColors.black
+                                                            .withOpacity(0.4),
+                                                        fontSize: h * 0.015,
+                                                        fontWeight:
+                                                            FontWeight.w700)),
+                                              )),
                                           CommonIconButton(
                                               containerwidth: w * 0.08,
                                               containerheight: h * 0.052,
                                               backgroundColor: AppColors.white,
                                               shape: LinearBorder.none,
-                                              centericon: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  Icon(Icons.more_vert,
-                                                      color: AppColors.black
-                                                          .withOpacity(0.8),
-                                                      size: h * 0.03),
-                                                ],
-                                              ),
+                                              centericon: Icon(Icons.more_vert,
+                                                  color: AppColors.black
+                                                      .withOpacity(0.8),
+                                                  size: h * 0.03),
                                               onPressed: () {}),
                                         ],
                                       ),
@@ -257,7 +250,7 @@ class MyAds extends ConsumerWidget {
                                       height: controller().imgList.length *
                                           h *
                                           0.077,
-                                      favList: [],
+                                      favList: const [],
                                       scrollDirection: Axis.vertical,
                                       nameList: controller().nameList,
                                       imgList: controller().imgList,

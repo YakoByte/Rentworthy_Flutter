@@ -58,24 +58,25 @@ class _$AccountVerificationStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_AccountVerificationStateCopyWith<$Res>
+abstract class _$$AccountVerificationStateImplCopyWith<$Res>
     implements $AccountVerificationStateCopyWith<$Res> {
-  factory _$$_AccountVerificationStateCopyWith(
-          _$_AccountVerificationState value,
-          $Res Function(_$_AccountVerificationState) then) =
-      __$$_AccountVerificationStateCopyWithImpl<$Res>;
+  factory _$$AccountVerificationStateImplCopyWith(
+          _$AccountVerificationStateImpl value,
+          $Res Function(_$AccountVerificationStateImpl) then) =
+      __$$AccountVerificationStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int? start});
 }
 
 /// @nodoc
-class __$$_AccountVerificationStateCopyWithImpl<$Res>
+class __$$AccountVerificationStateImplCopyWithImpl<$Res>
     extends _$AccountVerificationStateCopyWithImpl<$Res,
-        _$_AccountVerificationState>
-    implements _$$_AccountVerificationStateCopyWith<$Res> {
-  __$$_AccountVerificationStateCopyWithImpl(_$_AccountVerificationState _value,
-      $Res Function(_$_AccountVerificationState) _then)
+        _$AccountVerificationStateImpl>
+    implements _$$AccountVerificationStateImplCopyWith<$Res> {
+  __$$AccountVerificationStateImplCopyWithImpl(
+      _$AccountVerificationStateImpl _value,
+      $Res Function(_$AccountVerificationStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -83,7 +84,7 @@ class __$$_AccountVerificationStateCopyWithImpl<$Res>
   $Res call({
     Object? start = freezed,
   }) {
-    return _then(_$_AccountVerificationState(
+    return _then(_$AccountVerificationStateImpl(
       start: freezed == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
@@ -94,8 +95,8 @@ class __$$_AccountVerificationStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AccountVerificationState extends _AccountVerificationState {
-  const _$_AccountVerificationState({this.start}) : super._();
+class _$AccountVerificationStateImpl extends _AccountVerificationState {
+  const _$AccountVerificationStateImpl({this.start}) : super._();
 
   @override
   final int? start;
@@ -109,7 +110,7 @@ class _$_AccountVerificationState extends _AccountVerificationState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AccountVerificationState &&
+            other is _$AccountVerificationStateImpl &&
             (identical(other.start, start) || other.start == start));
   }
 
@@ -119,20 +120,20 @@ class _$_AccountVerificationState extends _AccountVerificationState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AccountVerificationStateCopyWith<_$_AccountVerificationState>
-      get copyWith => __$$_AccountVerificationStateCopyWithImpl<
-          _$_AccountVerificationState>(this, _$identity);
+  _$$AccountVerificationStateImplCopyWith<_$AccountVerificationStateImpl>
+      get copyWith => __$$AccountVerificationStateImplCopyWithImpl<
+          _$AccountVerificationStateImpl>(this, _$identity);
 }
 
 abstract class _AccountVerificationState extends AccountVerificationState {
   const factory _AccountVerificationState({final int? start}) =
-      _$_AccountVerificationState;
+      _$AccountVerificationStateImpl;
   const _AccountVerificationState._() : super._();
 
   @override
   int? get start;
   @override
   @JsonKey(ignore: true)
-  _$$_AccountVerificationStateCopyWith<_$_AccountVerificationState>
+  _$$AccountVerificationStateImplCopyWith<_$AccountVerificationStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

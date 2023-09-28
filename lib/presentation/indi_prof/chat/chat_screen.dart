@@ -71,9 +71,9 @@ class ChatScreen extends ConsumerWidget {
                             fontSize: h * 0.02,
                             fontWeight: FontWeight.w700),
                         tabs: [
-                          const Tab(text: AppText.all),
-                          const Tab(text: AppText.unread),
-                          const Tab(text: AppText.selling),
+                          Tab(text: AppText.all),
+                          Tab(text: AppText.unread),
+                          Tab(text: AppText.selling),
                         ]),
                   ),
                   // .animate()

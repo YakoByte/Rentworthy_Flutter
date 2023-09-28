@@ -7,7 +7,7 @@ part of 'bulk_msg_req_controller.dart';
 // **************************************************************************
 
 String _$bulkMsgReqControllerHash() =>
-    r'2a0345c1c0395d023c52ad9405f19ecfafbc9da2';
+    r'6a036558bd5a2856d4658225377f301fabe08f88';
 
 /// See also [BulkMsgReqController].
 @ProviderFor(BulkMsgReqController)
@@ -24,4 +24,4 @@ final bulkMsgReqControllerProvider =
 
 typedef _$BulkMsgReqController = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

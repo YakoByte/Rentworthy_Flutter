@@ -119,7 +119,7 @@ class OnBoardingScreen extends ConsumerWidget {
                                               state.onBoardinglist![index].img,
                                               height: h * 0.37,
                                               width: w * 0.8,
-                                              fit: BoxFit.cover,
+                                              fit: BoxFit.contain,
                                             ),
                                             Padding(
                                               padding: EdgeInsets.symmetric(

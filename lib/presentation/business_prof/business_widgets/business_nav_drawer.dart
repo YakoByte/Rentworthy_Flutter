@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:rentworthy/presentation/both_prof/register/register_screen.dart';
 import 'package:rentworthy/presentation/business_prof/membership_plan/membership_plan_screen.dart';
 import 'package:rentworthy/presentation/business_prof/statistics_reports/statistics_reports_screen.dart';
 import 'package:rentworthy/utils/common_components/common_navigator.dart';
@@ -18,6 +19,7 @@ import '../../indi_prof/account/setting/privacy_policy/privacy_policy.dart';
 import '../admin_panel/admin_panel.dart';
 import '../business_category_details/business_category_details_screen.dart';
 import '../business_chat/business_chat.dart';
+import '../business_info/business_info_screen.dart';
 import '../post_ur_ad/business_post_ur_ad.dart';
 import '../track_item/track_item_screen.dart';
 import '../user_prof/user_prof_screen.dart';
@@ -37,7 +39,7 @@ class AdminNavDrawer extends ConsumerWidget {
       width: w * 0.8,
       shape: LinearBorder.none,
       child: SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         child: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: w * 0.04),
@@ -137,7 +139,7 @@ class AdminNavDrawer extends ConsumerWidget {
                                   Container(
                                     width: w * 0.018,
                                     height: h * 0.035,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: AppColors.black,
                                       borderRadius: BorderRadius.vertical(
                                           top: Radius.circular(18),
@@ -228,7 +230,7 @@ class AdminNavDrawer extends ConsumerWidget {
                                   Container(
                                     width: w * 0.018,
                                     height: h * 0.035,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: AppColors.black,
                                       borderRadius: BorderRadius.vertical(
                                           top: Radius.circular(18),
@@ -319,7 +321,7 @@ class AdminNavDrawer extends ConsumerWidget {
                                   Container(
                                     width: w * 0.018,
                                     height: h * 0.035,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: AppColors.black,
                                       borderRadius: BorderRadius.vertical(
                                           top: Radius.circular(18),
@@ -410,7 +412,7 @@ class AdminNavDrawer extends ConsumerWidget {
                                   Container(
                                     width: w * 0.018,
                                     height: h * 0.035,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: AppColors.black,
                                       borderRadius: BorderRadius.vertical(
                                           top: Radius.circular(18),
@@ -501,7 +503,7 @@ class AdminNavDrawer extends ConsumerWidget {
                                   Container(
                                     width: w * 0.018,
                                     height: h * 0.035,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: AppColors.black,
                                       borderRadius: BorderRadius.vertical(
                                           top: Radius.circular(18),
@@ -607,7 +609,7 @@ class AdminNavDrawer extends ConsumerWidget {
                                   Container(
                                     width: w * 0.018,
                                     height: h * 0.035,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: AppColors.black,
                                       borderRadius: BorderRadius.vertical(
                                           top: Radius.circular(18),
@@ -699,7 +701,7 @@ class AdminNavDrawer extends ConsumerWidget {
                                   Container(
                                     width: w * 0.018,
                                     height: h * 0.035,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: AppColors.black,
                                       borderRadius: BorderRadius.vertical(
                                           top: Radius.circular(18),
@@ -760,7 +762,7 @@ class AdminNavDrawer extends ConsumerWidget {
                       commonNavigator(
                           type: PageTransitionType.rightToLeftWithFade,
                           context: context,
-                          child: PrivacyPolicy());
+                          child: const PrivacyPolicy());
                     }
                   },
                   child: Container(
@@ -788,7 +790,7 @@ class AdminNavDrawer extends ConsumerWidget {
                                   Container(
                                     width: w * 0.018,
                                     height: h * 0.035,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: AppColors.black,
                                       borderRadius: BorderRadius.vertical(
                                           top: Radius.circular(18),
@@ -842,6 +844,95 @@ class AdminNavDrawer extends ConsumerWidget {
                 ),
                 GestureDetector(
                   onTap: () {
+                    if (selectedindex == 7) {
+                      Navigator.pop(context);
+                    } else {
+                      Navigator.pop(context);
+                      commonNavigator(
+                          type: PageTransitionType.rightToLeftWithFade,
+                          context: context,
+                          child: const BusinessInfoScreen());
+                    }
+                  },
+                  child: Container(
+                    width: w,
+                    height: h * 0.06,
+                    margin: EdgeInsets.symmetric(vertical: h * 0.002),
+                    decoration: BoxDecoration(
+                      color: selectedindex == 7
+                          ? AppColors.black.withOpacity(0.1)
+                          : AppColors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: h * 0.01),
+                      child: Stack(
+                        children: [
+                          if (selectedindex == 7)
+                            Positioned(
+                              left: w * 0.001,
+                              right: 0,
+                              top: 0,
+                              bottom: 0,
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: w * 0.018,
+                                    height: h * 0.035,
+                                    decoration: const BoxDecoration(
+                                      color: AppColors.black,
+                                      borderRadius: BorderRadius.vertical(
+                                          top: Radius.circular(18),
+                                          bottom: Radius.circular(18)),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          Positioned(
+                            left: w * 0.05,
+                            right: 0,
+                            top: 0,
+                            bottom: 0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(right: h * 0.01),
+                                  child: selectedindex == 7
+                                      ? SizedBox(
+                                          height: h * 0.02,
+                                          width: h * 0.02,
+                                        )
+                                      : SizedBox(
+                                          width: w * 0.065,
+                                        ),
+                                ),
+                                SizedBox(
+                                  height: h * 0.02,
+                                  width: w * 0.08,
+                                ),
+                                IconText(
+                                    title: "Business Info",
+                                    textStyle: ptSansTextStyle(
+                                        color: AppColors.black,
+                                        fontSize: w * 0.045,
+                                        fontWeight: FontWeight.w500),
+                                    subimg: false,
+                                    preimgname: AppImg.copy,
+                                    preimgcolor: AppColors.black,
+                                    preiconsize: w * 0.07,
+                                    preimg: false),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
                     if (selectedindex == 8) {
                       Navigator.pop(context);
                     } else {
@@ -849,7 +940,7 @@ class AdminNavDrawer extends ConsumerWidget {
                       Navigator.pushAndRemoveUntil(
                           context,
                           PageTransition(
-                              child: const BusinessPostUrAd(),
+                              child: const RegisterScreen(),
                               type: PageTransitionType.rightToLeftWithFade,
                               duration: const Duration(milliseconds: 400)),
                           (Route<dynamic> route) => false);
@@ -880,7 +971,7 @@ class AdminNavDrawer extends ConsumerWidget {
                                   Container(
                                     width: w * 0.018,
                                     height: h * 0.035,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: AppColors.black,
                                       borderRadius: BorderRadius.vertical(
                                           top: Radius.circular(18),

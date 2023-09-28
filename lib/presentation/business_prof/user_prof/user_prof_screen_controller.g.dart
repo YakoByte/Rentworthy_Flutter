@@ -7,7 +7,7 @@ part of 'user_prof_screen_controller.dart';
 // **************************************************************************
 
 String _$businessUserProfControllerHash() =>
-    r'0ed2a0e4902a48cb2014bd808cd2d22b598f1625';
+    r'78b4175f3c23d38a7b5c44387348858737846d02';
 
 /// See also [BusinessUserProfController].
 @ProviderFor(BusinessUserProfController)
@@ -24,4 +24,4 @@ final businessUserProfControllerProvider =
 
 typedef _$BusinessUserProfController = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

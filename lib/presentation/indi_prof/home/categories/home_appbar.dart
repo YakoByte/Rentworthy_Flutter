@@ -54,6 +54,11 @@ class HomeAppBar extends ConsumerWidget {
                   child: Icon(Icons.location_on,
                       color: AppColors.black.withOpacity(0.8), size: h * 0.025),
                 ),
+                textstyle: ptSansTextStyle(
+                    color: AppColors.black.withOpacity(0.4),
+                    fontSize: w * 0.04,
+                    overflow: TextOverflow.ellipsis,
+                    fontWeight: FontWeight.w700),
                 dropdowntitle: Padding(
                   padding: EdgeInsets.symmetric(
                       vertical: h * 0.015, horizontal: w * 0.025),

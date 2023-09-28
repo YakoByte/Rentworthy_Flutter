@@ -28,15 +28,9 @@ class BusinessUserProf extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncState = ref.watch(businessUserProfControllerProvider);
     controller() => ref.read(businessUserProfControllerProvider.notifier);
-    final h = MediaQuery
-        .of(context)
-        .size
-        .height;
+    final h = MediaQuery.of(context).size.height;
     print("user prof ${controller().tabController.index}");
-    final w = MediaQuery
-        .of(context)
-        .size
-        .width;
+    final w = MediaQuery.of(context).size.width;
     return Scaffold(
       key: Globals.userprofkey,
       backgroundColor: AppColors.white,
@@ -45,22 +39,24 @@ class BusinessUserProf extends ConsumerWidget {
       ).animate().fadeIn(duration: 30.ms).then(delay: 20.ms).slideX(
           begin: -1, end: 0, curve: Curves.easeInOutCubic, duration: 400.ms),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: w * 0.035),
-            child: Column(
-              children: [
-                BusinessSearch(adminscaffoldKey: Globals.userprofkey)
-                    .animate()
-                    .fadeIn(duration: 300.ms)
-                    .then(delay: 300.ms)
-                    .slideX(
-                  begin: 1,
-                  end: 0,
-                  curve: Curves.easeInOutCubic,
-                  duration: 600.ms,
-                ),
-                Column(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: w * 0.035),
+          child: Column(
+            children: [
+              BusinessSearch(adminscaffoldKey: Globals.userprofkey)
+                  .animate()
+                  .fadeIn(duration: 300.ms)
+                  .then(delay: 300.ms)
+                  .slideX(
+                    begin: 30,
+                    end: 0,
+                    curve: Curves.easeInOutCubic,
+                    duration: 600.ms,
+                  ),
+              Container(
+                height: h * 0.89,
+                width: w,
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
@@ -77,43 +73,43 @@ class BusinessUserProf extends ConsumerWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 ProfileImgName(
-                                    verified:
-                                    controller().getproductlist.isEmpty
-                                        ? true
-                                        : false,
-                                    items: controller().popupitemList,
-                                    name: AppText.editprof,
-                                    vertbtn: true,
-                                    onTap: () {
-                                      commonNavigator(
-                                        context: context,
-                                        child: EditProfileScreen(),
-                                        type: PageTransitionType
-                                            .rightToLeftWithFade,
-                                      );
-                                    })
+                                        verified:
+                                            controller().getproductlist.isEmpty
+                                                ? true
+                                                : false,
+                                        items: controller().popupitemList,
+                                        name: AppText.editprof,
+                                        vertbtn: true,
+                                        onTap: () {
+                                          commonNavigator(
+                                            context: context,
+                                            child: EditProfileScreen(),
+                                            type: PageTransitionType
+                                                .rightToLeftWithFade,
+                                          );
+                                        })
                                     .animate()
                                     .fadeIn(duration: 200.ms)
                                     .then(delay: 200.ms)
-                                    .slideY(
-                                    begin: 30,
-                                    end: 0,
-                                    curve: Curves.easeInOutCubic,
-                                    duration: 1000.ms),
+                                    .slideX(
+                                        begin: 30,
+                                        end: 0,
+                                        curve: Curves.easeInOutCubic,
+                                        duration: 700.ms),
                                 Container(
                                   height: h * 0.1,
                                   child: Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: w * 0.03),
                                         child: Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
+                                              MainAxisAlignment.spaceEvenly,
                                           children: [
                                             IconText(
                                               preimg: true,
@@ -122,7 +118,7 @@ class BusinessUserProf extends ConsumerWidget {
                                               preiconsize: h * 0.03,
                                               title: AppText.membersince,
                                               preicon:
-                                              Icons.calendar_today_rounded,
+                                                  Icons.calendar_today_rounded,
                                               preimgcolor: AppColors.black
                                                   .withOpacity(0.8),
                                               textStyle: ptSansTextStyle(
@@ -136,12 +132,12 @@ class BusinessUserProf extends ConsumerWidget {
                                                 .animate()
                                                 .fadeIn(duration: 300.ms)
                                                 .then(delay: 300.ms)
-                                                .slideY(
-                                                begin: 30,
-                                                end: 0,
-                                                curve:
-                                                Curves.easeInOutCubic,
-                                                duration: 1000.ms),
+                                                .slideX(
+                                                    begin: 30,
+                                                    end: 0,
+                                                    curve:
+                                                        Curves.easeInOutCubic,
+                                                    duration: 750.ms),
                                             IconText(
                                               preimg: true,
                                               subimg: false,
@@ -162,12 +158,12 @@ class BusinessUserProf extends ConsumerWidget {
                                                 .animate()
                                                 .fadeIn(duration: 350.ms)
                                                 .then(delay: 350.ms)
-                                                .slideY(
-                                                begin: 30,
-                                                end: 0,
-                                                curve:
-                                                Curves.easeInOutCubic,
-                                                duration: 1000.ms),
+                                                .slideX(
+                                                    begin: 30,
+                                                    end: 0,
+                                                    curve:
+                                                        Curves.easeInOutCubic,
+                                                    duration: 800.ms),
                                           ],
                                         ),
                                       ),
@@ -195,16 +191,16 @@ class BusinessUserProf extends ConsumerWidget {
                                               width: 1.5,
                                             ),
                                             borderRadius:
-                                            BorderRadius.circular(4),
+                                                BorderRadius.circular(4),
                                           ),
                                           height: h * 0.09,
                                           width: w * 0.22,
                                           padding: EdgeInsets.all(w * 0.01),
                                           child: Column(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                                CrossAxisAlignment.center,
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
+                                                MainAxisAlignment.spaceEvenly,
                                             children: [
                                               IconText(
                                                 preimg: true,
@@ -218,7 +214,7 @@ class BusinessUserProf extends ConsumerWidget {
                                                   color: AppColors.black
                                                       .withOpacity(0.8),
                                                   overflow:
-                                                  TextOverflow.ellipsis,
+                                                      TextOverflow.ellipsis,
                                                   fontSize: h * 0.018,
                                                   fontWeight: FontWeight.w600,
                                                 ),
@@ -230,73 +226,33 @@ class BusinessUserProf extends ConsumerWidget {
                                                           .withOpacity(0.8),
                                                       fontSize: h * 0.015,
                                                       fontWeight:
-                                                      FontWeight.w500),
+                                                          FontWeight.w500),
                                                   text: AppText.custrating),
                                             ],
                                           ),
-                                        )
+                                        ),
                                     ],
                                   ),
                                 ),
-                                // if (controller().getproductlist.isEmpty)
-                                //   Padding(
-                                //     padding: EdgeInsets.symmetric(
-                                //         horizontal: w * 0.03),
-                                //     child: Column(
-                                //       crossAxisAlignment:
-                                //           CrossAxisAlignment.start,
-                                //       children: [
-                                //         CommonText(
-                                //             style: ptSansTextStyle(
-                                //                 foreground: Paint()
-                                //                   ..shader =
-                                //                       const LinearGradient(
-                                //                     colors: <Color>[
-                                //                       AppColors.colorPrimary,
-                                //                       AppColors.colorSecondary
-                                //                     ],
-                                //                   ).createShader(
-                                //                           const Rect.fromLTRB(
-                                //                               30, 0, 150, 10)),
-                                //                 fontSize: h * 0.022,
-                                //                 fontWeight: FontWeight.w500),
-                                //             text: AppText.businesshrs),
-                                //         CommonText(
-                                //             style: ptSansTextStyle(
-                                //                 color: AppColors.black,
-                                //                 fontSize: h * 0.02,
-                                //                 fontWeight: FontWeight.w500),
-                                //             text: AppText.opentime),
-                                //       ],
-                                //     ),
-                                //   )
-                                //       .animate()
-                                //       .fadeIn(duration: 400.ms)
-                                //       .then(delay: 400.ms)
-                                //       .slideY(
-                                //           begin: 30,
-                                //           end: 0,
-                                //           curve: Curves.easeInOutCubic,
-                                //           duration: 1000.ms)
                               ],
                             ),
                           ),
                         ),
-                        Divider(
-                          color: AppColors.black.withOpacity(0.1),
-                          thickness: 1.5,
-                          height: h * 0.0,
-                        )
-                            .animate()
-                            .fadeIn(duration: 450.ms)
-                            .then(delay: 450.ms)
-                            .slideX(
-                            begin: 10,
-                            end: 0,
-                            curve: Curves.easeInOutCubic,
-                            duration: 1000.ms),
                       ],
                     ),
+                    Divider(
+                      color: AppColors.black.withOpacity(0.1),
+                      thickness: 1.5,
+                      height: h * 0.0,
+                    )
+                        .animate()
+                        .fadeIn(duration: 400.ms)
+                        .then(delay: 400.ms)
+                        .slideX(
+                            begin: 30,
+                            end: 0,
+                            curve: Curves.easeInOutCubic,
+                            duration: 850.ms),
                     Container(
                       child: TabBar(
                           controller: controller().tabController,
@@ -372,276 +328,276 @@ class BusinessUserProf extends ConsumerWidget {
                           ]),
                     )
                         .animate()
-                        .fadeIn(duration: 400.ms)
-                        .then(delay: 400.ms)
+                        .fadeIn(duration: 450.ms)
+                        .then(delay: 450.ms)
                         .slideX(
-                        begin: 1,
-                        end: 0,
-                        curve: Curves.easeInOutCubic,
-                        duration: 700.ms),
+                            begin: 30,
+                            end: 0,
+                            curve: Curves.easeInOutCubic,
+                            duration: 900.ms),
                     Container(
-                      height: h * 0.75,
+                      height: h * 0.55,
                       child: TabBarView(
                           controller: controller().tabController,
                           children: [
                             Container(
-                              height: h * 0.59,
+                              height: h * 0.55,
                               child: controller().getproductlist.isEmpty
                                   ? Categories(
-                                  animatecontrollerlist:
-                                  controller().animatecontrollerlist!,
-                                  isFavIcon: true,
-                                  title: "",
-                                  isextended: false,
-                                  onFavPressed: (int) {},
-                                  shrinkWrap: true,
-                                  width: w,
-                                  isTopPadding: false,
-                                  height: h * 0.59,
-                                  padding: EdgeInsets.zero,
-                                  favList: controller().getfavlist,
-                                  scrollDirection: Axis.vertical,
-                                  nameList: controller().nameList,
-                                  imgList: controller().imgList,
-                                  isCategory: false,
-                                  isFeature: false,
-                                  isViewAll: false)
+                                      animatecontrollerlist:
+                                          controller().animatecontrollerlist!,
+                                      isFavIcon: true,
+                                      title: "",
+                                      isextended: false,
+                                      onFavPressed: (int) {},
+                                      shrinkWrap: true,
+                                      width: w,
+                                      isTopPadding: false,
+                                      height: h * 0.55,
+                                      padding: EdgeInsets.zero,
+                                      favList: controller().getfavlist,
+                                      scrollDirection: Axis.vertical,
+                                      nameList: controller().nameList,
+                                      imgList: controller().imgList,
+                                      isCategory: false,
+                                      isFeature: false,
+                                      isViewAll: false)
                                   : Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: h * 0.055),
-                                child: Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Image.asset(AppImg.nochat,
-                                        height: h * 0.3,
-                                        width: w * 0.6,
-                                        fit: BoxFit.cover),
-                                    Padding(
                                       padding: EdgeInsets.symmetric(
-                                          vertical: h * 0.01),
-                                      child: CommonText(
-                                          textAlign: TextAlign.center,
-                                          text: AppText.haventlisted,
-                                          style: ptSansTextStyle(
-                                              color: AppColors.black
-                                                  .withOpacity(0.4),
-                                              fontSize: h * 0.02,
-                                              fontWeight:
-                                              FontWeight.w400)),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: w * 0.06),
-                                      child: CommonText(
-                                          text: AppText.useanymore,
-                                          textAlign: TextAlign.center,
-                                          style: ptSansTextStyle(
-                                              color: AppColors.black
-                                                  .withOpacity(0.4),
-                                              fontSize: h * 0.02,
-                                              fontWeight:
-                                              FontWeight.w400)),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: h * 0.02),
-                                      child: CommonOutlineButton(
-                                        containerwidth: w * 0.5,
-                                        containerheight: h * 0.06,
-                                        backgroundColor:
-                                        AppColors.transparent,
-                                        // decoration: const BoxDecoration(
-                                        //     borderRadius: BorderRadius.all(Radius.circular(4)),
-                                        //     gradient: LinearGradient(
-                                        //       begin: Alignment.topLeft,
-                                        //       end: Alignment.bottomRight,
-                                        //       colors: [
-                                        //         AppColors.colorPrimary,
-                                        //         AppColors.colorSecondary,
-                                        //       ],
-                                        //     )),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          border: GradientBoxBorder(
-                                            gradient: LinearGradient(
-                                                colors: [
-                                                  AppColors.colorPrimary,
-                                                  AppColors.colorSecondary
-                                                ]),
-                                            width: 2.5,
+                                          vertical: h * 0.055),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Image.asset(AppImg.nochat,
+                                              height: h * 0.3,
+                                              width: w * 0.6,
+                                              fit: BoxFit.cover),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: h * 0.01),
+                                            child: CommonText(
+                                                textAlign: TextAlign.center,
+                                                text: AppText.haventlisted,
+                                                style: ptSansTextStyle(
+                                                    color: AppColors.black
+                                                        .withOpacity(0.4),
+                                                    fontSize: h * 0.02,
+                                                    fontWeight:
+                                                        FontWeight.w400)),
                                           ),
-                                          borderRadius:
-                                          BorderRadius.circular(4),
-                                        ),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(4)),
-                                        text: AppText.startsell,
-                                        textStyle: ptSansTextStyle(
-                                            foreground: Paint()
-                                              ..shader =
-                                              const LinearGradient(
-                                                colors: <Color>[
-                                                  AppColors.colorPrimary,
-                                                  AppColors.colorSecondary
-                                                ],
-                                              ).createShader(
-                                                  const Rect.fromLTRB(
-                                                      100,
-                                                      0,
-                                                      300,
-                                                      20)),
-                                            fontSize: h * 0.02,
-                                            fontWeight: FontWeight.w700),
-                                        onPressed: () {},
-                                        side: BorderSide.none,
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: w * 0.06),
+                                            child: CommonText(
+                                                text: AppText.useanymore,
+                                                textAlign: TextAlign.center,
+                                                style: ptSansTextStyle(
+                                                    color: AppColors.black
+                                                        .withOpacity(0.4),
+                                                    fontSize: h * 0.02,
+                                                    fontWeight:
+                                                        FontWeight.w400)),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: h * 0.02),
+                                            child: CommonOutlineButton(
+                                              containerwidth: w * 0.5,
+                                              containerheight: h * 0.06,
+                                              backgroundColor:
+                                                  AppColors.transparent,
+                                              // decoration: const BoxDecoration(
+                                              //     borderRadius: BorderRadius.all(Radius.circular(4)),
+                                              //     gradient: LinearGradient(
+                                              //       begin: Alignment.topLeft,
+                                              //       end: Alignment.bottomRight,
+                                              //       colors: [
+                                              //         AppColors.colorPrimary,
+                                              //         AppColors.colorSecondary,
+                                              //       ],
+                                              //     )),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                border: GradientBoxBorder(
+                                                  gradient: LinearGradient(
+                                                      colors: [
+                                                        AppColors.colorPrimary,
+                                                        AppColors.colorSecondary
+                                                      ]),
+                                                  width: 2.5,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(4),
+                                              ),
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(4)),
+                                              text: AppText.startsell,
+                                              textStyle: ptSansTextStyle(
+                                                  foreground: Paint()
+                                                    ..shader =
+                                                        const LinearGradient(
+                                                      colors: <Color>[
+                                                        AppColors.colorPrimary,
+                                                        AppColors.colorSecondary
+                                                      ],
+                                                    ).createShader(
+                                                            const Rect.fromLTRB(
+                                                                100,
+                                                                0,
+                                                                300,
+                                                                20)),
+                                                  fontSize: h * 0.02,
+                                                  fontWeight: FontWeight.w700),
+                                              onPressed: () {},
+                                              side: BorderSide.none,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
                             )
                                 .animate()
-                                .fadeIn(duration: 450.ms)
-                                .then(delay: 450.ms)
-                                .slideY(
-                                begin: 10,
-                                end: 0,
-                                curve: Curves.easeInOutCubic,
-                                duration: 1000.ms),
+                                .fadeIn(duration: 500.ms)
+                                .then(delay: 500.ms)
+                                .slideX(
+                                    begin: 30,
+                                    end: 0,
+                                    curve: Curves.easeInOutCubic,
+                                    duration: 1000.ms),
                             Container(
-                              height: h * 0.59,
+                              height: h * 0.55,
                               child: controller().getproductlist.isEmpty
                                   ? Categories(
-                                  animatecontrollerlist:
-                                  controller().animatecontrollerlist!,
-                                  isFavIcon: true,
-                                  title: "",
-                                  isextended: false,
-                                  onFavPressed: (int) {},
-                                  shrinkWrap: true,
-                                  width: w,
-                                  isTopPadding: false,
-                                  height: h * 0.59,
-                                  padding: EdgeInsets.zero,
-                                  favList: controller().getfavlist,
-                                  scrollDirection: Axis.vertical,
-                                  nameList: controller().nameList,
-                                  imgList: controller().imgList,
-                                  isCategory: false,
-                                  isFeature: false,
-                                  isViewAll: false)
+                                      animatecontrollerlist:
+                                          controller().animatecontrollerlist!,
+                                      isFavIcon: true,
+                                      title: "",
+                                      isextended: false,
+                                      onFavPressed: (int) {},
+                                      shrinkWrap: true,
+                                      width: w,
+                                      isTopPadding: false,
+                                      height: h * 0.55,
+                                      padding: EdgeInsets.zero,
+                                      favList: controller().getfavlist,
+                                      scrollDirection: Axis.vertical,
+                                      nameList: controller().nameList,
+                                      imgList: controller().imgList,
+                                      isCategory: false,
+                                      isFeature: false,
+                                      isViewAll: false)
                                   : Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: h * 0.055),
-                                child: Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Image.asset(AppImg.nochat,
-                                        height: h * 0.3,
-                                        width: w * 0.6,
-                                        fit: BoxFit.cover),
-                                    Padding(
                                       padding: EdgeInsets.symmetric(
-                                          vertical: h * 0.01),
-                                      child: CommonText(
-                                          textAlign: TextAlign.center,
-                                          text: AppText.haventlisted,
-                                          style: ptSansTextStyle(
-                                              color: AppColors.black
-                                                  .withOpacity(0.4),
-                                              fontSize: h * 0.02,
-                                              fontWeight:
-                                              FontWeight.w400)),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: w * 0.06),
-                                      child: CommonText(
-                                          text: AppText.useanymore,
-                                          textAlign: TextAlign.center,
-                                          style: ptSansTextStyle(
-                                              color: AppColors.black
-                                                  .withOpacity(0.4),
-                                              fontSize: h * 0.02,
-                                              fontWeight:
-                                              FontWeight.w400)),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: h * 0.02),
-                                      child: CommonOutlineButton(
-                                        containerwidth: w * 0.5,
-                                        containerheight: h * 0.06,
-                                        backgroundColor:
-                                        AppColors.transparent,
-                                        // decoration: const BoxDecoration(
-                                        //     borderRadius: BorderRadius.all(Radius.circular(4)),
-                                        //     gradient: LinearGradient(
-                                        //       begin: Alignment.topLeft,
-                                        //       end: Alignment.bottomRight,
-                                        //       colors: [
-                                        //         AppColors.colorPrimary,
-                                        //         AppColors.colorSecondary,
-                                        //       ],
-                                        //     )),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          border: GradientBoxBorder(
-                                            gradient: LinearGradient(
-                                                colors: [
-                                                  AppColors.colorPrimary,
-                                                  AppColors.colorSecondary
-                                                ]),
-                                            width: 2.5,
+                                          vertical: h * 0.055),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Image.asset(AppImg.nochat,
+                                              height: h * 0.3,
+                                              width: w * 0.6,
+                                              fit: BoxFit.cover),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: h * 0.01),
+                                            child: CommonText(
+                                                textAlign: TextAlign.center,
+                                                text: AppText.haventlisted,
+                                                style: ptSansTextStyle(
+                                                    color: AppColors.black
+                                                        .withOpacity(0.4),
+                                                    fontSize: h * 0.02,
+                                                    fontWeight:
+                                                        FontWeight.w400)),
                                           ),
-                                          borderRadius:
-                                          BorderRadius.circular(4),
-                                        ),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(4)),
-                                        text: AppText.startsell,
-                                        textStyle: ptSansTextStyle(
-                                            foreground: Paint()
-                                              ..shader =
-                                              const LinearGradient(
-                                                colors: <Color>[
-                                                  AppColors.colorPrimary,
-                                                  AppColors.colorSecondary
-                                                ],
-                                              ).createShader(
-                                                  const Rect.fromLTRB(
-                                                      100,
-                                                      0,
-                                                      300,
-                                                      20)),
-                                            fontSize: h * 0.02,
-                                            fontWeight: FontWeight.w700),
-                                        onPressed: () {},
-                                        side: BorderSide.none,
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: w * 0.06),
+                                            child: CommonText(
+                                                text: AppText.useanymore,
+                                                textAlign: TextAlign.center,
+                                                style: ptSansTextStyle(
+                                                    color: AppColors.black
+                                                        .withOpacity(0.4),
+                                                    fontSize: h * 0.02,
+                                                    fontWeight:
+                                                        FontWeight.w400)),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: h * 0.02),
+                                            child: CommonOutlineButton(
+                                              containerwidth: w * 0.5,
+                                              containerheight: h * 0.06,
+                                              backgroundColor:
+                                                  AppColors.transparent,
+                                              // decoration: const BoxDecoration(
+                                              //     borderRadius: BorderRadius.all(Radius.circular(4)),
+                                              //     gradient: LinearGradient(
+                                              //       begin: Alignment.topLeft,
+                                              //       end: Alignment.bottomRight,
+                                              //       colors: [
+                                              //         AppColors.colorPrimary,
+                                              //         AppColors.colorSecondary,
+                                              //       ],
+                                              //     )),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                border: GradientBoxBorder(
+                                                  gradient: LinearGradient(
+                                                      colors: [
+                                                        AppColors.colorPrimary,
+                                                        AppColors.colorSecondary
+                                                      ]),
+                                                  width: 2.5,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(4),
+                                              ),
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(4)),
+                                              text: AppText.startsell,
+                                              textStyle: ptSansTextStyle(
+                                                  foreground: Paint()
+                                                    ..shader =
+                                                        const LinearGradient(
+                                                      colors: <Color>[
+                                                        AppColors.colorPrimary,
+                                                        AppColors.colorSecondary
+                                                      ],
+                                                    ).createShader(
+                                                            const Rect.fromLTRB(
+                                                                100,
+                                                                0,
+                                                                300,
+                                                                20)),
+                                                  fontSize: h * 0.02,
+                                                  fontWeight: FontWeight.w700),
+                                              onPressed: () {},
+                                              side: BorderSide.none,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
                             )
                                 .animate()
-                                .fadeIn(duration: 450.ms)
-                                .then(delay: 450.ms)
-                                .slideY(
-                                begin: 10,
-                                end: 0,
-                                curve: Curves.easeInOutCubic,
-                                duration: 1000.ms)
+                                .fadeIn(duration: 550.ms)
+                                .then(delay: 550.ms)
+                                .slideX(
+                                    begin: 30,
+                                    end: 0,
+                                    curve: Curves.easeInOutCubic,
+                                    duration: 1000.ms)
                           ]),
                     ),
                   ],
-                )
-              ],
-            ),
+                ),
+              )
+            ],
           ),
         ),
       ),

@@ -15,6 +15,7 @@ class ProfileImgName extends ConsumerWidget {
   bool? verified;
   bool? vertbtn;
   List<PopupMenuEntry<dynamic>>? items;
+
   ProfileImgName(
       {super.key,
       required this.name,
@@ -109,7 +110,7 @@ class ProfileImgName extends ConsumerWidget {
                         onPressed: () async {
                           CommonPopup(
                               position: RelativeRect.fromLTRB(
-                                  w * 0.5, 0, w * 0.02, h * 0.8),
+                                  w * 0.5, h * 0.22, w * 0.09, h * 0.7),
                               items: items!);
                         },
                         centericon: Icon(Icons.more_vert,

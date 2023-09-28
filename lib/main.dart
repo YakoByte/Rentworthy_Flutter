@@ -15,8 +15,6 @@ import 'package:rentworthy/utils/globals.dart';
 import 'package:rentworthy/utils/state_logger.dart';
 import 'package:rentworthy/utils/text.dart';
 
-import 'utils/dropdowns.dart';
-
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([

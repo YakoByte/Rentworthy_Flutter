@@ -240,7 +240,9 @@ class TextInputField extends StatelessWidget {
                                   labelText: lableText,
                                   labelStyle: lableStyle,
                                   hintText: hintText,
-                                  contentPadding: EdgeInsets.zero,
+                                  contentPadding: EdgeInsets.symmetric(
+                                    horizontal: width * 0.02,
+                                  ),
                                   hintStyle: hintStyle ??
                                       ptSansTextStyle(
                                           fontSize: height * 0.018,
@@ -257,7 +259,9 @@ class TextInputField extends StatelessWidget {
                                   labelText: lableText,
                                   labelStyle: lableStyle,
                                   hintText: hintText,
-                                  contentPadding: EdgeInsets.zero,
+                                  contentPadding: EdgeInsets.symmetric(
+                                    horizontal: width * 0.02,
+                                  ),
                                   hintStyle: hintStyle ??
                                       ptSansTextStyle(
                                           fontSize: height * 0.018,
@@ -340,7 +344,9 @@ class TextInputField extends StatelessWidget {
                                     labelText: lableText,
                                     labelStyle: lableStyle,
                                     hintText: hintText,
-                                    contentPadding: EdgeInsets.zero,
+                                    contentPadding: EdgeInsets.symmetric(
+                                      horizontal: width * 0.02,
+                                    ),
                                     hintStyle: hintStyle ??
                                         ptSansTextStyle(
                                             fontSize: height * 0.018,

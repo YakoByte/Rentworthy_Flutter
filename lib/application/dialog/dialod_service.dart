@@ -1,17 +1,24 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:rentworthy/utils/color.dart';
 import '../../../utils/common_components/common_text.dart';
 import '../../../utils/globals.dart';
 
 import '../../presentation/business_prof/business_dialogs/pre_rent_screen_que.dart';
+import '../../presentation/business_prof/business_dialogs/profile_created.dart';
 import '../../presentation/business_prof/business_dialogs/register_complaint.dart';
 import '../../presentation/indi_prof/dialogs/alert_dialog.dart';
 import '../../presentation/indi_prof/dialogs/cancel_booking_dialog.dart';
 import '../../presentation/indi_prof/dialogs/order_confirm.dart';
+import '../../presentation/indi_prof/dialogs/product_availability_dialog.dart';
 import '../../presentation/indi_prof/dialogs/rent_screening_dialog.dart';
 import '../../presentation/indi_prof/dialogs/reportimgortitle.dart';
 import '../../presentation/indi_prof/dialogs/select_date.dart';
+import '../../utils/common_components/common_image_picker.dart';
 
 abstract class DialogService {
   void showSnackBar({
@@ -21,6 +28,8 @@ abstract class DialogService {
   });
 
   Future<void> requestLocationPermission();
+
+  Future<void> productAvailabilityDialog({required String date});
 
   Future<void> contactusalertdialog();
 
@@ -33,13 +42,22 @@ abstract class DialogService {
     required void Function(String) onChangedval,
   });
 
+  Future<void> profileCreatedDialog();
+
   Future<void> reportimgtitledialog({
     required int groupValue,
     required void Function(int) onChangedval,
   });
 
+  Future<void> commonImagePicker({
+    required ImagePicker picker,
+    required void Function(File file) pickedImage,
+  });
+
   Future<void> rentScreeningDialog();
+
   Future<void> businessrentScreeningDialog();
+
   Future<void> registerComplaintDialog();
 }
 
@@ -135,12 +153,48 @@ class DialogServiceV1 implements DialogService {
         }));
   }
 
+  Future<void> profileCreatedDialog() async {
+    return (await showDialog(
+        context: Globals.navigatorKey.currentContext!,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return ProfileCreated();
+        }));
+  }
+
+  Future<void> productAvailabilityDialog({required String date}) async {
+    return (await showDialog(
+        context: Globals.navigatorKey.currentContext!,
+        barrierColor: AppColors.transparent,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return ProductAvailabilityDialog(
+            date: date,
+          );
+        }));
+  }
+
   Future<void> registerComplaintDialog() async {
     return (await showDialog(
         context: Globals.navigatorKey.currentContext!,
         barrierDismissible: true,
         builder: (BuildContext context) {
           return RegisterComplaintDialog();
+        }));
+  }
+
+  Future<void> commonImagePicker({
+    required ImagePicker picker,
+    required void Function(File file) pickedImage,
+  }) async {
+    return (await showDialog(
+        context: Globals.navigatorKey.currentContext!,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return CommonImagePicker(
+            picker: picker,
+            pickedImage: pickedImage,
+          );
         }));
   }
 

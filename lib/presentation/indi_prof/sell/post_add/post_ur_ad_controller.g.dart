@@ -7,7 +7,7 @@ part of 'post_ur_ad_controller.dart';
 // **************************************************************************
 
 String _$postUrAdsControllerHash() =>
-    r'e2fec5f48868f250f0c4d0aa6e26b8a16bd1a070';
+    r'c880bba96c04a0e731c9e77f1cab548bafe2b170';
 
 /// See also [PostUrAdsController].
 @ProviderFor(PostUrAdsController)
@@ -24,4 +24,4 @@ final postUrAdsControllerProvider =
 
 typedef _$PostUrAdsController = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

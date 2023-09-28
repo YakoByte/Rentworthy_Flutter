@@ -21,9 +21,10 @@ class CommonMultiSelectDrop extends ConsumerWidget {
   List<String>? selectedItems;
   Future<List<String>> Function(String)? asyncItems;
   Widget Function(BuildContext, String?)? dropdownBuilder;
-  DropDownDecoratorProps dropdownDecoratorProps = DropDownDecoratorProps();
-  ClearButtonProps clearButtonProps = ClearButtonProps();
-  DropdownButtonProps dropdownButtonProps = DropdownButtonProps();
+  DropDownDecoratorProps dropdownDecoratorProps =
+      const DropDownDecoratorProps();
+  ClearButtonProps clearButtonProps = const ClearButtonProps();
+  DropdownButtonProps dropdownButtonProps = const DropdownButtonProps();
   bool enabled = true;
   BoxBorder? border;
   bool Function(String, String)? filterFn;
@@ -242,7 +243,7 @@ class CommonMultiSelectDrop extends ConsumerWidget {
                           ),
                         );
                       },
-                      constraints: BoxConstraints.tightFor(),
+                      constraints: const BoxConstraints.tightFor(),
                     ),
                   ),
                 ),
@@ -262,6 +263,7 @@ class CommonMultiSelectDrop extends ConsumerWidget {
       child: Text(
         dropdownselecttitle,
         style: ptSansTextStyle(
+            height: containerheight * 0.02,
             color: AppColors.black.withOpacity(0.8),
             fontSize: w * 0.04,
             fontWeight: FontWeight.w700),
@@ -276,7 +278,7 @@ class CommonMultiSelectDrop extends ConsumerWidget {
       height: height * 0.025,
       child: Row(
         children: [
-          Icon(Icons.location_on),
+          const Icon(Icons.location_on),
           Text(
             item!,
             style: ptSansTextStyle(

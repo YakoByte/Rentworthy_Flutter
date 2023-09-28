@@ -12,12 +12,12 @@ class TrackItemController extends _$TrackItemController {
   TabController tabController =
       TabController(length: 4, vsync: CommonTickerProvider());
   int _selectedTab = 0;
-  bool _isInvoiceTap = false;
+  List<bool>? _isInvoiceTap;
   List<AnimationController>? animatecontrollerlist = [];
 
   int get selectedtab => _selectedTab;
 
-  bool get isInvoiceTap => _isInvoiceTap;
+  List<bool> get isInvoiceTap => _isInvoiceTap!;
 
   @override
   FutureOr<void> build() async {
@@ -36,6 +36,8 @@ class TrackItemController extends _$TrackItemController {
         }
       });
     }
+    _isInvoiceTap =
+        List.generate(animatecontrollerlist!.length, (index) => false);
     state = const AsyncValue.data(null);
   }
 
@@ -47,10 +49,10 @@ class TrackItemController extends _$TrackItemController {
     state = const AsyncValue.data(null);
   }
 
-  onInvoiceTap() async {
+  onInvoiceTap({required int index}) async {
     state = const AsyncLoading();
 
-    _isInvoiceTap = !_isInvoiceTap;
+    _isInvoiceTap![index] = !_isInvoiceTap![index];
     debugPrint('_isInvoiceTap $_isInvoiceTap');
     state = const AsyncValue.data(null);
   }

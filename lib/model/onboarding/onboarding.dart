@@ -24,3 +24,10 @@ abstract class OnBoardingModel with _$OnBoardingModel, OnBoardingitem {
         subtitletext: '',
       );
 }
+//onboarding get api response
+// {
+// 'id': id,
+// 'img': img,
+// 'titletext': titletext,
+// 'subtitletext': subtitletext,
+// };

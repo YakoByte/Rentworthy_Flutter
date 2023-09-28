@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:rentworthy/application/dialog/dialod_service.dart';
 import 'package:rentworthy/presentation/indi_prof/sell/post_add/post_ur_ad_controller.dart';
 import 'package:rentworthy/utils/common_components/common_gridview.dart';
 
@@ -69,46 +70,108 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                           color: AppColors.black,
                           fontSize: h * 0.025,
                           fontWeight: FontWeight.w600)),
+                  Container(
+                    height: h * 0.175,
+                    child: Stack(
+                      children: [
+                        TextInputField(
+                            hintText: "",
+                            titleText: AppText.adtitle,
+                            onChanged: (value) {
+                              setState(() {});
+                            },
+                            enableunderlinecolor:
+                                AppColors.black.withOpacity(0.6),
+                            disableunderlinecolor:
+                                AppColors.black.withOpacity(0.6),
+                            focusunderlinecolor:
+                                AppColors.black.withOpacity(0.6),
+                            underlinecolor: AppColors.black.withOpacity(0.6),
+                            hintStyle: ptSansTextStyle(
+                                color: AppColors.black.withOpacity(0.6),
+                                fontSize: h * 0.019,
+                                fontWeight: FontWeight.w400),
+                            textstyle: ptSansTextStyle(
+                                color: AppColors.black,
+                                fontSize: h * 0.019,
+                                fontWeight: FontWeight.w500),
+                            titletextstyle: ptSansTextStyle(
+                                color: AppColors.black.withOpacity(0.6),
+                                fontSize: h * 0.021,
+                                fontWeight: FontWeight.w500),
+                            errorText: "",
+                            errorStyle: ptSansTextStyle(
+                                color: AppColors.red,
+                                fontSize: h * 0.019,
+                                fontWeight: FontWeight.w400),
+                            controller: controller().addtitleController,
+                            keyboardType: TextInputType.text,
+                            isCounter: true,
+                            maxLength: 70,
+                            containerwidth: w,
+                            underline: false,
+                            borderRadius: BorderRadius.circular(4),
+                            containerborder: Border.all(
+                                color: AppColors.black.withOpacity(0.4)),
+                            containerheight: h * 0.06,
+                            containercolor: AppColors.white,
+                            textCapitalization: TextCapitalization.none),
+                        Positioned(
+                          bottom: 0,
+                          right: w * 0.1,
+                          left: 0,
+                          child: CommonText(
+                              text:
+                                  "Mention the key features of your item (e.g. brand, model, age, type)",
+                              maxLines: 2,
+                              style: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.6),
+                                  fontSize: h * 0.017,
+                                  fontWeight: FontWeight.w400)),
+                        )
+                      ],
+                    ),
+                  ),
+                  // TextInputField(
+                  //     hintText: "",
+                  //     titleText: AppText.itemname,
+                  //     onChanged: (value) {
+                  //       setState(() {});
+                  //     },
+                  //     enableunderlinecolor: AppColors.black.withOpacity(0.6),
+                  //     disableunderlinecolor: AppColors.black.withOpacity(0.6),
+                  //     focusunderlinecolor: AppColors.black.withOpacity(0.6),
+                  //     underlinecolor: AppColors.black.withOpacity(0.6),
+                  //     hintStyle: ptSansTextStyle(
+                  //         color: AppColors.black.withOpacity(0.6),
+                  //         fontSize: h * 0.019,
+                  //         fontWeight: FontWeight.w400),
+                  //     textstyle: ptSansTextStyle(
+                  //         color: AppColors.black,
+                  //         fontSize: h * 0.019,
+                  //         fontWeight: FontWeight.w500),
+                  //     titletextstyle: ptSansTextStyle(
+                  //         color: AppColors.black.withOpacity(0.6),
+                  //         fontSize: h * 0.021,
+                  //         fontWeight: FontWeight.w500),
+                  //     errorText: "",
+                  //     errorStyle: ptSansTextStyle(
+                  //         color: AppColors.red,
+                  //         fontSize: h * 0.019,
+                  //         fontWeight: FontWeight.w400),
+                  //     controller: controller().itemnameController,
+                  //     keyboardType: TextInputType.text,
+                  //     containerwidth: w,
+                  //     underline: false,
+                  //     borderRadius: BorderRadius.circular(4),
+                  //     containerborder:
+                  //         Border.all(color: AppColors.black.withOpacity(0.4)),
+                  //     containerheight: h * 0.06,
+                  //     containercolor: AppColors.white,
+                  //     textCapitalization: TextCapitalization.none),
                   TextInputField(
                       hintText: "",
-                      titleText: AppText.itemname,
-                      onChanged: (value) {
-                        setState(() {});
-                      },
-                      enableunderlinecolor: AppColors.black.withOpacity(0.6),
-                      disableunderlinecolor: AppColors.black.withOpacity(0.6),
-                      focusunderlinecolor: AppColors.black.withOpacity(0.6),
-                      underlinecolor: AppColors.black.withOpacity(0.6),
-                      hintStyle: ptSansTextStyle(
-                          color: AppColors.black.withOpacity(0.6),
-                          fontSize: h * 0.019,
-                          fontWeight: FontWeight.w400),
-                      textstyle: ptSansTextStyle(
-                          color: AppColors.black,
-                          fontSize: h * 0.019,
-                          fontWeight: FontWeight.w500),
-                      titletextstyle: ptSansTextStyle(
-                          color: AppColors.black.withOpacity(0.6),
-                          fontSize: h * 0.021,
-                          fontWeight: FontWeight.w500),
-                      errorText: "",
-                      errorStyle: ptSansTextStyle(
-                          color: AppColors.red,
-                          fontSize: h * 0.019,
-                          fontWeight: FontWeight.w400),
-                      controller: controller().itemnameController,
-                      keyboardType: TextInputType.text,
-                      containerwidth: w,
-                      underline: false,
-                      borderRadius: BorderRadius.circular(4),
-                      containerborder:
-                          Border.all(color: AppColors.black.withOpacity(0.4)),
-                      containerheight: h * 0.06,
-                      containercolor: AppColors.white,
-                      textCapitalization: TextCapitalization.none),
-                  TextInputField(
-                      hintText: "",
-                      titleText: AppText.subcat,
+                      titleText: AppText.brand,
                       onChanged: (value) {
                         setState(() {});
                       },
@@ -311,68 +374,6 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                     ],
                   ),
                   Container(
-                    height: h * 0.175,
-                    child: Stack(
-                      children: [
-                        TextInputField(
-                            hintText: "",
-                            titleText: AppText.adtitle,
-                            onChanged: (value) {
-                              setState(() {});
-                            },
-                            enableunderlinecolor:
-                                AppColors.black.withOpacity(0.6),
-                            disableunderlinecolor:
-                                AppColors.black.withOpacity(0.6),
-                            focusunderlinecolor:
-                                AppColors.black.withOpacity(0.6),
-                            underlinecolor: AppColors.black.withOpacity(0.6),
-                            hintStyle: ptSansTextStyle(
-                                color: AppColors.black.withOpacity(0.6),
-                                fontSize: h * 0.019,
-                                fontWeight: FontWeight.w400),
-                            textstyle: ptSansTextStyle(
-                                color: AppColors.black,
-                                fontSize: h * 0.019,
-                                fontWeight: FontWeight.w500),
-                            titletextstyle: ptSansTextStyle(
-                                color: AppColors.black.withOpacity(0.6),
-                                fontSize: h * 0.021,
-                                fontWeight: FontWeight.w500),
-                            errorText: "",
-                            errorStyle: ptSansTextStyle(
-                                color: AppColors.red,
-                                fontSize: h * 0.019,
-                                fontWeight: FontWeight.w400),
-                            controller: controller().addtitleController,
-                            keyboardType: TextInputType.text,
-                            isCounter: true,
-                            maxLength: 70,
-                            containerwidth: w,
-                            underline: false,
-                            borderRadius: BorderRadius.circular(4),
-                            containerborder: Border.all(
-                                color: AppColors.black.withOpacity(0.4)),
-                            containerheight: h * 0.06,
-                            containercolor: AppColors.white,
-                            textCapitalization: TextCapitalization.none),
-                        Positioned(
-                          bottom: 0,
-                          right: w * 0.1,
-                          left: 0,
-                          child: CommonText(
-                              text:
-                                  "Mention the key features of your item (e.g. brand, model, age, type)",
-                              maxLines: 2,
-                              style: ptSansTextStyle(
-                                  color: AppColors.black.withOpacity(0.6),
-                                  fontSize: h * 0.017,
-                                  fontWeight: FontWeight.w400)),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
                     height: h * 0.25,
                     child: Stack(
                       children: [
@@ -485,6 +486,25 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                           color: AppColors.black.withOpacity(0.6),
                           fontSize: h * 0.021,
                           fontWeight: FontWeight.w500),
+                      prefix: IntrinsicHeight(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: w * 0.012),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.attach_money,
+                                size: h * 0.03,
+                                color: AppColors.black.withOpacity(0.4),
+                              ),
+                              VerticalDivider(
+                                color: AppColors.black.withOpacity(0.4),
+                                thickness: 1.3,
+                                width: w * 0.02,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       errorText: "",
                       errorStyle: ptSansTextStyle(
                           color: AppColors.red,
@@ -560,7 +580,14 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            ref.read(dialogServiceProvider).commonImagePicker(
+                                  picker: controller().imagePicker,
+                                  pickedImage: (file) {
+                                    controller().onImgSelect(val: file);
+                                  },
+                                );
+                          },
                           child: Container(
                             padding: EdgeInsets.symmetric(
                                 horizontal: w * 0.05, vertical: h * 0.014),
@@ -570,26 +597,31 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                                 border: Border.all(
                                     color: AppColors.black.withOpacity(0.4),
                                     width: 2)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.add_a_photo,
-                                  color: AppColors.black.withOpacity(0.4),
-                                  size: h * 0.04,
-                                ),
-                                CommonText(
-                                    text: "Add Photo",
-                                    textAlign: TextAlign.center,
-                                    style: ptSansTextStyle(
-                                      color: AppColors.black.withOpacity(0.4),
-                                      fontSize: h * 0.015,
-                                      overflow: TextOverflow.ellipsis,
-                                      fontWeight: FontWeight.w600,
-                                    )),
-                              ],
-                            ),
+                            child: controller().selectedImage == null
+                                ? Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.add_a_photo,
+                                        color: AppColors.black.withOpacity(0.4),
+                                        size: h * 0.04,
+                                      ),
+                                      CommonText(
+                                          text: "Add Photo",
+                                          textAlign: TextAlign.center,
+                                          style: ptSansTextStyle(
+                                            color: AppColors.black
+                                                .withOpacity(0.4),
+                                            fontSize: h * 0.015,
+                                            overflow: TextOverflow.ellipsis,
+                                            fontWeight: FontWeight.w600,
+                                          )),
+                                    ],
+                                  )
+                                : Image.file(controller().selectedImage!),
                           ),
                         );
                       }),

@@ -7,7 +7,7 @@ part of 'business_all_controller.dart';
 // **************************************************************************
 
 String _$businessAllControllerHash() =>
-    r'751a6dbab50866ab788e142b672e8c7bee1cddd3';
+    r'c51d68f553405f4bd6970d3cf5d40af29e3d3fcb';
 
 /// See also [BusinessAllController].
 @ProviderFor(BusinessAllController)
@@ -24,4 +24,4 @@ final businessAllControllerProvider =
 
 typedef _$BusinessAllController = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

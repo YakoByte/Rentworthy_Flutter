@@ -32,40 +32,6 @@ class CategoryDetailsScreen extends ConsumerWidget {
     final w = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: AppColors.white,
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
-      floatingActionButton: Padding(
-        padding: EdgeInsets.only(top: h * 0.7),
-        child: CommonButton(
-          decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(100)),
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  AppColors.colorPrimary,
-                  AppColors.colorSecondary,
-                ],
-              )),
-          onPressed: () {
-            commonNavigator(
-              context: context,
-              child: ChatScreen(frombottom: false),
-              type: PageTransitionType.rightToLeftWithFade,
-            );
-          },
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-          backgroundColor: AppColors.transparent,
-          containerwidth: h * 0.068,
-          containerheight: h * 0.068,
-          text: '',
-          textStyle: ptSansTextStyle(),
-          centericon: Center(
-              child: Image.asset(AppImg.chat1,
-                  color: AppColors.white, height: h * 0.035)),
-        ),
-      ).animate().fadeIn(duration: 150.ms).then(delay: 150.ms).slideY(
-          begin: 3, end: 0, curve: Curves.easeInOutCubic, duration: 1000.ms),
       appBar: CommonAppBar(
           backgroundColor: AppColors.white,
           centerTitle: true,

@@ -7,7 +7,7 @@ part of 'admin_panel_controller.dart';
 // **************************************************************************
 
 String _$adminPanelControllerHash() =>
-    r'e23def5bfde7ff416223a8d4ef06d237f274be0b';
+    r'3f578a5b9aa047cad399a0b04daa7096695a6161';
 
 /// See also [AdminPanelController].
 @ProviderFor(AdminPanelController)
@@ -24,4 +24,4 @@ final adminPanelControllerProvider =
 
 typedef _$AdminPanelController = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'post_ur_ad_controller.g.dart';
@@ -13,7 +16,8 @@ class PostUrAdsController extends _$PostUrAdsController {
   TextEditingController cityController = TextEditingController();
   TextEditingController stateController = TextEditingController();
   TextEditingController addtitlelastController = TextEditingController();
-
+  ImagePicker imagePicker = ImagePicker();
+  File? selectedImage;
   List<String>? _selectCat = [];
   List<String> _catList = [
     "Select Category",
@@ -37,6 +41,13 @@ class PostUrAdsController extends _$PostUrAdsController {
   onValSelect({required List<String> val}) async {
     state = const AsyncLoading();
     _selectCat = val;
+    state = const AsyncValue.data(null);
+  }
+
+  onImgSelect({required val}) async {
+    state = const AsyncLoading();
+    selectedImage = val;
+    print("selectedImage =-=- $selectedImage");
     state = const AsyncValue.data(null);
   }
 }

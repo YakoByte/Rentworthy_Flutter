@@ -69,22 +69,22 @@ class _$OnBoardingModelCopyWithImpl<$Res, $Val extends OnBoardingModel>
 }
 
 /// @nodoc
-abstract class _$$_OnBoardingModelCopyWith<$Res>
+abstract class _$$OnBoardingModelImplCopyWith<$Res>
     implements $OnBoardingModelCopyWith<$Res> {
-  factory _$$_OnBoardingModelCopyWith(
-          _$_OnBoardingModel value, $Res Function(_$_OnBoardingModel) then) =
-      __$$_OnBoardingModelCopyWithImpl<$Res>;
+  factory _$$OnBoardingModelImplCopyWith(_$OnBoardingModelImpl value,
+          $Res Function(_$OnBoardingModelImpl) then) =
+      __$$OnBoardingModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String img, String titletext, String subtitletext});
 }
 
 /// @nodoc
-class __$$_OnBoardingModelCopyWithImpl<$Res>
-    extends _$OnBoardingModelCopyWithImpl<$Res, _$_OnBoardingModel>
-    implements _$$_OnBoardingModelCopyWith<$Res> {
-  __$$_OnBoardingModelCopyWithImpl(
-      _$_OnBoardingModel _value, $Res Function(_$_OnBoardingModel) _then)
+class __$$OnBoardingModelImplCopyWithImpl<$Res>
+    extends _$OnBoardingModelCopyWithImpl<$Res, _$OnBoardingModelImpl>
+    implements _$$OnBoardingModelImplCopyWith<$Res> {
+  __$$OnBoardingModelImplCopyWithImpl(
+      _$OnBoardingModelImpl _value, $Res Function(_$OnBoardingModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -94,7 +94,7 @@ class __$$_OnBoardingModelCopyWithImpl<$Res>
     Object? titletext = null,
     Object? subtitletext = null,
   }) {
-    return _then(_$_OnBoardingModel(
+    return _then(_$OnBoardingModelImpl(
       img: null == img
           ? _value.img
           : img // ignore: cast_nullable_to_non_nullable
@@ -113,8 +113,8 @@ class __$$_OnBoardingModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OnBoardingModel implements _OnBoardingModel {
-  const _$_OnBoardingModel(
+class _$OnBoardingModelImpl implements _OnBoardingModel {
+  const _$OnBoardingModelImpl(
       {required this.img, required this.titletext, required this.subtitletext});
 
   @override
@@ -133,7 +133,7 @@ class _$_OnBoardingModel implements _OnBoardingModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OnBoardingModel &&
+            other is _$OnBoardingModelImpl &&
             (identical(other.img, img) || other.img == img) &&
             (identical(other.titletext, titletext) ||
                 other.titletext == titletext) &&
@@ -147,15 +147,16 @@ class _$_OnBoardingModel implements _OnBoardingModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OnBoardingModelCopyWith<_$_OnBoardingModel> get copyWith =>
-      __$$_OnBoardingModelCopyWithImpl<_$_OnBoardingModel>(this, _$identity);
+  _$$OnBoardingModelImplCopyWith<_$OnBoardingModelImpl> get copyWith =>
+      __$$OnBoardingModelImplCopyWithImpl<_$OnBoardingModelImpl>(
+          this, _$identity);
 }
 
 abstract class _OnBoardingModel implements OnBoardingModel {
   const factory _OnBoardingModel(
       {required final String img,
       required final String titletext,
-      required final String subtitletext}) = _$_OnBoardingModel;
+      required final String subtitletext}) = _$OnBoardingModelImpl;
 
   @override
   String get img;
@@ -165,6 +166,6 @@ abstract class _OnBoardingModel implements OnBoardingModel {
   String get subtitletext;
   @override
   @JsonKey(ignore: true)
-  _$$_OnBoardingModelCopyWith<_$_OnBoardingModel> get copyWith =>
+  _$$OnBoardingModelImplCopyWith<_$OnBoardingModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

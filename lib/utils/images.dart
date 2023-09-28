@@ -18,6 +18,7 @@ class AppImg {
   static const String loginimg = "${imgpath}loginimg.png";
   static const String homeimg = "${imgpath}homeimg.png";
   static const String announcement = "${imgpath}announcement.png";
+  static const String banner1 = "${imgpath}banner1.png";
   static const String homelist = "${imgpath}homelist.png";
   static const String footer = "${imgpath}footer.png";
   static const String xbox = "${imgpath}xbox.png";

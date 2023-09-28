@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:rentworthy/utils/color.dart';
 import 'package:rentworthy/utils/common_components/common_carouselslider.dart';
 import 'package:rentworthy/utils/globals.dart';
 
+import '../../../utils/common_components/common_button.dart';
+import '../../../utils/common_components/common_navigator.dart';
 import '../../../utils/common_components/common_text.dart';
 import '../../../utils/images.dart';
 import '../../../utils/text.dart';
+import '../chat/chat_screen.dart';
 import 'categories/categories.dart';
 import 'categories/home_appbar.dart';
 import 'categories/home_nav_drawer.dart';
@@ -27,6 +31,38 @@ class HomeScreen extends ConsumerWidget {
       key: Globals.scaffoldKey,
       backgroundColor: AppColors.white,
       resizeToAvoidBottomInset: true,
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(top: h * 0.5),
+        child: CommonButton(
+          decoration: const BoxDecoration(
+            color: AppColors.yellow,
+            borderRadius: BorderRadius.all(Radius.circular(100)),
+          ),
+          onPressed: () {
+            commonNavigator(
+              context: context,
+              child: ChatScreen(frombottom: false),
+              type: PageTransitionType.rightToLeftWithFade,
+            );
+          },
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+          backgroundColor: AppColors.transparent,
+          containerwidth: h * 0.088,
+          containerheight: h * 0.088,
+          text: 'Post Ad',
+          textStyle: ptSansTextStyle(
+            color: AppColors.black.withOpacity(0.8),
+            fontSize: h * 0.022,
+            fontWeight: FontWeight.w600,
+          ),
+          centericon: Center(
+              child: Image.asset(AppImg.chat1,
+                  color: AppColors.white, height: h * 0.035)),
+        ),
+      ).animate().fadeIn(duration: 150.ms).then(delay: 150.ms).slideX(
+          begin: 3, end: 0, curve: Curves.easeInOutCubic, duration: 1000.ms),
       drawerScrimColor: AppColors.black.withOpacity(0.4),
       drawer: HomeNavDrawer()
           .animate()
@@ -98,87 +134,88 @@ class HomeScreen extends ConsumerWidget {
                     ),
 
                 /// Carousel
-                CommonCarousel(
-                  enlargeFactor: 0.3,
-                  containerheight: h * 0.18,
-                  containerwidth: w,
-                  gradient: false,
-                  viewportFraction: 0.9,
-                  scrollDirection: Axis.horizontal,
-                  autoPlayCurve: Curves.bounceIn,
-                  aspectRatio: 1 / 1,
-                  enableInfiniteScroll: false,
-                  autoPlay: false,
-                  reverse: false,
-                  padding: EdgeInsets.symmetric(vertical: h * 0.01),
-                  carouselHeight: h * 0.18,
-                  carouselController: controller().carouselController,
-                  disableGesture: false,
-                  itemCount: 3,
-                  itemBuilder: (BuildContext context, int itemIndex,
-                          int pageViewIndex) =>
-                      Container(
-                    height: h * 0.18,
-                    margin: EdgeInsets.symmetric(horizontal: w * 0.02),
-                    decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: [
-                              AppColors.colorPrimary,
-                              AppColors.colorSecondary
-                            ]),
-                        borderRadius: BorderRadius.circular(16)),
-                    child: Padding(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
                       padding: EdgeInsets.symmetric(
-                        horizontal: w * 0.026,
-                        vertical: h * 0.01,
+                        horizontal: w * 0.05,
                       ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                            width: w * 0.35,
-                            child: RichText(
-                              textAlign: TextAlign.start,
-                              text: TextSpan(
-                                text: "${AppText.onlymay}\n",
-                                style: ptSansTextStyle(
-                                    color: AppColors.white,
-                                    fontSize: h * 0.016,
-                                    fontWeight: FontWeight.w400),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                      text: "${AppText.sonyps}\n",
-                                      style: ptSansTextStyle(
-                                          color: AppColors.white,
-                                          fontSize: h * 0.022,
-                                          fontWeight: FontWeight.w700)),
-                                  TextSpan(
-                                    text: AppText.permonth,
-                                    style: ptSansTextStyle(
-                                        color: AppColors.white,
-                                        fontSize: h * 0.015,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Image.asset(AppImg.announcement,
-                              height: h * 0.32, width: w * 0.45)
-                        ],
+                      child: CommonText(
+                          text: "Chance to win",
+                          style: ptSansTextStyle(
+                            color: AppColors.black.withOpacity(0.8),
+                            fontSize: h * 0.022,
+                            fontWeight: FontWeight.w800,
+                          )),
+                    ),
+                    CommonCarousel(
+                      enlargeFactor: 0.3,
+                      containerheight: h * 0.18,
+                      containerwidth: w,
+                      gradient: false,
+                      viewportFraction: 0.85,
+                      scrollDirection: Axis.horizontal,
+                      autoPlayCurve: Curves.bounceIn,
+                      aspectRatio: 1 / 1,
+                      enableInfiniteScroll: false,
+                      autoPlay: false,
+                      reverse: false,
+                      padding: EdgeInsets.symmetric(vertical: h * 0.01),
+                      carouselHeight: h * 0.22,
+                      carouselController: controller().carouselController,
+                      disableGesture: false,
+                      itemCount: 3,
+                      itemBuilder: (BuildContext context, int itemIndex,
+                              int pageViewIndex) =>
+                          ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.asset(
+                          AppImg.banner1,
+                        ),
                       ),
-                    ),
-                  ),
-                  dotindicator: false,
-                ).animate().fadeIn(duration: 400.ms).then(delay: 400.ms).slideX(
-                      begin: 1,
-                      end: 0,
-                      curve: Curves.easeInOutCubic,
-                      duration: 600.ms,
-                    ),
+
+                      // Container(
+                      //   width: w * 0.35,
+                      //   child: RichText(
+                      //     textAlign: TextAlign.start,
+                      //     text: TextSpan(
+                      //       text: "${AppText.onlymay}\n",
+                      //       style: ptSansTextStyle(
+                      //           color: AppColors.white,
+                      //           fontSize: h * 0.016,
+                      //           fontWeight: FontWeight.w400),
+                      //       children: <TextSpan>[
+                      //         TextSpan(
+                      //             text: "${AppText.sonyps}\n",
+                      //             style: ptSansTextStyle(
+                      //                 color: AppColors.white,
+                      //                 fontSize: h * 0.022,
+                      //                 fontWeight: FontWeight.w700)),
+                      //         TextSpan(
+                      //           text: AppText.permonth,
+                      //           style: ptSansTextStyle(
+                      //               color: AppColors.white,
+                      //               fontSize: h * 0.015,
+                      //               fontWeight: FontWeight.w400),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
+                      dotindicator: false,
+                    )
+                        .animate()
+                        .fadeIn(duration: 400.ms)
+                        .then(delay: 400.ms)
+                        .slideX(
+                          begin: 1,
+                          end: 0,
+                          curve: Curves.easeInOutCubic,
+                          duration: 600.ms,
+                        ),
+                  ],
+                ),
 
                 /// Featured Ads
                 Categories(
@@ -212,35 +249,137 @@ class HomeScreen extends ConsumerWidget {
                       duration: 600.ms,
                     ),
 
+                /// Carousel
+                CommonCarousel(
+                  enlargeFactor: 0.3,
+                  containerheight: h * 0.18,
+                  containerwidth: w,
+                  gradient: false,
+                  viewportFraction: 0.85,
+                  scrollDirection: Axis.horizontal,
+                  autoPlayCurve: Curves.bounceIn,
+                  aspectRatio: 1 / 1,
+                  enableInfiniteScroll: false,
+                  autoPlay: false,
+                  reverse: false,
+                  padding: EdgeInsets.symmetric(vertical: h * 0.02),
+                  carouselHeight: h * 0.22,
+                  carouselController: controller().carouselController,
+                  disableGesture: false,
+                  itemCount: 3,
+                  itemBuilder: (BuildContext context, int itemIndex,
+                          int pageViewIndex) =>
+                      ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.asset(
+                      AppImg.banner1,
+                    ),
+                  ),
+
+                  // Container(
+                  //   width: w * 0.35,
+                  //   child: RichText(
+                  //     textAlign: TextAlign.start,
+                  //     text: TextSpan(
+                  //       text: "${AppText.onlymay}\n",
+                  //       style: ptSansTextStyle(
+                  //           color: AppColors.white,
+                  //           fontSize: h * 0.016,
+                  //           fontWeight: FontWeight.w400),
+                  //       children: <TextSpan>[
+                  //         TextSpan(
+                  //             text: "${AppText.sonyps}\n",
+                  //             style: ptSansTextStyle(
+                  //                 color: AppColors.white,
+                  //                 fontSize: h * 0.022,
+                  //                 fontWeight: FontWeight.w700)),
+                  //         TextSpan(
+                  //           text: AppText.permonth,
+                  //           style: ptSansTextStyle(
+                  //               color: AppColors.white,
+                  //               fontSize: h * 0.015,
+                  //               fontWeight: FontWeight.w400),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  dotindicator: false,
+                ).animate().fadeIn(duration: 400.ms).then(delay: 400.ms).slideX(
+                      begin: 1,
+                      end: 0,
+                      curve: Curves.easeInOutCubic,
+                      duration: 600.ms,
+                    ),
+
+                /// Popular ads
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: h * 0.005),
+                  child: Categories(
+                    animatecontrollerlist: [],
+                    isFavIcon: true,
+                    isFeature: false,
+                    isextended: false,
+                    title: AppText.popularads,
+                    isViewAll: true,
+                    isTopPadding: false,
+                    type: 2,
+                    favList: controller().getpopularfavlist,
+                    isCategory: false,
+                    shrinkWrap: false,
+                    width: w,
+                    height: h * 0.35,
+                    scrollDirection: Axis.horizontal,
+                    nameList: controller().nameList,
+                    imgList: controller().imgList,
+                    contheight: h * 0.32,
+                    contwidth: w * 0.45,
+                    contColor: AppColors.white,
+                    borderRadius: BorderRadius.circular(14),
+                    onFavPressed: (index) {
+                      controller().onFavTap(index, 2);
+                    },
+                  )
+                      .animate()
+                      .fadeIn(duration: 600.ms)
+                      .then(delay: 600.ms)
+                      .slideX(
+                        begin: 1,
+                        end: 0,
+                        curve: Curves.easeInOutCubic,
+                        duration: 600.ms,
+                      ),
+                ),
+
                 ///Promote your ad in Featured
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: h * 0.015),
                   child: Column(
                     children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: w * 0.05, vertical: h * 0.015),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            CommonText(
-                                text: AppText.promoteurad,
-                                style: ptSansTextStyle(
-                                  color: AppColors.black.withOpacity(0.8),
-                                  fontSize: h * 0.022,
-                                  fontWeight: FontWeight.w700,
-                                )),
-                            Icon(
-                              Icons.add,
-                              color: AppColors.black,
-                              size: h * 0.03,
-                            )
-                          ],
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: EdgeInsets.symmetric(
+                      //       horizontal: w * 0.05, vertical: h * 0.015),
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //     crossAxisAlignment: CrossAxisAlignment.end,
+                      //     children: [
+                      //       CommonText(
+                      //           text: AppText.promoteurad,
+                      //           style: ptSansTextStyle(
+                      //             color: AppColors.black.withOpacity(0.8),
+                      //             fontSize: h * 0.022,
+                      //             fontWeight: FontWeight.w700,
+                      //           )),
+                      //       Icon(
+                      //         Icons.add,
+                      //         color: AppColors.black,
+                      //         size: h * 0.03,
+                      //       )
+                      //     ],
+                      //   ),
+                      // ),
                       Container(
-                        height: h * 0.25,
+                        height: h * 0.3,
                         width: w,
                         decoration: const BoxDecoration(
                           gradient: LinearGradient(
@@ -251,60 +390,83 @@ class HomeScreen extends ConsumerWidget {
                                 AppColors.colorSecondary
                               ]),
                         ),
-                        child: CommonCarousel(
-                          enlargeFactor: 0.4,
-                          dotindicator: true,
-                          gradient: false,
-                          containerheight: h * 0.2,
-                          containerwidth: w,
-                          viewportFraction: w / (w * 2),
-                          scrollDirection: Axis.horizontal,
-                          autoPlayCurve: Curves.bounceIn,
-                          onPageChanged: (index, reason) {
-                            controller().onPageChanged(index);
-                          },
-                          aspectRatio: 1 / 1,
-                          enableInfiniteScroll: false,
-                          autoPlay: false,
-                          reverse: false,
-                          getcurrentPageIndex: controller().getcurrentPageIndex,
-                          padding: EdgeInsets.symmetric(vertical: h * 0.015),
-                          carouselHeight: h * 0.2,
-                          carouselController: controller().carouselController,
-                          disableGesture: false,
-                          itemCount: controller().imgList.length,
-                          itemBuilder: (BuildContext context, int itemIndex,
-                                  int pageViewIndex) =>
-                              Container(
-                                  height: h * 0.2,
-                                  width: h * 0.2,
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: w * 0.02),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(14),
-                                      color: AppColors.white),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Center(
-                                        child: Image.asset(
-                                            controller().imgList[pageViewIndex],
-                                            height: h * 0.1,
-                                            width: w * 0.3),
-                                      ),
-                                      CommonText(
-                                          text: controller()
-                                              .nameList[pageViewIndex],
-                                          textAlign: TextAlign.center,
-                                          style: ptSansTextStyle(
-                                            color: AppColors.black
-                                                .withOpacity(0.8),
-                                            fontSize: h * 0.015,
-                                            fontWeight: FontWeight.w400,
-                                          )),
-                                    ],
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: w * 0.05,
+                              ),
+                              child: CommonText(
+                                  text: "RentWorthy Collection",
+                                  style: ptSansTextStyle(
+                                    color: AppColors.white,
+                                    fontSize: h * 0.022,
+                                    fontWeight: FontWeight.w800,
                                   )),
+                            ),
+                            CommonCarousel(
+                              enlargeFactor: 0.4,
+                              dotindicator: true,
+                              gradient: false,
+                              containerheight: h * 0.2,
+                              containerwidth: w,
+                              viewportFraction: w / (w * 2),
+                              scrollDirection: Axis.horizontal,
+                              autoPlayCurve: Curves.bounceIn,
+                              onPageChanged: (index, reason) {
+                                controller().onPageChanged(index);
+                              },
+                              aspectRatio: 1 / 1,
+                              enableInfiniteScroll: false,
+                              autoPlay: false,
+                              reverse: false,
+                              getcurrentPageIndex:
+                                  controller().getcurrentPageIndex,
+                              padding:
+                                  EdgeInsets.symmetric(vertical: h * 0.015),
+                              carouselHeight: h * 0.2,
+                              carouselController:
+                                  controller().carouselController,
+                              disableGesture: false,
+                              itemCount: controller().imgList.length,
+                              itemBuilder: (BuildContext context, int itemIndex,
+                                      int pageViewIndex) =>
+                                  Container(
+                                      height: h * 0.2,
+                                      width: h * 0.2,
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: w * 0.02),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(14),
+                                          color: AppColors.white),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Center(
+                                            child: Image.asset(
+                                                controller()
+                                                    .imgList[pageViewIndex],
+                                                height: h * 0.1,
+                                                width: w * 0.3),
+                                          ),
+                                          CommonText(
+                                              text: controller()
+                                                  .nameList[pageViewIndex],
+                                              textAlign: TextAlign.center,
+                                              style: ptSansTextStyle(
+                                                color: AppColors.black
+                                                    .withOpacity(0.8),
+                                                fontSize: h * 0.015,
+                                                fontWeight: FontWeight.w400,
+                                              )),
+                                        ],
+                                      )),
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -318,6 +480,105 @@ class HomeScreen extends ConsumerWidget {
                         curve: Curves.easeInOutCubic,
                         duration: 600.ms,
                       ),
+                ),
+
+                /// Carousel
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: w * 0.05,
+                      ),
+                      child: CommonText(
+                          text: "Rentworthy Experiences",
+                          style: ptSansTextStyle(
+                            color: AppColors.black.withOpacity(0.8),
+                            fontSize: h * 0.022,
+                            fontWeight: FontWeight.w800,
+                          )),
+                    ),
+                    CommonCarousel(
+                      enlargeFactor: 0.3,
+                      containerheight: h * 0.18,
+                      containerwidth: w,
+                      gradient: false,
+                      viewportFraction: 0.85,
+                      scrollDirection: Axis.horizontal,
+                      autoPlayCurve: Curves.bounceIn,
+                      aspectRatio: 1 / 1,
+                      enableInfiniteScroll: false,
+                      autoPlay: false,
+                      reverse: false,
+                      padding: EdgeInsets.symmetric(vertical: h * 0.01),
+                      carouselHeight: h * 0.22,
+                      carouselController: controller().carouselController,
+                      disableGesture: false,
+                      itemCount: 3,
+                      itemBuilder: (BuildContext context, int itemIndex,
+                              int pageViewIndex) =>
+                          ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Stack(
+                          children: [
+                            Image.asset(
+                              AppImg.banner1,
+                            ),
+                            Positioned(
+                              bottom: h * 0.02,
+                              left: w * 0.02,
+                              child: CommonText(
+                                  text: "Camping",
+                                  style: ptSansTextStyle(
+                                    color: AppColors.white,
+                                    fontSize: h * 0.022,
+                                    fontWeight: FontWeight.w800,
+                                  )),
+                            )
+                          ],
+                        ),
+                      ),
+
+                      // Container(
+                      //   width: w * 0.35,
+                      //   child: RichText(
+                      //     textAlign: TextAlign.start,
+                      //     text: TextSpan(
+                      //       text: "${AppText.onlymay}\n",
+                      //       style: ptSansTextStyle(
+                      //           color: AppColors.white,
+                      //           fontSize: h * 0.016,
+                      //           fontWeight: FontWeight.w400),
+                      //       children: <TextSpan>[
+                      //         TextSpan(
+                      //             text: "${AppText.sonyps}\n",
+                      //             style: ptSansTextStyle(
+                      //                 color: AppColors.white,
+                      //                 fontSize: h * 0.022,
+                      //                 fontWeight: FontWeight.w700)),
+                      //         TextSpan(
+                      //           text: AppText.permonth,
+                      //           style: ptSansTextStyle(
+                      //               color: AppColors.white,
+                      //               fontSize: h * 0.015,
+                      //               fontWeight: FontWeight.w400),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
+                      dotindicator: false,
+                    )
+                        .animate()
+                        .fadeIn(duration: 400.ms)
+                        .then(delay: 400.ms)
+                        .slideX(
+                          begin: 1,
+                          end: 0,
+                          curve: Curves.easeInOutCubic,
+                          duration: 600.ms,
+                        ),
+                  ],
                 ),
 
                 /// Nearby ads
@@ -359,44 +620,6 @@ class HomeScreen extends ConsumerWidget {
                       ),
                 ),
 
-                /// Popular ads
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: h * 0.005),
-                  child: Categories(
-                    animatecontrollerlist: [],
-                    isFavIcon: true,
-                    isFeature: false,
-                    isextended: false,
-                    title: AppText.popularads,
-                    isViewAll: true,
-                    isTopPadding: false,
-                    type: 2,
-                    favList: controller().getpopularfavlist,
-                    isCategory: false,
-                    shrinkWrap: false,
-                    width: w,
-                    height: h * 0.35,
-                    scrollDirection: Axis.horizontal,
-                    nameList: controller().nameList,
-                    imgList: controller().imgList,
-                    contheight: h * 0.32,
-                    contwidth: w * 0.45,
-                    contColor: AppColors.white,
-                    borderRadius: BorderRadius.circular(14),
-                    onFavPressed: (index) {
-                      controller().onFavTap(index, 2);
-                    },
-                  )
-                      .animate()
-                      .fadeIn(duration: 600.ms)
-                      .then(delay: 600.ms)
-                      .slideX(
-                        begin: 1,
-                        end: 0,
-                        curve: Curves.easeInOutCubic,
-                        duration: 600.ms,
-                      ),
-                ),
                 Image.asset(AppImg.footer,
                         height: h * 0.4, width: w, fit: BoxFit.fill)
                     .animate()

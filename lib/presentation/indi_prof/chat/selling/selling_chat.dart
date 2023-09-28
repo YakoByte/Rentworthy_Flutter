@@ -110,7 +110,7 @@ class SellingChat extends ConsumerWidget {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        AppText.meeting,
+                        AppText.unread,
                         style: ptSansTextStyle(
                             foreground: Paint()
                               ..shader = LinearGradient(
@@ -149,7 +149,7 @@ class SellingChat extends ConsumerWidget {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        AppText.unread,
+                        AppText.important,
                         style: ptSansTextStyle(
                             foreground: Paint()
                               ..shader = LinearGradient(

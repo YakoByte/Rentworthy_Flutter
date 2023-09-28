@@ -8,6 +8,7 @@ class NotificationController extends _$NotificationController {
   bool _switched = false;
 
   bool get isSwitched => _switched;
+
   bool _recswitched = false;
 
   bool get isrecSwitched => _recswitched;

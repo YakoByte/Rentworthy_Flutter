@@ -39,6 +39,7 @@ dependencies:
   emoji_picker_flutter: ^1.6.1
   we_slide: ^2.4.0
   flutter_rating_bar: ^4.0.1
+  confetti: ^0.7.0
   #  dropdown_search: ^5.0.6
   dio: ^5.3.2
   syncfusion_flutter_sliders: ^22.2.11
@@ -49,6 +50,7 @@ dependencies:
   #  table_calendar: ^3.0.9
   #  syncfusion_flutter_charts: ^22.2.12
   flutter_circle_chart: ^1.0.0
+  image_picker: ^1.0.4
 #  smart_auth: ^1.1.1
 
 dev_dependencies:

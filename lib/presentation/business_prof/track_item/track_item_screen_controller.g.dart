@@ -7,7 +7,7 @@ part of 'track_item_screen_controller.dart';
 // **************************************************************************
 
 String _$trackItemControllerHash() =>
-    r'3c11dc83548ec000f2cdf417df1c5003050272ec';
+    r'6d604f1a8df72dac4f00e503c15c4a60aaa4dcac';
 
 /// See also [TrackItemController].
 @ProviderFor(TrackItemController)
@@ -24,4 +24,4 @@ final trackItemControllerProvider =
 
 typedef _$TrackItemController = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

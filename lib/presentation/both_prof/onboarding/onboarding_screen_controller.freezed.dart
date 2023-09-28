@@ -74,11 +74,12 @@ class _$OnBoardingScreenStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_OnBoardingScreenStateCopyWith<$Res>
+abstract class _$$OnBoardingScreenStateImplCopyWith<$Res>
     implements $OnBoardingScreenStateCopyWith<$Res> {
-  factory _$$_OnBoardingScreenStateCopyWith(_$_OnBoardingScreenState value,
-          $Res Function(_$_OnBoardingScreenState) then) =
-      __$$_OnBoardingScreenStateCopyWithImpl<$Res>;
+  factory _$$OnBoardingScreenStateImplCopyWith(
+          _$OnBoardingScreenStateImpl value,
+          $Res Function(_$OnBoardingScreenStateImpl) then) =
+      __$$OnBoardingScreenStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -88,11 +89,12 @@ abstract class _$$_OnBoardingScreenStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_OnBoardingScreenStateCopyWithImpl<$Res>
-    extends _$OnBoardingScreenStateCopyWithImpl<$Res, _$_OnBoardingScreenState>
-    implements _$$_OnBoardingScreenStateCopyWith<$Res> {
-  __$$_OnBoardingScreenStateCopyWithImpl(_$_OnBoardingScreenState _value,
-      $Res Function(_$_OnBoardingScreenState) _then)
+class __$$OnBoardingScreenStateImplCopyWithImpl<$Res>
+    extends _$OnBoardingScreenStateCopyWithImpl<$Res,
+        _$OnBoardingScreenStateImpl>
+    implements _$$OnBoardingScreenStateImplCopyWith<$Res> {
+  __$$OnBoardingScreenStateImplCopyWithImpl(_$OnBoardingScreenStateImpl _value,
+      $Res Function(_$OnBoardingScreenStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -102,7 +104,7 @@ class __$$_OnBoardingScreenStateCopyWithImpl<$Res>
     Object? pageController = freezed,
     Object? currentpageIndex = freezed,
   }) {
-    return _then(_$_OnBoardingScreenState(
+    return _then(_$OnBoardingScreenStateImpl(
       onBoardinglist: freezed == onBoardinglist
           ? _value._onBoardinglist
           : onBoardinglist // ignore: cast_nullable_to_non_nullable
@@ -121,8 +123,8 @@ class __$$_OnBoardingScreenStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OnBoardingScreenState extends _OnBoardingScreenState {
-  const _$_OnBoardingScreenState(
+class _$OnBoardingScreenStateImpl extends _OnBoardingScreenState {
+  const _$OnBoardingScreenStateImpl(
       {required final List<OnBoardingitem>? onBoardinglist,
       required this.pageController,
       required this.currentpageIndex})
@@ -153,7 +155,7 @@ class _$_OnBoardingScreenState extends _OnBoardingScreenState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OnBoardingScreenState &&
+            other is _$OnBoardingScreenStateImpl &&
             const DeepCollectionEquality()
                 .equals(other._onBoardinglist, _onBoardinglist) &&
             (identical(other.pageController, pageController) ||
@@ -172,16 +174,16 @@ class _$_OnBoardingScreenState extends _OnBoardingScreenState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OnBoardingScreenStateCopyWith<_$_OnBoardingScreenState> get copyWith =>
-      __$$_OnBoardingScreenStateCopyWithImpl<_$_OnBoardingScreenState>(
-          this, _$identity);
+  _$$OnBoardingScreenStateImplCopyWith<_$OnBoardingScreenStateImpl>
+      get copyWith => __$$OnBoardingScreenStateImplCopyWithImpl<
+          _$OnBoardingScreenStateImpl>(this, _$identity);
 }
 
 abstract class _OnBoardingScreenState extends OnBoardingScreenState {
   const factory _OnBoardingScreenState(
       {required final List<OnBoardingitem>? onBoardinglist,
       required final PageController? pageController,
-      required final int? currentpageIndex}) = _$_OnBoardingScreenState;
+      required final int? currentpageIndex}) = _$OnBoardingScreenStateImpl;
   const _OnBoardingScreenState._() : super._();
 
   @override
@@ -192,6 +194,6 @@ abstract class _OnBoardingScreenState extends OnBoardingScreenState {
   int? get currentpageIndex;
   @override
   @JsonKey(ignore: true)
-  _$$_OnBoardingScreenStateCopyWith<_$_OnBoardingScreenState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$OnBoardingScreenStateImplCopyWith<_$OnBoardingScreenStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

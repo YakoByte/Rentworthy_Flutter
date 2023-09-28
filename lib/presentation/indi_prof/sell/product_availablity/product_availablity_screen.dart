@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
+import 'package:rentworthy/application/dialog/dialod_service.dart';
 import 'package:rentworthy/presentation/indi_prof/sell/product_availablity/product_availablity_screen_controller.dart';
 import 'package:rentworthy/utils/common_components/icon_text.dart';
 import 'package:rentworthy/utils/images.dart';
@@ -162,6 +164,16 @@ class ProductAvailabliity extends ConsumerWidget {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             isTodayHighlighted: false),
+                        onDayLongPressed: (selectedDay, focusedDay) {
+                          ref
+                              .read(dialogServiceProvider)
+                              .productAvailabilityDialog(
+                                date:
+                                    "${controller().selectedDay.day.toString()} "
+                                    "${DateFormat('MMM').format(controller().selectedDay)} "
+                                    "${controller().selectedDay.year.toString()}",
+                              );
+                        },
                         startingDayOfWeek: StartingDayOfWeek.sunday,
                         calendarFormat: CalendarFormat.month,
                         firstDay: DateTime.utc(2010, 10, 16),

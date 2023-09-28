@@ -58,23 +58,25 @@ class _$BusinessDetectOtpStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_BusinessDetectOtpStateCopyWith<$Res>
+abstract class _$$BusinessDetectOtpStateImplCopyWith<$Res>
     implements $BusinessDetectOtpStateCopyWith<$Res> {
-  factory _$$_BusinessDetectOtpStateCopyWith(_$_BusinessDetectOtpState value,
-          $Res Function(_$_BusinessDetectOtpState) then) =
-      __$$_BusinessDetectOtpStateCopyWithImpl<$Res>;
+  factory _$$BusinessDetectOtpStateImplCopyWith(
+          _$BusinessDetectOtpStateImpl value,
+          $Res Function(_$BusinessDetectOtpStateImpl) then) =
+      __$$BusinessDetectOtpStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int? start});
 }
 
 /// @nodoc
-class __$$_BusinessDetectOtpStateCopyWithImpl<$Res>
+class __$$BusinessDetectOtpStateImplCopyWithImpl<$Res>
     extends _$BusinessDetectOtpStateCopyWithImpl<$Res,
-        _$_BusinessDetectOtpState>
-    implements _$$_BusinessDetectOtpStateCopyWith<$Res> {
-  __$$_BusinessDetectOtpStateCopyWithImpl(_$_BusinessDetectOtpState _value,
-      $Res Function(_$_BusinessDetectOtpState) _then)
+        _$BusinessDetectOtpStateImpl>
+    implements _$$BusinessDetectOtpStateImplCopyWith<$Res> {
+  __$$BusinessDetectOtpStateImplCopyWithImpl(
+      _$BusinessDetectOtpStateImpl _value,
+      $Res Function(_$BusinessDetectOtpStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -82,7 +84,7 @@ class __$$_BusinessDetectOtpStateCopyWithImpl<$Res>
   $Res call({
     Object? start = freezed,
   }) {
-    return _then(_$_BusinessDetectOtpState(
+    return _then(_$BusinessDetectOtpStateImpl(
       start: freezed == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
@@ -93,8 +95,8 @@ class __$$_BusinessDetectOtpStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_BusinessDetectOtpState extends _BusinessDetectOtpState {
-  const _$_BusinessDetectOtpState({this.start}) : super._();
+class _$BusinessDetectOtpStateImpl extends _BusinessDetectOtpState {
+  const _$BusinessDetectOtpStateImpl({this.start}) : super._();
 
   @override
   final int? start;
@@ -108,7 +110,7 @@ class _$_BusinessDetectOtpState extends _BusinessDetectOtpState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BusinessDetectOtpState &&
+            other is _$BusinessDetectOtpStateImpl &&
             (identical(other.start, start) || other.start == start));
   }
 
@@ -118,20 +120,20 @@ class _$_BusinessDetectOtpState extends _BusinessDetectOtpState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BusinessDetectOtpStateCopyWith<_$_BusinessDetectOtpState> get copyWith =>
-      __$$_BusinessDetectOtpStateCopyWithImpl<_$_BusinessDetectOtpState>(
-          this, _$identity);
+  _$$BusinessDetectOtpStateImplCopyWith<_$BusinessDetectOtpStateImpl>
+      get copyWith => __$$BusinessDetectOtpStateImplCopyWithImpl<
+          _$BusinessDetectOtpStateImpl>(this, _$identity);
 }
 
 abstract class _BusinessDetectOtpState extends BusinessDetectOtpState {
   const factory _BusinessDetectOtpState({final int? start}) =
-      _$_BusinessDetectOtpState;
+      _$BusinessDetectOtpStateImpl;
   const _BusinessDetectOtpState._() : super._();
 
   @override
   int? get start;
   @override
   @JsonKey(ignore: true)
-  _$$_BusinessDetectOtpStateCopyWith<_$_BusinessDetectOtpState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$BusinessDetectOtpStateImplCopyWith<_$BusinessDetectOtpStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

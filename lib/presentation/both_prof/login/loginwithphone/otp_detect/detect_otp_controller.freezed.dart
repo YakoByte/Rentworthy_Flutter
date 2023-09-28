@@ -57,22 +57,22 @@ class _$DetectOtpStateCopyWithImpl<$Res, $Val extends DetectOtpState>
 }
 
 /// @nodoc
-abstract class _$$_DetectOtpStateCopyWith<$Res>
+abstract class _$$DetectOtpStateImplCopyWith<$Res>
     implements $DetectOtpStateCopyWith<$Res> {
-  factory _$$_DetectOtpStateCopyWith(
-          _$_DetectOtpState value, $Res Function(_$_DetectOtpState) then) =
-      __$$_DetectOtpStateCopyWithImpl<$Res>;
+  factory _$$DetectOtpStateImplCopyWith(_$DetectOtpStateImpl value,
+          $Res Function(_$DetectOtpStateImpl) then) =
+      __$$DetectOtpStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int? start});
 }
 
 /// @nodoc
-class __$$_DetectOtpStateCopyWithImpl<$Res>
-    extends _$DetectOtpStateCopyWithImpl<$Res, _$_DetectOtpState>
-    implements _$$_DetectOtpStateCopyWith<$Res> {
-  __$$_DetectOtpStateCopyWithImpl(
-      _$_DetectOtpState _value, $Res Function(_$_DetectOtpState) _then)
+class __$$DetectOtpStateImplCopyWithImpl<$Res>
+    extends _$DetectOtpStateCopyWithImpl<$Res, _$DetectOtpStateImpl>
+    implements _$$DetectOtpStateImplCopyWith<$Res> {
+  __$$DetectOtpStateImplCopyWithImpl(
+      _$DetectOtpStateImpl _value, $Res Function(_$DetectOtpStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -80,7 +80,7 @@ class __$$_DetectOtpStateCopyWithImpl<$Res>
   $Res call({
     Object? start = freezed,
   }) {
-    return _then(_$_DetectOtpState(
+    return _then(_$DetectOtpStateImpl(
       start: freezed == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
@@ -91,8 +91,8 @@ class __$$_DetectOtpStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DetectOtpState extends _DetectOtpState {
-  const _$_DetectOtpState({this.start}) : super._();
+class _$DetectOtpStateImpl extends _DetectOtpState {
+  const _$DetectOtpStateImpl({this.start}) : super._();
 
   @override
   final int? start;
@@ -106,7 +106,7 @@ class _$_DetectOtpState extends _DetectOtpState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DetectOtpState &&
+            other is _$DetectOtpStateImpl &&
             (identical(other.start, start) || other.start == start));
   }
 
@@ -116,18 +116,19 @@ class _$_DetectOtpState extends _DetectOtpState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DetectOtpStateCopyWith<_$_DetectOtpState> get copyWith =>
-      __$$_DetectOtpStateCopyWithImpl<_$_DetectOtpState>(this, _$identity);
+  _$$DetectOtpStateImplCopyWith<_$DetectOtpStateImpl> get copyWith =>
+      __$$DetectOtpStateImplCopyWithImpl<_$DetectOtpStateImpl>(
+          this, _$identity);
 }
 
 abstract class _DetectOtpState extends DetectOtpState {
-  const factory _DetectOtpState({final int? start}) = _$_DetectOtpState;
+  const factory _DetectOtpState({final int? start}) = _$DetectOtpStateImpl;
   const _DetectOtpState._() : super._();
 
   @override
   int? get start;
   @override
   @JsonKey(ignore: true)
-  _$$_DetectOtpStateCopyWith<_$_DetectOtpState> get copyWith =>
+  _$$DetectOtpStateImplCopyWith<_$DetectOtpStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

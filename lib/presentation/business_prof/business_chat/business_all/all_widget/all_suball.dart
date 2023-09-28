@@ -194,7 +194,7 @@ class BusinessAllSubAll extends ConsumerWidget {
                     duration: 400.ms);
           },
           width: w,
-          height: h * 0.65,
+          height: h * 0.72,
         ),
       ],
     );

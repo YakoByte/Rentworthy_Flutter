@@ -7,7 +7,7 @@ part of 'business_chat_controller.dart';
 // **************************************************************************
 
 String _$businessChatControllerHash() =>
-    r'1bde8d5184ed7e6bc4f7370960cf0ab359388888';
+    r'bedf16daeb3f4df7265e65acaeb88bda6647e5ab';
 
 /// See also [BusinessChatController].
 @ProviderFor(BusinessChatController)
@@ -24,4 +24,4 @@ final businessChatControllerProvider =
 
 typedef _$BusinessChatController = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

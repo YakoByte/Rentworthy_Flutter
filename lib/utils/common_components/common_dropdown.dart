@@ -240,11 +240,12 @@ class CommonDropdown extends ConsumerWidget {
       padding: EdgeInsets.only(left: w * 0.02),
       child: Text(
         selectedItem!,
-        style: ptSansTextStyle(
-            color: AppColors.black.withOpacity(0.8),
-            fontSize: w * 0.04,
-            overflow: TextOverflow.ellipsis,
-            fontWeight: FontWeight.w700),
+        style: textstyle ??
+            ptSansTextStyle(
+                color: AppColors.black.withOpacity(0.8),
+                fontSize: w * 0.04,
+                overflow: TextOverflow.ellipsis,
+                fontWeight: FontWeight.w700),
       ),
     );
   }

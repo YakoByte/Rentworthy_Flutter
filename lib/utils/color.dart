@@ -35,6 +35,7 @@ class AppColors {
   static const Color textcolor = Color(0xFF5A5A5A);
   static const Color stepcolor = Color(0xFF9C9C9C);
   static const Color contcolor = Color(0xFFF0F2F1);
+  static const Color backpopup = Color(0xFFFAF6FF);
 
   static const Color dotcolor = Color(0xFFDBDBDB);
 
