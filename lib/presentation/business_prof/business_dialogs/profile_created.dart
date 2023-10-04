@@ -10,7 +10,9 @@ import '../../../utils/common_components/common_text.dart';
 import '../../../utils/text.dart';
 
 class ProfileCreated extends ConsumerStatefulWidget {
-  const ProfileCreated({super.key});
+  void Function(bool verfied) profVerified;
+
+  ProfileCreated({super.key, required this.profVerified});
 
   @override
   ConsumerState createState() => _ProfileCreatedState();
@@ -25,6 +27,9 @@ class _ProfileCreatedState extends ConsumerState<ProfileCreated> {
     _controllerCenter =
         ConfettiController(duration: const Duration(seconds: 10));
     _controllerCenter.play();
+    Future.delayed(const Duration(seconds: 3), () {
+      widget.profVerified(true);
+    });
     super.initState();
   }
 
@@ -98,7 +103,7 @@ class _ProfileCreatedState extends ConsumerState<ProfileCreated> {
                   child: Align(
                     alignment: Alignment.center,
                     child: ConfettiWidget(
-                      numberOfParticles: 70,
+                      numberOfParticles: 50,
                       confettiController: _controllerCenter,
                       blastDirectionality: BlastDirectionality.explosive,
                       shouldLoop: true,

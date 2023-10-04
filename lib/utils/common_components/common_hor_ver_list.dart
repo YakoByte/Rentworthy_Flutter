@@ -100,11 +100,12 @@ class HorizonVertList extends ConsumerWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 ClipRRect(
-                                  borderRadius: BorderRadius.circular(14),
+                                  borderRadius:
+                                      BorderRadius.circular(h * 0.025),
                                   child: Image.asset(
                                     AppImg.homelist,
-                                    height: contwidth! * 0.85,
-                                    width: contwidth! * 0.85,
+                                    height: h * 0.2,
+                                    width: contwidth * 0.85,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -121,8 +122,8 @@ class HorizonVertList extends ConsumerWidget {
                                 children: [
                                   if (isFeature == true)
                                     Container(
-                                      height: h * 0.03,
-                                      width: contwidth! * 0.45,
+                                      height: h * 0.035,
+                                      width: contwidth * 0.48,
                                       decoration: BoxDecoration(
                                           color: AppColors.yellow,
                                           borderRadius:
@@ -247,7 +248,7 @@ class HorizonVertList extends ConsumerWidget {
                       CommonText(
                         text: AppText.forpermonth,
                         style: ptSansTextStyle(
-                            fontSize: w * 0.04,
+                            fontSize: h * 0.02,
                             color: AppColors.black.withOpacity(0.3),
                             fontWeight: FontWeight.w400),
                       ),

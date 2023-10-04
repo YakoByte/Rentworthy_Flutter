@@ -144,129 +144,9 @@ class BookingScreen extends ConsumerWidget {
                           decoration: BoxDecoration(
                               border: Border.all(
                                 color: AppColors.black.withOpacity(0.2),
-                                width: 1,
+                                width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8)),
-                          // child: CommonDropdown(
-                          //   dropdownsuffix: Checkbox(
-                          //     value: false,
-                          //     activeColor: AppColors.colorPrimary,
-                          //     side: BorderSide(
-                          //         color: AppColors.black.withOpacity(0.4),
-                          //         width: 1),
-                          //     shape: RoundedRectangleBorder(
-                          //         borderRadius: BorderRadius.circular(4)),
-                          //     onChanged: (_) {},
-                          //   ),
-                          //   dropdowntitle: Column(
-                          //     children: [
-                          //       Row(
-                          //         children: [
-                          //           Container(
-                          //             width: w * 0.85,
-                          //             height: h * 0.035,
-                          //             color: AppColors.white,
-                          //             child: SliderTheme(
-                          //                 data: SliderThemeData(
-                          //                   trackHeight: h * 0.013,
-                          //                   thumbShape:
-                          //                       GradientRectSliderThumbShape(
-                          //                           disabledThumbRadius: h * 0.014,
-                          //                           enabledThumbRadius: h * 0.014),
-                          //                   trackShape:
-                          //                       const GradientRectSliderTrackShape(
-                          //                           gradient: LinearGradient(
-                          //                             colors: <Color>[
-                          //                               AppColors.colorPrimary,
-                          //                               AppColors.colorSecondary
-                          //                             ],
-                          //                           ),
-                          //                           darkenInactive: true),
-                          //                 ),
-                          //                 child: Slider(
-                          //                   min: 0,
-                          //                   max: 100,
-                          //                   inactiveColor:
-                          //                       AppColors.black.withOpacity(0.2),
-                          //                   thumbColor: AppColors.white,
-                          //                   value: 50.0,
-                          //                   onChanged: (double value) {},
-                          //                 )),
-                          //           ),
-                          //         ],
-                          //       ),
-                          //       Padding(
-                          //         padding: EdgeInsets.symmetric(
-                          //             vertical: h * 0.015, horizontal: w * 0.025),
-                          //         child: Row(
-                          //           children: [
-                          //             CommonText(
-                          //               text: "Price: \u{20B9}0 - \u{20B9}5,000 ",
-                          //               style: ptSansTextStyle(
-                          //                   color: AppColors.black.withOpacity(0.4),
-                          //                   fontSize: h * 0.02,
-                          //                   fontWeight: FontWeight.w600),
-                          //             ),
-                          //           ],
-                          //         ),
-                          //       )
-                          //     ],
-                          //   ),
-                          //   items: controller().getfilterlist,
-                          //   selectedItem: controller().getselectedfilter,
-                          //   dropdownDecoratorProps: DropDownDecoratorProps(
-                          //       textAlignVertical: TextAlignVertical.bottom,
-                          //       dropdownSearchDecoration: InputDecoration(
-                          //         border: InputBorder.none,
-                          //         prefixIcon: SizedBox(
-                          //           height: h * 0.03,
-                          //           width: h * 0.03,
-                          //           child: Center(
-                          //             child: Image.asset(AppImg.filter,
-                          //                 color: AppColors.black,
-                          //                 height: h * 0.025),
-                          //           ),
-                          //         ),
-                          //         hintText: "Select Filter",
-                          //         hintStyle: ptSansTextStyle(
-                          //             color: AppColors.black.withOpacity(0.4),
-                          //             fontSize: h * 0.017,
-                          //             fontWeight: FontWeight.w500),
-                          //       ),
-                          //       baseStyle: ptSansTextStyle(
-                          //           color: AppColors.black.withOpacity(0.4),
-                          //           fontSize: h * 0.02,
-                          //           fontWeight: FontWeight.w700)),
-                          //   clearButtonProps: ClearButtonProps(isVisible: false),
-                          //   dropdownButtonProps: DropdownButtonProps(
-                          //     icon: SizedBox(
-                          //       height: h * 0.03,
-                          //       width: h * 0.03,
-                          //       child: Center(
-                          //         child: Icon(Icons.keyboard_arrow_down_sharp,
-                          //             color: AppColors.black, size: h * 0.025),
-                          //       ),
-                          //     ),
-                          //   ),
-                          //   onChangedsearch: (str) {
-                          //     controller().onValSelect(val: str!);
-                          //   },
-                          //   enabled: true,
-                          //   prefix: SizedBox(
-                          //     height: h * 0.03,
-                          //     width: h * 0.03,
-                          //     child: Center(
-                          //       child: Image.asset(AppImg.filter,
-                          //           color: AppColors.black, height: h * 0.025),
-                          //     ),
-                          //   ),
-                          //   isExpanded: true,
-                          //   containerwidth: w * 0.45,
-                          //   containerheight: h * 0.06,
-                          //   borderRadius: BorderRadius.circular(8),
-                          //   containercolor: AppColors.white,
-                          //   elevation: 5,
-                          // ),
                           child: CommonMultiSelectDrop(
                             dropdownselecttitle: "Filter",
                             dropdowntitle: Column(
@@ -378,8 +258,8 @@ class BookingScreen extends ConsumerWidget {
                             containerwidth: w * 0.45,
                             containerheight: h * 0.06,
                             border: Border.all(
-                              color: AppColors.black.withOpacity(0.2),
-                              width: 1,
+                              color: AppColors.white.withOpacity(0.2),
+                              width: 2,
                             ),
                             borderRadius: BorderRadius.circular(8),
                             containercolor: AppColors.white,
@@ -390,75 +270,9 @@ class BookingScreen extends ConsumerWidget {
                           decoration: BoxDecoration(
                               border: Border.all(
                                 color: AppColors.black.withOpacity(0.2),
-                                width: 1,
+                                width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8)),
-                          // child: CommonDropdown(
-                          //   selectedItem: controller().getselectedsortby,
-                          //   items: controller().getsortlist,
-                          //   dropdownsuffix: Checkbox(
-                          //     value: false,
-                          //     activeColor: AppColors.colorPrimary,
-                          //     side: BorderSide(
-                          //         color: AppColors.black.withOpacity(0.4),
-                          //         width: 1),
-                          //     shape: RoundedRectangleBorder(
-                          //         borderRadius: BorderRadius.circular(4)),
-                          //     onChanged: (_) {},
-                          //   ),
-                          //   dropdownDecoratorProps: DropDownDecoratorProps(
-                          //       textAlignVertical: TextAlignVertical.bottom,
-                          //       dropdownSearchDecoration: InputDecoration(
-                          //         border: InputBorder.none,
-                          //         hintText: "Sort By",
-                          //         prefixIcon: SizedBox(
-                          //           height: h * 0.03,
-                          //           width: h * 0.03,
-                          //           child: Center(
-                          //             child: Image.asset(AppImg.sort,
-                          //                 color: AppColors.black,
-                          //                 height: h * 0.025),
-                          //           ),
-                          //         ),
-                          //         hintStyle: ptSansTextStyle(
-                          //             color: AppColors.black.withOpacity(0.4),
-                          //             fontSize: h * 0.017,
-                          //             fontWeight: FontWeight.w500),
-                          //       ),
-                          //       baseStyle: ptSansTextStyle(
-                          //           color: AppColors.black.withOpacity(0.4),
-                          //           fontSize: h * 0.02,
-                          //           fontWeight: FontWeight.w700)),
-                          //   clearButtonProps: ClearButtonProps(isVisible: false),
-                          //   dropdownButtonProps: DropdownButtonProps(
-                          //     icon: SizedBox(
-                          //       height: h * 0.03,
-                          //       width: h * 0.03,
-                          //       child: Center(
-                          //         child: Icon(Icons.keyboard_arrow_down_sharp,
-                          //             color: AppColors.black, size: h * 0.025),
-                          //       ),
-                          //     ),
-                          //   ),
-                          //   onChangedsearch: (str) {
-                          //     controller().onchangesorting(
-                          //       str,
-                          //     );
-                          //   },
-                          //   enabled: true,
-                          //   prefix: SizedBox(
-                          //     height: h * 0.03,
-                          //     width: h * 0.03,
-                          //     child: Image.asset(AppImg.sort,
-                          //         color: AppColors.black, height: h * 0.025),
-                          //   ),
-                          //   isExpanded: true,
-                          //   containerwidth: w * 0.45,
-                          //   containerheight: h * 0.06,
-                          //   borderRadius: BorderRadius.circular(8),
-                          //   containercolor: AppColors.white,
-                          //   elevation: 5,
-                          // ),
                           child: CommonMultiSelectDrop(
                             dropdownselecttitle: "Sort By",
                             dropdowntitle: Column(
@@ -578,8 +392,8 @@ class BookingScreen extends ConsumerWidget {
                             containerwidth: w * 0.45,
                             containerheight: h * 0.06,
                             border: Border.all(
-                              color: AppColors.black.withOpacity(0.2),
-                              width: 1,
+                              color: AppColors.white.withOpacity(0.2),
+                              width: 2,
                             ),
                             borderRadius: BorderRadius.circular(8),
                             containercolor: AppColors.white,

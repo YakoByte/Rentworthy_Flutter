@@ -14,6 +14,7 @@ class CommonMultiSelectDrop extends ConsumerWidget {
   String dropdownselecttitle;
   double containerwidth;
   double containerheight;
+  TextStyle? textstyle;
   Widget? prefix;
   Color? containercolor;
   Widget? dropdownicon;
@@ -45,6 +46,7 @@ class CommonMultiSelectDrop extends ConsumerWidget {
     required this.dropdownselecttitle,
     required this.containerheight,
     this.dropdowntitle,
+    this.textstyle,
     this.containercolor,
     this.dropdownicon,
     this.borderRadius,
@@ -262,11 +264,12 @@ class CommonMultiSelectDrop extends ConsumerWidget {
       padding: EdgeInsets.only(left: w * 0.02),
       child: Text(
         dropdownselecttitle,
-        style: ptSansTextStyle(
-            height: containerheight * 0.02,
-            color: AppColors.black.withOpacity(0.8),
-            fontSize: w * 0.04,
-            fontWeight: FontWeight.w700),
+        style: textstyle ??
+            ptSansTextStyle(
+                height: containerheight * 0.02,
+                color: AppColors.black.withOpacity(0.8),
+                fontSize: w * 0.04,
+                fontWeight: FontWeight.w700),
       ),
     );
   }

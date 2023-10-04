@@ -42,7 +42,9 @@ abstract class DialogService {
     required void Function(String) onChangedval,
   });
 
-  Future<void> profileCreatedDialog();
+  Future<void> profileCreatedDialog({
+    required void Function(bool verfied) profVerified,
+  });
 
   Future<void> reportimgtitledialog({
     required int groupValue,
@@ -153,16 +155,22 @@ class DialogServiceV1 implements DialogService {
         }));
   }
 
-  Future<void> profileCreatedDialog() async {
+  Future<void> profileCreatedDialog({
+    required void Function(bool verfied) profVerified,
+  }) async {
     return (await showDialog(
         context: Globals.navigatorKey.currentContext!,
         barrierDismissible: true,
         builder: (BuildContext context) {
-          return ProfileCreated();
+          return ProfileCreated(
+            profVerified: profVerified,
+          );
         }));
   }
 
-  Future<void> productAvailabilityDialog({required String date}) async {
+  Future<void> productAvailabilityDialog({
+    required String date,
+  }) async {
     return (await showDialog(
         context: Globals.navigatorKey.currentContext!,
         barrierColor: AppColors.transparent,

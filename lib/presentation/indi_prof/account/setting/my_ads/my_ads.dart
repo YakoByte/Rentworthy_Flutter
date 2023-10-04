@@ -73,9 +73,9 @@ class MyAds extends ConsumerWidget {
                                 const Rect.fromLTRB(100, 0, 150, 20)),
                           fontSize: h * 0.02,
                           fontWeight: FontWeight.w700),
-                      tabs: const [
-                        Tab(text: AppText.ads),
-                        Tab(text: AppText.fav),
+                      tabs: [
+                        Tab(height: h * 0.06, text: AppText.ads),
+                        Tab(height: h * 0.06, text: AppText.fav),
                       ]),
                 ),
                 Container(
@@ -83,73 +83,6 @@ class MyAds extends ConsumerWidget {
                   child: TabBarView(
                       controller: controller().tabController,
                       children: [
-                        // Padding(
-                        //   padding: EdgeInsets.symmetric(vertical: h * 0.05),
-                        //   child: Column(
-                        //     children: [
-                        //       Container(
-                        //         height: h * 0.5,
-                        //         child: Column(
-                        //           mainAxisAlignment:
-                        //               MainAxisAlignment.spaceEvenly,
-                        //           children: [
-                        //             Image.asset(AppImg.searchengines,
-                        //                 height: h * 0.3,
-                        //                 width: w * 0.6,
-                        //                 fit: BoxFit.cover),
-                        //             Padding(
-                        //               padding: EdgeInsets.symmetric(
-                        //                   vertical: h * 0.01),
-                        //               child: CommonText(
-                        //                   text: AppText.haventlisted,
-                        //                   style: ptSansTextStyle(
-                        //                       color: AppColors.black
-                        //                           .withOpacity(0.4),
-                        //                       fontSize: h * 0.02,
-                        //                       fontWeight: FontWeight.w400)),
-                        //             ),
-                        //             CommonText(
-                        //                 text: AppText.useanymore,
-                        //                 style: ptSansTextStyle(
-                        //                     color: AppColors.black
-                        //                         .withOpacity(0.4),
-                        //                     fontSize: h * 0.02,
-                        //                     fontWeight: FontWeight.w400)),
-                        //             Padding(
-                        //               padding: EdgeInsets.symmetric(
-                        //                   vertical: h * 0.015),
-                        //               child: CommonButton(
-                        //                   containerwidth: w * 0.4,
-                        //                   containerheight: h * 0.055,
-                        //                   backgroundColor:
-                        //                       AppColors.transparent,
-                        //                   decoration: const BoxDecoration(
-                        //                       borderRadius: BorderRadius.all(
-                        //                           Radius.circular(4)),
-                        //                       gradient: LinearGradient(
-                        //                         begin: Alignment.topLeft,
-                        //                         end: Alignment.bottomRight,
-                        //                         colors: [
-                        //                           AppColors.colorPrimary,
-                        //                           AppColors.colorSecondary,
-                        //                         ],
-                        //                       )),
-                        //                   shape: RoundedRectangleBorder(
-                        //                       borderRadius:
-                        //                           BorderRadius.circular(4)),
-                        //                   text: AppText.post,
-                        //                   textStyle: ptSansTextStyle(
-                        //                       color: AppColors.white,
-                        //                       fontSize: h * 0.02,
-                        //                       fontWeight: FontWeight.w700),
-                        //                   onPressed: () {}),
-                        //             ),
-                        //           ],
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: w * 0.01),
                           child: Stack(
@@ -157,7 +90,7 @@ class MyAds extends ConsumerWidget {
                             children: [
                               ///listview
                               Positioned(
-                                top: h * 0.075,
+                                top: h * 0.08,
                                 left: 0,
                                 right: 0,
                                 bottom: 0,
@@ -312,154 +245,166 @@ class MyAds extends ConsumerWidget {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      CommonMultiSelectDrop(
-                                        dropdownselecttitle: "Filter",
-                                        dropdowntitle: Column(
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Container(
-                                                  width: w * 0.85,
-                                                  height: h * 0.035,
-                                                  color: AppColors.white,
-                                                  child: SliderTheme(
-                                                      data: SliderThemeData(
-                                                        trackHeight: h * 0.013,
-                                                        thumbShape:
-                                                            GradientRectSliderThumbShape(
-                                                                disabledThumbRadius:
-                                                                    h * 0.014,
-                                                                enabledThumbRadius:
-                                                                    h * 0.014),
-                                                        trackShape:
-                                                            const GradientRectSliderTrackShape(
-                                                                gradient:
-                                                                    LinearGradient(
-                                                                  colors: <Color>[
-                                                                    AppColors
-                                                                        .colorPrimary,
-                                                                    AppColors
-                                                                        .colorSecondary
-                                                                  ],
-                                                                ),
-                                                                darkenInactive:
-                                                                    true),
-                                                      ),
-                                                      child: Slider(
-                                                        min: 0,
-                                                        max: 100,
-                                                        inactiveColor: AppColors
-                                                            .black
-                                                            .withOpacity(0.2),
-                                                        thumbColor:
-                                                            AppColors.white,
-                                                        value: 50.0,
-                                                        onChanged:
-                                                            (double value) {},
-                                                      )),
-                                                ),
-                                              ],
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                              color: AppColors.black
+                                                  .withOpacity(0.2),
+                                              width: 2,
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: h * 0.015,
-                                                  horizontal: w * 0.025),
-                                              child: Row(
+                                            borderRadius:
+                                                BorderRadius.circular(8)),
+                                        child: CommonMultiSelectDrop(
+                                          dropdownselecttitle: "Filter",
+                                          dropdowntitle: Column(
+                                            children: [
+                                              Row(
                                                 children: [
-                                                  CommonText(
-                                                    text:
-                                                        "Price: \u{20B9}0 - \u{20B9}5,000 ",
-                                                    style: ptSansTextStyle(
-                                                        color: AppColors.black
-                                                            .withOpacity(0.4),
-                                                        fontSize: h * 0.02,
-                                                        fontWeight:
-                                                            FontWeight.w600),
+                                                  Container(
+                                                    width: w * 0.85,
+                                                    height: h * 0.035,
+                                                    color: AppColors.white,
+                                                    child: SliderTheme(
+                                                        data: SliderThemeData(
+                                                          trackHeight:
+                                                              h * 0.013,
+                                                          thumbShape: GradientRectSliderThumbShape(
+                                                              disabledThumbRadius:
+                                                                  h * 0.014,
+                                                              enabledThumbRadius:
+                                                                  h * 0.014),
+                                                          trackShape:
+                                                              const GradientRectSliderTrackShape(
+                                                                  gradient:
+                                                                      LinearGradient(
+                                                                    colors: <Color>[
+                                                                      AppColors
+                                                                          .colorPrimary,
+                                                                      AppColors
+                                                                          .colorSecondary
+                                                                    ],
+                                                                  ),
+                                                                  darkenInactive:
+                                                                      true),
+                                                        ),
+                                                        child: Slider(
+                                                          min: 0,
+                                                          max: 100,
+                                                          inactiveColor:
+                                                              AppColors.black
+                                                                  .withOpacity(
+                                                                      0.2),
+                                                          thumbColor:
+                                                              AppColors.white,
+                                                          value: 50.0,
+                                                          onChanged:
+                                                              (double value) {},
+                                                        )),
                                                   ),
                                                 ],
                                               ),
-                                            )
-                                          ],
-                                        ),
-                                        items: controller().getfilterlist,
-                                        selectedItems:
-                                            controller().getselectedfilter,
-                                        dropdownDecoratorProps:
-                                            DropDownDecoratorProps(
-                                                textAlignVertical:
-                                                    TextAlignVertical.bottom,
-                                                dropdownSearchDecoration:
-                                                    InputDecoration(
-                                                  border: InputBorder.none,
-                                                  prefixIcon: SizedBox(
-                                                    height: h * 0.03,
-                                                    width: h * 0.03,
-                                                    child: Center(
-                                                      child: Image.asset(
-                                                          AppImg.filter,
-                                                          color:
-                                                              AppColors.black,
-                                                          height: h * 0.025),
+                                              Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: h * 0.015,
+                                                    horizontal: w * 0.025),
+                                                child: Row(
+                                                  children: [
+                                                    CommonText(
+                                                      text:
+                                                          "Price: \u{20B9}0 - \u{20B9}5,000 ",
+                                                      style: ptSansTextStyle(
+                                                          color: AppColors.black
+                                                              .withOpacity(0.4),
+                                                          fontSize: h * 0.02,
+                                                          fontWeight:
+                                                              FontWeight.w600),
                                                     ),
+                                                  ],
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          items: controller().getfilterlist,
+                                          selectedItems:
+                                              controller().getselectedfilter,
+                                          dropdownDecoratorProps:
+                                              DropDownDecoratorProps(
+                                                  textAlignVertical:
+                                                      TextAlignVertical.bottom,
+                                                  dropdownSearchDecoration:
+                                                      InputDecoration(
+                                                    border: InputBorder.none,
+                                                    prefixIcon: SizedBox(
+                                                      height: h * 0.03,
+                                                      width: h * 0.03,
+                                                      child: Center(
+                                                        child: Image.asset(
+                                                            AppImg.filter,
+                                                            color:
+                                                                AppColors.black,
+                                                            height: h * 0.025),
+                                                      ),
+                                                    ),
+                                                    hintText: "Select Filter",
+                                                    hintStyle: ptSansTextStyle(
+                                                        color: AppColors.black
+                                                            .withOpacity(0.4),
+                                                        fontSize: h * 0.017,
+                                                        fontWeight:
+                                                            FontWeight.w500),
                                                   ),
-                                                  hintText: "Select Filter",
-                                                  hintStyle: ptSansTextStyle(
+                                                  baseStyle: ptSansTextStyle(
                                                       color: AppColors.black
                                                           .withOpacity(0.4),
-                                                      fontSize: h * 0.017,
+                                                      fontSize: h * 0.02,
                                                       fontWeight:
-                                                          FontWeight.w500),
-                                                ),
-                                                baseStyle: ptSansTextStyle(
-                                                    color: AppColors.black
-                                                        .withOpacity(0.4),
-                                                    fontSize: h * 0.02,
-                                                    fontWeight:
-                                                        FontWeight.w700)),
-                                        clearButtonProps:
-                                            const ClearButtonProps(
-                                                isVisible: false),
-                                        dropdownButtonProps:
-                                            DropdownButtonProps(
-                                          focusColor: AppColors.white,
-                                          color: AppColors.white,
-                                          icon: SizedBox(
+                                                          FontWeight.w700)),
+                                          clearButtonProps:
+                                              const ClearButtonProps(
+                                                  isVisible: false),
+                                          dropdownButtonProps:
+                                              DropdownButtonProps(
+                                            focusColor: AppColors.white,
+                                            color: AppColors.white,
+                                            icon: SizedBox(
+                                              height: h * 0.03,
+                                              width: h * 0.03,
+                                              child: Center(
+                                                child: Icon(
+                                                    Icons
+                                                        .keyboard_arrow_down_sharp,
+                                                    color: AppColors.black,
+                                                    size: h * 0.025),
+                                              ),
+                                            ),
+                                          ),
+                                          onChangedsearch: (str) {
+                                            print("sdfs $str");
+                                            controller().onchangefilter(str);
+                                          },
+                                          enabled: true,
+                                          prefix: SizedBox(
                                             height: h * 0.03,
                                             width: h * 0.03,
                                             child: Center(
-                                              child: Icon(
-                                                  Icons
-                                                      .keyboard_arrow_down_sharp,
+                                              child: Image.asset(AppImg.filter,
                                                   color: AppColors.black,
-                                                  size: h * 0.025),
+                                                  height: h * 0.025),
                                             ),
                                           ),
-                                        ),
-                                        onChangedsearch: (str) {
-                                          print("sdfs $str");
-                                          controller().onchangefilter(str);
-                                        },
-                                        enabled: true,
-                                        prefix: SizedBox(
-                                          height: h * 0.03,
-                                          width: h * 0.03,
-                                          child: Center(
-                                            child: Image.asset(AppImg.filter,
-                                                color: AppColors.black,
-                                                height: h * 0.025),
+                                          isExpanded: true,
+                                          containerwidth: w * 0.88,
+                                          containerheight: h * 0.06,
+                                          border: Border.all(
+                                            color: AppColors.white
+                                                .withOpacity(0.2),
+                                            width: 1,
                                           ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          containercolor: AppColors.white,
+                                          elevation: 5,
                                         ),
-                                        isExpanded: true,
-                                        containerwidth: w * 0.88,
-                                        containerheight: h * 0.06,
-                                        border: Border.all(
-                                          color:
-                                              AppColors.black.withOpacity(0.2),
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                        containercolor: AppColors.white,
-                                        elevation: 5,
                                       ),
                                     ],
                                   ),

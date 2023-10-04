@@ -133,6 +133,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                                                 color: Colors.redAccent),
                                             tabs: [
                                               Tab(
+                                                height: h * 0.06,
                                                 child: Align(
                                                   alignment: Alignment.center,
                                                   child: Text(
@@ -157,6 +158,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                                                 ),
                                               ),
                                               Tab(
+                                                height: h * 0.06,
                                                 child: Align(
                                                   alignment: Alignment.center,
                                                   child: Text(

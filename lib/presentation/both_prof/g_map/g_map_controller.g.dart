@@ -1,27 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'admin_panel_controller.dart';
+part of 'g_map_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$adminPanelControllerHash() =>
-    r'79bd327803a61299486d1f083ca3e47d8b421f49';
+String _$gMapControllerHash() => r'1243460289af453d466ee5028015cc2ba521463e';
 
-/// See also [AdminPanelController].
-@ProviderFor(AdminPanelController)
-final adminPanelControllerProvider =
-    AutoDisposeAsyncNotifierProvider<AdminPanelController, void>.internal(
-  AdminPanelController.new,
-  name: r'adminPanelControllerProvider',
+/// See also [GMapController].
+@ProviderFor(GMapController)
+final gMapControllerProvider =
+    AutoDisposeAsyncNotifierProvider<GMapController, void>.internal(
+  GMapController.new,
+  name: r'gMapControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$adminPanelControllerHash,
+      : _$gMapControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$AdminPanelController = AutoDisposeAsyncNotifier<void>;
+typedef _$GMapController = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

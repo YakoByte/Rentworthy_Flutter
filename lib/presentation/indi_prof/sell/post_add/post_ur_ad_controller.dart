@@ -20,7 +20,6 @@ class PostUrAdsController extends _$PostUrAdsController {
   File? selectedImage;
   List<String>? _selectCat = [];
   List<String> _catList = [
-    "Select Category",
     "cat1",
     "cat2",
     "cat3",

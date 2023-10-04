@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rentworthy/utils/globals.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../utils/common_components/common_tickerprovider.dart';
@@ -9,7 +10,9 @@ part 'business_info_screen_controller.g.dart';
 class BusinessInfoScreenController extends _$BusinessInfoScreenController {
   TabController tabController =
       TabController(length: 3, vsync: CommonTickerProvider());
-  int _selectedTab = 0;
+  bool _verified = false;
+  bool _underreview = false;
+  bool _banned = false;
   List<AnimationController>? animatecontrollerlist = [];
   TextEditingController businessnameController = TextEditingController();
   TextEditingController einIdController = TextEditingController();
@@ -20,7 +23,9 @@ class BusinessInfoScreenController extends _$BusinessInfoScreenController {
   TextEditingController stateController = TextEditingController();
   TextEditingController addtitlelastController = TextEditingController();
 
-  int get selectedtab => _selectedTab;
+  bool get verified => _verified;
+  bool get underreview => _underreview;
+  bool get banned => _banned;
   List<String> _catList = [
     "cat1",
     "cat2",
@@ -59,11 +64,25 @@ class BusinessInfoScreenController extends _$BusinessInfoScreenController {
     state = const AsyncValue.data(null);
   }
 
-  onTabTap({required int val}) async {
+  onVerified({required bool val}) async {
     state = const AsyncLoading();
-    debugPrint('_selectedTab $val');
-    _selectedTab = val;
+    debugPrint('_verified $val');
+    _verified = val;
+    Navigator.pop(Globals.navigatorKey.currentContext!);
+    state = const AsyncValue.data(null);
+  }
 
+  onUnderReview({required bool val}) async {
+    state = const AsyncLoading();
+    debugPrint('onUnderReview $val');
+    _underreview = val;
+    state = const AsyncValue.data(null);
+  }
+
+  onBanned({required bool val}) async {
+    state = const AsyncLoading();
+    debugPrint('onBanned $val');
+    _banned = val;
     state = const AsyncValue.data(null);
   }
 }

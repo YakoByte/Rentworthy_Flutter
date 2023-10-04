@@ -51,7 +51,7 @@ class _BusinessRentScreeningDialogState
             bottom: h * 0.02,
           ),
           contentPadding: EdgeInsets.only(
-              left: w * 0.05, right: w * 0.05, bottom: h * 0.04, top: h * 0.02),
+              left: w * 0.05, right: w * 0.05, bottom: h * 0.02, top: h * 0.02),
           buttonPadding: EdgeInsets.zero,
           actionsPadding: EdgeInsets.zero,
           iconPadding: EdgeInsets.zero,

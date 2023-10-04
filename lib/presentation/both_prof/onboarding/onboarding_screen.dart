@@ -111,15 +111,16 @@ class OnBoardingScreen extends ConsumerWidget {
                                             horizontal: w * 0.05),
                                         child: Column(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceEvenly,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
                                             Image.asset(
                                               state.onBoardinglist![index].img,
-                                              height: h * 0.37,
-                                              width: w * 0.8,
-                                              fit: BoxFit.contain,
+                                              height: h * 0.35,
+                                              width:
+                                                  index == 2 ? w * 0.9 : null,
+                                              fit: BoxFit.cover,
                                             ),
                                             Padding(
                                               padding: EdgeInsets.symmetric(

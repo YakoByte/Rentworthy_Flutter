@@ -221,12 +221,16 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                       Container(
                         decoration: BoxDecoration(
                             border: Border.all(
-                              color: AppColors.black.withOpacity(0.4),
-                              width: 1,
+                              color: AppColors.black.withOpacity(0.2),
+                              width: 2,
                             ),
-                            borderRadius: BorderRadius.circular(4)),
+                            borderRadius: BorderRadius.circular(8)),
                         child: CommonMultiSelectDrop(
                           dropdownselecttitle: "Select Category",
+                          textstyle: ptSansTextStyle(
+                              color: AppColors.black.withOpacity(0.6),
+                              fontSize: h * 0.021,
+                              fontWeight: FontWeight.w500),
                           dropdowntitle: Column(
                             children: [
                               Row(
@@ -287,19 +291,16 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                           items: controller().catList,
                           selectedItems: controller().selectCat,
                           dropdownDecoratorProps: DropDownDecoratorProps(
-                              textAlignVertical: TextAlignVertical.bottom,
-                              dropdownSearchDecoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Select Category",
-                                hintStyle: ptSansTextStyle(
-                                    color: AppColors.black.withOpacity(0.4),
-                                    fontSize: h * 0.017,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              baseStyle: ptSansTextStyle(
-                                  color: AppColors.black.withOpacity(0.4),
-                                  fontSize: h * 0.02,
-                                  fontWeight: FontWeight.w700)),
+                            textAlignVertical: TextAlignVertical.bottom,
+                            dropdownSearchDecoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Select Category",
+                              hintStyle: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.6),
+                                  fontSize: h * 0.021,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
                           clearButtonProps:
                               const ClearButtonProps(isVisible: false),
                           dropdownButtonProps: DropdownButtonProps(
@@ -323,53 +324,13 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                           containerwidth: w,
                           containerheight: h * 0.06,
                           border: Border.all(
-                            color: AppColors.black.withOpacity(0.2),
-                            width: 1,
+                            color: AppColors.white,
+                            width: 2,
                           ),
                           borderRadius: BorderRadius.circular(8),
                           containercolor: AppColors.white,
                           elevation: 5,
                         ),
-                        // child: CommonDropdown(
-                        //   selectedItem: controller().selectCat!,
-                        //   items: controller().catList,
-                        //   dropdownDecoratorProps: DropDownDecoratorProps(
-                        //       textAlignVertical: TextAlignVertical.bottom,
-                        //       dropdownSearchDecoration: InputDecoration(
-                        //         border: InputBorder.none,
-                        //         hintText: "Select Category",
-                        //         hintStyle: ptSansTextStyle(
-                        //             color: AppColors.black.withOpacity(0.4),
-                        //             fontSize: h * 0.017,
-                        //             fontWeight: FontWeight.w500),
-                        //       ),
-                        //       baseStyle: ptSansTextStyle(
-                        //           color: AppColors.black.withOpacity(0.4),
-                        //           fontSize: h * 0.02,
-                        //           fontWeight: FontWeight.w700)),
-                        //   clearButtonProps:
-                        //       const ClearButtonProps(isVisible: false),
-                        //   dropdownButtonProps: DropdownButtonProps(
-                        //     icon: SizedBox(
-                        //       height: h * 0.03,
-                        //       width: h * 0.03,
-                        //       child: Center(
-                        //         child: Icon(Icons.keyboard_arrow_down_sharp,
-                        //             color: AppColors.black, size: h * 0.025),
-                        //       ),
-                        //     ),
-                        //   ),
-                        //   onChangedsearch: (str) {
-                        //     controller().onValSelect(val: str!);
-                        //   },
-                        //   enabled: true,
-                        //   isExpanded: true,
-                        //   containerwidth: w,
-                        //   containerheight: h * 0.06,
-                        //   borderRadius: BorderRadius.circular(8),
-                        //   containercolor: AppColors.white,
-                        //   elevation: 5,
-                        // ),
                       ),
                     ],
                   ),

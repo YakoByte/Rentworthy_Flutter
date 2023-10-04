@@ -314,8 +314,9 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                       ],
                                     ).createShader(bounds);
                                   },
-                                  child: Icon(Icons.call_outlined,
-                                      color: AppColors.white, size: h * 0.035),
+                                  child: Image.asset(AppImg.chat1,
+                                      color: AppColors.white,
+                                      height: h * 0.035),
                                 ),
                                 onPressed: () {}),
                           ],

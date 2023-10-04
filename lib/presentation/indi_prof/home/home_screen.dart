@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:rentworthy/presentation/both_prof/g_map/g_map.dart';
 import 'package:rentworthy/utils/color.dart';
 import 'package:rentworthy/utils/common_components/common_carouselslider.dart';
+import 'package:rentworthy/utils/common_components/common_pageview.dart';
 import 'package:rentworthy/utils/globals.dart';
 
 import '../../../utils/common_components/common_button.dart';
@@ -64,7 +66,7 @@ class HomeScreen extends ConsumerWidget {
       ).animate().fadeIn(duration: 150.ms).then(delay: 150.ms).slideX(
           begin: 3, end: 0, curve: Curves.easeInOutCubic, duration: 1000.ms),
       drawerScrimColor: AppColors.black.withOpacity(0.4),
-      drawer: HomeNavDrawer()
+      drawer: const HomeNavDrawer()
           .animate()
           .fadeIn(duration: 30.ms)
           .then(delay: 20.ms)
@@ -108,7 +110,7 @@ class HomeScreen extends ConsumerWidget {
 
                 /// Categories
                 Categories(
-                  animatecontrollerlist: [],
+                  animatecontrollerlist: const [],
                   isFavIcon: true,
                   isFeature: false,
                   isextended: false,
@@ -116,7 +118,7 @@ class HomeScreen extends ConsumerWidget {
                   title: AppText.categories,
                   isViewAll: true,
                   height: h * 0.27,
-                  favList: [],
+                  favList: const [],
                   onFavPressed: (index) {},
                   isCategory: true,
                   padding: EdgeInsets.symmetric(
@@ -204,22 +206,18 @@ class HomeScreen extends ConsumerWidget {
                       //   ),
                       // ),
                       dotindicator: false,
-                    )
-                        .animate()
-                        .fadeIn(duration: 400.ms)
-                        .then(delay: 400.ms)
-                        .slideX(
-                          begin: 1,
-                          end: 0,
-                          curve: Curves.easeInOutCubic,
-                          duration: 600.ms,
-                        ),
+                    ),
                   ],
-                ),
+                ).animate().fadeIn(duration: 400.ms).then(delay: 400.ms).slideX(
+                      begin: 1,
+                      end: 0,
+                      curve: Curves.easeInOutCubic,
+                      duration: 600.ms,
+                    ),
 
                 /// Featured Ads
                 Categories(
-                  animatecontrollerlist: [],
+                  animatecontrollerlist: const [],
                   isFavIcon: true,
                   isFeature: true,
                   isTopPadding: false,
@@ -241,7 +239,7 @@ class HomeScreen extends ConsumerWidget {
                   contwidth: w * 0.45,
                   type: 0,
                   contColor: AppColors.white,
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(h * 0.025),
                 ).animate().fadeIn(duration: 500.ms).then(delay: 500.ms).slideX(
                       begin: 1,
                       end: 0,
@@ -316,7 +314,7 @@ class HomeScreen extends ConsumerWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: h * 0.005),
                   child: Categories(
-                    animatecontrollerlist: [],
+                    animatecontrollerlist: const [],
                     isFavIcon: true,
                     isFeature: false,
                     isextended: false,
@@ -335,7 +333,7 @@ class HomeScreen extends ConsumerWidget {
                     contheight: h * 0.32,
                     contwidth: w * 0.45,
                     contColor: AppColors.white,
-                    borderRadius: BorderRadius.circular(14),
+                    borderRadius: BorderRadius.circular(h * 0.025),
                     onFavPressed: (index) {
                       controller().onFavTap(index, 2);
                     },
@@ -350,10 +348,15 @@ class HomeScreen extends ConsumerWidget {
                         duration: 600.ms,
                       ),
                 ),
+                // Padding(
+                //   padding: EdgeInsets.symmetric(
+                //       horizontal: w * 0.05, vertical: h * 0.015),
+                //   child: const GoogleMapWidget(),
+                // ),
 
                 ///Promote your ad in Featured
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: h * 0.015),
+                  padding: EdgeInsets.symmetric(vertical: h * 0.01),
                   child: Column(
                     children: [
                       // Padding(
@@ -378,6 +381,7 @@ class HomeScreen extends ConsumerWidget {
                       //     ],
                       //   ),
                       // ),
+
                       Container(
                         height: h * 0.3,
                         width: w,
@@ -406,66 +410,65 @@ class HomeScreen extends ConsumerWidget {
                                     fontWeight: FontWeight.w800,
                                   )),
                             ),
-                            CommonCarousel(
-                              enlargeFactor: 0.4,
-                              dotindicator: true,
-                              gradient: false,
-                              containerheight: h * 0.2,
-                              containerwidth: w,
-                              viewportFraction: w / (w * 2),
-                              scrollDirection: Axis.horizontal,
-                              autoPlayCurve: Curves.bounceIn,
-                              onPageChanged: (index, reason) {
-                                controller().onPageChanged(index);
-                              },
-                              aspectRatio: 1 / 1,
-                              enableInfiniteScroll: false,
-                              autoPlay: false,
-                              reverse: false,
-                              getcurrentPageIndex:
-                                  controller().getcurrentPageIndex,
-                              padding:
-                                  EdgeInsets.symmetric(vertical: h * 0.015),
-                              carouselHeight: h * 0.2,
-                              carouselController:
-                                  controller().carouselController,
-                              disableGesture: false,
-                              itemCount: controller().imgList.length,
-                              itemBuilder: (BuildContext context, int itemIndex,
-                                      int pageViewIndex) =>
-                                  Container(
-                                      height: h * 0.2,
-                                      width: h * 0.2,
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: w * 0.02),
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(14),
-                                          color: AppColors.white),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Center(
-                                            child: Image.asset(
-                                                controller()
-                                                    .imgList[pageViewIndex],
-                                                height: h * 0.1,
-                                                width: w * 0.3),
-                                          ),
-                                          CommonText(
-                                              text: controller()
-                                                  .nameList[pageViewIndex],
-                                              textAlign: TextAlign.center,
-                                              style: ptSansTextStyle(
-                                                color: AppColors.black
-                                                    .withOpacity(0.8),
-                                                fontSize: h * 0.015,
-                                                fontWeight: FontWeight.w400,
-                                              )),
-                                        ],
-                                      )),
-                            ),
+                            CommonPageView(
+                                onPageChanged: (index) {
+                                  controller().onPageChanged(index);
+                                },
+                                getcurrentPageIndex:
+                                    controller().getcurrentPageIndex,
+                                dotindicator: true,
+                                containerHeight: h * 0.2,
+                                containerwidth: w,
+                                scrollDirection: Axis.horizontal,
+                                pageSnapping: false,
+                                reverse: false,
+                                gradient: false,
+                                padEnds: false,
+                                itemBuilder: (BuildContext context,
+                                        int pageViewIndex) =>
+                                    Row(
+                                      children: [
+                                        Container(
+                                            height: h * 0.2,
+                                            width: h * 0.2,
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: w * 0.02),
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(14),
+                                                color: AppColors.white),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                Center(
+                                                  child: Image.asset(
+                                                      controller().imgList[
+                                                          pageViewIndex],
+                                                      height: h * 0.1,
+                                                      width: w * 0.3),
+                                                ),
+                                                CommonText(
+                                                    text: controller().nameList[
+                                                        pageViewIndex],
+                                                    textAlign: TextAlign.center,
+                                                    style: ptSansTextStyle(
+                                                      color: AppColors.black
+                                                          .withOpacity(0.8),
+                                                      fontSize: h * 0.015,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    )),
+                                              ],
+                                            )),
+                                      ],
+                                    ),
+                                itemCount: controller().imgList.length,
+                                pageController: controller().rentCollection,
+                                padding: EdgeInsets.only(
+                                    top: h * 0.015,
+                                    bottom: h * 0.015,
+                                    left: w * 0.05)),
                           ],
                         ),
                       ),
@@ -585,7 +588,7 @@ class HomeScreen extends ConsumerWidget {
                 Padding(
                   padding: EdgeInsets.only(bottom: h * 0.015),
                   child: Categories(
-                    animatecontrollerlist: [],
+                    animatecontrollerlist: const [],
                     isFavIcon: true,
                     isFeature: false,
                     onFavPressed: (index) {
@@ -607,7 +610,7 @@ class HomeScreen extends ConsumerWidget {
                     contheight: h * 0.32,
                     contwidth: w * 0.45,
                     contColor: AppColors.white,
-                    borderRadius: BorderRadius.circular(14),
+                    borderRadius: BorderRadius.circular(h * 0.025),
                   )
                       .animate()
                       .fadeIn(duration: 700.ms)

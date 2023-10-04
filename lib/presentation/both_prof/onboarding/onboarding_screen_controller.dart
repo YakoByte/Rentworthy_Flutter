@@ -58,10 +58,13 @@ class OnBoardingScreenController extends _$OnBoardingScreenController {
       PreferenceManagerUtils.setIsOnboarding(true);
       FocusScope.of(Globals.navigatorKey.currentContext!)
           .requestFocus(FocusNode());
-      commonNavigator(
-          type: PageTransitionType.rightToLeftWithFade,
-          context: Globals.navigatorKey.currentContext!,
-          child: RegisterScreen());
+      Navigator.pushAndRemoveUntil(
+          Globals.navigatorKey.currentContext!,
+          PageTransition(
+              child: const RegisterScreen(),
+              type: PageTransitionType.fade,
+              duration: const Duration(milliseconds: 400)),
+          (Route<dynamic> route) => false);
     } else {
       pageController.animateToPage(currentpageIndex + 1,
           duration: const Duration(milliseconds: 400),

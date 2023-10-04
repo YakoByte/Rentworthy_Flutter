@@ -94,9 +94,10 @@ class _RegisterComplaintDialogState
             ],
           ),
           content: Container(
-            height: h * 0.8,
+            height: h * 0.85,
             color: AppColors.white,
             child: SingleChildScrollView(
+              physics: NeverScrollableScrollPhysics(),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,7 +114,7 @@ class _RegisterComplaintDialogState
                                 vertical: h * 0.02, horizontal: w * 0.01),
                             child: Container(
                               height: h * 0.18,
-                              width: h * 0.18,
+                              width: w * 0.4,
                               decoration: BoxDecoration(
                                 color: AppColors.grey,
                                 borderRadius: BorderRadius.circular(10),
@@ -143,7 +144,7 @@ class _RegisterComplaintDialogState
                                 vertical: h * 0.02, horizontal: w * 0.01),
                             child: Container(
                               height: h * 0.18,
-                              width: h * 0.18,
+                              width: w * 0.4,
                               decoration: BoxDecoration(
                                 color: AppColors.grey,
                                 borderRadius: BorderRadius.circular(10),
@@ -206,7 +207,7 @@ class _RegisterComplaintDialogState
                           borderRadius: BorderRadius.circular(4),
                           containerborder: Border.all(
                               color: AppColors.black.withOpacity(0.4)),
-                          containerheight: h * 0.25,
+                          containerheight: h * 0.2,
                           containercolor: AppColors.white,
                           textCapitalization: TextCapitalization.none),
                     ],

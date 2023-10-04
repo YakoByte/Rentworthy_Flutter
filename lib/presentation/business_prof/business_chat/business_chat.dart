@@ -79,175 +79,185 @@ class BusinessChatScareen extends ConsumerWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: w * 0.035),
-          child: Column(
-            children: [
-              BusinessSearch(adminscaffoldKey: Globals.chatkey)
-                  .animate()
-                  .fadeIn(duration: 300.ms)
-                  .then(delay: 300.ms)
-                  .slideX(
-                    begin: 1,
-                    end: 0,
-                    curve: Curves.easeInOutCubic,
-                    duration: 600.ms,
-                  ),
-              SizedBox(
-                height: h * 0.89,
-                width: w,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: w * 0.025),
-                  child: DefaultTabController(
-                    length: 3,
-                    child: SingleChildScrollView(
-                      physics: const NeverScrollableScrollPhysics(),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          TabBar(
-                              controller: controller().tabController,
-                              onTap: (value) {
-                                controller().onTabTap(val: value);
-                              },
-                              automaticIndicatorColorAdjustment: true,
-                              dragStartBehavior: DragStartBehavior.start,
-                              indicatorPadding: EdgeInsets.symmetric(
-                                  vertical: h * 0.005, horizontal: w * 0.02),
-                              dividerColor: Colors.transparent,
-                              unselectedLabelColor: AppColors.transparent,
-                              splashBorderRadius: BorderRadius.zero,
-                              indicatorSize: TabBarIndicatorSize.tab,
-                              splashFactory: NoSplash.splashFactory,
-                              isScrollable: false,
-                              tabs: [
-                                Tab(
-                                  child: Container(
-                                    margin: EdgeInsets.symmetric(
-                                      vertical: h * 0.005,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        AppText.all,
-                                        style: ptSansTextStyle(
-                                            foreground: Paint()
-                                              ..shader = LinearGradient(
-                                                colors: <Color>[
-                                                  controller().selectedtab == 0
-                                                      ? AppColors.colorPrimary
-                                                      : AppColors.black
-                                                          .withOpacity(0.5),
-                                                  controller().selectedtab == 0
-                                                      ? AppColors.colorSecondary
-                                                      : AppColors.black
-                                                          .withOpacity(0.5)
-                                                ],
-                                              ).createShader(
-                                                  const Rect.fromLTRB(
-                                                      45, 0, 60, 10)),
-                                            fontSize: w * 0.042,
-                                            fontWeight: FontWeight.w700),
+          child: SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
+            child: Column(
+              children: [
+                BusinessSearch(adminscaffoldKey: Globals.chatkey)
+                    .animate()
+                    .fadeIn(duration: 300.ms)
+                    .then(delay: 300.ms)
+                    .slideX(
+                      begin: 1,
+                      end: 0,
+                      curve: Curves.easeInOutCubic,
+                      duration: 600.ms,
+                    ),
+                SizedBox(
+                  height: h * 0.89,
+                  width: w,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: w * 0.025),
+                    child: DefaultTabController(
+                      length: 3,
+                      child: SingleChildScrollView(
+                        physics: const NeverScrollableScrollPhysics(),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            TabBar(
+                                controller: controller().tabController,
+                                onTap: (value) {
+                                  controller().onTabTap(val: value);
+                                },
+                                automaticIndicatorColorAdjustment: true,
+                                dragStartBehavior: DragStartBehavior.start,
+                                indicatorPadding: EdgeInsets.zero,
+                                dividerColor: Colors.transparent,
+                                unselectedLabelColor: AppColors.transparent,
+                                splashBorderRadius: BorderRadius.zero,
+                                indicatorSize: TabBarIndicatorSize.tab,
+                                splashFactory: NoSplash.splashFactory,
+                                isScrollable: false,
+                                padding: EdgeInsets.zero,
+                                labelPadding: EdgeInsets.zero,
+                                tabs: [
+                                  Tab(
+                                    height: h * 0.06,
+                                    child: Container(
+                                      height: h * 0.06,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          AppText.all,
+                                          style: ptSansTextStyle(
+                                              foreground: Paint()
+                                                ..shader = LinearGradient(
+                                                  colors: <Color>[
+                                                    controller().selectedtab ==
+                                                            0
+                                                        ? AppColors.colorPrimary
+                                                        : AppColors.black
+                                                            .withOpacity(0.5),
+                                                    controller().selectedtab ==
+                                                            0
+                                                        ? AppColors
+                                                            .colorSecondary
+                                                        : AppColors.black
+                                                            .withOpacity(0.5)
+                                                  ],
+                                                ).createShader(
+                                                    const Rect.fromLTRB(
+                                                        45, 0, 60, 10)),
+                                              fontSize: h * 0.025,
+                                              fontWeight: FontWeight.w700),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Tab(
-                                  child: Container(
-                                    margin: EdgeInsets.symmetric(
-                                      vertical: h * 0.005,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        "Buying",
-                                        style: ptSansTextStyle(
-                                            foreground: Paint()
-                                              ..shader = LinearGradient(
-                                                colors: <Color>[
-                                                  controller().selectedtab == 1
-                                                      ? AppColors.colorPrimary
-                                                      : AppColors.black
-                                                          .withOpacity(0.5),
-                                                  controller().selectedtab == 1
-                                                      ? AppColors.colorSecondary
-                                                      : AppColors.black
-                                                          .withOpacity(0.5)
-                                                ],
-                                              ).createShader(
-                                                  const Rect.fromLTRB(
-                                                      130, 0, 190, 10)),
-                                            fontSize: w * 0.042,
-                                            fontWeight: FontWeight.w700),
+                                  Tab(
+                                    height: h * 0.06,
+                                    child: Container(
+                                      height: h * 0.06,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "Buying",
+                                          style: ptSansTextStyle(
+                                              foreground: Paint()
+                                                ..shader = LinearGradient(
+                                                  colors: <Color>[
+                                                    controller().selectedtab ==
+                                                            1
+                                                        ? AppColors.colorPrimary
+                                                        : AppColors.black
+                                                            .withOpacity(0.5),
+                                                    controller().selectedtab ==
+                                                            1
+                                                        ? AppColors
+                                                            .colorSecondary
+                                                        : AppColors.black
+                                                            .withOpacity(0.5)
+                                                  ],
+                                                ).createShader(
+                                                    const Rect.fromLTRB(
+                                                        130, 0, 190, 10)),
+                                              fontSize: h * 0.025,
+                                              fontWeight: FontWeight.w700),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Tab(
-                                  child: Container(
-                                    margin: EdgeInsets.symmetric(
-                                      vertical: h * 0.005,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        AppText.selling,
-                                        style: ptSansTextStyle(
-                                            foreground: Paint()
-                                              ..shader = LinearGradient(
-                                                colors: <Color>[
-                                                  controller().selectedtab == 2
-                                                      ? AppColors.colorPrimary
-                                                      : AppColors.black
-                                                          .withOpacity(0.5),
-                                                  controller().selectedtab == 2
-                                                      ? AppColors.colorSecondary
-                                                      : AppColors.black
-                                                          .withOpacity(0.5)
-                                                ],
-                                              ).createShader(
-                                                  const Rect.fromLTRB(
-                                                      240, 0, 300, 10)),
-                                            fontSize: w * 0.042,
-                                            fontWeight: FontWeight.w700),
+                                  Tab(
+                                    height: h * 0.06,
+                                    child: Container(
+                                      height: h * 0.06,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          AppText.selling,
+                                          style: ptSansTextStyle(
+                                              foreground: Paint()
+                                                ..shader = LinearGradient(
+                                                  colors: <Color>[
+                                                    controller().selectedtab ==
+                                                            2
+                                                        ? AppColors.colorPrimary
+                                                        : AppColors.black
+                                                            .withOpacity(0.5),
+                                                    controller().selectedtab ==
+                                                            2
+                                                        ? AppColors
+                                                            .colorSecondary
+                                                        : AppColors.black
+                                                            .withOpacity(0.5)
+                                                  ],
+                                                ).createShader(
+                                                    const Rect.fromLTRB(
+                                                        240, 0, 300, 10)),
+                                              fontSize: h * 0.025,
+                                              fontWeight: FontWeight.w700),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
+                                ]),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: h * 0.02, horizontal: w * 0.021),
+                              child: CommonText(
+                                  text: AppText.quickfilter,
+                                  style: ptSansTextStyle(
+                                      color: AppColors.black.withOpacity(0.6),
+                                      fontSize: h * 0.025,
+                                      fontWeight: FontWeight.w700)),
+                            ),
+                            SizedBox(
+                              height: h * 0.85,
+                              child: const TabBarView(children: [
+                                BusinessAll(),
+                                BusinessBuying(),
+                                BusinessSelling(),
                               ]),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: h * 0.02, horizontal: w * 0.021),
-                            child: CommonText(
-                                text: AppText.quickfilter,
-                                style: ptSansTextStyle(
-                                    color: AppColors.black.withOpacity(0.6),
-                                    fontSize: h * 0.025,
-                                    fontWeight: FontWeight.w700)),
-                          ),
-                          SizedBox(
-                            height: h * 0.85,
-                            child: const TabBarView(children: [
-                              BusinessAll(),
-                              BusinessBuying(),
-                              BusinessSelling(),
-                            ]),
-                          ),
-                        ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

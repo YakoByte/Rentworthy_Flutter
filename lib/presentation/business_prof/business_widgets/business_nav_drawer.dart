@@ -21,6 +21,7 @@ import '../business_category_details/business_category_details_screen.dart';
 import '../business_chat/business_chat.dart';
 import '../business_info/business_info_screen.dart';
 import '../post_ur_ad/business_post_ur_ad.dart';
+import '../subscription/subscription_screen.dart';
 import '../track_item/track_item_screen.dart';
 import '../user_prof/user_prof_screen.dart';
 
@@ -290,7 +291,8 @@ class AdminNavDrawer extends ConsumerWidget {
                       Navigator.pushAndRemoveUntil(
                           context,
                           PageTransition(
-                              child: const BusinessCategoryDetails(),
+                              child: BusinessCategoryDetails(
+                                  isfromNavDrawer: true),
                               type: PageTransitionType.rightToLeftWithFade,
                               duration: const Duration(milliseconds: 400)),
                           (Route<dynamic> route) => false);
@@ -844,7 +846,7 @@ class AdminNavDrawer extends ConsumerWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    if (selectedindex == 7) {
+                    if (selectedindex == 8) {
                       Navigator.pop(context);
                     } else {
                       Navigator.pop(context);
@@ -852,98 +854,6 @@ class AdminNavDrawer extends ConsumerWidget {
                           type: PageTransitionType.rightToLeftWithFade,
                           context: context,
                           child: const BusinessInfoScreen());
-                    }
-                  },
-                  child: Container(
-                    width: w,
-                    height: h * 0.06,
-                    margin: EdgeInsets.symmetric(vertical: h * 0.002),
-                    decoration: BoxDecoration(
-                      color: selectedindex == 7
-                          ? AppColors.black.withOpacity(0.1)
-                          : AppColors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: h * 0.01),
-                      child: Stack(
-                        children: [
-                          if (selectedindex == 7)
-                            Positioned(
-                              left: w * 0.001,
-                              right: 0,
-                              top: 0,
-                              bottom: 0,
-                              child: Row(
-                                children: [
-                                  Container(
-                                    width: w * 0.018,
-                                    height: h * 0.035,
-                                    decoration: const BoxDecoration(
-                                      color: AppColors.black,
-                                      borderRadius: BorderRadius.vertical(
-                                          top: Radius.circular(18),
-                                          bottom: Radius.circular(18)),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          Positioned(
-                            left: w * 0.05,
-                            right: 0,
-                            top: 0,
-                            bottom: 0,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(right: h * 0.01),
-                                  child: selectedindex == 7
-                                      ? SizedBox(
-                                          height: h * 0.02,
-                                          width: h * 0.02,
-                                        )
-                                      : SizedBox(
-                                          width: w * 0.065,
-                                        ),
-                                ),
-                                SizedBox(
-                                  height: h * 0.02,
-                                  width: w * 0.08,
-                                ),
-                                IconText(
-                                    title: "Business Info",
-                                    textStyle: ptSansTextStyle(
-                                        color: AppColors.black,
-                                        fontSize: w * 0.045,
-                                        fontWeight: FontWeight.w500),
-                                    subimg: false,
-                                    preimgname: AppImg.copy,
-                                    preimgcolor: AppColors.black,
-                                    preiconsize: w * 0.07,
-                                    preimg: false),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    if (selectedindex == 8) {
-                      Navigator.pop(context);
-                    } else {
-                      Navigator.pop(context);
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          PageTransition(
-                              child: const RegisterScreen(),
-                              type: PageTransitionType.rightToLeftWithFade,
-                              duration: const Duration(milliseconds: 400)),
-                          (Route<dynamic> route) => false);
                     }
                   },
                   child: Container(
@@ -996,6 +906,98 @@ class AdminNavDrawer extends ConsumerWidget {
                                           height: h * 0.02,
                                           width: h * 0.02,
                                         )
+                                      : SizedBox(
+                                          width: w * 0.065,
+                                        ),
+                                ),
+                                SizedBox(
+                                  height: h * 0.02,
+                                  width: w * 0.08,
+                                ),
+                                IconText(
+                                    title: "Business Info",
+                                    textStyle: ptSansTextStyle(
+                                        color: AppColors.black,
+                                        fontSize: w * 0.045,
+                                        fontWeight: FontWeight.w500),
+                                    subimg: false,
+                                    preimgname: AppImg.copy,
+                                    preimgcolor: AppColors.black,
+                                    preiconsize: w * 0.07,
+                                    preimg: false),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    if (selectedindex == 9) {
+                      Navigator.pop(context);
+                    } else {
+                      Navigator.pop(context);
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          PageTransition(
+                              child: const RegisterScreen(),
+                              type: PageTransitionType.rightToLeftWithFade,
+                              duration: const Duration(milliseconds: 400)),
+                          (Route<dynamic> route) => false);
+                    }
+                  },
+                  child: Container(
+                    width: w,
+                    height: h * 0.06,
+                    margin: EdgeInsets.symmetric(vertical: h * 0.002),
+                    decoration: BoxDecoration(
+                      color: selectedindex == 9
+                          ? AppColors.black.withOpacity(0.1)
+                          : AppColors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: h * 0.01),
+                      child: Stack(
+                        children: [
+                          if (selectedindex == 9)
+                            Positioned(
+                              left: w * 0.001,
+                              right: 0,
+                              top: 0,
+                              bottom: 0,
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: w * 0.018,
+                                    height: h * 0.035,
+                                    decoration: const BoxDecoration(
+                                      color: AppColors.black,
+                                      borderRadius: BorderRadius.vertical(
+                                          top: Radius.circular(18),
+                                          bottom: Radius.circular(18)),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          Positioned(
+                            left: w * 0.05,
+                            right: 0,
+                            top: 0,
+                            bottom: 0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(right: h * 0.01),
+                                  child: selectedindex == 9
+                                      ? SizedBox(
+                                          height: h * 0.02,
+                                          width: h * 0.02,
+                                        )
                                       : Icon(
                                           Icons.arrow_forward_ios_sharp,
                                           color:
@@ -1014,6 +1016,95 @@ class AdminNavDrawer extends ConsumerWidget {
                                     preimgcolor: AppColors.black,
                                     preiconsize: w * 0.07,
                                     preimg: true),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    if (selectedindex == 10) {
+                      Navigator.pop(context);
+                    } else {
+                      Navigator.pop(context);
+                      commonNavigator(
+                          type: PageTransitionType.rightToLeftWithFade,
+                          context: context,
+                          child: const SubscriptionScreen());
+                    }
+                  },
+                  child: Container(
+                    width: w,
+                    height: h * 0.06,
+                    margin: EdgeInsets.symmetric(vertical: h * 0.002),
+                    decoration: BoxDecoration(
+                      color: selectedindex == 10
+                          ? AppColors.black.withOpacity(0.1)
+                          : AppColors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: h * 0.01),
+                      child: Stack(
+                        children: [
+                          if (selectedindex == 10)
+                            Positioned(
+                              left: w * 0.001,
+                              right: 0,
+                              top: 0,
+                              bottom: 0,
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: w * 0.018,
+                                    height: h * 0.035,
+                                    decoration: const BoxDecoration(
+                                      color: AppColors.black,
+                                      borderRadius: BorderRadius.vertical(
+                                          top: Radius.circular(18),
+                                          bottom: Radius.circular(18)),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          Positioned(
+                            left: w * 0.05,
+                            right: 0,
+                            top: 0,
+                            bottom: 0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(right: h * 0.01),
+                                  child: selectedindex == 10
+                                      ? SizedBox(
+                                          height: h * 0.02,
+                                          width: h * 0.02,
+                                        )
+                                      : SizedBox(
+                                          width: w * 0.065,
+                                        ),
+                                ),
+                                SizedBox(
+                                  height: h * 0.02,
+                                  width: w * 0.08,
+                                ),
+                                IconText(
+                                    title: "Subscription",
+                                    textStyle: ptSansTextStyle(
+                                        color: AppColors.black,
+                                        fontSize: w * 0.045,
+                                        fontWeight: FontWeight.w500),
+                                    subimg: false,
+                                    preimgname: AppImg.copy,
+                                    preimgcolor: AppColors.black,
+                                    preiconsize: w * 0.07,
+                                    preimg: false),
                               ],
                             ),
                           ),

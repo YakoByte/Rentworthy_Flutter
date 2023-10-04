@@ -51,6 +51,9 @@ dependencies:
   #  syncfusion_flutter_charts: ^22.2.12
   flutter_circle_chart: ^1.0.0
   image_picker: ^1.0.4
+  google_maps_flutter: ^2.5.0
+  google_maps_flutter_web: ^0.5.4+2
+  http: ^1.1.0
 #  smart_auth: ^1.1.1
 
 dev_dependencies:

@@ -52,6 +52,7 @@ class SellingChat extends ConsumerWidget {
                   color: Colors.redAccent),
               tabs: [
                 Tab(
+                  height: h * 0.06,
                   child: Container(
                     margin: EdgeInsets.symmetric(
                       vertical: h * 0.005,
@@ -91,6 +92,7 @@ class SellingChat extends ConsumerWidget {
                   ),
                 ),
                 Tab(
+                  height: h * 0.06,
                   child: Container(
                     margin: EdgeInsets.symmetric(
                       vertical: h * 0.005,
@@ -130,6 +132,7 @@ class SellingChat extends ConsumerWidget {
                   ),
                 ),
                 Tab(
+                  height: h * 0.06,
                   child: Container(
                     margin: EdgeInsets.symmetric(
                       vertical: h * 0.005,

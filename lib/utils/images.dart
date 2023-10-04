@@ -26,6 +26,9 @@ class AppImg {
   static const String favimg = "${imgpath}favimg.png";
   static const String getintouch = "${imgpath}getintouch.png";
   static const String confirmorder = "${imgpath}confirmorder.png";
+  static const String verified = "${imgpath}verified.png";
+  static const String banned = "${imgpath}banned.png";
+  static const String underreview = "${imgpath}underreview.png";
   static const String searchengines = "${imgpath}searchengines.png";
   static const String accoutimg = "${imgpath}accouting.png";
   static const String statisticcharacter = "${imgpath}statisticcharacter.png";
@@ -59,6 +62,7 @@ class AppImg {
   static const String sort = "${iconpath}sort.png";
   static const String notes = "${iconpath}notes.png";
   static const String blog = "${iconpath}blog.png";
+  static const String icon_location = "${iconpath}icon_location.png";
   static const String slideshow = "${iconpath}slideshow.png";
   static const String rs = "${iconpath}rs.png";
   static const String bullhorn = "${iconpath}bullhorn.png";

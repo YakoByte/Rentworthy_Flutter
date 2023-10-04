@@ -53,132 +53,149 @@ class ProductAvailabliity extends ConsumerWidget {
                   height: h * 0.6,
                   padding: EdgeInsets.symmetric(horizontal: w * 0.05),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          IconText(
-                            title: "Calendar",
-                            textStyle: ptSansTextStyle(
-                                color: AppColors.black,
-                                fontSize: h * 0.03,
-                                fontWeight: FontWeight.w800),
-                            subimg: false,
-                            preimg: true,
-                            preimgname: AppImg.editnote,
-                            preiconsize: h * 0.035,
+                          Row(
+                            children: [
+                              IconText(
+                                title: " Calendar",
+                                textStyle: ptSansTextStyle(
+                                    color: AppColors.black,
+                                    fontSize: h * 0.03,
+                                    fontWeight: FontWeight.w800),
+                                subimg: false,
+                                preimg: true,
+                                preimgname: AppImg.editnote,
+                                preiconsize: h * 0.035,
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsets.only(left: w * 0.1, top: h * 0.01),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                IntrinsicHeight(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      IconText(
+                                        title: "Calendar",
+                                        textStyle: ptSansTextStyle(
+                                            color: AppColors.black,
+                                            fontSize: h * 0.015,
+                                            fontWeight: FontWeight.w800),
+                                        subimg: false,
+                                        preimg: true,
+                                        preicon: Icons.circle,
+                                        preimgcolor: AppColors.colorPrimary,
+                                        preiconsize: h * 0.015,
+                                      ),
+                                      VerticalDivider(
+                                        color: AppColors.black.withOpacity(0.2),
+                                        thickness: 1,
+                                        width: w * 0.05,
+                                      ),
+                                      IconText(
+                                        title: "reserve for myself",
+                                        textStyle: ptSansTextStyle(
+                                            color: AppColors.black,
+                                            fontSize: h * 0.015,
+                                            fontWeight: FontWeight.w800),
+                                        subimg: false,
+                                        preimg: true,
+                                        preicon: Icons.circle,
+                                        preimgcolor: AppColors.colorSecondary,
+                                        preiconsize: h * 0.015,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: h * 0.01),
+                                  child: CommonText(
+                                    text:
+                                        "you can edit product availability status by clicking on the date or pencil icon",
+                                    style: ptSansTextStyle(
+                                        color: AppColors.black,
+                                        fontSize: h * 0.015,
+                                        fontWeight: FontWeight.w800),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: w * 0.1),
-                        child: Column(
-                          children: [
-                            IntrinsicHeight(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  IconText(
-                                    title: "Calendar",
-                                    textStyle: ptSansTextStyle(
-                                        color: AppColors.black,
-                                        fontSize: h * 0.015,
-                                        fontWeight: FontWeight.w800),
-                                    subimg: false,
-                                    preimg: true,
-                                    preicon: Icons.circle,
-                                    preimgcolor: AppColors.colorPrimary,
-                                    preiconsize: h * 0.015,
-                                  ),
-                                  VerticalDivider(
-                                    color: AppColors.black.withOpacity(0.2),
-                                    thickness: 1,
-                                    width: w * 0.05,
-                                  ),
-                                  IconText(
-                                    title: "reserve for myself",
-                                    textStyle: ptSansTextStyle(
-                                        color: AppColors.black,
-                                        fontSize: h * 0.015,
-                                        fontWeight: FontWeight.w800),
-                                    subimg: false,
-                                    preimg: true,
-                                    preicon: Icons.circle,
-                                    preimgcolor: AppColors.colorSecondary,
-                                    preiconsize: h * 0.015,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            CommonText(
-                              text:
-                                  "you can edit product availability status by clicking on the date or pencil icon",
-                              style: ptSansTextStyle(
-                                  color: AppColors.black,
-                                  fontSize: h * 0.015,
-                                  fontWeight: FontWeight.w800),
-                            ),
-                          ],
+                        padding: EdgeInsets.only(
+                          top: h * 0.02,
                         ),
-                      ),
-                      TableCalendar(
-                        onDaySelected: (selectedDay, focusedDay) {
-                          controller().onDaySelected(
-                              focusedDay: focusedDay, selectedDay: selectedDay);
-                        },
-                        availableCalendarFormats: const {
-                          CalendarFormat.month: 'Month',
-                        },
-                        headerStyle: HeaderStyle(
-                          titleTextStyle: ptSansTextStyle(
+                        child: TableCalendar(
+                          onDaySelected: (selectedDay, focusedDay) {
+                            controller().onDaySelected(
+                                focusedDay: focusedDay,
+                                selectedDay: selectedDay);
+                          },
+                          availableCalendarFormats: const {
+                            CalendarFormat.month: 'Month',
+                          },
+                          headerStyle: HeaderStyle(
+                            titleTextStyle: ptSansTextStyle(
+                                color: AppColors.black,
+                                fontSize: h * 0.02,
+                                fontWeight: FontWeight.w800),
+                            titleCentered: false,
+                            formatButtonVisible: false,
+                            leftChevronVisible: false,
+                            rightChevronPadding:
+                                EdgeInsets.only(right: w * 0.4),
+                            rightChevronIcon: Icon(
+                              Icons.keyboard_arrow_down_sharp,
                               color: AppColors.black,
-                              fontSize: h * 0.02,
-                              fontWeight: FontWeight.w800),
-                          titleCentered: false,
-                          formatButtonVisible: false,
-                          leftChevronVisible: false,
-                          rightChevronPadding: EdgeInsets.only(right: w * 0.4),
-                          rightChevronIcon: Icon(
-                            Icons.keyboard_arrow_down_sharp,
-                            color: AppColors.black,
-                            size: h * 0.03,
-                          ),
-                        ),
-                        selectedDayPredicate: (day) =>
-                            isSameDay(controller().selectedDay, day),
-                        calendarStyle: CalendarStyle(
-                            defaultDecoration: BoxDecoration(),
-                            weekendDecoration: BoxDecoration(),
-                            outsideDaysVisible: false,
-                            defaultTextStyle: ptSansTextStyle(
-                                color: AppColors.black,
-                                fontSize: h * 0.02,
-                                fontWeight: FontWeight.w800),
-                            weekendTextStyle: ptSansTextStyle(
-                                color: AppColors.black,
-                                fontSize: h * 0.02,
-                                fontWeight: FontWeight.w800),
-                            selectedDecoration: BoxDecoration(
-                              color: AppColors.indigo,
-                              borderRadius: BorderRadius.circular(10),
+                              size: h * 0.03,
                             ),
-                            isTodayHighlighted: false),
-                        onDayLongPressed: (selectedDay, focusedDay) {
-                          ref
-                              .read(dialogServiceProvider)
-                              .productAvailabilityDialog(
-                                date:
-                                    "${controller().selectedDay.day.toString()} "
-                                    "${DateFormat('MMM').format(controller().selectedDay)} "
-                                    "${controller().selectedDay.year.toString()}",
-                              );
-                        },
-                        startingDayOfWeek: StartingDayOfWeek.sunday,
-                        calendarFormat: CalendarFormat.month,
-                        firstDay: DateTime.utc(2010, 10, 16),
-                        lastDay: DateTime.utc(2030, 3, 14),
-                        focusedDay: controller().focusedDay,
+                          ),
+                          selectedDayPredicate: (day) =>
+                              isSameDay(controller().selectedDay, day),
+                          calendarStyle: CalendarStyle(
+                              defaultDecoration: BoxDecoration(),
+                              weekendDecoration: BoxDecoration(),
+                              outsideDaysVisible: false,
+                              defaultTextStyle: ptSansTextStyle(
+                                  color: AppColors.black,
+                                  fontSize: h * 0.02,
+                                  fontWeight: FontWeight.w800),
+                              weekendTextStyle: ptSansTextStyle(
+                                  color: AppColors.black,
+                                  fontSize: h * 0.02,
+                                  fontWeight: FontWeight.w800),
+                              selectedDecoration: BoxDecoration(
+                                color: AppColors.indigo,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              isTodayHighlighted: false),
+                          onDayLongPressed: (selectedDay, focusedDay) {
+                            ref
+                                .read(dialogServiceProvider)
+                                .productAvailabilityDialog(
+                                  date:
+                                      "${controller().selectedDay.day.toString()} "
+                                      "${DateFormat('MMM').format(controller().selectedDay)} "
+                                      "${controller().selectedDay.year.toString()}",
+                                );
+                          },
+                          startingDayOfWeek: StartingDayOfWeek.sunday,
+                          calendarFormat: CalendarFormat.month,
+                          firstDay: DateTime.utc(2010, 10, 16),
+                          lastDay: DateTime.utc(2030, 3, 14),
+                          focusedDay: controller().focusedDay,
+                        ),
                       ),
                     ],
                   ),

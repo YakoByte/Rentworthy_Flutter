@@ -123,6 +123,7 @@ class ViewAllCategory extends ConsumerWidget {
                                       fontWeight: FontWeight.w500),
                                   tabs: [
                                     Tab(
+                                      height: h * 0.06,
                                       child: Row(
                                         children: [
                                           Image.asset(AppImg.all,
@@ -138,6 +139,7 @@ class ViewAllCategory extends ConsumerWidget {
                                       ),
                                     ),
                                     Tab(
+                                      height: h * 0.06,
                                       child: Row(
                                         children: [
                                           Image.asset(AppImg.fridge,
@@ -153,6 +155,7 @@ class ViewAllCategory extends ConsumerWidget {
                                       ),
                                     ),
                                     Tab(
+                                      height: h * 0.06,
                                       child: Row(
                                         children: [
                                           Image.asset(AppImg.car,
@@ -168,6 +171,7 @@ class ViewAllCategory extends ConsumerWidget {
                                       ),
                                     ),
                                     Tab(
+                                      height: h * 0.06,
                                       child: Row(
                                         children: [
                                           Image.asset(AppImg.bicycle,

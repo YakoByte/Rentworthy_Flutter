@@ -41,204 +41,183 @@ class BusinessUserProf extends ConsumerWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: w * 0.035),
-          child: Column(
-            children: [
-              BusinessSearch(adminscaffoldKey: Globals.userprofkey)
-                  .animate()
-                  .fadeIn(duration: 300.ms)
-                  .then(delay: 300.ms)
-                  .slideX(
-                    begin: 30,
-                    end: 0,
-                    curve: Curves.easeInOutCubic,
-                    duration: 600.ms,
-                  ),
-              Container(
-                height: h * 0.89,
-                width: w,
-                child: Column(
+          child: SingleChildScrollView(
+            physics: NeverScrollableScrollPhysics(),
+            child: Column(
+              children: [
+                BusinessSearch(adminscaffoldKey: Globals.userprofkey)
+                    .animate()
+                    .fadeIn(duration: 300.ms)
+                    .then(delay: 300.ms)
+                    .slideX(
+                      begin: 30,
+                      end: 0,
+                      curve: Curves.easeInOutCubic,
+                      duration: 600.ms,
+                    ),
+                Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      children: [
-                        Container(
-                          height: controller().getproductlist.isEmpty
-                              ? h * 0.28
-                              : h * 0.24,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: w * 0.04, vertical: h * 0.03),
-                            child: Column(
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: w * 0.04, vertical: h * 0.03),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ProfileImgName(
+                                  verified: controller().getproductlist.isEmpty
+                                      ? true
+                                      : false,
+                                  items: controller().popupitemList,
+                                  name: AppText.editprof,
+                                  vertbtn: true,
+                                  onTap: () {
+                                    commonNavigator(
+                                      context: context,
+                                      child: EditProfileScreen(),
+                                      type: PageTransitionType
+                                          .rightToLeftWithFade,
+                                    );
+                                  })
+                              .animate()
+                              .fadeIn(duration: 200.ms)
+                              .then(delay: 200.ms)
+                              .slideX(
+                                  begin: 30,
+                                  end: 0,
+                                  curve: Curves.easeInOutCubic,
+                                  duration: 700.ms),
+                          Container(
+                            height: h * 0.1,
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                ProfileImgName(
-                                        verified:
-                                            controller().getproductlist.isEmpty
-                                                ? true
-                                                : false,
-                                        items: controller().popupitemList,
-                                        name: AppText.editprof,
-                                        vertbtn: true,
-                                        onTap: () {
-                                          commonNavigator(
-                                            context: context,
-                                            child: EditProfileScreen(),
-                                            type: PageTransitionType
-                                                .rightToLeftWithFade,
-                                          );
-                                        })
-                                    .animate()
-                                    .fadeIn(duration: 200.ms)
-                                    .then(delay: 200.ms)
-                                    .slideX(
-                                        begin: 30,
-                                        end: 0,
-                                        curve: Curves.easeInOutCubic,
-                                        duration: 700.ms),
-                                Container(
-                                  height: h * 0.1,
-                                  child: Row(
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: w * 0.03),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: w * 0.03),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            IconText(
-                                              preimg: true,
-                                              subimg: false,
-                                              preshadermask: false,
-                                              preiconsize: h * 0.03,
-                                              title: AppText.membersince,
-                                              preicon:
-                                                  Icons.calendar_today_rounded,
-                                              preimgcolor: AppColors.black
-                                                  .withOpacity(0.8),
-                                              textStyle: ptSansTextStyle(
-                                                color: AppColors.black
-                                                    .withOpacity(0.8),
-                                                overflow: TextOverflow.ellipsis,
-                                                fontSize: h * 0.021,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            )
-                                                .animate()
-                                                .fadeIn(duration: 300.ms)
-                                                .then(delay: 300.ms)
-                                                .slideX(
-                                                    begin: 30,
-                                                    end: 0,
-                                                    curve:
-                                                        Curves.easeInOutCubic,
-                                                    duration: 750.ms),
-                                            IconText(
-                                              preimg: true,
-                                              subimg: false,
-                                              preshadermask: false,
-                                              preiconsize: h * 0.03,
-                                              title: AppText.prductlist,
-                                              preimgname: AppImg.gamecontroller,
-                                              preimgcolor: AppColors.black
-                                                  .withOpacity(0.8),
-                                              textStyle: ptSansTextStyle(
-                                                color: AppColors.black
-                                                    .withOpacity(0.8),
-                                                overflow: TextOverflow.ellipsis,
-                                                fontSize: h * 0.021,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            )
-                                                .animate()
-                                                .fadeIn(duration: 350.ms)
-                                                .then(delay: 350.ms)
-                                                .slideX(
-                                                    begin: 30,
-                                                    end: 0,
-                                                    curve:
-                                                        Curves.easeInOutCubic,
-                                                    duration: 800.ms),
-                                          ],
+                                      IconText(
+                                        preimg: true,
+                                        subimg: false,
+                                        preshadermask: false,
+                                        preiconsize: h * 0.03,
+                                        title: AppText.membersince,
+                                        preicon: Icons.calendar_today_rounded,
+                                        preimgcolor:
+                                            AppColors.black.withOpacity(0.8),
+                                        textStyle: ptSansTextStyle(
+                                          color:
+                                              AppColors.black.withOpacity(0.8),
+                                          overflow: TextOverflow.ellipsis,
+                                          fontSize: h * 0.021,
+                                          fontWeight: FontWeight.w600,
                                         ),
-                                      ),
-                                      if (controller()
-                                          .getproductlist
-                                          .isNotEmpty)
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.grey
-                                                    .withOpacity(0.5),
-                                                spreadRadius: 1,
-                                                blurRadius: 2,
-                                                offset: Offset(0,
-                                                    3), // changes position of shadow
-                                              ),
-                                            ],
-                                            border: GradientBoxBorder(
-                                              gradient: LinearGradient(colors: [
-                                                AppColors.colorPrimary,
-                                                AppColors.colorSecondary
-                                              ]),
-                                              width: 1.5,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                          ),
-                                          height: h * 0.09,
-                                          width: w * 0.22,
-                                          padding: EdgeInsets.all(w * 0.01),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              IconText(
-                                                preimg: true,
-                                                subimg: false,
-                                                preshadermask: false,
-                                                preiconsize: h * 0.025,
-                                                title: "3.4",
-                                                preicon: Icons.star,
-                                                preimgcolor: AppColors.yellow,
-                                                textStyle: ptSansTextStyle(
-                                                  color: AppColors.black
-                                                      .withOpacity(0.8),
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  fontSize: h * 0.018,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                              CommonText(
-                                                  textAlign: TextAlign.center,
-                                                  style: ptSansTextStyle(
-                                                      color: AppColors.black
-                                                          .withOpacity(0.8),
-                                                      fontSize: h * 0.015,
-                                                      fontWeight:
-                                                          FontWeight.w500),
-                                                  text: AppText.custrating),
-                                            ],
-                                          ),
+                                      )
+                                          .animate()
+                                          .fadeIn(duration: 300.ms)
+                                          .then(delay: 300.ms)
+                                          .slideX(
+                                              begin: 30,
+                                              end: 0,
+                                              curve: Curves.easeInOutCubic,
+                                              duration: 750.ms),
+                                      IconText(
+                                        preimg: true,
+                                        subimg: false,
+                                        preshadermask: false,
+                                        preiconsize: h * 0.03,
+                                        title: AppText.prductlist,
+                                        preimgname: AppImg.gamecontroller,
+                                        preimgcolor:
+                                            AppColors.black.withOpacity(0.8),
+                                        textStyle: ptSansTextStyle(
+                                          color:
+                                              AppColors.black.withOpacity(0.8),
+                                          overflow: TextOverflow.ellipsis,
+                                          fontSize: h * 0.021,
+                                          fontWeight: FontWeight.w600,
                                         ),
+                                      )
+                                          .animate()
+                                          .fadeIn(duration: 350.ms)
+                                          .then(delay: 350.ms)
+                                          .slideX(
+                                              begin: 30,
+                                              end: 0,
+                                              curve: Curves.easeInOutCubic,
+                                              duration: 800.ms),
                                     ],
                                   ),
                                 ),
+                                if (controller().getproductlist.isNotEmpty)
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 1,
+                                          blurRadius: 2,
+                                          offset: Offset(0,
+                                              3), // changes position of shadow
+                                        ),
+                                      ],
+                                      border: GradientBoxBorder(
+                                        gradient: LinearGradient(colors: [
+                                          AppColors.colorPrimary,
+                                          AppColors.colorSecondary
+                                        ]),
+                                        width: 1.5,
+                                      ),
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    height: h * 0.09,
+                                    width: w * 0.22,
+                                    padding: EdgeInsets.all(w * 0.01),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        IconText(
+                                          preimg: true,
+                                          subimg: false,
+                                          preshadermask: false,
+                                          preiconsize: h * 0.025,
+                                          title: "3.4",
+                                          preicon: Icons.star,
+                                          preimgcolor: AppColors.yellow,
+                                          textStyle: ptSansTextStyle(
+                                            color: AppColors.black
+                                                .withOpacity(0.8),
+                                            overflow: TextOverflow.ellipsis,
+                                            fontSize: h * 0.018,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        CommonText(
+                                            textAlign: TextAlign.center,
+                                            style: ptSansTextStyle(
+                                                color: AppColors.black
+                                                    .withOpacity(0.8),
+                                                fontSize: h * 0.015,
+                                                fontWeight: FontWeight.w500),
+                                            text: AppText.custrating),
+                                      ],
+                                    ),
+                                  ),
                               ],
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     Divider(
                       color: AppColors.black.withOpacity(0.1),
@@ -288,6 +267,7 @@ class BusinessUserProf extends ConsumerWidget {
                               fontWeight: FontWeight.w700),
                           tabs: [
                             Tab(
+                              height: h * 0.06,
                               child: Container(
                                 margin: EdgeInsets.symmetric(
                                   vertical: h * 0.005,
@@ -307,6 +287,7 @@ class BusinessUserProf extends ConsumerWidget {
                               ),
                             ),
                             Tab(
+                              height: h * 0.06,
                               child: Container(
                                 margin: EdgeInsets.symmetric(
                                   vertical: h * 0.005,
@@ -336,12 +317,12 @@ class BusinessUserProf extends ConsumerWidget {
                             curve: Curves.easeInOutCubic,
                             duration: 900.ms),
                     Container(
-                      height: h * 0.55,
+                      height: h * 0.58,
                       child: TabBarView(
                           controller: controller().tabController,
                           children: [
                             Container(
-                              height: h * 0.55,
+                              height: h * 0.58,
                               child: controller().getproductlist.isEmpty
                                   ? Categories(
                                       animatecontrollerlist:
@@ -353,7 +334,7 @@ class BusinessUserProf extends ConsumerWidget {
                                       shrinkWrap: true,
                                       width: w,
                                       isTopPadding: false,
-                                      height: h * 0.55,
+                                      height: h * 0.58,
                                       padding: EdgeInsets.zero,
                                       favList: controller().getfavlist,
                                       scrollDirection: Axis.vertical,
@@ -467,7 +448,7 @@ class BusinessUserProf extends ConsumerWidget {
                                     curve: Curves.easeInOutCubic,
                                     duration: 1000.ms),
                             Container(
-                              height: h * 0.55,
+                              height: h * 0.58,
                               child: controller().getproductlist.isEmpty
                                   ? Categories(
                                       animatecontrollerlist:
@@ -479,7 +460,7 @@ class BusinessUserProf extends ConsumerWidget {
                                       shrinkWrap: true,
                                       width: w,
                                       isTopPadding: false,
-                                      height: h * 0.55,
+                                      height: h * 0.58,
                                       padding: EdgeInsets.zero,
                                       favList: controller().getfavlist,
                                       scrollDirection: Axis.vertical,
@@ -595,9 +576,9 @@ class BusinessUserProf extends ConsumerWidget {
                           ]),
                     ),
                   ],
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),

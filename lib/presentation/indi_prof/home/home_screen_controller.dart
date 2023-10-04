@@ -33,6 +33,7 @@ class HomeScreenController extends _$HomeScreenController {
   List<String> get locationList => _locationList;
 
   CarouselController carouselController = CarouselController();
+  PageController rentCollection = PageController(viewportFraction: 0.45);
   PageController pageController = PageController();
 
   final List<String> _imgList = [
@@ -126,22 +127,29 @@ class HomeScreenController extends _$HomeScreenController {
 
   onPageChanged(int index) async {
     state = const AsyncLoading();
+
     currentpageIndex = index;
+
     state = const AsyncValue.data(null);
   }
 
   void filterSearchResults(String query) {
     state = const AsyncLoading();
+
     // searchitems = carlist
-    //     .where((item) => item.toLowerCase().contains(query.toLowerCase()))
+    //    .where((item) => item.toLowerCase().contains(query.toLowerCase()))
     //     .toList();
+
     print("searchitems $searchitems");
+
     state = const AsyncValue.data(null);
   }
 
   onValSelect({required String val}) async {
     state = const AsyncLoading();
+
     _selectedLocation = val;
+
     state = const AsyncValue.data(null);
   }
 }

@@ -61,6 +61,7 @@ class _AllChatState extends ConsumerState<AllChat> {
                     color: Colors.redAccent),
                 tabs: [
                   Tab(
+                    height: h * 0.06,
                     child: Container(
                       margin: EdgeInsets.symmetric(
                         vertical: h * 0.005,
@@ -100,6 +101,7 @@ class _AllChatState extends ConsumerState<AllChat> {
                     ),
                   ),
                   Tab(
+                    height: h * 0.06,
                     child: Container(
                       margin: EdgeInsets.symmetric(
                         vertical: h * 0.005,
@@ -139,6 +141,7 @@ class _AllChatState extends ConsumerState<AllChat> {
                     ),
                   ),
                   Tab(
+                    height: h * 0.06,
                     child: Container(
                       margin: EdgeInsets.symmetric(
                         vertical: h * 0.005,

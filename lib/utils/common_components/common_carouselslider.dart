@@ -31,12 +31,13 @@ class CommonCarousel extends ConsumerWidget {
       this.onPageChanged})
       : super(key: key);
   List<Widget>? items;
-  double containerwidth;
+
   double enlargeFactor;
   double viewportFraction;
   bool dotindicator;
   double aspectRatio;
   double carouselHeight;
+  double containerwidth;
   Curve autoPlayCurve;
   Axis scrollDirection;
   bool? enlargeCenterPage;

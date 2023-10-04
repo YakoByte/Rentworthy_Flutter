@@ -11,7 +11,10 @@ import '../../../utils/common_components/common_text.dart';
 class ProductAvailabilityDialog extends ConsumerWidget {
   String date;
 
-  ProductAvailabilityDialog({super.key, required this.date});
+  ProductAvailabilityDialog({
+    super.key,
+    required this.date,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

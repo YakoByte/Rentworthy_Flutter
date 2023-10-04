@@ -36,7 +36,7 @@ class AdminPanelController extends _$AdminPanelController {
 
   List<String> get locationList => _locationList;
 
-  CarouselController carouselController = CarouselController();
+  PageController viewpageController = PageController(viewportFraction: 0.68);
   PageController pageController = PageController();
 
   final List<String> _imgList = [
@@ -134,15 +134,6 @@ class AdminPanelController extends _$AdminPanelController {
 
     return type == 0
         ? SfCartesianChart(
-            title: ChartTitle(
-                alignment: ChartAlignment.near,
-                text: type == 0 ? 'Traffic by Device' : 'Incomes',
-                textStyle: ptSansTextStyle(
-                  color: AppColors.black,
-                  overflow: TextOverflow.ellipsis,
-                  fontSize: h * 0.023,
-                  fontWeight: FontWeight.w600,
-                )),
             plotAreaBorderWidth: 0,
             primaryXAxis: CategoryAxis(
                 labelStyle: ptSansTextStyle(
@@ -175,10 +166,10 @@ class AdminPanelController extends _$AdminPanelController {
                   fontWeight: FontWeight.w500,
                 ),
                 majorGridLines: const MajorGridLines(width: 1),
-                axisLine: AxisLine(width: 1),
+                axisLine: const AxisLine(width: 1),
                 desiredIntervals: 21,
                 majorTickLines:
-                    MajorTickLines(size: 4, color: AppColors.black)),
+                    const MajorTickLines(size: 4, color: AppColors.black)),
             title: ChartTitle(
                 alignment: ChartAlignment.near,
                 text: type == 0 ? 'Traffic by Device' : 'Incomes',
@@ -189,9 +180,10 @@ class AdminPanelController extends _$AdminPanelController {
                   fontWeight: FontWeight.w600,
                 )),
             primaryYAxis: NumericAxis(
-                minorGridLines: MinorGridLines(width: 1),
-                minorTickLines: MinorTickLines(size: 4, color: AppColors.black),
-                axisLine: AxisLine(width: 1),
+                minorGridLines: const MinorGridLines(width: 1),
+                minorTickLines:
+                    const MinorTickLines(size: 4, color: AppColors.black),
+                axisLine: const AxisLine(width: 1),
                 desiredIntervals: 5,
                 interval: 2500,
                 labelFormat: '{value}',
@@ -202,7 +194,7 @@ class AdminPanelController extends _$AdminPanelController {
                   fontWeight: FontWeight.w500,
                 ),
                 majorTickLines:
-                    MajorTickLines(size: 4, color: AppColors.black)),
+                    const MajorTickLines(size: 4, color: AppColors.black)),
             series: _getincomeColumnSeries(),
           );
   }
@@ -212,7 +204,8 @@ class AdminPanelController extends _$AdminPanelController {
     final w = MediaQuery.of(Globals.navigatorKey.currentContext!).size.width;
     return <ColumnSeries<ChartSampleData, String>>[
       ColumnSeries<ChartSampleData, String>(
-        spacing: w * 0.004,
+        spacing: 0.2,
+        width: 1,
         dataSource: <ChartSampleData>[
           ChartSampleData(x: 0, y: 3700),
           ChartSampleData(x: 1, y: 2500),
@@ -247,8 +240,7 @@ class AdminPanelController extends _$AdminPanelController {
           ChartSampleData(x: 31, y: 2000),
         ],
         name: 'Traffic by Device',
-        width: 0.8,
-        color: Color.fromRGBO(204, 189, 227, 1),
+        color: const Color.fromRGBO(204, 189, 227, 1),
         xValueMapper: (ChartSampleData sales, _) => sales.x.toString(),
         yValueMapper: (ChartSampleData sales, _) => sales.y,
         dataLabelSettings: DataLabelSettings(
@@ -261,7 +253,8 @@ class AdminPanelController extends _$AdminPanelController {
             )),
       ),
       ColumnSeries<ChartSampleData, String>(
-        spacing: w * 0.004,
+        spacing: 0.2,
+        width: 1,
         dataSource: <ChartSampleData>[
           ChartSampleData(x: 0, y: 1700),
           ChartSampleData(x: 1, y: 4500),
@@ -296,8 +289,7 @@ class AdminPanelController extends _$AdminPanelController {
           ChartSampleData(x: 31, y: 1500),
         ],
         name: 'Traffic by Device',
-        width: 0.8,
-        color: Color.fromRGBO(255, 202, 198, 1),
+        color: const Color.fromRGBO(255, 202, 198, 1),
         xValueMapper: (ChartSampleData sales, _) => sales.x.toString(),
         yValueMapper: (ChartSampleData sales, _) => sales.y,
         dataLabelSettings: DataLabelSettings(
@@ -328,16 +320,16 @@ class AdminPanelController extends _$AdminPanelController {
         name: 'Traffic by Device',
         width: 0.4,
         pointColorMapper: (ChartSampleData sales, _) => sales.x == 'Linux'
-            ? Color.fromRGBO(204, 189, 227, 1)
+            ? const Color.fromRGBO(204, 189, 227, 1)
             : sales.x == 'Mac'
-                ? Color.fromRGBO(186, 237, 189, 1)
+                ? const Color.fromRGBO(186, 237, 189, 1)
                 : sales.x == 'iOS'
-                    ? Color.fromRGBO(204, 189, 227, 1)
+                    ? const Color.fromRGBO(204, 189, 227, 1)
                     : sales.x == 'Windows'
-                        ? Color.fromRGBO(255, 215, 212, 1)
+                        ? const Color.fromRGBO(255, 215, 212, 1)
                         : sales.x == 'Android'
-                            ? Color.fromRGBO(255, 215, 212, 1)
-                            : Color.fromRGBO(217, 206, 234, 1),
+                            ? const Color.fromRGBO(255, 215, 212, 1)
+                            : const Color.fromRGBO(217, 206, 234, 1),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(4)),
         xValueMapper: (ChartSampleData sales, _) => sales.x.toString(),
         yValueMapper: (ChartSampleData sales, _) => sales.y,

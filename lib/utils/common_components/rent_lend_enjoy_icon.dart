@@ -30,7 +30,7 @@ class RentLendEnjoyIcon extends ConsumerWidget {
                   text: AppText.rent,
                   style: ptSansTextStyle(
                     color: AppColors.white,
-                    fontSize: h * 0.025,
+                    fontSize: w * 0.05,
                     fontWeight: FontWeight.w400,
                   )),
               Container(
@@ -45,7 +45,7 @@ class RentLendEnjoyIcon extends ConsumerWidget {
                   text: AppText.lend,
                   style: ptSansTextStyle(
                     color: AppColors.white,
-                    fontSize: h * 0.025,
+                    fontSize: w * 0.05,
                     fontWeight: FontWeight.w400,
                   )),
               Container(
@@ -60,7 +60,7 @@ class RentLendEnjoyIcon extends ConsumerWidget {
                   text: AppText.enjoy,
                   style: ptSansTextStyle(
                     color: AppColors.white,
-                    fontSize: h * 0.025,
+                    fontSize: w * 0.05,
                     fontWeight: FontWeight.w400,
                   )),
             ],
