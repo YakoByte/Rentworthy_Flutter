@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/color.dart';
+import '../import_utils.dart';
 
 class ContTextInputField extends StatelessWidget {
   final String? hintText;

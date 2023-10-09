@@ -50,7 +50,7 @@ class TextInputField extends StatelessWidget {
   final Color? bordercolor;
 
   // Color? iconcolor;
-
+  double? cursorHeight;
   final TextStyle? textstyle;
   final TextStyle? titletextstyle;
   final TextStyle? hintStyle;
@@ -74,6 +74,7 @@ class TextInputField extends StatelessWidget {
     this.focusNode,
     this.titlesuffix,
     this.isdescription,
+    this.cursorHeight,
     this.counterStyle,
     this.counterText,
     this.borderRadius,
@@ -233,7 +234,7 @@ class TextInputField extends StatelessWidget {
                           maxLines: maxLines,
                           cursorColor: AppColors.colorPrimary,
                           maxLength: maxLength,
-                          cursorHeight: height * 0.02,
+                          cursorHeight: cursorHeight ?? height * 0.025,
                           decoration: underline == false
                               ? InputDecoration(
                                   border: InputBorder.none,
@@ -318,7 +319,7 @@ class TextInputField extends StatelessWidget {
                             maxLines: maxLines,
                             cursorColor: AppColors.colorPrimary,
                             maxLength: maxLength,
-                            cursorHeight: height * 0.02,
+                            cursorHeight: cursorHeight ?? height * 0.025,
                             decoration: underline == false
                                 ? InputDecoration(
                                     border: InputBorder.none,

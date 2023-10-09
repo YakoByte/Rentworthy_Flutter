@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_button.dart';
+import '../../../../../utils/common_components/common_navigator.dart';
 import '../../../../../utils/common_components/common_text.dart';
 import '../../../../../utils/images.dart';
 import '../../../../../utils/text.dart';
+import '../../../sell/sell_screen.dart';
 
 class SellingUnread extends ConsumerWidget {
   const SellingUnread({super.key});
@@ -63,7 +66,15 @@ class SellingUnread extends ConsumerWidget {
                     color: AppColors.white,
                     fontSize: h * 0.02,
                     fontWeight: FontWeight.w700),
-                onPressed: () {}),
+                onPressed: () {
+                  commonNavigator(
+                    context: context,
+                    child: SellScreen(
+                      fromNav: false,
+                    ),
+                    type: PageTransitionType.rightToLeftWithFade,
+                  );
+                }),
           ),
         ],
       ),

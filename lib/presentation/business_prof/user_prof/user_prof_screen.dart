@@ -17,6 +17,7 @@ import '../../../utils/text.dart';
 import '../../indi_prof/account/edit_profile/edit_profile_screen.dart';
 import '../../indi_prof/account/widgets/profile_img_name.dart';
 import '../../indi_prof/home/categories/categories.dart';
+import '../../indi_prof/sell/sell_screen.dart';
 import '../business_widgets/business_nav_drawer.dart';
 import '../business_widgets/business_search.dart';
 import 'user_prof_screen_controller.dart';
@@ -431,7 +432,16 @@ class BusinessUserProf extends ConsumerWidget {
                                                                 20)),
                                                   fontSize: h * 0.02,
                                                   fontWeight: FontWeight.w700),
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                commonNavigator(
+                                                  context: context,
+                                                  child: SellScreen(
+                                                    fromNav: false,
+                                                  ),
+                                                  type: PageTransitionType
+                                                      .rightToLeftWithFade,
+                                                );
+                                              },
                                               side: BorderSide.none,
                                             ),
                                           ),
@@ -557,7 +567,16 @@ class BusinessUserProf extends ConsumerWidget {
                                                                 20)),
                                                   fontSize: h * 0.02,
                                                   fontWeight: FontWeight.w700),
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                commonNavigator(
+                                                  context: context,
+                                                  child: SellScreen(
+                                                    fromNav: false,
+                                                  ),
+                                                  type: PageTransitionType
+                                                      .rightToLeftWithFade,
+                                                );
+                                              },
                                               side: BorderSide.none,
                                             ),
                                           ),

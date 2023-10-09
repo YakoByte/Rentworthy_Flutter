@@ -1,19 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:rentworthy/utils/images.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-import '../../../application/g_map/g_map_service.dart';
-import '../../../data/shared_pref/shared_pref.dart';
-import '../../../model/g_map/g_map.dart';
-import '../../../utils/globals.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
-import 'dart:ui' as ui;
-import 'dart:typed_data';
-import 'dart:io';
+
 import 'package:flutter/material.dart';
-import '../onboarding/onboarding_screen.dart';
-import '../register/register_screen.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../application/g_map/g_map_service.dart';
+import '../../../model/g_map/g_map.dart';
+import '../../../utils/import_utils.dart';
 
 part 'g_map_controller.g.dart';
 

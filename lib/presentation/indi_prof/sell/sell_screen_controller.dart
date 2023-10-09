@@ -1,9 +1,7 @@
 import 'package:flutter/animation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../utils/common_components/common_tickerprovider.dart';
-import '../../../utils/images.dart';
-import '../../../utils/text.dart';
+import '../../../utils/import_utils.dart';
 
 part 'sell_screen_controller.g.dart';
 

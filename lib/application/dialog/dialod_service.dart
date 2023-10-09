@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:rentworthy/utils/color.dart';
@@ -12,6 +13,7 @@ import '../../presentation/business_prof/business_dialogs/pre_rent_screen_que.da
 import '../../presentation/business_prof/business_dialogs/profile_created.dart';
 import '../../presentation/business_prof/business_dialogs/register_complaint.dart';
 import '../../presentation/indi_prof/dialogs/alert_dialog.dart';
+import '../../presentation/indi_prof/dialogs/are_u_sure_dialog.dart';
 import '../../presentation/indi_prof/dialogs/cancel_booking_dialog.dart';
 import '../../presentation/indi_prof/dialogs/order_confirm.dart';
 import '../../presentation/indi_prof/dialogs/product_availability_dialog.dart';
@@ -32,6 +34,8 @@ abstract class DialogService {
   Future<void> productAvailabilityDialog({required String date});
 
   Future<void> contactusalertdialog();
+
+  Future<bool> handleLocationPermission();
 
   Future<void> orderconfirmalertdialog();
 
@@ -60,6 +64,13 @@ abstract class DialogService {
 
   Future<void> businessrentScreeningDialog();
 
+  Future<void> areYouSureDialog({
+    required String titleText,
+    required String subtitleText,
+    required void Function() onYesPressed,
+    required void Function() onNoPressed,
+  });
+
   Future<void> registerComplaintDialog();
 }
 
@@ -86,6 +97,25 @@ class DialogServiceV1 implements DialogService {
         barrierDismissible: true,
         builder: (BuildContext context) {
           return ContactUsAlertDialog();
+        }));
+  }
+
+  Future<void> areYouSureDialog({
+    required String titleText,
+    required String subtitleText,
+    required void Function() onYesPressed,
+    required void Function() onNoPressed,
+  }) async {
+    return (await showDialog(
+        context: Globals.navigatorKey.currentContext!,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return AreYouSureDialog(
+            titleText: titleText,
+            onNoPressed: onNoPressed,
+            onYesPressed: onYesPressed,
+            subtitleText: subtitleText,
+          );
         }));
   }
 
@@ -229,6 +259,44 @@ class DialogServiceV1 implements DialogService {
         ),
       ),
     );
+  }
+
+  ///permissions
+
+  Future<bool> handleLocationPermission() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      showSnackBar(
+          content: 'Location services are disabled. Please enable the services',
+          color: AppColors.red,
+          textclr: AppColors.white);
+      return false;
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        showSnackBar(
+            content: 'Location permissions are denied',
+            color: AppColors.red,
+            textclr: AppColors.white);
+
+        return false;
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      showSnackBar(
+          content:
+              'Location permissions are permanently denied, we cannot request permissions.',
+          color: AppColors.red,
+          textclr: AppColors.white);
+
+      return false;
+    }
+    return true;
   }
 }
 

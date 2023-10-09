@@ -223,12 +223,15 @@ class _LoginAppleState extends ConsumerState<LoginApple> {
                                     fontSize: h * 0.019,
                                     fontWeight: FontWeight.w700),
                                 onPressed: () {
-                                  commonNavigator(
-                                    context: context,
-                                    child: BottomBar(index: 0),
-                                    type:
-                                        PageTransitionType.rightToLeftWithFade,
-                                  );
+                                  Navigator.pushAndRemoveUntil(
+                                      context,
+                                      PageTransition(
+                                          child: BottomBar(index: 0),
+                                          type: PageTransitionType
+                                              .rightToLeftWithFade,
+                                          duration: const Duration(
+                                              milliseconds: 400)),
+                                      (Route<dynamic> route) => false);
                                 }),
                           ],
                         ),

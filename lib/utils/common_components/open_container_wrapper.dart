@@ -27,7 +27,7 @@ class OpenContainerWrapper extends ConsumerWidget {
       closedElevation: 0,
       middleColor: AppColors.transparent,
       clipBehavior: Clip.none,
-      routeSettings: RouteSettings(name: 'openContainer'),
+      routeSettings: const RouteSettings(name: 'openContainer'),
       closedShape: const RoundedRectangleBorder(),
       openShape: const RoundedRectangleBorder(),
       openBuilder: (BuildContext context, VoidCallback _) {

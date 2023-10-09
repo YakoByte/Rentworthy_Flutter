@@ -71,6 +71,7 @@ class AppImg {
   static const String filter = "${iconpath}filter.png";
   static const String chat = "${iconpath}chat.png";
   static const String chat1 = "${iconpath}chat1.png";
+  static const String chat2 = "${iconpath}chat2.png";
   static const String addchat = "${iconpath}addchat.png";
   static const String home = "${iconpath}home.png";
   static const String eye_hide = "${iconpath}hide.png";

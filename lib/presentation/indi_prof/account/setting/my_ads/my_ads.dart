@@ -1,20 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rentworthy/utils/common_components/common_iconbutton.dart';
-import 'package:rentworthy/utils/common_components/icon_text.dart';
-import 'package:syncfusion_flutter_sliders/sliders.dart';
 
-import '../../../../../utils/color.dart';
-import '../../../../../utils/common_components/common_appbar.dart';
-import '../../../../../utils/common_components/common_button.dart';
-import '../../../../../utils/common_components/common_dropdown.dart';
-import '../../../../../utils/common_components/common_dropdown_multiselect.dart';
-import '../../../../../utils/common_components/common_text.dart';
-import '../../../../../utils/common_components/dropdown/dropdown_search.dart';
-import '../../../../../utils/common_components/gradient_track_shape.dart';
-import '../../../../../utils/images.dart';
-import '../../../../../utils/text.dart';
+import '../../../../../utils/import_utils.dart';
 import '../../../home/categories/categories.dart';
 import 'my_ads_controller.dart';
 

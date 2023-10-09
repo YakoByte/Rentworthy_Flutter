@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import '../../../../../application/dialog/dialod_service.dart';
-import '../../../../../utils/color.dart';
-import '../../../../../utils/common_components/common_text.dart';
-import '../../../../../utils/common_components/icon_text.dart';
-import '../../../../../utils/globals.dart';
-import '../../../../../utils/text.dart';
+import '../../../../../utils/import_utils.dart';
 
 part 'my_address_controller.g.dart';
 

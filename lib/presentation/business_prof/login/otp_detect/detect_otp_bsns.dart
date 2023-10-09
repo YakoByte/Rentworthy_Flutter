@@ -159,11 +159,13 @@ class BusinessDetectOtp extends ConsumerWidget {
                       InkWell(
                         onTap: () {
                           FocusScope.of(context).requestFocus(FocusNode());
-                          commonNavigator(
-                            type: PageTransitionType.rightToLeftWithFade,
-                            context: context,
-                            child: AdminPanel(),
-                          );
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              PageTransition(
+                                  child: const AdminPanel(),
+                                  type: PageTransitionType.rightToLeftWithFade,
+                                  duration: const Duration(milliseconds: 400)),
+                              (Route<dynamic> route) => false);
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,

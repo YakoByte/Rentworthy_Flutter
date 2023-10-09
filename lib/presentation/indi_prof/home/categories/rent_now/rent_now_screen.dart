@@ -5,6 +5,7 @@ import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:rentworthy/presentation/indi_prof/home/categories/rent_now/rent_now_screen_controller.dart';
 
+import '../../../../../application/dialog/dialod_service.dart';
 import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_appbar.dart';
 import '../../../../../utils/common_components/common_button.dart';
@@ -679,7 +680,9 @@ class RentNow extends ConsumerWidget {
                       color: AppColors.white,
                       fontSize: h * 0.022,
                       fontWeight: FontWeight.w700),
-                  onPressed: () {}),
+                  onPressed: () {
+                    ref.read(dialogServiceProvider).orderconfirmalertdialog();
+                  }),
             ).animate().fadeIn(duration: 1300.ms).then(delay: 1300.ms).slideY(
                 begin: 10,
                 end: 0,

@@ -4,28 +4,118 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../../../utils/color.dart';
+import '../../../utils/common_components/common_appbar.dart';
 import '../../../utils/common_components/common_dropdown.dart';
 import '../../../utils/common_components/common_dropdown_multiselect.dart';
+import '../../../utils/common_components/common_iconbutton.dart';
 import '../../../utils/common_components/common_text.dart';
 import '../../../utils/common_components/dropdown/dropdown_search.dart';
 import '../../../utils/common_components/gradient_track_shape.dart';
 import '../../../utils/images.dart';
+import '../bottombar/bottom_bar_controller.dart';
 import '../home/categories/categories.dart';
 import 'booking_screen_controller.dart';
 import 'my_booking/my_booking_del_status.dart';
 
 class BookingScreen extends ConsumerWidget {
-  const BookingScreen({super.key});
+  bool? fromNav;
+
+  BookingScreen({super.key, this.fromNav = true});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncState = ref.watch(bookingScreenControllerProvider);
     controller() => ref.read(bookingScreenControllerProvider.notifier);
+    final asyncState1 = ref.watch(bottomBarControllerProvider(index: 0));
+    controller1() => ref.read(bottomBarControllerProvider(index: 0).notifier);
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: AppColors.white,
       resizeToAvoidBottomInset: true,
+      appBar: CommonAppBar(
+        backgroundColor: AppColors.white,
+        centerTitle: true,
+        centerwidget: CommonText(
+          text: "My Bookings",
+          maxLines: 1,
+          style: ptSansTextStyle(
+              fontSize: h * 0.025,
+              overflow: TextOverflow.ellipsis,
+              foreground: Paint()
+                ..shader = const LinearGradient(
+                  colors: <Color>[
+                    AppColors.colorPrimary,
+                    AppColors.colorSecondary
+                  ],
+                ).createShader(const Rect.fromLTRB(105, 0, 280, 10)),
+              fontWeight: FontWeight.w600),
+        ),
+        leadingicon: false,
+        padding: EdgeInsets.symmetric(
+          horizontal: w * 0.035,
+        ),
+        suffixicon: SizedBox(
+          width: h * 0.06,
+        ),
+        leadicon:
+            // fromNav == true
+            //     ? SizedBox(
+            //   width: h * 0.06,
+            // )
+            //     :
+            Card(
+          elevation: 2,
+          color: AppColors.white,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(h * 0.01)),
+          child: CommonIconButton(
+            onPressed: () {
+              if (fromNav == false) {
+                Navigator.pop(context);
+              } else {
+                controller1().pageController!.jumpToPage(
+                      0,
+                    );
+                controller1().onItemTapped(
+                  0,
+                );
+              }
+            },
+            centericon: ShaderMask(
+              shaderCallback: (Rect bounds) {
+                return const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    AppColors.colorPrimary,
+                    AppColors.colorSecondary,
+                  ],
+                ).createShader(bounds);
+              },
+              child: Center(
+                child: Icon(Icons.arrow_back_ios_new_outlined,
+                    color: AppColors.white, size: h * 0.026),
+              ),
+            ),
+            containerwidth: h * 0.06,
+            containerheight: h * 0.06,
+            backgroundColor: AppColors.white,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(h * 0.01)),
+          ),
+        ),
+        textstyle: ptSansTextStyle(
+            foreground: Paint()
+              ..shader = const LinearGradient(
+                colors: <Color>[
+                  AppColors.colorPrimary,
+                  AppColors.colorSecondary
+                ],
+              ).createShader(const Rect.fromLTRB(150, 0, 250, 20)),
+            fontSize: h * 0.025,
+            fontWeight: FontWeight.w700),
+      ),
       body: Container(
         height: h,
         color: AppColors.white,
@@ -44,31 +134,32 @@ class BookingScreen extends ConsumerWidget {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            CommonText(
-                              text: "My Bookings",
-                              maxLines: 1,
-                              style: ptSansTextStyle(
-                                  fontSize: h * 0.025,
-                                  overflow: TextOverflow.ellipsis,
-                                  color: AppColors.black,
-                                  fontWeight: FontWeight.w600),
-                            )
-                                .animate()
-                                .fadeIn(duration: (80).ms)
-                                .then(delay: (80).ms)
-                                .slideX(
-                                  begin: 6,
-                                  end: 0,
-                                  curve: Curves.easeInOutCubic,
-                                  duration: 500.ms,
-                                ),
-                          ],
-                        ),
+                        // if (fromNav == true)
+                        //   Row(
+                        //     mainAxisAlignment: MainAxisAlignment.start,
+                        //     children: [
+                        //       CommonText(
+                        //         text: "My Bookings",
+                        //         maxLines: 1,
+                        //         style: ptSansTextStyle(
+                        //             fontSize: h * 0.025,
+                        //             overflow: TextOverflow.ellipsis,
+                        //             color: AppColors.black,
+                        //             fontWeight: FontWeight.w600),
+                        //       )
+                        //           .animate()
+                        //           .fadeIn(duration: (80).ms)
+                        //           .then(delay: (80).ms)
+                        //           .slideX(
+                        //             begin: 6,
+                        //             end: 0,
+                        //             curve: Curves.easeInOutCubic,
+                        //             duration: 500.ms,
+                        //           ),
+                        //     ],
+                        //   ),
                         Container(
-                          height: h * 0.82,
+                          height: fromNav == true ? h * 0.82 : h * 0.9,
                           child: SingleChildScrollView(
                             physics: NeverScrollableScrollPhysics(),
                             child: Column(
@@ -112,8 +203,13 @@ class BookingScreen extends ConsumerWidget {
                                         controller().animatecontrollerlist!,
                                     isTopPadding: false,
                                     onCardPressed: MyBookingDelStatus(),
-                                    height:
-                                        controller().imgList.length * h * 0.076,
+                                    height: fromNav == true
+                                        ? controller().imgList.length *
+                                            h *
+                                            0.076
+                                        : controller().imgList.length *
+                                            h *
+                                            0.08,
                                     favList: controller().getfeatureadfavlist!,
                                     scrollDirection: Axis.vertical,
                                     nameList: controller().nameList,

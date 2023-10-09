@@ -4,10 +4,7 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../utils/color.dart';
-import '../../../utils/common_components/common_button.dart';
-import '../../../utils/common_components/common_text.dart';
-import '../../../utils/text.dart';
+import '../../../utils/import_utils.dart';
 
 class ProfileCreated extends ConsumerStatefulWidget {
   void Function(bool verfied) profVerified;

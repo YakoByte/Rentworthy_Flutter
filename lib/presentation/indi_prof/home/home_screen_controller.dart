@@ -1,9 +1,15 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_speech/flutter_speech.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:rentworthy/utils/images.dart';
+import 'package:rentworthy/utils/import_utils.dart';
 import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../application/dialog/dialod_service.dart';
+import '../../../utils/color.dart';
 import '../../../utils/common_components/common_tickerprovider.dart';
 
 part 'home_screen_controller.g.dart';
@@ -11,11 +17,12 @@ part 'home_screen_controller.g.dart';
 @riverpod
 class HomeScreenController extends _$HomeScreenController {
   final List<String> _locationList = [
-    'Wagle state',
-    'Mumbra',
-    'Mulund',
-    'Dadar',
-    'Mahim',
+    'Chicago',
+    'New York',
+    'Los Angeles',
+    'Houston',
+    'San Diego',
+    'Dallas',
   ];
 
   ScrollController scrollController = ScrollController();
@@ -32,6 +39,10 @@ class HomeScreenController extends _$HomeScreenController {
 
   List<String> get locationList => _locationList;
 
+  String? _currentAddress;
+  Position? _currentPosition;
+
+  Position get currentPosition => _currentPosition!;
   CarouselController carouselController = CarouselController();
   PageController rentCollection = PageController(viewportFraction: 0.45);
   PageController pageController = PageController();
@@ -62,6 +73,18 @@ class HomeScreenController extends _$HomeScreenController {
     AppText.heavymachine,
     AppText.newmarket,
   ];
+  final SpeechRecognition _speech = SpeechRecognition();
+
+  SpeechRecognition get speech => _speech;
+  bool _speechRecognitionAvailable = false;
+
+  bool get speechRecognitionAvailable => _speechRecognitionAvailable;
+  bool _isListening = false;
+  AnimationController? animationController;
+
+  bool get isListening => _isListening;
+
+  String transcription = '';
 
   List<String> get nameList => _nameList;
   String? _selectedLocation;
@@ -80,9 +103,19 @@ class HomeScreenController extends _$HomeScreenController {
   FutureOr<void> build() async {
     state = const AsyncLoading();
     _selectedLocation = _locationList[0];
+    activateSpeechRecognizer();
+    animationController = AnimationController(
+      duration: const Duration(milliseconds: 2000),
+      vsync: CommonTickerProvider(),
+    )..repeat();
+    // animationController!.stop();
     popularfavlist = List.generate(_imgList.length, (index) => false);
     featureadfavlist = List.generate(_imgList.length, (index) => false);
     nearbyadfavlist = List.generate(_imgList.length, (index) => false);
+    getCurrentPosition();
+    ref.onDispose(() {
+      animationController!.dispose();
+    });
     for (int i = 0; i < _nameList.length; i++) {
       animatecontrollerlist!.add(AnimationController(
         vsync: CommonTickerProvider(),
@@ -99,6 +132,80 @@ class HomeScreenController extends _$HomeScreenController {
     }
     state = const AsyncValue.data(null);
   }
+
+  void activateSpeechRecognizer() {
+    print('_MyAppState.activateSpeechRecognizer... ');
+    state = const AsyncLoading();
+    _speech.setAvailabilityHandler(onSpeechAvailability);
+    _speech.setRecognitionStartedHandler(onRecognitionStarted);
+    _speech.setRecognitionResultHandler(onRecognitionResult);
+    _speech.setRecognitionCompleteHandler(onRecognitionComplete);
+    _speech.setErrorHandler(errorHandler);
+    _speech.activate('en_US').then((res) {
+      _speechRecognitionAvailable = res;
+    });
+    state = const AsyncValue.data(null);
+  }
+
+  void start() => _speech.activate("en_US").then((_) {
+        return _speech.listen().then((result) {
+          print('_MyAppState.start => result $result');
+          state = const AsyncLoading();
+          // animationController!.forward();
+          _isListening = result;
+
+          state = const AsyncValue.data(null);
+        });
+      });
+
+  void cancel() => _speech.cancel().then((_) {
+        state = const AsyncLoading();
+        _isListening = false;
+        state = const AsyncValue.data(null);
+      });
+
+  void stop() => _speech.stop().then((_) {
+        state = const AsyncLoading();
+        _isListening = false;
+        state = const AsyncValue.data(null);
+      });
+
+  void onSpeechAvailability(bool result) {
+    state = const AsyncLoading();
+    _speechRecognitionAvailable = result;
+    state = const AsyncValue.data(null);
+  }
+
+  void onRecognitionStarted() {
+    state = const AsyncLoading();
+    _isListening = true;
+    searchController.text = 'Listening...';
+    state = const AsyncValue.data(null);
+  }
+
+  void onRecognitionResult(String text) {
+    print('_MyAppState.onRecognitionResult... $text');
+    state = const AsyncLoading();
+    transcription = text;
+    searchController.text = text;
+    state = const AsyncValue.data(null);
+  }
+
+  void onRecognitionComplete(String text) {
+    print('_MyAppState.onRecognitionComplete... $text');
+    state = const AsyncLoading();
+    searchController.text = 'Listening...';
+
+    Future.delayed(const Duration(milliseconds: 400), () {
+      state = const AsyncLoading();
+      _isListening = false;
+      state = const AsyncValue.data(null);
+    });
+
+    state = const AsyncValue.data(null);
+  }
+
+  void errorHandler() => activateSpeechRecognizer();
 
   onFavTap(int index, int type) {
     state = const AsyncLoading();
@@ -122,6 +229,40 @@ class HomeScreenController extends _$HomeScreenController {
       }
     }
 
+    state = const AsyncValue.data(null);
+  }
+
+  Future<void> getCurrentPosition() async {
+    state = const AsyncLoading();
+    final hasPermission =
+        await ref.read(dialogServiceProvider).handleLocationPermission();
+    if (!hasPermission) return;
+    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+        .then((Position position) {
+      _currentPosition = position;
+
+      debugPrint("position $position");
+      debugPrint("_currentPosition $_currentPosition");
+    }).catchError((e) {
+      debugPrint(e);
+    });
+    state = const AsyncValue.data(null);
+  }
+
+  Future<void> getAddressFromLatLng(Position position) async {
+    state = const AsyncLoading();
+    await placemarkFromCoordinates(
+            _currentPosition!.latitude, _currentPosition!.longitude)
+        .then((List<Placemark> placemarks) {
+      Placemark place = placemarks[0];
+      Navigator.pop(Globals.navigatorKey.currentContext!);
+      _selectedLocation = "${place.locality}, ${place.administrativeArea}";
+      _currentAddress =
+          '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}';
+      debugPrint("_currentAddress ${place}");
+    }).catchError((e) {
+      debugPrint(e);
+    });
     state = const AsyncValue.data(null);
   }
 

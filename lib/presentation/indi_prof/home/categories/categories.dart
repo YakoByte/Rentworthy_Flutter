@@ -12,7 +12,7 @@ import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_gridview.dart';
 import '../../../../utils/common_components/common_hor_ver_list.dart';
 import '../../../../utils/common_components/common_text.dart';
-import '../../../../utils/common_components/open_container_wrapper/open_container_wrapper.dart';
+import '../../../../utils/common_components/open_container_wrapper.dart';
 import '../../../../utils/globals.dart';
 import '../../../../utils/text.dart';
 import '../home_screen_controller.dart';

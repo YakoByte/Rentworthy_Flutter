@@ -2,11 +2,7 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
-import 'package:rentworthy/utils/common_components/common_outline_button.dart';
-
-import '../../../utils/color.dart';
-import '../../../utils/common_components/common_button.dart';
-import '../../../utils/common_components/common_text.dart';
+import '../../../utils/import_utils.dart';
 
 class ProductAvailabilityDialog extends ConsumerWidget {
   String date;

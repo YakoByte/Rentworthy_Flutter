@@ -109,10 +109,6 @@ class AdminNavDrawer extends ConsumerWidget {
                               type: PageTransitionType.rightToLeftWithFade,
                               duration: const Duration(milliseconds: 400)),
                           (Route<dynamic> route) => false);
-                      // commonNavigator(
-                      //     type: PageTransitionType.rightToLeftWithFade,
-                      //     context: context,
-                      //     child: AdminPanel());
                     }
                   },
                   child: Container(
@@ -850,6 +846,7 @@ class AdminNavDrawer extends ConsumerWidget {
                       Navigator.pop(context);
                     } else {
                       Navigator.pop(context);
+
                       commonNavigator(
                           type: PageTransitionType.rightToLeftWithFade,
                           context: context,
@@ -1030,10 +1027,13 @@ class AdminNavDrawer extends ConsumerWidget {
                       Navigator.pop(context);
                     } else {
                       Navigator.pop(context);
-                      commonNavigator(
-                          type: PageTransitionType.rightToLeftWithFade,
-                          context: context,
-                          child: const SubscriptionScreen());
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          PageTransition(
+                              child: const SubscriptionScreen(),
+                              type: PageTransitionType.rightToLeftWithFade,
+                              duration: const Duration(milliseconds: 400)),
+                          (Route<dynamic> route) => false);
                     }
                   },
                   child: Container(
@@ -1096,6 +1096,96 @@ class AdminNavDrawer extends ConsumerWidget {
                                 ),
                                 IconText(
                                     title: "Subscription",
+                                    textStyle: ptSansTextStyle(
+                                        color: AppColors.black,
+                                        fontSize: w * 0.045,
+                                        fontWeight: FontWeight.w500),
+                                    subimg: false,
+                                    preimgname: AppImg.copy,
+                                    preimgcolor: AppColors.black,
+                                    preiconsize: w * 0.07,
+                                    preimg: false),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    if (selectedindex == 11) {
+                      Navigator.pop(context);
+                    } else {
+                      Navigator.pop(context);
+
+                      commonNavigator(
+                          type: PageTransitionType.rightToLeftWithFade,
+                          context: context,
+                          child: const BusinessPostUrAd());
+                    }
+                  },
+                  child: Container(
+                    width: w,
+                    height: h * 0.06,
+                    margin: EdgeInsets.symmetric(vertical: h * 0.002),
+                    decoration: BoxDecoration(
+                      color: selectedindex == 11
+                          ? AppColors.black.withOpacity(0.1)
+                          : AppColors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: h * 0.01),
+                      child: Stack(
+                        children: [
+                          if (selectedindex == 11)
+                            Positioned(
+                              left: w * 0.001,
+                              right: 0,
+                              top: 0,
+                              bottom: 0,
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: w * 0.018,
+                                    height: h * 0.035,
+                                    decoration: const BoxDecoration(
+                                      color: AppColors.black,
+                                      borderRadius: BorderRadius.vertical(
+                                          top: Radius.circular(18),
+                                          bottom: Radius.circular(18)),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          Positioned(
+                            left: w * 0.05,
+                            right: 0,
+                            top: 0,
+                            bottom: 0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(right: h * 0.01),
+                                  child: selectedindex == 11
+                                      ? SizedBox(
+                                          height: h * 0.02,
+                                          width: h * 0.02,
+                                        )
+                                      : SizedBox(
+                                          width: w * 0.065,
+                                        ),
+                                ),
+                                SizedBox(
+                                  height: h * 0.02,
+                                  width: w * 0.08,
+                                ),
+                                IconText(
+                                    title: "Post Ad",
                                     textStyle: ptSansTextStyle(
                                         color: AppColors.black,
                                         fontSize: w * 0.045,

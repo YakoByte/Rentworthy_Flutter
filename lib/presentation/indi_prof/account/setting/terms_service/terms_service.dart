@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rentworthy/utils/images.dart';
-
-import '../../../../../utils/color.dart';
-import '../../../../../utils/common_components/common_appbar.dart';
-import '../../../../../utils/common_components/common_text.dart';
-import '../../../../../utils/text.dart';
+import '../../../../../utils/import_utils.dart';
 
 class TermsService extends ConsumerWidget {
   const TermsService({super.key});

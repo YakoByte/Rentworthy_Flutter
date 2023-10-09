@@ -225,36 +225,36 @@ class SettingScreen extends ConsumerWidget {
               end: 0,
               curve: Curves.easeInOutCubic,
               duration: 1000.ms),
-          Divider(
-            color: AppColors.black.withOpacity(0.1),
-            height: h * 0.01,
-            thickness: 1,
-          ).animate().fadeIn(duration: 600.ms).then(delay: 600.ms).slideY(
-              begin: 50,
-              end: 0,
-              curve: Curves.easeInOutCubic,
-              duration: 1000.ms),
-          Padding(
-            padding:
-                EdgeInsets.symmetric(horizontal: w * 0.04, vertical: h * 0.012),
-            child: Row(
-              children: [
-                Expanded(
-                  child: CommonText(
-                    text: AppText.dltacc,
-                    style: ptSansTextStyle(
-                        fontSize: w * 0.05,
-                        color: AppColors.black.withOpacity(0.6),
-                        fontWeight: FontWeight.w700),
-                  ),
-                ),
-              ],
-            ),
-          ).animate().fadeIn(duration: 650.ms).then(delay: 650.ms).slideY(
-              begin: 30,
-              end: 0,
-              curve: Curves.easeInOutCubic,
-              duration: 1000.ms),
+          // Divider(
+          //   color: AppColors.black.withOpacity(0.1),
+          //   height: h * 0.01,
+          //   thickness: 1,
+          // ).animate().fadeIn(duration: 600.ms).then(delay: 600.ms).slideY(
+          //     begin: 50,
+          //     end: 0,
+          //     curve: Curves.easeInOutCubic,
+          //     duration: 1000.ms),
+          // Padding(
+          //   padding:
+          //       EdgeInsets.symmetric(horizontal: w * 0.04, vertical: h * 0.012),
+          //   child: Row(
+          //     children: [
+          //       Expanded(
+          //         child: CommonText(
+          //           text: AppText.dltacc,
+          //           style: ptSansTextStyle(
+          //               fontSize: w * 0.05,
+          //               color: AppColors.black.withOpacity(0.6),
+          //               fontWeight: FontWeight.w700),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ).animate().fadeIn(duration: 650.ms).then(delay: 650.ms).slideY(
+          //     begin: 30,
+          //     end: 0,
+          //     curve: Curves.easeInOutCubic,
+          //     duration: 1000.ms),
         ],
       ),
     );

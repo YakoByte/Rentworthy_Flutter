@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rentworthy/utils/common_components/common_iconbutton.dart';
 import 'package:rentworthy/utils/common_components/text_input_field.dart';
 
 import '../color.dart';
@@ -8,6 +9,7 @@ import 'common_text.dart';
 class CommonSearchBar extends ConsumerWidget {
   TextEditingController searchController;
   void Function(String)? onsearchChanged;
+  void Function()? suffixonTap;
   double containerwidth;
   double containerheight;
   final Color? containercolor;
@@ -24,6 +26,7 @@ class CommonSearchBar extends ConsumerWidget {
       this.containercolor,
       this.borderRadius,
       this.suffixicon,
+      this.suffixonTap,
       this.textStyle,
       this.prefix,
       required this.containerwidth,
@@ -50,14 +53,27 @@ class CommonSearchBar extends ConsumerWidget {
           onChanged: (str) {
             onsearchChanged!(str);
           },
-          suffixicon: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              suffixicon ??
-                  Icon(Icons.mic,
+          suffixicon: suffixicon ??
+              CommonIconButton(
+                  containerwidth: h * 0.03,
+                  containerheight: h * 0.03,
+                  backgroundColor: AppColors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50)),
+                  centericon: Icon(Icons.mic,
                       color: AppColors.gray.withOpacity(0.6), size: h * 0.03),
-            ],
-          ),
+                  onPressed: suffixonTap ?? () {}),
+          // GestureDetector(
+          //   onTap: suffixonTap,
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: [
+          //       suffixicon ??
+          //           Icon(Icons.mic,
+          //               color: AppColors.gray.withOpacity(0.6), size: h * 0.03),
+          //     ],
+          //   ),
+          // ),
           textCapitalization: TextCapitalization.none,
           textstyle: ptSansTextStyle(
               fontSize: w * 0.04,

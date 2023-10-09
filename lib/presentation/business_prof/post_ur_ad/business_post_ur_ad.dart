@@ -60,11 +60,12 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                   ],
                 ),
                 onPressed: () {
-                  commonNavigator(
-                    context: context,
-                    child: AdminPanel(),
-                    type: PageTransitionType.rightToLeftWithFade,
-                  );
+                  Navigator.pop(context);
+                  // commonNavigator(
+                  //   context: context,
+                  //   child: const AdminPanel(),
+                  //   type: PageTransitionType.rightToLeftWithFade,
+                  // );
                 })
             .animate()
             .fadeIn(duration: 30.ms)
@@ -226,63 +227,63 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                             borderRadius: BorderRadius.circular(4)),
                         child: CommonMultiSelectDrop(
                           dropdownselecttitle: "Select Category",
-                          dropdowntitle: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    width: w * 0.85,
-                                    height: h * 0.035,
-                                    color: AppColors.white,
-                                    child: SliderTheme(
-                                        data: SliderThemeData(
-                                          trackHeight: h * 0.013,
-                                          thumbShape:
-                                              GradientRectSliderThumbShape(
-                                                  disabledThumbRadius:
-                                                      h * 0.014,
-                                                  enabledThumbRadius:
-                                                      h * 0.014),
-                                          trackShape:
-                                              const GradientRectSliderTrackShape(
-                                                  gradient: LinearGradient(
-                                                    colors: <Color>[
-                                                      AppColors.colorPrimary,
-                                                      AppColors.colorSecondary
-                                                    ],
-                                                  ),
-                                                  darkenInactive: true),
-                                        ),
-                                        child: Slider(
-                                          min: 0,
-                                          max: 100,
-                                          inactiveColor:
-                                              AppColors.black.withOpacity(0.2),
-                                          thumbColor: AppColors.white,
-                                          value: 50.0,
-                                          onChanged: (double value) {},
-                                        )),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: h * 0.015, horizontal: w * 0.025),
-                                child: Row(
-                                  children: [
-                                    CommonText(
-                                      text: "Price: \u{20B9}0 - \u{20B9}5,000 ",
-                                      style: ptSansTextStyle(
-                                          color:
-                                              AppColors.black.withOpacity(0.4),
-                                          fontSize: h * 0.02,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
+                          // dropdowntitle: Column(
+                          //   children: [
+                          //     Row(
+                          //       children: [
+                          //         Container(
+                          //           width: w * 0.85,
+                          //           height: h * 0.035,
+                          //           color: AppColors.white,
+                          //           child: SliderTheme(
+                          //               data: SliderThemeData(
+                          //                 trackHeight: h * 0.013,
+                          //                 thumbShape:
+                          //                     GradientRectSliderThumbShape(
+                          //                         disabledThumbRadius:
+                          //                             h * 0.014,
+                          //                         enabledThumbRadius:
+                          //                             h * 0.014),
+                          //                 trackShape:
+                          //                     const GradientRectSliderTrackShape(
+                          //                         gradient: LinearGradient(
+                          //                           colors: <Color>[
+                          //                             AppColors.colorPrimary,
+                          //                             AppColors.colorSecondary
+                          //                           ],
+                          //                         ),
+                          //                         darkenInactive: true),
+                          //               ),
+                          //               child: Slider(
+                          //                 min: 0,
+                          //                 max: 100,
+                          //                 inactiveColor:
+                          //                     AppColors.black.withOpacity(0.2),
+                          //                 thumbColor: AppColors.white,
+                          //                 value: 50.0,
+                          //                 onChanged: (double value) {},
+                          //               )),
+                          //         ),
+                          //       ],
+                          //     ),
+                          //     Padding(
+                          //       padding: EdgeInsets.symmetric(
+                          //           vertical: h * 0.015, horizontal: w * 0.025),
+                          //       child: Row(
+                          //         children: [
+                          //           CommonText(
+                          //             text: "Price: \u{20B9}0 - \u{20B9}5,000 ",
+                          //             style: ptSansTextStyle(
+                          //                 color:
+                          //                     AppColors.black.withOpacity(0.4),
+                          //                 fontSize: h * 0.02,
+                          //                 fontWeight: FontWeight.w600),
+                          //           ),
+                          //         ],
+                          //       ),
+                          //     )
+                          //   ],
+                          // ),
                           items: controller().catList,
                           selectedItems: controller().selectCat,
                           dropdownDecoratorProps: DropDownDecoratorProps(
@@ -899,7 +900,7 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                       mainAxisExtent: h * 0.12,
                       width: w,
                       height: h * 0.42,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {},
@@ -1158,7 +1159,7 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                   onPressed: () {
                     commonNavigator(
                       context: context,
-                      child: AdminPanel(),
+                      child: const AdminPanel(),
                       type: PageTransitionType.rightToLeftWithFade,
                     );
                   }),

@@ -1,9 +1,4 @@
-// statistics_reports_screen_controller
-
-import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import '../../../../utils/common_components/common_tickerprovider.dart';
 
 part 'subscription_screen_controller.g.dart';
 

@@ -1,8 +1,8 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:rentworthy/utils/images.dart';
-import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../../utils/import_utils.dart';
 
 part 'contact_us_controller.g.dart';
 

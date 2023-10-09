@@ -14,6 +14,7 @@ import '../../../../utils/common_components/common_appbar.dart';
 import '../../../../utils/common_components/common_iconbutton.dart';
 import '../../../../utils/common_components/common_text.dart';
 import '../../home/categories/categories.dart';
+import '../../sell/sell_screen.dart';
 import '../edit_profile/edit_profile_screen.dart';
 import '../widgets/profile_img_name.dart';
 
@@ -400,7 +401,16 @@ class ViewProfile extends ConsumerWidget {
                                           const Rect.fromLTRB(100, 0, 300, 20)),
                                     fontSize: h * 0.02,
                                     fontWeight: FontWeight.w700),
-                                onPressed: () {},
+                                onPressed: () {
+                                  commonNavigator(
+                                    context: context,
+                                    child: SellScreen(
+                                      fromNav: false,
+                                    ),
+                                    type:
+                                        PageTransitionType.rightToLeftWithFade,
+                                  );
+                                },
                                 side: BorderSide.none,
                               ),
                             ),

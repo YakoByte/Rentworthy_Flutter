@@ -15,6 +15,8 @@ import '../../../../../application/dialog/dialod_service.dart';
 import '../../../../../utils/common_components/common_appbar.dart';
 import '../../../../../utils/common_components/common_carouselslider.dart';
 import '../../../../../utils/images.dart';
+import '../../../../both_prof/g_map/g_map.dart';
+import '../../../account/view_profile/view_profile.dart';
 import '../../../chat/chat_screen.dart';
 import 'category_details_screen_controller.dart';
 
@@ -210,83 +212,94 @@ class CategoryDetailsScreen extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(right: w * 0.016),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(1000),
-                                    child: Image.asset(
-                                      AppImg.homelist,
-                                      height: h * 0.075,
-                                      width: h * 0.075,
-                                      fit: BoxFit.cover,
+                            GestureDetector(
+                              onTap: () {
+                                commonNavigator(
+                                  context: context,
+                                  child: ViewProfile(),
+                                  type: PageTransitionType.rightToLeftWithFade,
+                                );
+                              },
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(right: w * 0.016),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(1000),
+                                      child: Image.asset(
+                                        AppImg.homelist,
+                                        height: h * 0.075,
+                                        width: h * 0.075,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Container(
-                                  width: w * 0.45,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: CommonText(
-                                                text: AppText.postedby,
-                                                maxLines: 1,
-                                                style: ptSansTextStyle(
-                                                  color: AppColors.black
-                                                      .withOpacity(0.4),
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  fontSize: h * 0.02,
-                                                  fontWeight: FontWeight.w400,
-                                                )),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: CommonText(
-                                                text: AppText.hamzaali,
-                                                maxLines: 1,
-                                                style: ptSansTextStyle(
-                                                  color: AppColors.black
-                                                      .withOpacity(0.8),
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  fontSize: h * 0.02,
-                                                  fontWeight: FontWeight.w400,
-                                                )),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: CommonText(
-                                                text: AppText.postedon,
-                                                maxLines: 1,
-                                                style: ptSansTextStyle(
-                                                  color: AppColors.black
-                                                      .withOpacity(0.4),
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  fontSize: h * 0.017,
-                                                  fontWeight: FontWeight.w400,
-                                                )),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                  Container(
+                                    width: w * 0.45,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: CommonText(
+                                                  text: AppText.postedby,
+                                                  maxLines: 1,
+                                                  style: ptSansTextStyle(
+                                                    color: AppColors.black
+                                                        .withOpacity(0.4),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    fontSize: h * 0.02,
+                                                    fontWeight: FontWeight.w400,
+                                                  )),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: CommonText(
+                                                  text: AppText.hamzaali,
+                                                  maxLines: 1,
+                                                  style: ptSansTextStyle(
+                                                    color: AppColors.black
+                                                        .withOpacity(0.8),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    fontSize: h * 0.02,
+                                                    fontWeight: FontWeight.w400,
+                                                  )),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: CommonText(
+                                                  text: AppText.postedon,
+                                                  maxLines: 1,
+                                                  style: ptSansTextStyle(
+                                                    color: AppColors.black
+                                                        .withOpacity(0.4),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    fontSize: h * 0.017,
+                                                    fontWeight: FontWeight.w400,
+                                                  )),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                             CommonIconButton(
                                 containerwidth: h * 0.06,
@@ -314,11 +327,18 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                       ],
                                     ).createShader(bounds);
                                   },
-                                  child: Image.asset(AppImg.chat1,
+                                  child: Image.asset(AppImg.chat2,
                                       color: AppColors.white,
                                       height: h * 0.035),
                                 ),
-                                onPressed: () {}),
+                                onPressed: () {
+                                  commonNavigator(
+                                    context: context,
+                                    child: ChatScreen(frombottom: false),
+                                    type:
+                                        PageTransitionType.rightToLeftWithFade,
+                                  );
+                                }),
                           ],
                         ),
                       ),
@@ -337,34 +357,42 @@ class CategoryDetailsScreen extends ConsumerWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
                     child: Container(
-                      height: h * 0.11,
+                      height: h * 0.3,
                       width: w,
                       decoration: BoxDecoration(
                         color: AppColors.white,
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: w * 0.06),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CommonText(
-                                text: AppText.adpostedat,
-                                style: ptSansTextStyle(
-                                  color: AppColors.black.withOpacity(0.6),
-                                  fontSize: h * 0.024,
-                                  fontWeight: FontWeight.w600,
-                                )),
-                            CommonText(
-                                text: AppText.tampaflorida,
-                                style: ptSansTextStyle(
-                                  color: AppColors.black,
-                                  fontSize: h * 0.034,
-                                  fontWeight: FontWeight.w700,
-                                )),
-                          ],
-                        ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GoogleMapWidget(
+                              borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(12))),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: w * 0.06),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CommonText(
+                                    text: AppText.adpostedat,
+                                    style: ptSansTextStyle(
+                                      color: AppColors.black.withOpacity(0.6),
+                                      fontSize: h * 0.024,
+                                      fontWeight: FontWeight.w600,
+                                    )),
+                                CommonText(
+                                    text: AppText.tampaflorida,
+                                    style: ptSansTextStyle(
+                                      color: AppColors.black,
+                                      fontSize: h * 0.034,
+                                      fontWeight: FontWeight.w700,
+                                    )),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

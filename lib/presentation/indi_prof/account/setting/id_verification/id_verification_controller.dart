@@ -28,13 +28,14 @@ class IdVerificationController extends _$IdVerificationController {
     } else if (_onverify == true && _isVerified == false) {
       _isVerified = true;
     } else if (_isVerified == true && _onverify == true) {
-      commonNavigator(
-        context: Globals.navigatorKey.currentContext!,
-        child: BottomBar(
-          index: 3,
-        ),
-        type: PageTransitionType.rightToLeftWithFade,
-      );
+      Navigator.pushAndRemoveUntil(
+          Globals.navigatorKey.currentContext!,
+          PageTransition(
+              child: BottomBar(index: 0),
+              type: PageTransitionType.rightToLeftWithFade,
+              duration: const Duration(milliseconds: 400)),
+          (Route<dynamic> route) => false);
+
       _isVerified = false;
       _onverify = false;
     }

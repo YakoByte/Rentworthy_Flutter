@@ -178,11 +178,13 @@ class _BusinessLoginAppleState extends ConsumerState<BusinessLoginApple> {
                       fontSize: h * 0.019,
                       fontWeight: FontWeight.w700),
                   onPressed: () {
-                    commonNavigator(
-                      context: context,
-                      child: AdminPanel(),
-                      type: PageTransitionType.rightToLeftWithFade,
-                    );
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        PageTransition(
+                            child: const AdminPanel(),
+                            type: PageTransitionType.rightToLeftWithFade,
+                            duration: const Duration(milliseconds: 400)),
+                        (Route<dynamic> route) => false);
                   }),
               CommonText(
                   text:

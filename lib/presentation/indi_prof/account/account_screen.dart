@@ -88,7 +88,7 @@ class AccountScreen extends ConsumerWidget {
                     },
                     imgName: Icons.help,
                     title: AppText.helpsupport,
-                    isDivider: true,
+                    isDivider: false,
                     subTitle: AppText.helplegalterms,
                   )
                       .animate()
@@ -99,27 +99,27 @@ class AccountScreen extends ConsumerWidget {
                           end: 0,
                           curve: Curves.easeInOutCubic,
                           duration: 1000.ms),
-                  SettingContainer(
-                    onTap: () {
-                      commonNavigator(
-                        context: context,
-                        child: SelectLangScreen(),
-                        type: PageTransitionType.rightToLeftWithFade,
-                      );
-                    },
-                    imgName: Icons.translate,
-                    title: AppText.selectlang,
-                    isDivider: false,
-                    subTitle: AppText.eng,
-                  )
-                      .animate()
-                      .fadeIn(duration: 250.ms)
-                      .then(delay: 250.ms)
-                      .slideY(
-                          begin: 20,
-                          end: 0,
-                          curve: Curves.easeInOutCubic,
-                          duration: 1000.ms),
+                  // SettingContainer(
+                  //   onTap: () {
+                  //     commonNavigator(
+                  //       context: context,
+                  //       child: SelectLangScreen(),
+                  //       type: PageTransitionType.rightToLeftWithFade,
+                  //     );
+                  //   },
+                  //   imgName: Icons.translate,
+                  //   title: AppText.selectlang,
+                  //   isDivider: false,
+                  //   subTitle: AppText.eng,
+                  // )
+                  //     .animate()
+                  //     .fadeIn(duration: 250.ms)
+                  //     .then(delay: 250.ms)
+                  //     .slideY(
+                  //         begin: 20,
+                  //         end: 0,
+                  //         curve: Curves.easeInOutCubic,
+                  //         duration: 1000.ms),
                   Container(
                     height: h * 0.28,
                     width: w,

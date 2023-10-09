@@ -106,11 +106,13 @@ class AccountVerificationController extends _$AccountVerificationController {
 
           if (timer!.tick > 3) {
             timer!.cancel();
-            commonNavigator(
-              context: Globals.navigatorKey.currentContext!,
-              child: BottomBar(index: 0),
-              type: PageTransitionType.rightToLeftWithFade,
-            );
+            Navigator.pushAndRemoveUntil(
+                Globals.navigatorKey.currentContext!,
+                PageTransition(
+                    child: BottomBar(index: 0),
+                    type: PageTransitionType.rightToLeftWithFade,
+                    duration: const Duration(milliseconds: 400)),
+                (Route<dynamic> route) => false);
           }
         }
         state = AsyncValue.data(state.value!.copyWith(start: _start));

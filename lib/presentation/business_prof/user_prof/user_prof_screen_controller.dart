@@ -119,24 +119,24 @@ class BusinessUserProfController extends _$BusinessUserProfController {
           preimgcolor: AppColors.black.withOpacity(0.8),
         ),
       ),
-      PopupMenuItem(
-        value: 2,
-        onTap: () {},
-        child: IconText(
-          isCenter: false,
-          title: "Report User",
-          textStyle: ptSansTextStyle(
-              fontSize: w * 0.035,
-              overflow: TextOverflow.ellipsis,
-              color: AppColors.black,
-              fontWeight: FontWeight.w600),
-          subimg: false,
-          preimg: true,
-          preimgname: AppImg.accountoff,
-          preiconsize: h * 0.03,
-          preimgcolor: AppColors.black,
-        ),
-      ),
+      // PopupMenuItem(
+      //   value: 2,
+      //   onTap: () {},
+      //   child: IconText(
+      //     isCenter: false,
+      //     title: "Report User",
+      //     textStyle: ptSansTextStyle(
+      //         fontSize: w * 0.035,
+      //         overflow: TextOverflow.ellipsis,
+      //         color: AppColors.black,
+      //         fontWeight: FontWeight.w600),
+      //     subimg: false,
+      //     preimg: true,
+      //     preimgname: AppImg.accountoff,
+      //     preiconsize: h * 0.03,
+      //     preimgcolor: AppColors.black,
+      //   ),
+      // ),
     ];
 
     favlist = List.generate(nameList.length, (index) => false);

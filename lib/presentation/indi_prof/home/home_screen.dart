@@ -3,6 +3,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:rentworthy/presentation/both_prof/g_map/g_map.dart';
+import 'package:rentworthy/presentation/indi_prof/sell/post_add/post_ur_ad.dart';
+import 'package:rentworthy/presentation/indi_prof/sell/sell_screen.dart';
 import 'package:rentworthy/utils/color.dart';
 import 'package:rentworthy/utils/common_components/common_carouselslider.dart';
 import 'package:rentworthy/utils/common_components/common_pageview.dart';
@@ -44,7 +46,9 @@ class HomeScreen extends ConsumerWidget {
           onPressed: () {
             commonNavigator(
               context: context,
-              child: ChatScreen(frombottom: false),
+              child: SellScreen(
+                fromNav: false,
+              ),
               type: PageTransitionType.rightToLeftWithFade,
             );
           },
@@ -426,49 +430,46 @@ class HomeScreen extends ConsumerWidget {
                                 padEnds: false,
                                 itemBuilder: (BuildContext context,
                                         int pageViewIndex) =>
-                                    Row(
-                                      children: [
-                                        Container(
-                                            height: h * 0.2,
-                                            width: h * 0.2,
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: w * 0.02),
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(14),
-                                                color: AppColors.white),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                Center(
-                                                  child: Image.asset(
-                                                      controller().imgList[
-                                                          pageViewIndex],
-                                                      height: h * 0.1,
-                                                      width: w * 0.3),
-                                                ),
-                                                CommonText(
-                                                    text: controller().nameList[
-                                                        pageViewIndex],
-                                                    textAlign: TextAlign.center,
-                                                    style: ptSansTextStyle(
-                                                      color: AppColors.black
-                                                          .withOpacity(0.8),
-                                                      fontSize: h * 0.015,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                    )),
-                                              ],
-                                            )),
-                                      ],
+                                    Center(
+                                      child: Container(
+                                          height: h * 0.18,
+                                          width: h * 0.18,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: w * 0.02),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(14),
+                                              color: AppColors.white),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Center(
+                                                child: Image.asset(
+                                                    controller()
+                                                        .imgList[pageViewIndex],
+                                                    height: h * 0.1,
+                                                    width: w * 0.3),
+                                              ),
+                                              CommonText(
+                                                  text: controller()
+                                                      .nameList[pageViewIndex],
+                                                  textAlign: TextAlign.center,
+                                                  style: ptSansTextStyle(
+                                                    color: AppColors.black
+                                                        .withOpacity(0.8),
+                                                    fontSize: h * 0.015,
+                                                    fontWeight: FontWeight.w400,
+                                                  )),
+                                            ],
+                                          )),
                                     ),
                                 itemCount: controller().imgList.length,
                                 pageController: controller().rentCollection,
                                 padding: EdgeInsets.only(
-                                    top: h * 0.015,
-                                    bottom: h * 0.015,
-                                    left: w * 0.05)),
+                                  top: h * 0.015,
+                                  bottom: h * 0.015,
+                                )),
                           ],
                         ),
                       ),

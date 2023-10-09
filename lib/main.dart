@@ -6,14 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rentworthy/presentation/both_prof/loading/loading_screen.dart';
-import 'package:rentworthy/presentation/business_prof/admin_panel/admin_panel.dart';
-import 'package:rentworthy/presentation/business_prof/business_category_details/business_category_details_screen.dart';
-import 'package:rentworthy/presentation/business_prof/track_item/track_item_screen.dart';
-import 'package:rentworthy/utils/globals.dart';
-import 'package:rentworthy/utils/state_logger.dart';
-import 'package:rentworthy/utils/text.dart';
+
+import 'application/dialog/dialod_service.dart';
+import 'utils/import_utils.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -43,7 +41,7 @@ class _MyAppState extends ConsumerState<MyApp> {
   @override
   void initState() {
     // TODO: implement initState
-
+    ref.read(dialogServiceProvider).handleLocationPermission();
     super.initState();
     initialization();
   }

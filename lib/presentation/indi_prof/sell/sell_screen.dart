@@ -16,7 +16,9 @@ import '../../../utils/text.dart';
 import '../bottombar/bottom_bar_controller.dart';
 
 class SellScreen extends ConsumerWidget {
-  const SellScreen({super.key});
+  bool? fromNav;
+
+  SellScreen({super.key, this.fromNav});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -36,12 +38,16 @@ class SellScreen extends ConsumerWidget {
         ),
         leadicon: GestureDetector(
           onTap: () {
-            controller1().pageController!.jumpToPage(
-                  0,
-                );
-            controller1().onItemTapped(
-              0,
-            );
+            if (fromNav == false) {
+              Navigator.pop(context);
+            } else {
+              controller1().pageController!.jumpToPage(
+                    0,
+                  );
+              controller1().onItemTapped(
+                0,
+              );
+            }
           },
           child: Padding(
             padding: EdgeInsets.only(right: w * 0.045),

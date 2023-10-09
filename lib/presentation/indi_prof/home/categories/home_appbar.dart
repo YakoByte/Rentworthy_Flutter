@@ -59,35 +59,49 @@ class HomeAppBar extends ConsumerWidget {
                     fontSize: w * 0.04,
                     overflow: TextOverflow.ellipsis,
                     fontWeight: FontWeight.w700),
-                dropdowntitle: Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: h * 0.015, horizontal: w * 0.025),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(right: w * 0.01),
-                            child: Icon(Icons.my_location,
-                                color: AppColors.black.withOpacity(0.8),
-                                size: h * 0.03),
-                          ),
-                          CommonText(
-                            text: "Use current location",
-                            style: ptSansTextStyle(
-                                color: AppColors.black.withOpacity(0.8),
-                                fontSize: w * 0.04,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: h * 0.01),
-                      Divider(
-                        color: AppColors.black.withOpacity(0.1),
-                        height: h * 0.01,
-                        thickness: 2,
-                      ),
-                    ],
+                dropdowntitle: GestureDetector(
+                  onTap: () {
+                    if (controller().currentPosition == null) {
+                      controller().getCurrentPosition();
+                      Future.delayed(Duration(seconds: 1), () {
+                        controller().getAddressFromLatLng(
+                            controller().currentPosition!);
+                      });
+                    } else {
+                      controller()
+                          .getAddressFromLatLng(controller().currentPosition!);
+                    }
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        vertical: h * 0.015, horizontal: w * 0.025),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(right: w * 0.01),
+                              child: Icon(Icons.my_location,
+                                  color: AppColors.black.withOpacity(0.8),
+                                  size: h * 0.03),
+                            ),
+                            CommonText(
+                              text: "Use current location",
+                              style: ptSansTextStyle(
+                                  color: AppColors.black.withOpacity(0.8),
+                                  fontSize: w * 0.04,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: h * 0.01),
+                        Divider(
+                          color: AppColors.black.withOpacity(0.1),
+                          height: h * 0.01,
+                          thickness: 2,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 dropdownDecoratorProps: DropDownDecoratorProps(

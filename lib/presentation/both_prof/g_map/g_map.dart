@@ -5,7 +5,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'g_map_controller.dart';
 
 class GoogleMapWidget extends ConsumerWidget {
-  const GoogleMapWidget({super.key});
+  BorderRadiusGeometry borderRadius;
+
+  GoogleMapWidget({super.key, required this.borderRadius});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,18 +20,20 @@ class GoogleMapWidget extends ConsumerWidget {
       height: h * 0.2,
       width: w,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(11),
+        borderRadius: borderRadius,
         color: Colors.white,
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(11),
+        borderRadius: borderRadius,
         child: GoogleMap(
           onMapCreated: controller().onMapCreated1,
+
           initialCameraPosition: const CameraPosition(
-            target: LatLng(52.337801, 4.872066),
-            zoom: 2.0,
+            target: LatLng(41.8781, -87.623177),
+            zoom: 15.0,
           ),
-          markers: controller().markers.values.toSet(),
+
+          // markers: controller().markers.values.toSet(),
         ),
       ),
     );
