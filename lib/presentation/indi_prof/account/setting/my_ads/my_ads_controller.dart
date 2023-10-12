@@ -23,6 +23,9 @@ class MyAdsController extends _$MyAdsController {
     "Price",
     "Categories",
   ];
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
   List<AnimationController>? animatecontrollerlist = [];
   AnimationController animationController = AnimationController(
     vsync: CommonTickerProvider(),
@@ -140,6 +143,8 @@ class MyAdsController extends _$MyAdsController {
       length: 2,
       vsync: CommonTickerProvider(),
     );
+    _isLoading = true;
+
     tabController.addListener(() {
       onTabTap(val: tabController.index);
       state = const AsyncLoading();
@@ -162,11 +167,15 @@ class MyAdsController extends _$MyAdsController {
             milliseconds:
                 ((i == 0 ? i + 2 : i + 1) + 5) * int.parse("${i + 3}0")),
       ));
-      Future.delayed(const Duration(milliseconds: 400), () {
-        animatecontrollerlist![0].forward();
-        if (i != (animatecontrollerlist!.length - 1)) {
-          animatecontrollerlist![i + 1].forward();
-        }
+      Future.delayed(const Duration(seconds: 1), () {
+        _isLoading = false;
+        Future.delayed(const Duration(milliseconds: 400), () {
+          animatecontrollerlist![0].forward();
+          if (i != (animatecontrollerlist!.length - 1)) {
+            animatecontrollerlist![i + 1].forward();
+          }
+        });
+        state = const AsyncValue.data(null);
       });
     }
     state = const AsyncValue.data(null);

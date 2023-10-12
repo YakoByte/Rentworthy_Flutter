@@ -61,16 +61,8 @@ class HomeAppBar extends ConsumerWidget {
                     fontWeight: FontWeight.w700),
                 dropdowntitle: GestureDetector(
                   onTap: () {
-                    if (controller().currentPosition == null) {
-                      controller().getCurrentPosition();
-                      Future.delayed(Duration(seconds: 1), () {
-                        controller().getAddressFromLatLng(
-                            controller().currentPosition!);
-                      });
-                    } else {
-                      controller()
-                          .getAddressFromLatLng(controller().currentPosition!);
-                    }
+                    controller()
+                        .getAddressFromLatLng(controller().currentPosition!);
                   },
                   child: Padding(
                     padding: EdgeInsets.symmetric(

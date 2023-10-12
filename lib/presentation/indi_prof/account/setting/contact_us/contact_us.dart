@@ -9,6 +9,8 @@ import '../../../../../utils/common_components/common_button.dart';
 import '../../../../../utils/common_components/common_text.dart';
 import '../../../../../utils/images.dart';
 import '../../../../../utils/text.dart';
+import '../../../../shimmers/contact_us_shimmer.dart';
+import '../../../error/error_screen.dart';
 import 'contact_us_controller.dart';
 
 class ContactUsScreen extends ConsumerWidget {
@@ -44,180 +46,194 @@ class ContactUsScreen extends ConsumerWidget {
           ),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: w * 0.04, vertical: h * 0.02),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.asset(
-                AppImg.contactus,
-                height: h * 0.4,
-                width: w,
-                fit: BoxFit.contain,
-              ),
-              CommonText(
-                text:
-                    "Hello if you are experiencing any problems or would like further information, please fill out the following below and we will get back to you as soon as possible.",
-                textAlign: TextAlign.center,
-                style: ptSansTextStyle(
-                    color: AppColors.black.withOpacity(0.8),
-                    fontSize: h * 0.017,
-                    fontWeight: FontWeight.w500),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: h * 0.01),
-                child: ContTextInputField(
-                  center: true,
-                  containerwidth: w * 0.9,
-                  containerheight: h * 0.075,
-                  titletextstyle: ptSansTextStyle(
-                      color: AppColors.black.withOpacity(0.6),
-                      fontSize: h * 0.019,
-                      fontWeight: FontWeight.w400),
-                  hintStyle: ptSansTextStyle(
-                      color: AppColors.black.withOpacity(0.6),
-                      fontSize: h * 0.019,
-                      fontWeight: FontWeight.w400),
-                  textstyle: ptSansTextStyle(
-                      color: AppColors.black,
-                      fontSize: h * 0.019,
-                      fontWeight: FontWeight.w500),
-                  errorStyle: ptSansTextStyle(
-                      color: AppColors.red,
-                      fontSize: h * 0.021,
-                      fontWeight: FontWeight.w400),
-                  prefix: const SizedBox.shrink(),
-                  textCapitalization: TextCapitalization.none,
-                  hintText: AppText.entername,
-                  controller: controller().nameController,
-                  keyboardType: TextInputType.text,
-                  containercolor: AppColors.white,
-                  onTap: () {},
-                  onChanged: (val) {},
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: h * 0.01),
-                child: ContTextInputField(
-                  center: true,
-                  containerwidth: w * 0.9,
-                  containerheight: h * 0.075,
-                  titletextstyle: ptSansTextStyle(
-                      color: AppColors.black.withOpacity(0.6),
-                      fontSize: h * 0.019,
-                      fontWeight: FontWeight.w400),
-                  hintStyle: ptSansTextStyle(
-                      color: AppColors.black.withOpacity(0.6),
-                      fontSize: h * 0.019,
-                      fontWeight: FontWeight.w400),
-                  textstyle: ptSansTextStyle(
-                      color: AppColors.black,
-                      fontSize: h * 0.019,
-                      fontWeight: FontWeight.w500),
-                  errorStyle: ptSansTextStyle(
-                      color: AppColors.red,
-                      fontSize: h * 0.021,
-                      fontWeight: FontWeight.w400),
-                  prefix: const SizedBox.shrink(),
-                  textCapitalization: TextCapitalization.none,
-                  hintText: AppText.enterphone,
-                  controller: controller().phoneController,
-                  keyboardType: TextInputType.phone,
-                  containercolor: AppColors.white,
-                  onTap: () {},
-                  onChanged: (val) {},
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: h * 0.01),
-                child: ContTextInputField(
-                  center: false,
-                  containerwidth: w * 0.9,
-                  containerheight: h * 0.5,
-                  titletextstyle: ptSansTextStyle(
-                      color: AppColors.black.withOpacity(0.6),
-                      fontSize: h * 0.019,
-                      fontWeight: FontWeight.w400),
-                  hintStyle: ptSansTextStyle(
-                      color: AppColors.black.withOpacity(0.6),
-                      fontSize: h * 0.019,
-                      fontWeight: FontWeight.w400),
-                  textstyle: ptSansTextStyle(
-                      color: AppColors.black,
-                      fontSize: h * 0.019,
-                      fontWeight: FontWeight.w500),
-                  errorStyle: ptSansTextStyle(
-                      color: AppColors.red,
-                      fontSize: h * 0.021,
-                      fontWeight: FontWeight.w400),
-                  prefix: const SizedBox.shrink(),
-                  textCapitalization: TextCapitalization.none,
-                  hintText: AppText.knowus,
-                  controller: controller().descController,
-                  keyboardType: TextInputType.text,
-                  containercolor: AppColors.white,
-                  onTap: () {},
-                  onChanged: (val) {},
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: h * 0.01),
-                child: CommonButton(
-                    containerwidth: w,
-                    containerheight: h * 0.06,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(h * 0.005),
-                        gradient: const LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: [
-                              AppColors.colorPrimary,
-                              AppColors.colorSecondary
-                            ])),
-                    backgroundColor: AppColors.transparent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(h * 0.005),
+      body: asyncState.when(
+          data: (data) {
+            if (controller().isLoading) {
+              return const ContactUsShimmer();
+            }
+            return Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: w * 0.04, vertical: h * 0.02),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      AppImg.contactus,
+                      height: h * 0.4,
+                      width: w,
+                      fit: BoxFit.contain,
                     ),
-                    text: AppText.submit,
-                    textStyle: ptSansTextStyle(
-                        color: AppColors.white,
-                        fontSize: h * 0.019,
-                        fontWeight: FontWeight.w700),
-                    onPressed: () {
-                      ref.read(dialogServiceProvider).contactusalertdialog();
-                      // ref.read(dialogServiceProvider).selectDatedialog();
-                      // ref.read(dialogServiceProvider).orderconfirmalertdialog();
-                      // ref.read(dialogServiceProvider).rentScreeningDialog(
-                      //     cosmeticcontroller: controller().cosmeticcontroller,
-                      //     itemworkscontroller: controller().itemworkscontroller,
-                      //     missingcontroller: controller().missingcontroller,
-                      //     cosmeticValue: controller().selectedcosmetic,
-                      //     oncosmeticval: (val) {
-                      //       print("val is $val");
-                      //       controller().oncosmeticval(val);
-                      //     },
-                      //     itemworks: controller().selecteditemwork,
-                      //     onitemworksval: (val) {
-                      //       print("val is $val");
-                      //       controller().onitemworksval(val);
-                      //     },
-                      //     missingval: controller().selectedmssing,
-                      //     onmissingval: (val) {
-                      //       print("val is $val");
-                      //       controller().onmissingval(val);
-                      //     });
-                      // ref.read(dialogServiceProvider).cancelbookingalertdialog();
-                      //     groupValue: controller().selectedreason!,
-                      //     onChangedval: (val) {
-                      //       controller().onreasonSelected(val);
-                      //     });
-                    }),
+                    CommonText(
+                      text:
+                          "Hello if you are experiencing any problems or would like further information, please fill out the following below and we will get back to you as soon as possible.",
+                      textAlign: TextAlign.center,
+                      style: ptSansTextStyle(
+                          color: AppColors.black.withOpacity(0.8),
+                          fontSize: h * 0.017,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: h * 0.01),
+                      child: ContTextInputField(
+                        center: true,
+                        containerwidth: w * 0.9,
+                        containerheight: h * 0.075,
+                        titletextstyle: ptSansTextStyle(
+                            color: AppColors.black.withOpacity(0.6),
+                            fontSize: h * 0.019,
+                            fontWeight: FontWeight.w400),
+                        hintStyle: ptSansTextStyle(
+                            color: AppColors.black.withOpacity(0.6),
+                            fontSize: h * 0.019,
+                            fontWeight: FontWeight.w400),
+                        textstyle: ptSansTextStyle(
+                            color: AppColors.black,
+                            fontSize: h * 0.019,
+                            fontWeight: FontWeight.w500),
+                        errorStyle: ptSansTextStyle(
+                            color: AppColors.red,
+                            fontSize: h * 0.021,
+                            fontWeight: FontWeight.w400),
+                        prefix: const SizedBox.shrink(),
+                        textCapitalization: TextCapitalization.none,
+                        hintText: AppText.entername,
+                        controller: controller().nameController,
+                        keyboardType: TextInputType.text,
+                        containercolor: AppColors.white,
+                        onTap: () {},
+                        onChanged: (val) {},
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: h * 0.01),
+                      child: ContTextInputField(
+                        center: true,
+                        containerwidth: w * 0.9,
+                        containerheight: h * 0.075,
+                        titletextstyle: ptSansTextStyle(
+                            color: AppColors.black.withOpacity(0.6),
+                            fontSize: h * 0.019,
+                            fontWeight: FontWeight.w400),
+                        hintStyle: ptSansTextStyle(
+                            color: AppColors.black.withOpacity(0.6),
+                            fontSize: h * 0.019,
+                            fontWeight: FontWeight.w400),
+                        textstyle: ptSansTextStyle(
+                            color: AppColors.black,
+                            fontSize: h * 0.019,
+                            fontWeight: FontWeight.w500),
+                        errorStyle: ptSansTextStyle(
+                            color: AppColors.red,
+                            fontSize: h * 0.021,
+                            fontWeight: FontWeight.w400),
+                        prefix: const SizedBox.shrink(),
+                        textCapitalization: TextCapitalization.none,
+                        hintText: AppText.enterphone,
+                        controller: controller().phoneController,
+                        keyboardType: TextInputType.phone,
+                        containercolor: AppColors.white,
+                        onTap: () {},
+                        onChanged: (val) {},
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: h * 0.01),
+                      child: ContTextInputField(
+                        center: false,
+                        containerwidth: w * 0.9,
+                        containerheight: h * 0.5,
+                        titletextstyle: ptSansTextStyle(
+                            color: AppColors.black.withOpacity(0.6),
+                            fontSize: h * 0.019,
+                            fontWeight: FontWeight.w400),
+                        hintStyle: ptSansTextStyle(
+                            color: AppColors.black.withOpacity(0.6),
+                            fontSize: h * 0.019,
+                            fontWeight: FontWeight.w400),
+                        textstyle: ptSansTextStyle(
+                            color: AppColors.black,
+                            fontSize: h * 0.019,
+                            fontWeight: FontWeight.w500),
+                        errorStyle: ptSansTextStyle(
+                            color: AppColors.red,
+                            fontSize: h * 0.021,
+                            fontWeight: FontWeight.w400),
+                        prefix: const SizedBox.shrink(),
+                        textCapitalization: TextCapitalization.none,
+                        hintText: AppText.knowus,
+                        controller: controller().descController,
+                        keyboardType: TextInputType.text,
+                        containercolor: AppColors.white,
+                        onTap: () {},
+                        onChanged: (val) {},
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: h * 0.01),
+                      child: CommonButton(
+                          containerwidth: w,
+                          containerheight: h * 0.06,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(h * 0.005),
+                              gradient: const LinearGradient(
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                  colors: [
+                                    AppColors.colorPrimary,
+                                    AppColors.colorSecondary
+                                  ])),
+                          backgroundColor: AppColors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(h * 0.005),
+                          ),
+                          text: AppText.submit,
+                          textStyle: ptSansTextStyle(
+                              color: AppColors.white,
+                              fontSize: h * 0.019,
+                              fontWeight: FontWeight.w700),
+                          onPressed: () {
+                            controller().onSubmit();
+                            // ref.read(dialogServiceProvider).selectDatedialog();
+                            // ref.read(dialogServiceProvider).orderconfirmalertdialog();
+                            // ref.read(dialogServiceProvider).rentScreeningDialog(
+                            //     cosmeticcontroller: controller().cosmeticcontroller,
+                            //     itemworkscontroller: controller().itemworkscontroller,
+                            //     missingcontroller: controller().missingcontroller,
+                            //     cosmeticValue: controller().selectedcosmetic,
+                            //     oncosmeticval: (val) {
+                            //       print("val is $val");
+                            //       controller().oncosmeticval(val);
+                            //     },
+                            //     itemworks: controller().selecteditemwork,
+                            //     onitemworksval: (val) {
+                            //       print("val is $val");
+                            //       controller().onitemworksval(val);
+                            //     },
+                            //     missingval: controller().selectedmssing,
+                            //     onmissingval: (val) {
+                            //       print("val is $val");
+                            //       controller().onmissingval(val);
+                            //     });
+                            // ref.read(dialogServiceProvider).cancelbookingalertdialog();
+                            //     groupValue: controller().selectedreason!,
+                            //     onChangedval: (val) {
+                            //       controller().onreasonSelected(val);
+                            //     });
+                          }),
+                    ),
+                  ],
+                ),
               ),
-            ],
-          ),
-        ),
-      ),
+            );
+          },
+          error: (error, stackTrace) => ErrorScreen(
+              text: error.toString(),
+              backgroundColor: AppColors.white,
+              color: AppColors.red),
+          loading: () {
+            return const ContactUsShimmer();
+          }),
     );
   }
 }

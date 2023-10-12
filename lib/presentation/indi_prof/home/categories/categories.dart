@@ -33,12 +33,13 @@ class Categories extends ConsumerWidget {
   List<AnimationController> animatecontrollerlist;
   List favList;
   Axis scrollDirection;
-  double width;
+
   void Function(int) onFavPressed;
   Widget? onCardPressed;
   int? type;
   Widget? lastrow;
   double height;
+  double width;
   double? contwidth;
   double? contheight;
   Color? contColor;
@@ -53,16 +54,16 @@ class Categories extends ConsumerWidget {
       required this.animatecontrollerlist,
       required this.isTopPadding,
       required this.isextended,
-      required this.width,
       required this.onFavPressed,
       this.type,
       this.onCardPressed,
       this.favrow,
       this.lastrow,
-      this.contwidth,
       this.borderRadius,
       required this.height,
       this.contheight,
+      this.contwidth,
+      required this.width,
       required this.favList,
       this.contColor,
       required this.scrollDirection,

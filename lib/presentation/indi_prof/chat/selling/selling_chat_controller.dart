@@ -20,6 +20,9 @@ class SellingChatController extends _$SellingChatController {
 
   bool get iseyehide => _iseyehide;
   bool _issignin = false;
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
 
   bool get issignin => _issignin;
 
@@ -29,7 +32,7 @@ class SellingChatController extends _$SellingChatController {
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
-
+    _isLoading = true;
     tabController = TabController(
       initialIndex: 0,
       length: 3,
@@ -46,7 +49,10 @@ class SellingChatController extends _$SellingChatController {
         duration: Duration(milliseconds: ((i) + 8) * int.parse("${i}0")),
       ));
     }
-
+    Future.delayed(const Duration(seconds: 1), () {
+      _isLoading = false;
+      state = const AsyncValue.data(null);
+    });
     state = const AsyncValue.data(null);
   }
 

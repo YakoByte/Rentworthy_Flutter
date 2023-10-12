@@ -15,6 +15,9 @@ class UnreadChatController extends _$UnreadChatController {
   bool get isbusinessreg => _isbusinessreg;
   bool _iseyehide = false;
   int _selectedTab = 0;
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
 
   int get selectedtab => _selectedTab;
 
@@ -29,7 +32,7 @@ class UnreadChatController extends _$UnreadChatController {
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
-
+    _isLoading = true;
     tabController = TabController(
       initialIndex: 0,
       length: 3,
@@ -46,7 +49,10 @@ class UnreadChatController extends _$UnreadChatController {
         duration: Duration(milliseconds: ((i) + 8) * int.parse("${i}0")),
       ));
     }
-
+    Future.delayed(const Duration(seconds: 1), () {
+      _isLoading = false;
+      state = const AsyncValue.data(null);
+    });
     state = const AsyncValue.data(null);
   }
 

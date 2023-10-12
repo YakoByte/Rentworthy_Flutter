@@ -11,8 +11,12 @@ class BulkMsgReqController extends _$BulkMsgReqController {
   TextEditingController descController = TextEditingController();
   List<String> searchitems = [];
   List<bool>? _selectuser;
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
 
   List<bool> get getselectuser => _selectuser!;
+
   List<String> get getsearchitems => searchitems;
   bool? _isSelected = false;
 
@@ -22,6 +26,16 @@ class BulkMsgReqController extends _$BulkMsgReqController {
   FutureOr<void> build() async {
     state = const AsyncLoading();
     _selectuser = List.generate(4, (index) => false);
+    state = const AsyncValue.data(null);
+  }
+
+  onSend() async {
+    state = const AsyncLoading();
+    _isLoading = true;
+    Future.delayed(const Duration(seconds: 1), () {
+      _isLoading = false;
+      state = const AsyncValue.data(null);
+    });
     state = const AsyncValue.data(null);
   }
 

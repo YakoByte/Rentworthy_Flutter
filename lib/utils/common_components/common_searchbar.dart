@@ -74,7 +74,7 @@ class CommonSearchBar extends ConsumerWidget {
           //     ],
           //   ),
           // ),
-          textCapitalization: TextCapitalization.none,
+          textCapitalization: TextCapitalization.sentences,
           textstyle: ptSansTextStyle(
               fontSize: w * 0.04,
               color: AppColors.gray.withOpacity(0.4),

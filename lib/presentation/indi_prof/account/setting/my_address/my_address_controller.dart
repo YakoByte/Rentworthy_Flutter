@@ -8,11 +8,16 @@ part 'my_address_controller.g.dart';
 class MyAddressesScreenController extends _$MyAddressesScreenController {
   List<List<PopupMenuItem>> _popupitemList = [];
 
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
+
   List<List<PopupMenuItem>> get popupitemList => _popupitemList;
 
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
+    _isLoading = true;
     final h = MediaQuery.of(Globals.navigatorKey.currentContext!).size.height;
     final w = MediaQuery.of(Globals.navigatorKey.currentContext!).size.width;
     _popupitemList = List.generate(
@@ -53,5 +58,9 @@ class MyAddressesScreenController extends _$MyAddressesScreenController {
                 ),
               ),
             ]);
+    Future.delayed(const Duration(seconds: 1), () {
+      _isLoading = false;
+      state = const AsyncValue.data(null);
+    });
   }
 }

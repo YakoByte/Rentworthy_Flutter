@@ -7,7 +7,7 @@ part of 'business_post_ur_ad_controller.dart';
 // **************************************************************************
 
 String _$businessPostAdControllerHash() =>
-    r'29aab78211b12dcc5949ea0128fdad4712ab25c4';
+    r'f3f6ec55d8def6dd44fd31bdc65a61e83590d5c5';
 
 /// See also [BusinessPostAdController].
 @ProviderFor(BusinessPostAdController)

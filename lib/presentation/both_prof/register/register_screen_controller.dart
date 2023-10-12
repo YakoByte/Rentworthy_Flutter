@@ -10,6 +10,9 @@ class RegisterScreenController extends _$RegisterScreenController {
   bool _isbusinessreg = false;
 
   late TabController tabController;
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
 
   bool get isbusinessreg => _isbusinessreg;
   bool _iseyehide = false;
@@ -50,6 +53,14 @@ class RegisterScreenController extends _$RegisterScreenController {
     state = const AsyncLoading();
     debugPrint('onisSignin $val');
     _issignin = val;
+    if (val == true) {
+      _isLoading = true;
+      Future.delayed(Duration(seconds: 1), () {
+        state = const AsyncLoading();
+        _isLoading = false;
+        state = const AsyncValue.data(null);
+      });
+    }
 
     state = const AsyncValue.data(null);
   }

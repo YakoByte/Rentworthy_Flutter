@@ -80,7 +80,7 @@ class SellScreen extends ConsumerWidget {
                 begin: 0, end: 0, curve: Curves.decelerate, duration: 800.ms),
       ),
       body: SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -113,7 +113,7 @@ class SellScreen extends ConsumerWidget {
                   mainAxisExtent: h * 0.1,
                   width: w,
                   height: h * 0.65,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
@@ -126,7 +126,7 @@ class SellScreen extends ConsumerWidget {
                             borderRadius: BorderRadius.circular(8),
                             color: AppColors.white,
                             border: controller().getselectedIndex == index
-                                ? GradientBoxBorder(
+                                ? const GradientBoxBorder(
                                     gradient: LinearGradient(colors: [
                                       AppColors.colorPrimary,
                                       AppColors.colorSecondary

@@ -7,7 +7,7 @@ part of 'account_verification_controller.dart';
 // **************************************************************************
 
 String _$accountVerificationControllerHash() =>
-    r'4fdb99be80fa3e78e267bbe0167c65004e690321';
+    r'98f22f7dc56e277d0b82d0cb838fb54036538383';
 
 /// See also [AccountVerificationController].
 @ProviderFor(AccountVerificationController)

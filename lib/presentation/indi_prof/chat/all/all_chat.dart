@@ -7,6 +7,7 @@ import 'package:rentworthy/presentation/indi_prof/chat/all/subunread/all_subunre
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_text.dart';
 import '../../../../utils/text.dart';
+import '../../../shimmers/chat_shimmer.dart';
 import 'all_chat_controller.dart';
 import 'meeting/all_submeeting.dart';
 
@@ -205,9 +206,9 @@ class _AllChatState extends ConsumerState<AllChat> {
                 dragStartBehavior: DragStartBehavior.start,
                 controller: controller().tabController,
                 children: [
-                  AllSubAll(),
-                  AllSubMeeting(),
-                  AllSubUnread(),
+                  controller().isLoading ? ChatShimmer() : AllSubAll(),
+                  controller().isLoading ? ChatShimmer() : AllSubMeeting(),
+                  controller().isLoading ? ChatShimmer() : AllSubUnread(),
                 ]),
           ),
         ],

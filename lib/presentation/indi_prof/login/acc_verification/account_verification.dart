@@ -11,6 +11,7 @@ import '../../../../../utils/common_components/common_text.dart';
 import '../../../../../utils/images.dart';
 import '../../../../../utils/text.dart';
 import '../../../indi_prof/error/error_screen.dart';
+import '../../../shimmers/detect_otp_shimmer.dart';
 import 'account_verification_controller.dart';
 
 class AccountVerification extends ConsumerStatefulWidget {
@@ -47,6 +48,9 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
                       fontWeight: FontWeight.w600)),
             ),
       body: asyncState.when(data: (state) {
+        if (controller().isLoading == true) {
+          return DetectOtpShimmer();
+        }
         return Container(
           width: w,
           height: h * 0.85,
@@ -113,27 +117,7 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
                                   )
                                 ],
                               ),
-                              // child: Pinput(
-                              //   mainAxisAlignment:
-                              //   MainAxisAlignment.spaceBetween,
-                              //   onTap: () {},
-                              //   onChanged: (val) {},
-                              //   controller: controller().otpController,
-                              //   androidSmsAutofillMethod:
-                              //   AndroidSmsAutofillMethod
-                              //       .smsUserConsentApi,
-                              //   showCursor: true,
-                              //   closeKeyboardWhenCompleted: true,
-                              //   length: 4,
-                              //   keyboardType: TextInputType.number,
-                              //   focusedPinTheme: controller().isPinTheme,
-                              //   submittedPinTheme: controller().isPinTheme,
-                              //   defaultPinTheme: controller().isPinTheme,
-                              //   disabledPinTheme: controller().isPinTheme,
-                              //   followingPinTheme: controller().isPinTheme,
-                              //   errorPinTheme: controller().isPinTheme,
-                              //   onCompleted: (value) {},
-                              // ),
+
                               /// otp detect
                               ///
                               Padding(

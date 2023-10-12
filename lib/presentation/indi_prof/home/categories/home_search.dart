@@ -93,8 +93,9 @@ class HomeSearch extends ConsumerWidget {
                     child: CommonSearchBar(
                       containerwidth: w * 0.8,
                       containerheight: h * 0.07,
-                      suffixicon: (controller().speechRecognitionAvailable &&
-                              !controller().isListening)
+                      suffixicon: (controller().speechRecognitionAvailable ==
+                                  false ||
+                              controller().isListening == false)
                           ? CommonIconButton(
                               containerwidth: h * 0.07,
                               containerheight: h * 0.07,
@@ -107,6 +108,8 @@ class HomeSearch extends ConsumerWidget {
                               onPressed: () {
                                 if (controller().speechRecognitionAvailable &&
                                     !controller().isListening) {
+                                  print(
+                                      "ssdsdpeechRecognitionAvailable ${controller().speechRecognitionAvailable}");
                                   print(
                                       "isListeningisListening ${controller().isListening}");
                                   controller().start();

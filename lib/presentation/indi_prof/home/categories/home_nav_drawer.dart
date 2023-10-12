@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:rentworthy/presentation/indi_prof/account/setting/review/all_review/all_review.dart';
 import 'package:rentworthy/presentation/indi_prof/booking/booking_screen.dart';
 import 'package:rentworthy/utils/common_components/common_navigator.dart';
 import 'package:rentworthy/utils/common_components/icon_text.dart';
@@ -593,7 +594,7 @@ class HomeNavDrawer extends ConsumerWidget {
                       onTap: () {
                         commonNavigator(
                           context: context,
-                          child: WriteReviewScreen(),
+                          child: AllReviewScreen(),
                           type: PageTransitionType.rightToLeftWithFade,
                         );
                       },

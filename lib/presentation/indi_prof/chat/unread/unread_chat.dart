@@ -8,6 +8,7 @@ import 'package:rentworthy/presentation/indi_prof/chat/unread/unread_chat_contro
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_text.dart';
 import '../../../../utils/text.dart';
+import '../../../shimmers/chat_shimmer.dart';
 import 'meeting/unread_submeeting.dart';
 
 class UnreadChat extends ConsumerWidget {
@@ -177,9 +178,9 @@ class UnreadChat extends ConsumerWidget {
         Container(
           height: h * 0.69,
           child: TabBarView(controller: controller().tabController, children: [
-            UnreadAll(),
-            UnreadMeeting(),
-            UnreadSubUnread(),
+            controller().isLoading ? ChatShimmer() : UnreadAll(),
+            controller().isLoading ? ChatShimmer() : UnreadMeeting(),
+            controller().isLoading ? ChatShimmer() : UnreadSubUnread(),
           ]),
         ),
       ],

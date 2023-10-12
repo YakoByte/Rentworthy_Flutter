@@ -71,189 +71,198 @@ class HorizonVertList extends ConsumerWidget {
             padding: EdgeInsets.only(
               left: index == 0 ? w * 0.05 : w * 0.02,
             ),
-            child: Card(
-              color: contColor ?? AppColors.white,
-              elevation: 5,
-              shape: RoundedRectangleBorder(
+            child: Container(
+              width: contwidth,
+              height: contheight,
+              margin: EdgeInsets.all(
+                w * 0.02,
+              ),
+              decoration: BoxDecoration(
+                color: contColor ?? AppColors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.black.withOpacity(0.1),
+                    spreadRadius: 0,
+                    blurRadius: 5,
+
+                    offset: const Offset(6, 5), // changes position of shadow
+                  ),
+                  BoxShadow(
+                    color: AppColors.black.withOpacity(0.1),
+                    spreadRadius: 0,
+                    blurRadius: 5,
+
+                    offset: const Offset(-6, -5), // changes position of shadow
+                  ),
+                ],
                 borderRadius: borderRadius,
               ),
-              child: Container(
-                width: contwidth,
-                height: contheight,
-                decoration: BoxDecoration(
-                  color: contColor ?? AppColors.white,
-                  borderRadius: borderRadius,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: w * 0.02,
                 ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: w * 0.02,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: h * 0.014),
-                        child: Stack(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: h * 0.014),
+                      child: Stack(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(h * 0.025),
+                                child: Image.asset(
+                                  AppImg.homelist,
+                                  height: h * 0.2,
+                                  width: contwidth * 0.85,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Positioned(
+                            top: h * 0.01,
+                            right: isFeature == true ? 0 : w * 0.05,
+                            left: isFeature == true ? 0 : w * 0.05,
+                            child: Row(
+                              mainAxisAlignment: isFeature == true
+                                  ? MainAxisAlignment.spaceEvenly
+                                  : MainAxisAlignment.end,
                               children: [
-                                ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.circular(h * 0.025),
-                                  child: Image.asset(
-                                    AppImg.homelist,
-                                    height: h * 0.2,
-                                    width: contwidth * 0.85,
-                                    fit: BoxFit.cover,
+                                if (isFeature == true)
+                                  Container(
+                                    height: h * 0.035,
+                                    width: contwidth * 0.48,
+                                    decoration: BoxDecoration(
+                                        color: AppColors.yellow,
+                                        borderRadius: BorderRadius.circular(3)),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          AppImg.lightning,
+                                          height: h * 0.02,
+                                        ),
+                                        CommonText(
+                                            text: AppText.featured,
+                                            textAlign: TextAlign.center,
+                                            style: ptSansTextStyle(
+                                              color: AppColors.black
+                                                  .withOpacity(0.8),
+                                              fontSize: h * 0.014,
+                                              fontWeight: FontWeight.w700,
+                                            )),
+                                      ],
+                                    ),
                                   ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: onPressed,
+                                      child: CircleAvatar(
+                                        backgroundColor: favList[index] == false
+                                            ? AppColors.starcolor
+                                            : AppColors.selectedstar,
+                                        radius: h * 0.023,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.star,
+                                              color: AppColors.white,
+                                              size: h * 0.03,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                            Positioned(
-                              top: h * 0.01,
-                              right: isFeature == true ? 0 : w * 0.05,
-                              left: isFeature == true ? 0 : w * 0.05,
-                              child: Row(
-                                mainAxisAlignment: isFeature == true
-                                    ? MainAxisAlignment.spaceEvenly
-                                    : MainAxisAlignment.end,
-                                children: [
-                                  if (isFeature == true)
-                                    Container(
-                                      height: h * 0.035,
-                                      width: contwidth * 0.48,
-                                      decoration: BoxDecoration(
-                                          color: AppColors.yellow,
-                                          borderRadius:
-                                              BorderRadius.circular(3)),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Image.asset(
-                                            AppImg.lightning,
-                                            height: h * 0.02,
-                                          ),
-                                          CommonText(
-                                              text: AppText.featured,
-                                              textAlign: TextAlign.center,
-                                              style: ptSansTextStyle(
-                                                color: AppColors.black
-                                                    .withOpacity(0.8),
-                                                fontSize: h * 0.014,
-                                                fontWeight: FontWeight.w700,
-                                              )),
-                                        ],
-                                      ),
-                                    ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      GestureDetector(
-                                        onTap: onPressed,
-                                        child: CircleAvatar(
-                                          backgroundColor:
-                                              favList[index] == false
-                                                  ? AppColors.starcolor
-                                                  : AppColors.selectedstar,
-                                          radius: h * 0.023,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Icon(
-                                                Icons.star,
-                                                color: AppColors.white,
-                                                size: h * 0.03,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Flexible(
+                          child: CommonText(
+                              text: nameList[index],
+                              maxLines: 1,
+                              style: ptSansTextStyle(
+                                color: AppColors.black.withOpacity(0.8),
+                                fontSize: h * 0.02,
+                                overflow: TextOverflow.ellipsis,
+                                fontWeight: FontWeight.w700,
+                              )),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      width: contwidth,
+                      child: IntrinsicHeight(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CommonText(
+                              text: AppText.price25k,
+                              style: ptSansTextStyle(
+                                  fontSize: h * 0.018,
+                                  color: AppColors.black,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                            VerticalDivider(
+                              color: AppColors.black.withOpacity(0.3),
+                              width: 1,
+                              thickness: 1,
+                            ),
+                            ShaderMask(
+                              shaderCallback: (Rect bounds) {
+                                return const LinearGradient(
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight,
+                                    colors: [
+                                      AppColors.colorPrimary,
+                                      AppColors.colorSecondary
+                                    ]).createShader(bounds);
+                              },
+                              child: Icon(Icons.location_on_outlined,
+                                  color: AppColors.white, size: h * 0.025),
+                            ),
+                            Expanded(
+                              child: CommonText(
+                                text: AppText.thane,
+                                maxLines: 1,
+                                style: ptSansTextStyle(
+                                    fontSize: h * 0.015,
+                                    color: AppColors.black.withOpacity(0.3),
+                                    overflow: TextOverflow.ellipsis,
+                                    fontWeight: FontWeight.w400),
                               ),
                             ),
                           ],
                         ),
                       ),
-                      Row(
-                        children: [
-                          Flexible(
-                            child: CommonText(
-                                text: nameList[index],
-                                maxLines: 1,
-                                style: ptSansTextStyle(
-                                  color: AppColors.black.withOpacity(0.8),
-                                  fontSize: h * 0.02,
-                                  overflow: TextOverflow.ellipsis,
-                                  fontWeight: FontWeight.w700,
-                                )),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        width: contwidth,
-                        child: IntrinsicHeight(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CommonText(
-                                text: AppText.price25k,
-                                style: ptSansTextStyle(
-                                    fontSize: h * 0.018,
-                                    color: AppColors.black,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                              VerticalDivider(
-                                color: AppColors.black.withOpacity(0.3),
-                                width: 1,
-                                thickness: 1,
-                              ),
-                              ShaderMask(
-                                shaderCallback: (Rect bounds) {
-                                  return const LinearGradient(
-                                      begin: Alignment.centerLeft,
-                                      end: Alignment.centerRight,
-                                      colors: [
-                                        AppColors.colorPrimary,
-                                        AppColors.colorSecondary
-                                      ]).createShader(bounds);
-                                },
-                                child: Icon(Icons.location_on_outlined,
-                                    color: AppColors.white, size: h * 0.025),
-                              ),
-                              Expanded(
-                                child: CommonText(
-                                  text: AppText.thane,
-                                  maxLines: 1,
-                                  style: ptSansTextStyle(
-                                      fontSize: h * 0.015,
-                                      color: AppColors.black.withOpacity(0.3),
-                                      overflow: TextOverflow.ellipsis,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      CommonText(
-                        text: AppText.forpermonth,
-                        style: ptSansTextStyle(
-                            fontSize: h * 0.02,
-                            color: AppColors.black.withOpacity(0.3),
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ],
-                  ),
+                    ),
+                    CommonText(
+                      text: AppText.forpermonth,
+                      style: ptSansTextStyle(
+                          fontSize: h * 0.02,
+                          color: AppColors.black.withOpacity(0.3),
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
                 ),
               ),
             ),

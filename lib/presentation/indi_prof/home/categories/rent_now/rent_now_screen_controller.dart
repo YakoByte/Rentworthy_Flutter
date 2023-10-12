@@ -54,6 +54,9 @@ class RentNowController extends _$RentNowController {
     AppImg.setting,
     AppImg.newtag,
   ];
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
 
   List<String> get imgList => _imgList;
   final List<String> _nameList = [
@@ -86,6 +89,7 @@ class RentNowController extends _$RentNowController {
     state = const AsyncLoading();
     final h = MediaQuery.of(Globals.navigatorKey.currentContext!).size.height;
     final w = MediaQuery.of(Globals.navigatorKey.currentContext!).size.width;
+    _isLoading = true;
     _popupitemList = [
       PopupMenuItem(
         value: 1,
@@ -143,7 +147,10 @@ class RentNowController extends _$RentNowController {
     popularfavlist = List.generate(_imgList.length, (index) => false);
     featureadfavlist = List.generate(_imgList.length, (index) => false);
     nearbyadfavlist = List.generate(_imgList.length, (index) => false);
-
+    Future.delayed(const Duration(seconds: 1), () {
+      _isLoading = false;
+      state = const AsyncValue.data(null);
+    });
     state = const AsyncValue.data(null);
   }
 
@@ -172,9 +179,13 @@ class RentNowController extends _$RentNowController {
     state = const AsyncValue.data(null);
   }
 
-  onPageChanged(int index) async {
+  onPageChanged() async {
     state = const AsyncLoading();
-    currentpageIndex = index;
+    _isLoading = true;
+    Future.delayed(const Duration(seconds: 1), () {
+      _isLoading = false;
+      state = const AsyncValue.data(null);
+    });
     state = const AsyncValue.data(null);
   }
 

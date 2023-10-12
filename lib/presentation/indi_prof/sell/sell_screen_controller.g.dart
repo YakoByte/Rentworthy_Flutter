@@ -7,7 +7,7 @@ part of 'sell_screen_controller.dart';
 // **************************************************************************
 
 String _$sellScreenControllerHash() =>
-    r'bb8acc5de5515887c7abdedbd5fb95e5786ce4a6';
+    r'b26f244008e6e727466f7750464141d240f857cb';
 
 /// See also [SellScreenController].
 @ProviderFor(SellScreenController)

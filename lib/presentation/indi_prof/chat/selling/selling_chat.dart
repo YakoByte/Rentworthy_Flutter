@@ -8,6 +8,7 @@ import 'package:rentworthy/presentation/indi_prof/chat/selling/subunread/selling
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_text.dart';
 import '../../../../utils/text.dart';
+import '../../../shimmers/chat_shimmer.dart';
 import 'meeting/selling_submeeting.dart';
 
 class SellingChat extends ConsumerWidget {
@@ -176,9 +177,9 @@ class SellingChat extends ConsumerWidget {
         Container(
           height: h * 0.69,
           child: TabBarView(controller: controller().tabController, children: [
-            SellingAll(),
-            SellingMeeting(),
-            SellingUnread(),
+            controller().isLoading ? ChatShimmer() : SellingAll(),
+            controller().isLoading ? ChatShimmer() : SellingMeeting(),
+            controller().isLoading ? ChatShimmer() : SellingUnread(),
           ]),
         ),
       ],

@@ -20,6 +20,9 @@ class BusinessCatDetailsController extends _$BusinessCatDetailsController {
     'Monthly',
     'Weekly',
   ];
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
   List<bool>? featureadfavlist;
   DateRangePickerController _pickerController = DateRangePickerController();
 
@@ -100,6 +103,7 @@ class BusinessCatDetailsController extends _$BusinessCatDetailsController {
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
+    _isLoading = true;
     _sorted = _sortList[0];
     final h = MediaQuery.of(Globals.navigatorKey.currentContext!).size.height;
     final w = MediaQuery.of(Globals.navigatorKey.currentContext!).size.width;
@@ -167,8 +171,10 @@ class BusinessCatDetailsController extends _$BusinessCatDetailsController {
     popularfavlist = List.generate(_imgList.length, (index) => false);
     featureadfavlist = List.generate(_imgList.length, (index) => false);
     nearbyadfavlist = List.generate(_imgList.length, (index) => false);
-
-    state = const AsyncValue.data(null);
+    Future.delayed(const Duration(seconds: 1), () {
+      _isLoading = false;
+      state = const AsyncValue.data(null);
+    });
   }
 
   oncosmeticval(

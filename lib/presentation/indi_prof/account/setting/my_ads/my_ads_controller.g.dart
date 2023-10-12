@@ -6,7 +6,7 @@ part of 'my_ads_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$myAdsControllerHash() => r'7075265f2a224aa53b7ef82c85250e658731c31b';
+String _$myAdsControllerHash() => r'8193c040acf7cf736f535ea9e9f890daebbbb97d';
 
 /// See also [MyAdsController].
 @ProviderFor(MyAdsController)

@@ -13,8 +13,20 @@ class NotificationController extends _$NotificationController {
 
   bool get isrecSwitched => _recswitched;
 
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
   @override
-  FutureOr<void> build() async {}
+  FutureOr<void> build() async {
+    state = const AsyncLoading();
+
+    _isLoading = true;
+    Future.delayed(const Duration(seconds: 1), () {
+      _isLoading = false;
+      state = const AsyncValue.data(null);
+    });
+    state = const AsyncValue.data(null);
+  }
 
   onSwitchTap({required bool val}) async {
     state = const AsyncLoading();

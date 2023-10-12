@@ -7,7 +7,7 @@ part of 'booking_screen_controller.dart';
 // **************************************************************************
 
 String _$bookingScreenControllerHash() =>
-    r'55c5c081cc3c2ef4adbd0ee1a01f2d72df24acb1';
+    r'f55519e1b7a18c0a34008ebf5a39e9ac61bd205e';
 
 /// See also [BookingScreenController].
 @ProviderFor(BookingScreenController)

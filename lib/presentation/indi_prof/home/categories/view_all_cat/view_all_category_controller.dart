@@ -58,6 +58,9 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
     "Most Expensive",
     "Least Expensive",
   ];
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
 
   List<String> get getsortlist => sortlist;
   List<String>? selectedsortby;
@@ -126,7 +129,7 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
-
+    _isLoading = true;
     selectedfilter = filterlist;
     selectedsortby = sortlist;
     favlist = List.generate(carlist.length, (index) => false);
@@ -136,20 +139,25 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
     popularfavlist = List.generate(_imgList.length, (index) => false);
     featureadfavlist = List.generate(_imgList.length, (index) => false);
     nearbyadfavlist = List.generate(_imgList.length, (index) => false);
-    for (int i = 0; i < _nameList.length; i++) {
-      animatecontrollerlist!.add(AnimationController(
-        vsync: CommonTickerProvider(),
-        duration: Duration(
-            milliseconds:
-                ((i == 0 ? i + 2 : i + 1) + 5) * int.parse("${i + 3}0")),
-      ));
-      Future.delayed(const Duration(milliseconds: 400), () {
-        animatecontrollerlist![0].forward();
-        if (i != (animatecontrollerlist!.length - 1)) {
-          animatecontrollerlist![i + 1].forward();
-        }
-      });
-    }
+    Future.delayed(const Duration(seconds: 1), () {
+      for (int i = 0; i < _nameList.length; i++) {
+        animatecontrollerlist!.add(AnimationController(
+          vsync: CommonTickerProvider(),
+          duration: Duration(
+              milliseconds:
+                  ((i == 0 ? i + 2 : i + 1) + 5) * int.parse("${i + 3}0")),
+        ));
+        Future.delayed(const Duration(milliseconds: 400), () {
+          animatecontrollerlist![0].forward();
+          if (i != (animatecontrollerlist!.length - 1)) {
+            animatecontrollerlist![i + 1].forward();
+          }
+        });
+      }
+      _isLoading = false;
+      state = const AsyncValue.data(null);
+    });
+
     state = const AsyncValue.data(null);
   }
 

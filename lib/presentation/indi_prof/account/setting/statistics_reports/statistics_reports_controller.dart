@@ -26,7 +26,9 @@ class StatisticsReportsController extends _$StatisticsReportsController {
     "0 ",
   ];
   List<AnimationController>? animatecontrollerlist = [];
+  bool _isLoading = false;
 
+  bool get isLoading => _isLoading;
   List<String> get getTitle => title;
 
   List<String> get getsubtitle => subtitle;
@@ -34,17 +36,23 @@ class StatisticsReportsController extends _$StatisticsReportsController {
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
+    _isLoading = true;
     for (int i = 0; i < title.length; i++) {
       animatecontrollerlist!.add(AnimationController(
         vsync: CommonTickerProvider(),
         duration: Duration(milliseconds: int.parse("${i + 1}0")),
       ));
-      Future.delayed(const Duration(milliseconds: 100), () {
-        animatecontrollerlist![0].forward();
 
-        if (i < (animatecontrollerlist!.length - 2)) {
-          animatecontrollerlist![i + 1].forward();
-        }
+      Future.delayed(const Duration(seconds: 1), () {
+        _isLoading = false;
+        Future.delayed(const Duration(milliseconds: 100), () {
+          animatecontrollerlist![0].forward();
+
+          if (i < (animatecontrollerlist!.length - 2)) {
+            animatecontrollerlist![i + 1].forward();
+          }
+        });
+        state = const AsyncValue.data(null);
       });
     }
   }

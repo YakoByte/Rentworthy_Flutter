@@ -35,7 +35,9 @@ class MyBookingDelStatusController extends _$MyBookingDelStatusController {
   ];
 
   List<bool> get getactiveList => activeList;
+  bool _isLoading = false;
 
+  bool get isLoading => _isLoading;
   String? selectedfilter;
   TextEditingController searchController = TextEditingController();
 
@@ -116,6 +118,7 @@ class MyBookingDelStatusController extends _$MyBookingDelStatusController {
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
+    _isLoading = true;
 
     selectedfilter = filterlist[0];
     selectedsortby = sortlist[0];
@@ -132,12 +135,16 @@ class MyBookingDelStatusController extends _$MyBookingDelStatusController {
             milliseconds:
                 ((i == 0 ? i + 2 : i + 1) + 5) * int.parse("${i + 3}0")),
       ));
-      Future.delayed(const Duration(milliseconds: 400), () {
-        animatecontrollerlist![0].forward();
+      Future.delayed(const Duration(seconds: 1), () {
+        _isLoading = false;
+        Future.delayed(const Duration(milliseconds: 400), () {
+          animatecontrollerlist![0].forward();
+        });
+        if (i != (animatecontrollerlist!.length - 1)) {
+          animatecontrollerlist![i + 1].forward();
+        }
+        state = const AsyncValue.data(null);
       });
-      if (i != (animatecontrollerlist!.length - 1)) {
-        animatecontrollerlist![i + 1].forward();
-      }
     }
 
     state = const AsyncValue.data(null);

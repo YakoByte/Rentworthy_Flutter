@@ -7,7 +7,7 @@ part of 'login_phone_bsns_controller.dart';
 // **************************************************************************
 
 String _$businessLoginPhoneControllerHash() =>
-    r'ea45422419094e3965e35edc03540ff6abeef620';
+    r'18a69513a7eeb8f30ee93d7ef7f3ca0bd21902d6';
 
 /// See also [BusinessLoginPhoneController].
 @ProviderFor(BusinessLoginPhoneController)

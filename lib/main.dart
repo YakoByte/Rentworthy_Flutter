@@ -41,7 +41,7 @@ class _MyAppState extends ConsumerState<MyApp> {
   @override
   void initState() {
     // TODO: implement initState
-    ref.read(dialogServiceProvider).handleLocationPermission();
+
     super.initState();
     initialization();
   }

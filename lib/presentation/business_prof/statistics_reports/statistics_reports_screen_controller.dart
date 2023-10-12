@@ -20,6 +20,9 @@ class StatReportController extends _$StatReportController {
     AppText.rented,
   ];
 
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
   List<String> subtitle = [
     "US\$0 ",
     "US\$0 ",
@@ -34,6 +37,7 @@ class StatReportController extends _$StatReportController {
 
   List<String> get getsubtitle => subtitle;
   List<bool>? featureadfavlist;
+
   List<bool> get getfeatureadfavlist => featureadfavlist!;
 
   List<bool>? nearbyadfavlist;
@@ -71,9 +75,11 @@ class StatReportController extends _$StatReportController {
   ];
 
   List<String> get nameList => _nameList;
+
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
+    _isLoading = true;
     for (int i = 0; i < title.length; i++) {
       animatecontrollerlist!.add(AnimationController(
         vsync: CommonTickerProvider(),
@@ -82,12 +88,17 @@ class StatReportController extends _$StatReportController {
       popularfavlist = List.generate(_imgList.length, (index) => false);
       featureadfavlist = List.generate(_imgList.length, (index) => false);
       nearbyadfavlist = List.generate(_imgList.length, (index) => false);
-      Future.delayed(const Duration(milliseconds: 100), () {
-        animatecontrollerlist![0].forward();
 
-        if (i < (animatecontrollerlist!.length - 2)) {
-          animatecontrollerlist![i + 1].forward();
-        }
+      Future.delayed(const Duration(seconds: 1), () {
+        _isLoading = false;
+        Future.delayed(const Duration(milliseconds: 100), () {
+          animatecontrollerlist![0].forward();
+
+          if (i < (animatecontrollerlist!.length - 2)) {
+            animatecontrollerlist![i + 1].forward();
+          }
+        });
+        state = const AsyncValue.data(null);
       });
     }
     state = const AsyncValue.data(null);

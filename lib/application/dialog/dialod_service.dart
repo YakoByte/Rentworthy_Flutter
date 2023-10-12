@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:rentworthy/utils/color.dart';
 import '../../../utils/common_components/common_text.dart';
 import '../../../utils/globals.dart';
@@ -28,8 +27,6 @@ abstract class DialogService {
     required Color color,
     required Color textclr,
   });
-
-  Future<void> requestLocationPermission();
 
   Future<void> productAvailabilityDialog({required String date});
 
@@ -75,22 +72,6 @@ abstract class DialogService {
 }
 
 class DialogServiceV1 implements DialogService {
-  Future<void> requestLocationPermission() async {
-    final permissionStatus = await Permission.location.status;
-    if (permissionStatus.isGranted) {
-      print("denined");
-      await Permission.location.request();
-
-      if (permissionStatus.isDenied) {
-        print("deninedopenAppSettings");
-        await openAppSettings();
-      }
-    } else if (permissionStatus.isPermanentlyDenied) {
-      print("isPermanentlyDenied");
-      await openAppSettings();
-    } else {}
-  }
-
   Future<void> contactusalertdialog() async {
     return (await showDialog(
         context: Globals.navigatorKey.currentContext!,

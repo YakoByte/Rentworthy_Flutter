@@ -14,6 +14,9 @@ part 'category_details_screen_controller.g.dart';
 
 @riverpod
 class CategoryDetailsController extends _$CategoryDetailsController {
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
   final List<String> _locationList = [
     'Wagle state',
     'Mumbra',
@@ -86,7 +89,10 @@ class CategoryDetailsController extends _$CategoryDetailsController {
 
   @override
   FutureOr<void> build() async {
+    state = const AsyncValue.loading();
     state = const AsyncLoading();
+    _isLoading = true;
+
     final h = MediaQuery.of(Globals.navigatorKey.currentContext!).size.height;
     final w = MediaQuery.of(Globals.navigatorKey.currentContext!).size.width;
     _popupitemList = [
@@ -153,8 +159,10 @@ class CategoryDetailsController extends _$CategoryDetailsController {
     popularfavlist = List.generate(_imgList.length, (index) => false);
     featureadfavlist = List.generate(_imgList.length, (index) => false);
     nearbyadfavlist = List.generate(_imgList.length, (index) => false);
-
-    state = const AsyncValue.data(null);
+    Future.delayed(const Duration(seconds: 1), () {
+      _isLoading = false;
+      state = const AsyncValue.data(null);
+    });
   }
 
   onFavTap(int index, int type) {

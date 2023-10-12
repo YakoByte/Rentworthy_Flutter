@@ -6,6 +6,8 @@ import '../../../../application/validate/validate.dart';
 import '../../../../utils/common_components/common_navigator.dart';
 import '../../../../utils/globals.dart';
 import '../../../both_prof/login/loginwithphone/otp_detect/detect_otp.dart';
+import '../../bottombar/bottom_bar.dart';
+import '../acc_verification/account_verification.dart';
 
 part 'login_phone_screen_controller.g.dart';
 
@@ -23,6 +25,9 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
   bool _iseyehide = false;
 
   bool get iseyehide => _iseyehide;
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
 
   @override
   FutureOr<void> build() async {
@@ -40,20 +45,58 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
     state = const AsyncValue.data(null);
   }
 
-  onSendOtp() async {
+  onSendOtp({required int index}) async {
     state = const AsyncLoading();
     debugPrint('onSendOtp');
     _issubmit = true;
-    if (validatephone(phoneController.text) == null) {
+
+    if (validatephone(phoneController.text) == null ||
+        validateEmail(emailController.text) == null ||
+        validateEmail(passwordController.text) == null) {
       state = const AsyncValue.data(null);
+      _isLoading = true;
       FocusScope.of(Globals.navigatorKey.currentContext!)
           .requestFocus(FocusNode());
-      commonNavigator(
-          type: PageTransitionType.rightToLeftWithFade,
-          context: Globals.navigatorKey.currentContext!,
-          child: DetectOtp(
-            phoneNo: countryCodeController.text + phoneController.text,
-          ));
+      Future.delayed(Duration(seconds: 1), () {
+        state = const AsyncLoading();
+
+        if (index == 0) {
+          commonNavigator(
+              type: PageTransitionType.rightToLeftWithFade,
+              context: Globals.navigatorKey.currentContext!,
+              child: DetectOtp(
+                phoneNo: countryCodeController.text + phoneController.text,
+              ));
+        } else if (index == 1) {
+          commonNavigator(
+            context: Globals.navigatorKey.currentContext!,
+            child: AccountVerification(
+              email: emailController.text,
+            ),
+            type: PageTransitionType.rightToLeftWithFade,
+          );
+        } else if (index == 2) {
+          Navigator.pushAndRemoveUntil(
+              Globals.navigatorKey.currentContext!,
+              PageTransition(
+                  child: BottomBar(index: 0),
+                  type: PageTransitionType.rightToLeftWithFade,
+                  duration: const Duration(milliseconds: 400)),
+              (Route<dynamic> route) => false);
+        } else if (index == 3) {
+          Navigator.pushAndRemoveUntil(
+              Globals.navigatorKey.currentContext!,
+              PageTransition(
+                  child: BottomBar(index: 0),
+                  type: PageTransitionType.rightToLeftWithFade,
+                  duration: const Duration(milliseconds: 400)),
+              (Route<dynamic> route) => false);
+        }
+        Future.delayed(Duration(seconds: 1), () {
+          _isLoading = false;
+        });
+        state = const AsyncValue.data(null);
+      });
     }
 
     debugPrint('onSendOtp1');

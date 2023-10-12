@@ -47,7 +47,7 @@ class AppColors {
   static const Color amberdark = Color(0xFFFF9F00);
   static const Color fbblue = Color(0xFF1877F2);
 
-  static const Color shimmergrey = Color(0xFFB9B9B9);
+  static const Color shimmergrey = Color(0x80D3D3D3);
   static const Color blueindicator = Color(0xFF135EA9);
 
   static const Color backgroundField = Color(0xFFF9F9F9);

@@ -25,10 +25,22 @@ class AllReviewController extends _$AllReviewController {
     "0 ",
   ];
 
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
+
   List<String> get getTitle => title;
 
   List<String> get getsubtitle => subtitle;
 
   @override
-  FutureOr<void> build() async {}
+  FutureOr<void> build() async {
+    state = const AsyncLoading();
+    _isLoading = true;
+    Future.delayed(const Duration(seconds: 1), () {
+      _isLoading = false;
+      state = const AsyncValue.data(null);
+    });
+    state = const AsyncValue.data(null);
+  }
 }

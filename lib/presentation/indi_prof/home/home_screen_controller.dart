@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_native_splash/cli_commands.dart';
 import 'package:flutter_speech/flutter_speech.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -85,6 +86,9 @@ class HomeScreenController extends _$HomeScreenController {
   bool get isListening => _isListening;
 
   String transcription = '';
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
 
   List<String> get nameList => _nameList;
   String? _selectedLocation;
@@ -104,6 +108,7 @@ class HomeScreenController extends _$HomeScreenController {
     state = const AsyncLoading();
     _selectedLocation = _locationList[0];
     activateSpeechRecognizer();
+    getCurrentPosition();
     animationController = AnimationController(
       duration: const Duration(milliseconds: 2000),
       vsync: CommonTickerProvider(),
@@ -112,10 +117,11 @@ class HomeScreenController extends _$HomeScreenController {
     popularfavlist = List.generate(_imgList.length, (index) => false);
     featureadfavlist = List.generate(_imgList.length, (index) => false);
     nearbyadfavlist = List.generate(_imgList.length, (index) => false);
-    getCurrentPosition();
+
     ref.onDispose(() {
       animationController!.dispose();
     });
+    _isLoading = true;
     for (int i = 0; i < _nameList.length; i++) {
       animatecontrollerlist!.add(AnimationController(
         vsync: CommonTickerProvider(),
@@ -130,6 +136,10 @@ class HomeScreenController extends _$HomeScreenController {
         animatecontrollerlist![i + 1].forward();
       }
     }
+    Future.delayed(const Duration(seconds: 1), () {
+      _isLoading = false;
+      state = const AsyncValue.data(null);
+    });
     state = const AsyncValue.data(null);
   }
 
@@ -143,6 +153,7 @@ class HomeScreenController extends _$HomeScreenController {
     _speech.setErrorHandler(errorHandler);
     _speech.activate('en_US').then((res) {
       _speechRecognitionAvailable = res;
+      print("resres $res");
     });
     state = const AsyncValue.data(null);
   }
@@ -160,24 +171,28 @@ class HomeScreenController extends _$HomeScreenController {
 
   void cancel() => _speech.cancel().then((_) {
         state = const AsyncLoading();
+        print("cancel");
         _isListening = false;
         state = const AsyncValue.data(null);
       });
 
   void stop() => _speech.stop().then((_) {
         state = const AsyncLoading();
+        print("stop");
         _isListening = false;
         state = const AsyncValue.data(null);
       });
 
   void onSpeechAvailability(bool result) {
     state = const AsyncLoading();
+    print("onSpeechAvailability");
     _speechRecognitionAvailable = result;
     state = const AsyncValue.data(null);
   }
 
   void onRecognitionStarted() {
     state = const AsyncLoading();
+    print("Listening");
     _isListening = true;
     searchController.text = 'Listening...';
     state = const AsyncValue.data(null);
@@ -187,14 +202,15 @@ class HomeScreenController extends _$HomeScreenController {
     print('_MyAppState.onRecognitionResult... $text');
     state = const AsyncLoading();
     transcription = text;
-    searchController.text = text;
+
+    searchController.text = 'Listening...';
+    searchController.text = text.capitalize().substring(0);
     state = const AsyncValue.data(null);
   }
 
   void onRecognitionComplete(String text) {
     print('_MyAppState.onRecognitionComplete... $text');
     state = const AsyncLoading();
-    searchController.text = 'Listening...';
 
     Future.delayed(const Duration(milliseconds: 400), () {
       state = const AsyncLoading();
@@ -250,20 +266,22 @@ class HomeScreenController extends _$HomeScreenController {
   }
 
   Future<void> getAddressFromLatLng(Position position) async {
-    state = const AsyncLoading();
+    // state = const AsyncLoading();
     await placemarkFromCoordinates(
             _currentPosition!.latitude, _currentPosition!.longitude)
         .then((List<Placemark> placemarks) {
       Placemark place = placemarks[0];
       Navigator.pop(Globals.navigatorKey.currentContext!);
       _selectedLocation = "${place.locality}, ${place.administrativeArea}";
+      state = const AsyncValue.data(null);
       _currentAddress =
           '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}';
+      state = const AsyncValue.data(null);
       debugPrint("_currentAddress ${place}");
     }).catchError((e) {
       debugPrint(e);
     });
-    state = const AsyncValue.data(null);
+    // state = const AsyncValue.data(null);
   }
 
   onPageChanged(int index) async {

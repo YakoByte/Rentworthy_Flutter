@@ -20,6 +20,10 @@ class MemberShipPlanController extends _$MemberShipPlanController {
   List<bool>? featureadfavlist;
   ScrollController scrollController = ScrollController();
 
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
+
   List<bool> get getfeatureadfavlist => featureadfavlist!;
 
   List<bool>? nearbyadfavlist;
@@ -84,6 +88,7 @@ class MemberShipPlanController extends _$MemberShipPlanController {
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
+    _isLoading = true;
     _selectedLocation = _locationList[0];
     popularfavlist = List.generate(_imgList.length, (index) => false);
     featureadfavlist = List.generate(_imgList.length, (index) => false);
@@ -95,12 +100,16 @@ class MemberShipPlanController extends _$MemberShipPlanController {
             milliseconds:
                 ((i == 0 ? i + 2 : i + 1) + 5) * int.parse("${i + 3}0")),
       ));
-      Future.delayed(const Duration(milliseconds: 400), () {
-        animatecontrollerlist![0].forward();
+      Future.delayed(const Duration(seconds: 1), () {
+        _isLoading = false;
+        Future.delayed(const Duration(milliseconds: 400), () {
+          animatecontrollerlist![0].forward();
+        });
+        if (i != (animatecontrollerlist!.length - 1)) {
+          animatecontrollerlist![i + 1].forward();
+        }
+        state = const AsyncValue.data(null);
       });
-      if (i != (animatecontrollerlist!.length - 1)) {
-        animatecontrollerlist![i + 1].forward();
-      }
     }
     state = const AsyncValue.data(null);
   }

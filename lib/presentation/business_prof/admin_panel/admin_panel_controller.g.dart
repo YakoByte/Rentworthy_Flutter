@@ -7,7 +7,7 @@ part of 'admin_panel_controller.dart';
 // **************************************************************************
 
 String _$adminPanelControllerHash() =>
-    r'79bd327803a61299486d1f083ca3e47d8b421f49';
+    r'db86672277dd978491fc75196620019727bb8d7b';
 
 /// See also [AdminPanelController].
 @ProviderFor(AdminPanelController)

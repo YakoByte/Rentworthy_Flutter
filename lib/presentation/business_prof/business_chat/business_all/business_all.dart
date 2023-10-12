@@ -6,6 +6,7 @@ import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_text.dart';
 import '../../../../utils/text.dart';
+import '../../../shimmers/chat_shimmer.dart';
 import 'all_widget/all_meeting.dart';
 import 'all_widget/all_suball.dart';
 import 'all_widget/all_unread.dart';
@@ -201,9 +202,9 @@ class BusinessAll extends ConsumerWidget {
                 dragStartBehavior: DragStartBehavior.start,
                 controller: controller().tabController,
                 children: [
-                  BusinessAllSubAll(),
-                  BusinessAllMeeting(),
-                  BusinessAllUnread(),
+                  controller().isLoading ? ChatShimmer() : BusinessAllSubAll(),
+                  controller().isLoading ? ChatShimmer() : BusinessAllMeeting(),
+                  controller().isLoading ? ChatShimmer() : BusinessAllUnread(),
                 ]),
           ),
         ],

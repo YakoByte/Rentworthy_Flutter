@@ -13,11 +13,23 @@ class AddAddressController extends _$AddAddressController {
   TextEditingController addressController = TextEditingController();
   TextEditingController unitnoController = TextEditingController();
   int _selectedtype = 0;
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
 
   int get selectedtype => _selectedtype;
 
   @override
   FutureOr<void> build() async {}
+  onSave() async {
+    state = const AsyncLoading();
+    _isLoading = true;
+    Future.delayed(const Duration(seconds: 1), () {
+      _isLoading = false;
+      state = const AsyncValue.data(null);
+    });
+    state = const AsyncValue.data(null);
+  }
 
   onSwitchType({required int val}) async {
     state = const AsyncLoading();

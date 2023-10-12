@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../../application/dialog/dialod_service.dart';
 import '../../../../../utils/import_utils.dart';
 
 part 'contact_us_controller.g.dart';
@@ -135,6 +136,9 @@ class ContactUsController extends _$ContactUsController {
 
   String? get selectedLocation => _selectedLocation;
 
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
   int currentpageIndex = 0;
 
   int get getcurrentPageIndex => currentpageIndex;
@@ -151,6 +155,17 @@ class ContactUsController extends _$ContactUsController {
     popularfavlist = List.generate(_imgList.length, (index) => false);
     featureadfavlist = List.generate(_imgList.length, (index) => false);
     nearbyadfavlist = List.generate(_imgList.length, (index) => false);
+    state = const AsyncValue.data(null);
+  }
+
+  onSubmit() async {
+    state = const AsyncLoading();
+    _isLoading = true;
+    Future.delayed(const Duration(seconds: 1), () {
+      _isLoading = false;
+      ref.read(dialogServiceProvider).contactusalertdialog();
+      state = const AsyncValue.data(null);
+    });
     state = const AsyncValue.data(null);
   }
 

@@ -31,7 +31,9 @@ class AccountVerificationController extends _$AccountVerificationController {
   Timer? timer;
   int _start = 60;
   bool _isVerify = false;
+  bool _isLoading = false;
 
+  bool get isLoading => _isLoading;
   TextEditingController otpController = TextEditingController();
 
   bool get isVerify => _isVerify;
@@ -80,10 +82,18 @@ class AccountVerificationController extends _$AccountVerificationController {
 
     if (_isVerify == true) {
       _isVerify = false;
+      _isLoading = false;
     } else {
-      _isVerify = true;
-      startTimer();
+      _isLoading = true;
+      Future.delayed(Duration(seconds: 1), () {
+        state = const AsyncLoading();
+        _isVerify = true;
+        startTimer();
+        _isLoading = false;
+        state = AsyncValue.data(state.value!.copyWith(start: _start));
+      });
     }
+
     state = AsyncValue.data(state.value!.copyWith(start: _start));
   }
 
@@ -95,17 +105,18 @@ class AccountVerificationController extends _$AccountVerificationController {
       (Timer timer) {
         if (_start == 0) {
           timer.cancel();
-          timer.cancel();
+          // timer.cancel();
           FocusScope.of(Globals.navigatorKey.currentContext!)
               .requestFocus(FocusNode());
         } else {
           _start--;
           print("_start $_start");
-          print("_timer ${timer!.tick}");
-          print("_timer ${((timer!.tick * 1) / 10).toStringAsFixed(1)}");
+          print("_timer ${timer.tick}");
+          print("_timer ${((timer.tick * 1) / 10).toStringAsFixed(1)}");
 
-          if (timer!.tick > 3) {
-            timer!.cancel();
+          if (timer.tick > 3) {
+            timer.cancel();
+
             Navigator.pushAndRemoveUntil(
                 Globals.navigatorKey.currentContext!,
                 PageTransition(

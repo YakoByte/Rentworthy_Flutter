@@ -7,7 +7,7 @@ part of 'my_booking_del_status_controller.dart';
 // **************************************************************************
 
 String _$myBookingDelStatusControllerHash() =>
-    r'bf298587424d8facb88bcf6fc23679a0fd1bf3d8';
+    r'bac93b25cf6f9e82d3c703e896424c37f42d6c6b';
 
 /// See also [MyBookingDelStatusController].
 @ProviderFor(MyBookingDelStatusController)

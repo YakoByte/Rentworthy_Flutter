@@ -3,6 +3,7 @@ import 'package:rentworthy/utils/globals.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../utils/common_components/common_tickerprovider.dart';
+import '../../../application/dialog/dialod_service.dart';
 
 part 'business_info_screen_controller.g.dart';
 
@@ -23,8 +24,14 @@ class BusinessInfoScreenController extends _$BusinessInfoScreenController {
   TextEditingController stateController = TextEditingController();
   TextEditingController addtitlelastController = TextEditingController();
 
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
+
   bool get verified => _verified;
+
   bool get underreview => _underreview;
+
   bool get banned => _banned;
   List<String> _catList = [
     "cat1",
@@ -69,6 +76,21 @@ class BusinessInfoScreenController extends _$BusinessInfoScreenController {
     debugPrint('_verified $val');
     _verified = val;
     Navigator.pop(Globals.navigatorKey.currentContext!);
+    state = const AsyncValue.data(null);
+  }
+
+  onCont() async {
+    state = const AsyncLoading();
+    _isLoading = true;
+    Future.delayed(const Duration(seconds: 1), () {
+      _isLoading = false;
+      ref.read(dialogServiceProvider).profileCreatedDialog(
+        profVerified: (verified) {
+          onVerified(val: verified);
+        },
+      );
+      state = const AsyncValue.data(null);
+    });
     state = const AsyncValue.data(null);
   }
 

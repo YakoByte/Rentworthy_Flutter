@@ -7,7 +7,7 @@ part of 'create_password_controller.dart';
 // **************************************************************************
 
 String _$createPasswordControllerHash() =>
-    r'260b6e0d3b583a82588791455d4b61b437738e02';
+    r'afa34ce04ec015fbc3d57c463cf7124cb7108893';
 
 /// See also [CreatePasswordController].
 @ProviderFor(CreatePasswordController)

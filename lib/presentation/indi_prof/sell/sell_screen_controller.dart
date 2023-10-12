@@ -49,6 +49,14 @@ class SellScreenController extends _$SellScreenController {
   FutureOr<void> build() async {
     state = const AsyncLoading();
     selectedIndex = _nameList.length;
+    ref.onDispose(() {
+      for (int i = 0; i < animatecontrollerlist!.length; i++) {
+        animatecontrollerlist![i].dispose();
+      }
+      divideranimatecontroller!.dispose();
+      appbaranimatecontroller!.dispose();
+      nextanimatecontroller!.dispose();
+    });
     divideranimatecontroller = AnimationController(
         vsync: CommonTickerProvider(), duration: Duration(milliseconds: 100));
     appbaranimatecontroller = AnimationController(
