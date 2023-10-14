@@ -7,7 +7,7 @@ part of 'business_all_controller.dart';
 // **************************************************************************
 
 String _$businessAllControllerHash() =>
-    r'c51d68f553405f4bd6970d3cf5d40af29e3d3fcb';
+    r'9195d87fa728ed27a23357ee13a048e0de16a798';
 
 /// See also [BusinessAllController].
 @ProviderFor(BusinessAllController)

@@ -1,7 +1,10 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import '../../../application/business_prof/product_details/product_details_service.dart';
+import '../../../application/business_prof/track_item/track_item_service.dart';
 import '../../../application/dialog/dialod_service.dart';
+import '../../../model/business_prof/product_details/get_product_details/get_product_details.dart';
 import '../../../utils/color.dart';
 import '../../../utils/common_components/common_text.dart';
 import '../../../utils/common_components/icon_text.dart';
@@ -99,6 +102,7 @@ class BusinessCatDetailsController extends _$BusinessCatDetailsController {
   int _selectedreason = 0;
 
   int get selectedreason => _selectedreason;
+  ProductDetailsResponse? _productDetailsData;
 
   @override
   FutureOr<void> build() async {
@@ -171,6 +175,9 @@ class BusinessCatDetailsController extends _$BusinessCatDetailsController {
     popularfavlist = List.generate(_imgList.length, (index) => false);
     featureadfavlist = List.generate(_imgList.length, (index) => false);
     nearbyadfavlist = List.generate(_imgList.length, (index) => false);
+    _productDetailsData =
+        await ref.read(productDetailServiceProvider).getProductDetails();
+    print("_productDetailsData $_productDetailsData");
     Future.delayed(const Duration(seconds: 1), () {
       _isLoading = false;
       state = const AsyncValue.data(null);

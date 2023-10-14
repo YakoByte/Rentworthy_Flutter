@@ -7,7 +7,7 @@ part of 'membership_plan_screen_controller.dart';
 // **************************************************************************
 
 String _$memberShipPlanControllerHash() =>
-    r'784b9525b1e1a6d79ee48700c6068f60e6661308';
+    r'de1060f32e41e84f5436bb679c9e2ea8160aad75';
 
 /// See also [MemberShipPlanController].
 @ProviderFor(MemberShipPlanController)

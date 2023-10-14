@@ -79,7 +79,7 @@ class AdminPanel extends ConsumerWidget {
                               duration: 600.ms,
                             ),
                       ),
-                      Container(
+                      SizedBox(
                         height: h * 0.89,
                         width: w,
                         child: SingleChildScrollView(
@@ -227,7 +227,7 @@ class AdminPanel extends ConsumerWidget {
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     )),
-                                                Container(
+                                                SizedBox(
                                                   height: h * 0.25,
                                                   child: controller()
                                                       .buildDefaultColumnChart(
@@ -277,7 +277,7 @@ class AdminPanel extends ConsumerWidget {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.center,
                                                   children: [
-                                                    Container(
+                                                    SizedBox(
                                                       height: h * 0.25,
                                                       width: w * 0.4,
                                                       child: SfCircularChart(
@@ -355,7 +355,7 @@ class AdminPanel extends ConsumerWidget {
                                                                         .bothCurve)
                                                           ]),
                                                     ),
-                                                    Container(
+                                                    SizedBox(
                                                       width: w * 0.45,
                                                       child: Column(
                                                         crossAxisAlignment:
@@ -677,7 +677,7 @@ class AdminPanel extends ConsumerWidget {
                                                 Padding(
                                                   padding: EdgeInsets.only(
                                                       top: h * 0.01),
-                                                  child: Container(
+                                                  child: SizedBox(
                                                     height: h * 0.25,
                                                     child: SfSparkAreaChart(
                                                         axisLineWidth: 0,
@@ -906,7 +906,7 @@ class AdminPanel extends ConsumerWidget {
                                                     BorderRadius.circular(16)),
                                             child: Column(
                                               children: [
-                                                Container(
+                                                SizedBox(
                                                     height: h * 0.32,
                                                     child: controller()
                                                         .buildDefaultColumnChart(

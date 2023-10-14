@@ -7,7 +7,7 @@ part of 'write_review_controller.dart';
 // **************************************************************************
 
 String _$writeReviewControllerHash() =>
-    r'696d6fb27ef49bb812bd120e73978e0b8decd6f1';
+    r'7b8e8bb64a0680e120f9a0f8dbe239119b25bfc1';
 
 /// See also [WriteReviewController].
 @ProviderFor(WriteReviewController)

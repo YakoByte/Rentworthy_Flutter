@@ -7,7 +7,7 @@ part of 'statistics_reports_screen_controller.dart';
 // **************************************************************************
 
 String _$statReportControllerHash() =>
-    r'9f58a3b0718659a5b547a360de63680b0c2ef2bf';
+    r'95c3968f8899d8c5d7e2f4e9d00025d75dc51125';
 
 /// See also [StatReportController].
 @ProviderFor(StatReportController)
