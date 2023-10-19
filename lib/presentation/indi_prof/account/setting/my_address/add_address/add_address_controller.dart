@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:rentworthy/utils/globals.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'add_address_controller.g.dart';
@@ -21,11 +24,13 @@ class AddAddressController extends _$AddAddressController {
 
   @override
   FutureOr<void> build() async {}
+
   onSave() async {
     state = const AsyncLoading();
     _isLoading = true;
     Future.delayed(const Duration(seconds: 1), () {
       _isLoading = false;
+      Navigator.pop(Globals.navigatorKey.currentContext!);
       state = const AsyncValue.data(null);
     });
     state = const AsyncValue.data(null);

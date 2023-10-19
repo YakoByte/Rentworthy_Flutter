@@ -1,7 +1,9 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:rentworthy/application/dialog/dialod_service.dart';
+import 'package:rentworthy/application/dialog/dialog_service.dart';
 import 'package:rentworthy/presentation/indi_prof/sell/post_add/post_ur_ad_controller.dart';
 import 'package:rentworthy/utils/common_components/common_gridview.dart';
 
@@ -56,7 +58,7 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
       body: asyncState.when(
           data: (data) {
             if (controller().isLoading) {
-              return PostUrAdShimmer();
+              return CommonLoader();
             }
             return SingleChildScrollView(
               child: Column(
@@ -574,7 +576,8 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                                       .commonImagePicker(
                                         picker: controller().imagePicker,
                                         pickedImage: (file) {
-                                          controller().onImgSelect(val: file);
+                                          controller().onImgSelect(
+                                              val: file, index: index);
                                         },
                                       );
                                 },
@@ -589,7 +592,10 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                                           color:
                                               AppColors.black.withOpacity(0.4),
                                           width: 2)),
-                                  child: controller().selectedImage == null
+                                  child: controller()
+                                              .selectedImage[index]
+                                              .path ==
+                                          ""
                                       ? Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceEvenly,
@@ -615,7 +621,8 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                                                 )),
                                           ],
                                         )
-                                      : Image.file(controller().selectedImage!),
+                                      : Image.file(
+                                          controller().selectedImage[index]),
                                 ),
                               );
                             }),

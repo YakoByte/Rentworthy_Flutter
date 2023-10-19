@@ -47,7 +47,7 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
         body: asyncState.when(
             data: (data) {
               if (controller().isLoading) {
-                return const SignInShimmer();
+                return CommonLoader();
               }
               return SingleChildScrollView(
                 child: Column(

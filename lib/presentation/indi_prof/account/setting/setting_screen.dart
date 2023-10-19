@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:rentworthy/data/both_prof/shared_pref/shared_pref.dart';
 import 'package:rentworthy/presentation/indi_prof/account/setting/statistics_reports/statistics_reports.dart';
 import 'package:rentworthy/utils/text.dart';
+import '../../../../application/both_prof/login/login_service.dart';
+import '../../../../application/dialog/dialog_service.dart';
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_appbar.dart';
 import '../../../../utils/common_components/common_navigator.dart';
 import '../../../../utils/common_components/common_text.dart';
 import '../../../../utils/common_components/common_title_subtitle.dart';
+import '../../../both_prof/register/register_screen.dart';
 import 'create_pass/create_password.dart';
 import 'notification/notification.dart';
 
@@ -73,7 +77,7 @@ class SettingScreen extends ConsumerWidget {
               onTap: () {
                 commonNavigator(
                   context: context,
-                  child: StatisticsReports(),
+                  child: const StatisticsReports(),
                   type: PageTransitionType.rightToLeftWithFade,
                 );
               },
@@ -101,7 +105,7 @@ class SettingScreen extends ConsumerWidget {
               onTap: () {
                 commonNavigator(
                   context: context,
-                  child: CreatePassword(),
+                  child: const CreatePassword(),
                   type: PageTransitionType.rightToLeftWithFade,
                 );
               },
@@ -139,7 +143,7 @@ class SettingScreen extends ConsumerWidget {
               onTap: () {
                 commonNavigator(
                   context: context,
-                  child: NotificationScreen(),
+                  child: const NotificationScreen(),
                   type: PageTransitionType.rightToLeftWithFade,
                 );
               },
@@ -169,7 +173,27 @@ class SettingScreen extends ConsumerWidget {
               curve: Curves.easeInOutCubic,
               duration: 1000.ms),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              ref.read(dialogServiceProvider).areYouSureDialog(
+                  titleText: "Are you sure?",
+                  subtitleText: "Would you like to logout?",
+                  onYesPressed: () {
+                    PreferenceManagerUtils.clearOnLogout();
+
+                    ref.read(loginServiceProvider).logoutWithGoogle();
+
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        PageTransition(
+                            child: const RegisterScreen(),
+                            type: PageTransitionType.rightToLeftWithFade,
+                            duration: const Duration(milliseconds: 400)),
+                        (Route<dynamic> route) => false);
+                  },
+                  onNoPressed: () {
+                    Navigator.pop(context);
+                  });
+            },
             child: Row(
               children: [
                 Expanded(

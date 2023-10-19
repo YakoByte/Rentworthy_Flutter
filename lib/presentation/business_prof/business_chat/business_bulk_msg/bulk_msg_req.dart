@@ -12,6 +12,7 @@ import '../../../../utils/common_components/common_text.dart';
 import '../../../../utils/common_components/text_input_field.dart';
 import '../../../../utils/globals.dart';
 import '../../../../utils/images.dart';
+import '../../../../utils/import_utils.dart';
 import '../../../../utils/text.dart';
 import '../../../indi_prof/error/error_screen.dart';
 import '../../../shimmers/message_shimmer.dart';
@@ -44,7 +45,7 @@ class _BulkMsgReqState extends ConsumerState<BulkMsgReq> {
       body: asyncState.when(
           data: (data) {
             if (controller().isLoading) {
-              return SafeArea(child: BulkMessageShimmer());
+              return CommonLoader();
             }
             return SafeArea(
               child: Padding(
@@ -263,7 +264,7 @@ class _BulkMsgReqState extends ConsumerState<BulkMsgReq> {
               backgroundColor: AppColors.white,
               color: AppColors.red),
           loading: () {
-            return BulkMessageShimmer();
+            return CommonLoader();
           }),
     );
   }

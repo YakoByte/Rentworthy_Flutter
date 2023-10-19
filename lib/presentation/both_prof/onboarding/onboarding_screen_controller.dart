@@ -4,11 +4,10 @@ import 'package:page_transition/page_transition.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../application/onboarding/onboarding_service.dart';
-import '../../../data/shared_pref/shared_pref.dart';
+import '../../../data/both_prof/shared_pref/shared_pref.dart';
 import '../../../model/onboarding/onboarding.dart';
 import '../../../utils/common_components/common_navigator.dart';
 import '../../../utils/globals.dart';
-import '../../../data/shared_pref/shared_pref.dart';
 import '../register/register_screen.dart';
 
 part 'onboarding_screen_controller.freezed.dart';

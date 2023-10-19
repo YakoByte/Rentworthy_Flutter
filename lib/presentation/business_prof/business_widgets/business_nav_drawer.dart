@@ -8,13 +8,15 @@ import 'package:rentworthy/presentation/business_prof/statistics_reports/statist
 import 'package:rentworthy/utils/common_components/common_navigator.dart';
 import 'package:rentworthy/utils/common_components/icon_text.dart';
 
-import '../../../../application/dialog/dialod_service.dart';
+import '../../../../application/dialog/dialog_service.dart';
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_button.dart';
 import '../../../../utils/common_components/common_text.dart';
 import '../../../../utils/common_components/common_title_subtitle.dart';
 import '../../../../utils/images.dart';
 import '../../../../utils/text.dart';
+import '../../../application/both_prof/login/login_service.dart';
+import '../../../data/both_prof/shared_pref/shared_pref.dart';
 import '../../indi_prof/account/setting/privacy_policy/privacy_policy.dart';
 import '../admin_panel/admin_panel.dart';
 import '../business_category_details/business_category_details_screen.dart';
@@ -935,14 +937,27 @@ class AdminNavDrawer extends ConsumerWidget {
                     if (selectedindex == 9) {
                       Navigator.pop(context);
                     } else {
-                      Navigator.pop(context);
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          PageTransition(
-                              child: const RegisterScreen(),
-                              type: PageTransitionType.rightToLeftWithFade,
-                              duration: const Duration(milliseconds: 400)),
-                          (Route<dynamic> route) => false);
+                      ref.read(dialogServiceProvider).areYouSureDialog(
+                          titleText: "Are you sure?",
+                          subtitleText: "Would you like to logout?",
+                          onYesPressed: () {
+                            Navigator.pop(context);
+                            PreferenceManagerUtils.clearOnLogout();
+                            ref.read(loginServiceProvider).logoutWithGoogle();
+                            // ref.read(loginServiceProvider).signoutWithFacebook();
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                PageTransition(
+                                    child: const RegisterScreen(),
+                                    type:
+                                        PageTransitionType.rightToLeftWithFade,
+                                    duration:
+                                        const Duration(milliseconds: 400)),
+                                (Route<dynamic> route) => false);
+                          },
+                          onNoPressed: () {
+                            Navigator.pop(context);
+                          });
                     }
                   },
                   child: Container(

@@ -51,7 +51,7 @@ class _LoginFBState extends ConsumerState<LoginFB> {
       body: asyncState.when(
           data: (data) {
             if (controller().isLoading) {
-              return const SignInShimmer();
+              return CommonLoader();
             }
             return SingleChildScrollView(
               child: Column(

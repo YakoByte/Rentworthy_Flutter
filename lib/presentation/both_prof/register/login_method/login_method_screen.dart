@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,10 +13,14 @@ import '../../../../../utils/common_components/common_button.dart';
 import '../../../../../utils/common_components/common_navigator.dart';
 import '../../../../../utils/common_components/common_text.dart';
 import '../../../../../utils/globals.dart';
+import '../../../../application/both_prof/login/login_service.dart';
+import '../../../../data/both_prof/shared_pref/shared_pref.dart';
+import '../../../business_prof/admin_panel/admin_panel.dart';
 import '../../../business_prof/login/add_another_acc_bsns.dart';
 import '../../../business_prof/login/login_phone/login_phone_bsns.dart';
 import '../../../business_prof/login/login_with_apple_bsns.dart';
 import '../../../business_prof/login/login_with_fb_bsns.dart';
+import '../../../indi_prof/bottombar/bottom_bar.dart';
 import '../../../indi_prof/login/login_phone/login_phone_screen.dart';
 import '../../../indi_prof/login/login_with_apple.dart';
 
@@ -119,18 +124,33 @@ class LoginMethodScreen extends ConsumerWidget {
                         ).createShader(const Rect.fromLTRB(100, 0, 250, 20)),
                       fontSize: h * 0.019,
                       fontWeight: FontWeight.w700),
-                  onPressed: () {
+                  onPressed: () async {
                     FocusScope.of(Globals.navigatorKey.currentContext!)
                         .requestFocus(FocusNode());
-                    commonNavigator(
-                        type: PageTransitionType.rightToLeftWithFade,
-                        context: context,
-                        child: controller().tabController.index == 0
-                            ? AddAnotherAcc(
-                                loginType: controller().tabController.index)
-                            : BusinessAddAnotherAcc(
-                                loginType: controller().tabController.index,
-                              ));
+                    User? userCreds =
+                        await ref.read(loginServiceProvider).loginWithGoogle();
+                    if (userCreds != null && userCreds!.email != null) {
+                      PreferenceManagerUtils.setIsLogin(true);
+                      PreferenceManagerUtils.setIsIndividual(
+                          controller().tabController.index == 0 ? 1 : 2);
+                      Navigator.pushAndRemoveUntil(
+                          Globals.navigatorKey.currentContext!,
+                          PageTransition(
+                              child: controller().tabController.index == 0
+                                  ? BottomBar(index: 0)
+                                  : AdminPanel(),
+                              type: PageTransitionType.rightToLeftWithFade,
+                              duration: const Duration(milliseconds: 400)),
+                          (Route<dynamic> route) => false);
+                    } // commonNavigator(
+                    //     type: PageTransitionType.rightToLeftWithFade,
+                    //     context: context,
+                    //     child: controller().tabController.index == 0
+                    //         ? AddAnotherAcc(
+                    //             loginType: controller().tabController.index)
+                    //         : BusinessAddAnotherAcc(
+                    //             loginType: controller().tabController.index,
+                    //           ));
                   },
                   side: BorderSide.none,
                 ),
@@ -189,19 +209,37 @@ class LoginMethodScreen extends ConsumerWidget {
                         color: AppColors.fbblue,
                         fontSize: h * 0.019,
                         fontWeight: FontWeight.w700),
-                    onPressed: () {
+                    onPressed: () async {
                       FocusScope.of(Globals.navigatorKey.currentContext!)
                           .requestFocus(FocusNode());
-                      commonNavigator(
-                          type: PageTransitionType.rightToLeftWithFade,
-                          context: context,
-                          child: controller().tabController.index == 0
-                              ? LoginFB(
-                                  loginType: controller().tabController.index,
-                                )
-                              : BusinessLoginFB(
-                                  loginType: controller().tabController.index,
-                                ));
+                      UserCredential? userCreds = await ref
+                          .read(loginServiceProvider)
+                          .signInWithFacebook();
+                      if (userCreds != null && userCreds!.user!.email != null) {
+                        PreferenceManagerUtils.setIsLogin(true);
+                        PreferenceManagerUtils.setIsIndividual(
+                            controller().tabController.index == 0 ? 1 : 2);
+                        Navigator.pushAndRemoveUntil(
+                            Globals.navigatorKey.currentContext!,
+                            PageTransition(
+                                child: controller().tabController.index == 0
+                                    ? BottomBar(index: 0)
+                                    : AdminPanel(),
+                                type: PageTransitionType.rightToLeftWithFade,
+                                duration: const Duration(milliseconds: 400)),
+                            (Route<dynamic> route) => false);
+                      }
+
+                      // commonNavigator(
+                      //     type: PageTransitionType.rightToLeftWithFade,
+                      //     context: context,
+                      //     child: controller().tabController.index == 0
+                      //         ? LoginFB(
+                      //             loginType: controller().tabController.index,
+                      //           )
+                      //         : BusinessLoginFB(
+                      //             loginType: controller().tabController.index,
+                      //           ));
                     }),
               ],
             ),

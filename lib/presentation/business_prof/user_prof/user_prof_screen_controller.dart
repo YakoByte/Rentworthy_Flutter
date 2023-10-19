@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rentworthy/utils/globals.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../../utils/common_components/common_tickerprovider.dart';
 import '../../../utils/color.dart';
@@ -112,6 +113,9 @@ class BusinessUserProfController extends _$BusinessUserProfController {
     _popupitemList = [
       PopupMenuItem(
         value: 1,
+        onTap: () {
+          Share.share('check out my website https://example.com');
+        },
         child: IconText(
           isCenter: false,
           title: "Share Profile",

@@ -7,7 +7,7 @@ import 'package:rentworthy/presentation/business_prof/business_widgets/business_
 import 'package:rentworthy/presentation/business_prof/user_prof/user_prof_screen.dart';
 import 'package:rentworthy/utils/common_components/icon_text.dart';
 
-import '../../../application/dialog/dialod_service.dart';
+import '../../../application/dialog/dialog_service.dart';
 import '../../../utils/color.dart';
 import '../../../utils/common_components/common_appbar.dart';
 import '../../../utils/common_components/common_button.dart';

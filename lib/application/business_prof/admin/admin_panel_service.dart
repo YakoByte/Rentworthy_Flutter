@@ -6,7 +6,7 @@ import '../../../model/business_prof/admin/analytics/get_admin_panel_analytics.d
 import '../../../model/business_prof/admin/chart/get_chart.dart';
 import '../../../model/indi_prof/address/get_address/get_address.dart';
 
-abstract class AddressService {
+abstract class AdminService {
   Future<GetChart?> getLocationChartData();
 
   Future<GetChart?> getDeviceChartData();
@@ -14,8 +14,8 @@ abstract class AddressService {
   Future<AnalyticsResponse?> getAnalyticsResponseData();
 }
 
-class AddressServiceV1 implements AddressService {
-  AddressServiceV1(
+class AdminServiceV1 implements AdminService {
+  AdminServiceV1(
     this.adminPanelRepository,
   );
 
@@ -37,8 +37,8 @@ class AddressServiceV1 implements AddressService {
   }
 }
 
-final addressServiceProvider = Provider.autoDispose<AddressService>((ref) {
-  final service = AddressServiceV1(
+final adminServiceProvider = Provider.autoDispose<AdminService>((ref) {
+  final service = AdminServiceV1(
     ref.watch(adminPanelRepositoryProvider),
   );
   return service;

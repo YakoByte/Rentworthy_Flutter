@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/cli_commands.dart';
+import 'package:flutter_speech/flutter_speech.dart';
 import 'package:rentworthy/utils/images.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -13,7 +15,7 @@ part 'chat_screen_controller.g.dart';
 
 @riverpod
 class ChatScreenController extends _$ChatScreenController {
-  TextEditingController textEditingController = TextEditingController();
+  TextEditingController messageController = TextEditingController();
   late ScrollController scrollController = ScrollController();
   AnimationController? divideranimationController;
   AnimationController? closeanimationController;
@@ -25,14 +27,29 @@ class ChatScreenController extends _$ChatScreenController {
     "What’s your location?",
     "How is the condition of this item?"
   ];
+  List<String>? msgList;
   bool isShow = false;
 
   bool get getisShow => isShow;
+
+  List<String> get getmsgList => msgList!;
 
   List<String> get getquestionList => questionList;
   List<PopupMenuItem> _popupitemList = [];
 
   List<PopupMenuItem> get popupitemList => _popupitemList;
+  final SpeechRecognition _speech = SpeechRecognition();
+
+  SpeechRecognition get speech => _speech;
+  bool _speechRecognitionAvailable = false;
+
+  bool get speechRecognitionAvailable => _speechRecognitionAvailable;
+  bool _isListening = false;
+  AnimationController? animationController;
+
+  bool get isListening => _isListening;
+
+  String transcription = '';
 
   @override
   FutureOr<void> build() async {
@@ -43,6 +60,23 @@ class ChatScreenController extends _$ChatScreenController {
       vsync: CommonTickerProvider(),
       duration: const Duration(milliseconds: 800),
     );
+    animationController = AnimationController(
+      duration: const Duration(milliseconds: 2000),
+      vsync: CommonTickerProvider(),
+    )..repeat();
+    msgList = [
+      "sdfsfdm",
+      "dfsasm",
+      "aknjdsfabd",
+      "asfgsjnhd",
+      "ajfgsbdzfdfgdg ejijie riei he irei jmierjojeri jmroie gergero mgrjie jmogieirogjihgdh",
+      "sdsfgm",
+      "assfgm",
+      "aknjabd",
+      "ajnhd",
+      "ajsbdhgdh",
+    ];
+    activateSpeechRecognizer();
     closeanimationController = AnimationController(
       vsync: CommonTickerProvider(),
       duration: const Duration(milliseconds: 800),
@@ -89,6 +123,88 @@ class ChatScreenController extends _$ChatScreenController {
     state = const AsyncValue.data(null);
   }
 
+  void activateSpeechRecognizer() {
+    print('_MyAppState.activateSpeechRecognizer... ');
+    state = const AsyncLoading();
+
+    _speech.setAvailabilityHandler(onSpeechAvailability);
+    _speech.setRecognitionStartedHandler(onRecognitionStarted);
+    _speech.setRecognitionResultHandler(onRecognitionResult);
+    _speech.setRecognitionCompleteHandler(onRecognitionComplete);
+    _speech.setErrorHandler(errorHandler);
+    _speech.activate('en_US').then((res) {
+      _speechRecognitionAvailable = res;
+      print("resres $res");
+    });
+    state = const AsyncValue.data(null);
+  }
+
+  void start() => _speech.activate("en_US").then((_) {
+        return _speech.listen().then((result) {
+          print('_MyAppState.start => result $result');
+
+          state = const AsyncLoading();
+          // animationController!.forward();
+          _isListening = result;
+
+          state = const AsyncValue.data(null);
+        });
+      });
+
+  void cancel() => _speech.cancel().then((_) {
+        state = const AsyncLoading();
+        print("cancel");
+        _isListening = false;
+        state = const AsyncValue.data(null);
+      });
+
+  void stop() => _speech.stop().then((_) {
+        state = const AsyncLoading();
+        print("stop");
+        _isListening = false;
+        state = const AsyncValue.data(null);
+      });
+
+  void onSpeechAvailability(bool result) {
+    state = const AsyncLoading();
+    print("onSpeechAvailability");
+    _speechRecognitionAvailable = result;
+    state = const AsyncValue.data(null);
+  }
+
+  void onRecognitionStarted() {
+    state = const AsyncLoading();
+    print("Listening");
+    _isListening = true;
+    messageController.text = 'Listening...';
+    state = const AsyncValue.data(null);
+  }
+
+  void onRecognitionResult(String text) {
+    print('_MyAppState.onRecognitionResult... $text');
+    //  state = const AsyncLoading();
+    transcription = text;
+
+    messageController.text = 'Listening...';
+    messageController.text = text.capitalize().substring(0);
+    state = const AsyncValue.data(null);
+  }
+
+  void onRecognitionComplete(String text) {
+    print('_MyAppState.onRecognitionComplete... $text');
+    state = const AsyncLoading();
+
+    Future.delayed(const Duration(milliseconds: 400), () {
+      state = const AsyncLoading();
+      _isListening = false;
+      state = const AsyncValue.data(null);
+    });
+
+    state = const AsyncValue.data(null);
+  }
+
+  void errorHandler() => activateSpeechRecognizer();
+
   openchat({required bool val}) async {
     state = const AsyncLoading();
     if (val == true) {
@@ -104,6 +220,18 @@ class ChatScreenController extends _$ChatScreenController {
       closeanimationController!.forward();
       WidgetsBinding.instance!.addPostFrameCallback((_) => _scrollToEnd());
     }
+
+    state = const AsyncValue.data(null);
+  }
+
+  onSend() async {
+    state = const AsyncLoading();
+    print("messageController ${messageController.text}");
+
+    msgList!.add(messageController.text);
+    print("msgList ${msgList}");
+    messageController.text = "";
+    WidgetsBinding.instance!.addPostFrameCallback((_) => _scrollToEnd());
 
     state = const AsyncValue.data(null);
   }

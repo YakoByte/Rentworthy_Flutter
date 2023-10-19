@@ -4,14 +4,9 @@ import 'package:flutter_native_splash/cli_commands.dart';
 import 'package:flutter_speech/flutter_speech.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:rentworthy/utils/images.dart';
 import 'package:rentworthy/utils/import_utils.dart';
-import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import '../../../application/dialog/dialod_service.dart';
-import '../../../utils/color.dart';
-import '../../../utils/common_components/common_tickerprovider.dart';
+import '../../../application/dialog/dialog_service.dart';
 
 part 'home_screen_controller.g.dart';
 
@@ -47,7 +42,6 @@ class HomeScreenController extends _$HomeScreenController {
   CarouselController carouselController = CarouselController();
   PageController rentCollection = PageController(viewportFraction: 0.45);
   PageController pageController = PageController();
-
   final List<String> _imgList = [
     AppImg.movie,
     AppImg.party,
@@ -200,7 +194,7 @@ class HomeScreenController extends _$HomeScreenController {
 
   void onRecognitionResult(String text) {
     print('_MyAppState.onRecognitionResult... $text');
-    state = const AsyncLoading();
+    //  state = const AsyncLoading();
     transcription = text;
 
     searchController.text = 'Listening...';

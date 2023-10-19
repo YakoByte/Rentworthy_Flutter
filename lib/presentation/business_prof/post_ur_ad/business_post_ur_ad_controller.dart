@@ -55,6 +55,7 @@ class BusinessPostAdController extends _$BusinessPostAdController {
       state = const AsyncLoading();
       _isLoading = false;
       state = const AsyncValue.data(null);
+
       commonNavigator(
         context: Globals.navigatorKey.currentContext!,
         child: const AdminPanel(),

@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../../application/dialog/dialod_service.dart';
+import '../../../../../application/dialog/dialog_service.dart';
 import '../../../../../utils/import_utils.dart';
 
 part 'contact_us_controller.g.dart';

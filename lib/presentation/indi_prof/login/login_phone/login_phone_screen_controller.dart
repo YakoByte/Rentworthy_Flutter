@@ -3,6 +3,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../application/validate/validate.dart';
+import '../../../../data/both_prof/shared_pref/shared_pref.dart';
 import '../../../../utils/common_components/common_navigator.dart';
 import '../../../../utils/globals.dart';
 import '../../../both_prof/login/loginwithphone/otp_detect/detect_otp.dart';
@@ -76,6 +77,8 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
             type: PageTransitionType.rightToLeftWithFade,
           );
         } else if (index == 2) {
+          PreferenceManagerUtils.setIsLogin(true);
+          PreferenceManagerUtils.setIsIndividual(1);
           Navigator.pushAndRemoveUntil(
               Globals.navigatorKey.currentContext!,
               PageTransition(
@@ -84,6 +87,8 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
                   duration: const Duration(milliseconds: 400)),
               (Route<dynamic> route) => false);
         } else if (index == 3) {
+          PreferenceManagerUtils.setIsLogin(true);
+          PreferenceManagerUtils.setIsIndividual(1);
           Navigator.pushAndRemoveUntil(
               Globals.navigatorKey.currentContext!,
               PageTransition(

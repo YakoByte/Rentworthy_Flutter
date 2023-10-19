@@ -5,7 +5,7 @@ import 'package:rentworthy/utils/common_components/common_iconbutton.dart';
 import 'package:rentworthy/utils/common_components/common_listview.dart';
 import 'package:rentworthy/utils/common_components/common_navigator.dart';
 import 'package:rentworthy/utils/common_components/icon_text.dart';
-import '../../../../../application/dialog/dialod_service.dart';
+import '../../../../../application/dialog/dialog_service.dart';
 import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_appbar.dart';
 import '../../../../../utils/common_components/common_button.dart';
@@ -72,7 +72,7 @@ class MyAddressesScreen extends ConsumerWidget {
                             onTap: () {
                               commonNavigator(
                                 context: context,
-                                child: const AddAddressScreen(),
+                                child: AddAddressScreen(),
                                 type: PageTransitionType.rightToLeftWithFade,
                               );
                             },

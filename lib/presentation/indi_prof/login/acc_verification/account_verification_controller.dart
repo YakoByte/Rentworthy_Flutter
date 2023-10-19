@@ -11,6 +11,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_navigator.dart';
 import '../../../../../utils/globals.dart';
+import '../../../../data/both_prof/shared_pref/shared_pref.dart';
 import '../../../indi_prof/bottombar/bottom_bar.dart';
 
 part 'account_verification_controller.freezed.dart';
@@ -116,7 +117,8 @@ class AccountVerificationController extends _$AccountVerificationController {
 
           if (timer.tick > 3) {
             timer.cancel();
-
+            PreferenceManagerUtils.setIsLogin(true);
+            PreferenceManagerUtils.setIsIndividual(1);
             Navigator.pushAndRemoveUntil(
                 Globals.navigatorKey.currentContext!,
                 PageTransition(

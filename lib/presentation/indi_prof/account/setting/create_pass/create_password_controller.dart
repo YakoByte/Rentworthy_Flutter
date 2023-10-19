@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../../utils/import_utils.dart';
+
 part 'create_password_controller.g.dart';
 
 @riverpod
@@ -34,6 +36,8 @@ class CreatePasswordController extends _$CreatePasswordController {
     _isLoading = true;
     Future.delayed(const Duration(seconds: 1), () {
       _isLoading = false;
+      Navigator.pop(Globals.navigatorKey.currentContext!);
+
       state = const AsyncValue.data(null);
     });
     state = const AsyncValue.data(null);

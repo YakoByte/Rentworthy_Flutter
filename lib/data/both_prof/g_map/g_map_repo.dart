@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../model/g_map/g_map.dart';
+import '../../../model/g_map/g_map.dart';
 
 abstract class GMapRepository {
   Future<GMapResponse?> getmapData();

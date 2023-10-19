@@ -42,7 +42,7 @@ class _BusinessLoginPhoneState extends ConsumerState<BusinessLoginPhone> {
       body: asyncState.when(
           data: (data) {
             if (controller().isLoading) {
-              return const SignInShimmer();
+              return CommonLoader();
             }
             return SingleChildScrollView(
               child: Column(

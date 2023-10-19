@@ -49,7 +49,7 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
             ),
       body: asyncState.when(data: (state) {
         if (controller().isLoading == true) {
-          return DetectOtpShimmer();
+          return CommonLoader();
         }
         return Container(
           width: w,

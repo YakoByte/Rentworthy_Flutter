@@ -10,6 +10,7 @@ import '../../../../../utils/common_components/common_loader.dart';
 import '../../../../../utils/common_components/common_navigator.dart';
 import '../../../../../utils/common_components/common_text.dart';
 import '../../../../../utils/text.dart';
+import '../../../../data/both_prof/shared_pref/shared_pref.dart';
 import '../../../both_prof/login/loginwithphone/findlocation/find_location.dart';
 import '../../../indi_prof/error/error_screen.dart';
 import '../../admin_panel/admin_panel.dart';
@@ -159,6 +160,8 @@ class BusinessDetectOtp extends ConsumerWidget {
                       InkWell(
                         onTap: () {
                           FocusScope.of(context).requestFocus(FocusNode());
+                          PreferenceManagerUtils.setIsLogin(true);
+                          PreferenceManagerUtils.setIsIndividual(2);
                           Navigator.pushAndRemoveUntil(
                               context,
                               PageTransition(

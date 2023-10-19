@@ -13,7 +13,7 @@ import 'package:rentworthy/utils/common_components/common_text.dart';
 import 'package:rentworthy/utils/text.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../../../application/dialog/dialod_service.dart';
+import '../../../../../application/dialog/dialog_service.dart';
 import '../../../../../utils/common_components/common_appbar.dart';
 import '../../../../../utils/common_components/common_carouselslider.dart';
 import '../../../../../utils/images.dart';

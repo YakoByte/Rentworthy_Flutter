@@ -12,6 +12,7 @@ import '../../../../../utils/common_components/common_loader.dart';
 import '../../../../../utils/common_components/common_text.dart';
 import '../../../../../utils/images.dart';
 import '../../../../../utils/text.dart';
+import '../../../../data/both_prof/shared_pref/shared_pref.dart';
 import '../../../../utils/common_components/common_navigator.dart';
 import '../../../indi_prof/error/error_screen.dart';
 import '../../../indi_prof/login/acc_verification/account_verification_controller.dart';
@@ -144,7 +145,7 @@ class _BusinessAccountVerificationState
                                   /// otp detect
                                   ///
                                   PinCodeTextField(
-                                    length: 4,
+                                    length: 6,
                                     obscureText: false,
                                     animationType: AnimationType.fade,
                                     pinTheme: controller().isPinTheme!,
@@ -154,7 +155,7 @@ class _BusinessAccountVerificationState
                                     showCursor: true,
                                     cursorColor: AppColors.black,
                                     animationDuration:
-                                        Duration(milliseconds: 300),
+                                        const Duration(milliseconds: 300),
                                     enablePinAutofill: true,
                                     backgroundColor: AppColors.white,
                                     enableActiveFill: false,
@@ -238,12 +239,12 @@ class _BusinessAccountVerificationState
                                     LinearPercentIndicator(
                                       width: w * 0.9,
                                       animation: true,
-                                      barRadius: Radius.circular(4),
+                                      barRadius: const Radius.circular(4),
                                       lineHeight: h * 0.045,
                                       animateFromLastPercent: true,
                                       animationDuration: 2000,
                                       addAutomaticKeepAlive: true,
-                                      linearGradient: LinearGradient(
+                                      linearGradient: const LinearGradient(
                                           begin: Alignment.centerLeft,
                                           end: Alignment.centerRight,
                                           colors: [
@@ -272,7 +273,7 @@ class _BusinessAccountVerificationState
                                       if (state.start != 0)
                                         Padding(
                                           padding: EdgeInsets.all(w * 0.01),
-                                          child: Icon(
+                                          child: const Icon(
                                             Icons.watch_later,
                                             color: AppColors.yellow,
                                           ),
@@ -295,6 +296,8 @@ class _BusinessAccountVerificationState
                               onTap: () {
                                 FocusScope.of(context)
                                     .requestFocus(FocusNode());
+                                PreferenceManagerUtils.setIsLogin(true);
+                                PreferenceManagerUtils.setIsIndividual(2);
                                 Navigator.pushAndRemoveUntil(
                                     context,
                                     PageTransition(

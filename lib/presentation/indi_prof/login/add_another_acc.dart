@@ -51,7 +51,7 @@ class _AddAnotherAccState extends ConsumerState<AddAnotherAcc> {
       body: asyncState.when(
           data: (data) {
             if (controller().isLoading) {
-              return const SignInShimmer();
+              return CommonLoader();
             }
             return SingleChildScrollView(
               child: Column(

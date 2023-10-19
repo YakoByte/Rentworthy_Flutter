@@ -51,7 +51,7 @@ class _LoginAppleState extends ConsumerState<LoginApple> {
       body: asyncState.when(
           data: (data) {
             if (controller().isLoading) {
-              return const SignInShimmer();
+              return CommonLoader();
             }
             return SingleChildScrollView(
               child: Column(

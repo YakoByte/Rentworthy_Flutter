@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:rentworthy/application/dialog/dialod_service.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:rentworthy/application/dialog/dialog_service.dart';
+import 'package:rentworthy/presentation/indi_prof/home/categories/cat_details/category_details_screen.dart';
 import 'package:rentworthy/presentation/indi_prof/sell/product_availablity/product_availablity_screen_controller.dart';
 import 'package:rentworthy/utils/common_components/icon_text.dart';
 import 'package:rentworthy/utils/images.dart';
@@ -9,6 +11,7 @@ import 'package:rentworthy/utils/images.dart';
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_appbar.dart';
 import '../../../../utils/common_components/common_button.dart';
+import '../../../../utils/common_components/common_navigator.dart';
 import '../../../../utils/common_components/common_text.dart';
 import '../../../../utils/text.dart';
 import 'table_calendar/table_calendar.dart';
@@ -228,7 +231,15 @@ class ProductAvailabliity extends ConsumerWidget {
                           color: AppColors.white,
                           fontSize: h * 0.025,
                           fontWeight: FontWeight.w700),
-                      onPressed: () {}),
+                      onPressed: () {
+                        commonNavigator(
+                          context: context,
+                          child: CategoryDetailsScreen(
+                            title: 'Subcategory',
+                          ),
+                          type: PageTransitionType.rightToLeftWithFade,
+                        );
+                      }),
                 ],
               ),
             )

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rentworthy/presentation/shimmers/add_address_shimmer.dart';
 import 'package:rentworthy/utils/common_components/common_button.dart';
+import 'package:rentworthy/utils/common_components/common_loader.dart';
 
+import '../../../../../../model/indi_prof/address/get_product.dart';
 import '../../../../../../utils/color.dart';
 import '../../../../../../utils/common_components/common_appbar.dart';
 import '../../../../../../utils/common_components/common_text.dart';
@@ -12,7 +14,10 @@ import '../../../../error/error_screen.dart';
 import 'add_address_controller.dart';
 
 class AddAddressScreen extends ConsumerStatefulWidget {
-  const AddAddressScreen({super.key});
+  Map<String, dynamic>? productResponse;
+  int? index;
+
+  AddAddressScreen({super.key, this.productResponse, this.index});
 
   @override
   ConsumerState createState() => _AddAddressScreenState();
@@ -20,12 +25,41 @@ class AddAddressScreen extends ConsumerStatefulWidget {
 
 class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
   @override
+  void initState() {
+    controller() => ref.read(addAddressControllerProvider.notifier);
+
+    if (widget.productResponse != null) {
+      controller().nameController.text =
+          widget.productResponse!["products"] != null
+              ? widget.productResponse!["products"][widget.index]!["brand"]!
+              : "";
+      controller().stateController.text =
+          widget.productResponse!["products"] != null
+              ? widget.productResponse!["products"][widget.index]!["title"]!
+              : "";
+      controller().addressController.text =
+          widget.productResponse!["products"] != null
+              ? widget.productResponse!["products"]
+                  [widget.index]!["description"]!
+              : "";
+      controller().cityController.text =
+          widget.productResponse!["products"] != null
+              ? widget.productResponse!["products"][widget.index]!["category"]!
+              : "";
+    }
+    // TODO: implement initState
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final asyncState = ref.watch(addAddressControllerProvider);
     controller() => ref.read(addAddressControllerProvider.notifier);
 
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
+
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: AppColors.white,
@@ -46,14 +80,16 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                   fontSize: w * 0.05,
                   color: AppColors.black.withOpacity(0.8),
                   fontWeight: FontWeight.w700),
-              text: AppText.addaddress,
+              text: widget.productResponse != null
+                  ? "Edit Address"
+                  : AppText.addaddress,
             ),
           ),
         ),
         body: asyncState.when(
             data: (data) {
               if (controller().isLoading) {
-                return const AddAddressShimmer();
+                return CommonLoader();
               }
               return Container(
                 height: h,
@@ -152,7 +188,7 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                     color: AppColors.red,
                                     fontSize: h * 0.019,
                                     fontWeight: FontWeight.w400),
-                                controller: controller().nameController,
+                                controller: controller().phoneController,
                                 keyboardType: TextInputType.text,
                                 containerwidth: w,
                                 underline: false,
@@ -197,7 +233,7 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                     color: AppColors.red,
                                     fontSize: h * 0.019,
                                     fontWeight: FontWeight.w400),
-                                controller: controller().nameController,
+                                controller: controller().zipcodeController,
                                 keyboardType: TextInputType.text,
                                 containerwidth: w,
                                 underline: false,
@@ -245,7 +281,7 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                         color: AppColors.red,
                                         fontSize: h * 0.019,
                                         fontWeight: FontWeight.w400),
-                                    controller: controller().nameController,
+                                    controller: controller().stateController,
                                     keyboardType: TextInputType.text,
                                     containerwidth: w * 0.45,
                                     underline: false,
@@ -292,7 +328,7 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                         color: AppColors.red,
                                         fontSize: h * 0.019,
                                         fontWeight: FontWeight.w400),
-                                    controller: controller().nameController,
+                                    controller: controller().cityController,
                                     keyboardType: TextInputType.text,
                                     containerwidth: w * 0.45,
                                     underline: false,
@@ -341,7 +377,7 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                     color: AppColors.red,
                                     fontSize: h * 0.019,
                                     fontWeight: FontWeight.w400),
-                                controller: controller().nameController,
+                                controller: controller().addressController,
                                 keyboardType: TextInputType.text,
                                 containerwidth: w,
                                 underline: false,
@@ -386,7 +422,7 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                     color: AppColors.red,
                                     fontSize: h * 0.019,
                                     fontWeight: FontWeight.w400),
-                                controller: controller().nameController,
+                                controller: controller().unitnoController,
                                 keyboardType: TextInputType.text,
                                 containerwidth: w,
                                 underline: false,
@@ -520,7 +556,7 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                 backgroundColor: AppColors.white,
                 color: AppColors.red),
             loading: () {
-              return const AddAddressShimmer();
+              return CommonLoader();
             }));
   }
 }

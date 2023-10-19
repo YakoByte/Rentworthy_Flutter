@@ -7,7 +7,7 @@ part of 'add_address_controller.dart';
 // **************************************************************************
 
 String _$addAddressControllerHash() =>
-    r'000671c5a9cd6ec9042281c57153d2b7eaceb942';
+    r'95be97019ca97aa55b5b305520d92e95a3b4059c';
 
 /// See also [AddAddressController].
 @ProviderFor(AddAddressController)

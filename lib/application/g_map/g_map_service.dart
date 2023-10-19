@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/g_map/g_map_repo.dart';
-import '../../data/onboarding/onboarding_repo.dart';
+import '../../data/both_prof/g_map/g_map_repo.dart';
 import '../../model/g_map/g_map.dart';
 import '../../model/onboarding/onboarding.dart';
 

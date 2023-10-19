@@ -1,9 +1,10 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../../application/business_prof/product_details/product_details_service.dart';
 import '../../../application/business_prof/track_item/track_item_service.dart';
-import '../../../application/dialog/dialod_service.dart';
+import '../../../application/dialog/dialog_service.dart';
 import '../../../model/business_prof/product_details/get_product_details/get_product_details.dart';
 import '../../../utils/color.dart';
 import '../../../utils/common_components/common_text.dart';
@@ -131,6 +132,9 @@ class BusinessCatDetailsController extends _$BusinessCatDetailsController {
       ),
       PopupMenuItem(
         value: 2,
+        onTap: () {
+          Share.share('check out my website https://example.com');
+        },
         child: IconText(
           isCenter: false,
           title: AppText.share,

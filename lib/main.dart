@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:device_preview/device_preview.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,14 +11,19 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rentworthy/presentation/both_prof/loading/loading_screen.dart';
 
-import 'application/dialog/dialod_service.dart';
+import 'application/dialog/dialog_service.dart';
+import 'firebase_options.dart';
 import 'utils/import_utils.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(
     DevicePreview(

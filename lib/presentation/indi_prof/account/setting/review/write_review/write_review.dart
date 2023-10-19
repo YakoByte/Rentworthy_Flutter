@@ -43,7 +43,7 @@ class WriteReviewScreen extends ConsumerWidget {
       body: asyncState.when(
           data: (data) {
             if (controller().isLoading) {
-              return const WriteReviewShimmer();
+              return CommonLoader();
             }
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -166,7 +166,7 @@ class WriteReviewScreen extends ConsumerWidget {
               backgroundColor: AppColors.white,
               color: AppColors.red),
           loading: () {
-            return const WriteReviewShimmer();
+            return CommonLoader();
           }),
     );
   }

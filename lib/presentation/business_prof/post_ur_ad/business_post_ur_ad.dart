@@ -97,7 +97,7 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
       body: asyncState.when(
           data: (data) {
             if (controller().isLoading) {
-              return PostUrAdShimmer();
+              return CommonLoader();
             }
             return SingleChildScrollView(
               child: Column(

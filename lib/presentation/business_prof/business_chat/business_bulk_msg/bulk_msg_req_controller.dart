@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rentworthy/utils/globals.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../utils/common_components/common_tickerprovider.dart';
@@ -34,6 +35,7 @@ class BulkMsgReqController extends _$BulkMsgReqController {
     _isLoading = true;
     Future.delayed(const Duration(seconds: 1), () {
       _isLoading = false;
+      Navigator.pop(Globals.navigatorKey.currentContext!);
       state = const AsyncValue.data(null);
     });
     state = const AsyncValue.data(null);

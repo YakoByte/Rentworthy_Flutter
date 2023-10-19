@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1073180144883",
+    "firebase_url": "https://rentworthy-340fd-default-rtdb.firebaseio.com",
+    "project_id": "rentworthy-340fd",
+    "storage_bucket": "rentworthy-340fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073180144883:android:df91a626100e3e65d53386",
+        "android_client_info": {
+          "package_name": "com.rentworthy.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073180144883-34brsgrqhckc1d7llsg0d8i1nain5mug.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rentworthy.app",
+            "certificate_hash": "e91ecf42965a5281166338be2ca4f38811efd45e"
+          }
+        },
+        {
+          "client_id": "1073180144883-k88rvihvqgtck6i48ukfq18pkotjtr42.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDD_2bC0RZvt18leXkJd8KXPcrZnCYNATM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1073180144883-k88rvihvqgtck6i48ukfq18pkotjtr42.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1073180144883-donrr9uvho3q9q9q1k7a9kjgs2uj4l1h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.rentworthy"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

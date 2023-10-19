@@ -8,7 +8,7 @@ import 'package:rentworthy/utils/common_components/icon_text.dart';
 import 'package:rentworthy/utils/images.dart';
 import 'dart:math' as math;
 
-import '../../../application/dialog/dialod_service.dart';
+import '../../../application/dialog/dialog_service.dart';
 import '../../../utils/color.dart';
 import '../../../utils/common_components/common_carouselslider.dart';
 import '../../../utils/common_components/common_pageview.dart';

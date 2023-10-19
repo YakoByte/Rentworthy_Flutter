@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../../../utils/import_utils.dart';
 import '../../../../../../utils/text.dart';
 
 part 'write_review_controller.g.dart';
@@ -45,6 +46,8 @@ class WriteReviewController extends _$WriteReviewController {
     _isLoading = true;
     Future.delayed(const Duration(seconds: 1), () {
       _isLoading = false;
+      Navigator.pop(Globals.navigatorKey.currentContext!);
+
       state = const AsyncValue.data(null);
     });
     state = const AsyncValue.data(null);

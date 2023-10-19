@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rentworthy/utils/images.dart';
 import 'package:rentworthy/utils/text.dart';
 
-import '../../model/onboarding/onboarding.dart';
+import '../../../model/onboarding/onboarding.dart';
 
 abstract class OnBoardingRepository {
   Future<List<OnBoardingitem>?> getboardingdata();

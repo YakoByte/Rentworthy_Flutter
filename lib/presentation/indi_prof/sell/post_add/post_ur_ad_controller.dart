@@ -22,7 +22,7 @@ class PostUrAdsController extends _$PostUrAdsController {
   TextEditingController stateController = TextEditingController();
   TextEditingController addtitlelastController = TextEditingController();
   ImagePicker imagePicker = ImagePicker();
-  File? selectedImage;
+  late List<File> selectedImage;
   List<String>? _selectCat = [];
   List<String> _catList = [
     "cat1",
@@ -41,7 +41,7 @@ class PostUrAdsController extends _$PostUrAdsController {
   @override
   FutureOr<void> build() async {
     state = AsyncLoading();
-
+    selectedImage = List.generate(6, (index) => File(""));
     state = AsyncValue.data(null);
   }
 
@@ -51,10 +51,10 @@ class PostUrAdsController extends _$PostUrAdsController {
     state = const AsyncValue.data(null);
   }
 
-  onImgSelect({required val}) async {
+  onImgSelect({required val, required index}) async {
     state = const AsyncLoading();
-    selectedImage = val;
-    print("selectedImage =-=- $selectedImage");
+    selectedImage![index] = val;
+    print("selectedImage =-=- ${selectedImage![index]}");
     state = const AsyncValue.data(null);
   }
 

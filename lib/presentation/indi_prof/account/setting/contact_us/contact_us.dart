@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rentworthy/utils/common_components/cont_textInput.dart';
 
-import '../../../../../application/dialog/dialod_service.dart';
+import '../../../../../application/dialog/dialog_service.dart';
 import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_appbar.dart';
 import '../../../../../utils/common_components/common_button.dart';
 import '../../../../../utils/common_components/common_text.dart';
 import '../../../../../utils/images.dart';
+import '../../../../../utils/import_utils.dart';
 import '../../../../../utils/text.dart';
 import '../../../../shimmers/contact_us_shimmer.dart';
 import '../../../error/error_screen.dart';
@@ -49,7 +50,7 @@ class ContactUsScreen extends ConsumerWidget {
       body: asyncState.when(
           data: (data) {
             if (controller().isLoading) {
-              return const ContactUsShimmer();
+              return CommonLoader();
             }
             return Padding(
               padding: EdgeInsets.symmetric(
@@ -232,7 +233,7 @@ class ContactUsScreen extends ConsumerWidget {
               backgroundColor: AppColors.white,
               color: AppColors.red),
           loading: () {
-            return const ContactUsShimmer();
+            return CommonLoader();
           }),
     );
   }

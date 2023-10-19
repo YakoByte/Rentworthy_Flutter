@@ -6,6 +6,9 @@ import 'package:rentworthy/utils/images.dart';
 import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../application/business_prof/admin/admin_panel_service.dart';
+import '../../../model/business_prof/admin/analytics/get_admin_panel_analytics.dart';
+import '../../../model/business_prof/admin/chart/get_chart.dart';
 import '../../../utils/color.dart';
 import '../../../utils/common_components/common_tickerprovider.dart';
 import '../charts_widget/charts.dart';
@@ -76,6 +79,9 @@ class AdminPanelController extends _$AdminPanelController {
   TextEditingController searchController = TextEditingController();
   List<String> searchitems = [];
   int currentpageIndex = 0;
+  GetChart? getLocationChartData;
+  GetChart? getDeviceChartData;
+  AnalyticsResponse? analyticsResponse;
 
   int get getcurrentPageIndex => currentpageIndex;
 
@@ -89,7 +95,15 @@ class AdminPanelController extends _$AdminPanelController {
     popularfavlist = List.generate(_imgList.length, (index) => false);
     featureadfavlist = List.generate(_imgList.length, (index) => false);
     nearbyadfavlist = List.generate(_imgList.length, (index) => false);
-
+    getLocationChartData =
+        await ref.read(adminServiceProvider).getLocationChartData();
+    getDeviceChartData =
+        await ref.read(adminServiceProvider).getDeviceChartData();
+    analyticsResponse =
+        await ref.read(adminServiceProvider).getAnalyticsResponseData();
+    debugPrint('getLocationChartData ${getLocationChartData!}');
+    debugPrint('getDeviceChartData ${getDeviceChartData!}');
+    debugPrint('analyticsResponse ${analyticsResponse!}');
     Future.delayed(const Duration(seconds: 1), () {
       _isLoading = false;
 

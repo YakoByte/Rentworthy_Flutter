@@ -5,7 +5,8 @@ import 'package:rentworthy/utils/globals.dart';
 import 'package:rentworthy/utils/images.dart';
 import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import '../../../../../application/dialog/dialod_service.dart';
+import 'package:share_plus/share_plus.dart';
+import '../../../../../application/dialog/dialog_service.dart';
 import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_text.dart';
 import '../../../dialogs/widgets/date_picker/date_picker_manager.dart';
@@ -115,6 +116,9 @@ class CategoryDetailsController extends _$CategoryDetailsController {
       ),
       PopupMenuItem(
         value: 2,
+        onTap: () {
+          Share.share('check out my website https://example.com');
+        },
         child: IconText(
           isCenter: false,
           title: AppText.share,

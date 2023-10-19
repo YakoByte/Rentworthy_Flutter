@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../application/dialog/dialog_service.dart';
 import '../../../../application/validate/validate.dart';
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_appbar.dart';
@@ -8,6 +9,7 @@ import '../../../../utils/common_components/common_button.dart';
 import '../../../../utils/common_components/common_text.dart';
 import '../../../../utils/common_components/text_input_field.dart';
 import '../../../../utils/images.dart';
+import '../../../../utils/import_utils.dart';
 import '../../../../utils/text.dart';
 import '../../../shimmers/edit_profile_shimmer.dart';
 import '../../error/error_screen.dart';
@@ -54,7 +56,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
         body: asyncState.when(
             data: (data) {
               if (controller().isLoading) {
-                return const EditProfileShimmer();
+                return CommonLoader();
               }
               return SingleChildScrollView(
                 physics: const NeverScrollableScrollPhysics(),
@@ -90,41 +92,63 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                       duration: 1000.ms),
                               Row(
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(right: w * 0.02),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(1000),
-                                      child: Stack(
-                                        children: [
-                                          Image.asset(
-                                            AppImg.homelist,
-                                            height: h * 0.075,
-                                            width: h * 0.075,
-                                            fit: BoxFit.cover,
-                                          ),
-                                          Positioned(
-                                            bottom: 0,
-                                            child: Container(
-                                              width: h * 0.078,
-                                              height: h * 0.031,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      const BorderRadius
-                                                          .vertical(
-                                                          bottom:
-                                                              Radius.circular(
-                                                                  1000)),
-                                                  color: AppColors
-                                                      .colorPrimarylight
-                                                      .withOpacity(0.7)),
-                                              child: Icon(
-                                                Icons.camera_alt,
-                                                color: AppColors.white,
-                                                size: h * 0.02,
+                                  GestureDetector(
+                                    onTap: () {
+                                      ref
+                                          .read(dialogServiceProvider)
+                                          .commonImagePicker(
+                                            picker: controller().imagePicker,
+                                            pickedImage: (file) {
+                                              controller().onImgSelect(
+                                                val: file,
+                                              );
+                                            },
+                                          );
+                                    },
+                                    child: Padding(
+                                      padding: EdgeInsets.only(right: w * 0.02),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(1000),
+                                        child: Stack(
+                                          children: [
+                                            controller().selectedImage == null
+                                                ? Image.asset(
+                                                    AppImg.homelist,
+                                                    height: h * 0.075,
+                                                    width: h * 0.075,
+                                                    fit: BoxFit.cover,
+                                                  )
+                                                : Image.file(
+                                                    controller().selectedImage!,
+                                                    height: h * 0.075,
+                                                    width: h * 0.075,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                            Positioned(
+                                              bottom: 0,
+                                              child: Container(
+                                                width: h * 0.078,
+                                                height: h * 0.031,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        const BorderRadius
+                                                            .vertical(
+                                                            bottom:
+                                                                Radius.circular(
+                                                                    1000)),
+                                                    color: AppColors
+                                                        .colorPrimarylight
+                                                        .withOpacity(0.7)),
+                                                child: Icon(
+                                                  Icons.camera_alt,
+                                                  color: AppColors.white,
+                                                  size: h * 0.02,
+                                                ),
                                               ),
-                                            ),
-                                          )
-                                        ],
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -490,7 +514,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                 backgroundColor: AppColors.white,
                 color: AppColors.red),
             loading: () {
-              return const EditProfileShimmer();
+              return CommonLoader();
             }));
   }
 }

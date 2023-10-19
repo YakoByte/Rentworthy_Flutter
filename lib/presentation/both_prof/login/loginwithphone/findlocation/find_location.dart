@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../../../../../application/dialog/dialod_service.dart';
+import '../../../../../application/dialog/dialog_service.dart';
+import '../../../../../data/both_prof/shared_pref/shared_pref.dart';
 import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_button.dart';
 import '../../../../../utils/common_components/common_navigator.dart';
@@ -123,6 +124,8 @@ class FindLocation extends ConsumerWidget {
                           ref
                               .read(dialogServiceProvider)
                               .handleLocationPermission();
+                          PreferenceManagerUtils.setIsLogin(true);
+                          PreferenceManagerUtils.setIsIndividual(1);
                           // ref.read(dialogServiceProvider).requestLocationPermission();
                           Navigator.pushAndRemoveUntil(
                               context,

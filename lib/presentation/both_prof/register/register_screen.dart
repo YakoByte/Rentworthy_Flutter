@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:rentworthy/application/validate/validate.dart';
 import 'package:rentworthy/utils/common_components/back_gradient.dart';
 import 'package:rentworthy/utils/common_components/common_button.dart';
 import 'package:rentworthy/utils/common_components/common_navigator.dart';
@@ -82,7 +83,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                               color: AppColors.white,
                               borderRadius: BorderRadius.circular(h * 0.025)),
                           child: controller().isLoading
-                              ? RegisterShimmer()
+                              ? CommonLoader()
                               : Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: w * 0.05,
@@ -113,124 +114,124 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                                                       width: 1,
                                                     ),
                                                   ),
-                                                  child: Container(
-                                                    child: TabBar(
-                                                        controller: controller()
-                                                            .tabController,
-                                                        onTap: (val) {
-                                                          controller().onTabTap(
-                                                              val: val);
-                                                        },
-                                                        unselectedLabelStyle: ptSansTextStyle(
-                                                            color: AppColors.black
-                                                                .withOpacity(
-                                                                    0.4),
-                                                            overflow: TextOverflow
-                                                                .visible,
-                                                            fontSize: w * 0.035,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w500),
-                                                        dividerColor:
-                                                            Colors.transparent,
-                                                        unselectedLabelColor:
-                                                            AppColors
-                                                                .transparent,
-                                                        indicatorSize:
-                                                            TabBarIndicatorSize
-                                                                .tab,
-                                                        labelStyle: ptSansTextStyle(
-                                                            color:
-                                                                AppColors.white,
-                                                            fontSize: h * 0.025,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w700),
-                                                        indicator:
-                                                            BoxDecoration(
-                                                                gradient:
-                                                                    const LinearGradient(
-                                                                        colors: [
-                                                                      AppColors
-                                                                          .colorPrimary,
-                                                                      AppColors
-                                                                          .colorSecondary,
-                                                                    ]),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            50),
-                                                                color: Colors
-                                                                    .redAccent),
-                                                        tabs: [
-                                                          Tab(
-                                                            height: h * 0.06,
-                                                            child: Align(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              child: Text(
-                                                                AppText
-                                                                    .reg_individual,
-                                                                style: ptSansTextStyle(
-                                                                    color: controller()
-                                                                                .selectedtab ==
-                                                                            0
-                                                                        ? AppColors
-                                                                            .white
-                                                                        : AppColors
-                                                                            .black
-                                                                            .withOpacity(
-                                                                                0.4),
-                                                                    overflow: TextOverflow
-                                                                        .visible,
-                                                                    fontSize: w *
-                                                                        0.035,
-                                                                    fontWeight: controller()
-                                                                                .selectedtab ==
-                                                                            0
-                                                                        ? FontWeight
-                                                                            .w700
-                                                                        : FontWeight
-                                                                            .w400),
-                                                              ),
+                                                  child: TabBar(
+                                                      controller: controller()
+                                                          .tabController,
+                                                      onTap: (val) {
+                                                        controller()
+                                                            .onTabTap(val: val);
+                                                      },
+                                                      unselectedLabelStyle:
+                                                          ptSansTextStyle(
+                                                              color: AppColors.black
+                                                                  .withOpacity(
+                                                                      0.4),
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .visible,
+                                                              fontSize:
+                                                                  w * 0.035,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                      dividerColor:
+                                                          Colors.transparent,
+                                                      unselectedLabelColor:
+                                                          AppColors.transparent,
+                                                      indicatorSize:
+                                                          TabBarIndicatorSize
+                                                              .tab,
+                                                      labelStyle:
+                                                          ptSansTextStyle(
+                                                              color: AppColors
+                                                                  .white,
+                                                              fontSize:
+                                                                  h * 0.025,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700),
+                                                      indicator: BoxDecoration(
+                                                          gradient:
+                                                              const LinearGradient(
+                                                                  colors: [
+                                                                AppColors
+                                                                    .colorPrimary,
+                                                                AppColors
+                                                                    .colorSecondary,
+                                                              ]),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(50),
+                                                          color:
+                                                              Colors.redAccent),
+                                                      tabs: [
+                                                        Tab(
+                                                          height: h * 0.06,
+                                                          child: Align(
+                                                            alignment: Alignment
+                                                                .center,
+                                                            child: Text(
+                                                              AppText
+                                                                  .reg_individual,
+                                                              style: ptSansTextStyle(
+                                                                  color: controller()
+                                                                              .selectedtab ==
+                                                                          0
+                                                                      ? AppColors
+                                                                          .white
+                                                                      : AppColors
+                                                                          .black
+                                                                          .withOpacity(
+                                                                              0.4),
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .visible,
+                                                                  fontSize:
+                                                                      w * 0.035,
+                                                                  fontWeight: controller()
+                                                                              .selectedtab ==
+                                                                          0
+                                                                      ? FontWeight
+                                                                          .w700
+                                                                      : FontWeight
+                                                                          .w400),
                                                             ),
                                                           ),
-                                                          Tab(
-                                                            height: h * 0.06,
-                                                            child: Align(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              child: Text(
-                                                                AppText
-                                                                    .reg_business,
-                                                                style: ptSansTextStyle(
-                                                                    color: controller()
-                                                                                .selectedtab ==
-                                                                            1
-                                                                        ? AppColors
-                                                                            .white
-                                                                        : AppColors
-                                                                            .black
-                                                                            .withOpacity(
-                                                                                0.4),
-                                                                    overflow: TextOverflow
-                                                                        .visible,
-                                                                    fontSize: w *
-                                                                        0.035,
-                                                                    fontWeight: controller()
-                                                                                .selectedtab ==
-                                                                            1
-                                                                        ? FontWeight
-                                                                            .w700
-                                                                        : FontWeight
-                                                                            .w400),
-                                                              ),
+                                                        ),
+                                                        Tab(
+                                                          height: h * 0.06,
+                                                          child: Align(
+                                                            alignment: Alignment
+                                                                .center,
+                                                            child: Text(
+                                                              AppText
+                                                                  .reg_business,
+                                                              style: ptSansTextStyle(
+                                                                  color: controller()
+                                                                              .selectedtab ==
+                                                                          1
+                                                                      ? AppColors
+                                                                          .white
+                                                                      : AppColors
+                                                                          .black
+                                                                          .withOpacity(
+                                                                              0.4),
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .visible,
+                                                                  fontSize:
+                                                                      w * 0.035,
+                                                                  fontWeight: controller()
+                                                                              .selectedtab ==
+                                                                          1
+                                                                      ? FontWeight
+                                                                          .w700
+                                                                      : FontWeight
+                                                                          .w400),
                                                             ),
                                                           ),
-                                                        ]),
-                                                  ),
+                                                        ),
+                                                      ]),
                                                 ),
 
                                                 ///input fields
@@ -245,8 +246,9 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                                                               .spaceEvenly,
                                                       children: [
                                                         TextInputField(
-                                                            enableunderlinecolor: AppColors
-                                                                .bordercolor,
+                                                            enableunderlinecolor:
+                                                                AppColors
+                                                                    .bordercolor,
                                                             disableunderlinecolor:
                                                                 AppColors
                                                                     .bordercolor,
@@ -281,11 +283,18 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                                                                     h * 0.021,
                                                                 fontWeight: FontWeight
                                                                     .w400),
-                                                            errorText: "",
-                                                            errorStyle: ptSansTextStyle(
-                                                                color: AppColors.red,
-                                                                fontSize: h * 0.019,
-                                                                fontWeight: FontWeight.w400),
+                                                            errorText: controller().isSubmit
+                                                                ? validateEmail(controller().emailController.text)
+                                                                : null,
+                                                            onChanged: (val) {
+                                                              setState(() {
+                                                                validateEmail(
+                                                                    controller()
+                                                                        .emailController
+                                                                        .text);
+                                                              });
+                                                            },
+                                                            errorStyle: ptSansTextStyle(color: AppColors.red, fontSize: h * 0.019, fontWeight: FontWeight.w400),
                                                             controller: controller().emailController,
                                                             keyboardType: TextInputType.emailAddress,
                                                             containerwidth: w,
@@ -293,8 +302,9 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                                                             containercolor: AppColors.white,
                                                             textCapitalization: TextCapitalization.none),
                                                         TextInputField(
-                                                            enableunderlinecolor: AppColors
-                                                                .bordercolor,
+                                                            enableunderlinecolor:
+                                                                AppColors
+                                                                    .bordercolor,
                                                             disableunderlinecolor:
                                                                 AppColors
                                                                     .bordercolor,
@@ -329,11 +339,18 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                                                                     h * 0.021,
                                                                 fontWeight: FontWeight
                                                                     .w400),
-                                                            errorText: "",
-                                                            errorStyle: ptSansTextStyle(
-                                                                color: AppColors.red,
-                                                                fontSize: h * 0.019,
-                                                                fontWeight: FontWeight.w400),
+                                                            errorText: controller().isSubmit
+                                                                ? validatePassword(controller().passController.text)
+                                                                : null,
+                                                            onChanged: (val) {
+                                                              setState(() {
+                                                                validatePassword(
+                                                                    controller()
+                                                                        .passController
+                                                                        .text);
+                                                              });
+                                                            },
+                                                            errorStyle: ptSansTextStyle(color: AppColors.red, fontSize: h * 0.019, fontWeight: FontWeight.w400),
                                                             controller: controller().passController,
                                                             keyboardType: TextInputType.visiblePassword,
                                                             suffixicon: SizedBox(
@@ -451,8 +468,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                                                                           .w700),
                                                           onPressed: () {
                                                             controller()
-                                                                .onisSignin(
-                                                                    val: true);
+                                                                .onRegister();
                                                           }),
                                                       Column(
                                                         children: [

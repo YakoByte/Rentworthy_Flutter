@@ -1,9 +1,14 @@
+import 'dart:math';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:rentworthy/application/both_prof/login/login_service.dart';
 import 'package:rentworthy/presentation/business_prof/login/acc_verification/account_verification_bsns.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../application/validate/validate.dart';
+import '../../../../data/both_prof/shared_pref/shared_pref.dart';
 import '../../../../utils/common_components/common_navigator.dart';
 import '../../../../utils/globals.dart';
 import '../../../indi_prof/bottombar/bottom_bar.dart';
@@ -20,6 +25,7 @@ class BusinessLoginPhoneController extends _$BusinessLoginPhoneController {
   TextEditingController countryCodeController =
       TextEditingController(text: "+91");
   bool _isLoading = false;
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   bool get isLoading => _isLoading;
   bool _issubmit = false;
@@ -61,12 +67,37 @@ class BusinessLoginPhoneController extends _$BusinessLoginPhoneController {
         state = const AsyncLoading();
 
         if (index == 0) {
-          commonNavigator(
-              type: PageTransitionType.rightToLeftWithFade,
-              context: Globals.navigatorKey.currentContext!,
-              child: BusinessAccountVerification(
-                email: countryCodeController.text + phoneController.text,
-              ));
+          ref.read(loginServiceProvider).sendOTP(
+                phoneNumber: countryCodeController.text + phoneController.text,
+                verificationCompleted: (PhoneAuthCredential credential) {
+                  debugPrint('verificationCompleted');
+                },
+                verificationFailed: (FirebaseAuthException e) {
+                  debugPrint('verificationFailed');
+                },
+                // codeSent: (String verificationId, int? resendToken) {},
+                codeAutoRetrievalTimeout: (String verificationId) {
+                  debugPrint('codeAutoRetrievalTimeout');
+                },
+                // You can use the `codeSent` callback to display the generated OTP to the user
+                codeSent: (String verificationId, int? resendToken) {
+                  commonNavigator(
+                      type: PageTransitionType.rightToLeftWithFade,
+                      context: Globals.navigatorKey.currentContext!,
+                      child: BusinessAccountVerification(
+                        email:
+                            countryCodeController.text + phoneController.text,
+                      ));
+                  debugPrint('Verification code: $verificationId');
+                },
+              );
+
+          // commonNavigator(
+          //     type: PageTransitionType.rightToLeftWithFade,
+          //     context: Globals.navigatorKey.currentContext!,
+          //     child: BusinessAccountVerification(
+          //       email: countryCodeController.text + phoneController.text,
+          //     ));
         } else if (index == 1) {
           commonNavigator(
             context: Globals.navigatorKey.currentContext!,
@@ -76,6 +107,8 @@ class BusinessLoginPhoneController extends _$BusinessLoginPhoneController {
             type: PageTransitionType.rightToLeftWithFade,
           );
         } else if (index == 2) {
+          PreferenceManagerUtils.setIsLogin(true);
+          PreferenceManagerUtils.setIsIndividual(2);
           Navigator.pushAndRemoveUntil(
               Globals.navigatorKey.currentContext!,
               PageTransition(
@@ -84,6 +117,8 @@ class BusinessLoginPhoneController extends _$BusinessLoginPhoneController {
                   duration: const Duration(milliseconds: 400)),
               (Route<dynamic> route) => false);
         } else if (index == 3) {
+          PreferenceManagerUtils.setIsLogin(true);
+          PreferenceManagerUtils.setIsIndividual(2);
           Navigator.pushAndRemoveUntil(
               Globals.navigatorKey.currentContext!,
               PageTransition(

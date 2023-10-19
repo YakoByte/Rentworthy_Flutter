@@ -288,22 +288,22 @@ mixin CircularSeriesRendererExtension implements CircularSeriesRenderer {
       innerRadius = innerRadius ?? oldPoint!.innerRadius;
       outerRadius = outerRadius ?? oldPoint!.outerRadius;
       if (cornerStyle != CornerStyle.bothFlat) {
-        print("sd innerRadius   $innerRadius  $outerRadius");
+        // print("sd innerRadius   $innerRadius  $outerRadius");
         final num angleDeviation =
             findAngleDeviation(innerRadius!, outerRadius!, 360);
-        print("angleDeviation $angleDeviation");
+        // print("angleDeviation $angleDeviation");
 
         actualStartAngle = (cornerStyle == CornerStyle.startCurve ||
                 cornerStyle == CornerStyle.bothCurve)
             ? (pointStartAngle! + angleDeviation)
             : pointStartAngle!;
-        print("actualStartAngle $actualStartAngle");
+        // print("actualStartAngle $actualStartAngle");
 
         actualEndAngle = (cornerStyle == CornerStyle.endCurve ||
                 cornerStyle == CornerStyle.bothCurve)
             ? (pointEndAngle! + angleDeviation)
             : pointEndAngle!;
-        print("actualEndAngle $actualEndAngle");
+        // print("actualEndAngle $actualEndAngle");
       }
       renderPath = Path();
       renderPath = (cornerStyle == CornerStyle.startCurve ||

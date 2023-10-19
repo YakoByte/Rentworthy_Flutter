@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:rentworthy/utils/common_components/common_navigator.dart';
-import '../../../application/dialog/dialod_service.dart';
+import '../../../application/dialog/dialog_service.dart';
 import '../../../utils/color.dart';
 import '../../../utils/common_components/common_button.dart';
 import '../../../utils/common_components/common_text.dart';
@@ -87,7 +88,12 @@ class _SelectDateDialogState extends ConsumerState<SelectDateDialog> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CommonText(
-                        text: "29 May - 31 May",
+                        text: controller().pickerController.selectedRange ==
+                                null
+                            ? "Please Select Dates"
+                            : "${controller().pickerController.selectedRange!.startDate == null ? "" : DateFormat('dd MMM').format(controller().pickerController.selectedRange!.startDate!)}"
+                                "${controller().pickerController.selectedRange!.endDate == null ? " " : " - "}"
+                                "${controller().pickerController.selectedRange!.endDate == null ? "" : DateFormat('dd MMM').format(controller().pickerController.selectedRange!.endDate!)}",
                         style: ptSansTextStyle(
                             color: AppColors.black.withOpacity(0.8),
                             fontSize: h * 0.025,
@@ -131,6 +137,7 @@ class _SelectDateDialogState extends ConsumerState<SelectDateDialog> {
                     endRangeSelectionColor: AppColors.white,
                     onSelectionChanged:
                         (DateRangePickerSelectionChangedArgs args) {
+                      setState(() {});
                       // print('selectionChanged');
                       // print(args.value);
                       // controller().ondateselectionchange(args.value);

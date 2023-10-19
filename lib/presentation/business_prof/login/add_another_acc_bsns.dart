@@ -46,7 +46,7 @@ class _BusinessAddAnotherAccState extends ConsumerState<BusinessAddAnotherAcc> {
       body: asyncState.when(
           data: (data) {
             if (controller().isLoading) {
-              return const SignInShimmer();
+              return CommonLoader();
             }
             return Container(
                 width: w,

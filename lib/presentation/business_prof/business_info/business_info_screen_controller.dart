@@ -3,7 +3,7 @@ import 'package:rentworthy/utils/globals.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../utils/common_components/common_tickerprovider.dart';
-import '../../../application/dialog/dialod_service.dart';
+import '../../../application/dialog/dialog_service.dart';
 
 part 'business_info_screen_controller.g.dart';
 

@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:rentworthy/presentation/both_prof/register/register_screen.dart';
 import 'package:rentworthy/presentation/indi_prof/account/setting/review/all_review/all_review.dart';
 import 'package:rentworthy/presentation/indi_prof/booking/booking_screen.dart';
 import 'package:rentworthy/utils/common_components/common_navigator.dart';
 import 'package:rentworthy/utils/common_components/icon_text.dart';
 
-import '../../../../application/dialog/dialod_service.dart';
+import '../../../../application/dialog/dialog_service.dart';
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_button.dart';
 import '../../../../utils/common_components/common_text.dart';
@@ -939,8 +940,8 @@ class HomeNavDrawer extends ConsumerWidget {
                               );
                             })
                         .animate()
-                        .fadeIn(duration: 270.ms)
-                        .then(delay: 270.ms)
+                        .fadeIn(duration: 290.ms)
+                        .then(delay: 290.ms)
                         .slideX(
                           begin: 1,
                           end: 0,

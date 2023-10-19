@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
-import 'package:rentworthy/application/dialog/dialod_service.dart';
+import 'package:rentworthy/application/dialog/dialog_service.dart';
 
 import '../../../utils/color.dart';
 import '../../../utils/common_components/common_text.dart';

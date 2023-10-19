@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../../utils/color.dart';
-import '../../../../../utils/common_components/common_appbar.dart';
-import '../../../../../utils/common_components/common_button.dart';
-import '../../../../../utils/common_components/common_text.dart';
-import '../../../../../utils/common_components/text_input_field.dart';
-import '../../../../../utils/images.dart';
-import '../../../../../utils/text.dart';
-import '../../../../shimmers/create_password_shimmer.dart';
-import '../../../../shimmers/rent_now_shimmer.dart';
+import '../../../../../utils/import_utils.dart';
+
 import '../../../error/error_screen.dart';
 import 'create_password_controller.dart';
 
@@ -49,7 +42,7 @@ class CreatePassword extends ConsumerWidget {
       body: asyncState.when(
           data: (data) {
             if (controller().isLoading) {
-              return const CreatePassShimmer();
+              return CommonLoader();
             }
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -233,7 +226,7 @@ class CreatePassword extends ConsumerWidget {
               backgroundColor: AppColors.white,
               color: AppColors.red),
           loading: () {
-            return const CreatePassShimmer();
+            return CommonLoader();
           }),
     );
   }

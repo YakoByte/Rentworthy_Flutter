@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/onboarding/onboarding_repo.dart';
+import '../../data/both_prof/onboarding/onboarding_repo.dart';
 import '../../model/onboarding/onboarding.dart';
 
 abstract class OnBoardingService {

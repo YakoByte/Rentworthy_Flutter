@@ -12,6 +12,8 @@ import '../../../../utils/common_components/common_title_subtitle.dart';
 import '../../../../utils/common_components/text_input_field.dart';
 import '../../../../utils/images.dart';
 import '../../../../utils/text.dart';
+import '../../home/categories/curve_wave.dart';
+import '../../home/categories/home_search.dart';
 import '../chat_screen_controller.dart';
 import 'chat_item.dart';
 
@@ -167,7 +169,7 @@ class _MessageScreenState extends ConsumerState<MessageScreen> {
 
     return CommonListView(
         controller: controller().scrollController,
-        itemCount: 10,
+        itemCount: controller().getmsgList.length,
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         padding: EdgeInsets.zero,
@@ -176,18 +178,7 @@ class _MessageScreenState extends ConsumerState<MessageScreen> {
         itemBuilder: (context, index) {
           return ChatItem(
             index: index,
-            item: [
-              "sdfsfdm",
-              "dfsasm",
-              "aknjdsfabd",
-              "asfgsjnhd",
-              "ajfgsbdzfdfgdg ejijie riei he irei jmierjojeri jmroie gergero mgrjie jmogieirogjihgdh",
-              "sdsfgm",
-              "assfgm",
-              "aknjabd",
-              "ajnhd",
-              "ajsbdhgdh",
-            ],
+            item: controller().getmsgList,
             loginstudid: '1',
           );
         });
@@ -375,7 +366,7 @@ class _MessageScreenState extends ConsumerState<MessageScreen> {
                   indent: w * 0.02,
                 ),
                 TextInputField(
-                  controller: controller().textEditingController,
+                  controller: controller().messageController,
                   keyboardType: TextInputType.multiline,
                   enabled: true,
                   underline: false,
@@ -394,57 +385,131 @@ class _MessageScreenState extends ConsumerState<MessageScreen> {
                   containercolor: AppColors.white,
                   bordercolor: null,
                   onTap: () {},
-                  suffixicon: Material(
-                    color: AppColors.transparent,
-                    child: IconButton(
-                      icon: Icon(
-                        controller().textEditingController.text.isEmpty
-                            ? Icons.mic
-                            : Icons.send,
-                        size: h * 0.03,
-                        color: AppColors.black.withOpacity(0.4),
-                      ),
-                      onPressed: () {
-                        // if (controller().textEditingController.text.isNotEmpty) {
-                        //   setState(() {
-                        //     sendmessageApi();
-                        //
-                        //     _message.add(Message(
-                        //         customData: CustomData(),
-                        //         userId: recid,
-                        //         userType: recid,
-                        //         type: "message",
-                        //         message: _textEditingController.text));
-                        //     SocketConfig().sendmsg(
-                        //         text: _textEditingController.text,
-                        //         recrole: recrole,
-                        //         recid: recid,
-                        //         msg: (msg) {
-                        //           print("msgmsgmsg =-=-=- ${msg.userId}");
-                        //           setState(() {
-                        //             _message.add(msg);
-                        //           });
-                        //           if (_message.length > 4) {
-                        //             print("innnsdfs");
-                        //             WidgetsBinding.instance
-                        //                 .addPostFrameCallback(
-                        //                     (_) => _scrollToEnd());
-                        //           }
-                        //           print("_message_message $_message");
-                        //         },
-                        //         sendid: senderid,
-                        //         sendtype: sendrole);
-                        //
-                        //     _textEditingController.clear();
-                        //   });
-                        // }
-                        // if (chatList.length > 4) {
-                        //   WidgetsBinding.instance
-                        //       .addPostFrameCallback((_) => _scrollToEnd());
-                        // }
-                      },
-                    ),
-                  ),
+                  onChanged: (value) {
+                    setState(() {});
+                  },
+                  // suffixicon: Material(
+                  //   color: AppColors.transparent,
+                  //   child: IconButton(
+                  //     icon: Icon(
+                  //       controller().messageController.text.isEmpty
+                  //           ? Icons.mic
+                  //           : Icons.send,
+                  //       size: h * 0.03,
+                  //       color: AppColors.black.withOpacity(0.4),
+                  //     ),
+                  //     onPressed: () {
+                  //       if (controller().messageController.text.isEmpty) {
+                  //         if (controller().speechRecognitionAvailable &&
+                  //             !controller().isListening) {
+                  //           print(
+                  //               "ssdsdpeechRecognitionAvailable ${controller().speechRecognitionAvailable}");
+                  //           print(
+                  //               "isListeningisListening ${controller().isListening}");
+                  //           controller().start();
+                  //         }
+                  //       }
+                  //
+                  //       // if (controller().textEditingController.text.isNotEmpty) {
+                  //       //   setState(() {
+                  //       //     sendmessageApi();
+                  //       //
+                  //       //     _message.add(Message(
+                  //       //         customData: CustomData(),
+                  //       //         userId: recid,
+                  //       //         userType: recid,
+                  //       //         type: "message",
+                  //       //         message: _textEditingController.text));
+                  //       //     SocketConfig().sendmsg(
+                  //       //         text: _textEditingController.text,
+                  //       //         recrole: recrole,
+                  //       //         recid: recid,
+                  //       //         msg: (msg) {
+                  //       //           print("msgmsgmsg =-=-=- ${msg.userId}");
+                  //       //           setState(() {
+                  //       //             _message.add(msg);
+                  //       //           });
+                  //       //           if (_message.length > 4) {
+                  //       //             print("innnsdfs");
+                  //       //             WidgetsBinding.instance
+                  //       //                 .addPostFrameCallback(
+                  //       //                     (_) => _scrollToEnd());
+                  //       //           }
+                  //       //           print("_message_message $_message");
+                  //       //         },
+                  //       //         sendid: senderid,
+                  //       //         sendtype: sendrole);
+                  //       //
+                  //       //     _textEditingController.clear();
+                  //       //   });
+                  //       // }
+                  //       // if (chatList.length > 4) {
+                  //       //   WidgetsBinding.instance
+                  //       //       .addPostFrameCallback((_) => _scrollToEnd());
+                  //       // }
+                  //     },
+                  //   ),
+                  // ),
+                  suffixicon: (controller().speechRecognitionAvailable ==
+                              false ||
+                          controller().isListening == false)
+                      ? CommonIconButton(
+                          containerwidth: h * 0.07,
+                          containerheight: h * 0.07,
+                          backgroundColor: AppColors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50)),
+                          centericon: Icon(
+                              controller().messageController.text.isEmpty
+                                  ? Icons.mic
+                                  : Icons.send,
+                              color: AppColors.gray.withOpacity(0.6),
+                              size: h * 0.03),
+                          onPressed: () {
+                            setState(() {
+                              if (controller().messageController.text.isEmpty) {
+                                if (controller().speechRecognitionAvailable &&
+                                    !controller().isListening) {
+                                  print(
+                                      "ssdsdpeechRecognitionAvailable ${controller().speechRecognitionAvailable}");
+                                  print(
+                                      "isListeningisListening ${controller().isListening}");
+                                  controller().start();
+                                }
+                              } else {
+                                controller().onSend();
+                              }
+                            });
+                          })
+                      : GestureDetector(
+                          onTap: () {
+                            controller().stop();
+                          },
+                          child: CustomPaint(
+                            painter: CirclePainter(
+                              controller().animationController!,
+                              color: AppColors.colorSecondary,
+                            ),
+                            child: SizedBox(
+                              width: h * 0.07,
+                              height: h * 0.07,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(1000),
+                                child: ScaleTransition(
+                                    scale: Tween(begin: 0.95, end: 1.0).animate(
+                                      CurvedAnimation(
+                                        parent:
+                                            controller().animationController!,
+                                        curve: CurveWave(),
+                                      ),
+                                    ),
+                                    child: Icon(Icons.mic,
+                                        color: AppColors.white.withOpacity(0.8),
+                                        size: h * 0.03)),
+                              ),
+                            ),
+                          ),
+                        ),
                   prefix: Material(
                     color: AppColors.transparent,
                     child: IconButton(
@@ -473,9 +538,9 @@ class _MessageScreenState extends ConsumerState<MessageScreen> {
     final asyncState = ref.watch(chatScreenControllerProvider);
     controller() => ref.read(chatScreenControllerProvider.notifier);
 
-    controller().textEditingController
-      ..text = controller().textEditingController.text.characters.toString()
+    controller().messageController
+      ..text = controller().messageController.text.characters.toString()
       ..selection = TextSelection.fromPosition(
-          TextPosition(offset: controller().textEditingController.text.length));
+          TextPosition(offset: controller().messageController.text.length));
   }
 }

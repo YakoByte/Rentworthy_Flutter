@@ -47,7 +47,7 @@ class _BusinessLoginFBState extends ConsumerState<BusinessLoginFB> {
       body: asyncState.when(
           data: (data) {
             if (controller().isLoading) {
-              return const SignInShimmer();
+              return CommonLoader();
             }
             return Padding(
               padding: EdgeInsets.symmetric(
