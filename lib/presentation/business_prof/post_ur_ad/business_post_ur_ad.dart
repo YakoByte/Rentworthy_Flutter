@@ -6,6 +6,8 @@ import 'package:rentworthy/presentation/business_prof/admin_panel/admin_panel.da
 import 'package:rentworthy/presentation/shimmers/post_ur_ad.dart';
 import 'package:rentworthy/utils/common_components/common_iconbutton.dart';
 
+import '../../../application/dialog/dialog_service.dart';
+import '../../../application/validate/validate.dart';
 import '../../../utils/color.dart';
 import '../../../utils/common_components/common_appbar.dart';
 import '../../../utils/common_components/common_button.dart';
@@ -138,9 +140,6 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                         TextInputField(
                                 hintText: "",
                                 titleText: "Brand*",
-                                onChanged: (value) {
-                                  setState(() {});
-                                },
                                 enableunderlinecolor:
                                     AppColors.black.withOpacity(0.6),
                                 disableunderlinecolor:
@@ -161,7 +160,16 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                                     color: AppColors.black.withOpacity(0.6),
                                     fontSize: h * 0.021,
                                     fontWeight: FontWeight.w500),
-                                errorText: "",
+                                errorText: controller().isSubmit == true
+                                    ? validate(
+                                        controller().itemnameController.text)
+                                    : null,
+                                onChanged: (value) {
+                                  setState(() {
+                                    validate(
+                                        controller().itemnameController.text);
+                                  });
+                                },
                                 errorStyle: ptSansTextStyle(
                                     color: AppColors.red,
                                     fontSize: h * 0.019,
@@ -184,43 +192,6 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                                 end: 0,
                                 curve: Curves.easeInOutCubic,
                                 duration: 630.ms),
-                        // TextInputField(
-                        //     hintText: "",
-                        //     titleText: AppText.subcat,
-                        //     onChanged: (value) {
-                        //       setState(() {});
-                        //     },
-                        //     enableunderlinecolor: AppColors.black.withOpacity(0.6),
-                        //     disableunderlinecolor: AppColors.black.withOpacity(0.6),
-                        //     focusunderlinecolor: AppColors.black.withOpacity(0.6),
-                        //     underlinecolor: AppColors.black.withOpacity(0.6),
-                        //     hintStyle: ptSansTextStyle(
-                        //         color: AppColors.black.withOpacity(0.6),
-                        //         fontSize: h * 0.019,
-                        //         fontWeight: FontWeight.w400),
-                        //     textstyle: ptSansTextStyle(
-                        //         color: AppColors.black,
-                        //         fontSize: h * 0.019,
-                        //         fontWeight: FontWeight.w500),
-                        //     titletextstyle: ptSansTextStyle(
-                        //         color: AppColors.black.withOpacity(0.6),
-                        //         fontSize: h * 0.021,
-                        //         fontWeight: FontWeight.w500),
-                        //     errorText: "",
-                        //     errorStyle: ptSansTextStyle(
-                        //         color: AppColors.red,
-                        //         fontSize: h * 0.019,
-                        //         fontWeight: FontWeight.w400),
-                        //     controller: controller().subcatController,
-                        //     keyboardType: TextInputType.text,
-                        //     containerwidth: w,
-                        //     underline: false,
-                        //     borderRadius: BorderRadius.circular(4),
-                        //     containerborder:
-                        //         Border.all(color: AppColors.black.withOpacity(0.4)),
-                        //     containerheight: h * 0.06,
-                        //     containercolor: AppColors.white,
-                        //     textCapitalization: TextCapitalization.none),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -242,63 +213,6 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                                   borderRadius: BorderRadius.circular(4)),
                               child: CommonMultiSelectDrop(
                                 dropdownselecttitle: "Select Category",
-                                // dropdowntitle: Column(
-                                //   children: [
-                                //     Row(
-                                //       children: [
-                                //         Container(
-                                //           width: w * 0.85,
-                                //           height: h * 0.035,
-                                //           color: AppColors.white,
-                                //           child: SliderTheme(
-                                //               data: SliderThemeData(
-                                //                 trackHeight: h * 0.013,
-                                //                 thumbShape:
-                                //                     GradientRectSliderThumbShape(
-                                //                         disabledThumbRadius:
-                                //                             h * 0.014,
-                                //                         enabledThumbRadius:
-                                //                             h * 0.014),
-                                //                 trackShape:
-                                //                     const GradientRectSliderTrackShape(
-                                //                         gradient: LinearGradient(
-                                //                           colors: <Color>[
-                                //                             AppColors.colorPrimary,
-                                //                             AppColors.colorSecondary
-                                //                           ],
-                                //                         ),
-                                //                         darkenInactive: true),
-                                //               ),
-                                //               child: Slider(
-                                //                 min: 0,
-                                //                 max: 100,
-                                //                 inactiveColor:
-                                //                     AppColors.black.withOpacity(0.2),
-                                //                 thumbColor: AppColors.white,
-                                //                 value: 50.0,
-                                //                 onChanged: (double value) {},
-                                //               )),
-                                //         ),
-                                //       ],
-                                //     ),
-                                //     Padding(
-                                //       padding: EdgeInsets.symmetric(
-                                //           vertical: h * 0.015, horizontal: w * 0.025),
-                                //       child: Row(
-                                //         children: [
-                                //           CommonText(
-                                //             text: "Price: \u{20B9}0 - \u{20B9}5,000 ",
-                                //             style: ptSansTextStyle(
-                                //                 color:
-                                //                     AppColors.black.withOpacity(0.4),
-                                //                 fontSize: h * 0.02,
-                                //                 fontWeight: FontWeight.w600),
-                                //           ),
-                                //         ],
-                                //       ),
-                                //     )
-                                //   ],
-                                // ),
                                 items: controller().catList,
                                 selectedItems: controller().selectCat,
                                 dropdownDecoratorProps: DropDownDecoratorProps(
@@ -406,9 +320,6 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                               TextInputField(
                                   hintText: "",
                                   titleText: AppText.adtitle,
-                                  onChanged: (value) {
-                                    setState(() {});
-                                  },
                                   enableunderlinecolor:
                                       AppColors.black.withOpacity(0.6),
                                   disableunderlinecolor:
@@ -429,7 +340,16 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                                       color: AppColors.black.withOpacity(0.6),
                                       fontSize: h * 0.021,
                                       fontWeight: FontWeight.w500),
-                                  errorText: "",
+                                  errorText: controller().isSubmit == true
+                                      ? validate(
+                                          controller().addtitleController.text)
+                                      : null,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      validate(
+                                          controller().addtitleController.text);
+                                    });
+                                  },
                                   errorStyle: ptSansTextStyle(
                                       color: AppColors.red,
                                       fontSize: h * 0.019,
@@ -502,11 +422,17 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                                       color: AppColors.black.withOpacity(0.6),
                                       fontSize: h * 0.021,
                                       fontWeight: FontWeight.w500),
-                                  errorText: "",
-                                  maxLength: 4096,
+                                  errorText: controller().isSubmit == true
+                                      ? validate(
+                                          controller().descController.text)
+                                      : null,
                                   onChanged: (value) {
-                                    setState(() {});
+                                    setState(() {
+                                      validate(
+                                          controller().descController.text);
+                                    });
                                   },
+                                  maxLength: 4096,
                                   errorStyle: ptSansTextStyle(
                                       color: AppColors.red,
                                       fontSize: h * 0.019,
@@ -586,9 +512,6 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                         TextInputField(
                                 hintText: "",
                                 titleText: "Maximum",
-                                onChanged: (value) {
-                                  setState(() {});
-                                },
                                 enableunderlinecolor:
                                     AppColors.black.withOpacity(0.6),
                                 disableunderlinecolor:
@@ -609,7 +532,15 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                                     color: AppColors.black.withOpacity(0.6),
                                     fontSize: h * 0.021,
                                     fontWeight: FontWeight.w500),
-                                errorText: "",
+                                errorText: controller().isSubmit == true
+                                    ? validate(
+                                        controller().priceController.text)
+                                    : null,
+                                onChanged: (value) {
+                                  setState(() {
+                                    validate(controller().priceController.text);
+                                  });
+                                },
                                 errorStyle: ptSansTextStyle(
                                     color: AppColors.red,
                                     fontSize: h * 0.019,
@@ -657,9 +588,6 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                         TextInputField(
                                 hintText: "",
                                 titleText: "Maximum",
-                                onChanged: (value) {
-                                  setState(() {});
-                                },
                                 enableunderlinecolor:
                                     AppColors.black.withOpacity(0.6),
                                 disableunderlinecolor:
@@ -680,7 +608,15 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                                     color: AppColors.black.withOpacity(0.6),
                                     fontSize: h * 0.021,
                                     fontWeight: FontWeight.w500),
-                                errorText: "",
+                                errorText: controller().isSubmit == true
+                                    ? validate(
+                                        controller().priceController.text)
+                                    : null,
+                                onChanged: (value) {
+                                  setState(() {
+                                    validate(controller().priceController.text);
+                                  });
+                                },
                                 errorStyle: ptSansTextStyle(
                                     color: AppColors.red,
                                     fontSize: h * 0.019,
@@ -754,9 +690,6 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                         TextInputField(
                                 hintText: "",
                                 titleText: "Maximum",
-                                onChanged: (value) {
-                                  setState(() {});
-                                },
                                 enableunderlinecolor:
                                     AppColors.black.withOpacity(0.6),
                                 disableunderlinecolor:
@@ -777,7 +710,15 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                                     color: AppColors.black.withOpacity(0.6),
                                     fontSize: h * 0.021,
                                     fontWeight: FontWeight.w500),
-                                errorText: "",
+                                errorText: controller().isSubmit == true
+                                    ? validate(
+                                        controller().priceController.text)
+                                    : null,
+                                onChanged: (value) {
+                                  setState(() {
+                                    validate(controller().priceController.text);
+                                  });
+                                },
                                 errorStyle: ptSansTextStyle(
                                     color: AppColors.red,
                                     fontSize: h * 0.019,
@@ -825,9 +766,6 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                         TextInputField(
                                 hintText: "",
                                 titleText: "Maximum",
-                                onChanged: (value) {
-                                  setState(() {});
-                                },
                                 enableunderlinecolor:
                                     AppColors.black.withOpacity(0.6),
                                 disableunderlinecolor:
@@ -848,7 +786,15 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                                     color: AppColors.black.withOpacity(0.6),
                                     fontSize: h * 0.021,
                                     fontWeight: FontWeight.w500),
-                                errorText: "",
+                                errorText: controller().isSubmit == true
+                                    ? validate(
+                                        controller().priceController.text)
+                                    : null,
+                                onChanged: (value) {
+                                  setState(() {
+                                    validate(controller().priceController.text);
+                                  });
+                                },
                                 errorStyle: ptSansTextStyle(
                                     color: AppColors.red,
                                     fontSize: h * 0.019,
@@ -948,7 +894,17 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                             physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
                               return GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  ref
+                                      .read(dialogServiceProvider)
+                                      .commonImagePicker(
+                                        picker: controller().imagePicker,
+                                        pickedImage: (file) {
+                                          controller().onImgSelect(
+                                              val: file, index: index);
+                                        },
+                                      );
+                                },
                                 child: Container(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: w * 0.05,
@@ -960,29 +916,37 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                                           color:
                                               AppColors.black.withOpacity(0.4),
                                           width: 2)),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.add_a_photo,
-                                        color: AppColors.black.withOpacity(0.4),
-                                        size: h * 0.04,
-                                      ),
-                                      CommonText(
-                                          text: "Add Photo",
-                                          textAlign: TextAlign.center,
-                                          style: ptSansTextStyle(
-                                            color: AppColors.black
-                                                .withOpacity(0.4),
-                                            fontSize: h * 0.015,
-                                            overflow: TextOverflow.ellipsis,
-                                            fontWeight: FontWeight.w600,
-                                          )),
-                                    ],
-                                  ),
+                                  child: controller()
+                                              .selectedImage[index]
+                                              .path ==
+                                          ""
+                                      ? Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.add_a_photo,
+                                              color: AppColors.black
+                                                  .withOpacity(0.4),
+                                              size: h * 0.04,
+                                            ),
+                                            CommonText(
+                                                text: "Add Photo",
+                                                textAlign: TextAlign.center,
+                                                style: ptSansTextStyle(
+                                                  color: AppColors.black
+                                                      .withOpacity(0.4),
+                                                  fontSize: h * 0.015,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  fontWeight: FontWeight.w600,
+                                                )),
+                                          ],
+                                        )
+                                      : Image.file(
+                                          controller().selectedImage[index]),
                                 ),
                               );
                             }),
@@ -1037,9 +1001,6 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                         TextInputField(
                             hintText: "",
                             titleText: AppText.state,
-                            onChanged: (value) {
-                              setState(() {});
-                            },
                             enableunderlinecolor:
                                 AppColors.black.withOpacity(0.6),
                             disableunderlinecolor:
@@ -1059,7 +1020,14 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                                 color: AppColors.black.withOpacity(0.6),
                                 fontSize: h * 0.021,
                                 fontWeight: FontWeight.w500),
-                            errorText: "",
+                            errorText: controller().isSubmit == true
+                                ? validate(controller().stateController.text)
+                                : null,
+                            onChanged: (value) {
+                              setState(() {
+                                validate(controller().stateController.text);
+                              });
+                            },
                             errorStyle: ptSansTextStyle(
                                 color: AppColors.red,
                                 fontSize: h * 0.019,
@@ -1128,9 +1096,6 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                             TextInputField(
                                 hintText: "",
                                 titleText: AppText.adtitle,
-                                onChanged: (value) {
-                                  setState(() {});
-                                },
                                 enableunderlinecolor:
                                     AppColors.black.withOpacity(0.6),
                                 disableunderlinecolor:
@@ -1151,7 +1116,18 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                                     color: AppColors.black.withOpacity(0.6),
                                     fontSize: h * 0.021,
                                     fontWeight: FontWeight.w500),
-                                errorText: "",
+                                errorText: controller().isSubmit == true
+                                    ? validate(controller()
+                                        .addtitlelastController
+                                        .text)
+                                    : null,
+                                onChanged: (value) {
+                                  setState(() {
+                                    validate(controller()
+                                        .addtitlelastController
+                                        .text);
+                                  });
+                                },
                                 errorStyle: ptSansTextStyle(
                                     color: AppColors.red,
                                     fontSize: h * 0.019,

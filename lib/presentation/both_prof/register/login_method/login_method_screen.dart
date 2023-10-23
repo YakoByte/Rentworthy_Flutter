@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -14,6 +16,7 @@ import '../../../../../utils/common_components/common_navigator.dart';
 import '../../../../../utils/common_components/common_text.dart';
 import '../../../../../utils/globals.dart';
 import '../../../../application/both_prof/login/login_service.dart';
+import '../../../../application/dialog/dialog_service.dart';
 import '../../../../data/both_prof/shared_pref/shared_pref.dart';
 import '../../../business_prof/admin_panel/admin_panel.dart';
 import '../../../business_prof/login/add_another_acc_bsns.dart';
@@ -38,12 +41,12 @@ class LoginMethodScreen extends ConsumerWidget {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     return SizedBox(
-      height: h * 0.5,
+      height: Platform.isIOS ? h * 0.5 : h * 0.44,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           SizedBox(
-            height: h * 0.28,
+            height: Platform.isIOS ? h * 0.28 : h * 0.21,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -127,22 +130,11 @@ class LoginMethodScreen extends ConsumerWidget {
                   onPressed: () async {
                     FocusScope.of(Globals.navigatorKey.currentContext!)
                         .requestFocus(FocusNode());
-                    User? userCreds =
-                        await ref.read(loginServiceProvider).loginWithGoogle();
-                    if (userCreds != null && userCreds!.email != null) {
-                      PreferenceManagerUtils.setIsLogin(true);
-                      PreferenceManagerUtils.setIsIndividual(
-                          controller().tabController.index == 0 ? 1 : 2);
-                      Navigator.pushAndRemoveUntil(
-                          Globals.navigatorKey.currentContext!,
-                          PageTransition(
-                              child: controller().tabController.index == 0
-                                  ? BottomBar(index: 0)
-                                  : AdminPanel(),
-                              type: PageTransitionType.rightToLeftWithFade,
-                              duration: const Duration(milliseconds: 400)),
-                          (Route<dynamic> route) => false);
-                    } // commonNavigator(
+                    User? userCreds = await ref
+                        .read(loginServiceProvider)
+                        .loginWithGoogle(
+                            index: controller().tabController.index);
+                    // commonNavigator(
                     //     type: PageTransitionType.rightToLeftWithFade,
                     //     context: context,
                     //     child: controller().tabController.index == 0
@@ -154,41 +146,43 @@ class LoginMethodScreen extends ConsumerWidget {
                   },
                   side: BorderSide.none,
                 ),
-                CommonOutlineButton(
-                    containerwidth: w * 0.8,
-                    containerheight: h * 0.06,
-                    side: const BorderSide(color: AppColors.black, width: 2),
-                    backgroundColor: AppColors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(h * 0.006),
+                if (Platform.isIOS)
+                  CommonOutlineButton(
+                      containerwidth: w * 0.8,
+                      containerheight: h * 0.06,
                       side: const BorderSide(color: AppColors.black, width: 2),
-                    ),
-                    prefix: Center(
-                      child: Image.asset(
-                        AppImg.apple,
-                        color: AppColors.black,
-                        height: h * 0.03,
+                      backgroundColor: AppColors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(h * 0.006),
+                        side:
+                            const BorderSide(color: AppColors.black, width: 2),
                       ),
-                    ),
-                    text: AppText.continuewith + AppText.apple,
-                    textStyle: ptSansTextStyle(
-                        color: AppColors.black,
-                        fontSize: h * 0.019,
-                        fontWeight: FontWeight.w700),
-                    onPressed: () {
-                      FocusScope.of(Globals.navigatorKey.currentContext!)
-                          .requestFocus(FocusNode());
-                      commonNavigator(
-                          type: PageTransitionType.rightToLeftWithFade,
-                          context: context,
-                          child: controller().tabController.index == 0
-                              ? LoginApple(
-                                  loginType: controller().tabController.index,
-                                )
-                              : BusinessLoginApple(
-                                  loginType: controller().tabController.index,
-                                ));
-                    }),
+                      prefix: Center(
+                        child: Image.asset(
+                          AppImg.apple,
+                          color: AppColors.black,
+                          height: h * 0.03,
+                        ),
+                      ),
+                      text: AppText.continuewith + AppText.apple,
+                      textStyle: ptSansTextStyle(
+                          color: AppColors.black,
+                          fontSize: h * 0.019,
+                          fontWeight: FontWeight.w700),
+                      onPressed: () {
+                        FocusScope.of(Globals.navigatorKey.currentContext!)
+                            .requestFocus(FocusNode());
+                        commonNavigator(
+                            type: PageTransitionType.rightToLeftWithFade,
+                            context: context,
+                            child: controller().tabController.index == 0
+                                ? LoginApple(
+                                    loginType: controller().tabController.index,
+                                  )
+                                : BusinessLoginApple(
+                                    loginType: controller().tabController.index,
+                                  ));
+                      }),
                 CommonOutlineButton(
                     containerwidth: w * 0.8,
                     containerheight: h * 0.06,
@@ -216,6 +210,10 @@ class LoginMethodScreen extends ConsumerWidget {
                           .read(loginServiceProvider)
                           .signInWithFacebook();
                       if (userCreds != null && userCreds!.user!.email != null) {
+                        DialogServiceV1().showSnackBar(
+                            content: "User Logged-in Successfully!!",
+                            color: AppColors.colorPrimary.withOpacity(0.7),
+                            textclr: AppColors.white);
                         PreferenceManagerUtils.setIsLogin(true);
                         PreferenceManagerUtils.setIsIndividual(
                             controller().tabController.index == 0 ? 1 : 2);

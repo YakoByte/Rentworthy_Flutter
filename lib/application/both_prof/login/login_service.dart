@@ -19,9 +19,12 @@ abstract class LoginService {
     MultiFactorSession? multiFactorSession,
   });
 
-  Future<User?> loginWithGoogle();
+  Future<User?> loginWithGoogle({required int index});
+
   Future<User?> logoutWithGoogle();
+
   Future<UserCredential?> signoutWithFacebook();
+
   Future<UserCredential?> signInWithFacebook();
 }
 
@@ -54,8 +57,8 @@ class LoginServiceV1 implements LoginService {
   }
 
   @override
-  Future<User?> loginWithGoogle() async {
-    return await loginRepository.loginWithGoogle();
+  Future<User?> loginWithGoogle({required int index}) async {
+    return await loginRepository.loginWithGoogle(index: index);
   }
 
   @override

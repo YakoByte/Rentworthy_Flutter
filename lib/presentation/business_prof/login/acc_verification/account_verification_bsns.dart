@@ -12,6 +12,7 @@ import '../../../../../utils/common_components/common_loader.dart';
 import '../../../../../utils/common_components/common_text.dart';
 import '../../../../../utils/images.dart';
 import '../../../../../utils/text.dart';
+import '../../../../application/dialog/dialog_service.dart';
 import '../../../../data/both_prof/shared_pref/shared_pref.dart';
 import '../../../../utils/common_components/common_navigator.dart';
 import '../../../indi_prof/error/error_screen.dart';
@@ -121,32 +122,10 @@ class _BusinessAccountVerificationState
                                       )
                                     ],
                                   ),
-                                  // child: Pinput(
-                                  //   mainAxisAlignment:
-                                  //   MainAxisAlignment.spaceBetween,
-                                  //   onTap: () {},
-                                  //   onChanged: (val) {},
-                                  //   controller: controller().otpController,
-                                  //   androidSmsAutofillMethod:
-                                  //   AndroidSmsAutofillMethod
-                                  //       .smsUserConsentApi,
-                                  //   showCursor: true,
-                                  //   closeKeyboardWhenCompleted: true,
-                                  //   length: 4,
-                                  //   keyboardType: TextInputType.number,
-                                  //   focusedPinTheme: controller().isPinTheme,
-                                  //   submittedPinTheme: controller().isPinTheme,
-                                  //   defaultPinTheme: controller().isPinTheme,
-                                  //   disabledPinTheme: controller().isPinTheme,
-                                  //   followingPinTheme: controller().isPinTheme,
-                                  //   errorPinTheme: controller().isPinTheme,
-                                  //   onCompleted: (value) {},
-                                  // ),
-                                  /// otp detect
-                                  ///
                                   PinCodeTextField(
                                     length: 6,
                                     obscureText: false,
+
                                     animationType: AnimationType.fade,
                                     pinTheme: controller().isPinTheme!,
                                     keyboardType: TextInputType.number,
@@ -154,22 +133,24 @@ class _BusinessAccountVerificationState
                                         MainAxisAlignment.spaceBetween,
                                     showCursor: true,
                                     cursorColor: AppColors.black,
+
                                     animationDuration:
                                         const Duration(milliseconds: 300),
                                     enablePinAutofill: true,
                                     backgroundColor: AppColors.white,
                                     enableActiveFill: false,
                                     controller: controller().otpController,
+                                    // controller:
+                                    //     controller().otpController,
                                     onCompleted: (v) {
                                       controller().onVerify();
                                     },
                                     onChanged: (value) {},
                                     beforeTextPaste: (text) {
                                       print("Allowing to paste $text");
-                                      //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
-                                      //but you can show anything you want here, like your pop up saying wrong paste format or etc
                                       return true;
                                     },
+
                                     appContext: context,
                                   ),
                                   Row(
@@ -296,6 +277,11 @@ class _BusinessAccountVerificationState
                               onTap: () {
                                 FocusScope.of(context)
                                     .requestFocus(FocusNode());
+                                DialogServiceV1().showSnackBar(
+                                    content: "User Logged-in Successfully!!",
+                                    color:
+                                        AppColors.colorPrimary.withOpacity(0.7),
+                                    textclr: AppColors.white);
                                 PreferenceManagerUtils.setIsLogin(true);
                                 PreferenceManagerUtils.setIsIndividual(2);
                                 Navigator.pushAndRemoveUntil(

@@ -7,8 +7,10 @@ import 'package:rentworthy/application/both_prof/login/login_service.dart';
 import 'package:rentworthy/presentation/business_prof/login/acc_verification/account_verification_bsns.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../application/dialog/dialog_service.dart';
 import '../../../../application/validate/validate.dart';
 import '../../../../data/both_prof/shared_pref/shared_pref.dart';
+import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_navigator.dart';
 import '../../../../utils/globals.dart';
 import '../../../indi_prof/bottombar/bottom_bar.dart';
@@ -117,6 +119,10 @@ class BusinessLoginPhoneController extends _$BusinessLoginPhoneController {
                   duration: const Duration(milliseconds: 400)),
               (Route<dynamic> route) => false);
         } else if (index == 3) {
+          DialogServiceV1().showSnackBar(
+              content: "User Logged-in Successfully!!",
+              color: AppColors.colorPrimary.withOpacity(0.7),
+              textclr: AppColors.white);
           PreferenceManagerUtils.setIsLogin(true);
           PreferenceManagerUtils.setIsIndividual(2);
           Navigator.pushAndRemoveUntil(

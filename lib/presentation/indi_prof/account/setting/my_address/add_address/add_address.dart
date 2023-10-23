@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:rentworthy/application/validate/validate.dart';
 import 'package:rentworthy/presentation/shimmers/add_address_shimmer.dart';
 import 'package:rentworthy/utils/common_components/common_button.dart';
 import 'package:rentworthy/utils/common_components/common_loader.dart';
@@ -91,18 +93,18 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
               if (controller().isLoading) {
                 return CommonLoader();
               }
-              return Container(
-                height: h,
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Divider(
-                        color: AppColors.black.withOpacity(0.1),
-                        height: h * 0.01,
-                        thickness: 1,
-                      ),
-                      Padding(
+              return SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Divider(
+                      color: AppColors.black.withOpacity(0.1),
+                      height: h * 0.01,
+                      thickness: 1,
+                    ),
+                    Container(
+                      height: controller().isSubmit ? h * 0.75 : h * 0.7,
+                      child: Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal: w * 0.035, vertical: h * 0.02),
                         child: Column(
@@ -111,9 +113,6 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                             TextInputField(
                                 hintText: "Full name (Required)*",
                                 lableText: "Full name (Required)*",
-                                onChanged: (value) {
-                                  setState(() {});
-                                },
                                 enableunderlinecolor:
                                     AppColors.black.withOpacity(0.6),
                                 disableunderlinecolor:
@@ -138,7 +137,16 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                     color: AppColors.black.withOpacity(0.6),
                                     fontSize: h * 0.021,
                                     fontWeight: FontWeight.w500),
-                                errorText: "",
+                                errorText: controller().isSubmit
+                                    ? validateUname(
+                                        controller().nameController.text)
+                                    : null,
+                                onChanged: (value) {
+                                  setState(() {
+                                    validateUname(
+                                        controller().nameController.text);
+                                  });
+                                },
                                 errorStyle: ptSansTextStyle(
                                     color: AppColors.red,
                                     fontSize: h * 0.019,
@@ -160,9 +168,6 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                     color: AppColors.black.withOpacity(0.6),
                                     fontSize: h * 0.019,
                                     fontWeight: FontWeight.w400),
-                                onChanged: (value) {
-                                  setState(() {});
-                                },
                                 enableunderlinecolor:
                                     AppColors.black.withOpacity(0.6),
                                 disableunderlinecolor:
@@ -183,7 +188,16 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                     color: AppColors.black.withOpacity(0.6),
                                     fontSize: h * 0.021,
                                     fontWeight: FontWeight.w500),
-                                errorText: "",
+                                errorText: controller().isSubmit
+                                    ? validatephone(
+                                        controller().phoneController.text)
+                                    : null,
+                                onChanged: (value) {
+                                  setState(() {
+                                    validatephone(
+                                        controller().phoneController.text);
+                                  });
+                                },
                                 errorStyle: ptSansTextStyle(
                                     color: AppColors.red,
                                     fontSize: h * 0.019,
@@ -205,9 +219,6 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                     color: AppColors.black.withOpacity(0.6),
                                     fontSize: h * 0.019,
                                     fontWeight: FontWeight.w400),
-                                onChanged: (value) {
-                                  setState(() {});
-                                },
                                 enableunderlinecolor:
                                     AppColors.black.withOpacity(0.6),
                                 disableunderlinecolor:
@@ -228,7 +239,16 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                     color: AppColors.black.withOpacity(0.6),
                                     fontSize: h * 0.021,
                                     fontWeight: FontWeight.w500),
-                                errorText: "",
+                                errorText: controller().isSubmit
+                                    ? validate(
+                                        controller().zipcodeController.text)
+                                    : null,
+                                onChanged: (value) {
+                                  setState(() {
+                                    validate(
+                                        controller().zipcodeController.text);
+                                  });
+                                },
                                 errorStyle: ptSansTextStyle(
                                     color: AppColors.red,
                                     fontSize: h * 0.019,
@@ -253,9 +273,6 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                         color: AppColors.black.withOpacity(0.6),
                                         fontSize: h * 0.019,
                                         fontWeight: FontWeight.w400),
-                                    onChanged: (value) {
-                                      setState(() {});
-                                    },
                                     enableunderlinecolor:
                                         AppColors.black.withOpacity(0.6),
                                     disableunderlinecolor:
@@ -276,7 +293,16 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                         color: AppColors.black.withOpacity(0.6),
                                         fontSize: h * 0.021,
                                         fontWeight: FontWeight.w500),
-                                    errorText: "",
+                                    errorText: controller().isSubmit
+                                        ? validate(
+                                            controller().stateController.text)
+                                        : null,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        validate(
+                                            controller().stateController.text);
+                                      });
+                                    },
                                     errorStyle: ptSansTextStyle(
                                         color: AppColors.red,
                                         fontSize: h * 0.019,
@@ -300,9 +326,6 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                         color: AppColors.black.withOpacity(0.6),
                                         fontSize: h * 0.019,
                                         fontWeight: FontWeight.w400),
-                                    onChanged: (value) {
-                                      setState(() {});
-                                    },
                                     enableunderlinecolor:
                                         AppColors.black.withOpacity(0.6),
                                     disableunderlinecolor:
@@ -323,7 +346,16 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                         color: AppColors.black.withOpacity(0.6),
                                         fontSize: h * 0.021,
                                         fontWeight: FontWeight.w500),
-                                    errorText: "",
+                                    errorText: controller().isSubmit
+                                        ? validate(
+                                            controller().cityController.text)
+                                        : null,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        validate(
+                                            controller().cityController.text);
+                                      });
+                                    },
                                     errorStyle: ptSansTextStyle(
                                         color: AppColors.red,
                                         fontSize: h * 0.019,
@@ -349,9 +381,6 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                     color: AppColors.black.withOpacity(0.6),
                                     fontSize: h * 0.019,
                                     fontWeight: FontWeight.w400),
-                                onChanged: (value) {
-                                  setState(() {});
-                                },
                                 enableunderlinecolor:
                                     AppColors.black.withOpacity(0.6),
                                 disableunderlinecolor:
@@ -372,7 +401,16 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                     color: AppColors.black.withOpacity(0.6),
                                     fontSize: h * 0.021,
                                     fontWeight: FontWeight.w500),
-                                errorText: "",
+                                errorText: controller().isSubmit
+                                    ? validate(
+                                        controller().addressController.text)
+                                    : null,
+                                onChanged: (value) {
+                                  setState(() {
+                                    validate(
+                                        controller().addressController.text);
+                                  });
+                                },
                                 errorStyle: ptSansTextStyle(
                                     color: AppColors.red,
                                     fontSize: h * 0.019,
@@ -394,9 +432,6 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                     color: AppColors.black.withOpacity(0.6),
                                     fontSize: h * 0.019,
                                     fontWeight: FontWeight.w400),
-                                onChanged: (value) {
-                                  setState(() {});
-                                },
                                 enableunderlinecolor:
                                     AppColors.black.withOpacity(0.6),
                                 disableunderlinecolor:
@@ -417,7 +452,16 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                     color: AppColors.black.withOpacity(0.6),
                                     fontSize: h * 0.021,
                                     fontWeight: FontWeight.w500),
-                                errorText: "",
+                                errorText: controller().isSubmit
+                                    ? validate(
+                                        controller().unitnoController.text)
+                                    : null,
+                                onChanged: (value) {
+                                  setState(() {
+                                    validate(
+                                        controller().unitnoController.text);
+                                  });
+                                },
                                 errorStyle: ptSansTextStyle(
                                     color: AppColors.red,
                                     fontSize: h * 0.019,
@@ -450,104 +494,261 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   CommonButton(
+                                      decoration: BoxDecoration(
+                                          border: controller()
+                                                      .selectedaddress ==
+                                                  0
+                                              ? const GradientBoxBorder(
+                                                  gradient:
+                                                      LinearGradient(colors: [
+                                                    AppColors.colorPrimary,
+                                                    AppColors.colorSecondary,
+                                                  ]),
+                                                  width: 2,
+                                                )
+                                              : Border.all(
+                                                  color: AppColors.black
+                                                      .withOpacity(0.2),
+                                                  width: 2,
+                                                ),
+                                          borderRadius:
+                                              BorderRadius.circular(4)),
                                       containerwidth: w * 0.25,
-                                      containerheight: h * 0.045,
+                                      containerheight: h * 0.05,
                                       backgroundColor: AppColors.white,
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(4),
-                                          side: BorderSide(
-                                              color: AppColors.black
-                                                  .withOpacity(0.2))),
+                                          side: const BorderSide(
+                                              color: AppColors.white)),
                                       text: "Home",
-                                      prefixicon: Icon(
-                                        Icons.home,
-                                        color: AppColors.black.withOpacity(0.6),
+                                      prefixicon: ShaderMask(
+                                        shaderCallback: (Rect bounds) {
+                                          return LinearGradient(
+                                              begin: Alignment.centerLeft,
+                                              end: Alignment.centerRight,
+                                              colors: [
+                                                controller().selectedaddress ==
+                                                        0
+                                                    ? AppColors.colorPrimary
+                                                    : AppColors.black
+                                                        .withOpacity(0.6),
+                                                controller().selectedaddress ==
+                                                        0
+                                                    ? AppColors.colorSecondary
+                                                    : AppColors.black
+                                                        .withOpacity(0.6)
+                                              ]).createShader(bounds);
+                                        },
+                                        child: const Icon(
+                                          Icons.home,
+                                          color: AppColors.white,
+                                        ),
                                       ),
                                       textStyle: ptSansTextStyle(
                                           fontSize: w * 0.035,
-                                          color:
-                                              AppColors.black.withOpacity(0.6),
+                                          foreground: Paint()
+                                            ..shader = LinearGradient(
+                                              colors: <Color>[
+                                                controller().selectedaddress ==
+                                                        0
+                                                    ? AppColors.colorPrimary
+                                                    : AppColors.black
+                                                        .withOpacity(0.6),
+                                                controller().selectedaddress ==
+                                                        0
+                                                    ? AppColors.colorSecondary
+                                                    : AppColors.black
+                                                        .withOpacity(0.6)
+                                              ],
+                                            ).createShader(const Rect.fromLTWH(
+                                                50.0, 150.0, 100.0, 70.0)),
                                           fontWeight: FontWeight.w800),
-                                      onPressed: () {}),
+                                      onPressed: () {
+                                        controller().onSelectAddress(val: 0);
+                                      }),
                                   CommonButton(
+                                      decoration: BoxDecoration(
+                                          border: controller()
+                                                      .selectedaddress ==
+                                                  1
+                                              ? const GradientBoxBorder(
+                                                  width: 2,
+                                                  gradient:
+                                                      LinearGradient(colors: [
+                                                    AppColors.colorPrimary,
+                                                    AppColors.colorSecondary,
+                                                  ]))
+                                              : Border.all(
+                                                  color: AppColors.black
+                                                      .withOpacity(0.2),
+                                                  width: 2,
+                                                ),
+                                          borderRadius:
+                                              BorderRadius.circular(4)),
                                       containerwidth: w * 0.35,
-                                      containerheight: h * 0.045,
+                                      containerheight: h * 0.05,
                                       backgroundColor: AppColors.white,
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(4),
-                                          side: BorderSide(
-                                              color: AppColors.black
-                                                  .withOpacity(0.2))),
+                                          side: const BorderSide(
+                                              color: AppColors.white)),
                                       text: "Apartments",
-                                      prefixicon: Icon(
-                                        Icons.apartment_rounded,
-                                        color: AppColors.black.withOpacity(0.6),
+                                      prefixicon: ShaderMask(
+                                        shaderCallback: (Rect bounds) {
+                                          return LinearGradient(
+                                              begin: Alignment.centerLeft,
+                                              end: Alignment.centerRight,
+                                              colors: [
+                                                controller().selectedaddress ==
+                                                        1
+                                                    ? AppColors.colorPrimary
+                                                    : AppColors.black
+                                                        .withOpacity(0.6),
+                                                controller().selectedaddress ==
+                                                        1
+                                                    ? AppColors.colorSecondary
+                                                    : AppColors.black
+                                                        .withOpacity(0.6)
+                                              ]).createShader(bounds);
+                                        },
+                                        child: const Icon(
+                                          Icons.apartment_rounded,
+                                          color: AppColors.white,
+                                        ),
                                       ),
                                       textStyle: ptSansTextStyle(
                                           fontSize: w * 0.035,
-                                          color:
-                                              AppColors.black.withOpacity(0.6),
+                                          foreground: Paint()
+                                            ..shader = LinearGradient(
+                                              colors: <Color>[
+                                                controller().selectedaddress ==
+                                                        1
+                                                    ? AppColors.colorPrimary
+                                                    : AppColors.black
+                                                        .withOpacity(0.6),
+                                                controller().selectedaddress ==
+                                                        1
+                                                    ? AppColors.colorSecondary
+                                                    : AppColors.black
+                                                        .withOpacity(0.6)
+                                              ],
+                                            ).createShader(const Rect.fromLTWH(
+                                                170.0, 150.0, 100.0, 70.0)),
                                           fontWeight: FontWeight.w800),
-                                      onPressed: () {}),
+                                      onPressed: () {
+                                        controller().onSelectAddress(val: 1);
+                                      }),
                                   CommonButton(
+                                      decoration: BoxDecoration(
+                                          border: controller()
+                                                      .selectedaddress ==
+                                                  2
+                                              ? const GradientBoxBorder(
+                                                  width: 2,
+                                                  gradient:
+                                                      LinearGradient(colors: [
+                                                    AppColors.colorPrimary,
+                                                    AppColors.colorSecondary,
+                                                  ]))
+                                              : Border.all(
+                                                  color: AppColors.black
+                                                      .withOpacity(0.2),
+                                                  width: 2,
+                                                ),
+                                          borderRadius:
+                                              BorderRadius.circular(4)),
                                       containerwidth: w * 0.25,
-                                      containerheight: h * 0.045,
+                                      containerheight: h * 0.05,
                                       backgroundColor: AppColors.white,
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(4),
-                                          side: BorderSide(
-                                              color: AppColors.black
-                                                  .withOpacity(0.2))),
+                                          side: const BorderSide(
+                                              color: AppColors.white)),
                                       text: "Work",
-                                      prefixicon: Icon(
-                                        Icons.work,
-                                        color: AppColors.black.withOpacity(0.6),
+                                      prefixicon: ShaderMask(
+                                        shaderCallback: (Rect bounds) {
+                                          return LinearGradient(
+                                              begin: Alignment.centerLeft,
+                                              end: Alignment.centerRight,
+                                              colors: [
+                                                controller().selectedaddress ==
+                                                        2
+                                                    ? AppColors.colorPrimary
+                                                    : AppColors.black
+                                                        .withOpacity(0.6),
+                                                controller().selectedaddress ==
+                                                        2
+                                                    ? AppColors.colorSecondary
+                                                    : AppColors.black
+                                                        .withOpacity(0.6)
+                                              ]).createShader(bounds);
+                                        },
+                                        child: Icon(
+                                          Icons.work,
+                                          color: AppColors.white,
+                                        ),
                                       ),
                                       textStyle: ptSansTextStyle(
                                           fontSize: w * 0.035,
-                                          color:
-                                              AppColors.black.withOpacity(0.6),
+                                          foreground: Paint()
+                                            ..shader = LinearGradient(
+                                              colors: <Color>[
+                                                controller().selectedaddress ==
+                                                        2
+                                                    ? AppColors.colorPrimary
+                                                    : AppColors.black
+                                                        .withOpacity(0.6),
+                                                controller().selectedaddress ==
+                                                        2
+                                                    ? AppColors.colorSecondary
+                                                    : AppColors.black
+                                                        .withOpacity(0.6)
+                                              ],
+                                            ).createShader(const Rect.fromLTWH(
+                                                315.0, 150.0, 100.0, 70.0)),
                                           fontWeight: FontWeight.w800),
-                                      onPressed: () {}),
+                                      onPressed: () {
+                                        controller().onSelectAddress(val: 2);
+                                      }),
                                 ],
                               ),
                             ),
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: w * 0.035, vertical: h * 0.045),
-                        child: CommonButton(
-                            containerwidth: w,
-                            containerheight: h * 0.06,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(h * 0.005),
-                                gradient: const LinearGradient(
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight,
-                                    colors: [
-                                      AppColors.colorPrimary,
-                                      AppColors.colorSecondary
-                                    ])),
-                            backgroundColor: AppColors.transparent,
-                            shape: RoundedRectangleBorder(
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: w * 0.035, vertical: h * 0.045),
+                      child: CommonButton(
+                          containerwidth: w,
+                          containerheight: h * 0.06,
+                          decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(h * 0.005),
-                            ),
-                            text: AppText.saveaddress,
-                            textStyle: ptSansTextStyle(
-                                color: AppColors.white,
-                                fontSize: h * 0.019,
-                                fontWeight: FontWeight.w700),
-                            onPressed: () {
-                              controller().onSave();
-                            }),
-                      ),
-                    ],
-                  ),
+                              gradient: const LinearGradient(
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                  colors: [
+                                    AppColors.colorPrimary,
+                                    AppColors.colorSecondary
+                                  ])),
+                          backgroundColor: AppColors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(h * 0.005),
+                          ),
+                          text: AppText.saveaddress,
+                          textStyle: ptSansTextStyle(
+                              color: AppColors.white,
+                              fontSize: h * 0.019,
+                              fontWeight: FontWeight.w700),
+                          onPressed: () {
+                            controller().onSave();
+                          }),
+                    ),
+                  ],
                 ),
               );
             },

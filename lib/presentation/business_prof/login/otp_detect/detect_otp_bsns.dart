@@ -10,6 +10,7 @@ import '../../../../../utils/common_components/common_loader.dart';
 import '../../../../../utils/common_components/common_navigator.dart';
 import '../../../../../utils/common_components/common_text.dart';
 import '../../../../../utils/text.dart';
+import '../../../../application/dialog/dialog_service.dart';
 import '../../../../data/both_prof/shared_pref/shared_pref.dart';
 import '../../../both_prof/login/loginwithphone/findlocation/find_location.dart';
 import '../../../indi_prof/error/error_screen.dart';
@@ -160,6 +161,10 @@ class BusinessDetectOtp extends ConsumerWidget {
                       InkWell(
                         onTap: () {
                           FocusScope.of(context).requestFocus(FocusNode());
+                          DialogServiceV1().showSnackBar(
+                              content: "User Logged-in Successfully!!",
+                              color: AppColors.colorPrimary.withOpacity(0.7),
+                              textclr: AppColors.white);
                           PreferenceManagerUtils.setIsLogin(true);
                           PreferenceManagerUtils.setIsIndividual(2);
                           Navigator.pushAndRemoveUntil(

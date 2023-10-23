@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rentworthy/application/validate/validate.dart';
 import 'package:rentworthy/presentation/indi_prof/account/setting/review/write_review/write_review_controller.dart';
 
 import '../../../../../../utils/import_utils.dart';
 import '../../../../../shimmers/write_review_shimmer.dart';
 import '../../../../error/error_screen.dart';
 
-class WriteReviewScreen extends ConsumerWidget {
-  const WriteReviewScreen({Key? key}) : super(key: key);
+class WriteReviewScreen extends ConsumerStatefulWidget {
+  const WriteReviewScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState createState() => _WriteReviewScreenState();
+}
+
+class _WriteReviewScreenState extends ConsumerState<WriteReviewScreen> {
+  @override
+  Widget build(BuildContext context) {
     final asyncState = ref.watch(writeReviewControllerProvider);
     controller() => ref.read(writeReviewControllerProvider.notifier);
 
@@ -94,9 +100,17 @@ class WriteReviewScreen extends ConsumerWidget {
                                     color: AppColors.black.withOpacity(0.6),
                                     fontSize: h * 0.021,
                                     fontWeight: FontWeight.w400),
-                                errorText: "",
                                 maxLength: 140,
-                                onChanged: (value) {},
+                                errorText: controller().isSubmit
+                                    ? validate(
+                                        controller().reviewController.text)
+                                    : null,
+                                onChanged: (value) {
+                                  setState(() {
+                                    validate(
+                                        controller().reviewController.text);
+                                  });
+                                },
                                 errorStyle: ptSansTextStyle(
                                     color: AppColors.red,
                                     fontSize: h * 0.019,

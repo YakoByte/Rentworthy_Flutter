@@ -4,6 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:rentworthy/presentation/business_prof/business_widgets/business_search.dart';
+import 'package:rentworthy/presentation/business_prof/track_item/track_item_screen.dart';
 import 'package:rentworthy/presentation/business_prof/user_prof/user_prof_screen.dart';
 import 'package:rentworthy/utils/common_components/icon_text.dart';
 
@@ -396,7 +397,13 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                         color: AppColors.black,
                                         fontSize: h * 0.019,
                                         fontWeight: FontWeight.w700),
-                                    onPressed: () {}),
+                                    onPressed: () {
+                                      commonNavigator(
+                                          type: PageTransitionType
+                                              .rightToLeftWithFade,
+                                          context: context,
+                                          child: const TrackItem());
+                                    }),
                               )
                                   .animate()
                                   .fadeIn(duration: 350.ms)
@@ -1024,6 +1031,8 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                             ChartSampleData(x: "Jun", y: 17),
                                             ChartSampleData(x: "Jul ", y: 19),
                                           ],
+                                          animationDuration: 1500,
+                                          animationDelay: 1500,
                                           name: 'Traffic by Device',
                                           spacing: 0.4,
                                           width: 0.4,
@@ -1056,6 +1065,8 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                           name: 'Traffic by Device',
                                           spacing: 0.4,
                                           width: 0.4,
+                                          animationDuration: 2000,
+                                          animationDelay: 2000,
                                           color: AppColors.darkgreen,
                                           xValueMapper:
                                               (ChartSampleData sales, _) =>
@@ -1092,6 +1103,8 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                           yValueMapper:
                                               (ChartSampleData sales, _) =>
                                                   sales.y,
+                                          animationDuration: 2500,
+                                          animationDelay: 2500,
                                           dataLabelSettings: DataLabelSettings(
                                               isVisible: false,
                                               textStyle: ptSansTextStyle(
@@ -1200,6 +1213,8 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                         color: AppColors
                                                             .colorSecondarydark),
                                                   ],
+                                                  animationDuration: 3500,
+                                                  animationDelay: 3500,
                                                   dataLabelSettings:
                                                       DataLabelSettings(
                                                     isVisible: true,

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rentworthy/utils/common_components/cont_textInput.dart';
 
 import '../../../../../application/dialog/dialog_service.dart';
+import '../../../../../application/validate/validate.dart';
 import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_appbar.dart';
 import '../../../../../utils/common_components/common_button.dart';
@@ -14,11 +15,16 @@ import '../../../../shimmers/contact_us_shimmer.dart';
 import '../../../error/error_screen.dart';
 import 'contact_us_controller.dart';
 
-class ContactUsScreen extends ConsumerWidget {
+class ContactUsScreen extends ConsumerStatefulWidget {
   const ContactUsScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState createState() => _ContactUsScreenState();
+}
+
+class _ContactUsScreenState extends ConsumerState<ContactUsScreen> {
+  @override
+  Widget build(BuildContext context) {
     final asyncState = ref.watch(contactUsControllerProvider);
     controller() => ref.read(contactUsControllerProvider.notifier);
 
@@ -103,7 +109,14 @@ class ContactUsScreen extends ConsumerWidget {
                         keyboardType: TextInputType.text,
                         containercolor: AppColors.white,
                         onTap: () {},
-                        onChanged: (val) {},
+                        errorText: controller().issubmit == true
+                            ? validate(controller().nameController.text)
+                            : null,
+                        onChanged: (value) {
+                          setState(() {
+                            validate(controller().nameController.text);
+                          });
+                        },
                       ),
                     ),
                     Padding(
@@ -135,7 +148,14 @@ class ContactUsScreen extends ConsumerWidget {
                         keyboardType: TextInputType.phone,
                         containercolor: AppColors.white,
                         onTap: () {},
-                        onChanged: (val) {},
+                        errorText: controller().issubmit == true
+                            ? validate(controller().phoneController.text)
+                            : null,
+                        onChanged: (value) {
+                          setState(() {
+                            validate(controller().phoneController.text);
+                          });
+                        },
                       ),
                     ),
                     Padding(
@@ -167,7 +187,14 @@ class ContactUsScreen extends ConsumerWidget {
                         keyboardType: TextInputType.text,
                         containercolor: AppColors.white,
                         onTap: () {},
-                        onChanged: (val) {},
+                        errorText: controller().issubmit == true
+                            ? validate(controller().descController.text)
+                            : null,
+                        onChanged: (value) {
+                          setState(() {
+                            validate(controller().descController.text);
+                          });
+                        },
                       ),
                     ),
                     Padding(

@@ -6,6 +6,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:rentworthy/presentation/indi_prof/home/categories/cat_details/category_details_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../application/validate/validate.dart';
 import '../../../../utils/import_utils.dart';
 import '../product_availablity/product_availablity_screen.dart';
 
@@ -31,8 +32,10 @@ class PostUrAdsController extends _$PostUrAdsController {
     "cat4",
   ];
   bool _isLoading = false;
+  bool _issubmit = false;
 
   bool get isLoading => _isLoading;
+  bool get issubmit => _issubmit;
 
   List<String> get catList => _catList;
 
@@ -60,18 +63,28 @@ class PostUrAdsController extends _$PostUrAdsController {
 
   onNext() async {
     state = const AsyncLoading();
-    _isLoading = true;
+    _issubmit = true;
+    if (validate(addtitleController.text) == null &&
+        validate(subcatController.text) == null &&
+        validate(descController.text) == null &&
+        validate(priceController.text) == null &&
+        validate(cityController.text) == null &&
+        validate(stateController.text) == null &&
+        validate(addtitlelastController.text) == null) {
+      _isLoading = true;
 
-    Future.delayed(Duration(seconds: 1), () {
-      state = const AsyncLoading();
-      _isLoading = false;
-      state = const AsyncValue.data(null);
-      commonNavigator(
-        context: Globals.navigatorKey.currentContext!,
-        child: ProductAvailabliity(),
-        type: PageTransitionType.rightToLeftWithFade,
-      );
-    });
+      Future.delayed(Duration(seconds: 1), () {
+        state = const AsyncLoading();
+        _isLoading = false;
+        state = const AsyncValue.data(null);
+        commonNavigator(
+          context: Globals.navigatorKey.currentContext!,
+          child: ProductAvailabliity(),
+          type: PageTransitionType.rightToLeftWithFade,
+        );
+      });
+    }
+
     state = const AsyncValue.data(null);
   }
 }

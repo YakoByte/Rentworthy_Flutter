@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../application/dialog/dialog_service.dart';
+import '../../../../../application/validate/validate.dart';
 import '../../../../../utils/import_utils.dart';
 
 part 'contact_us_controller.g.dart';
@@ -137,8 +138,11 @@ class ContactUsController extends _$ContactUsController {
   String? get selectedLocation => _selectedLocation;
 
   bool _isLoading = false;
+  bool _isSubmit = false;
 
   bool get isLoading => _isLoading;
+
+  bool get issubmit => _isSubmit;
   int currentpageIndex = 0;
 
   int get getcurrentPageIndex => currentpageIndex;
@@ -160,12 +164,18 @@ class ContactUsController extends _$ContactUsController {
 
   onSubmit() async {
     state = const AsyncLoading();
-    _isLoading = true;
-    Future.delayed(const Duration(seconds: 1), () {
-      _isLoading = false;
-      ref.read(dialogServiceProvider).contactusalertdialog();
-      state = const AsyncValue.data(null);
-    });
+    _isSubmit = true;
+    if (validate(nameController.text) == null &&
+        validate(phoneController.text) == null &&
+        validate(descController.text) == null) {
+      _isLoading = true;
+      Future.delayed(const Duration(seconds: 1), () {
+        _isLoading = false;
+        ref.read(dialogServiceProvider).contactusalertdialog();
+        state = const AsyncValue.data(null);
+      });
+    }
+
     state = const AsyncValue.data(null);
   }
 

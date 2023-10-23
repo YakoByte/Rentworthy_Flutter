@@ -124,6 +124,10 @@ class FindLocation extends ConsumerWidget {
                           ref
                               .read(dialogServiceProvider)
                               .handleLocationPermission();
+                          DialogServiceV1().showSnackBar(
+                              content: "User Logged-in Successfully!!",
+                              color: AppColors.colorPrimary.withOpacity(0.7),
+                              textclr: AppColors.white);
                           PreferenceManagerUtils.setIsLogin(true);
                           PreferenceManagerUtils.setIsIndividual(1);
                           // ref.read(dialogServiceProvider).requestLocationPermission();

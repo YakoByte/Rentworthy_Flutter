@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../application/validate/validate.dart';
 import '../../../../../utils/import_utils.dart';
 
 import '../../../error/error_screen.dart';
 import 'create_password_controller.dart';
 
-class CreatePassword extends ConsumerWidget {
+class CreatePassword extends ConsumerStatefulWidget {
   const CreatePassword({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState createState() => _CreatePasswordState();
+}
+
+class _CreatePasswordState extends ConsumerState<CreatePassword> {
+  @override
+  Widget build(BuildContext context) {
     final asyncState = ref.watch(createPasswordControllerProvider);
     controller() => ref.read(createPasswordControllerProvider.notifier);
 
@@ -90,7 +96,16 @@ class CreatePassword extends ConsumerWidget {
                                 color: AppColors.black.withOpacity(0.6),
                                 fontSize: h * 0.021,
                                 fontWeight: FontWeight.w400),
-                            errorText: "",
+                            errorText: controller().isSubmit
+                                ? validatePassword(
+                                    controller().passwordController.text)
+                                : null,
+                            onChanged: (val) {
+                              setState(() {
+                                validatePassword(
+                                    controller().passwordController.text);
+                              });
+                            },
                             errorStyle: ptSansTextStyle(
                                 color: AppColors.red,
                                 fontSize: h * 0.019,
@@ -145,7 +160,18 @@ class CreatePassword extends ConsumerWidget {
                                 color: AppColors.black.withOpacity(0.6),
                                 fontSize: h * 0.021,
                                 fontWeight: FontWeight.w400),
-                            errorText: "",
+                            errorText: controller().isSubmit
+                                ? validateConfirmPassword(
+                                    controller().confirmpasswordController.text,
+                                    controller().passwordController.text)
+                                : null,
+                            onChanged: (val) {
+                              setState(() {
+                                validateConfirmPassword(
+                                    controller().confirmpasswordController.text,
+                                    controller().passwordController.text);
+                              });
+                            },
                             errorStyle: ptSansTextStyle(
                                 color: AppColors.red,
                                 fontSize: h * 0.019,

@@ -124,7 +124,7 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
                                 padding: EdgeInsets.only(
                                     top: h * 0.05, bottom: h * 0.03),
                                 child: PinCodeTextField(
-                                  length: 4,
+                                  length: 6,
                                   obscureText: false,
                                   animationType: AnimationType.fade,
                                   pinTheme: controller().isPinTheme!,

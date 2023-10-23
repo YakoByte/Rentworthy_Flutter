@@ -1,9 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../application/both_prof/login/login_service.dart';
+import '../../../../application/dialog/dialog_service.dart';
 import '../../../../application/validate/validate.dart';
 import '../../../../data/both_prof/shared_pref/shared_pref.dart';
+import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_navigator.dart';
 import '../../../../utils/globals.dart';
 import '../../../both_prof/login/loginwithphone/otp_detect/detect_otp.dart';
@@ -62,12 +66,30 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
         state = const AsyncLoading();
 
         if (index == 0) {
-          commonNavigator(
-              type: PageTransitionType.rightToLeftWithFade,
-              context: Globals.navigatorKey.currentContext!,
-              child: DetectOtp(
-                phoneNo: countryCodeController.text + phoneController.text,
-              ));
+          ref.read(loginServiceProvider).sendOTP(
+                phoneNumber: countryCodeController.text + phoneController.text,
+                verificationCompleted: (PhoneAuthCredential credential) {
+                  debugPrint('verificationCompleted');
+                },
+                verificationFailed: (FirebaseAuthException e) {
+                  debugPrint('verificationFailed');
+                },
+                // codeSent: (String verificationId, int? resendToken) {},
+                codeAutoRetrievalTimeout: (String verificationId) {
+                  debugPrint('codeAutoRetrievalTimeout');
+                },
+                // You can use the `codeSent` callback to display the generated OTP to the user
+                codeSent: (String verificationId, int? resendToken) {
+                  commonNavigator(
+                      type: PageTransitionType.rightToLeftWithFade,
+                      context: Globals.navigatorKey.currentContext!,
+                      child: AccountVerification(
+                        email:
+                            countryCodeController.text + phoneController.text,
+                      ));
+                  debugPrint('Verification code: $verificationId');
+                },
+              );
         } else if (index == 1) {
           commonNavigator(
             context: Globals.navigatorKey.currentContext!,
@@ -77,6 +99,10 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
             type: PageTransitionType.rightToLeftWithFade,
           );
         } else if (index == 2) {
+          DialogServiceV1().showSnackBar(
+              content: "User Logged-in Successfully!!",
+              color: AppColors.colorPrimary.withOpacity(0.7),
+              textclr: AppColors.white);
           PreferenceManagerUtils.setIsLogin(true);
           PreferenceManagerUtils.setIsIndividual(1);
           Navigator.pushAndRemoveUntil(
@@ -87,6 +113,11 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
                   duration: const Duration(milliseconds: 400)),
               (Route<dynamic> route) => false);
         } else if (index == 3) {
+          DialogServiceV1().showSnackBar(
+              content: "User Logged-in Successfully!!",
+              color: AppColors.colorPrimary.withOpacity(0.7),
+              textclr: AppColors.white);
+
           PreferenceManagerUtils.setIsLogin(true);
           PreferenceManagerUtils.setIsIndividual(1);
           Navigator.pushAndRemoveUntil(

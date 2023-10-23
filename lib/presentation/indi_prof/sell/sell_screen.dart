@@ -192,7 +192,7 @@ class SellScreen extends ConsumerWidget {
                             for (int i = 0;
                                 i < controller().animatecontrollerlist!.length;
                                 i++) {
-                              print("dfgd $index ${(index ~/ 2) * 70 + 80}");
+                              //    print("dfgd $index ${(index ~/ 2) * 70 + 80}");
                               if (controller()
                                   .animatecontrollerlist!
                                   .last

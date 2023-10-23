@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../utils/common_components/common_tickerprovider.dart';
 import '../../../application/dialog/dialog_service.dart';
+import '../../../application/validate/validate.dart';
 
 part 'business_info_screen_controller.g.dart';
 
@@ -27,7 +28,9 @@ class BusinessInfoScreenController extends _$BusinessInfoScreenController {
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
+  bool _issubmit = false;
 
+  bool get issubmit => _issubmit;
   bool get verified => _verified;
 
   bool get underreview => _underreview;
@@ -81,16 +84,24 @@ class BusinessInfoScreenController extends _$BusinessInfoScreenController {
 
   onCont() async {
     state = const AsyncLoading();
-    _isLoading = true;
-    Future.delayed(const Duration(seconds: 1), () {
-      _isLoading = false;
-      ref.read(dialogServiceProvider).profileCreatedDialog(
-        profVerified: (verified) {
-          onVerified(val: verified);
-        },
-      );
-      state = const AsyncValue.data(null);
-    });
+    _issubmit = true;
+    if (validate(businessnameController.text) == null &&
+        validate(businessnameController.text) == null &&
+        validate(businessnameController.text) == null &&
+        validate(businessnameController.text) == null &&
+        validate(businessnameController.text) == null &&
+        validate(businessnameController.text) == null) {
+      _isLoading = true;
+      Future.delayed(const Duration(seconds: 1), () {
+        _isLoading = false;
+        ref.read(dialogServiceProvider).profileCreatedDialog(
+          profVerified: (verified) {
+            onVerified(val: verified);
+          },
+        );
+        state = const AsyncValue.data(null);
+      });
+    }
     state = const AsyncValue.data(null);
   }
 

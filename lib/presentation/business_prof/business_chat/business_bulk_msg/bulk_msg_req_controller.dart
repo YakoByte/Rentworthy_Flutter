@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rentworthy/utils/globals.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../application/validate/validate.dart';
 import '../../../../utils/common_components/common_tickerprovider.dart';
 
 part 'bulk_msg_req_controller.g.dart';
@@ -15,6 +16,9 @@ class BulkMsgReqController extends _$BulkMsgReqController {
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
+  bool _isSubmit = false;
+
+  bool get isSubmit => _isSubmit;
 
   List<bool> get getselectuser => _selectuser!;
 
@@ -32,12 +36,16 @@ class BulkMsgReqController extends _$BulkMsgReqController {
 
   onSend() async {
     state = const AsyncLoading();
-    _isLoading = true;
-    Future.delayed(const Duration(seconds: 1), () {
-      _isLoading = false;
-      Navigator.pop(Globals.navigatorKey.currentContext!);
-      state = const AsyncValue.data(null);
-    });
+    _isSubmit = true;
+    if (validate(descController.text) == null) {
+      _isLoading = true;
+      Future.delayed(const Duration(seconds: 1), () {
+        _isLoading = false;
+        Navigator.pop(Globals.navigatorKey.currentContext!);
+        state = const AsyncValue.data(null);
+      });
+    }
+
     state = const AsyncValue.data(null);
   }
 

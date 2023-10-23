@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_native_splash/cli_commands.dart';
 import 'package:flutter_speech/flutter_speech.dart';
 import 'package:geocoding/geocoding.dart';
@@ -21,7 +22,6 @@ class HomeScreenController extends _$HomeScreenController {
     'Dallas',
   ];
 
-  ScrollController scrollController = ScrollController();
   List<bool>? featureadfavlist;
 
   List<bool> get getfeatureadfavlist => featureadfavlist!;
@@ -34,7 +34,7 @@ class HomeScreenController extends _$HomeScreenController {
   List<bool> get getpopularfavlist => popularfavlist!;
 
   List<String> get locationList => _locationList;
-
+  AnimationController? appbaranimationcontroller;
   String? _currentAddress;
   Position? _currentPosition;
 
@@ -96,6 +96,19 @@ class HomeScreenController extends _$HomeScreenController {
 
   List<String> get getsearchitems => searchitems;
   List<AnimationController>? animatecontrollerlist = [];
+  ScrollController scrollViewController = ScrollController();
+  bool _showAppbar = true;
+
+  bool get showAppbar => _showAppbar;
+  bool _isScrollingDown = false;
+
+  bool get isScrollingDown => _isScrollingDown;
+
+  bool _show = true;
+
+  bool get show => _show;
+  double bottomBarHeight = 75; // set bottom bar height
+  double _bottomBarOffset = 0;
 
   @override
   FutureOr<void> build() async {
@@ -108,12 +121,19 @@ class HomeScreenController extends _$HomeScreenController {
       vsync: CommonTickerProvider(),
     )..repeat();
     // animationController!.stop();
+
     popularfavlist = List.generate(_imgList.length, (index) => false);
     featureadfavlist = List.generate(_imgList.length, (index) => false);
     nearbyadfavlist = List.generate(_imgList.length, (index) => false);
+    appbaranimationcontroller = AnimationController(
+      vsync: CommonTickerProvider(),
+      duration: const Duration(milliseconds: 800),
+    );
 
     ref.onDispose(() {
       animationController!.dispose();
+      scrollViewController.dispose();
+      scrollViewController.removeListener(() {});
     });
     _isLoading = true;
     for (int i = 0; i < _nameList.length; i++) {
@@ -130,10 +150,51 @@ class HomeScreenController extends _$HomeScreenController {
         animatecontrollerlist![i + 1].forward();
       }
     }
+
     Future.delayed(const Duration(seconds: 1), () {
+      appbaranimationcontroller!.forward();
       _isLoading = false;
+
       state = const AsyncValue.data(null);
     });
+
+    myScroll();
+    state = const AsyncValue.data(null);
+  }
+
+  void myScroll() async {
+    scrollViewController.addListener(() {
+      if (scrollViewController.position.userScrollDirection ==
+          ScrollDirection.reverse) {
+        if (!isScrollingDown) {
+          _isScrollingDown = true;
+          _showAppbar = false;
+          hideBottomBar();
+          state = const AsyncValue.data(null);
+        }
+      }
+
+      if (scrollViewController.position.userScrollDirection ==
+          ScrollDirection.forward) {
+        if (isScrollingDown) {
+          _isScrollingDown = false;
+          _showAppbar = true;
+          showBottomBar();
+          state = const AsyncValue.data(null);
+        }
+      }
+    });
+  }
+
+  void showBottomBar() {
+    state = const AsyncLoading();
+    _show = true;
+    state = const AsyncValue.data(null);
+  }
+
+  void hideBottomBar() {
+    state = const AsyncLoading();
+    _show = false;
     state = const AsyncValue.data(null);
   }
 

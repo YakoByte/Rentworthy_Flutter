@@ -108,7 +108,6 @@ class CommonMultiSelectDrop extends ConsumerWidget {
                     autoValidateMode: autoValidateMode,
                     onChanged: onChangedsearch,
                     items: items,
-
                     asyncItems: asyncItems,
                     dropdownBuilder: _style,
                     dropdownDecoratorProps: dropdownDecoratorProps,
@@ -119,60 +118,7 @@ class CommonMultiSelectDrop extends ConsumerWidget {
                     itemAsString: itemAsString,
                     compareFn: compareFn,
                     onBeforeChange: onBeforeChange,
-
                     onBeforePopupOpening: onBeforePopupOpening,
-                    // popupProps: PopupProps.menu(
-                    //   fit: FlexFit.loose,
-                    //   title: dropdowntitle,
-                    //   containerBuilder: (context, child) {
-                    //     return Container(
-                    //       color: containercolor,
-                    //       child: child,
-                    //     );
-                    //   },
-                    //   itemBuilder: (context, item, isSelected) {
-                    //     return Padding(
-                    //       padding: EdgeInsets.symmetric(
-                    //           vertical: height * 0.006,
-                    //           horizontal: width * 0.025),
-                    //       child: Container(
-                    //         height: height * 0.025,
-                    //         color: containercolor,
-                    //         child: Row(
-                    //           children: [
-                    //             dropdownicon != null
-                    //                 ? dropdownicon!
-                    //                 : const SizedBox.shrink(),
-                    //             dropdownsuffix != null
-                    //                 ? Expanded(
-                    //                     child: Text(
-                    //                       item!,
-                    //                       style: ptSansTextStyle(
-                    //                           color: AppColors.black
-                    //                               .withOpacity(0.8),
-                    //                           fontSize: height * 0.02,
-                    //                           fontWeight: FontWeight.w600),
-                    //                     ),
-                    //                   )
-                    //                 : Text(
-                    //                     item!,
-                    //                     style: ptSansTextStyle(
-                    //                         color: AppColors.black
-                    //                             .withOpacity(0.8),
-                    //                         fontSize: height * 0.02,
-                    //                         fontWeight: FontWeight.w600),
-                    //                   ),
-                    //             dropdownsuffix != null
-                    //                 ? dropdownsuffix!
-                    //                 : const SizedBox.shrink(),
-                    //           ],
-                    //         ),
-                    //       ),
-                    //     );
-                    //   },
-                    //   constraints: BoxConstraints.tightFor(),
-                    // ),
-
                     popupProps: PopupPropsMultiSelection.menu(
                       fit: FlexFit.loose,
                       title: dropdowntitle,

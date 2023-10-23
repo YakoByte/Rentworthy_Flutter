@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rentworthy/application/validate/validate.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../utils/import_utils.dart';
@@ -14,6 +15,9 @@ class CreatePasswordController extends _$CreatePasswordController {
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
+  bool _isSubmit = false;
+
+  bool get isSubmit => _isSubmit;
 
   bool get iseyehide => _iseyehide;
   bool _confirmiseyehide = false;
@@ -33,13 +37,22 @@ class CreatePasswordController extends _$CreatePasswordController {
 
   onSave() async {
     state = const AsyncLoading();
-    _isLoading = true;
-    Future.delayed(const Duration(seconds: 1), () {
-      _isLoading = false;
-      Navigator.pop(Globals.navigatorKey.currentContext!);
+    _isSubmit = true;
 
+    if (validatePassword(passwordController.text) == null &&
+        validateConfirmPassword(
+                confirmpasswordController.text, passwordController.text) ==
+            null) {
+      _isLoading = true;
+      Future.delayed(const Duration(seconds: 1), () {
+        _isLoading = false;
+        Navigator.pop(Globals.navigatorKey.currentContext!);
+
+        state = const AsyncValue.data(null);
+      });
       state = const AsyncValue.data(null);
-    });
+    }
+
     state = const AsyncValue.data(null);
   }
 

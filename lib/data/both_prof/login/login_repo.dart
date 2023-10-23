@@ -2,15 +2,18 @@
 
 import 'dart:developer';
 import 'dart:math' as math;
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../../../application/dialog/dialog_service.dart';
+import '../../../presentation/business_prof/admin_panel/admin_panel.dart';
+import '../../../presentation/indi_prof/bottombar/bottom_bar.dart';
 import '../../../utils/import_utils.dart';
+import '../shared_pref/shared_pref.dart';
 
 abstract class LoginRepository {
   Future<void> sendOTP({
@@ -26,7 +29,7 @@ abstract class LoginRepository {
     MultiFactorSession? multiFactorSession,
   });
 
-  Future<User?> loginWithGoogle();
+  Future<User?> loginWithGoogle({required int index});
 
   Future<User?> logoutWithGoogle();
 
@@ -88,40 +91,62 @@ class LoginRepositoryV1 extends LoginRepository {
   }
 
   @override
-  Future<User?> loginWithGoogle() async {
+  Future<User?> loginWithGoogle({required int index}) async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
+
     final GoogleSignInAccount? googleSignInAccount =
         await googleSignIn.signIn();
+
     if (googleSignInAccount != null) {
       final GoogleSignInAuthentication googleSignInAuthentication =
           await googleSignInAccount.authentication;
+
       final AuthCredential authCredential = GoogleAuthProvider.credential(
           idToken: googleSignInAuthentication.idToken,
           accessToken: googleSignInAuthentication.accessToken);
 
       // Getting users credential
+
       UserCredential result = await auth.signInWithCredential(authCredential);
+
       User? user = result.user;
-      print('userdata ${user}');
-      log(" =============RES123:=========  ${googleSignInAuthentication.accessToken}");
-      log(" =============RES123ger:=========  ${googleSignInAuthentication.idToken}");
+
+      print('userdata $user');
+
+      log(" =============: RES123 :=============  ${googleSignInAuthentication.accessToken}");
+
+      log(" =============: RES123ger :=============  ${googleSignInAuthentication.idToken}");
+
       print('userdatatoken  ${googleSignInAuthentication.accessToken}');
 
       if (result != null) {
         DialogServiceV1().showSnackBar(
             content: "User Logged-in Successfully!!",
-            color: AppColors.colorPrimary..withOpacity(0.7),
+            color: AppColors.colorPrimary.withOpacity(0.7),
             textclr: AppColors.white);
+
+        PreferenceManagerUtils.setIsLogin(true);
+
+        PreferenceManagerUtils.setIsIndividual(index == 0 ? 1 : 2);
+
+        Navigator.pushAndRemoveUntil(
+            Globals.navigatorKey.currentContext!,
+            PageTransition(
+                child: index == 0 ? BottomBar(index: 0) : const AdminPanel(),
+                type: PageTransitionType.rightToLeftWithFade,
+                duration: const Duration(milliseconds: 400)),
+            (Route<dynamic> route) => false);
         return user;
       } else {
         DialogServiceV1().showSnackBar(
             content: "User Logged-in Failed!!",
             color: AppColors.red..withOpacity(0.7),
             textclr: AppColors.white);
+
         return null;
-      } // if result not null we simply call the MaterialpageRoute,
-      // for go to the HomePage screen
+      }
     }
+
     return null;
   }
 
@@ -140,12 +165,16 @@ class LoginRepositoryV1 extends LoginRepository {
     );
     User user;
     if (result.status == LoginStatus.success) {
-      // Create a credential from the access token
+      //Create a credential from the access token
+
       final OAuthCredential credential =
           FacebookAuthProvider.credential(result.accessToken!.token);
+
       // Once signed in, return the UserCredential
+
       return await FirebaseAuth.instance.signInWithCredential(credential);
     }
+
     return null;
   }
 

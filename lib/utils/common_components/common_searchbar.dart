@@ -63,17 +63,6 @@ class CommonSearchBar extends ConsumerWidget {
                   centericon: Icon(Icons.mic,
                       color: AppColors.gray.withOpacity(0.6), size: h * 0.03),
                   onPressed: suffixonTap ?? () {}),
-          // GestureDetector(
-          //   onTap: suffixonTap,
-          //   child: Column(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     children: [
-          //       suffixicon ??
-          //           Icon(Icons.mic,
-          //               color: AppColors.gray.withOpacity(0.6), size: h * 0.03),
-          //     ],
-          //   ),
-          // ),
           textCapitalization: TextCapitalization.sentences,
           textstyle: ptSansTextStyle(
               fontSize: w * 0.04,

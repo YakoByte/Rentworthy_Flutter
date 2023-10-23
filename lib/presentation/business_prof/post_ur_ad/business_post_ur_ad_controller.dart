@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:rentworthy/utils/import_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../utils/common_components/common_tickerprovider.dart';
+import '../../../application/validate/validate.dart';
 import '../admin_panel/admin_panel.dart';
 
 part 'business_post_ur_ad_controller.g.dart';
@@ -18,10 +22,14 @@ class BusinessPostAdController extends _$BusinessPostAdController {
   TextEditingController cityController = TextEditingController();
   TextEditingController stateController = TextEditingController();
   TextEditingController addtitlelastController = TextEditingController();
-
+  ImagePicker imagePicker = ImagePicker();
+  late List<File> selectedImage;
   bool _isLoading = false;
+  bool _isSubmit = false;
 
   bool get isLoading => _isLoading;
+
+  bool get isSubmit => _isSubmit;
   List<String>? _selectCat = [];
   List<String> _catList = [
     "cat1",
@@ -37,7 +45,7 @@ class BusinessPostAdController extends _$BusinessPostAdController {
   @override
   FutureOr<void> build() async {
     state = AsyncLoading();
-
+    selectedImage = List.generate(6, (index) => File(""));
     state = AsyncValue.data(null);
   }
 
@@ -47,21 +55,40 @@ class BusinessPostAdController extends _$BusinessPostAdController {
     state = const AsyncValue.data(null);
   }
 
+  onImgSelect({required val, required index}) async {
+    state = const AsyncLoading();
+    selectedImage![index] = val;
+    print("selectedImage =-=- ${selectedImage![index]}");
+    state = const AsyncValue.data(null);
+  }
+
   onNext() async {
     state = const AsyncLoading();
-    _isLoading = true;
+    _isSubmit = true;
+    if (validate(itemnameController.text) == null &&
+        validate(itemnameController.text) == null &&
+        validate(itemnameController.text) == null &&
+        validate(itemnameController.text) == null &&
+        validate(itemnameController.text) == null &&
+        validate(itemnameController.text) == null &&
+        validate(itemnameController.text) == null &&
+        validate(itemnameController.text) == null &&
+        validate(itemnameController.text) == null) {
+      _isLoading = true;
 
-    Future.delayed(Duration(seconds: 1), () {
-      state = const AsyncLoading();
-      _isLoading = false;
-      state = const AsyncValue.data(null);
+      Future.delayed(Duration(seconds: 1), () {
+        state = const AsyncLoading();
 
-      commonNavigator(
-        context: Globals.navigatorKey.currentContext!,
-        child: const AdminPanel(),
-        type: PageTransitionType.rightToLeftWithFade,
-      );
-    });
+        _isLoading = false;
+        state = const AsyncValue.data(null);
+
+        commonNavigator(
+          context: Globals.navigatorKey.currentContext!,
+          child: const AdminPanel(),
+          type: PageTransitionType.rightToLeftWithFade,
+        );
+      });
+    }
     state = const AsyncValue.data(null);
   }
 }

@@ -330,6 +330,10 @@ class AdminPanel extends ConsumerWidget {
                                                                           227,
                                                                           1)),
                                                                 ],
+                                                                animationDelay:
+                                                                    2000,
+                                                                animationDuration:
+                                                                    2500,
                                                                 strokeColor:
                                                                     AppColors
                                                                         .chartgrey,

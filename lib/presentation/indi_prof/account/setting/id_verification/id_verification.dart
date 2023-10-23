@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rentworthy/application/validate/validate.dart';
 import 'package:rentworthy/utils/common_components/icon_text.dart';
 
 import '../../../../../utils/color.dart';
@@ -11,11 +12,16 @@ import '../../../../../utils/images.dart';
 import '../../../../../utils/text.dart';
 import 'id_verification_controller.dart';
 
-class IdVerification extends ConsumerWidget {
+class IdVerification extends ConsumerStatefulWidget {
   const IdVerification({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState createState() => _IdVerificationState();
+}
+
+class _IdVerificationState extends ConsumerState<IdVerification> {
+  @override
+  Widget build(BuildContext context) {
     final asyncState = ref.watch(idVerificationControllerProvider);
     controller() => ref.read(idVerificationControllerProvider.notifier);
 
@@ -138,7 +144,15 @@ class IdVerification extends ConsumerWidget {
                                       color: AppColors.black.withOpacity(0.6),
                                       fontSize: h * 0.021,
                                       fontWeight: FontWeight.w400),
-                                  errorText: "",
+                                  errorText: controller().isSubmit
+                                      ? validate(
+                                          controller().einController.text)
+                                      : null,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      validate(controller().einController.text);
+                                    });
+                                  },
                                   errorStyle: ptSansTextStyle(
                                       color: AppColors.red,
                                       fontSize: h * 0.019,

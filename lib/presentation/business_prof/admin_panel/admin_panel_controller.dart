@@ -215,6 +215,8 @@ class AdminPanelController extends _$AdminPanelController {
       ColumnSeries<ChartSampleData, String>(
         spacing: 0.2,
         width: 1,
+        animationDelay: 3500,
+        animationDuration: 3500,
         dataSource: <ChartSampleData>[
           ChartSampleData(x: 0, y: 3700),
           ChartSampleData(x: 1, y: 2500),
@@ -264,6 +266,8 @@ class AdminPanelController extends _$AdminPanelController {
       ColumnSeries<ChartSampleData, String>(
         spacing: 0.2,
         width: 1,
+        animationDelay: 3500,
+        animationDuration: 3500,
         dataSource: <ChartSampleData>[
           ChartSampleData(x: 0, y: 1700),
           ChartSampleData(x: 1, y: 4500),
@@ -326,6 +330,8 @@ class AdminPanelController extends _$AdminPanelController {
           ChartSampleData(x: 'Android', y: 5.0),
           ChartSampleData(x: 'Other', y: 22.0),
         ],
+        animationDelay: 2000,
+        animationDuration: 2500,
         name: 'Traffic by Device',
         width: 0.4,
         pointColorMapper: (ChartSampleData sales, _) => sales.x == 'Linux'

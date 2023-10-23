@@ -286,33 +286,35 @@ class SelectionWidgetState<T> extends State<SelectionWidget<T>> {
   }
 
   Widget _noDataWidget() {
-    if (widget.popupProps.emptyBuilder != null)
+    if (widget.popupProps.emptyBuilder != null) {
       return widget.popupProps.emptyBuilder!(
         context,
         searchBoxController.text,
       );
-    else
+    } else {
       return Container(
         height: 70,
         alignment: Alignment.center,
         child: Text("No data found"),
       );
+    }
   }
 
   Widget _errorWidget(dynamic error) {
-    if (widget.popupProps.errorBuilder != null)
+    if (widget.popupProps.errorBuilder != null) {
       return widget.popupProps.errorBuilder!(
         context,
         searchBoxController.text,
         error,
       );
-    else
+    } else {
       return Container(
         alignment: Alignment.center,
         child: Text(
           error?.toString() ?? 'Unknown Error',
         ),
       );
+    }
   }
 
   Widget _loadingWidget() {
@@ -320,17 +322,18 @@ class SelectionWidgetState<T> extends State<SelectionWidget<T>> {
         valueListenable: _loadingNotifier,
         builder: (context, bool isLoading, wid) {
           if (isLoading) {
-            if (widget.popupProps.loadingBuilder != null)
+            if (widget.popupProps.loadingBuilder != null) {
               return widget.popupProps.loadingBuilder!(
                 context,
                 searchBoxController.text,
               );
-            else
+            } else {
               return Container(
                 height: 70,
                 alignment: Alignment.center,
                 child: const CircularProgressIndicator(),
               );
+            }
           }
           return const SizedBox.shrink();
         });
@@ -345,9 +348,9 @@ class SelectionWidgetState<T> extends State<SelectionWidget<T>> {
 
     List<T> applyFilter(String filter) {
       return _cachedItems.where((i) {
-        if (widget.filterFn != null)
+        if (widget.filterFn != null) {
           return (widget.filterFn!(i, filter));
-        else if (i.toString().toLowerCase().contains(filter.toLowerCase()))
+        } else if (i.toString().toLowerCase().contains(filter.toLowerCase()))
           return true;
         else if (widget.itemAsString != null) {
           return (widget.itemAsString!(i))
@@ -383,10 +386,11 @@ class SelectionWidgetState<T> extends State<SelectionWidget<T>> {
         _cachedItems.addAll(onlineItems);
 
         //don't filter data , they are already filtered online and local data are already filtered
-        if (widget.popupProps.isFilterOnline == true)
+        if (widget.popupProps.isFilterOnline == true) {
           _addDataToStream(_cachedItems);
-        else
+        } else {
           _addDataToStream(applyFilter(filter));
+        }
       } catch (e) {
         _addErrorToStream(e);
         //if offline items count > 0 , the error will be not visible for the user
@@ -425,14 +429,15 @@ class SelectionWidgetState<T> extends State<SelectionWidget<T>> {
         !widget.popupProps.showSelectedItems ? false : _isSelectedItem(item),
       );
 
-      if (widget.popupProps.interceptCallBacks)
+      if (widget.popupProps.interceptCallBacks) {
         return w;
-      else
+      } else {
         return InkWell(
           // ignore pointers in itemBuilder
           child: IgnorePointer(child: w),
           onTap: _isDisabled(item) ? null : () => _handleSelectedItem(item),
         );
+      }
     } else {
       return ListTile(
         enabled: !_isDisabled(item),
@@ -446,7 +451,7 @@ class SelectionWidgetState<T> extends State<SelectionWidget<T>> {
   }
 
   Widget _itemWidgetMultiSelection(T item) {
-    if (widget.popupProps.selectionWidget != null)
+    if (widget.popupProps.selectionWidget != null) {
       return CheckBoxWidget(
         checkBox: (cnt, checked) {
           return widget.popupProps.selectionWidget!(context, item, checked);
@@ -458,7 +463,7 @@ class SelectionWidgetState<T> extends State<SelectionWidget<T>> {
         isDisabled: _isDisabled(item),
         onChanged: (c) => _handleSelectedItem(item),
       );
-    else
+    } else {
       return CheckBoxWidget(
         textDirection: widget.popupProps.textDirection,
         interceptCallBacks: widget.popupProps.interceptCallBacks,
@@ -467,6 +472,7 @@ class SelectionWidgetState<T> extends State<SelectionWidget<T>> {
         isDisabled: _isDisabled(item),
         onChanged: (c) => _handleSelectedItem(item),
       );
+    }
   }
 
   bool _isDisabled(T item) =>
@@ -487,10 +493,11 @@ class SelectionWidgetState<T> extends State<SelectionWidget<T>> {
 
   ///compared two items base on user params
   bool _isEqual(T i1, T i2) {
-    if (widget.compareFn != null)
+    if (widget.compareFn != null) {
       return widget.compareFn!(i1, i2);
-    else
+    } else {
       return i1 == i2;
+    }
   }
 
   Widget _searchField() {
@@ -653,18 +660,21 @@ class SelectionWidgetState<T> extends State<SelectionWidget<T>> {
       if (_isSelectedItem(newSelectedItem)) {
         _selectedItemsNotifier.value = List.from(_selectedItems)
           ..removeWhere((i) => _isEqual(newSelectedItem, i));
-        if (widget.popupProps.onItemRemoved != null)
+        if (widget.popupProps.onItemRemoved != null) {
           widget.popupProps.onItemRemoved!(_selectedItems, newSelectedItem);
+        }
       } else {
         _selectedItemsNotifier.value = List.from(_selectedItems)
           ..add(newSelectedItem);
-        if (widget.popupProps.onItemAdded != null)
+        if (widget.popupProps.onItemAdded != null) {
           widget.popupProps.onItemAdded!(_selectedItems, newSelectedItem);
+        }
       }
     } else {
       closePopup();
-      if (widget.onChanged != null)
+      if (widget.onChanged != null) {
         widget.onChanged!(List.filled(1, newSelectedItem));
+      }
     }
   }
 
@@ -708,8 +718,9 @@ class SelectionWidgetState<T> extends State<SelectionWidget<T>> {
       if (!_isSelectedItem(i) /*check if the item is already selected*/ &&
           !_isDisabled(i) /*escape disabled items*/) {
         newSelectedItems.add(i);
-        if (widget.popupProps.onItemAdded != null)
+        if (widget.popupProps.onItemAdded != null) {
           widget.popupProps.onItemAdded!(_selectedItems, i);
+        }
       }
     });
     _selectedItemsNotifier.value = List.from(newSelectedItems);
@@ -725,8 +736,9 @@ class SelectionWidgetState<T> extends State<SelectionWidget<T>> {
       var index = _itemIndexInList(newSelectedItems, i);
       if (index > -1) /*check if the item is already selected*/ {
         newSelectedItems.removeAt(index);
-        if (widget.popupProps.onItemRemoved != null)
+        if (widget.popupProps.onItemRemoved != null) {
           widget.popupProps.onItemRemoved!(_selectedItems, i);
+        }
       }
     });
     _selectedItemsNotifier.value = List.from(newSelectedItems);

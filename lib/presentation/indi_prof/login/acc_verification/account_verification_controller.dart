@@ -11,6 +11,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_navigator.dart';
 import '../../../../../utils/globals.dart';
+import '../../../../application/dialog/dialog_service.dart';
 import '../../../../data/both_prof/shared_pref/shared_pref.dart';
 import '../../../indi_prof/bottombar/bottom_bar.dart';
 
@@ -54,22 +55,14 @@ class AccountVerificationController extends _$AccountVerificationController {
       fieldOuterPadding: EdgeInsets.zero,
       activeFillColor: AppColors.white,
       activeBorderWidth: 1,
-      activeBoxShadow: [
-        BoxShadow(
-          color: AppColors.black.withOpacity(0.1),
-          blurRadius: 0,
-          spreadRadius: 0,
-          offset: const Offset(0, 0),
-        )
-      ],
       selectedFillColor: AppColors.white,
       selectedColor: AppColors.black,
       inactiveFillColor: AppColors.white,
       errorBorderColor: AppColors.red,
       activeColor: AppColors.black,
       inactiveColor: AppColors.black,
-      fieldHeight: h * 0.08,
-      fieldWidth: h * 0.08,
+      fieldHeight: h * 0.06,
+      fieldWidth: h * 0.06,
       disabledColor: AppColors.white,
     );
     ref.onDispose(() {
@@ -117,6 +110,10 @@ class AccountVerificationController extends _$AccountVerificationController {
 
           if (timer.tick > 3) {
             timer.cancel();
+            DialogServiceV1().showSnackBar(
+                content: "User Logged-in Successfully!!",
+                color: AppColors.colorPrimary.withOpacity(0.7),
+                textclr: AppColors.white);
             PreferenceManagerUtils.setIsLogin(true);
             PreferenceManagerUtils.setIsIndividual(1);
             Navigator.pushAndRemoveUntil(

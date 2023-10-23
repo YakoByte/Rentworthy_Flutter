@@ -70,7 +70,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          height: h * 0.58,
+                          height: controller().issubmit ? h * 0.65 : h * 0.58,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -157,9 +157,6 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                       lableText: AppText.urname,
                                       maxLength: 30,
                                       isCounter: true,
-                                      onChanged: (value) {
-                                        setState(() {});
-                                      },
                                       enableunderlinecolor:
                                           AppColors.black.withOpacity(0.6),
                                       disableunderlinecolor:
@@ -182,7 +179,16 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                               AppColors.black.withOpacity(0.6),
                                           fontSize: h * 0.021,
                                           fontWeight: FontWeight.w400),
-                                      errorText: "",
+                                      errorText: controller().issubmit
+                                          ? validateUname(
+                                              controller().nameController.text)
+                                          : null,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          validateUname(
+                                              controller().nameController.text);
+                                        });
+                                      },
                                       errorStyle: ptSansTextStyle(
                                           color: AppColors.red,
                                           fontSize: h * 0.019,
@@ -225,7 +231,18 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                               AppColors.black.withOpacity(0.6),
                                           fontSize: h * 0.021,
                                           fontWeight: FontWeight.w400),
-                                      errorText: "",
+                                      errorText: controller().issubmit
+                                          ? validate(controller()
+                                              .aboutyouController
+                                              .text)
+                                          : null,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          validate(controller()
+                                              .aboutyouController
+                                              .text);
+                                        });
+                                      },
                                       maxLength: 140,
                                       enableunderlinecolor:
                                           AppColors.black.withOpacity(0.6),
@@ -235,9 +252,6 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                           AppColors.black.withOpacity(0.6),
                                       underlinecolor:
                                           AppColors.black.withOpacity(0.6),
-                                      onChanged: (value) {
-                                        setState(() {});
-                                      },
                                       errorStyle: ptSansTextStyle(
                                           color: AppColors.red,
                                           fontSize: h * 0.019,
@@ -318,11 +332,9 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                           : null,
                                       onChanged: (value) {
                                         setState(() {
-                                          controller().issubmit == true
-                                              ? validate(controller()
-                                                  .countryCodeController
-                                                  .text)
-                                              : null;
+                                          validate(controller()
+                                              .countryCodeController
+                                              .text);
                                         });
                                       },
                                       errorStyle: ptSansTextStyle(
@@ -373,11 +385,9 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                           : null,
                                       onChanged: (value) {
                                         setState(() {
-                                          controller().issubmit == true
-                                              ? validatephone(controller()
-                                                  .phoneController
-                                                  .text)
-                                              : null;
+                                          validatephone(controller()
+                                              .phoneController
+                                              .text);
                                         });
                                       },
                                       errorStyle: ptSansTextStyle(
@@ -402,9 +412,6 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                       curve: Curves.easeInOutCubic,
                                       duration: 1000.ms),
                               TextInputField(
-                                      onChanged: (value) {
-                                        setState(() {});
-                                      },
                                       enableunderlinecolor:
                                           AppColors.black.withOpacity(0.6),
                                       disableunderlinecolor:
@@ -429,7 +436,17 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                               AppColors.black.withOpacity(0.6),
                                           fontSize: h * 0.021,
                                           fontWeight: FontWeight.w400),
-                                      errorText: "",
+                                      errorText: controller().issubmit
+                                          ? validateEmail(
+                                              controller().emailController.text)
+                                          : null,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          validateEmail(controller()
+                                              .emailController
+                                              .text);
+                                        });
+                                      },
                                       errorStyle: ptSansTextStyle(
                                           color: AppColors.red,
                                           fontSize: h * 0.019,

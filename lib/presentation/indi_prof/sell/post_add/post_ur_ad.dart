@@ -7,6 +7,7 @@ import 'package:rentworthy/application/dialog/dialog_service.dart';
 import 'package:rentworthy/presentation/indi_prof/sell/post_add/post_ur_ad_controller.dart';
 import 'package:rentworthy/utils/common_components/common_gridview.dart';
 
+import '../../../../application/validate/validate.dart';
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_appbar.dart';
 import '../../../../utils/common_components/common_button.dart';
@@ -87,9 +88,6 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                               TextInputField(
                                   hintText: "",
                                   titleText: AppText.adtitle,
-                                  onChanged: (value) {
-                                    setState(() {});
-                                  },
                                   enableunderlinecolor:
                                       AppColors.black.withOpacity(0.6),
                                   disableunderlinecolor:
@@ -110,7 +108,16 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                                       color: AppColors.black.withOpacity(0.6),
                                       fontSize: h * 0.021,
                                       fontWeight: FontWeight.w500),
-                                  errorText: "",
+                                  errorText: controller().issubmit == true
+                                      ? validate(
+                                          controller().addtitleController.text)
+                                      : null,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      validate(
+                                          controller().addtitleController.text);
+                                    });
+                                  },
                                   errorStyle: ptSansTextStyle(
                                       color: AppColors.red,
                                       fontSize: h * 0.019,
@@ -183,9 +190,6 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                         TextInputField(
                             hintText: "",
                             titleText: AppText.brand,
-                            onChanged: (value) {
-                              setState(() {});
-                            },
                             enableunderlinecolor:
                                 AppColors.black.withOpacity(0.6),
                             disableunderlinecolor:
@@ -205,7 +209,14 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                                 color: AppColors.black.withOpacity(0.6),
                                 fontSize: h * 0.021,
                                 fontWeight: FontWeight.w500),
-                            errorText: "",
+                            errorText: controller().issubmit == true
+                                ? validate(controller().subcatController.text)
+                                : null,
+                            onChanged: (value) {
+                              setState(() {
+                                validate(controller().subcatController.text);
+                              });
+                            },
                             errorStyle: ptSansTextStyle(
                                 color: AppColors.red,
                                 fontSize: h * 0.019,
@@ -387,11 +398,17 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                                       color: AppColors.black.withOpacity(0.6),
                                       fontSize: h * 0.021,
                                       fontWeight: FontWeight.w500),
-                                  errorText: "",
-                                  maxLength: 4096,
+                                  errorText: controller().issubmit == true
+                                      ? validate(
+                                          controller().descController.text)
+                                      : null,
                                   onChanged: (value) {
-                                    setState(() {});
+                                    setState(() {
+                                      validate(
+                                          controller().descController.text);
+                                    });
                                   },
+                                  maxLength: 4096,
                                   errorStyle: ptSansTextStyle(
                                       color: AppColors.red,
                                       fontSize: h * 0.019,
@@ -450,9 +467,6 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                         TextInputField(
                             hintText: "",
                             titleText: AppText.price,
-                            onChanged: (value) {
-                              setState(() {});
-                            },
                             enableunderlinecolor:
                                 AppColors.black.withOpacity(0.6),
                             disableunderlinecolor:
@@ -492,7 +506,14 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                                 ),
                               ),
                             ),
-                            errorText: "",
+                            errorText: controller().issubmit == true
+                                ? validate(controller().priceController.text)
+                                : null,
+                            onChanged: (value) {
+                              setState(() {
+                                validate(controller().priceController.text);
+                              });
+                            },
                             errorStyle: ptSansTextStyle(
                                 color: AppColors.red,
                                 fontSize: h * 0.019,
@@ -661,9 +682,6 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                         TextInputField(
                             hintText: "",
                             titleText: AppText.city,
-                            onChanged: (value) {
-                              setState(() {});
-                            },
                             enableunderlinecolor:
                                 AppColors.black.withOpacity(0.6),
                             disableunderlinecolor:
@@ -683,7 +701,14 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                                 color: AppColors.black.withOpacity(0.6),
                                 fontSize: h * 0.021,
                                 fontWeight: FontWeight.w500),
-                            errorText: "",
+                            errorText: controller().issubmit == true
+                                ? validate(controller().cityController.text)
+                                : null,
+                            onChanged: (value) {
+                              setState(() {
+                                validate(controller().cityController.text);
+                              });
+                            },
                             errorStyle: ptSansTextStyle(
                                 color: AppColors.red,
                                 fontSize: h * 0.019,
@@ -701,9 +726,6 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                         TextInputField(
                             hintText: "",
                             titleText: AppText.state,
-                            onChanged: (value) {
-                              setState(() {});
-                            },
                             enableunderlinecolor:
                                 AppColors.black.withOpacity(0.6),
                             disableunderlinecolor:
@@ -723,7 +745,14 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                                 color: AppColors.black.withOpacity(0.6),
                                 fontSize: h * 0.021,
                                 fontWeight: FontWeight.w500),
-                            errorText: "",
+                            errorText: controller().issubmit == true
+                                ? validate(controller().stateController.text)
+                                : null,
+                            onChanged: (value) {
+                              setState(() {
+                                validate(controller().stateController.text);
+                              });
+                            },
                             errorStyle: ptSansTextStyle(
                                 color: AppColors.red,
                                 fontSize: h * 0.019,
@@ -775,9 +804,6 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                             TextInputField(
                                 hintText: "",
                                 titleText: AppText.adtitle,
-                                onChanged: (value) {
-                                  setState(() {});
-                                },
                                 enableunderlinecolor:
                                     AppColors.black.withOpacity(0.6),
                                 disableunderlinecolor:
@@ -798,7 +824,18 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                                     color: AppColors.black.withOpacity(0.6),
                                     fontSize: h * 0.021,
                                     fontWeight: FontWeight.w500),
-                                errorText: "",
+                                errorText: controller().issubmit == true
+                                    ? validate(controller()
+                                        .addtitlelastController
+                                        .text)
+                                    : null,
+                                onChanged: (value) {
+                                  setState(() {
+                                    validate(controller()
+                                        .addtitlelastController
+                                        .text);
+                                  });
+                                },
                                 errorStyle: ptSansTextStyle(
                                     color: AppColors.red,
                                     fontSize: h * 0.019,

@@ -34,7 +34,7 @@ class BusinessAccountVerificationController
   int _start = 60;
   bool _isVerify = false;
 
-  TextEditingController otpController = TextEditingController();
+  TextEditingController? otpController;
 
   bool get isVerify => _isVerify;
 
@@ -43,6 +43,7 @@ class BusinessAccountVerificationController
   @override
   FutureOr<BusinessAccountVerificationState> build() async {
     state = const AsyncLoading();
+
     final h = MediaQuery.of(Globals.navigatorKey.currentContext!).size.height;
     final w = MediaQuery.of(Globals.navigatorKey.currentContext!).size.width;
 
@@ -53,27 +54,20 @@ class BusinessAccountVerificationController
       fieldOuterPadding: EdgeInsets.zero,
       activeFillColor: AppColors.white,
       activeBorderWidth: 1,
-      activeBoxShadow: [
-        BoxShadow(
-          color: AppColors.black.withOpacity(0.1),
-          blurRadius: 0,
-          spreadRadius: 0,
-          offset: const Offset(0, 0),
-        )
-      ],
       selectedFillColor: AppColors.white,
       selectedColor: AppColors.black,
       inactiveFillColor: AppColors.white,
       errorBorderColor: AppColors.red,
       activeColor: AppColors.black,
       inactiveColor: AppColors.black,
-      fieldHeight: h * 0.08,
-      fieldWidth: h * 0.08,
+      fieldHeight: h * 0.06,
+      fieldWidth: h * 0.06,
       disabledColor: AppColors.white,
     );
     ref.onDispose(() {
       timer!.cancel();
     });
+    otpController = TextEditingController();
     return BusinessAccountVerificationState(start: _start);
   }
 

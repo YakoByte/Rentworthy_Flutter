@@ -153,11 +153,7 @@ class BusinessCatDetailsController extends _$BusinessCatDetailsController {
       PopupMenuItem(
         value: 3,
         onTap: () {
-          ref.read(dialogServiceProvider).reportimgtitledialog(
-              groupValue: _selectedreason,
-              onChangedval: (val) {
-                onReasonval(val);
-              });
+          ref.read(dialogServiceProvider).reportimgtitledialog();
         },
         child: IconText(
           isCenter: false,

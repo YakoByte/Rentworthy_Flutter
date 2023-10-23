@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rentworthy/utils/color.dart';
@@ -47,10 +48,7 @@ abstract class DialogService {
     required void Function(bool verfied) profVerified,
   });
 
-  Future<void> reportimgtitledialog({
-    required int groupValue,
-    required void Function(int) onChangedval,
-  });
+  Future<void> reportimgtitledialog();
 
   Future<void> commonImagePicker({
     required ImagePicker picker,
@@ -133,18 +131,12 @@ class DialogServiceV1 implements DialogService {
         }));
   }
 
-  Future<void> reportimgtitledialog({
-    required int groupValue,
-    required void Function(int) onChangedval,
-  }) async {
+  Future<void> reportimgtitledialog() async {
     return (await showDialog(
         context: Globals.navigatorKey.currentContext!,
         barrierDismissible: true,
         builder: (BuildContext context) {
-          return ReportImgTitleDialog(
-            groupValue: groupValue,
-            onChangedval: onChangedval,
-          );
+          return ReportImgTitleDialog();
         }));
   }
 
@@ -226,20 +218,28 @@ class DialogServiceV1 implements DialogService {
     if (Globals.navigatorKey.currentContext == null) {
       return;
     }
-    ScaffoldMessenger.of(Globals.navigatorKey.currentContext!).clearSnackBars();
-
-    ScaffoldMessenger.of(Globals.navigatorKey.currentContext!).showSnackBar(
-      SnackBar(
+    Fluttertoast.cancel();
+    Fluttertoast.showToast(
+        msg: content,
         backgroundColor: color,
-        duration: const Duration(seconds: 2),
-        content: Text(
-          content,
-          style: ptSansTextStyle(
-            color: textclr,
-          ),
-        ),
-      ),
-    );
+        textColor: textclr,
+        fontSize:
+            MediaQuery.of(Globals.navigatorKey.currentContext!).size.width *
+                0.04);
+    // ScaffoldMessenger.of(Globals.navigatorKey.currentContext!).clearSnackBars();
+    //
+    // ScaffoldMessenger.of(Globals.navigatorKey.currentContext!).showSnackBar(
+    //   SnackBar(
+    //     backgroundColor: color,
+    //     duration: const Duration(seconds: 2),
+    //     content: Text(
+    //       content,
+    //       style: ptSansTextStyle(
+    //         color: textclr,
+    //       ),
+    //     ),
+    //   ),
+    // );
   }
 
   ///permissions

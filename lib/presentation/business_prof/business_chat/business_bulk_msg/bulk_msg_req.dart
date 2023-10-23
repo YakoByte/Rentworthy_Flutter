@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
+import '../../../../application/validate/validate.dart';
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_button.dart';
 import '../../../../utils/common_components/common_gridview.dart';
@@ -38,6 +39,7 @@ class _BulkMsgReqState extends ConsumerState<BulkMsgReq> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       key: Globals.bulkchatkey,
+      backgroundColor: AppColors.white,
       drawer: AdminNavDrawer(
         selectedindex: 4,
       ).animate().fadeIn(duration: 30.ms).then(delay: 20.ms).slideX(
@@ -66,7 +68,7 @@ class _BulkMsgReqState extends ConsumerState<BulkMsgReq> {
                       CommonSearchBar(
                         containerwidth: w * 0.9,
                         containerheight: h * 0.06,
-                        prefix: SizedBox(),
+                        prefix: const SizedBox(),
                         textStyle: ptSansTextStyle(
                             fontSize: w * 0.04,
                             color: AppColors.black,
@@ -89,10 +91,10 @@ class _BulkMsgReqState extends ConsumerState<BulkMsgReq> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             CommonText(
-                                text: "Selected user",
+                                text: "Selected user".toUpperCase(),
                                 style: ptSansTextStyle(
                                     color: AppColors.black.withOpacity(0.4),
-                                    fontSize: h * 0.025,
+                                    fontSize: h * 0.023,
                                     fontWeight: FontWeight.w500)),
                           ],
                         ),
@@ -110,7 +112,7 @@ class _BulkMsgReqState extends ConsumerState<BulkMsgReq> {
                           mainAxisExtent: h * 0.12,
                           width: w,
                           height: h * 0.25,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
                             return Row(
                               children: [
@@ -135,22 +137,53 @@ class _BulkMsgReqState extends ConsumerState<BulkMsgReq> {
                                       fontSize: w * 0.035,
                                       fontWeight: FontWeight.w400,
                                     )),
-                                Checkbox(
-                                    value: controller().getselectuser[index],
-                                    tristate: true,
-                                    onChanged: (bool? v) {
-                                      controller().selectUser(index);
-                                    }),
+                                Container(
+                                    height: 18,
+                                    width: 18,
+                                    margin: EdgeInsets.only(left: 8),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(2),
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          controller().getselectuser[index]
+                                              ? AppColors.colorPrimary
+                                              : AppColors.transparent,
+                                          controller().getselectuser[index]
+                                              ? AppColors.colorSecondary
+                                              : AppColors.transparent,
+                                        ],
+                                        begin: Alignment.centerLeft,
+                                        end: Alignment.centerRight,
+                                      ),
+                                    ),
+                                    child: Checkbox(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(2)),
+                                      side: BorderSide(
+                                          color:
+                                              controller().getselectuser[index]
+                                                  ? AppColors.transparent
+                                                  : AppColors.dotcolor,
+                                          width: 1.5),
+                                      value: controller().getselectuser[index],
+                                      tristate: true,
+                                      focusColor: AppColors.transparent,
+                                      activeColor: AppColors.transparent,
+                                      checkColor: AppColors.white,
+                                      onChanged: (bool? v) {
+                                        controller().selectUser(index);
+                                      },
+                                    )),
                               ],
                             );
                           }),
                       TextInputField(
                           isCounter: false,
                           maxLines: 10,
-                          center: true,
+                          center: false,
                           hintText: "WRITE MESSAGE",
                           underline: false,
-                          lableText: "",
                           cursorHeight: h * 0.025,
                           enableunderlinecolor:
                               AppColors.black.withOpacity(0.6),
@@ -170,11 +203,15 @@ class _BulkMsgReqState extends ConsumerState<BulkMsgReq> {
                               color: AppColors.black.withOpacity(0.6),
                               fontSize: h * 0.021,
                               fontWeight: FontWeight.w500),
-                          errorText: "",
-                          maxLength: 4096,
+                          errorText: controller().isSubmit == true
+                              ? validate(controller().descController.text)
+                              : null,
                           onChanged: (value) {
-                            setState(() {});
+                            setState(() {
+                              validate(controller().descController.text);
+                            });
                           },
+                          maxLength: 4096,
                           errorStyle: ptSansTextStyle(
                               color: AppColors.red,
                               fontSize: h * 0.019,
@@ -188,70 +225,74 @@ class _BulkMsgReqState extends ConsumerState<BulkMsgReq> {
                           containerheight: h * 0.3,
                           containercolor: AppColors.white,
                           textCapitalization: TextCapitalization.none),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CommonOutlineButton(
-                            containerwidth: w * 0.42,
-                            containerheight: h * 0.065,
-                            backgroundColor: AppColors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(h * 0.006),
-                              side: const BorderSide(
-                                  color: AppColors.colorPrimary, width: 2),
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: GradientBoxBorder(
-                                gradient: LinearGradient(colors: [
-                                  AppColors.colorPrimary,
-                                  AppColors.colorSecondary
-                                ]),
-                                width: 2.5,
-                              ),
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                            text: "Cancel",
-                            textStyle: ptSansTextStyle(
-                                foreground: Paint()
-                                  ..shader = const LinearGradient(
-                                    colors: <Color>[
-                                      AppColors.colorPrimary,
-                                      AppColors.colorSecondary
-                                    ],
-                                  ).createShader(
-                                      const Rect.fromLTRB(100, 0, 250, 20)),
-                                fontSize: h * 0.019,
-                                fontWeight: FontWeight.w700),
-                            onPressed: () {},
-                            side: BorderSide.none,
-                          ),
-                          CommonButton(
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: h * 0.01),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CommonOutlineButton(
                               containerwidth: w * 0.42,
                               containerheight: h * 0.065,
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.circular(h * 0.006),
-                                  gradient: const LinearGradient(
-                                      begin: Alignment.centerLeft,
-                                      end: Alignment.centerRight,
-                                      colors: [
-                                        AppColors.colorPrimary,
-                                        AppColors.colorSecondary
-                                      ])),
-                              backgroundColor: AppColors.transparent,
+                              backgroundColor: AppColors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(h * 0.006),
+                                side: const BorderSide(
+                                    color: AppColors.colorPrimary, width: 2),
                               ),
-                              text: "Send",
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: const GradientBoxBorder(
+                                  gradient: LinearGradient(colors: [
+                                    AppColors.colorPrimary,
+                                    AppColors.colorSecondary
+                                  ]),
+                                  width: 2.5,
+                                ),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              text: "Cancel",
                               textStyle: ptSansTextStyle(
-                                  color: AppColors.white,
+                                  foreground: Paint()
+                                    ..shader = const LinearGradient(
+                                      colors: <Color>[
+                                        AppColors.colorPrimary,
+                                        AppColors.colorSecondary
+                                      ],
+                                    ).createShader(
+                                        const Rect.fromLTRB(100, 0, 250, 20)),
                                   fontSize: h * 0.019,
                                   fontWeight: FontWeight.w700),
-                              onPressed: () {
-                                controller().onSend();
-                              }),
-                        ],
+                              onPressed: () {},
+                              side: BorderSide.none,
+                            ),
+                            CommonButton(
+                                containerwidth: w * 0.42,
+                                containerheight: h * 0.065,
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.circular(h * 0.006),
+                                    gradient: const LinearGradient(
+                                        begin: Alignment.centerLeft,
+                                        end: Alignment.centerRight,
+                                        colors: [
+                                          AppColors.colorPrimary,
+                                          AppColors.colorSecondary
+                                        ])),
+                                backgroundColor: AppColors.transparent,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(h * 0.006),
+                                ),
+                                text: "Send",
+                                textStyle: ptSansTextStyle(
+                                    color: AppColors.white,
+                                    fontSize: h * 0.019,
+                                    fontWeight: FontWeight.w700),
+                                onPressed: () {
+                                  controller().onSend();
+                                }),
+                          ],
+                        ),
                       )
                     ],
                   ),

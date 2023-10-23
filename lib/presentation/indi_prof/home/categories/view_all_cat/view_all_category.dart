@@ -19,6 +19,8 @@ import '../../../../../utils/common_components/gradient_track_shape.dart';
 import '../../../../../utils/text.dart';
 import '../../../error/error_screen.dart';
 import '../categories.dart';
+import '../curve_wave.dart';
+import '../home_search.dart';
 
 class ViewAllCategory extends ConsumerWidget {
   ViewAllCategory({
@@ -339,10 +341,66 @@ class ViewAllCategory extends ConsumerWidget {
                               containerwidth: w * 0.92,
                               containerheight: h * 0.07,
                               searchController: controller().searchController,
-                              onsearchChanged: (str) {
-                                controller().filterSearchResults(
-                                    controller().searchController.text);
-                              },
+                              suffixicon: (controller()
+                                              .speechRecognitionAvailable ==
+                                          false ||
+                                      controller().isListening == false)
+                                  ? CommonIconButton(
+                                      containerwidth: h * 0.07,
+                                      containerheight: h * 0.07,
+                                      backgroundColor: AppColors.white,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(50)),
+                                      centericon: Icon(Icons.mic,
+                                          color:
+                                              AppColors.gray.withOpacity(0.6),
+                                          size: h * 0.03),
+                                      onPressed: () {
+                                        if (controller()
+                                                .speechRecognitionAvailable &&
+                                            !controller().isListening) {
+                                          print(
+                                              "ssdsdpeechRecognitionAvailable ${controller().speechRecognitionAvailable}");
+                                          print(
+                                              "isListeningisListening ${controller().isListening}");
+                                          controller().start();
+                                        }
+                                      })
+                                  : GestureDetector(
+                                      onTap: () {
+                                        controller().stop();
+                                      },
+                                      child: CustomPaint(
+                                        painter: CirclePainter(
+                                          controller().animationController!,
+                                          color: AppColors.colorSecondary,
+                                        ),
+                                        child: SizedBox(
+                                          width: h * 0.07,
+                                          height: h * 0.07,
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(1000),
+                                            child: ScaleTransition(
+                                                scale:
+                                                    Tween(begin: 0.95, end: 1.0)
+                                                        .animate(
+                                                  CurvedAnimation(
+                                                    parent: controller()
+                                                        .animationController!,
+                                                    curve: CurveWave(),
+                                                  ),
+                                                ),
+                                                child: Icon(Icons.mic,
+                                                    color: AppColors.white
+                                                        .withOpacity(0.8),
+                                                    size: h * 0.03)),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                              onsearchChanged: (str) {},
                             ))
                         .animate()
                         .fadeIn(duration: (80).ms)
@@ -503,68 +561,6 @@ class ViewAllCategory extends ConsumerWidget {
                                 borderRadius: BorderRadius.circular(8)),
                             child: CommonMultiSelectDrop(
                               dropdownselecttitle: "Sort By",
-                              dropdowntitle: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width: w * 0.44,
-                                        height: h * 0.03,
-                                        color: AppColors.white,
-                                        child: SliderTheme(
-                                            data: SliderThemeData(
-                                              trackHeight: h * 0.011,
-                                              thumbShape:
-                                                  GradientRectSliderThumbShape(
-                                                      disabledThumbRadius:
-                                                          h * 0.012,
-                                                      enabledThumbRadius:
-                                                          h * 0.012),
-                                              trackShape:
-                                                  const GradientRectSliderTrackShape(
-                                                      gradient: LinearGradient(
-                                                        colors: <Color>[
-                                                          AppColors
-                                                              .colorPrimary,
-                                                          AppColors
-                                                              .colorSecondary
-                                                        ],
-                                                      ),
-                                                      darkenInactive: true),
-                                            ),
-                                            child: Slider(
-                                              min: 0,
-                                              max: 100,
-                                              inactiveColor: AppColors.black
-                                                  .withOpacity(0.2),
-                                              thumbColor: AppColors.white,
-                                              value: 50.0,
-                                              onChanged: (double value) {},
-                                            )),
-                                      ),
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: h * 0.015,
-                                        horizontal: w * 0.025),
-                                    child: Row(
-                                      children: [
-                                        CommonText(
-                                          text:
-                                              "Price: \u{20B9}0 - \u{20B9}5,000 ",
-                                          style: ptSansTextStyle(
-                                              color: AppColors.black
-                                                  .withOpacity(0.4),
-                                              fontSize: h * 0.02,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
                               items: controller().getsortlist,
                               selectedItems: controller().getselectedsortby,
                               dropdownDecoratorProps: DropDownDecoratorProps(

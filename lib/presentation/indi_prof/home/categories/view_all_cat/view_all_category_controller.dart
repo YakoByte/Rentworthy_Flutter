@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_native_splash/cli_commands.dart';
+import 'package:flutter_speech/flutter_speech.dart';
 import 'package:rentworthy/utils/images.dart';
 import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -47,6 +49,7 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
   List<String> get getcarlist => carlist;
   List<String>? selectedfilter;
   TextEditingController searchController = TextEditingController();
+  String transcription = '';
 
   List<String> get getselectedfilter => selectedfilter!;
   List<bool>? favlist;
@@ -61,6 +64,16 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
+  final SpeechRecognition _speech = SpeechRecognition();
+
+  SpeechRecognition get speech => _speech;
+  bool _speechRecognitionAvailable = false;
+
+  bool get speechRecognitionAvailable => _speechRecognitionAvailable;
+  bool _isListening = false;
+  AnimationController? animationController;
+
+  bool get isListening => _isListening;
 
   List<String> get getsortlist => sortlist;
   List<String>? selectedsortby;
@@ -135,7 +148,11 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
     favlist = List.generate(carlist.length, (index) => false);
     state = const AsyncValue.data(null);
     _selectedLocation = _locationList;
-
+    activateSpeechRecognizer();
+    animationController = AnimationController(
+      duration: const Duration(milliseconds: 2000),
+      vsync: CommonTickerProvider(),
+    )..repeat();
     popularfavlist = List.generate(_imgList.length, (index) => false);
     featureadfavlist = List.generate(_imgList.length, (index) => false);
     nearbyadfavlist = List.generate(_imgList.length, (index) => false);
@@ -160,6 +177,86 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
 
     state = const AsyncValue.data(null);
   }
+
+  void activateSpeechRecognizer() {
+    print('_MyAppState.activateSpeechRecognizer... ');
+    state = const AsyncLoading();
+    _speech.setAvailabilityHandler(onSpeechAvailability);
+    _speech.setRecognitionStartedHandler(onRecognitionStarted);
+    _speech.setRecognitionResultHandler(onRecognitionResult);
+    _speech.setRecognitionCompleteHandler(onRecognitionComplete);
+    _speech.setErrorHandler(errorHandler);
+    _speech.activate('en_US').then((res) {
+      _speechRecognitionAvailable = res;
+      print("resres $res");
+    });
+    state = const AsyncValue.data(null);
+  }
+
+  void start() => _speech.activate("en_US").then((_) {
+        return _speech.listen().then((result) {
+          print('_MyAppState.start => result $result');
+          state = const AsyncLoading();
+          // animationController!.forward();
+          _isListening = result;
+
+          state = const AsyncValue.data(null);
+        });
+      });
+
+  void cancel() => _speech.cancel().then((_) {
+        state = const AsyncLoading();
+        print("cancel");
+        _isListening = false;
+        state = const AsyncValue.data(null);
+      });
+
+  void stop() => _speech.stop().then((_) {
+        state = const AsyncLoading();
+        print("stop");
+        _isListening = false;
+        state = const AsyncValue.data(null);
+      });
+
+  void onSpeechAvailability(bool result) {
+    state = const AsyncLoading();
+    print("onSpeechAvailability");
+    _speechRecognitionAvailable = result;
+    state = const AsyncValue.data(null);
+  }
+
+  void onRecognitionStarted() {
+    state = const AsyncLoading();
+    print("Listening");
+    _isListening = true;
+    searchController.text = 'Listening...';
+    state = const AsyncValue.data(null);
+  }
+
+  void onRecognitionResult(String text) {
+    print('_MyAppState.onRecognitionResult... $text');
+    //  state = const AsyncLoading();
+    transcription = text;
+
+    searchController.text = 'Listening...';
+    searchController.text = text.capitalize().substring(0);
+    state = const AsyncValue.data(null);
+  }
+
+  void onRecognitionComplete(String text) {
+    print('_MyAppState.onRecognitionComplete... $text');
+    state = const AsyncLoading();
+
+    Future.delayed(const Duration(milliseconds: 400), () {
+      state = const AsyncLoading();
+      _isListening = false;
+      state = const AsyncValue.data(null);
+    });
+
+    state = const AsyncValue.data(null);
+  }
+
+  void errorHandler() => activateSpeechRecognizer();
 
   onchangefilter(
     val,

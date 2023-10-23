@@ -147,12 +147,7 @@ class HomeSearch extends ConsumerWidget {
                               ),
                             ),
                       searchController: controller().searchController,
-                      onsearchChanged: (str) {
-                        // controller().speechRecognitionAvailable &&
-                        //         !controller().isListening
-                        //     ? () => controller().start()
-                        //     : null;
-                      },
+                      onsearchChanged: (str) {},
                     ),
                   ),
                 ],

@@ -388,68 +388,6 @@ class _MessageScreenState extends ConsumerState<MessageScreen> {
                   onChanged: (value) {
                     setState(() {});
                   },
-                  // suffixicon: Material(
-                  //   color: AppColors.transparent,
-                  //   child: IconButton(
-                  //     icon: Icon(
-                  //       controller().messageController.text.isEmpty
-                  //           ? Icons.mic
-                  //           : Icons.send,
-                  //       size: h * 0.03,
-                  //       color: AppColors.black.withOpacity(0.4),
-                  //     ),
-                  //     onPressed: () {
-                  //       if (controller().messageController.text.isEmpty) {
-                  //         if (controller().speechRecognitionAvailable &&
-                  //             !controller().isListening) {
-                  //           print(
-                  //               "ssdsdpeechRecognitionAvailable ${controller().speechRecognitionAvailable}");
-                  //           print(
-                  //               "isListeningisListening ${controller().isListening}");
-                  //           controller().start();
-                  //         }
-                  //       }
-                  //
-                  //       // if (controller().textEditingController.text.isNotEmpty) {
-                  //       //   setState(() {
-                  //       //     sendmessageApi();
-                  //       //
-                  //       //     _message.add(Message(
-                  //       //         customData: CustomData(),
-                  //       //         userId: recid,
-                  //       //         userType: recid,
-                  //       //         type: "message",
-                  //       //         message: _textEditingController.text));
-                  //       //     SocketConfig().sendmsg(
-                  //       //         text: _textEditingController.text,
-                  //       //         recrole: recrole,
-                  //       //         recid: recid,
-                  //       //         msg: (msg) {
-                  //       //           print("msgmsgmsg =-=-=- ${msg.userId}");
-                  //       //           setState(() {
-                  //       //             _message.add(msg);
-                  //       //           });
-                  //       //           if (_message.length > 4) {
-                  //       //             print("innnsdfs");
-                  //       //             WidgetsBinding.instance
-                  //       //                 .addPostFrameCallback(
-                  //       //                     (_) => _scrollToEnd());
-                  //       //           }
-                  //       //           print("_message_message $_message");
-                  //       //         },
-                  //       //         sendid: senderid,
-                  //       //         sendtype: sendrole);
-                  //       //
-                  //       //     _textEditingController.clear();
-                  //       //   });
-                  //       // }
-                  //       // if (chatList.length > 4) {
-                  //       //   WidgetsBinding.instance
-                  //       //       .addPostFrameCallback((_) => _scrollToEnd());
-                  //       // }
-                  //     },
-                  //   ),
-                  // ),
                   suffixicon: (controller().speechRecognitionAvailable ==
                               false ||
                           controller().isListening == false)

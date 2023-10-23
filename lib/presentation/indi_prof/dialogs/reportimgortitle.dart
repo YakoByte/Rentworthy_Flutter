@@ -3,16 +3,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../utils/color.dart';
 import '../../../utils/common_components/common_text.dart';
+import '../../business_prof/business_category_details/business_category_details_screen_controller.dart';
 
 class ReportImgTitleDialog extends ConsumerWidget {
-  int groupValue;
-  void Function(int) onChangedval;
-
-  ReportImgTitleDialog(
-      {super.key, required this.groupValue, required this.onChangedval});
+  ReportImgTitleDialog({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final asyncState = ref.watch(businessCatDetailsControllerProvider);
+    controller() => ref.read(businessCatDetailsControllerProvider.notifier);
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     return AlertDialog(
@@ -59,6 +60,9 @@ class ReportImgTitleDialog extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
+              onTap: () {
+                controller().onReasonval(1);
+              },
               title: CommonText(
                   text: "Violent or repulsive",
                   style: ptSansTextStyle(
@@ -67,13 +71,16 @@ class ReportImgTitleDialog extends ConsumerWidget {
                       fontWeight: FontWeight.w600)),
               leading: Radio(
                 value: 1,
-                groupValue: groupValue,
+                groupValue: controller().selectedreason,
                 onChanged: (value) {
-                  onChangedval!(value!);
+                  controller().onReasonval(value!);
                 },
               ),
             ),
             ListTile(
+              onTap: () {
+                controller().onReasonval(2);
+              },
               title: CommonText(
                   text: "Hateful or abusive",
                   style: ptSansTextStyle(
@@ -82,13 +89,16 @@ class ReportImgTitleDialog extends ConsumerWidget {
                       fontWeight: FontWeight.w600)),
               leading: Radio(
                 value: 2,
-                groupValue: groupValue,
+                groupValue: controller().selectedreason,
                 onChanged: (value) {
-                  onChangedval!(value!);
+                  controller().onReasonval(value!);
                 },
               ),
             ),
             ListTile(
+              onTap: () {
+                controller().onReasonval(3);
+              },
               title: CommonText(
                   text: "Harmful or dangerous",
                   style: ptSansTextStyle(
@@ -97,13 +107,16 @@ class ReportImgTitleDialog extends ConsumerWidget {
                       fontWeight: FontWeight.w600)),
               leading: Radio(
                 value: 3,
-                groupValue: groupValue,
+                groupValue: controller().selectedreason,
                 onChanged: (value) {
-                  onChangedval!(value!);
+                  controller().onReasonval(value!);
                 },
               ),
             ),
             ListTile(
+              onTap: () {
+                controller().onReasonval(4);
+              },
               title: CommonText(
                   text: "Spam or misleading",
                   style: ptSansTextStyle(
@@ -112,9 +125,9 @@ class ReportImgTitleDialog extends ConsumerWidget {
                       fontWeight: FontWeight.w600)),
               leading: Radio(
                 value: 4,
-                groupValue: groupValue,
+                groupValue: controller().selectedreason,
                 onChanged: (value) {
-                  onChangedval!(value!);
+                  controller().onReasonval(value!);
                 },
               ),
             ),
