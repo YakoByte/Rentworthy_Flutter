@@ -4,7 +4,6 @@ import '../../../data/indi_prof/chat/chat_repo.dart';
 import '../../../model/indi_prof/chat/get_chat/get_chat.dart';
 
 abstract class ChatService {
-  @override
   Future<GetChat?> getChatData();
 }
 

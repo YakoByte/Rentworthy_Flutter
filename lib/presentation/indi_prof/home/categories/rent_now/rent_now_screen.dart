@@ -36,7 +36,7 @@ class RentNow extends ConsumerWidget {
         centerTitle: false,
         leadingicon: true,
         centerwidget: CommonText(
-                text: AppText.rentnow,
+                text: AppText.rentNow,
                 style: ptSansTextStyle(
                     color: AppColors.black,
                     fontSize: h * 0.025,
@@ -76,12 +76,13 @@ class RentNow extends ConsumerWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        ///Product Image
                         Padding(
                           padding: EdgeInsets.only(right: w * 0.016),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Image.asset(
-                              AppImg.homelist,
+                              AppImg.homeList,
                               height: h * 0.12,
                               width: w * 0.4,
                               fit: BoxFit.cover,
@@ -92,6 +93,7 @@ class RentNow extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            ///Product Name
                             CommonText(
                                 text: "Xbox Series S",
                                 maxLines: 1,
@@ -101,6 +103,8 @@ class RentNow extends ConsumerWidget {
                                   fontSize: h * 0.028,
                                   fontWeight: FontWeight.w700,
                                 )),
+
+                            ///Product Description
                             Container(
                               width: w * 0.45,
                               child: CommonText(
@@ -138,6 +142,8 @@ class RentNow extends ConsumerWidget {
                           end: 0,
                           curve: Curves.easeInOutCubic,
                           duration: 800.ms),
+
+                  ///Selected Date
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: w * 0.04, vertical: h * 0.015),
@@ -230,6 +236,8 @@ class RentNow extends ConsumerWidget {
                           end: 0,
                           curve: Curves.easeInOutCubic,
                           duration: 800.ms),
+
+                  ///Price Details
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: w * 0.04, vertical: h * 0.015),
@@ -372,6 +380,8 @@ class RentNow extends ConsumerWidget {
                           end: 0,
                           curve: Curves.easeInOutCubic,
                           duration: 800.ms),
+
+                  ///Add Address
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: w * 0.04, vertical: h * 0.015),
@@ -386,7 +396,7 @@ class RentNow extends ConsumerWidget {
                       ),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        border: GradientBoxBorder(
+                        border: const GradientBoxBorder(
                           gradient: LinearGradient(colors: [
                             AppColors.colorPrimary,
                             AppColors.colorSecondary
@@ -395,7 +405,7 @@ class RentNow extends ConsumerWidget {
                         ),
                         borderRadius: BorderRadius.circular(4),
                       ),
-                      text: AppText.addaddress,
+                      text: AppText.addAddress,
                       textStyle: ptSansTextStyle(
                           foreground: Paint()
                             ..shader = const LinearGradient(
@@ -439,6 +449,8 @@ class RentNow extends ConsumerWidget {
                           end: 0,
                           curve: Curves.easeInOutCubic,
                           duration: 800.ms),
+
+                  ///Payment Method
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: w * 0.04, vertical: h * 0.015),
@@ -512,7 +524,7 @@ class RentNow extends ConsumerWidget {
                               ),
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                border: GradientBoxBorder(
+                                border: const GradientBoxBorder(
                                   gradient: LinearGradient(colors: [
                                     AppColors.colorPrimary,
                                     AppColors.colorSecondary
@@ -530,11 +542,11 @@ class RentNow extends ConsumerWidget {
                                         AppColors.colorSecondary
                                       ],
                                     ).createShader(
-                                        Rect.fromLTRB(200, 0, 350, 20)),
+                                        const Rect.fromLTRB(200, 0, 350, 20)),
                                   fontSize: h * 0.021,
                                   fontWeight: FontWeight.w700),
-                              onPressed: () {
-                                controller().onPageChanged();
+                              onPressed: () async {
+                                await controller().makePayment();
                               },
                               side: BorderSide.none,
                             ),
@@ -564,6 +576,8 @@ class RentNow extends ConsumerWidget {
                           end: 0,
                           curve: Curves.easeInOutCubic,
                           duration: 800.ms),
+
+                  ///Cancellation Policy
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: w * 0.04, vertical: h * 0.015),
@@ -633,7 +647,7 @@ class RentNow extends ConsumerWidget {
                     child: Row(
                       children: [
                         Image.asset(
-                          AppImg.calendarclock,
+                          AppImg.calendarClock,
                           height: h * 0.04,
                           width: w * 0.2,
                           fit: BoxFit.contain,
@@ -727,6 +741,8 @@ class RentNow extends ConsumerWidget {
                           end: 0,
                           curve: Curves.easeInOutCubic,
                           duration: 800.ms),
+
+                  /// Rent Now Button
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: w * 0.04, vertical: h * 0.015),
@@ -746,15 +762,16 @@ class RentNow extends ConsumerWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(h * 0.006),
                         ),
-                        text: AppText.rentnow,
+                        text: AppText.rentNow,
                         textStyle: ptSansTextStyle(
                             color: AppColors.white,
                             fontSize: h * 0.022,
                             fontWeight: FontWeight.w700),
                         onPressed: () {
+                          ///Order Confirm Dialog
                           ref
                               .read(dialogServiceProvider)
-                              .orderconfirmalertdialog();
+                              .orderConfirmAlertDialog();
                         }),
                   )
                       .animate()

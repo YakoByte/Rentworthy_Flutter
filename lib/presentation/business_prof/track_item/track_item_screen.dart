@@ -29,7 +29,7 @@ class TrackItem extends ConsumerWidget {
     controller() => ref.read(trackItemControllerProvider.notifier);
 
     return Scaffold(
-      key: Globals.trackitemkey,
+      key: Globals.trackItemKey,
       backgroundColor: AppColors.white,
       drawer: AdminNavDrawer(
         selectedindex: 6,
@@ -51,7 +51,7 @@ class TrackItem extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      BusinessSearch(adminscaffoldKey: Globals.trackitemkey)
+                      BusinessSearch(adminscaffoldKey: Globals.trackItemKey)
                           .animate()
                           .fadeIn(duration: 300.ms)
                           .then(delay: 300.ms)
@@ -244,7 +244,7 @@ class TrackItem extends ConsumerWidget {
                                       decoration: BoxDecoration(
                                         color: AppColors.white,
                                         border: Border.all(
-                                            color: AppColors.contcolor,
+                                            color: AppColors.contColor,
                                             width: 2),
                                         borderRadius: BorderRadius.circular(12),
                                       ),
@@ -262,7 +262,7 @@ class TrackItem extends ConsumerWidget {
                                               color: controller().isInvoiceTap[
                                                           index] ==
                                                       false
-                                                  ? AppColors.contcolor
+                                                  ? AppColors.contColor
                                                   : AppColors.white,
                                               boxShadow: [
                                                 BoxShadow(
@@ -824,7 +824,7 @@ class TrackItem extends ConsumerWidget {
                                                   .isInvoiceTap[index] ==
                                               true)
                                             Divider(
-                                              color: AppColors.contcolor,
+                                              color: AppColors.contColor,
                                               height: h * 0.001,
                                               thickness: 1.2,
                                             ),
@@ -846,7 +846,7 @@ class TrackItem extends ConsumerWidget {
                                                             BorderRadius
                                                                 .circular(8),
                                                         child: Image.asset(
-                                                          AppImg.homelist,
+                                                          AppImg.homeList,
                                                           height: h * 0.12,
                                                           width: w * 0.38,
                                                           fit: BoxFit.cover,
@@ -1156,7 +1156,7 @@ class TrackItem extends ConsumerWidget {
                                       decoration: BoxDecoration(
                                         color: AppColors.white,
                                         border: Border.all(
-                                            color: AppColors.contcolor,
+                                            color: AppColors.contColor,
                                             width: 2),
                                         borderRadius: BorderRadius.circular(12),
                                       ),
@@ -1167,7 +1167,7 @@ class TrackItem extends ConsumerWidget {
                                           Container(
                                             height: h * 0.12,
                                             decoration: BoxDecoration(
-                                              color: AppColors.contcolor,
+                                              color: AppColors.contColor,
                                               boxShadow: [
                                                 BoxShadow(
                                                     color: AppColors.black
@@ -1448,7 +1448,7 @@ class TrackItem extends ConsumerWidget {
                                                         BorderRadius.circular(
                                                             8),
                                                     child: Image.asset(
-                                                      AppImg.homelist,
+                                                      AppImg.homeList,
                                                       height: h * 0.12,
                                                       width: w * 0.38,
                                                       fit: BoxFit.cover,
@@ -1704,7 +1704,7 @@ class TrackItem extends ConsumerWidget {
                                       decoration: BoxDecoration(
                                         color: AppColors.white,
                                         border: Border.all(
-                                            color: AppColors.contcolor,
+                                            color: AppColors.contColor,
                                             width: 2),
                                         borderRadius: BorderRadius.circular(12),
                                       ),
@@ -1715,7 +1715,7 @@ class TrackItem extends ConsumerWidget {
                                           Container(
                                             height: h * 0.12,
                                             decoration: BoxDecoration(
-                                              color: AppColors.contcolor,
+                                              color: AppColors.contColor,
                                               boxShadow: [
                                                 BoxShadow(
                                                     color: AppColors.black
@@ -1996,7 +1996,7 @@ class TrackItem extends ConsumerWidget {
                                                         BorderRadius.circular(
                                                             8),
                                                     child: Image.asset(
-                                                      AppImg.homelist,
+                                                      AppImg.homeList,
                                                       height: h * 0.12,
                                                       width: w * 0.38,
                                                       fit: BoxFit.cover,
@@ -2252,7 +2252,7 @@ class TrackItem extends ConsumerWidget {
                                       decoration: BoxDecoration(
                                         color: AppColors.white,
                                         border: Border.all(
-                                            color: AppColors.contcolor,
+                                            color: AppColors.contColor,
                                             width: 2),
                                         borderRadius: BorderRadius.circular(12),
                                       ),
@@ -2263,7 +2263,7 @@ class TrackItem extends ConsumerWidget {
                                           Container(
                                             height: h * 0.12,
                                             decoration: BoxDecoration(
-                                              color: AppColors.contcolor,
+                                              color: AppColors.contColor,
                                               boxShadow: [
                                                 BoxShadow(
                                                     color: AppColors.black
@@ -2544,7 +2544,7 @@ class TrackItem extends ConsumerWidget {
                                                         BorderRadius.circular(
                                                             8),
                                                     child: Image.asset(
-                                                      AppImg.homelist,
+                                                      AppImg.homeList,
                                                       height: h * 0.12,
                                                       width: w * 0.38,
                                                       fit: BoxFit.cover,

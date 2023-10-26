@@ -14,7 +14,6 @@ import '../../../../../utils/common_components/common_iconbutton.dart';
 import '../../../../../utils/common_components/common_searchbar.dart';
 import '../../../../../utils/common_components/common_text.dart';
 import '../../../../../utils/common_components/dropdown/dropdown_search.dart';
-import '../../../../../utils/common_components/dropdown/src/properties/dropdown_decorator_props.dart';
 import '../../../../../utils/common_components/gradient_track_shape.dart';
 import '../../../../../utils/text.dart';
 import '../../../error/error_screen.dart';
@@ -23,7 +22,7 @@ import '../curve_wave.dart';
 import '../home_search.dart';
 
 class ViewAllCategory extends ConsumerWidget {
-  ViewAllCategory({
+  const ViewAllCategory({
     super.key,
   });
 
@@ -108,10 +107,11 @@ class ViewAllCategory extends ConsumerWidget {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
+                          ///Cat Tabs
                           DefaultTabController(
                             length: 4,
                             child: SingleChildScrollView(
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
@@ -199,10 +199,11 @@ class ViewAllCategory extends ConsumerWidget {
                                           ),
                                         ]),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     height: h * 0.67,
                                     child: TabBarView(children: [
-                                      Container(
+                                      /// Listview
+                                      SizedBox(
                                         width: w,
                                         height: h,
                                         child: Categories(
@@ -229,7 +230,7 @@ class ViewAllCategory extends ConsumerWidget {
                                             isFeature: false,
                                             isViewAll: false),
                                       ),
-                                      Container(
+                                      SizedBox(
                                         width: w,
                                         height: h,
                                         child: Categories(
@@ -256,7 +257,7 @@ class ViewAllCategory extends ConsumerWidget {
                                             isFeature: false,
                                             isViewAll: false),
                                       ),
-                                      Container(
+                                      SizedBox(
                                         width: w,
                                         height: h,
                                         child: Categories(
@@ -283,7 +284,7 @@ class ViewAllCategory extends ConsumerWidget {
                                             isFeature: false,
                                             isViewAll: false),
                                       ),
-                                      Container(
+                                      SizedBox(
                                         width: w,
                                         height: h,
                                         child: Categories(
@@ -330,6 +331,7 @@ class ViewAllCategory extends ConsumerWidget {
                     ),
                   ),
 
+                  ///Search Bar
                   Positioned(
                     top: h * 0.01,
                     child: Card(
@@ -360,9 +362,9 @@ class ViewAllCategory extends ConsumerWidget {
                                         if (controller()
                                                 .speechRecognitionAvailable &&
                                             !controller().isListening) {
-                                          print(
+                                          debugPrint(
                                               "ssdsdpeechRecognitionAvailable ${controller().speechRecognitionAvailable}");
-                                          print(
+                                          debugPrint(
                                               "isListeningisListening ${controller().isListening}");
                                           controller().start();
                                         }
@@ -423,6 +425,7 @@ class ViewAllCategory extends ConsumerWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          ///Filter
                           Container(
                             decoration: BoxDecoration(
                                 border: Border.all(
@@ -536,7 +539,7 @@ class ViewAllCategory extends ConsumerWidget {
                                 ),
                               ),
                               onChangedsearch: (str) {
-                                print("sdfs $str");
+                                debugPrint("sdfs $str");
                                 controller().onchangefilter(str!);
                               },
                               enabled: true,
@@ -552,6 +555,8 @@ class ViewAllCategory extends ConsumerWidget {
                               elevation: 5,
                             ),
                           ),
+
+                          ///Sort
                           Container(
                             decoration: BoxDecoration(
                                 border: Border.all(
@@ -602,7 +607,7 @@ class ViewAllCategory extends ConsumerWidget {
                                 ),
                               ),
                               onChangedsearch: (str) {
-                                print("sdfs $str");
+                                debugPrint("sdfs $str");
                                 controller().onchangesorting(str);
                               },
                               enabled: true,

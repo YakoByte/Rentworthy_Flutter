@@ -16,8 +16,6 @@ part 'register_screen_controller.g.dart';
 
 @riverpod
 class RegisterScreenController extends _$RegisterScreenController {
-  bool _isbusinessreg = false;
-
   late TabController tabController;
   bool _isLoading = false;
 
@@ -26,16 +24,15 @@ class RegisterScreenController extends _$RegisterScreenController {
 
   bool get isSubmit => _isSubmit;
 
-  bool get isbusinessreg => _isbusinessreg;
-  bool _iseyehide = false;
+  bool _isEyeHide = false;
 
-  bool get iseyehide => _iseyehide;
-  bool _issignin = false;
+  bool get isEyeHide => _isEyeHide;
+  bool _isSignIn = false;
 
-  bool get issignin => _issignin;
+  bool get isSignIn => _isSignIn;
   int _selectedTab = 0;
 
-  int get selectedtab => _selectedTab;
+  int get selectedTab => _selectedTab;
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
@@ -53,15 +50,18 @@ class RegisterScreenController extends _$RegisterScreenController {
     state = const AsyncValue.data(null);
   }
 
+  /// onRegister
   onRegister() async {
     //  state = const AsyncLoading();
     _isSubmit = true;
     FocusScope.of(Globals.navigatorKey.currentContext!)
         .requestFocus(FocusNode());
     debugPrint('onRegister');
+
     if (validateEmail(emailController.text) == null &&
         validatePassword(passController.text) == null) {
       _isLoading = true;
+
       User? user = await ref
           .read(registerServiceProvider)
           .signInWithEmailAndPassword(
@@ -96,21 +96,14 @@ class RegisterScreenController extends _$RegisterScreenController {
     state = const AsyncValue.data(null);
   }
 
-  onRegtype({required bool val}) async {
-    state = const AsyncLoading();
-    debugPrint('onRegtype $val');
-    _isbusinessreg = val;
-
-    state = const AsyncValue.data(null);
-  }
-
+  /// onisSignin
   onisSignin({required bool val}) async {
     state = const AsyncLoading();
     debugPrint('onisSignin $val');
-    _issignin = val;
+    _isSignIn = val;
     if (val == true) {
       _isLoading = true;
-      Future.delayed(Duration(seconds: 1), () {
+      Future.delayed(const Duration(seconds: 1), () {
         state = const AsyncLoading();
         _isLoading = false;
         state = const AsyncValue.data(null);
@@ -120,14 +113,16 @@ class RegisterScreenController extends _$RegisterScreenController {
     state = const AsyncValue.data(null);
   }
 
+  /// onEyeTap
   onEyeTap({required bool val}) async {
     state = const AsyncLoading();
     debugPrint('onEyeTap $val');
-    _iseyehide = val;
+    _isEyeHide = val;
 
     state = const AsyncValue.data(null);
   }
 
+  /// onTabTap
   onTabTap({required int val}) async {
     state = const AsyncLoading();
     debugPrint('_selectedTab $val');

@@ -29,7 +29,7 @@ class BusinessChatScareen extends ConsumerWidget {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: Globals.chatkey,
+      key: Globals.chatKey,
       backgroundColor: AppColors.white,
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
       floatingActionButton: Padding(
@@ -54,7 +54,7 @@ class BusinessChatScareen extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(100)),
             backgroundColor: AppColors.transparent,
             prefixicon: Image.asset(
-              AppImg.addchat,
+              AppImg.addChat,
               color: AppColors.black.withOpacity(0.8),
               height: h * 0.035,
             ),
@@ -83,7 +83,7 @@ class BusinessChatScareen extends ConsumerWidget {
             physics: const NeverScrollableScrollPhysics(),
             child: Column(
               children: [
-                BusinessSearch(adminscaffoldKey: Globals.chatkey)
+                BusinessSearch(adminscaffoldKey: Globals.chatKey)
                     .animate()
                     .fadeIn(duration: 300.ms)
                     .then(delay: 300.ms)
@@ -236,7 +236,7 @@ class BusinessChatScareen extends ConsumerWidget {
                               padding: EdgeInsets.symmetric(
                                   vertical: h * 0.02, horizontal: w * 0.021),
                               child: CommonText(
-                                  text: AppText.quickfilter,
+                                  text: AppText.quickFilter,
                                   style: ptSansTextStyle(
                                       color: AppColors.black.withOpacity(0.6),
                                       fontSize: h * 0.025,

@@ -42,7 +42,7 @@ class _WriteReviewScreenState extends ConsumerState<WriteReviewScreen> {
                 fontSize: w * 0.055,
                 color: AppColors.black.withOpacity(0.8),
                 fontWeight: FontWeight.w700),
-            text: AppText.writereviews,
+            text: AppText.writeReviews,
           ),
         ),
       ),
@@ -69,6 +69,7 @@ class _WriteReviewScreenState extends ConsumerState<WriteReviewScreen> {
                       ),
                       child: Column(
                         children: [
+                          /// Write Review
                           Padding(
                             padding: EdgeInsets.symmetric(
                               vertical: h * 0.03,
@@ -78,8 +79,8 @@ class _WriteReviewScreenState extends ConsumerState<WriteReviewScreen> {
                                 maxLines: 3,
                                 center: false,
                                 isdescription: true,
-                                hintText: AppText.writehere,
-                                lableText: AppText.writeabouttheproduct,
+                                hintText: AppText.writeHere,
+                                lableText: AppText.writeAboutTheProduct,
                                 enableunderlinecolor:
                                     AppColors.black.withOpacity(0.6),
                                 disableunderlinecolor:
@@ -122,13 +123,15 @@ class _WriteReviewScreenState extends ConsumerState<WriteReviewScreen> {
                                 containercolor: AppColors.white,
                                 textCapitalization: TextCapitalization.none),
                           ),
+
+                          /// Rating Bar
                           RatingBar.builder(
                             initialRating: 3,
                             minRating: 1,
                             direction: Axis.horizontal,
                             allowHalfRating: true,
                             itemCount: 5,
-                            unratedColor: AppColors.dotcolor,
+                            unratedColor: AppColors.dotColor,
                             itemSize: h * 0.065,
                             itemPadding: EdgeInsets.zero,
                             itemBuilder: (context, _) => Icon(
@@ -144,6 +147,8 @@ class _WriteReviewScreenState extends ConsumerState<WriteReviewScreen> {
                     ),
                   ],
                 ),
+
+                /// Submit Button
                 Padding(
                   padding: EdgeInsets.symmetric(
                       vertical: h * 0.04, horizontal: w * 0.045),

@@ -19,7 +19,7 @@ class SubscriptionScreen extends ConsumerWidget {
     controller() => ref.read(subscriptionControllerProvider.notifier);
 
     return Scaffold(
-      key: Globals.subscriptionkey,
+      key: Globals.subscriptionKey,
       drawer: AdminNavDrawer(
         selectedindex: 10,
       ).animate().fadeIn(duration: 30.ms).then(delay: 20.ms).slideX(
@@ -37,7 +37,7 @@ class SubscriptionScreen extends ConsumerWidget {
                       horizontal: w * 0.035,
                     ),
                     child: BusinessSearch(
-                            adminscaffoldKey: Globals.subscriptionkey)
+                            adminscaffoldKey: Globals.subscriptionKey)
                         .animate()
                         .fadeIn(duration: 300.ms)
                         .then(delay: 300.ms)

@@ -351,7 +351,7 @@ class SfFunnelChart extends StatefulWidget {
   ///    );
   ///}
   ///void select(SelectionArgs args) {
-  ///   print(args.selectedBorderColor);
+  ///   debugPrint(args.selectedBorderColor);
   ///}
   ///```
   final FunnelSelectionCallback? onSelectionChanged;
@@ -362,8 +362,8 @@ class SfFunnelChart extends StatefulWidget {
   ///    return Container(
   ///        child: SfFunnelChart(
   ///            onChartTouchInteractionUp: (ChartTouchInteractionArgs args){
-  ///               print(args.position.dx.toString());
-  ///               print(args.position.dy.toString());
+  ///               debugPrint(args.position.dx.toString());
+  ///               debugPrint(args.position.dy.toString());
   ///             }
   ///        )
   ///     );
@@ -377,8 +377,8 @@ class SfFunnelChart extends StatefulWidget {
   ///    return Container(
   ///        child: SfFunnelChart(
   ///            onChartTouchInteractionDown: (ChartTouchInteractionArgs args){
-  ///               print(args.position.dx.toString());
-  ///               print(args.position.dy.toString());
+  ///               debugPrint(args.position.dx.toString());
+  ///               debugPrint(args.position.dy.toString());
   ///             }
   ///        )
   ///     );

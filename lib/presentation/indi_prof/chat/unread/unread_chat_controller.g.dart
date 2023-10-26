@@ -7,7 +7,7 @@ part of 'unread_chat_controller.dart';
 // **************************************************************************
 
 String _$unreadChatControllerHash() =>
-    r'e122346a35b6f161a9d79c2205cf93db6c0891f4';
+    r'18238fb69359ecb25b49aaed57b1ff574f305590';
 
 /// See also [UnreadChatController].
 @ProviderFor(UnreadChatController)

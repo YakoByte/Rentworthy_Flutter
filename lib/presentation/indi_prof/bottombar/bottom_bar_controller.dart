@@ -14,9 +14,9 @@ class BottomBarController extends _$BottomBarController {
     AppText.bookings,
     AppText.account,
   ];
-  PageController? pageController;
 
   List<String> get gettablist => _tablist;
+  PageController? pageController;
 
   final List<String> _iconlist = [
     AppImg.home,
@@ -26,9 +26,7 @@ class BottomBarController extends _$BottomBarController {
   ];
 
   List<String> get geticonlist => _iconlist;
-  final bool _load = false;
 
-  bool get getload => _load;
   int _selectedIndex = 0;
 
   int get getselectedIndex => _selectedIndex;
@@ -36,7 +34,7 @@ class BottomBarController extends _$BottomBarController {
   @override
   FutureOr<void> build({int? index}) async {
     state = AsyncLoading();
-    print("indexindex $index");
+    debugPrint("indexindex $index");
 
     _selectedIndex = index!;
     pageController = PageController(initialPage: _selectedIndex);
@@ -95,7 +93,7 @@ class BottomBarController extends _$BottomBarController {
 
     _selectedIndex = index;
 
-    print('selectedIndex ${_selectedIndex}');
+    debugPrint('selectedIndex ${_selectedIndex}');
     state = AsyncValue.data(null);
   }
 }

@@ -27,28 +27,32 @@ class ChatScreenController extends _$ChatScreenController {
     "What’s your location?",
     "How is the condition of this item?"
   ];
+
+  List<String> get getquestionList => questionList;
   List<String>? msgList;
+
+  List<String> get getmsgList => msgList!;
+
   bool isShow = false;
 
   bool get getisShow => isShow;
 
-  List<String> get getmsgList => msgList!;
-
-  List<String> get getquestionList => questionList;
   List<PopupMenuItem> _popupitemList = [];
 
   List<PopupMenuItem> get popupitemList => _popupitemList;
+
   final SpeechRecognition _speech = SpeechRecognition();
 
   SpeechRecognition get speech => _speech;
   bool _speechRecognitionAvailable = false;
 
   bool get speechRecognitionAvailable => _speechRecognitionAvailable;
-  bool _isListening = false;
+
   AnimationController? animationController;
 
-  bool get isListening => _isListening;
+  bool _isListening = false;
 
+  bool get isListening => _isListening;
   String transcription = '';
 
   @override
@@ -87,7 +91,7 @@ class ChatScreenController extends _$ChatScreenController {
         value: 1,
         child: IconText(
           isCenter: false,
-          title: AppText.reportuser,
+          title: AppText.reportUser,
           textStyle: ptSansTextStyle(
               fontSize: w * 0.035,
               overflow: TextOverflow.ellipsis,
@@ -95,7 +99,7 @@ class ChatScreenController extends _$ChatScreenController {
               fontWeight: FontWeight.w600),
           subimg: false,
           preimg: true,
-          preimgname: AppImg.reportuser,
+          preimgname: AppImg.reportUser,
           preiconsize: h * 0.03,
           preimgcolor: AppColors.black.withOpacity(0.9),
         ),

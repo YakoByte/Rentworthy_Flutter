@@ -50,7 +50,7 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
         centerTitle: false,
         leadingicon: true,
         centerwidget: CommonText(
-            text: AppText.posturad,
+            text: AppText.postUrAd,
             style: ptSansTextStyle(
                 color: AppColors.black,
                 fontSize: h * 0.025,
@@ -76,7 +76,7 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CommonText(
-                            text: AppText.includesomedet,
+                            text: AppText.includeSomeDet,
                             style: ptSansTextStyle(
                                 color: AppColors.black,
                                 fontSize: h * 0.025,
@@ -87,7 +87,7 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                             children: [
                               TextInputField(
                                   hintText: "",
-                                  titleText: AppText.adtitle,
+                                  titleText: AppText.adTitle,
                                   enableunderlinecolor:
                                       AppColors.black.withOpacity(0.6),
                                   disableunderlinecolor:
@@ -454,7 +454,7 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CommonText(
-                                text: AppText.setprice,
+                                text: AppText.setPrice,
                                 style: ptSansTextStyle(
                                     color: AppColors.black,
                                     fontSize: h * 0.025,
@@ -795,7 +795,7 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(1000),
                               child: Image.asset(
-                                AppImg.homelist,
+                                AppImg.homeList,
                                 height: h * 0.085,
                                 width: h * 0.085,
                                 fit: BoxFit.cover,
@@ -803,7 +803,7 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                             ),
                             TextInputField(
                                 hintText: "",
-                                titleText: AppText.adtitle,
+                                titleText: AppText.adTitle,
                                 enableunderlinecolor:
                                     AppColors.black.withOpacity(0.6),
                                 disableunderlinecolor:

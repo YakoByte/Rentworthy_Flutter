@@ -41,7 +41,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
       appBar: CommonAppBar(
           backgroundColor: AppColors.white,
           centerTitle: true,
-          title: AppText.subcat,
+          title: AppText.subCat,
           leadingicon: false,
           padding: EdgeInsets.symmetric(
             horizontal: w * 0.035,
@@ -124,9 +124,9 @@ class CategoryDetailsScreen extends ConsumerWidget {
       body: asyncState.when(
           data: (data) {
             if (controller().isLoading) {
-              return CategoryDetailsShimmer();
+              return const CategoryDetailsShimmer();
             }
-            return Container(
+            return SizedBox(
               height: h,
               child: SingleChildScrollView(
                 child: Padding(
@@ -136,6 +136,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      ///product image slider
                       CommonCarousel(
                         enlargeFactor: 0.4,
                         dotindicator: true,
@@ -184,6 +185,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          ///product title
                           Padding(
                             padding: EdgeInsets.symmetric(vertical: h * 0.02),
                             child: CommonText(
@@ -194,8 +196,10 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                   fontWeight: FontWeight.w700,
                                 )),
                           ),
+
+                          ///product description
                           CommonText(
-                              text: AppText.dummytext,
+                              text: AppText.dummyText,
                               style: ptSansTextStyle(
                                 color: AppColors.black.withOpacity(0.4),
                                 fontSize: h * 0.023,
@@ -211,6 +215,8 @@ class CategoryDetailsScreen extends ConsumerWidget {
                               end: 0,
                               curve: Curves.easeInOutCubic,
                               duration: 1100.ms),
+
+                      ///product seller details
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: h * 0.012),
                         child: Card(
@@ -237,7 +243,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                     onTap: () {
                                       commonNavigator(
                                         context: context,
-                                        child: ViewProfile(),
+                                        child: const ViewProfile(),
                                         type: PageTransitionType
                                             .rightToLeftWithFade,
                                       );
@@ -253,14 +259,14 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                             borderRadius:
                                                 BorderRadius.circular(1000),
                                             child: Image.asset(
-                                              AppImg.homelist,
+                                              AppImg.homeList,
                                               height: h * 0.075,
                                               width: h * 0.075,
                                               fit: BoxFit.cover,
                                             ),
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           width: w * 0.45,
                                           child: Column(
                                             mainAxisAlignment:
@@ -272,7 +278,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                                 children: [
                                                   Expanded(
                                                     child: CommonText(
-                                                        text: AppText.postedby,
+                                                        text: AppText.postedBy,
                                                         maxLines: 1,
                                                         style: ptSansTextStyle(
                                                           color: AppColors.black
@@ -290,7 +296,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                                 children: [
                                                   Expanded(
                                                     child: CommonText(
-                                                        text: AppText.hamzaali,
+                                                        text: AppText.hamzaAli,
                                                         maxLines: 1,
                                                         style: ptSansTextStyle(
                                                           color: AppColors.black
@@ -308,7 +314,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                                 children: [
                                                   Expanded(
                                                     child: CommonText(
-                                                        text: AppText.postedon,
+                                                        text: AppText.postedOn,
                                                         maxLines: 1,
                                                         style: ptSansTextStyle(
                                                           color: AppColors.black
@@ -382,6 +388,8 @@ class CategoryDetailsScreen extends ConsumerWidget {
                               end: 0,
                               curve: Curves.easeInOutCubic,
                               duration: 1200.ms),
+
+                      /// location
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: h * 0.008),
                         child: Card(
@@ -401,7 +409,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 GoogleMapWidget(
-                                    borderRadius: BorderRadius.vertical(
+                                    borderRadius: const BorderRadius.vertical(
                                         top: Radius.circular(12))),
                                 Padding(
                                   padding: EdgeInsets.symmetric(
@@ -411,7 +419,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       CommonText(
-                                          text: AppText.adpostedat,
+                                          text: AppText.adPostedAt,
                                           style: ptSansTextStyle(
                                             color: AppColors.black
                                                 .withOpacity(0.6),
@@ -419,7 +427,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                             fontWeight: FontWeight.w600,
                                           )),
                                       CommonText(
-                                          text: AppText.tampaflorida,
+                                          text: AppText.tampaFlorida,
                                           style: ptSansTextStyle(
                                             color: AppColors.black,
                                             fontSize: h * 0.034,
@@ -444,6 +452,8 @@ class CategoryDetailsScreen extends ConsumerWidget {
                       SizedBox(
                         height: h * 0.15,
                       ),
+
+                      /// product price, Rent button
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -459,7 +469,7 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                     fontWeight: FontWeight.w700,
                                   )),
                               CommonText(
-                                  text: AppText.totalpayable,
+                                  text: AppText.totalPayable,
                                   style: ptSansTextStyle(
                                     color: AppColors.black.withOpacity(0.4),
                                     fontSize: h * 0.023,
@@ -467,6 +477,8 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                   )),
                             ],
                           ),
+
+                          /// Rent button
                           CommonButton(
                               containerwidth: w * 0.48,
                               containerheight: h * 0.069,
@@ -508,15 +520,16 @@ class CategoryDetailsScreen extends ConsumerWidget {
                                   ),
                                 ],
                               ),
-                              text: AppText.rentnow,
+                              text: AppText.rentNow,
                               textStyle: ptSansTextStyle(
                                   color: AppColors.white,
                                   fontSize: h * 0.019,
                                   fontWeight: FontWeight.w500),
                               onPressed: () {
+                                /// show calendar dialog
                                 ref
                                     .read(dialogServiceProvider)
-                                    .selectDatedialog();
+                                    .selectDateDialog();
                               }),
                         ],
                       )

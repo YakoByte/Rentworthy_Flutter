@@ -217,7 +217,7 @@ class FunnelSeriesController {
   ///                    onRendererCreated: (FunnelSeriesController controller) {
   ///                       _chartSeriesController = controller;
   ///                       // prints series yAxisName
-  ///                      print(_chartSeriesController.seriesRenderer.seriesRendererDetails.series.yAxisName);
+  ///                      debugPrint(_chartSeriesController.seriesRenderer.seriesRendererDetails.series.yAxisName);
   ///                    },
   ///                ),
   ///        )

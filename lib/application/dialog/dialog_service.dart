@@ -6,7 +6,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rentworthy/utils/color.dart';
-import '../../../utils/common_components/common_text.dart';
 import '../../../utils/globals.dart';
 
 import '../../presentation/business_prof/business_dialogs/pre_rent_screen_que.dart';
@@ -31,15 +30,15 @@ abstract class DialogService {
 
   Future<void> productAvailabilityDialog({required String date});
 
-  Future<void> contactusalertdialog();
+  Future<void> contactUsAlertDialog();
 
   Future<bool> handleLocationPermission();
 
-  Future<void> orderconfirmalertdialog();
+  Future<void> orderConfirmAlertDialog();
 
-  Future<void> selectDatedialog();
+  Future<void> selectDateDialog();
 
-  Future<void> cancelbookingalertdialog({
+  Future<void> cancelBookingAlertDialog({
     required String groupValue,
     required void Function(String) onChangedval,
   });
@@ -48,7 +47,7 @@ abstract class DialogService {
     required void Function(bool verfied) profVerified,
   });
 
-  Future<void> reportimgtitledialog();
+  Future<void> reportImgTitleDialog();
 
   Future<void> commonImagePicker({
     required ImagePicker picker,
@@ -57,7 +56,7 @@ abstract class DialogService {
 
   Future<void> rentScreeningDialog();
 
-  Future<void> businessrentScreeningDialog();
+  Future<void> businessRentScreeningDialog();
 
   Future<void> areYouSureDialog({
     required String titleText,
@@ -70,15 +69,17 @@ abstract class DialogService {
 }
 
 class DialogServiceV1 implements DialogService {
-  Future<void> contactusalertdialog() async {
+  @override
+  Future<void> contactUsAlertDialog() async {
     return (await showDialog(
         context: Globals.navigatorKey.currentContext!,
         barrierDismissible: true,
         builder: (BuildContext context) {
-          return ContactUsAlertDialog();
+          return const ContactUsAlertDialog();
         }));
   }
 
+  @override
   Future<void> areYouSureDialog({
     required String titleText,
     required String subtitleText,
@@ -98,7 +99,8 @@ class DialogServiceV1 implements DialogService {
         }));
   }
 
-  Future<void> selectDatedialog() async {
+  @override
+  Future<void> selectDateDialog() async {
     return (await showDialog(
         context: Globals.navigatorKey.currentContext!,
         barrierDismissible: true,
@@ -107,16 +109,18 @@ class DialogServiceV1 implements DialogService {
         }));
   }
 
-  Future<void> orderconfirmalertdialog() async {
+  @override
+  Future<void> orderConfirmAlertDialog() async {
     return (await showDialog(
         context: Globals.navigatorKey.currentContext!,
         barrierDismissible: true,
         builder: (BuildContext context) {
-          return OrderConfirmAlertDialog();
+          return const OrderConfirmAlertDialog();
         }));
   }
 
-  Future<void> cancelbookingalertdialog({
+  @override
+  Future<void> cancelBookingAlertDialog({
     required String groupValue,
     required void Function(String) onChangedval,
   }) async {
@@ -131,7 +135,8 @@ class DialogServiceV1 implements DialogService {
         }));
   }
 
-  Future<void> reportimgtitledialog() async {
+  @override
+  Future<void> reportImgTitleDialog() async {
     return (await showDialog(
         context: Globals.navigatorKey.currentContext!,
         barrierDismissible: true,
@@ -140,6 +145,7 @@ class DialogServiceV1 implements DialogService {
         }));
   }
 
+  @override
   Future<void> rentScreeningDialog() async {
     return (await showDialog(
         context: Globals.navigatorKey.currentContext!,
@@ -149,15 +155,17 @@ class DialogServiceV1 implements DialogService {
         }));
   }
 
-  Future<void> businessrentScreeningDialog() async {
+  @override
+  Future<void> businessRentScreeningDialog() async {
     return (await showDialog(
         context: Globals.navigatorKey.currentContext!,
         barrierDismissible: true,
         builder: (BuildContext context) {
-          return BusinessRentScreeningDialog();
+          return const BusinessRentScreeningDialog();
         }));
   }
 
+  @override
   Future<void> profileCreatedDialog({
     required void Function(bool verfied) profVerified,
   }) async {
@@ -171,6 +179,7 @@ class DialogServiceV1 implements DialogService {
         }));
   }
 
+  @override
   Future<void> productAvailabilityDialog({
     required String date,
   }) async {
@@ -185,6 +194,7 @@ class DialogServiceV1 implements DialogService {
         }));
   }
 
+  @override
   Future<void> registerComplaintDialog() async {
     return (await showDialog(
         context: Globals.navigatorKey.currentContext!,
@@ -194,6 +204,7 @@ class DialogServiceV1 implements DialogService {
         }));
   }
 
+  @override
   Future<void> commonImagePicker({
     required ImagePicker picker,
     required void Function(File file) pickedImage,
@@ -226,24 +237,11 @@ class DialogServiceV1 implements DialogService {
         fontSize:
             MediaQuery.of(Globals.navigatorKey.currentContext!).size.width *
                 0.04);
-    // ScaffoldMessenger.of(Globals.navigatorKey.currentContext!).clearSnackBars();
-    //
-    // ScaffoldMessenger.of(Globals.navigatorKey.currentContext!).showSnackBar(
-    //   SnackBar(
-    //     backgroundColor: color,
-    //     duration: const Duration(seconds: 2),
-    //     content: Text(
-    //       content,
-    //       style: ptSansTextStyle(
-    //         color: textclr,
-    //       ),
-    //     ),
-    //   ),
-    // );
   }
 
   ///permissions
 
+  @override
   Future<bool> handleLocationPermission() async {
     bool serviceEnabled;
     LocationPermission permission;

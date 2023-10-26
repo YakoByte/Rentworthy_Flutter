@@ -38,7 +38,7 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
           centerTitle: false,
           leadingicon: true,
           centerwidget: CommonText(
-              text: AppText.signin,
+              text: AppText.signIn,
               style: ptSansTextStyle(
                   color: AppColors.black,
                   fontSize: h * 0.025,
@@ -69,6 +69,7 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              /// LoginImg, EnterPhone, WeSendOtp, CountryCode, PhoneNo
                               SizedBox(
                                 height: h * 0.65,
                                 child: Column(
@@ -77,26 +78,28 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Image.asset(
-                                      AppImg.loginimg,
+                                      AppImg.loginImg,
                                       height: h * 0.4,
                                       width: w,
                                       fit: BoxFit.cover,
                                     ),
                                     CommonText(
-                                        text: AppText.enterphone,
+                                        text: AppText.enterPhone,
                                         style: ptSansTextStyle(
                                           color: AppColors.black,
                                           fontSize: h * 0.03,
                                           fontWeight: FontWeight.w500,
                                         )),
                                     CommonText(
-                                        text: AppText.wesendotp,
+                                        text: AppText.weSendOtp,
                                         style: ptSansTextStyle(
                                           color:
                                               AppColors.black.withOpacity(0.4),
                                           fontSize: h * 0.02,
                                           fontWeight: FontWeight.w400,
                                         )),
+
+                                    /// CountryCode, PhoneNo
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -109,37 +112,37 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
                                           children: [
                                             TextInputField(
                                                 enableunderlinecolor:
-                                                    AppColors.bordercolor,
+                                                    AppColors.borderColor,
                                                 disableunderlinecolor:
-                                                    AppColors.bordercolor,
+                                                    AppColors.borderColor,
                                                 focusunderlinecolor:
-                                                    AppColors.bordercolor,
+                                                    AppColors.borderColor,
                                                 underlinecolor:
-                                                    AppColors.bordercolor,
-                                                hintText: AppText.countrycode,
+                                                    AppColors.borderColor,
+                                                hintText: AppText.countryCode,
                                                 titleText: AppText.country,
                                                 titletextstyle: ptSansTextStyle(
-                                                    color: AppColors.textcolor1,
+                                                    color: AppColors.textColor1,
                                                     fontSize: h * 0.018,
                                                     fontWeight:
                                                         FontWeight.w400),
                                                 hintStyle: ptSansTextStyle(
-                                                    color: AppColors.textcolor1,
+                                                    color: AppColors.textColor1,
                                                     fontSize: h * 0.018,
                                                     fontWeight:
                                                         FontWeight.w400),
                                                 textstyle: ptSansTextStyle(
-                                                    color: AppColors.textcolor1,
+                                                    color: AppColors.textColor1,
                                                     fontSize: h * 0.019,
                                                     fontWeight:
                                                         FontWeight.w500),
                                                 lableStyle: ptSansTextStyle(
-                                                    color: AppColors.textcolor1,
+                                                    color: AppColors.textColor1,
                                                     fontSize: h * 0.021,
                                                     fontWeight:
                                                         FontWeight.w400),
                                                 errorText: controller()
-                                                            .issubmit ==
+                                                            .isSubmit ==
                                                         true
                                                     ? validate(controller()
                                                         .countryCodeController
@@ -147,7 +150,7 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
                                                     : null,
                                                 onChanged: (value) {
                                                   setState(() {
-                                                    controller().issubmit ==
+                                                    controller().isSubmit ==
                                                             true
                                                         ? validate(controller()
                                                             .countryCodeController
@@ -169,8 +172,8 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
                                                 containercolor: AppColors.white,
                                                 textCapitalization:
                                                     TextCapitalization.none),
-                                            if (controller().issubmit == true &&
-                                                validatephone(controller()
+                                            if (controller().isSubmit == true &&
+                                                validatePhone(controller()
                                                         .phoneController
                                                         .text) !=
                                                     null)
@@ -181,41 +184,41 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
                                         ),
                                         TextInputField(
                                             enableunderlinecolor:
-                                                AppColors.bordercolor,
+                                                AppColors.borderColor,
                                             disableunderlinecolor:
-                                                AppColors.bordercolor,
+                                                AppColors.borderColor,
                                             focusunderlinecolor:
-                                                AppColors.bordercolor,
+                                                AppColors.borderColor,
                                             underlinecolor:
-                                                AppColors.bordercolor,
-                                            hintText: AppText.enterphone,
-                                            titleText: AppText.phoneno,
+                                                AppColors.borderColor,
+                                            hintText: AppText.enterPhone,
+                                            titleText: AppText.phoneNo,
                                             titletextstyle: ptSansTextStyle(
-                                                color: AppColors.textcolor1,
+                                                color: AppColors.textColor1,
                                                 fontSize: h * 0.018,
                                                 fontWeight: FontWeight.w400),
                                             hintStyle: ptSansTextStyle(
-                                                color: AppColors.textcolor1,
+                                                color: AppColors.textColor1,
                                                 fontSize: h * 0.018,
                                                 fontWeight: FontWeight.w400),
                                             textstyle: ptSansTextStyle(
-                                                color: AppColors.textcolor1,
+                                                color: AppColors.textColor1,
                                                 fontSize: h * 0.019,
                                                 fontWeight: FontWeight.w500),
                                             lableStyle: ptSansTextStyle(
-                                                color: AppColors.textcolor1,
+                                                color: AppColors.textColor1,
                                                 fontSize: h * 0.021,
                                                 fontWeight: FontWeight.w400),
-                                            errorText: controller().issubmit ==
+                                            errorText: controller().isSubmit ==
                                                     true
-                                                ? validatephone(controller()
+                                                ? validatePhone(controller()
                                                     .phoneController
                                                     .text)
                                                 : null,
                                             onChanged: (value) {
                                               setState(() {
-                                                controller().issubmit == true
-                                                    ? validatephone(controller()
+                                                controller().isSubmit == true
+                                                    ? validatePhone(controller()
                                                         .phoneController
                                                         .text)
                                                     : null;
@@ -238,6 +241,8 @@ class _LoginPhoneScreenState extends ConsumerState<LoginPhoneScreen> {
                                   ],
                                 ),
                               ),
+
+                              /// NextButton
                               CommonButton(
                                   containerwidth: w * 0.8,
                                   containerheight: h * 0.06,

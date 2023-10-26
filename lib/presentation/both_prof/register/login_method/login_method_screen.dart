@@ -45,11 +45,13 @@ class LoginMethodScreen extends ConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          /// Login Buttons
           SizedBox(
             height: Platform.isIOS ? h * 0.28 : h * 0.21,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                /// Login with Phone
                 CommonButton(
                     containerwidth: w * 0.8,
                     containerheight: h * 0.06,
@@ -71,7 +73,7 @@ class LoginMethodScreen extends ConsumerWidget {
                       color: AppColors.white,
                       height: h * 0.03,
                     ),
-                    text: AppText.continuewith + AppText.phone,
+                    text: AppText.continueWith + AppText.phone,
                     textStyle: ptSansTextStyle(
                         color: AppColors.white,
                         fontSize: h * 0.019,
@@ -90,6 +92,8 @@ class LoginMethodScreen extends ConsumerWidget {
                                   loginType: controller().tabController.index,
                                 ));
                     }),
+
+                /// Login with Google
                 CommonOutlineButton(
                   containerwidth: w * 0.8,
                   containerheight: h * 0.06,
@@ -116,7 +120,7 @@ class LoginMethodScreen extends ConsumerWidget {
                       height: h * 0.03,
                     ),
                   ),
-                  text: AppText.continuewith + AppText.google,
+                  text: AppText.continueWith + AppText.google,
                   textStyle: ptSansTextStyle(
                       foreground: Paint()
                         ..shader = const LinearGradient(
@@ -146,6 +150,8 @@ class LoginMethodScreen extends ConsumerWidget {
                   },
                   side: BorderSide.none,
                 ),
+
+                /// Login with Apple
                 if (Platform.isIOS)
                   CommonOutlineButton(
                       containerwidth: w * 0.8,
@@ -164,7 +170,7 @@ class LoginMethodScreen extends ConsumerWidget {
                           height: h * 0.03,
                         ),
                       ),
-                      text: AppText.continuewith + AppText.apple,
+                      text: AppText.continueWith + AppText.apple,
                       textStyle: ptSansTextStyle(
                           color: AppColors.black,
                           fontSize: h * 0.019,
@@ -183,14 +189,16 @@ class LoginMethodScreen extends ConsumerWidget {
                                     loginType: controller().tabController.index,
                                   ));
                       }),
+
+                /// Login with Facebook
                 CommonOutlineButton(
                     containerwidth: w * 0.8,
                     containerheight: h * 0.06,
-                    side: const BorderSide(color: AppColors.fbblue, width: 2),
+                    side: const BorderSide(color: AppColors.fbBlue, width: 2),
                     backgroundColor: AppColors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(h * 0.006),
-                      side: const BorderSide(color: AppColors.fbblue, width: 2),
+                      side: const BorderSide(color: AppColors.fbBlue, width: 2),
                     ),
                     prefix: Center(
                       child: Image.asset(
@@ -198,9 +206,9 @@ class LoginMethodScreen extends ConsumerWidget {
                         height: h * 0.03,
                       ),
                     ),
-                    text: AppText.continuewith + AppText.facebook,
+                    text: AppText.continueWith + AppText.facebook,
                     textStyle: ptSansTextStyle(
-                        color: AppColors.fbblue,
+                        color: AppColors.fbBlue,
                         fontSize: h * 0.019,
                         fontWeight: FontWeight.w700),
                     onPressed: () async {
@@ -242,6 +250,8 @@ class LoginMethodScreen extends ConsumerWidget {
               ],
             ),
           ),
+
+          /// Do not have an account
           Column(
             children: [
               Padding(
@@ -266,18 +276,18 @@ class LoginMethodScreen extends ConsumerWidget {
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
-                      text: AppText.donthaveacc,
+                      text: AppText.doNotHaveAcc,
                       style: ptSansTextStyle(
                           color: AppColors.black.withOpacity(0.4),
                           fontSize: h * 0.018,
                           decoration: TextDecoration.underline,
-                          decorationColor: AppColors.textcolor1,
+                          decorationColor: AppColors.textColor1,
                           decorationThickness: 1,
                           decorationStyle: TextDecorationStyle.solid,
                           fontWeight: FontWeight.w400),
                       children: <TextSpan>[
                         TextSpan(
-                            text: AppText.regnow,
+                            text: AppText.regNow,
                             style: ptSansTextStyle(
                                 foreground: Paint()
                                   ..shader = const LinearGradient(

@@ -10,20 +10,19 @@ part 'business_info_screen_controller.g.dart';
 
 @riverpod
 class BusinessInfoScreenController extends _$BusinessInfoScreenController {
-  TabController tabController =
-      TabController(length: 3, vsync: CommonTickerProvider());
   bool _verified = false;
+
+  bool get verified => _verified;
   bool _underreview = false;
+
+  bool get underreview => _underreview;
   bool _banned = false;
-  List<AnimationController>? animatecontrollerlist = [];
+
+  bool get banned => _banned;
+
   TextEditingController businessnameController = TextEditingController();
   TextEditingController einIdController = TextEditingController();
-  TextEditingController addtitleController = TextEditingController();
-  TextEditingController descController = TextEditingController();
   TextEditingController priceController = TextEditingController();
-  TextEditingController cityController = TextEditingController();
-  TextEditingController stateController = TextEditingController();
-  TextEditingController addtitlelastController = TextEditingController();
 
   bool _isLoading = false;
 
@@ -31,46 +30,11 @@ class BusinessInfoScreenController extends _$BusinessInfoScreenController {
   bool _issubmit = false;
 
   bool get issubmit => _issubmit;
-  bool get verified => _verified;
-
-  bool get underreview => _underreview;
-
-  bool get banned => _banned;
-  List<String> _catList = [
-    "cat1",
-    "cat2",
-    "cat3",
-    "cat4",
-  ];
-  List<String>? _selectCat = [];
-
-  List<String> get selectCat => _selectCat!;
-
-  List<String> get catList => _catList;
-
-  onValSelect({required List<String> val}) async {
-    state = const AsyncLoading();
-    _selectCat = val;
-    state = const AsyncValue.data(null);
-  }
 
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
-    for (int i = 0; i < 5; i++) {
-      animatecontrollerlist!.add(AnimationController(
-        vsync: CommonTickerProvider(),
-        duration: Duration(
-            milliseconds:
-                ((i == 0 ? i + 2 : i + 1) + 5) * int.parse("${i + 3}0")),
-      ));
-      Future.delayed(const Duration(milliseconds: 400), () {
-        animatecontrollerlist![0].forward();
-        if (i != (animatecontrollerlist!.length - 1)) {
-          animatecontrollerlist![i + 1].forward();
-        }
-      });
-    }
+
     state = const AsyncValue.data(null);
   }
 

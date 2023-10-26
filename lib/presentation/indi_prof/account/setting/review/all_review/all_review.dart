@@ -73,6 +73,7 @@ class _AllReviewScreenState extends ConsumerState<AllReviewScreen> {
                         horizontal: w * 0.035, vertical: h * 0.015),
                     child: Column(
                       children: [
+                        /// Review Card
                         Container(
                           height: h * 0.22,
                           width: w,
@@ -118,7 +119,7 @@ class _AllReviewScreenState extends ConsumerState<AllReviewScreen> {
                                         ),
                                       ),
                                       CommonText(
-                                          text: AppText.basedonrev,
+                                          text: AppText.basedOnRev,
                                           maxLines: 2,
                                           style: ptSansTextStyle(
                                             color: AppColors.black
@@ -132,7 +133,7 @@ class _AllReviewScreenState extends ConsumerState<AllReviewScreen> {
                                         direction: Axis.horizontal,
                                         allowHalfRating: true,
                                         itemCount: 5,
-                                        unratedColor: AppColors.dotcolor,
+                                        unratedColor: AppColors.dotColor,
                                         itemSize: h * 0.028,
                                         itemPadding: EdgeInsets.zero,
                                         itemBuilder: (context, _) => Icon(
@@ -338,6 +339,8 @@ class _AllReviewScreenState extends ConsumerState<AllReviewScreen> {
                           height: h * 0.03,
                           thickness: 1,
                         ),
+
+                        /// Write a review
                         InkWell(
                           onTap: () {
                             commonNavigator(
@@ -364,7 +367,7 @@ class _AllReviewScreenState extends ConsumerState<AllReviewScreen> {
                                             MainAxisAlignment.center,
                                         children: [
                                           Image.asset(
-                                            AppImg.roundchat,
+                                            AppImg.roundChat,
                                             height: h * 0.04,
                                             width: w * 0.08,
                                             fit: BoxFit.cover,
@@ -375,7 +378,7 @@ class _AllReviewScreenState extends ConsumerState<AllReviewScreen> {
                                       ),
                                     ),
                                     CommonText(
-                                        text: AppText.addreview,
+                                        text: AppText.addReview,
                                         maxLines: 1,
                                         style: ptSansTextStyle(
                                           color:
@@ -405,10 +408,12 @@ class _AllReviewScreenState extends ConsumerState<AllReviewScreen> {
                                   fontSize: w * 0.065,
                                   color: AppColors.black.withOpacity(0.8),
                                   fontWeight: FontWeight.w700),
-                              text: AppText.userreviews,
+                              text: AppText.userReviews,
                             ),
                           ],
                         ),
+
+                        /// User Reviews List
                         CommonListView(
                             itemCount: 16,
                             scrollDirection: Axis.vertical,
@@ -450,7 +455,7 @@ class _AllReviewScreenState extends ConsumerState<AllReviewScreen> {
                                                       BorderRadius.circular(
                                                           1000),
                                                   child: Image.asset(
-                                                    AppImg.homelist,
+                                                    AppImg.homeList,
                                                     height: h * 0.035,
                                                     width: h * 0.035,
                                                     fit: BoxFit.cover,
@@ -496,7 +501,7 @@ class _AllReviewScreenState extends ConsumerState<AllReviewScreen> {
                                               direction: Axis.horizontal,
                                               allowHalfRating: true,
                                               itemCount: 5,
-                                              unratedColor: AppColors.dotcolor,
+                                              unratedColor: AppColors.dotColor,
                                               itemSize: h * 0.02,
                                               itemPadding: EdgeInsets.zero,
                                               itemBuilder: (context, _) => Icon(

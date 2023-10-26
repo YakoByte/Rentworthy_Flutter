@@ -21,6 +21,7 @@ class HomeScreenController extends _$HomeScreenController {
     'San Diego',
     'Dallas',
   ];
+  List<String> get locationList => _locationList;
 
   List<bool>? featureadfavlist;
 
@@ -33,7 +34,6 @@ class HomeScreenController extends _$HomeScreenController {
 
   List<bool> get getpopularfavlist => popularfavlist!;
 
-  List<String> get locationList => _locationList;
   AnimationController? appbaranimationcontroller;
   String? _currentAddress;
   Position? _currentPosition;
@@ -41,32 +41,31 @@ class HomeScreenController extends _$HomeScreenController {
   Position get currentPosition => _currentPosition!;
   CarouselController carouselController = CarouselController();
   PageController rentCollection = PageController(viewportFraction: 0.45);
-  PageController pageController = PageController();
   final List<String> _imgList = [
     AppImg.movie,
     AppImg.party,
-    AppImg.homeoutdoor,
+    AppImg.homeOutDoor,
     AppImg.electronics,
     AppImg.star,
     AppImg.guitar,
     AppImg.cleaner,
     AppImg.clothing,
     AppImg.setting,
-    AppImg.newtag,
+    AppImg.newTag,
   ];
 
   List<String> get imgList => _imgList;
   final List<String> _nameList = [
     AppText.film,
-    AppText.partyevents,
-    AppText.homeoutdoor,
+    AppText.partyEvents,
+    AppText.homeOutDoor,
     AppText.electronics,
-    AppText.toprent,
+    AppText.topRent,
     AppText.music,
     AppText.cleaning,
     AppText.clothing,
-    AppText.heavymachine,
-    AppText.newmarket,
+    AppText.heavyMachine,
+    AppText.newMarket,
   ];
   final SpeechRecognition _speech = SpeechRecognition();
 
@@ -89,12 +88,10 @@ class HomeScreenController extends _$HomeScreenController {
 
   String? get selectedLocation => _selectedLocation;
   TextEditingController searchController = TextEditingController();
-  List<String> searchitems = [];
   int currentpageIndex = 0;
 
   int get getcurrentPageIndex => currentpageIndex;
 
-  List<String> get getsearchitems => searchitems;
   List<AnimationController>? animatecontrollerlist = [];
   ScrollController scrollViewController = ScrollController();
   bool _showAppbar = true;
@@ -107,8 +104,6 @@ class HomeScreenController extends _$HomeScreenController {
   bool _show = true;
 
   bool get show => _show;
-  double bottomBarHeight = 75; // set bottom bar height
-  double _bottomBarOffset = 0;
 
   @override
   FutureOr<void> build() async {
@@ -199,7 +194,7 @@ class HomeScreenController extends _$HomeScreenController {
   }
 
   void activateSpeechRecognizer() {
-    print('_MyAppState.activateSpeechRecognizer... ');
+    debugPrint('_MyAppState.activateSpeechRecognizer... ');
     state = const AsyncLoading();
     _speech.setAvailabilityHandler(onSpeechAvailability);
     _speech.setRecognitionStartedHandler(onRecognitionStarted);
@@ -208,14 +203,14 @@ class HomeScreenController extends _$HomeScreenController {
     _speech.setErrorHandler(errorHandler);
     _speech.activate('en_US').then((res) {
       _speechRecognitionAvailable = res;
-      print("resres $res");
+      debugPrint("resres $res");
     });
     state = const AsyncValue.data(null);
   }
 
   void start() => _speech.activate("en_US").then((_) {
         return _speech.listen().then((result) {
-          print('_MyAppState.start => result $result');
+          debugPrint('_MyAppState.start => result $result');
           state = const AsyncLoading();
           // animationController!.forward();
           _isListening = result;
@@ -226,35 +221,35 @@ class HomeScreenController extends _$HomeScreenController {
 
   void cancel() => _speech.cancel().then((_) {
         state = const AsyncLoading();
-        print("cancel");
+        debugPrint("cancel");
         _isListening = false;
         state = const AsyncValue.data(null);
       });
 
   void stop() => _speech.stop().then((_) {
         state = const AsyncLoading();
-        print("stop");
+        debugPrint("stop");
         _isListening = false;
         state = const AsyncValue.data(null);
       });
 
   void onSpeechAvailability(bool result) {
     state = const AsyncLoading();
-    print("onSpeechAvailability");
+    debugPrint("onSpeechAvailability");
     _speechRecognitionAvailable = result;
     state = const AsyncValue.data(null);
   }
 
   void onRecognitionStarted() {
     state = const AsyncLoading();
-    print("Listening");
+    debugPrint("Listening");
     _isListening = true;
     searchController.text = 'Listening...';
     state = const AsyncValue.data(null);
   }
 
   void onRecognitionResult(String text) {
-    print('_MyAppState.onRecognitionResult... $text');
+    debugPrint('_MyAppState.onRecognitionResult... $text');
     //  state = const AsyncLoading();
     transcription = text;
 
@@ -264,7 +259,7 @@ class HomeScreenController extends _$HomeScreenController {
   }
 
   void onRecognitionComplete(String text) {
-    print('_MyAppState.onRecognitionComplete... $text');
+    debugPrint('_MyAppState.onRecognitionComplete... $text');
     state = const AsyncLoading();
 
     Future.delayed(const Duration(milliseconds: 400), () {
@@ -343,18 +338,6 @@ class HomeScreenController extends _$HomeScreenController {
     state = const AsyncLoading();
 
     currentpageIndex = index;
-
-    state = const AsyncValue.data(null);
-  }
-
-  void filterSearchResults(String query) {
-    state = const AsyncLoading();
-
-    // searchitems = carlist
-    //    .where((item) => item.toLowerCase().contains(query.toLowerCase()))
-    //     .toList();
-
-    print("searchitems $searchitems");
 
     state = const AsyncValue.data(null);
   }

@@ -4,7 +4,6 @@ import '../../../data/indi_prof/notification/notification_repo.dart';
 import '../../../model/indi_prof/notification/get_notification/get_notification.dart';
 
 abstract class NotificationService {
-  @override
   Future<GetNotification?> getNotificationData();
 }
 

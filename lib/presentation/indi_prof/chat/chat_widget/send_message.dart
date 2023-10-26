@@ -37,7 +37,7 @@ class SendMessage extends ConsumerWidget {
                 maxHeight: MediaQuery.of(context).size.height * 5,
               ),
               decoration: BoxDecoration(
-                color: AppColors.sendmsg,
+                color: AppColors.sendMsg,
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(4),
                   topLeft: Radius.circular(4),
@@ -108,7 +108,7 @@ class SendMessage extends ConsumerWidget {
                                   color: AppColors.black.withOpacity(0.8),
                                   fontSize: size.width * 0.035)),
                           Image.asset(
-                            AppImg.checkall,
+                            AppImg.checkAll,
                             height: w * 0.04,
                             width: w * 0.04,
                             color: AppColors.black,

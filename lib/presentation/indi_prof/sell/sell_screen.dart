@@ -69,7 +69,7 @@ class SellScreen extends ConsumerWidget {
               fontSize: w * 0.05,
               color: AppColors.black.withOpacity(0.8),
               fontWeight: FontWeight.w700),
-          text: AppText.whatareyouoffering,
+          text: AppText.whatAreYouOffering,
         )
             .animate(
                 controller: controller().appbaranimatecontroller!,
@@ -134,7 +134,7 @@ class SellScreen extends ConsumerWidget {
                                     width: 1.5,
                                   )
                                 : Border.all(
-                                    color: AppColors.bordercolor, width: 1)),
+                                    color: AppColors.borderColor, width: 1)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -192,7 +192,7 @@ class SellScreen extends ConsumerWidget {
                             for (int i = 0;
                                 i < controller().animatecontrollerlist!.length;
                                 i++) {
-                              //    print("dfgd $index ${(index ~/ 2) * 70 + 80}");
+                              //    debugPrint("dfgd $index ${(index ~/ 2) * 70 + 80}");
                               if (controller()
                                   .animatecontrollerlist!
                                   .last

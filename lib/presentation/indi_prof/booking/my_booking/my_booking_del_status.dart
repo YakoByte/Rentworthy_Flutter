@@ -138,7 +138,7 @@ class MyBookingDelStatus extends ConsumerWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Image.asset(
-                              AppImg.homelist,
+                              AppImg.homeList,
                               height: h * 0.12,
                               width: w * 0.4,
                               fit: BoxFit.cover,
@@ -324,7 +324,7 @@ class MyBookingDelStatus extends ConsumerWidget {
                           color: AppColors.white,
                         ),
                       ),
-                      text: AppText.cancelorder,
+                      text: AppText.cancelOrder,
                       textStyle: ptSansTextStyle(
                           foreground: Paint()
                             ..shader = const LinearGradient(
@@ -428,7 +428,7 @@ class MyBookingDelStatus extends ConsumerWidget {
                                   fontSize: w * 0.045,
                                   color: AppColors.black.withOpacity(0.8),
                                   fontWeight: FontWeight.w700),
-                              text: AppText.hamzaali,
+                              text: AppText.hamzaAli,
                             ),
                             Padding(
                               padding: EdgeInsets.all(w * 0.015),
@@ -436,7 +436,7 @@ class MyBookingDelStatus extends ConsumerWidget {
                                 padding: EdgeInsets.symmetric(
                                     horizontal: w * 0.02, vertical: h * 0.005),
                                 decoration: BoxDecoration(
-                                  color: AppColors.starcolor.withOpacity(0.6),
+                                  color: AppColors.starColor.withOpacity(0.6),
                                 ),
                                 child: CommonText(
                                   text: "Home".toUpperCase(),
@@ -539,7 +539,7 @@ class MyBookingDelStatus extends ConsumerWidget {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(1000),
                                       child: Image.asset(
-                                        AppImg.homelist,
+                                        AppImg.homeList,
                                         height: h * 0.075,
                                         width: h * 0.075,
                                         fit: BoxFit.cover,
@@ -558,7 +558,7 @@ class MyBookingDelStatus extends ConsumerWidget {
                                           children: [
                                             Expanded(
                                               child: CommonText(
-                                                  text: AppText.postedby,
+                                                  text: AppText.postedBy,
                                                   maxLines: 1,
                                                   style: ptSansTextStyle(
                                                     color: AppColors.black
@@ -575,7 +575,7 @@ class MyBookingDelStatus extends ConsumerWidget {
                                           children: [
                                             Expanded(
                                               child: CommonText(
-                                                  text: AppText.hamzaali,
+                                                  text: AppText.hamzaAli,
                                                   maxLines: 1,
                                                   style: ptSansTextStyle(
                                                     color: AppColors.black
@@ -592,7 +592,7 @@ class MyBookingDelStatus extends ConsumerWidget {
                                           children: [
                                             Expanded(
                                               child: CommonText(
-                                                  text: AppText.postedon,
+                                                  text: AppText.postedOn,
                                                   maxLines: 1,
                                                   style: ptSansTextStyle(
                                                     color: AppColors.black
@@ -690,7 +690,7 @@ class MyBookingDelStatus extends ConsumerWidget {
                               ])),
                           backgroundColor: AppColors.transparent,
                           shape: LinearBorder.none,
-                          text: AppText.chatnow,
+                          text: AppText.chatNow,
                           textStyle: ptSansTextStyle(
                               color: AppColors.white,
                               fontSize: h * 0.022,

@@ -7,7 +7,7 @@ part of 'user_prof_screen_controller.dart';
 // **************************************************************************
 
 String _$businessUserProfControllerHash() =>
-    r'51d846346ec47a1cdb9847693c22c09fb40b5908';
+    r'0a365fa2d8f6dbd07b58703df03aeeb477bf8272';
 
 /// See also [BusinessUserProfController].
 @ProviderFor(BusinessUserProfController)

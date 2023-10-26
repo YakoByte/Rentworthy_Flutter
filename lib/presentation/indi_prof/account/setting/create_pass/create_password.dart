@@ -41,7 +41,7 @@ class _CreatePasswordState extends ConsumerState<CreatePassword> {
                 fontSize: w * 0.05,
                 color: AppColors.black.withOpacity(0.8),
                 fontWeight: FontWeight.w700),
-            text: AppText.createpass,
+            text: AppText.createPass,
           ),
         ),
       ),
@@ -73,8 +73,10 @@ class _CreatePasswordState extends ConsumerState<CreatePassword> {
                               fontSize: h * 0.02,
                               color: AppColors.black.withOpacity(0.9),
                               fontWeight: FontWeight.w500),
-                          text: AppText.enternewpass,
+                          text: AppText.enterNewPass,
                         ),
+
+                        /// CreatePassword
                         TextInputField(
                             enableunderlinecolor:
                                 AppColors.black.withOpacity(0.6),
@@ -118,8 +120,8 @@ class _CreatePasswordState extends ConsumerState<CreatePassword> {
                               child: Center(
                                 child: Image.asset(
                                   !controller().iseyehide
-                                      ? AppImg.eye_hide
-                                      : AppImg.eye_view,
+                                      ? AppImg.eyeHide
+                                      : AppImg.eyeView,
                                   fit: BoxFit.cover,
                                   color: AppColors.black.withOpacity(0.6),
                                   width: h * 0.032,
@@ -138,6 +140,8 @@ class _CreatePasswordState extends ConsumerState<CreatePassword> {
                             isCounter: false,
                             containercolor: AppColors.white,
                             textCapitalization: TextCapitalization.none),
+
+                        /// ConfirmPassword
                         TextInputField(
                             enableunderlinecolor:
                                 AppColors.black.withOpacity(0.6),
@@ -184,8 +188,8 @@ class _CreatePasswordState extends ConsumerState<CreatePassword> {
                               child: Center(
                                 child: Image.asset(
                                   !controller().isconfirmeyehide
-                                      ? AppImg.eye_hide
-                                      : AppImg.eye_view,
+                                      ? AppImg.eyeHide
+                                      : AppImg.eyeView,
                                   fit: BoxFit.cover,
                                   color: AppColors.black.withOpacity(0.6),
                                   width: h * 0.032,
@@ -213,6 +217,7 @@ class _CreatePasswordState extends ConsumerState<CreatePassword> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
+                      /// SaveButton
                       Padding(
                         padding: EdgeInsets.only(
                             bottom: h * 0.06, left: w * 0.04, right: w * 0.04),

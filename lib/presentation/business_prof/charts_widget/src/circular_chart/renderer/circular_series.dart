@@ -993,7 +993,7 @@ class CircularSeries<T, D> extends ChartSeries<T, D>
   ///            series: <LineSeries<SalesData, num>>[
   ///                LineSeries<SalesData, num>(
   ///                    onPointTap: (ChartPointDetails details) {
-  ///                       print(details.pointIndex);
+  ///                       debugPrint(details.pointIndex);
   ///                    },
   ///                ),
   ///            ],
@@ -1015,7 +1015,7 @@ class CircularSeries<T, D> extends ChartSeries<T, D>
   ///            series: <LineSeries<SalesData, num>>[
   ///                LineSeries<SalesData, num>(
   ///                    onPointDoubleTap: (ChartPointDetails details) {
-  ///                       print(details.pointIndex);
+  ///                       debugPrint(details.pointIndex);
   ///                    },
   ///                ),
   ///            ],
@@ -1037,7 +1037,7 @@ class CircularSeries<T, D> extends ChartSeries<T, D>
   ///            series: <LineSeries<SalesData, num>>[
   ///                LineSeries<SalesData, num>(
   ///                    onPointLongPress: (ChartPointDetails details) {
-  ///                       print(details.pointIndex);
+  ///                       debugPrint(details.pointIndex);
   ///                    },
   ///                ),
   ///            ],

@@ -36,7 +36,7 @@ class SelectLangScreen extends ConsumerWidget {
                 fontSize: w * 0.05,
                 color: AppColors.black.withOpacity(0.8),
                 fontWeight: FontWeight.w700),
-            text: AppText.selectlang,
+            text: AppText.selectLang,
           ),
         ),
       ),
@@ -137,7 +137,7 @@ class SelectLangScreen extends ConsumerWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(h * 0.005),
                       ),
-                      text: "${AppText.continueeng} / ${AppText.nexthindi}",
+                      text: "${AppText.continueEng} / ${AppText.nextHindi}",
                       textStyle: ptSansTextStyle(
                           color: AppColors.white,
                           fontSize: h * 0.02,

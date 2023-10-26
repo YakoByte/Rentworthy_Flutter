@@ -43,7 +43,7 @@ class StatisticsReports extends ConsumerWidget {
                 fontSize: w * 0.05,
                 color: AppColors.black.withOpacity(0.8),
                 fontWeight: FontWeight.w700),
-            text: AppText.statisticsreport,
+            text: AppText.statisticsReport,
           ),
         ).animate().fade(duration: 1000.ms).then(delay: 1000.ms).slideX(
             begin: 0, end: 0, curve: Curves.decelerate, duration: 800.ms),
@@ -74,6 +74,7 @@ class StatisticsReports extends ConsumerWidget {
                     padding: EdgeInsets.symmetric(horizontal: w * 0.04),
                     child: Column(
                       children: [
+                        /// Your Statistics
                         Card(
                           elevation: 3,
                           shape: RoundedRectangleBorder(
@@ -95,10 +96,10 @@ class StatisticsReports extends ConsumerWidget {
                                     height: h * 0.17,
                                     width: w * 0.2,
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.vertical(
+                                      borderRadius: const BorderRadius.vertical(
                                         top: Radius.circular(8),
                                       ),
-                                      color: AppColors.colorSecondarydark
+                                      color: AppColors.colorSecondaryDark
                                           .withOpacity(0.3),
                                     ),
                                   ),
@@ -106,7 +107,7 @@ class StatisticsReports extends ConsumerWidget {
                                 Positioned(
                                   bottom: 0,
                                   left: h * 0.015,
-                                  child: Image.asset(AppImg.statisticcharacter,
+                                  child: Image.asset(AppImg.statisticCharacter,
                                       height: h * 0.19, width: w * 0.4),
                                 ),
                                 Positioned(
@@ -118,8 +119,8 @@ class StatisticsReports extends ConsumerWidget {
                                     isColExpanded: false,
                                     isExpanded: false,
                                     onTap: () {},
-                                    title: AppText.welcomeback,
-                                    subtitle: AppText.yourstatistics,
+                                    title: AppText.welcomeBack,
+                                    subtitle: AppText.yourStatistics,
                                     subtitleStyle: ptSansTextStyle(
                                         fontSize: w * 0.05,
                                         color: AppColors.black.withOpacity(0.8),
@@ -134,6 +135,8 @@ class StatisticsReports extends ConsumerWidget {
                             ),
                           ),
                         ),
+
+                        /// Summary
                         Card(
                           elevation: 3,
                           shape: RoundedRectangleBorder(
@@ -184,7 +187,7 @@ class StatisticsReports extends ConsumerWidget {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Image.asset(AppImg.accountmultiple,
+                                            Image.asset(AppImg.accountMultiple,
                                                 height: h * 0.025,
                                                 width: w * 0.1),
                                             CommonText(
@@ -217,7 +220,7 @@ class StatisticsReports extends ConsumerWidget {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Image.asset(AppImg.accountarrow,
+                                            Image.asset(AppImg.accountArrow,
                                                 height: h * 0.025,
                                                 width: w * 0.1),
                                             CommonText(
@@ -250,7 +253,7 @@ class StatisticsReports extends ConsumerWidget {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Image.asset(AppImg.handcoin,
+                                            Image.asset(AppImg.handCoin,
                                                 height: h * 0.025,
                                                 width: w * 0.1),
                                             CommonText(
@@ -283,7 +286,7 @@ class StatisticsReports extends ConsumerWidget {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Image.asset(AppImg.accountarrowup,
+                                            Image.asset(AppImg.accountArrowUp,
                                                 height: h * 0.025,
                                                 width: w * 0.1),
                                             CommonText(
@@ -336,6 +339,8 @@ class StatisticsReports extends ConsumerWidget {
                           end: 0,
                           curve: Curves.easeInOutCubic,
                           duration: 450.ms),
+
+                  /// Report
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: w * 0.04),
                     child: Column(

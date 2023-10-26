@@ -123,7 +123,7 @@ class _RegisterComplaintDialogState
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Image.asset(AppImg.uploadimg,
+                                  Image.asset(AppImg.uploadImg,
                                       height: h * 0.04, width: h * 0.04),
                                   Padding(
                                     padding: EdgeInsets.only(top: h * 0.01),

@@ -164,7 +164,7 @@ mixin CircularSeriesRendererExtension implements CircularSeriesRenderer {
     /// Below lines for dynamic dataSource changes.
     if (isDynamicUpdate) {
       if (!oldPoint.isVisible && point.isVisible) {
-        print("object   1");
+        debugPrint("object   1");
         final num val = point.startAngle ==
                 seriesRenderer.segmentRenderingValues['start']!
             ? seriesRenderer.segmentRenderingValues['start']!
@@ -176,7 +176,7 @@ mixin CircularSeriesRendererExtension implements CircularSeriesRenderer {
         pointEndAngle = val + (point.endAngle! - val) * animationDegreeValue;
         degree = pointEndAngle - pointStartAngle;
       } else if (oldPoint.isVisible && !point.isVisible) {
-        print("object   2");
+        debugPrint("object   2");
         if (oldPoint.startAngle!.round() ==
                 seriesRenderer.segmentRenderingValues['start'] &&
             (oldPoint.endAngle!.round() ==
@@ -188,10 +188,10 @@ mixin CircularSeriesRendererExtension implements CircularSeriesRenderer {
               (oldPoint.endAngle! - oldPoint.startAngle!) *
                   animationDegreeValue;
         } else if (oldPoint.startAngle == oldPoint.endAngle) {
-          print("object   3");
+          debugPrint("object   3");
           pointStartAngle = pointEndAngle = oldPoint.startAngle!;
         } else {
-          print("object   4");
+          debugPrint("object   4");
           pointStartAngle = oldPoint.startAngle! -
               (oldPoint.startAngle! -
                       (oldPoint.startAngle ==
@@ -224,7 +224,7 @@ mixin CircularSeriesRendererExtension implements CircularSeriesRenderer {
         }
         degree = pointEndAngle - pointStartAngle;
       } else if (point.isVisible && oldPoint.isVisible) {
-        print("object   5");
+        debugPrint("object   5");
         pointStartAngle = (point.startAngle! > oldStartAngle)
             ? oldStartAngle +
                 ((point.startAngle! - oldStartAngle) * animationDegreeValue)
@@ -238,7 +238,7 @@ mixin CircularSeriesRendererExtension implements CircularSeriesRenderer {
         degree = pointEndAngle - pointStartAngle;
       }
     } else if (point.isVisible) {
-      print("object   6");
+      debugPrint("object   6");
       degree = animationDegreeValue * point.degree!;
       pointEndAngle = pointStartAngle! + degree;
     }
@@ -288,22 +288,22 @@ mixin CircularSeriesRendererExtension implements CircularSeriesRenderer {
       innerRadius = innerRadius ?? oldPoint!.innerRadius;
       outerRadius = outerRadius ?? oldPoint!.outerRadius;
       if (cornerStyle != CornerStyle.bothFlat) {
-        // print("sd innerRadius   $innerRadius  $outerRadius");
+        // debugPrint("sd innerRadius   $innerRadius  $outerRadius");
         final num angleDeviation =
             findAngleDeviation(innerRadius!, outerRadius!, 360);
-        // print("angleDeviation $angleDeviation");
+        // debugPrint("angleDeviation $angleDeviation");
 
         actualStartAngle = (cornerStyle == CornerStyle.startCurve ||
                 cornerStyle == CornerStyle.bothCurve)
             ? (pointStartAngle! + angleDeviation)
             : pointStartAngle!;
-        // print("actualStartAngle $actualStartAngle");
+        // debugPrint("actualStartAngle $actualStartAngle");
 
         actualEndAngle = (cornerStyle == CornerStyle.endCurve ||
                 cornerStyle == CornerStyle.bothCurve)
             ? (pointEndAngle! + angleDeviation)
             : pointEndAngle!;
-        // print("actualEndAngle $actualEndAngle");
+        // debugPrint("actualEndAngle $actualEndAngle");
       }
       renderPath = Path();
       renderPath = (cornerStyle == CornerStyle.startCurve ||

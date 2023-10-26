@@ -34,7 +34,7 @@ class DetectOtp extends ConsumerWidget {
         centerTitle: false,
         leadingicon: true,
         centerwidget: CommonText(
-            text: AppText.signin,
+            text: AppText.signIn,
             style: ptSansTextStyle(
                 color: AppColors.black,
                 fontSize: h * 0.025,
@@ -70,7 +70,7 @@ class DetectOtp extends ConsumerWidget {
                           RichText(
                             textAlign: TextAlign.start,
                             text: TextSpan(
-                              text: AppText.sentotp,
+                              text: AppText.sentOtp,
                               style: ptSansTextStyle(
                                   color: AppColors.black.withOpacity(0.4),
                                   fontSize: h * 0.016,
@@ -93,7 +93,7 @@ class DetectOtp extends ConsumerWidget {
                                 height: h * 0.03,
                                 width: w * 0.05,
                                 child: Image.asset(
-                                  AppImg.editoutline,
+                                  AppImg.editOutline,
                                   height: h * 0.025,
                                   width: w * 0.045,
                                 )),
@@ -101,7 +101,7 @@ class DetectOtp extends ConsumerWidget {
                         ],
                       ),
                       Center(
-                        child: Image.asset(AppImg.detectotpimg,
+                        child: Image.asset(AppImg.detectOtpImg,
                             height: h * 0.35,
                             width: w * 0.5,
                             fit: BoxFit.contain),
@@ -127,7 +127,7 @@ class DetectOtp extends ConsumerWidget {
                                 .toStringAsFixed(1))
                             : 1.0,
                         backgroundColor:
-                            AppColors.blueindicator.withOpacity(0.2),
+                            AppColors.blueIndicator.withOpacity(0.2),
                         linearStrokeCap: LinearStrokeCap.roundAll,
                       ),
                       Padding(
@@ -167,7 +167,7 @@ class DetectOtp extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CommonText(
-                                text: AppText.wearetrying,
+                                text: AppText.weAreTrying,
                                 style: ptSansTextStyle(
                                   color: AppColors.black.withOpacity(0.8),
                                   fontSize: h * 0.024,

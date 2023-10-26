@@ -38,7 +38,7 @@ class ProfileImgName extends ConsumerWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(1000),
                 child: Image.asset(
-                  AppImg.homelist,
+                  AppImg.homeList,
                   height: h * 0.075,
                   width: h * 0.075,
                   fit: BoxFit.cover,
@@ -50,7 +50,7 @@ class ProfileImgName extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CommonText(
-                    text: AppText.hamzaali,
+                    text: AppText.hamzaAli,
                     maxLines: 1,
                     style: ptSansTextStyle(
                       color: AppColors.black.withOpacity(0.6),
@@ -63,7 +63,7 @@ class ProfileImgName extends ConsumerWidget {
                     preimg: true,
                     subimg: false,
                     preiconsize: h * 0.02,
-                    title: AppText.hamzaali,
+                    title: AppText.hamzaAli,
                     preicon: Icons.verified,
                     preimgcolor: AppColors.white,
                     textStyle: ptSansTextStyle(
@@ -79,7 +79,7 @@ class ProfileImgName extends ConsumerWidget {
                     preimg: true,
                     subimg: false,
                     preiconsize: h * 0.02,
-                    title: AppText.userverified,
+                    title: AppText.userVerified,
                     preicon: Icons.verified,
                     preimgcolor: AppColors.white,
                     textStyle: ptSansTextStyle(

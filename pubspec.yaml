@@ -67,6 +67,7 @@ dependencies:
   sign_in_with_apple: ^5.0.0
   share_plus: ^7.2.1
   fluttertoast: ^8.2.2
+  flutter_stripe: ^9.5.0+1
 #  smart_auth: ^1.1.1
 
 dev_dependencies:
@@ -83,13 +84,13 @@ dev_dependencies:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/appicon.png"
+  image_path: "assets/images/appIcon.png"
   min_sdk_android: 21
 
 flutter_native_splash:
   color: "#FFFFFF"
-  image: "assets/images/applogo.png"
-  image_dark: "assets/images/applogo.png"
+  image: "assets/images/appLogo.png"
+  image_dark: "assets/images/appLogo.png"
   color_dark: "#FFFFFF"
 
   android_12:

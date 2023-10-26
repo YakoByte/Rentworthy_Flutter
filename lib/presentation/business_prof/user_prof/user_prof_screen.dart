@@ -35,7 +35,7 @@ class BusinessUserProf extends ConsumerWidget {
     print("user prof ${controller().tabController.index}");
     final w = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: Globals.userprofkey,
+      key: Globals.userProfKey,
       backgroundColor: AppColors.white,
       drawer: AdminNavDrawer(
         selectedindex: 5,
@@ -53,7 +53,7 @@ class BusinessUserProf extends ConsumerWidget {
                   physics: NeverScrollableScrollPhysics(),
                   child: Column(
                     children: [
-                      BusinessSearch(adminscaffoldKey: Globals.userprofkey)
+                      BusinessSearch(adminscaffoldKey: Globals.userProfKey)
                           .animate()
                           .fadeIn(duration: 300.ms)
                           .then(delay: 300.ms)
@@ -79,7 +79,7 @@ class BusinessUserProf extends ConsumerWidget {
                                                 ? true
                                                 : false,
                                         items: controller().popupitemList,
-                                        name: AppText.editprof,
+                                        name: AppText.editProf,
                                         vertbtn: true,
                                         onTap: () {
                                           commonNavigator(
@@ -117,7 +117,7 @@ class BusinessUserProf extends ConsumerWidget {
                                               subimg: false,
                                               preshadermask: false,
                                               preiconsize: h * 0.03,
-                                              title: AppText.membersince,
+                                              title: AppText.memberSince,
                                               preicon:
                                                   Icons.calendar_today_rounded,
                                               preimgcolor: AppColors.black
@@ -144,8 +144,8 @@ class BusinessUserProf extends ConsumerWidget {
                                               subimg: false,
                                               preshadermask: false,
                                               preiconsize: h * 0.03,
-                                              title: AppText.prductlist,
-                                              preimgname: AppImg.gamecontroller,
+                                              title: AppText.productList,
+                                              preimgname: AppImg.gameController,
                                               preimgcolor: AppColors.black
                                                   .withOpacity(0.8),
                                               textStyle: ptSansTextStyle(
@@ -228,7 +228,7 @@ class BusinessUserProf extends ConsumerWidget {
                                                       fontSize: h * 0.015,
                                                       fontWeight:
                                                           FontWeight.w500),
-                                                  text: AppText.custrating),
+                                                  text: AppText.custRating),
                                             ],
                                           ),
                                         ),
@@ -370,7 +370,7 @@ class BusinessUserProf extends ConsumerWidget {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Image.asset(AppImg.nochat,
+                                                Image.asset(AppImg.noChat,
                                                     height: h * 0.3,
                                                     width: w * 0.6,
                                                     fit: BoxFit.cover),
@@ -381,7 +381,7 @@ class BusinessUserProf extends ConsumerWidget {
                                                       textAlign:
                                                           TextAlign.center,
                                                       text:
-                                                          AppText.haventlisted,
+                                                          AppText.haveNotListed,
                                                       style: ptSansTextStyle(
                                                           color: AppColors.black
                                                               .withOpacity(0.4),
@@ -393,7 +393,7 @@ class BusinessUserProf extends ConsumerWidget {
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: w * 0.06),
                                                   child: CommonText(
-                                                      text: AppText.useanymore,
+                                                      text: AppText.useAnyMore,
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: ptSansTextStyle(
@@ -444,7 +444,7 @@ class BusinessUserProf extends ConsumerWidget {
                                                                 BorderRadius
                                                                     .circular(
                                                                         4)),
-                                                    text: AppText.startsell,
+                                                    text: AppText.startSell,
                                                     textStyle: ptSansTextStyle(
                                                         foreground: Paint()
                                                           ..shader =
@@ -520,7 +520,7 @@ class BusinessUserProf extends ConsumerWidget {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Image.asset(AppImg.nochat,
+                                                Image.asset(AppImg.noChat,
                                                     height: h * 0.3,
                                                     width: w * 0.6,
                                                     fit: BoxFit.cover),
@@ -531,7 +531,7 @@ class BusinessUserProf extends ConsumerWidget {
                                                       textAlign:
                                                           TextAlign.center,
                                                       text:
-                                                          AppText.haventlisted,
+                                                          AppText.haveNotListed,
                                                       style: ptSansTextStyle(
                                                           color: AppColors.black
                                                               .withOpacity(0.4),
@@ -543,7 +543,7 @@ class BusinessUserProf extends ConsumerWidget {
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: w * 0.06),
                                                   child: CommonText(
-                                                      text: AppText.useanymore,
+                                                      text: AppText.useAnyMore,
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: ptSansTextStyle(
@@ -594,7 +594,7 @@ class BusinessUserProf extends ConsumerWidget {
                                                                 BorderRadius
                                                                     .circular(
                                                                         4)),
-                                                    text: AppText.startsell,
+                                                    text: AppText.startSell,
                                                     textStyle: ptSansTextStyle(
                                                         foreground: Paint()
                                                           ..shader =

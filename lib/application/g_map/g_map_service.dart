@@ -2,11 +2,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/both_prof/g_map/g_map_repo.dart';
 import '../../model/g_map/g_map.dart';
-import '../../model/onboarding/onboarding.dart';
 
 abstract class GMapService {
-  @override
-  Future<GMapResponse?> getmapData();
+  Future<GMapResponse?> getMapData();
 }
 
 class GMapServiceV1 implements GMapService {
@@ -17,8 +15,8 @@ class GMapServiceV1 implements GMapService {
   final GMapRepository gMapRepository;
 
   @override
-  Future<GMapResponse?> getmapData() async {
-    return await gMapRepository.getmapData();
+  Future<GMapResponse?> getMapData() async {
+    return await gMapRepository.getMapData();
   }
 }
 

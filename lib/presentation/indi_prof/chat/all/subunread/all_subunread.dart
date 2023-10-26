@@ -19,10 +19,10 @@ class AllSubUnread extends ConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Image.asset(AppImg.nochat,
+          Image.asset(AppImg.noChat,
               height: h * 0.3, width: w * 0.6, fit: BoxFit.cover),
           CommonText(
-              text: AppText.nochat,
+              text: AppText.noChat,
               style: ptSansTextStyle(
                   color: AppColors.black.withOpacity(0.4),
                   fontSize: h * 0.02,

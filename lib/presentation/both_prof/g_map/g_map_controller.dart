@@ -13,28 +13,22 @@ part 'g_map_controller.g.dart';
 @riverpod
 class GMapController extends _$GMapController {
   late GoogleMapController mapController;
-  GMapResponse? gMapResponse;
   final Map<String, Marker> _markers = {};
   BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
-
-  Map<String, Marker> get markers => _markers;
 
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
     addCustomIcon();
-    onMapCreated1(mapController);
+    onMapCreated(mapController);
     state = const AsyncValue.data(null);
   }
 
-  void onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
-
+  /// Add custom icon to the map
   void addCustomIcon() {
     state = const AsyncLoading();
     BitmapDescriptor.fromAssetImage(
-            const ImageConfiguration(), AppImg.icon_location)
+            const ImageConfiguration(), AppImg.iconLocation)
         .then(
       (icon) {
         markerIcon = icon;
@@ -43,11 +37,15 @@ class GMapController extends _$GMapController {
     state = const AsyncValue.data(null);
   }
 
-  Future<void> onMapCreated1(GoogleMapController controller) async {
+// void onMapCreated(GoogleMapController controller) {
+  //   mapController = controller;
+  // }
+  /// Add markers to the map
+  Future<void> onMapCreated(GoogleMapController controller) async {
     GMapResponse? googleOffices =
-        await ref.read(gMapServiceProvider).getmapData();
+        await ref.read(gMapServiceProvider).getMapData();
 
-    print("huyu $googleOffices");
+    debugPrint("huyu $googleOffices");
 
     _markers.clear();
     for (final office in googleOffices!.offices!) {

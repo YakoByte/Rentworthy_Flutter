@@ -46,7 +46,7 @@ class MyAddressesScreen extends ConsumerWidget {
                 fontSize: w * 0.05,
                 color: AppColors.black.withOpacity(0.8),
                 fontWeight: FontWeight.w700),
-            text: AppText.myaddress,
+            text: AppText.myAddress,
           ),
         ),
       ),
@@ -68,6 +68,7 @@ class MyAddressesScreen extends ConsumerWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          /// Add New Address
                           GestureDetector(
                             onTap: () {
                               commonNavigator(
@@ -77,7 +78,7 @@ class MyAddressesScreen extends ConsumerWidget {
                               );
                             },
                             child: IconText(
-                                title: AppText.addnewaddress,
+                                title: AppText.addNewAddress,
                                 textStyle: ptSansTextStyle(
                                     foreground: Paint()
                                       ..shader = const LinearGradient(
@@ -111,6 +112,8 @@ class MyAddressesScreen extends ConsumerWidget {
                       text: "3 Save Addresses",
                     ),
                   ),
+
+                  /// Address List
                   CommonListView(
                     itemCount: 5,
                     scrollDirection: Axis.vertical,
@@ -144,7 +147,7 @@ class MyAddressesScreen extends ConsumerWidget {
                                         Container(
                                           width: w * 0.2,
                                           height: h * 0.037,
-                                          color: AppColors.starcolor
+                                          color: AppColors.starColor
                                               .withOpacity(0.6),
                                           child: Center(
                                             child: CommonText(
@@ -162,6 +165,7 @@ class MyAddressesScreen extends ConsumerWidget {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
+                                        /// Edit Address
                                         CommonIconButton(
                                             containerwidth: w * 0.08,
                                             containerheight: h * 0.052,
@@ -172,6 +176,8 @@ class MyAddressesScreen extends ConsumerWidget {
                                                 color: AppColors.black,
                                                 size: h * 0.03),
                                             onPressed: () {}),
+
+                                        /// Delete Address
                                         CommonIconButton(
                                             containerwidth: w * 0.08,
                                             containerheight: h * 0.052,
@@ -182,6 +188,7 @@ class MyAddressesScreen extends ConsumerWidget {
                                                 color: AppColors.red,
                                                 size: h * 0.03),
                                             onPressed: () {
+                                              /// Delete Address Dialog
                                               ref
                                                   .read(dialogServiceProvider)
                                                   .areYouSureDialog(
@@ -204,7 +211,7 @@ class MyAddressesScreen extends ConsumerWidget {
                                       overflow: TextOverflow.ellipsis,
                                       color: AppColors.black.withOpacity(0.8),
                                       fontWeight: FontWeight.w700),
-                                  text: AppText.hamzaali,
+                                  text: AppText.hamzaAli,
                                 ),
                                 CommonText(
                                   style: ptSansTextStyle(

@@ -78,21 +78,21 @@ class HomeNavDrawer extends ConsumerWidget {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(1000),
                                     child: Image.asset(
-                                      AppImg.homelist,
+                                      AppImg.homeList,
                                       height: h * 0.075,
                                       width: h * 0.075,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
-                                Container(
+                                SizedBox(
                                   width: w * 0.4,
                                   height: h * 0.07,
                                   child: TitleSubtitle(
                                       isColExpanded: true,
                                       isExpanded: false,
-                                      title: AppText.hamzaali,
-                                      subtitle: AppText.myaccunt,
+                                      title: AppText.hamzaAli,
+                                      subtitle: AppText.myAccount,
                                       onTap: () {
                                         Navigator.pop(context);
                                         commonNavigator(
@@ -132,7 +132,7 @@ class HomeNavDrawer extends ConsumerWidget {
                     duration: 500.ms,
                   ),
             ),
-            Container(
+            SizedBox(
               height: h * 0.7,
               child: SingleChildScrollView(
                 child: Column(
@@ -163,14 +163,14 @@ class HomeNavDrawer extends ConsumerWidget {
                                         color: AppColors.black.withOpacity(0.6),
                                         size: h * 0.03),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     width: w * 0.4,
                                     height: h * 0.06,
                                     child: TitleSubtitle(
                                         isExpanded: true,
                                         isColExpanded: true,
                                         title: AppText.categories,
-                                        subtitle: AppText.eleccarbike,
+                                        subtitle: AppText.elecCarBike,
                                         onTap: () {
                                           ref
                                               .read(dialogServiceProvider)
@@ -227,7 +227,7 @@ class HomeNavDrawer extends ConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           CommonText(
-                              text: AppText.myact,
+                              text: AppText.myAct,
                               style: ptSansTextStyle(
                                 color: AppColors.black.withOpacity(0.4),
                                 overflow: TextOverflow.ellipsis,
@@ -334,14 +334,14 @@ class HomeNavDrawer extends ConsumerWidget {
                                       width: h * 0.03,
                                     ),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     width: w * 0.4,
                                     height: h * 0.06,
                                     child: TitleSubtitle(
                                         isExpanded: true,
                                         isColExpanded: true,
-                                        title: AppText.myads,
-                                        subtitle: AppText.adspostedbyyou,
+                                        title: AppText.myAds,
+                                        subtitle: AppText.adsPostedByYou,
                                         onTap: () {
                                           commonNavigator(
                                             context: context,
@@ -408,14 +408,14 @@ class HomeNavDrawer extends ConsumerWidget {
                                       width: h * 0.03,
                                     ),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     width: w * 0.5,
                                     height: h * 0.06,
                                     child: TitleSubtitle(
                                         isExpanded: true,
                                         isColExpanded: true,
-                                        title: AppText.msgandnotification,
-                                        subtitle: AppText.chatalert,
+                                        title: AppText.msgAndNotification,
+                                        subtitle: AppText.chatAlert,
                                         onTap: () {
                                           // commonNavigator(
                                           //   context: context,
@@ -524,7 +524,7 @@ class HomeNavDrawer extends ConsumerWidget {
                               ),
                             ),
                             CommonText(
-                                text: AppText.howitworks,
+                                text: AppText.howItWorks,
                                 style: ptSansTextStyle(
                                   color: AppColors.black.withOpacity(0.8),
                                   overflow: TextOverflow.ellipsis,
@@ -569,7 +569,7 @@ class HomeNavDrawer extends ConsumerWidget {
                               ),
                             ),
                             CommonText(
-                                text: AppText.forbusiness,
+                                text: AppText.forBusiness,
                                 style: ptSansTextStyle(
                                   color: AppColors.black.withOpacity(0.8),
                                   overflow: TextOverflow.ellipsis,
@@ -614,7 +614,7 @@ class HomeNavDrawer extends ConsumerWidget {
                               ),
                             ),
                             CommonText(
-                                text: AppText.rateus,
+                                text: AppText.rateUs,
                                 style: ptSansTextStyle(
                                   color: AppColors.black.withOpacity(0.8),
                                   overflow: TextOverflow.ellipsis,
@@ -659,7 +659,7 @@ class HomeNavDrawer extends ConsumerWidget {
                               ),
                             ),
                             CommonText(
-                                text: AppText.myaddress,
+                                text: AppText.myAddress,
                                 style: ptSansTextStyle(
                                   color: AppColors.black.withOpacity(0.8),
                                   overflow: TextOverflow.ellipsis,
@@ -884,7 +884,7 @@ class HomeNavDrawer extends ConsumerWidget {
                               ),
                             ),
                             CommonText(
-                                text: AppText.privacypolcy,
+                                text: AppText.privacyPolicyShort,
                                 style: ptSansTextStyle(
                                   color: AppColors.black.withOpacity(0.8),
                                   overflow: TextOverflow.ellipsis,

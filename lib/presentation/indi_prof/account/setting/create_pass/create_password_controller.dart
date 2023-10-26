@@ -12,14 +12,16 @@ class CreatePasswordController extends _$CreatePasswordController {
   TextEditingController confirmpasswordController = TextEditingController();
   bool _iseyehide = false;
 
+  bool get iseyehide => _iseyehide;
+
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
+
   bool _isSubmit = false;
 
   bool get isSubmit => _isSubmit;
 
-  bool get iseyehide => _iseyehide;
   bool _confirmiseyehide = false;
 
   bool get isconfirmeyehide => _confirmiseyehide;
@@ -27,6 +29,7 @@ class CreatePasswordController extends _$CreatePasswordController {
   @override
   FutureOr<void> build() async {}
 
+  /// This method is used to hide and show password
   onEyeTap({required bool val}) async {
     state = const AsyncLoading();
     debugPrint('onEyeTap $val');
@@ -35,6 +38,7 @@ class CreatePasswordController extends _$CreatePasswordController {
     state = const AsyncValue.data(null);
   }
 
+  /// This method is used to save password
   onSave() async {
     state = const AsyncLoading();
     _isSubmit = true;
@@ -56,6 +60,7 @@ class CreatePasswordController extends _$CreatePasswordController {
     state = const AsyncValue.data(null);
   }
 
+  /// This method is used to hide and show confirm password
   onconfirmEyeTap({required bool val}) async {
     state = const AsyncLoading();
     debugPrint('onEyeTap $val');

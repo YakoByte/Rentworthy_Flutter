@@ -13,7 +13,7 @@ class RegCompShimmer extends ConsumerWidget {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     return Shimmer.fromColors(
-      baseColor: AppColors.shimmergrey,
+      baseColor: AppColors.shimmerGrey,
       highlightColor: AppColors.white,
       enabled: true,
 

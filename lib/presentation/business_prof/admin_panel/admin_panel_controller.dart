@@ -18,29 +18,14 @@ part 'admin_panel_controller.g.dart';
 
 @riverpod
 class AdminPanelController extends _$AdminPanelController {
-  final List<String> _locationList = [
-    'Wagle state',
-    'Mumbra',
-    'Mulund',
-    'Dadar',
-    'Mahim',
-  ];
-  List<bool>? featureadfavlist;
   ScrollController scrollController = ScrollController();
 
-  List<bool> get getfeatureadfavlist => featureadfavlist!;
-
   List<bool>? nearbyadfavlist;
+
+  List<bool> get getnearbyadfavlist => nearbyadfavlist!;
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
-
-  List<bool> get getnearbyadfavlist => nearbyadfavlist!;
-  List<bool>? popularfavlist;
-
-  List<bool> get getpopularfavlist => popularfavlist!;
-
-  List<String> get locationList => _locationList;
 
   PageController viewpageController = PageController(viewportFraction: 0.68);
   PageController pageController = PageController();
@@ -48,62 +33,43 @@ class AdminPanelController extends _$AdminPanelController {
   final List<String> _imgList = [
     AppImg.movie,
     AppImg.party,
-    AppImg.homeoutdoor,
+    AppImg.homeOutDoor,
     AppImg.electronics,
     AppImg.star,
     AppImg.guitar,
     AppImg.cleaner,
     AppImg.clothing,
     AppImg.setting,
-    AppImg.newtag,
+    AppImg.newTag,
   ];
 
   List<String> get imgList => _imgList;
   final List<String> _nameList = [
     AppText.film,
-    AppText.partyevents,
-    AppText.homeoutdoor,
+    AppText.partyEvents,
+    AppText.homeOutDoor,
     AppText.electronics,
-    AppText.toprent,
+    AppText.topRent,
     AppText.music,
     AppText.cleaning,
     AppText.clothing,
-    AppText.heavymachine,
-    AppText.newmarket,
+    AppText.heavyMachine,
+    AppText.newMarket,
   ];
 
   List<String> get nameList => _nameList;
-  String? _selectedLocation;
 
-  String? get selectedLocation => _selectedLocation;
   TextEditingController searchController = TextEditingController();
-  List<String> searchitems = [];
   int currentpageIndex = 0;
-  GetChart? getLocationChartData;
-  GetChart? getDeviceChartData;
-  AnalyticsResponse? analyticsResponse;
 
   int get getcurrentPageIndex => currentpageIndex;
-
-  List<String> get getsearchitems => searchitems;
 
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
     _isLoading = true;
-    _selectedLocation = _locationList[0];
-    popularfavlist = List.generate(_imgList.length, (index) => false);
-    featureadfavlist = List.generate(_imgList.length, (index) => false);
     nearbyadfavlist = List.generate(_imgList.length, (index) => false);
-    getLocationChartData =
-        await ref.read(adminServiceProvider).getLocationChartData();
-    getDeviceChartData =
-        await ref.read(adminServiceProvider).getDeviceChartData();
-    analyticsResponse =
-        await ref.read(adminServiceProvider).getAnalyticsResponseData();
-    debugPrint('getLocationChartData ${getLocationChartData!}');
-    debugPrint('getDeviceChartData ${getDeviceChartData!}');
-    debugPrint('analyticsResponse ${analyticsResponse!}');
+
     Future.delayed(const Duration(seconds: 1), () {
       _isLoading = false;
 
@@ -114,23 +80,11 @@ class AdminPanelController extends _$AdminPanelController {
 
   onFavTap(int index, int type) {
     state = const AsyncLoading();
-    if (type == 0) {
-      if (featureadfavlist![index] == true) {
-        featureadfavlist![index] = false;
-      } else {
-        featureadfavlist![index] = true;
-      }
-    } else if (type == 1) {
+    if (type == 1) {
       if (nearbyadfavlist![index] == true) {
         nearbyadfavlist![index] = false;
       } else {
         nearbyadfavlist![index] = true;
-      }
-    } else if (type == 2) {
-      if (popularfavlist![index] == true) {
-        popularfavlist![index] = false;
-      } else {
-        popularfavlist![index] = true;
       }
     }
 
@@ -371,13 +325,7 @@ class AdminPanelController extends _$AdminPanelController {
     // searchitems = carlist
     //     .where((item) => item.toLowerCase().contains(query.toLowerCase()))
     //     .toList();
-    print("searchitems $searchitems");
-    state = const AsyncValue.data(null);
-  }
 
-  onValSelect({required String val}) async {
-    state = const AsyncLoading();
-    _selectedLocation = val;
     state = const AsyncValue.data(null);
   }
 }

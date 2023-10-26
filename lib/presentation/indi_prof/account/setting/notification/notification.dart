@@ -55,6 +55,8 @@ class NotificationScreen extends ConsumerWidget {
                   height: h * 0.01,
                   thickness: 1,
                 ),
+
+                /// Recommendation Notification
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: w * 0.04),
                   child: Row(
@@ -78,7 +80,7 @@ class NotificationScreen extends ConsumerWidget {
                               children: [
                                 Expanded(
                                   child: CommonText(
-                                    text: AppText.receiverecommendations,
+                                    text: AppText.receiveRecommendations,
                                     style: ptSansTextStyle(
                                         fontSize: h * 0.02,
                                         color: AppColors.black.withOpacity(0.3),
@@ -100,7 +102,7 @@ class NotificationScreen extends ConsumerWidget {
                                     ? AppColors.gray
                                     : AppColors.colorPrimary,
                                 !controller().isSwitched
-                                    ? AppColors.dotcolor
+                                    ? AppColors.dotColor
                                     : AppColors.colorSecondary
                               ])
                               .createShader(const Rect.fromLTRB(30, 0, 50, 0));
@@ -108,7 +110,7 @@ class NotificationScreen extends ConsumerWidget {
                         child: Switch(
                           activeColor: AppColors.white,
                           activeTrackColor:
-                              AppColors.colorPrimarylight.withOpacity(0.3),
+                              AppColors.colorPrimaryLight.withOpacity(0.3),
                           inactiveThumbColor: AppColors.white,
                           inactiveTrackColor: AppColors.black.withOpacity(0.1),
                           value: controller().isSwitched,
@@ -120,6 +122,8 @@ class NotificationScreen extends ConsumerWidget {
                     ],
                   ),
                 ),
+
+                /// Receive Updates
                 Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: w * 0.04, vertical: h * 0.02),
@@ -137,14 +141,14 @@ class NotificationScreen extends ConsumerWidget {
                                   fontSize: w * 0.05,
                                   color: AppColors.black.withOpacity(0.6),
                                   fontWeight: FontWeight.w700),
-                              text: AppText.receiveupdates,
+                              text: AppText.receiveUpdates,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
                                   child: CommonText(
-                                    text: AppText.getnotified,
+                                    text: AppText.getNotified,
                                     style: ptSansTextStyle(
                                         fontSize: h * 0.02,
                                         color: AppColors.black.withOpacity(0.3),
@@ -166,7 +170,7 @@ class NotificationScreen extends ConsumerWidget {
                                     ? AppColors.gray
                                     : AppColors.colorPrimary,
                                 !controller().isrecSwitched
-                                    ? AppColors.dotcolor
+                                    ? AppColors.dotColor
                                     : AppColors.colorSecondary
                               ])
                               .createShader(const Rect.fromLTRB(30, 0, 50, 0));
@@ -174,7 +178,7 @@ class NotificationScreen extends ConsumerWidget {
                         child: Switch(
                           activeColor: AppColors.white,
                           activeTrackColor:
-                              AppColors.colorPrimarylight.withOpacity(0.3),
+                              AppColors.colorPrimaryLight.withOpacity(0.3),
                           inactiveThumbColor: AppColors.white,
                           inactiveTrackColor: AppColors.black.withOpacity(0.1),
                           value: controller().isrecSwitched,

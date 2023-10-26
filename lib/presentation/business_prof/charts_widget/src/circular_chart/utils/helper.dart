@@ -103,7 +103,7 @@ Path getRoundedCornerArcPath(
 
   if (cornerStyle == CornerStyle.startCurve ||
       cornerStyle == CornerStyle.bothCurve) {
-    print("xcvxv innerRadius wef  $innerRadius  $outerRadius");
+    debugPrint("xcvxv innerRadius wef  $innerRadius  $outerRadius");
     final Offset startPoint = degreeToPoint(startAngle, innerRadius, center!);
     final Offset endPoint = degreeToPoint(startAngle, outerRadius, center);
 
@@ -119,7 +119,7 @@ Path getRoundedCornerArcPath(
 
   if (cornerStyle == CornerStyle.endCurve ||
       cornerStyle == CornerStyle.bothCurve) {
-    print("vtes innerRadius  asda $innerRadius  $outerRadius");
+    debugPrint("vtes innerRadius  asda $innerRadius  $outerRadius");
     final Offset endPoint = degreeToPoint(endAngle, innerRadius, center);
     path.arcToPoint(endPoint,
         radius: Radius.circular((innerRadius - outerRadius).abs() / 2));

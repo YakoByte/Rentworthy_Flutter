@@ -16,15 +16,20 @@ part 'user_prof_screen_controller.g.dart';
 class BusinessUserProfController extends _$BusinessUserProfController {
   List<bool>? favlist;
 
+  List<bool> get getfavlist => favlist!;
+
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
-  List<bool> get getfavlist => favlist!;
 
   List<String> productlist = [];
 
   List<String> get getproductlist => productlist!;
+
   List<PopupMenuItem> _popupitemList = [];
+
+  List<PopupMenuItem> get popupitemList => _popupitemList;
+
   TabController tabController =
       TabController(length: 2, vsync: CommonTickerProvider());
   int _selectedTab = 0;
@@ -32,40 +37,31 @@ class BusinessUserProfController extends _$BusinessUserProfController {
 
   int get selectedtab => _selectedTab;
 
-  onTabTap({required int val}) async {
-    state = const AsyncLoading();
-    debugPrint('_selectedTab $val');
-    _selectedTab = val;
-
-    state = const AsyncValue.data(null);
-  }
-
-  List<PopupMenuItem> get popupitemList => _popupitemList;
   final List<String> _imgList = [
     AppImg.movie,
     AppImg.party,
-    AppImg.homeoutdoor,
+    AppImg.homeOutDoor,
     AppImg.electronics,
     AppImg.star,
     AppImg.guitar,
     AppImg.cleaner,
     AppImg.clothing,
     AppImg.setting,
-    AppImg.newtag,
+    AppImg.newTag,
   ];
 
   List<String> get imgList => _imgList;
   final List<String> _nameList = [
     AppText.film,
-    AppText.partyevents,
-    AppText.homeoutdoor,
+    AppText.partyEvents,
+    AppText.homeOutDoor,
     AppText.electronics,
-    AppText.toprent,
+    AppText.topRent,
     AppText.music,
     AppText.cleaning,
     AppText.clothing,
-    AppText.heavymachine,
-    AppText.newmarket,
+    AppText.heavyMachine,
+    AppText.newMarket,
   ];
 
   List<String> get nameList => _nameList;
@@ -152,6 +148,14 @@ class BusinessUserProfController extends _$BusinessUserProfController {
     ];
 
     favlist = List.generate(nameList.length, (index) => false);
+    state = const AsyncValue.data(null);
+  }
+
+  onTabTap({required int val}) async {
+    state = const AsyncLoading();
+    debugPrint('_selectedTab $val');
+    _selectedTab = val;
+
     state = const AsyncValue.data(null);
   }
 }

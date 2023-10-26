@@ -36,7 +36,7 @@ class ReceiveMessage extends ConsumerWidget {
                 maxHeight: MediaQuery.of(context).size.height * 5,
               ),
               decoration: BoxDecoration(
-                color: AppColors.recmsg,
+                color: AppColors.recMsg,
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(4),
                   topLeft: Radius.circular(4),

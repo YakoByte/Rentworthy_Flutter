@@ -12,16 +12,16 @@ import '../../api_client/api_client.dart';
 abstract class AddressRepository {
   Future<GetAddress?> getAddressData();
 
-  Future<ProductData?> updateuserinformation(
+  Future<ProductData?> updateUserInformation(
       {required String id,
       required String title,
       required String description,
       required String brand,
       required String category});
 
-  Future<Map<String, dynamic>?> getuserinformation();
+  Future<Map<String, dynamic>?> getUserInformation();
 
-  Future<ProductData?> deleteuserinformation({required String id});
+  Future<ProductData?> deleteUserInformation({required String id});
 }
 
 class AddressRepositoryV1 extends AddressRepository {
@@ -59,7 +59,7 @@ class AddressRepositoryV1 extends AddressRepository {
   }
 
   @override
-  Future<Map<String, dynamic>?> getuserinformation() {
+  Future<Map<String, dynamic>?> getUserInformation() {
     return api.getData(
       uri: Uri.parse("https://dummyjson.com/products"),
       headers: api.createHeaders(authtoken: "", sessionId: ""),
@@ -78,7 +78,7 @@ class AddressRepositoryV1 extends AddressRepository {
   }
 
   @override
-  Future<ProductData?> updateuserinformation(
+  Future<ProductData?> updateUserInformation(
       {required String id,
       required String title,
       required String description,
@@ -113,7 +113,7 @@ class AddressRepositoryV1 extends AddressRepository {
   }
 
   @override
-  Future<ProductData?> deleteuserinformation({required String id}) {
+  Future<ProductData?> deleteUserInformation({required String id}) {
     return api.deleteData(
       uri: Uri.parse("https://dummyjson.com/products/$id"),
       headers: api.createHeaders(authtoken: "", sessionId: ""),

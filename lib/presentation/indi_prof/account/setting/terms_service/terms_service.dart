@@ -42,7 +42,7 @@ class TermsService extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset(
-                AppImg.termsnservice,
+                AppImg.termsNService,
                 height: h * 0.4,
                 width: w,
                 fit: BoxFit.contain,

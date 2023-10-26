@@ -42,7 +42,7 @@ class _LoginFBState extends ConsumerState<LoginFB> {
         centerTitle: false,
         leadingicon: true,
         centerwidget: CommonText(
-            text: AppText.signin,
+            text: AppText.signIn,
             style: ptSansTextStyle(
                 color: AppColors.black,
                 fontSize: h * 0.025,
@@ -81,13 +81,13 @@ class _LoginFBState extends ConsumerState<LoginFB> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Image.asset(
-                                    AppImg.loginimg,
+                                    AppImg.loginImg,
                                     height: h * 0.4,
                                     width: w,
                                     fit: BoxFit.cover,
                                   ),
                                   CommonText(
-                                      text: AppText.enteremailtosignin,
+                                      text: AppText.enterEmailToSignIn,
                                       style: ptSansTextStyle(
                                         color: AppColors.black,
                                         fontSize: h * 0.025,
@@ -100,15 +100,15 @@ class _LoginFBState extends ConsumerState<LoginFB> {
                                           AppColors.black.withOpacity(0.6),
                                       focusunderlinecolor:
                                           AppColors.black.withOpacity(0.6),
-                                      hintText: AppText.enteremail_or_uname,
-                                      titleText: AppText.email_or_uname,
+                                      hintText: AppText.enterEmailOrUname,
+                                      titleText: AppText.emailOrUname,
                                       titletextstyle: ptSansTextStyle(
                                           color:
                                               AppColors.black.withOpacity(0.8),
                                           fontSize: h * 0.018,
                                           fontWeight: FontWeight.w600),
                                       hintStyle: ptSansTextStyle(
-                                          color: AppColors.textcolor1,
+                                          color: AppColors.textColor1,
                                           fontSize: h * 0.018,
                                           fontWeight: FontWeight.w400),
                                       textstyle: ptSansTextStyle(
@@ -119,13 +119,13 @@ class _LoginFBState extends ConsumerState<LoginFB> {
                                           color: AppColors.colorPrimary,
                                           fontSize: h * 0.021,
                                           fontWeight: FontWeight.w400),
-                                      errorText: controller().issubmit == true
+                                      errorText: controller().isSubmit == true
                                           ? validateEmail(
                                               controller().emailController.text)
                                           : null,
                                       onChanged: (value) {
                                         setState(() {
-                                          controller().issubmit == true
+                                          controller().isSubmit == true
                                               ? validateEmail(controller()
                                                   .emailController
                                                   .text)
@@ -158,7 +158,7 @@ class _LoginFBState extends ConsumerState<LoginFB> {
                                           fontSize: h * 0.018,
                                           fontWeight: FontWeight.w600),
                                       hintStyle: ptSansTextStyle(
-                                          color: AppColors.textcolor1,
+                                          color: AppColors.textColor1,
                                           fontSize: h * 0.018,
                                           fontWeight: FontWeight.w400),
                                       textstyle: ptSansTextStyle(
@@ -183,9 +183,9 @@ class _LoginFBState extends ConsumerState<LoginFB> {
                                         height: h * 0.04,
                                         child: Center(
                                           child: Image.asset(
-                                            !controller().iseyehide
-                                                ? AppImg.eye_hide
-                                                : AppImg.eye_view,
+                                            !controller().isEyeHide
+                                                ? AppImg.eyeHide
+                                                : AppImg.eyeView,
                                             fit: BoxFit.cover,
                                             color: AppColors.black
                                                 .withOpacity(0.6),
@@ -196,12 +196,12 @@ class _LoginFBState extends ConsumerState<LoginFB> {
                                       ),
                                       suffixonTap: () {
                                         controller().onEyeTap(
-                                            val: !controller().iseyehide
+                                            val: !controller().isEyeHide
                                                 ? true
                                                 : false);
                                       },
                                       maxLines: 1,
-                                      obscureText: !controller().iseyehide,
+                                      obscureText: !controller().isEyeHide,
                                       containerwidth: w,
                                       containerheight: h * 0.06,
                                       isCounter: false,
@@ -234,7 +234,7 @@ class _LoginFBState extends ConsumerState<LoginFB> {
                                         borderRadius:
                                             BorderRadius.circular(h * 0.006),
                                       ),
-                                      text: AppText.signin,
+                                      text: AppText.signIn,
                                       textStyle: ptSansTextStyle(
                                           color: AppColors.white,
                                           fontSize: h * 0.019,

@@ -7,7 +7,7 @@ part of 'bottom_bar_controller.dart';
 // **************************************************************************
 
 String _$bottomBarControllerHash() =>
-    r'0b4b6871c8aaeefeb68cf2fb883d7a30b0ed5bfe';
+    r'238783d631ed54e6f66d16132413afbb4477a3fc';
 
 /// Copied from Dart SDK
 class _SystemHash {

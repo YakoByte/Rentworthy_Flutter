@@ -7,7 +7,7 @@ part of 'id_verification_controller.dart';
 // **************************************************************************
 
 String _$idVerificationControllerHash() =>
-    r'83d0f3625150994475399f6c23ea76010a3faebd';
+    r'ce06578552872cc1b8ab09f08eaac0d1790237ec';
 
 /// See also [IdVerificationController].
 @ProviderFor(IdVerificationController)

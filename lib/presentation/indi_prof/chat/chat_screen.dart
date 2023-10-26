@@ -88,7 +88,7 @@ class ChatScreen extends ConsumerWidget {
                     padding: EdgeInsets.symmetric(
                         vertical: h * 0.02, horizontal: w * 0.021),
                     child: CommonText(
-                        text: AppText.quickfilter,
+                        text: AppText.quickFilter,
                         style: ptSansTextStyle(
                             color: AppColors.black.withOpacity(0.6),
                             fontSize: h * 0.02,

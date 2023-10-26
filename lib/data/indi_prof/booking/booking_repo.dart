@@ -4,7 +4,7 @@ import '../../../model/indi_prof/booking/booking_del_status/booking_del_status.d
 import '../../../utils/images.dart';
 
 abstract class BookingRepository {
-  Future<GetBookedOrder?> getbookedOrder();
+  Future<GetBookedOrder?> getBookedOrder();
 
   Future<GetBookingDelStatus?> getBookingDelStatus();
 }
@@ -14,7 +14,7 @@ class BookingRepositoryV1 extends BookingRepository {
     const BookedProduct(
       id: "1",
       name: "Apple iPhone 12 Pro Max",
-      thumbnail: AppImg.homelist,
+      thumbnail: AppImg.homeList,
       desc: "Apple iPhone 12 Pro Max (128GB) - Pacific Blue",
       delivery_location: "B-1/10, Sector-18, Rohini, New Delhi, Delhi",
       lat: "28.732260",
@@ -23,7 +23,7 @@ class BookingRepositoryV1 extends BookingRepository {
       product_chat_id: "1",
       seller_id: "1",
       seller_name: "Mukesh Kumar",
-      seller_img: AppImg.homelist,
+      seller_img: AppImg.homeList,
       posted_on: "2021-08-01 12:00:00",
     )
   ];
@@ -41,7 +41,7 @@ class BookingRepositoryV1 extends BookingRepository {
       _onBookingDelStatuslist;
 
   @override
-  Future<GetBookedOrder?> getbookedOrder() async {
+  Future<GetBookedOrder?> getBookedOrder() async {
     return GetBookedOrder(
         success: true, message: "OK", data: _onBookProductList);
   }

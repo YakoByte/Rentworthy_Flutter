@@ -121,7 +121,7 @@ class Categories extends ConsumerWidget {
                             ]).createShader(bounds);
                       },
                       child: CommonText(
-                          text: AppText.viewall,
+                          text: AppText.viewAll,
                           style: ptSansTextStyle(
                               color: AppColors.white,
                               fontSize: h * 0.017,

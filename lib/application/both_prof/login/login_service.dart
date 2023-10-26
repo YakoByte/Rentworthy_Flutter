@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rentworthy/data/both_prof/login/login_repo.dart';
-import 'package:rentworthy/data/both_prof/register/register_repo.dart';
 
 abstract class LoginService {
   Future<void> sendOTP({
@@ -23,7 +21,7 @@ abstract class LoginService {
 
   Future<User?> logoutWithGoogle();
 
-  Future<UserCredential?> signoutWithFacebook();
+  Future<UserCredential?> signOutWithFacebook();
 
   Future<UserCredential?> signInWithFacebook();
 }
@@ -72,8 +70,8 @@ class LoginServiceV1 implements LoginService {
   }
 
   @override
-  Future<UserCredential?> signoutWithFacebook() async {
-    return await loginRepository.signoutWithFacebook();
+  Future<UserCredential?> signOutWithFacebook() async {
+    return await loginRepository.signOutWithFacebook();
   }
 }
 

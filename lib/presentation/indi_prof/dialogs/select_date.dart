@@ -72,7 +72,7 @@ class _SelectDateDialogState extends ConsumerState<SelectDateDialog> {
                 ],
               ),
               Divider(
-                color: AppColors.bordercolor,
+                color: AppColors.borderColor,
                 height: h * 0.035,
                 thickness: 1,
               )
@@ -84,6 +84,7 @@ class _SelectDateDialogState extends ConsumerState<SelectDateDialog> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                ///Selected Dates
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -100,6 +101,8 @@ class _SelectDateDialogState extends ConsumerState<SelectDateDialog> {
                             fontWeight: FontWeight.w700)),
                   ],
                 ),
+
+                ///Date Picker
                 Container(
                   height: h * 0.6,
                   width: w,
@@ -132,7 +135,7 @@ class _SelectDateDialogState extends ConsumerState<SelectDateDialog> {
                           textclr: AppColors.white);
                     },
                     showTodayButton: false,
-                    rangeSelectionColor: AppColors.dotcolor.withOpacity(0.4),
+                    rangeSelectionColor: AppColors.dotColor.withOpacity(0.4),
                     startRangeSelectionColor: AppColors.white,
                     endRangeSelectionColor: AppColors.white,
                     onSelectionChanged:
@@ -162,11 +165,11 @@ class _SelectDateDialogState extends ConsumerState<SelectDateDialog> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       textStyle: ptSansTextStyle(
-                          color: AppColors.textcolor,
+                          color: AppColors.textColor,
                           fontWeight: FontWeight.w500,
                           fontSize: h * 0.02),
                       todayTextStyle: ptSansTextStyle(
-                          color: AppColors.textcolor,
+                          color: AppColors.textColor,
                           fontWeight: FontWeight.w500,
                           fontSize: h * 0.02),
                       trailingDatesTextStyle: ptSansTextStyle(
@@ -182,7 +185,7 @@ class _SelectDateDialogState extends ConsumerState<SelectDateDialog> {
                           fontWeight: FontWeight.w500,
                           fontSize: h * 0.02),
                       weekendTextStyle: ptSansTextStyle(
-                          color: AppColors.textcolor,
+                          color: AppColors.textColor,
                           fontWeight: FontWeight.w500,
                           fontSize: h * 0.02),
                       todayCellDecoration: const BoxDecoration(
@@ -207,6 +210,8 @@ class _SelectDateDialogState extends ConsumerState<SelectDateDialog> {
                         showWeekNumber: false),
                   ),
                 ),
+
+                ///Total Price, Book Now Button
                 Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: w * 0.05, vertical: h * 0.025),

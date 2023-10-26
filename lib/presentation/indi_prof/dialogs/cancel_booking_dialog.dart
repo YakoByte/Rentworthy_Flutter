@@ -37,7 +37,7 @@ class CancelBookingDialog extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           CommonText(
-              text: AppText.reasoncancel,
+              text: AppText.reasonCancel,
               style: ptSansTextStyle(
                   color: AppColors.black.withOpacity(0.8),
                   fontSize: h * 0.022,
@@ -61,13 +61,13 @@ class CancelBookingDialog extends ConsumerWidget {
           children: [
             ListTile(
               title: CommonText(
-                  text: AppText.nolongneed,
+                  text: AppText.noLongNeed,
                   style: ptSansTextStyle(
                       color: AppColors.black.withOpacity(0.8),
                       fontSize: h * 0.02,
                       fontWeight: FontWeight.w500)),
               leading: Radio(
-                value: AppText.nolongneed,
+                value: AppText.noLongNeed,
                 groupValue: groupValue,
                 onChanged: (value) {
                   onChangedval!(value!);
@@ -76,13 +76,13 @@ class CancelBookingDialog extends ConsumerWidget {
             ),
             ListTile(
               title: CommonText(
-                  text: AppText.norental,
+                  text: AppText.noRental,
                   style: ptSansTextStyle(
                       color: AppColors.black.withOpacity(0.8),
                       fontSize: h * 0.02,
                       fontWeight: FontWeight.w500)),
               leading: Radio(
-                value: AppText.norental,
+                value: AppText.noRental,
                 groupValue: groupValue,
                 onChanged: (value) {
                   onChangedval!(value!);
@@ -91,13 +91,13 @@ class CancelBookingDialog extends ConsumerWidget {
             ),
             ListTile(
               title: CommonText(
-                  text: AppText.nolongwork,
+                  text: AppText.noLongWork,
                   style: ptSansTextStyle(
                       color: AppColors.black.withOpacity(0.8),
                       fontSize: h * 0.02,
                       fontWeight: FontWeight.w500)),
               leading: Radio(
-                value: AppText.nolongwork,
+                value: AppText.noLongWork,
                 groupValue: groupValue,
                 onChanged: (value) {
                   onChangedval!(value!);
@@ -106,13 +106,13 @@ class CancelBookingDialog extends ConsumerWidget {
             ),
             ListTile(
               title: CommonText(
-                  text: AppText.givetextbox,
+                  text: AppText.giveTextBox,
                   style: ptSansTextStyle(
                       color: AppColors.black.withOpacity(0.8),
                       fontSize: h * 0.02,
                       fontWeight: FontWeight.w500)),
               leading: Radio(
-                value: AppText.givetextbox,
+                value: AppText.giveTextBox,
                 groupValue: groupValue,
                 onChanged: (value) {
                   onChangedval!(value!);

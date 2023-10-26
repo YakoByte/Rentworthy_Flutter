@@ -79,7 +79,7 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
                           side: BorderSide(
                               color: v
                                   ? AppColors.transparent
-                                  : AppColors.dotcolor,
+                                  : AppColors.dotColor,
                               width: 1.5),
                           focusColor: AppColors.transparent,
                           activeColor: AppColors.transparent,

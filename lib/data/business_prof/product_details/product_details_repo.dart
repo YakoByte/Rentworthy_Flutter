@@ -28,7 +28,7 @@ class ProductDetailsRepositoryV1 extends ProductDetailsRepository {
         tracking_id: "87654321",
         seller_id: "1",
         seller_name: "John Doe",
-        seller_img: AppImg.homelist,
+        seller_img: AppImg.homeList,
         posted_on: "2021-09-01",
         isfav: true,
         total_review: "4.5",
@@ -41,7 +41,7 @@ class ProductDetailsRepositoryV1 extends ProductDetailsRepository {
         reviews: [
           ProductReview(
               user_name: "Hamza Ali",
-              user_img: AppImg.homelist,
+              user_img: AppImg.homeList,
               review_title: "Good",
               review:
                   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
@@ -53,7 +53,7 @@ class ProductDetailsRepositoryV1 extends ProductDetailsRepository {
               review_date: "2021-09-01"),
           ProductReview(
               user_name: "Hamza Ali",
-              user_img: AppImg.homelist,
+              user_img: AppImg.homeList,
               review_title: "Good",
               review:
                   "Exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",

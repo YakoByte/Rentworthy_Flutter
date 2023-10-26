@@ -98,7 +98,7 @@ class CommonPageView extends ConsumerWidget {
                             color: getcurrentPageIndex == index
                                 ? AppColors.yellow
                                 : gradient == true
-                                    ? AppColors.dotcolor
+                                    ? AppColors.dotColor
                                     : AppColors.white,
                             gradient:
                                 gradient == true && getcurrentPageIndex == index

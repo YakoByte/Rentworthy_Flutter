@@ -10,130 +10,63 @@ part 'my_ads_controller.g.dart';
 
 @riverpod
 class MyAdsController extends _$MyAdsController {
-  final List<String> _locationList = [
-    'Wagle state',
-    'Mumbra',
-    'Mulund',
-    'Dadar',
-    'Mahim',
-  ];
   List<String> filterlist = [
     "Filter",
     "Color",
     "Price",
     "Categories",
   ];
+
+  List<String> get getfilterlist => filterlist;
+
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
+
   List<AnimationController>? animatecontrollerlist = [];
+
   AnimationController animationController = AnimationController(
     vsync: CommonTickerProvider(),
     duration: Duration(milliseconds: 1000),
   );
 
-  List<String> get getfilterlist => filterlist;
-  List<String> carlist = [
-    "Mercedes",
-    "MG",
-    "Kia",
-    "Hyundai",
-    "Tata",
-    "Honda",
-    "Suzuki",
-    "AUdi",
-    "BMW",
-    "Ford",
-    "Toyota",
-    "Renault",
-    "Porsche",
-    "Ferrari",
-    "Volvo",
-  ];
-
-  List<String> get getcarlist => carlist;
   List<String>? selectedfilter;
-  TextEditingController searchController = TextEditingController();
 
   List<String> get getselectedfilter => selectedfilter!;
   List<bool>? favlist;
 
   List<bool> get getfavlist => favlist!;
-  List<String> sortlist = [
-    "Sort By",
-    "Price: high to low",
-    "Price: low to high",
-    "Ratings",
-    "Popularity",
-    "Discount",
-  ];
-
-  List<String> get getsortlist => sortlist;
-  String? selectedsortby;
-
-  String get getselectedselectedsortby => selectedsortby!;
-  List<String> searchitems = [];
-
-  List<String> get getsearchitems => searchitems;
-  bool? checkboxitems = false;
-
-  bool get getcheckboxitems => checkboxitems!;
-
-  List<bool>? featureadfavlist;
-
-  List<bool> get getfeatureadfavlist => featureadfavlist!;
-
-  List<bool>? nearbyadfavlist;
-
-  List<bool> get getnearbyadfavlist => nearbyadfavlist!;
-  List<bool>? popularfavlist;
-
-  List<bool> get getpopularfavlist => popularfavlist!;
-
-  List<String> get locationList => _locationList;
-
-  CarouselController carouselController = CarouselController();
-  PageController pageController = PageController();
 
   final List<String> _imgList = [
     AppImg.movie,
     AppImg.party,
-    AppImg.homeoutdoor,
+    AppImg.homeOutDoor,
     AppImg.electronics,
     AppImg.star,
     AppImg.guitar,
     AppImg.cleaner,
     AppImg.clothing,
     AppImg.setting,
-    AppImg.newtag,
+    AppImg.newTag,
   ];
 
   List<String> get imgList => _imgList;
   final List<String> _nameList = [
     AppText.film,
-    AppText.partyevents,
-    AppText.homeoutdoor,
+    AppText.partyEvents,
+    AppText.homeOutDoor,
     AppText.electronics,
-    AppText.toprent,
+    AppText.topRent,
     AppText.music,
     AppText.cleaning,
     AppText.clothing,
-    AppText.heavymachine,
-    AppText.newmarket,
+    AppText.heavyMachine,
+    AppText.newMarket,
   ];
 
   List<String> get nameList => _nameList;
-  List<String>? _selectedLocation;
 
-  List<String>? get selectedLocation => _selectedLocation;
-
-  int currentpageIndex = 0;
-
-  int get getcurrentPageIndex => currentpageIndex;
   late TabController tabController;
-  int _selectedTab = 0;
-
-  int get selectedtab => _selectedTab;
 
   @override
   FutureOr<void> build() async {
@@ -150,15 +83,10 @@ class MyAdsController extends _$MyAdsController {
       state = const AsyncLoading();
       state = const AsyncValue.data(null);
     });
+    favlist = List.generate(15, (index) => false);
 
     selectedfilter = filterlist;
-    selectedsortby = sortlist[0];
-    favlist = List.generate(carlist.length, (index) => false);
     state = const AsyncValue.data(null);
-    _selectedLocation = _locationList;
-    popularfavlist = List.generate(_imgList.length, (index) => false);
-    featureadfavlist = List.generate(_imgList.length, (index) => false);
-    nearbyadfavlist = List.generate(_imgList.length, (index) => false);
     animationController.forward();
     for (int i = 0; i < _nameList.length; i++) {
       animatecontrollerlist!.add(AnimationController(
@@ -184,7 +112,6 @@ class MyAdsController extends _$MyAdsController {
   onTabTap({required int val}) async {
     state = const AsyncLoading();
     debugPrint('_selectedTab $val');
-    _selectedTab = val;
 
     for (int i = 0; i < _nameList.length; i++) {
       animatecontrollerlist!.add(AnimationController(
@@ -207,9 +134,9 @@ class MyAdsController extends _$MyAdsController {
     val,
   ) {
     state = const AsyncLoading();
-    print("val $val");
+    debugPrint("val $val");
     selectedfilter = val;
-    print("selectedfilter $selectedfilter");
+    debugPrint("selectedfilter $selectedfilter");
     state = const AsyncValue.data(null);
   }
 
@@ -217,17 +144,7 @@ class MyAdsController extends _$MyAdsController {
     val,
   ) {
     state = const AsyncLoading();
-    checkboxitems = val;
-    print("checkboxitems $checkboxitems");
-    state = const AsyncValue.data(null);
-  }
 
-  void filterSearchResults(String query) {
-    state = const AsyncLoading();
-    searchitems = carlist
-        .where((item) => item.toLowerCase().contains(query.toLowerCase()))
-        .toList();
-    print("searchitems $searchitems");
     state = const AsyncValue.data(null);
   }
 
@@ -241,27 +158,6 @@ class MyAdsController extends _$MyAdsController {
       favlist![index] = true;
     }
 
-    state = const AsyncValue.data(null);
-  }
-
-  onchangesorting(
-    val,
-  ) {
-    state = const AsyncLoading();
-    selectedsortby = val;
-
-    state = const AsyncValue.data(null);
-  }
-
-  onPageChanged(int index) async {
-    state = const AsyncLoading();
-    currentpageIndex = index;
-    state = const AsyncValue.data(null);
-  }
-
-  onValSelect({required List<String> val}) async {
-    state = const AsyncLoading();
-    _selectedLocation = val;
     state = const AsyncValue.data(null);
   }
 }

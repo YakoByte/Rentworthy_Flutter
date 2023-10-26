@@ -27,7 +27,6 @@ class BusinessLoginPhoneController extends _$BusinessLoginPhoneController {
   TextEditingController countryCodeController =
       TextEditingController(text: "+91");
   bool _isLoading = false;
-  FirebaseAuth auth = FirebaseAuth.instance;
 
   bool get isLoading => _isLoading;
   bool _issubmit = false;
@@ -58,7 +57,7 @@ class BusinessLoginPhoneController extends _$BusinessLoginPhoneController {
     debugPrint('onSendOtp');
     _issubmit = true;
 
-    if (validatephone(phoneController.text) == null ||
+    if (validatePhone(phoneController.text) == null ||
         validateEmail(emailController.text) == null ||
         validateEmail(passwordController.text) == null) {
       state = const AsyncValue.data(null);

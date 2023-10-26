@@ -21,13 +21,13 @@ class SellingUnread extends ConsumerWidget {
       padding: EdgeInsets.symmetric(vertical: h * 0.05),
       child: Column(
         children: [
-          Image.asset(AppImg.nochat,
+          Image.asset(AppImg.noChat,
               height: h * 0.3, width: w * 0.6, fit: BoxFit.cover),
           Padding(
             padding: EdgeInsets.symmetric(vertical: h * 0.01),
             child: CommonText(
                 textAlign: TextAlign.center,
-                text: AppText.nochat,
+                text: AppText.noChat,
                 style: ptSansTextStyle(
                     color: AppColors.black.withOpacity(0.4),
                     fontSize: h * 0.02,
@@ -36,7 +36,7 @@ class SellingUnread extends ConsumerWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: w * 0.06),
             child: CommonText(
-                text: AppText.sellmsg,
+                text: AppText.sellMsg,
                 textAlign: TextAlign.center,
                 style: ptSansTextStyle(
                     color: AppColors.black.withOpacity(0.4),
@@ -61,7 +61,7 @@ class SellingUnread extends ConsumerWidget {
                     )),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(4)),
-                text: AppText.startsell,
+                text: AppText.startSell,
                 textStyle: ptSansTextStyle(
                     color: AppColors.white,
                     fontSize: h * 0.02,

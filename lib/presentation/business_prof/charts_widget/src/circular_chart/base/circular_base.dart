@@ -427,7 +427,7 @@ class SfCircularChart extends StatefulWidget {
   ///    return Container(
   ///        child: SfCircularChart(
   ///            onDataLabelTapped: (DataLabelTapDetails args) {
-  ///                 print(arg.seriesIndex);
+  ///                 debugPrint(arg.seriesIndex);
   ///                  }
   ///           )
   ///    );
@@ -449,7 +449,7 @@ class SfCircularChart extends StatefulWidget {
   ///    );
   ///}
   ///void legend(LegendTapArgs args) {
-  ///   print(args.pointIndex);
+  ///   debugPrint(args.pointIndex);
   ///}
   ///```
   final ChartLegendTapCallback? onLegendTapped;
@@ -466,7 +466,7 @@ class SfCircularChart extends StatefulWidget {
   ///    );
   ///}
   ///void select(SelectionArgs args) {
-  ///   print(args.selectedBorderColor);
+  ///   debugPrint(args.selectedBorderColor);
   ///}
   ///```
   final CircularSelectionCallback? onSelectionChanged;
@@ -477,8 +477,8 @@ class SfCircularChart extends StatefulWidget {
   ///    return Container(
   ///        child: SfCircularChart(
   ///            onChartTouchInteractionUp: (ChartTouchInteractionArgs args){
-  ///               print(args.position.dx.toString());
-  ///               print(args.position.dy.toString());
+  ///               debugPrint(args.position.dx.toString());
+  ///               debugPrint(args.position.dy.toString());
   ///             }
   ///        )
   ///    );
@@ -492,8 +492,8 @@ class SfCircularChart extends StatefulWidget {
   ///    return Container(
   ///        child: SfCircularChart(
   ///            onChartTouchInteractionDown: (ChartTouchInteractionArgs args){
-  ///               print(args.position.dx.toString());
-  ///               print(args.position.dy.toString());
+  ///               debugPrint(args.position.dx.toString());
+  ///               debugPrint(args.position.dy.toString());
   ///             }
   ///        )
   ///    );
@@ -508,8 +508,8 @@ class SfCircularChart extends StatefulWidget {
   ///    return Container(
   ///        child: SfCircularChart(
   ///            onChartTouchInteractionMove: (ChartTouchInteractionArgs args){
-  ///               print(args.position.dx.toString());
-  ///               print(args.position.dy.toString());
+  ///               debugPrint(args.position.dx.toString());
+  ///               debugPrint(args.position.dy.toString());
   ///             }
   ///        )
   ///    );

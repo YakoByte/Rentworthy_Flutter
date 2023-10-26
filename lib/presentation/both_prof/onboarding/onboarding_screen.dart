@@ -27,7 +27,7 @@ class OnBoardingScreen extends ConsumerWidget {
               top: h * 0.03,
             ),
             child: SingleChildScrollView(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               child: SafeArea(
                 child: Container(
                   height: h * 0.9,
@@ -35,6 +35,7 @@ class OnBoardingScreen extends ConsumerWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
+                      /// Page indicator, logo, PageView
                       Container(
                         height: h * 0.8,
                         color: AppColors.white,
@@ -42,9 +43,11 @@ class OnBoardingScreen extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
+                            /// Page indicator and logo
                             Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                /// Page indicator
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: List.generate(
@@ -57,12 +60,12 @@ class OnBoardingScreen extends ConsumerWidget {
                                               width: w * 0.22,
                                               decoration: BoxDecoration(
                                                   color: controller()
-                                                              .getcurrentPageIndex ==
+                                                              .getCurrentPageIndex ==
                                                           index
                                                       ? AppColors.white
                                                       : AppColors.grey,
                                                   gradient: controller()
-                                                              .getcurrentPageIndex ==
+                                                              .getCurrentPageIndex ==
                                                           index
                                                       ? const LinearGradient(
                                                           begin: Alignment
@@ -83,16 +86,20 @@ class OnBoardingScreen extends ConsumerWidget {
                                             ),
                                           )),
                                 ),
+
+                                /// Logo
                                 Padding(
                                   padding: EdgeInsets.only(top: h * 0.01),
                                   child: Image.asset(
-                                    AppImg.applogo,
+                                    AppImg.appLogo,
                                     height: h * 0.07,
                                     width: w * 0.5,
                                   ),
                                 ),
                               ],
                             ),
+
+                            /// PageView
                             Container(
                                 height: h * 0.7,
                                 width: w,
@@ -115,19 +122,22 @@ class OnBoardingScreen extends ConsumerWidget {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
+                                            /// OnBoarding Image
                                             Image.asset(
-                                              state.onBoardinglist![index].img,
+                                              state.onBoardingList![index].img,
                                               height: h * 0.35,
                                               width:
                                                   index == 2 ? w * 0.9 : null,
                                               fit: BoxFit.cover,
                                             ),
+
+                                            /// OnBoarding Text
                                             Padding(
                                               padding: EdgeInsets.symmetric(
                                                   horizontal: w * 0.05),
                                               child: CommonText(
                                                   text: state
-                                                      .onBoardinglist![index]
+                                                      .onBoardingList![index]
                                                       .titletext,
                                                   textAlign: TextAlign.center,
                                                   style: ptSansTextStyle(
@@ -136,16 +146,18 @@ class OnBoardingScreen extends ConsumerWidget {
                                                     fontWeight: FontWeight.w700,
                                                   )),
                                             ),
+
+                                            /// OnBoarding SubText
                                             Padding(
                                               padding: EdgeInsets.symmetric(
                                                   horizontal: w * 0.025),
                                               child: CommonText(
                                                   text: state
-                                                      .onBoardinglist![index]
+                                                      .onBoardingList![index]
                                                       .subtitletext,
                                                   textAlign: TextAlign.center,
                                                   style: ptSansTextStyle(
-                                                    color: AppColors.textcolor,
+                                                    color: AppColors.textColor,
                                                     fontSize: h * 0.022,
                                                     fontWeight: FontWeight.w400,
                                                   )),
@@ -157,6 +169,8 @@ class OnBoardingScreen extends ConsumerWidget {
                           ],
                         ),
                       ),
+
+                      /// Get Started Button
                       CommonButton(
                           containerwidth: w * 0.8,
                           containerheight: h * 0.06,
@@ -172,8 +186,8 @@ class OnBoardingScreen extends ConsumerWidget {
                           backgroundColor: AppColors.transparent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
-                          text: state.currentpageIndex == 2
-                              ? AppText.getstarted
+                          text: state.currentPageIndex == 2
+                              ? AppText.getStarted
                               : AppText.next,
                           textStyle: ptSansTextStyle(
                               color: AppColors.white,

@@ -7,7 +7,7 @@ part of 'post_ur_ad_controller.dart';
 // **************************************************************************
 
 String _$postUrAdsControllerHash() =>
-    r'4c676582d7b825b880435ebcdcadae64107820d7';
+    r'5ae174bc4149a87f4efa1c5f5370ff80d43e2eeb';
 
 /// See also [PostUrAdsController].
 @ProviderFor(PostUrAdsController)

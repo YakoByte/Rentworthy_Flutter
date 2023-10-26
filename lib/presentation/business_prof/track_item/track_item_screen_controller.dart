@@ -12,16 +12,17 @@ class TrackItemController extends _$TrackItemController {
   TabController tabController =
       TabController(length: 4, vsync: CommonTickerProvider());
   int _selectedTab = 0;
-  List<bool>? _isInvoiceTap;
-  List<AnimationController>? animatecontrollerlist = [];
 
   int get selectedtab => _selectedTab;
+  List<bool>? _isInvoiceTap;
+
+  List<bool> get isInvoiceTap => _isInvoiceTap!;
+
+  List<AnimationController>? animatecontrollerlist = [];
 
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
-
-  List<bool> get isInvoiceTap => _isInvoiceTap!;
 
   @override
   FutureOr<void> build() async {

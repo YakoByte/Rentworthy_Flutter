@@ -47,7 +47,7 @@ class _IdVerificationState extends ConsumerState<IdVerification> {
                 fontSize: w * 0.05,
                 color: AppColors.black.withOpacity(0.8),
                 fontWeight: FontWeight.w700),
-            text: AppText.idverification,
+            text: AppText.idVerification,
           ),
         ),
       ),
@@ -60,8 +60,8 @@ class _IdVerificationState extends ConsumerState<IdVerification> {
             children: [
               Image.asset(
                 controller().isVerified
-                    ? AppImg.idvergreen
-                    : AppImg.idverpurple,
+                    ? AppImg.idVerGreen
+                    : AppImg.idVerPurple,
                 height: h * 0.35,
                 width: w,
                 fit: BoxFit.contain,
@@ -80,7 +80,7 @@ class _IdVerificationState extends ConsumerState<IdVerification> {
                                   fontSize: w * 0.053,
                                   color: AppColors.black.withOpacity(0.8),
                                   fontWeight: FontWeight.w700),
-                              text: AppText.yourverified,
+                              text: AppText.yourVerified,
                             ),
                           ),
                           const SizedBox(),
@@ -95,7 +95,7 @@ class _IdVerificationState extends ConsumerState<IdVerification> {
                                 fontSize: w * 0.053,
                                 color: AppColors.black.withOpacity(0.8),
                                 fontWeight: FontWeight.w700),
-                            text: AppText.needverify,
+                            text: AppText.needVerify,
                           ),
                           Padding(
                             padding:
@@ -106,7 +106,7 @@ class _IdVerificationState extends ConsumerState<IdVerification> {
                                   fontSize: w * 0.048,
                                   color: AppColors.black.withOpacity(0.6),
                                   fontWeight: FontWeight.w500),
-                              text: AppText.verifyprof,
+                              text: AppText.verifyProf,
                             ),
                           ),
                           CommonText(
@@ -116,14 +116,14 @@ class _IdVerificationState extends ConsumerState<IdVerification> {
                                 color: AppColors.black.withOpacity(0.8),
                                 fontWeight: FontWeight.w700),
                             text: controller().onverify == true
-                                ? AppText.entereinnumber
-                                : AppText.verifyid,
+                                ? AppText.enterEInNumber
+                                : AppText.verifyId,
                           ),
                           controller().onverify == true
                               ? TextInputField(
                                   isCounter: false,
-                                  hintText: AppText.entereinnumber,
-                                  lableText: AppText.writeeinnumber,
+                                  hintText: AppText.enterEInNumber,
+                                  lableText: AppText.writeEInNumber,
                                   enableunderlinecolor:
                                       AppColors.black.withOpacity(0.6),
                                   disableunderlinecolor:
@@ -286,8 +286,8 @@ class _IdVerificationState extends ConsumerState<IdVerification> {
                       borderRadius: BorderRadius.circular(h * 0.005),
                     ),
                     text: controller().isVerified
-                        ? AppText.backprof
-                        : AppText.verfynow,
+                        ? AppText.backProf
+                        : AppText.verifyNow,
                     textStyle: ptSansTextStyle(
                         color: AppColors.white,
                         fontSize: h * 0.02,

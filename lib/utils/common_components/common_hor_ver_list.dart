@@ -115,7 +115,7 @@ class HorizonVertList extends ConsumerWidget {
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(h * 0.025),
                                 child: Image.asset(
-                                  AppImg.homelist,
+                                  AppImg.homeList,
                                   height: h * 0.2,
                                   width: contwidth * 0.85,
                                   fit: BoxFit.cover,
@@ -168,8 +168,8 @@ class HorizonVertList extends ConsumerWidget {
                                       onTap: onPressed,
                                       child: CircleAvatar(
                                         backgroundColor: favList[index] == false
-                                            ? AppColors.starcolor
-                                            : AppColors.selectedstar,
+                                            ? AppColors.starColor
+                                            : AppColors.selectedStar,
                                         radius: h * 0.023,
                                         child: Column(
                                           mainAxisAlignment:
@@ -256,7 +256,7 @@ class HorizonVertList extends ConsumerWidget {
                       ),
                     ),
                     CommonText(
-                      text: AppText.forpermonth,
+                      text: AppText.forPerMonth,
                       style: ptSansTextStyle(
                           fontSize: h * 0.02,
                           color: AppColors.black.withOpacity(0.3),
@@ -302,7 +302,7 @@ class HorizonVertList extends ConsumerWidget {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(14),
                                   child: Image.asset(
-                                    AppImg.homelist,
+                                    AppImg.homeList,
                                     height:
                                         favrow != null ? h * 0.14 : h * 0.12,
                                     width: w * 0.24,
@@ -387,7 +387,7 @@ class HorizonVertList extends ConsumerWidget {
                                         ),
                                       ),
                                       CommonText(
-                                        text: AppText.perday,
+                                        text: AppText.perDay,
                                         style: ptSansTextStyle(
                                             fontSize: w * 0.04,
                                             color: AppColors.black
@@ -401,7 +401,7 @@ class HorizonVertList extends ConsumerWidget {
                                                 Flexible(
                                                   child: CommonText(
                                                     text:
-                                                        AppText.extendedrental,
+                                                        AppText.extendedRental,
                                                     maxLines: 1,
                                                     style: ptSansTextStyle(
                                                         fontSize: w * 0.038,
@@ -433,8 +433,8 @@ class HorizonVertList extends ConsumerWidget {
                                           child: CircleAvatar(
                                             backgroundColor:
                                                 favList[index] == false
-                                                    ? AppColors.starcolor
-                                                    : AppColors.selectedstar,
+                                                    ? AppColors.starColor
+                                                    : AppColors.selectedStar,
                                             radius: h * 0.023,
                                             child: Column(
                                               mainAxisAlignment:

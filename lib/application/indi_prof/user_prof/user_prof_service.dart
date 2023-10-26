@@ -4,7 +4,6 @@ import '../../../data/indi_prof/user_prof/user_prof_repo.dart';
 import '../../../model/indi_prof/user_prof/get_user_prof/get_user_prof.dart';
 
 abstract class UserProfService {
-  @override
   Future<GetUserProf?> getUserdata();
 }
 

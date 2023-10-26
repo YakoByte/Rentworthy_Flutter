@@ -7,7 +7,7 @@ part of 'view_profile_controller.dart';
 // **************************************************************************
 
 String _$viewProfileControllerHash() =>
-    r'39ff31dbfd77fe181a30e70622c9d41f1b26be33';
+    r'a913f71e8c3f5fc6f13c34723d224206f2a7704b';
 
 /// See also [ViewProfileController].
 @ProviderFor(ViewProfileController)

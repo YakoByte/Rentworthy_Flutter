@@ -207,7 +207,7 @@ class AdminPanel extends ConsumerWidget {
                                                 horizontal: w * 0.03,
                                                 vertical: h * 0.02),
                                             decoration: BoxDecoration(
-                                                color: AppColors.chartgrey,
+                                                color: AppColors.chartGrey,
                                                 borderRadius:
                                                     BorderRadius.circular(16)),
                                             child: Column(
@@ -254,7 +254,7 @@ class AdminPanel extends ConsumerWidget {
                                                 horizontal: w * 0.03,
                                                 vertical: h * 0.02),
                                             decoration: BoxDecoration(
-                                                color: AppColors.chartgrey,
+                                                color: AppColors.chartGrey,
                                                 borderRadius:
                                                     BorderRadius.circular(16)),
                                             child: Column(
@@ -336,7 +336,7 @@ class AdminPanel extends ConsumerWidget {
                                                                     2500,
                                                                 strokeColor:
                                                                     AppColors
-                                                                        .chartgrey,
+                                                                        .chartGrey,
                                                                 strokeWidth:
                                                                     h * 0.005,
                                                                 pointColorMapper:

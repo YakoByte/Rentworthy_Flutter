@@ -3,14 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../application/dialog/dialog_service.dart';
 import '../../../../application/validate/validate.dart';
-import '../../../../utils/color.dart';
-import '../../../../utils/common_components/common_appbar.dart';
-import '../../../../utils/common_components/common_button.dart';
-import '../../../../utils/common_components/common_text.dart';
-import '../../../../utils/common_components/text_input_field.dart';
-import '../../../../utils/images.dart';
 import '../../../../utils/import_utils.dart';
-import '../../../../utils/text.dart';
 import '../../../shimmers/edit_profile_shimmer.dart';
 import '../../error/error_screen.dart';
 import 'edit_profile_screen_cntroller.dart';
@@ -49,7 +42,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                   fontSize: w * 0.05,
                   color: AppColors.black.withOpacity(0.8),
                   fontWeight: FontWeight.w700),
-              text: AppText.editprof,
+              text: AppText.editProf,
             ),
           ),
         ),
@@ -80,7 +73,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                     fontSize: w * 0.05,
                                     color: AppColors.black.withOpacity(0.8),
                                     fontWeight: FontWeight.w700),
-                                text: AppText.basicinfo,
+                                text: AppText.basicInfo,
                               )
                                   .animate()
                                   .fadeIn(duration: 150.ms)
@@ -112,9 +105,10 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                             BorderRadius.circular(1000),
                                         child: Stack(
                                           children: [
+                                            ///Select Profile Image
                                             controller().selectedImage == null
                                                 ? Image.asset(
-                                                    AppImg.homelist,
+                                                    AppImg.homeList,
                                                     height: h * 0.075,
                                                     width: h * 0.075,
                                                     fit: BoxFit.cover,
@@ -138,7 +132,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                                                 Radius.circular(
                                                                     1000)),
                                                     color: AppColors
-                                                        .colorPrimarylight
+                                                        .colorPrimaryLight
                                                         .withOpacity(0.7)),
                                                 child: Icon(
                                                   Icons.camera_alt,
@@ -152,9 +146,11 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                       ),
                                     ),
                                   ),
+
+                                  ///Name
                                   TextInputField(
-                                      hintText: AppText.urname,
-                                      lableText: AppText.urname,
+                                      hintText: AppText.urName,
+                                      lableText: AppText.urName,
                                       maxLength: 30,
                                       isCounter: true,
                                       enableunderlinecolor:
@@ -210,13 +206,15 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                       end: 0,
                                       curve: Curves.easeInOutCubic,
                                       duration: 1000.ms),
+
+                              ///Email
                               TextInputField(
                                       isCounter: true,
                                       maxLines: 3,
                                       center: false,
                                       isdescription: true,
-                                      hintText: AppText.smthingabtyou,
-                                      lableText: AppText.smthingabtyou,
+                                      hintText: AppText.somethingAbtYou,
+                                      lableText: AppText.somethingAbtYou,
                                       hintStyle: ptSansTextStyle(
                                           color:
                                               AppColors.black.withOpacity(0.6),
@@ -280,7 +278,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                       fontSize: w * 0.05,
                                       color: AppColors.black.withOpacity(0.8),
                                       fontWeight: FontWeight.w700),
-                                  text: AppText.continfo,
+                                  text: AppText.contInfo,
                                 ),
                               )
                                   .animate()
@@ -296,6 +294,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
+                                  ///Country Code
                                   TextInputField(
                                       enableunderlinecolor:
                                           AppColors.black.withOpacity(0.6),
@@ -305,10 +304,10 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                           AppColors.black.withOpacity(0.6),
                                       underlinecolor:
                                           AppColors.black.withOpacity(0.6),
-                                      hintText: AppText.countrycode,
+                                      hintText: AppText.countryCode,
                                       titleText: AppText.country,
                                       titletextstyle: ptSansTextStyle(
-                                          color: AppColors.textcolor1,
+                                          color: AppColors.textColor1,
                                           fontSize: h * 0.018,
                                           fontWeight: FontWeight.w400),
                                       hintStyle: ptSansTextStyle(
@@ -349,6 +348,8 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                       containercolor: AppColors.white,
                                       textCapitalization:
                                           TextCapitalization.none),
+
+                                  ///Phone Number
                                   TextInputField(
                                       maxLength: 10,
                                       enableunderlinecolor:
@@ -359,10 +360,10 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                           AppColors.black.withOpacity(0.6),
                                       underlinecolor:
                                           AppColors.black.withOpacity(0.6),
-                                      hintText: AppText.enterphone,
+                                      hintText: AppText.enterPhone,
                                       titleText: " ",
                                       titletextstyle: ptSansTextStyle(
-                                          color: AppColors.textcolor1,
+                                          color: AppColors.textColor1,
                                           fontSize: h * 0.018,
                                           fontWeight: FontWeight.w400),
                                       hintStyle: ptSansTextStyle(
@@ -380,12 +381,12 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                           fontSize: h * 0.021,
                                           fontWeight: FontWeight.w400),
                                       errorText: controller().issubmit == true
-                                          ? validatephone(
+                                          ? validatePhone(
                                               controller().phoneController.text)
                                           : null,
                                       onChanged: (value) {
                                         setState(() {
-                                          validatephone(controller()
+                                          validatePhone(controller()
                                               .phoneController
                                               .text);
                                         });
@@ -411,6 +412,8 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                       end: 0,
                                       curve: Curves.easeInOutCubic,
                                       duration: 1000.ms),
+
+                              ///Email
                               TextInputField(
                                       enableunderlinecolor:
                                           AppColors.black.withOpacity(0.6),
@@ -472,7 +475,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                     fontSize: h * 0.018,
                                     color: AppColors.black.withOpacity(0.8),
                                     fontWeight: FontWeight.w500),
-                                text: AppText.verifiedemail,
+                                text: AppText.verifiedEmail,
                               )
                                   .animate()
                                   .fadeIn(duration: 450.ms)
@@ -485,6 +488,8 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                             ],
                           ),
                         ),
+
+                        ///Save Button
                         CommonButton(
                                 containerwidth: w,
                                 containerheight: h * 0.06,

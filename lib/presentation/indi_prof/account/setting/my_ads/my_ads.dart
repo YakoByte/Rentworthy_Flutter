@@ -30,12 +30,12 @@ class MyAds extends ConsumerWidget {
               fontSize: w * 0.05,
               color: AppColors.black.withOpacity(0.8),
               fontWeight: FontWeight.w700),
-          text: AppText.mylisting,
+          text: AppText.myListing,
         ),
       ),
       body: asyncState.when(
           data: (data) {
-            return Container(
+            return SizedBox(
               height: h,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: w * 0.025),
@@ -66,11 +66,12 @@ class MyAds extends ConsumerWidget {
                                 fontSize: h * 0.02,
                                 fontWeight: FontWeight.w700),
                             tabs: [
+                              /// tabbar
                               Tab(height: h * 0.06, text: AppText.ads),
                               Tab(height: h * 0.06, text: AppText.fav),
                             ]),
                       ),
-                      Container(
+                      SizedBox(
                         height: h * 0.85,
                         child: TabBarView(
                             controller: controller().tabController,
@@ -89,7 +90,7 @@ class MyAds extends ConsumerWidget {
                                             left: 0,
                                             right: 0,
                                             bottom: 0,
-                                            child: Container(
+                                            child: SizedBox(
                                               width: w,
                                               height: h * 0.85,
                                               child: Categories(
@@ -167,7 +168,7 @@ class MyAds extends ConsumerWidget {
                                                           width: w * 0.15,
                                                           height: h * 0.035,
                                                           color: AppColors
-                                                              .starcolor
+                                                              .starColor
                                                               .withOpacity(0.7),
                                                           child: Center(
                                                             child: CommonText(
@@ -245,8 +246,8 @@ class MyAds extends ConsumerWidget {
                                                             preimg: true,
                                                             preiconsize:
                                                                 h * 0.027,
-                                                            preimgname: AppImg
-                                                                .eye_view),
+                                                            preimgname:
+                                                                AppImg.eyeView),
                                                         VerticalDivider(
                                                           color: AppColors.black
                                                               .withOpacity(0.2),
@@ -459,7 +460,7 @@ class MyAds extends ConsumerWidget {
                                                         ),
                                                       ),
                                                       onChangedsearch: (str) {
-                                                        print("sdfs $str");
+                                                        debugPrint("sdfs $str");
                                                         controller()
                                                             .onchangefilter(
                                                                 str);
@@ -519,13 +520,13 @@ class MyAds extends ConsumerWidget {
                                           vertical: h * 0.05),
                                       child: Column(
                                         children: [
-                                          Container(
+                                          SizedBox(
                                             height: h * 0.6,
                                             child: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceEvenly,
                                               children: [
-                                                Image.asset(AppImg.favimg,
+                                                Image.asset(AppImg.favImg,
                                                     height: h * 0.3,
                                                     width: w * 0.6,
                                                     fit: BoxFit.cover),
@@ -533,7 +534,8 @@ class MyAds extends ConsumerWidget {
                                                   padding: EdgeInsets.symmetric(
                                                       vertical: h * 0.01),
                                                   child: CommonText(
-                                                      text: AppText.haventliked,
+                                                      text:
+                                                          AppText.haveNotLiked,
                                                       style: ptSansTextStyle(
                                                           color: AppColors.black
                                                               .withOpacity(0.4),
@@ -542,7 +544,7 @@ class MyAds extends ConsumerWidget {
                                                               FontWeight.w400)),
                                                 ),
                                                 CommonText(
-                                                    text: AppText.collectthing,
+                                                    text: AppText.collectThing,
                                                     style: ptSansTextStyle(
                                                         color: AppColors.black
                                                             .withOpacity(0.4),

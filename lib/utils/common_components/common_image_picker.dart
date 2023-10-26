@@ -111,7 +111,7 @@ class CommonImagePicker extends ConsumerWidget {
                       if (pickedImg != null) {
                         pickedImage(File(pickedImg.path));
 
-                        print('imageimage33 ${pickedImg.path}');
+                        debugPrint('imageimage33 ${pickedImg.path}');
                         Navigator.pop(context);
                       }
                     }),
@@ -147,7 +147,7 @@ class CommonImagePicker extends ConsumerWidget {
                       if (pickedImg != null) {
                         pickedImage(File(pickedImg.path));
 
-                        print('imageimage33 ${pickedImg.path}');
+                        debugPrint('imageimage33 ${pickedImg.path}');
                         Navigator.pop(context);
                       }
                     }),

@@ -71,6 +71,7 @@ class AccountVerificationController extends _$AccountVerificationController {
     return AccountVerificationState(start: _start);
   }
 
+  /// This method is used to verify the OTP
   void onVerify() {
     state = const AsyncLoading();
 
@@ -79,7 +80,7 @@ class AccountVerificationController extends _$AccountVerificationController {
       _isLoading = false;
     } else {
       _isLoading = true;
-      Future.delayed(Duration(seconds: 1), () {
+      Future.delayed(const Duration(seconds: 1), () {
         state = const AsyncLoading();
         _isVerify = true;
         startTimer();
@@ -91,6 +92,7 @@ class AccountVerificationController extends _$AccountVerificationController {
     state = AsyncValue.data(state.value!.copyWith(start: _start));
   }
 
+  /// This method is used to start the timer
   void startTimer() {
     state = const AsyncLoading();
     const oneSec = Duration(seconds: 1);

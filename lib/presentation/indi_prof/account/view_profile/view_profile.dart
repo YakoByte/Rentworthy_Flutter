@@ -92,7 +92,7 @@ class ViewProfile extends ConsumerWidget {
             }
             return SafeArea(
               child: SingleChildScrollView(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -109,17 +109,18 @@ class ViewProfile extends ConsumerWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                ///Profile Image and Name
                                 ProfileImgName(
                                         verified: controller()
                                                 .getproductlist
                                                 .isNotEmpty
                                             ? true
                                             : false,
-                                        name: AppText.editprof,
+                                        name: AppText.editProf,
                                         onTap: () {
                                           commonNavigator(
                                             context: context,
-                                            child: EditProfileScreen(),
+                                            child: const EditProfileScreen(),
                                             type: PageTransitionType
                                                 .rightToLeftWithFade,
                                           );
@@ -147,12 +148,13 @@ class ViewProfile extends ConsumerWidget {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceEvenly,
                                           children: [
+                                            ///Member Since
                                             IconText(
                                               preimg: true,
                                               subimg: false,
                                               preshadermask: false,
                                               preiconsize: h * 0.03,
-                                              title: AppText.membersince,
+                                              title: AppText.memberSince,
                                               preicon:
                                                   Icons.calendar_today_rounded,
                                               preimgcolor: AppColors.black
@@ -174,13 +176,15 @@ class ViewProfile extends ConsumerWidget {
                                                     curve:
                                                         Curves.easeInOutCubic,
                                                     duration: 1000.ms),
+
+                                            ///Products Listed
                                             IconText(
                                               preimg: true,
                                               subimg: false,
                                               preshadermask: false,
                                               preiconsize: h * 0.03,
-                                              title: AppText.prductlist,
-                                              preimgname: AppImg.gamecontroller,
+                                              title: AppText.productList,
+                                              preimgname: AppImg.gameController,
                                               preimgcolor: AppColors.black
                                                   .withOpacity(0.8),
                                               textStyle: ptSansTextStyle(
@@ -215,11 +219,11 @@ class ViewProfile extends ConsumerWidget {
                                                     .withOpacity(0.5),
                                                 spreadRadius: 1,
                                                 blurRadius: 2,
-                                                offset: Offset(0,
+                                                offset: const Offset(0,
                                                     3), // changes position of shadow
                                               ),
                                             ],
-                                            border: GradientBoxBorder(
+                                            border: const GradientBoxBorder(
                                               gradient: LinearGradient(colors: [
                                                 AppColors.colorPrimary,
                                                 AppColors.colorSecondary
@@ -238,6 +242,7 @@ class ViewProfile extends ConsumerWidget {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
+                                              ///Rating
                                               IconText(
                                                 preimg: true,
                                                 subimg: false,
@@ -263,7 +268,7 @@ class ViewProfile extends ConsumerWidget {
                                                       fontSize: h * 0.015,
                                                       fontWeight:
                                                           FontWeight.w500),
-                                                  text: AppText.custrating),
+                                                  text: AppText.custRating),
                                             ],
                                           ),
                                         )
@@ -292,13 +297,13 @@ class ViewProfile extends ConsumerWidget {
                                                               30, 0, 150, 10)),
                                                 fontSize: h * 0.022,
                                                 fontWeight: FontWeight.w500),
-                                            text: AppText.businesshrs),
+                                            text: AppText.businessHrs),
                                         CommonText(
                                             style: ptSansTextStyle(
                                                 color: AppColors.black,
                                                 fontSize: h * 0.02,
                                                 fontWeight: FontWeight.w500),
-                                            text: AppText.opentime),
+                                            text: AppText.openTime),
                                       ],
                                     ),
                                   )
@@ -329,6 +334,8 @@ class ViewProfile extends ConsumerWidget {
                                 duration: 1000.ms),
                       ],
                     ),
+
+                    ///Products
                     Container(
                       height: h * 0.59,
                       child: controller().getproductlist.isNotEmpty
@@ -358,7 +365,7 @@ class ViewProfile extends ConsumerWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Image.asset(AppImg.nochat,
+                                  Image.asset(AppImg.noChat,
                                       height: h * 0.3,
                                       width: w * 0.6,
                                       fit: BoxFit.cover),
@@ -367,7 +374,7 @@ class ViewProfile extends ConsumerWidget {
                                         vertical: h * 0.01),
                                     child: CommonText(
                                         textAlign: TextAlign.center,
-                                        text: AppText.haventlisted,
+                                        text: AppText.haveNotListed,
                                         style: ptSansTextStyle(
                                             color: AppColors.black
                                                 .withOpacity(0.4),
@@ -378,7 +385,7 @@ class ViewProfile extends ConsumerWidget {
                                     padding: EdgeInsets.symmetric(
                                         horizontal: w * 0.06),
                                     child: CommonText(
-                                        text: AppText.useanymore,
+                                        text: AppText.useAnyMore,
                                         textAlign: TextAlign.center,
                                         style: ptSansTextStyle(
                                             color: AppColors.black
@@ -405,7 +412,7 @@ class ViewProfile extends ConsumerWidget {
                                       //     )),
                                       decoration: BoxDecoration(
                                         color: Colors.white,
-                                        border: GradientBoxBorder(
+                                        border: const GradientBoxBorder(
                                           gradient: LinearGradient(colors: [
                                             AppColors.colorPrimary,
                                             AppColors.colorSecondary
@@ -417,7 +424,7 @@ class ViewProfile extends ConsumerWidget {
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(4)),
-                                      text: AppText.startsell,
+                                      text: AppText.startSell,
                                       textStyle: ptSansTextStyle(
                                           foreground: Paint()
                                             ..shader = const LinearGradient(
@@ -430,6 +437,7 @@ class ViewProfile extends ConsumerWidget {
                                           fontSize: h * 0.02,
                                           fontWeight: FontWeight.w700),
                                       onPressed: () {
+                                        ///Navigate to Sell Screen
                                         commonNavigator(
                                           context: context,
                                           child: SellScreen(

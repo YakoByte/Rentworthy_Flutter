@@ -25,7 +25,7 @@ class CircularSeriesController {
   ///                    onRendererCreated: (CircularSeriesController controller) {
   ///                       _chartSeriesController = controller;
   ///                       // prints series yAxisName
-  ///                      print(_chartSeriesController.seriesRenderer.seriesRendererDetails.series.yAxisName);
+  ///                      debugPrint(_chartSeriesController.seriesRenderer.seriesRendererDetails.series.yAxisName);
   ///                    },
   ///                ),
   ///        )

@@ -4,5 +4,5 @@ class ApiConfig {
   static const String scheme = "https://";
   static const String host = "abc.com";
   static const String basePath = "/abc/api/";
-  static const String mainurl = scheme + host + basePath;
+  static const String mainUrl = scheme + host + basePath;
 }

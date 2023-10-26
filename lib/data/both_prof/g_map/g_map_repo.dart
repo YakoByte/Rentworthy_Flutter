@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../model/g_map/g_map.dart';
 
 abstract class GMapRepository {
-  Future<GMapResponse?> getmapData();
+  Future<GMapResponse?> getMapData();
 }
 
 class GMapRepositoryV1 extends GMapRepository {
@@ -76,7 +76,7 @@ class GMapRepositoryV1 extends GMapRepository {
   List<Region>? get onRegionlist => _onRegionlist;
 
   @override
-  Future<GMapResponse?> getmapData() async {
+  Future<GMapResponse?> getMapData() async {
     return GMapResponse(
       offices: _onOfficeList,
       regions: _onRegionlist,

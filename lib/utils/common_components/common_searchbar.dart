@@ -13,7 +13,7 @@ class CommonSearchBar extends ConsumerWidget {
   double containerwidth;
   double containerheight;
   final Color? containercolor;
-  final Color? bordercolor;
+  final Color? borderColor;
   BorderRadiusGeometry? borderRadius;
   Widget? suffixicon;
   Widget? prefix;
@@ -22,7 +22,7 @@ class CommonSearchBar extends ConsumerWidget {
   CommonSearchBar(
       {super.key,
       required this.searchController,
-      this.bordercolor,
+      this.borderColor,
       this.containercolor,
       this.borderRadius,
       this.suffixicon,
@@ -48,7 +48,7 @@ class CommonSearchBar extends ConsumerWidget {
           containerheight: containerheight,
           underline: false,
           containercolor: containercolor ?? AppColors.white,
-          bordercolor: bordercolor ?? AppColors.white,
+          borderColor: borderColor ?? AppColors.white,
           borderRadius: borderRadius ?? BorderRadius.circular(50),
           onChanged: (str) {
             onsearchChanged!(str);

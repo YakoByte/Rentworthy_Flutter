@@ -2612,7 +2612,7 @@ class SfDateRangePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(
+    debugPrint(
         "startRangeSelectionColor: $startRangeSelectionColor $endRangeSelectionColor");
     return _SfDateRangePicker(
       key: key,
@@ -11368,7 +11368,7 @@ class _PickerViewState extends State<_PickerView>
       double width,
       double height,
       DateRangePickerView pickerView) {
-    print(
+    debugPrint(
         "startRangeSelectionColor MonthView: ${widget.picker.startRangeSelectionColor} ${widget.picker.endRangeSelectionColor}");
     final int rowCount = DateRangePickerHelper.getNumberOfWeeksInView(
         widget.picker.monthViewSettings, widget.picker.isHijri);

@@ -19,19 +19,19 @@ class UnreadAll extends ConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Image.asset(AppImg.nochat,
+          Image.asset(AppImg.noChat,
               height: h * 0.3, width: w * 0.6, fit: BoxFit.cover),
           Padding(
             padding: EdgeInsets.symmetric(vertical: h * 0.01),
             child: CommonText(
-                text: AppText.nochat,
+                text: AppText.noChat,
                 style: ptSansTextStyle(
                     color: AppColors.black.withOpacity(0.4),
                     fontSize: h * 0.02,
                     fontWeight: FontWeight.w400)),
           ),
           CommonText(
-              text: AppText.befirstone,
+              text: AppText.beFirsTone,
               style: ptSansTextStyle(
                   color: AppColors.black.withOpacity(0.4),
                   fontSize: h * 0.02,
@@ -54,7 +54,7 @@ class UnreadAll extends ConsumerWidget {
                     )),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(4)),
-                text: AppText.startmsg,
+                text: AppText.startMsg,
                 textStyle: ptSansTextStyle(
                     color: AppColors.white,
                     fontSize: h * 0.02,

@@ -28,6 +28,7 @@ class NotificationController extends _$NotificationController {
     state = const AsyncValue.data(null);
   }
 
+  /// onSwitchTap
   onSwitchTap({required bool val}) async {
     state = const AsyncLoading();
     debugPrint('onEyeTap $val');
@@ -36,6 +37,7 @@ class NotificationController extends _$NotificationController {
     state = const AsyncValue.data(null);
   }
 
+  /// onSwitchrecTap
   onSwitchrecTap({required bool val}) async {
     state = const AsyncLoading();
     debugPrint('onSwitchrecTap $val');

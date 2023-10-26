@@ -42,6 +42,8 @@ class HomeScreen extends ConsumerWidget {
       backgroundColor: AppColors.white,
       resizeToAvoidBottomInset: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
+
+      ///  Post Ad Floating Action Button
       floatingActionButton: controller().isLoading
           ? null
           : Padding(
@@ -81,6 +83,8 @@ class HomeScreen extends ConsumerWidget {
               curve: Curves.easeInOutCubic,
               duration: 1000.ms),
       drawerScrimColor: AppColors.black.withOpacity(0.4),
+
+      ///  Home Navigation Drawer
       drawer: const HomeNavDrawer()
           .animate()
           .fadeIn(duration: 30.ms)
@@ -96,6 +100,8 @@ class HomeScreen extends ConsumerWidget {
               padding: EdgeInsets.symmetric(horizontal: w * 0.05),
               leadingicon: false,
               backgroundColor: AppColors.white,
+
+              /// Notification Icon
               suffixicon: Container(
                 height: h * 0.07,
                 width: w * 0.1,
@@ -131,7 +137,7 @@ class HomeScreen extends ConsumerWidget {
                       curve: Curves.easeInOutCubic,
                       duration: 1000.ms),
               centerwidget: !controller().isLoading
-                  ? HomeAppBar()
+                  ? const HomeAppBar()
                       .animate(
                           controller: controller().appbaranimationcontroller,
                           autoPlay: false)
@@ -301,7 +307,7 @@ class HomeScreen extends ConsumerWidget {
                           controller().onFavTap(index, 0);
                         },
                         isextended: false,
-                        title: AppText.featuredads,
+                        title: AppText.featuredAds,
                         isViewAll: false,
                         isCategory: false,
                         shrinkWrap: false,
@@ -405,7 +411,7 @@ class HomeScreen extends ConsumerWidget {
                           isFavIcon: true,
                           isFeature: false,
                           isextended: false,
-                          title: AppText.popularads,
+                          title: AppText.popularAds,
                           isViewAll: true,
                           isTopPadding: false,
                           type: 2,
@@ -435,40 +441,12 @@ class HomeScreen extends ConsumerWidget {
                               duration: 600.ms,
                             ),
                       ),
-                      // Padding(
-                      //   padding: EdgeInsets.symmetric(
-                      //       horizontal: w * 0.05, vertical: h * 0.015),
-                      //   child: const GoogleMapWidget(),
-                      // ),
 
-                      ///Promote your ad in Featured
+                      ///RentWorthy Collection
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: h * 0.01),
                         child: Column(
                           children: [
-                            // Padding(
-                            //   padding: EdgeInsets.symmetric(
-                            //       horizontal: w * 0.05, vertical: h * 0.015),
-                            //   child: Row(
-                            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            //     crossAxisAlignment: CrossAxisAlignment.end,
-                            //     children: [
-                            //       CommonText(
-                            //           text: AppText.promoteurad,
-                            //           style: ptSansTextStyle(
-                            //             color: AppColors.black.withOpacity(0.8),
-                            //             fontSize: h * 0.022,
-                            //             fontWeight: FontWeight.w700,
-                            //           )),
-                            //       Icon(
-                            //         Icons.add,
-                            //         color: AppColors.black,
-                            //         size: h * 0.03,
-                            //       )
-                            //     ],
-                            //   ),
-                            // ),
-
                             Container(
                               height: h * 0.3,
                               width: w,
@@ -575,7 +553,7 @@ class HomeScreen extends ConsumerWidget {
                             ),
                       ),
 
-                      /// Carousel
+                      /// RentWorthy Experiences
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -688,7 +666,7 @@ class HomeScreen extends ConsumerWidget {
                           onFavPressed: (index) {
                             controller().onFavTap(index, 1);
                           },
-                          title: AppText.nearbyads,
+                          title: AppText.nearByAds,
                           isViewAll: true,
                           isextended: false,
                           isCategory: false,

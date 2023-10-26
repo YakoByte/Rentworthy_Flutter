@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rentworthy/utils/common_components/cont_textInput.dart';
 
 import '../../../../../application/dialog/dialog_service.dart';
 import '../../../../../application/validate/validate.dart';
-import '../../../../../utils/color.dart';
-import '../../../../../utils/common_components/common_appbar.dart';
-import '../../../../../utils/common_components/common_button.dart';
-import '../../../../../utils/common_components/common_text.dart';
-import '../../../../../utils/images.dart';
 import '../../../../../utils/import_utils.dart';
-import '../../../../../utils/text.dart';
 import '../../../../shimmers/contact_us_shimmer.dart';
 import '../../../error/error_screen.dart';
 import 'contact_us_controller.dart';
@@ -80,6 +73,8 @@ class _ContactUsScreenState extends ConsumerState<ContactUsScreen> {
                           fontSize: h * 0.017,
                           fontWeight: FontWeight.w500),
                     ),
+
+                    /// Name
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: h * 0.01),
                       child: ContTextInputField(
@@ -104,7 +99,7 @@ class _ContactUsScreenState extends ConsumerState<ContactUsScreen> {
                             fontWeight: FontWeight.w400),
                         prefix: const SizedBox.shrink(),
                         textCapitalization: TextCapitalization.none,
-                        hintText: AppText.entername,
+                        hintText: AppText.enterName,
                         controller: controller().nameController,
                         keyboardType: TextInputType.text,
                         containercolor: AppColors.white,
@@ -119,6 +114,8 @@ class _ContactUsScreenState extends ConsumerState<ContactUsScreen> {
                         },
                       ),
                     ),
+
+                    /// Phone
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: h * 0.01),
                       child: ContTextInputField(
@@ -143,7 +140,7 @@ class _ContactUsScreenState extends ConsumerState<ContactUsScreen> {
                             fontWeight: FontWeight.w400),
                         prefix: const SizedBox.shrink(),
                         textCapitalization: TextCapitalization.none,
-                        hintText: AppText.enterphone,
+                        hintText: AppText.enterPhone,
                         controller: controller().phoneController,
                         keyboardType: TextInputType.phone,
                         containercolor: AppColors.white,
@@ -158,6 +155,8 @@ class _ContactUsScreenState extends ConsumerState<ContactUsScreen> {
                         },
                       ),
                     ),
+
+                    /// Description
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: h * 0.01),
                       child: ContTextInputField(
@@ -182,7 +181,7 @@ class _ContactUsScreenState extends ConsumerState<ContactUsScreen> {
                             fontWeight: FontWeight.w400),
                         prefix: const SizedBox.shrink(),
                         textCapitalization: TextCapitalization.none,
-                        hintText: AppText.knowus,
+                        hintText: AppText.knowUs,
                         controller: controller().descController,
                         keyboardType: TextInputType.text,
                         containercolor: AppColors.white,
@@ -197,6 +196,8 @@ class _ContactUsScreenState extends ConsumerState<ContactUsScreen> {
                         },
                       ),
                     ),
+
+                    /// Submit
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: h * 0.01),
                       child: CommonButton(
@@ -222,32 +223,6 @@ class _ContactUsScreenState extends ConsumerState<ContactUsScreen> {
                               fontWeight: FontWeight.w700),
                           onPressed: () {
                             controller().onSubmit();
-                            // ref.read(dialogServiceProvider).selectDatedialog();
-                            // ref.read(dialogServiceProvider).orderconfirmalertdialog();
-                            // ref.read(dialogServiceProvider).rentScreeningDialog(
-                            //     cosmeticcontroller: controller().cosmeticcontroller,
-                            //     itemworkscontroller: controller().itemworkscontroller,
-                            //     missingcontroller: controller().missingcontroller,
-                            //     cosmeticValue: controller().selectedcosmetic,
-                            //     oncosmeticval: (val) {
-                            //       print("val is $val");
-                            //       controller().oncosmeticval(val);
-                            //     },
-                            //     itemworks: controller().selecteditemwork,
-                            //     onitemworksval: (val) {
-                            //       print("val is $val");
-                            //       controller().onitemworksval(val);
-                            //     },
-                            //     missingval: controller().selectedmssing,
-                            //     onmissingval: (val) {
-                            //       print("val is $val");
-                            //       controller().onmissingval(val);
-                            //     });
-                            // ref.read(dialogServiceProvider).cancelbookingalertdialog();
-                            //     groupValue: controller().selectedreason!,
-                            //     onChangedval: (val) {
-                            //       controller().onreasonSelected(val);
-                            //     });
                           }),
                     ),
                   ],

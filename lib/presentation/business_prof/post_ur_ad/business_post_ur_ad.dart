@@ -82,7 +82,7 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                 curve: Curves.easeInOutCubic,
                 duration: 400.ms),
         centerwidget: CommonText(
-                text: AppText.posturad,
+                text: AppText.postUrAd,
                 style: ptSansTextStyle(
                     color: AppColors.black,
                     fontSize: h * 0.025,
@@ -124,7 +124,7 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CommonText(
-                                text: AppText.includesomedet,
+                                text: AppText.includeSomeDet,
                                 style: ptSansTextStyle(
                                     color: AppColors.black,
                                     fontSize: h * 0.025,
@@ -319,7 +319,7 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                             children: [
                               TextInputField(
                                   hintText: "",
-                                  titleText: AppText.adtitle,
+                                  titleText: AppText.adTitle,
                                   enableunderlinecolor:
                                       AppColors.black.withOpacity(0.6),
                                   disableunderlinecolor:
@@ -672,7 +672,7 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             CommonText(
-                                text: AppText.setprice,
+                                text: AppText.setPrice,
                                 style: ptSansTextStyle(
                                     color: AppColors.black,
                                     fontSize: h * 0.025,
@@ -1087,7 +1087,7 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(1000),
                               child: Image.asset(
-                                AppImg.homelist,
+                                AppImg.homeList,
                                 height: h * 0.085,
                                 width: h * 0.085,
                                 fit: BoxFit.cover,
@@ -1095,7 +1095,7 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                             ),
                             TextInputField(
                                 hintText: "",
-                                titleText: AppText.adtitle,
+                                titleText: AppText.adTitle,
                                 enableunderlinecolor:
                                     AppColors.black.withOpacity(0.6),
                                 disableunderlinecolor:

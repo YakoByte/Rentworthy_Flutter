@@ -15,11 +15,9 @@ part 'business_post_ur_ad_controller.g.dart';
 @riverpod
 class BusinessPostAdController extends _$BusinessPostAdController {
   TextEditingController itemnameController = TextEditingController();
-  TextEditingController subcatController = TextEditingController();
   TextEditingController addtitleController = TextEditingController();
   TextEditingController descController = TextEditingController();
   TextEditingController priceController = TextEditingController();
-  TextEditingController cityController = TextEditingController();
   TextEditingController stateController = TextEditingController();
   TextEditingController addtitlelastController = TextEditingController();
   ImagePicker imagePicker = ImagePicker();

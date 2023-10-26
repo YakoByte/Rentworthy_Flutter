@@ -30,7 +30,7 @@ class FindLocation extends ConsumerWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: h * 0.5,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -73,7 +73,7 @@ class FindLocation extends ConsumerWidget {
                     Column(
                       children: [
                         CommonText(
-                            text: AppText.wheresurloc,
+                            text: AppText.wheresUrLoc,
                             textAlign: TextAlign.center,
                             style: ptSansTextStyle(
                               color: AppColors.black.withOpacity(0.8),
@@ -84,7 +84,7 @@ class FindLocation extends ConsumerWidget {
                           padding: EdgeInsets.symmetric(
                               horizontal: w * 0.1, vertical: h * 0.01),
                           child: CommonText(
-                              text: AppText.shareloc,
+                              text: AppText.shareLoc,
                               textAlign: TextAlign.center,
                               style: ptSansTextStyle(
                                 color: AppColors.black.withOpacity(0.6),
@@ -115,7 +115,7 @@ class FindLocation extends ConsumerWidget {
                           color: AppColors.white,
                           size: h * 0.03,
                         ),
-                        text: AppText.findloc,
+                        text: AppText.findLoc,
                         textStyle: ptSansTextStyle(
                             color: AppColors.white,
                             fontSize: h * 0.019,

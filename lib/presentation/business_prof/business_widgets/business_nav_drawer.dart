@@ -55,7 +55,7 @@ class AdminNavDrawer extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Image.asset(
-                        AppImg.appicon,
+                        AppImg.appIcon,
                         height: h * 0.05,
                         width: w * 0.12,
                         fit: BoxFit.contain,
@@ -66,7 +66,7 @@ class AdminNavDrawer extends ConsumerWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(1000),
                         child: Image.asset(
-                          AppImg.homelist,
+                          AppImg.homeList,
                           height: h * 0.05,
                           width: h * 0.05,
                           fit: BoxFit.cover,
@@ -262,13 +262,13 @@ class AdminNavDrawer extends ConsumerWidget {
                                         ),
                                 ),
                                 IconText(
-                                    title: AppText.statisticsreport,
+                                    title: AppText.statisticsReport,
                                     textStyle: ptSansTextStyle(
                                         color: AppColors.black,
                                         fontSize: w * 0.045,
                                         fontWeight: FontWeight.w500),
                                     subimg: false,
-                                    preimgname: AppImg.trendingup,
+                                    preimgname: AppImg.trendingUp,
                                     preimgcolor: AppColors.black,
                                     preiconsize: w * 0.07,
                                     preimg: true),
@@ -741,7 +741,7 @@ class AdminNavDrawer extends ConsumerWidget {
                                         fontSize: w * 0.045,
                                         fontWeight: FontWeight.w500),
                                     subimg: false,
-                                    preimgname: AppImg.trendingup,
+                                    preimgname: AppImg.trendingUp,
                                     preimgcolor: AppColors.black,
                                     preiconsize: w * 0.07,
                                     preimg: false),

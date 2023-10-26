@@ -24,12 +24,12 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
   TextEditingController countryCodeController =
       TextEditingController(text: "+91");
 
-  bool _issubmit = false;
+  bool _isSubmit = false;
 
-  bool get issubmit => _issubmit;
-  bool _iseyehide = false;
+  bool get isSubmit => _isSubmit;
+  bool _isEyeHide = false;
 
-  bool get iseyehide => _iseyehide;
+  bool get isEyeHide => _isEyeHide;
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
@@ -38,24 +38,25 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
   FutureOr<void> build() async {
     state = const AsyncLoading();
 
-    // _issendotp = false;
     state = const AsyncValue.data(null);
   }
 
+  /// This is the function that is called when the eye icon is tapped
   onEyeTap({required bool val}) async {
     state = const AsyncLoading();
     debugPrint('onEyeTap $val');
-    _iseyehide = val;
+    _isEyeHide = val;
 
     state = const AsyncValue.data(null);
   }
 
+  /// This is the function that is called when the submit button is tapped
   onSendOtp({required int index}) async {
     state = const AsyncLoading();
     debugPrint('onSendOtp');
-    _issubmit = true;
+    _isSubmit = true;
 
-    if (validatephone(phoneController.text) == null ||
+    if (validatePhone(phoneController.text) == null ||
         validateEmail(emailController.text) == null ||
         validateEmail(passwordController.text) == null) {
       state = const AsyncValue.data(null);
@@ -66,6 +67,7 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
         state = const AsyncLoading();
 
         if (index == 0) {
+          /// Send OTP to the user
           ref.read(loginServiceProvider).sendOTP(
                 phoneNumber: countryCodeController.text + phoneController.text,
                 verificationCompleted: (PhoneAuthCredential credential) {
@@ -91,6 +93,7 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
                 },
               );
         } else if (index == 1) {
+          /// Google Sign-in
           commonNavigator(
             context: Globals.navigatorKey.currentContext!,
             child: AccountVerification(
@@ -99,6 +102,7 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
             type: PageTransitionType.rightToLeftWithFade,
           );
         } else if (index == 2) {
+          /// Apple Sign-in
           DialogServiceV1().showSnackBar(
               content: "User Logged-in Successfully!!",
               color: AppColors.colorPrimary.withOpacity(0.7),
@@ -113,6 +117,7 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
                   duration: const Duration(milliseconds: 400)),
               (Route<dynamic> route) => false);
         } else if (index == 3) {
+          /// Facebook Sign-in
           DialogServiceV1().showSnackBar(
               content: "User Logged-in Successfully!!",
               color: AppColors.colorPrimary.withOpacity(0.7),

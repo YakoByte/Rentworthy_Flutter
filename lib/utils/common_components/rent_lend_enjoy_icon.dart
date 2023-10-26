@@ -16,7 +16,7 @@ class RentLendEnjoyIcon extends ConsumerWidget {
     return Column(
       children: [
         Image.asset(
-          AppImg.applogowhite,
+          AppImg.appLogoWhite,
           height: h * 0.06,
           width: w * 0.45,
         ),

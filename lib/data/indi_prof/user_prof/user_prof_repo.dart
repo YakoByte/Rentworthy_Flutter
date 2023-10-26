@@ -11,7 +11,7 @@ class UserProfRepositoryV1 extends UserProfRepository {
     const UserData(
         user_id: "1",
         user_name: "User 1",
-        user_img: AppImg.homelist,
+        user_img: AppImg.homeList,
         user_desc: "User 1 Desc",
         user_contrycode: "+91",
         user_phoneno: "1234567890",

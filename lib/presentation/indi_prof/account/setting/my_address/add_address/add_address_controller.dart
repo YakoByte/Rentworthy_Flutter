@@ -24,18 +24,20 @@ class AddAddressController extends _$AddAddressController {
   bool _isSubmit = false;
 
   bool get isSubmit => _isSubmit;
-  int _selectedtype = 0;
-  int get selectedtype => _selectedtype;
+
   int _selectedaddress = 0;
+
   int get selectedaddress => _selectedaddress;
+
   @override
   FutureOr<void> build() async {}
 
+  /// This function is used to save the address
   onSave() async {
     state = const AsyncLoading();
     _isSubmit = true;
     if (validateUname(nameController.text) == null &&
-        validatephone(phoneController.text) == null &&
+        validatePhone(phoneController.text) == null &&
         validate(zipcodeController.text) == null &&
         validate(stateController.text) == null &&
         validate(cityController.text) == null &&
@@ -51,18 +53,11 @@ class AddAddressController extends _$AddAddressController {
     state = const AsyncValue.data(null);
   }
 
+  /// This function is used to select the address
   onSelectAddress({required int val}) async {
     state = const AsyncLoading();
     debugPrint('selectedaddress $val');
     _selectedaddress = val;
-
-    state = const AsyncValue.data(null);
-  }
-
-  onSwitchType({required int val}) async {
-    state = const AsyncLoading();
-    debugPrint('onSwitchType $val');
-    _selectedtype = val;
 
     state = const AsyncValue.data(null);
   }

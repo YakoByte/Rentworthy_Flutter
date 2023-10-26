@@ -18,10 +18,10 @@ class EditProfileController extends _$EditProfileController {
   TextEditingController countryCodeController =
       TextEditingController(text: "+91");
   bool _isLoading = false;
+  bool get isLoading => _isLoading;
   ImagePicker imagePicker = ImagePicker();
   File? selectedImage;
 
-  bool get isLoading => _isLoading;
   bool _issubmit = false;
 
   bool get issubmit => _issubmit;
@@ -29,6 +29,7 @@ class EditProfileController extends _$EditProfileController {
   @override
   FutureOr<void> build() async {}
 
+  /// This function is used to select the image
   onImgSelect({required val}) async {
     state = const AsyncLoading();
     selectedImage = val;
@@ -36,6 +37,7 @@ class EditProfileController extends _$EditProfileController {
     state = const AsyncValue.data(null);
   }
 
+  /// This function is used to save the data
   onSave() async {
     state = const AsyncLoading();
 
@@ -43,7 +45,7 @@ class EditProfileController extends _$EditProfileController {
     if (validateUname(nameController.text) == null &&
         validate(aboutyouController.text) == null &&
         validate(countryCodeController.text) == null &&
-        validatephone(phoneController.text) == null &&
+        validatePhone(phoneController.text) == null &&
         validateEmail(emailController.text) == null) {
       _isLoading = true;
       Future.delayed(const Duration(seconds: 1), () {

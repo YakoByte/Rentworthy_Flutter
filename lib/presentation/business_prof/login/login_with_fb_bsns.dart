@@ -60,13 +60,13 @@ class _BusinessLoginFBState extends ConsumerState<BusinessLoginFB> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image.asset(
-                      AppImg.appicon,
+                      AppImg.appIcon,
                       height: h * 0.07,
                       width: w,
                       fit: BoxFit.contain,
                     ),
                     CommonText(
-                        text: AppText.enteremailtosignin,
+                        text: AppText.enterEmailToSignIn,
                         style: ptSansTextStyle(
                           color: AppColors.black,
                           fontSize: h * 0.023,
@@ -77,7 +77,7 @@ class _BusinessLoginFBState extends ConsumerState<BusinessLoginFB> {
                         containerborder:
                             Border.all(color: AppColors.black.withOpacity(0.4)),
                         borderRadius: BorderRadius.circular(4),
-                        hintText: AppText.email_or_uname,
+                        hintText: AppText.emailOrUname,
                         hintStyle: ptSansTextStyle(
                             color: AppColors.black.withOpacity(0.5),
                             fontSize: h * 0.021,
@@ -142,8 +142,8 @@ class _BusinessLoginFBState extends ConsumerState<BusinessLoginFB> {
                           child: Center(
                             child: Image.asset(
                               !controller().iseyehide
-                                  ? AppImg.eye_hide
-                                  : AppImg.eye_view,
+                                  ? AppImg.eyeHide
+                                  : AppImg.eyeView,
                               fit: BoxFit.cover,
                               color: AppColors.black.withOpacity(0.6),
                               width: h * 0.032,
@@ -181,7 +181,7 @@ class _BusinessLoginFBState extends ConsumerState<BusinessLoginFB> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(h * 0.006),
                         ),
-                        text: AppText.signin,
+                        text: AppText.signIn,
                         textStyle: ptSansTextStyle(
                             color: AppColors.white,
                             fontSize: h * 0.019,

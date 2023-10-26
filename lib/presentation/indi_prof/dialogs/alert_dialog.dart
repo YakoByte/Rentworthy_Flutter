@@ -37,12 +37,12 @@ class ContactUsAlertDialog extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(AppImg.getintouch,
+            Image.asset(AppImg.getInTouch,
                 height: h * 0.3, width: w * 0.6, fit: BoxFit.cover),
             Padding(
               padding: EdgeInsets.symmetric(vertical: h * 0.01),
               child: CommonText(
-                  text: AppText.thankresponse,
+                  text: AppText.thankResponse,
                   style: ptSansTextStyle(
                       foreground: Paint()
                         ..shader = const LinearGradient(
@@ -55,7 +55,7 @@ class ContactUsAlertDialog extends ConsumerWidget {
                       fontWeight: FontWeight.w600)),
             ),
             CommonText(
-                text: AppText.contactusoon,
+                text: AppText.contactUsSoon,
                 style: ptSansTextStyle(
                     color: AppColors.black.withOpacity(0.8),
                     fontSize: h * 0.02,

@@ -107,7 +107,7 @@ class _MessageScreenState extends ConsumerState<MessageScreen> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(4),
                 child: Image.asset(
-                  AppImg.homelist,
+                  AppImg.homeList,
                   height: h * 0.05,
                   width: h * 0.05,
                   fit: BoxFit.cover,
@@ -127,7 +127,7 @@ class _MessageScreenState extends ConsumerState<MessageScreen> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
                     child: Image.asset(
-                      AppImg.homelist,
+                      AppImg.homeList,
                       height: h * 0.04,
                       width: h * 0.04,
                       fit: BoxFit.cover,
@@ -383,7 +383,7 @@ class _MessageScreenState extends ConsumerState<MessageScreen> {
                   containerwidth: w,
                   containerheight: h * 0.06,
                   containercolor: AppColors.white,
-                  bordercolor: null,
+                  borderColor: null,
                   onTap: () {},
                   onChanged: (value) {
                     setState(() {});

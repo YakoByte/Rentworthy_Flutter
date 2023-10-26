@@ -14,7 +14,6 @@ part 'post_ur_ad_controller.g.dart';
 
 @riverpod
 class PostUrAdsController extends _$PostUrAdsController {
-  TextEditingController itemnameController = TextEditingController();
   TextEditingController subcatController = TextEditingController();
   TextEditingController addtitleController = TextEditingController();
   TextEditingController descController = TextEditingController();
@@ -35,6 +34,7 @@ class PostUrAdsController extends _$PostUrAdsController {
   bool _issubmit = false;
 
   bool get isLoading => _isLoading;
+
   bool get issubmit => _issubmit;
 
   List<String> get catList => _catList;

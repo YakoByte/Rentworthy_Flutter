@@ -47,7 +47,7 @@ class TextInputField extends StatelessWidget {
   final double containerwidth;
   final double? containerheight;
   final Color? containercolor;
-  final Color? bordercolor;
+  final Color? borderColor;
 
   // Color? iconcolor;
   double? cursorHeight;
@@ -97,7 +97,7 @@ class TextInputField extends StatelessWidget {
     this.containerheight,
     // this.iconcolor,
     required this.containercolor,
-    this.bordercolor,
+    this.borderColor,
     this.titleText,
     this.suffixonTap,
     this.textstyle,
@@ -151,7 +151,7 @@ class TextInputField extends StatelessWidget {
                       ptSansTextStyle(
                           fontSize: height * 0.018,
                           fontWeight: FontWeight.w400,
-                          color: AppColors.textcolor1),
+                          color: AppColors.textColor1),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -275,22 +275,22 @@ class TextInputField extends StatelessWidget {
                                   enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                           color: enableunderlinecolor ??
-                                              AppColors.bordercolor,
+                                              AppColors.borderColor,
                                           width: 1)),
                                   disabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                           color: disableunderlinecolor ??
-                                              AppColors.bordercolor,
+                                              AppColors.borderColor,
                                           width: 1)),
                                   focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                           color: focusunderlinecolor ??
-                                              AppColors.bordercolor,
+                                              AppColors.borderColor,
                                           width: 1)),
                                   border: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                           color: underlinecolor ??
-                                              AppColors.bordercolor,
+                                              AppColors.borderColor,
                                           width: 1)),
                                   counterText: counterText ?? "",
                                   isDense: true,
@@ -361,12 +361,12 @@ class TextInputField extends StatelessWidget {
                                     enabledBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
                                             color: enableunderlinecolor ??
-                                                AppColors.bordercolor,
+                                                AppColors.borderColor,
                                             width: 1)),
                                     disabledBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
                                             color: disableunderlinecolor ??
-                                                AppColors.bordercolor,
+                                                AppColors.borderColor,
                                             width: 1)),
                                     focusedBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
@@ -376,7 +376,7 @@ class TextInputField extends StatelessWidget {
                                     border: UnderlineInputBorder(
                                         borderSide: BorderSide(
                                             color: underlinecolor ??
-                                                AppColors.bordercolor,
+                                                AppColors.borderColor,
                                             width: 1)),
                                     counterText: counterText ?? "",
                                     isDense: true,

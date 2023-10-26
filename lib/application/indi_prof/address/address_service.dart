@@ -7,16 +7,16 @@ import '../../../model/indi_prof/address/get_product.dart';
 abstract class AddressService {
   Future<GetAddress?> getAddressData();
 
-  Future<Map<String, dynamic>?> getuserinformation();
+  Future<Map<String, dynamic>?> getUserInformation();
 
-  Future<ProductData?> updateuserinformation(
+  Future<ProductData?> updateUserInformation(
       {required String id,
       required String title,
       required String description,
       required String brand,
       required String category});
 
-  Future<ProductData?> deleteuserinformation({required String id});
+  Future<ProductData?> deleteUserInformation({required String id});
 }
 
 class AddressServiceV1 implements AddressService {
@@ -31,18 +31,19 @@ class AddressServiceV1 implements AddressService {
     return await addressRepository.getAddressData();
   }
 
-  Future<Map<String, dynamic>?> getuserinformation() async {
-    return await addressRepository.getuserinformation();
+  @override
+  Future<Map<String, dynamic>?> getUserInformation() async {
+    return await addressRepository.getUserInformation();
   }
 
   @override
-  Future<ProductData?> updateuserinformation(
+  Future<ProductData?> updateUserInformation(
       {required String id,
       required String title,
       required String description,
       required String brand,
       required String category}) async {
-    return await addressRepository.updateuserinformation(
+    return await addressRepository.updateUserInformation(
         id: id,
         title: title,
         description: description,
@@ -50,8 +51,9 @@ class AddressServiceV1 implements AddressService {
         category: category);
   }
 
-  Future<ProductData?> deleteuserinformation({required String id}) async {
-    return await addressRepository.deleteuserinformation(id: id);
+  @override
+  Future<ProductData?> deleteUserInformation({required String id}) async {
+    return await addressRepository.deleteUserInformation(id: id);
   }
 }
 

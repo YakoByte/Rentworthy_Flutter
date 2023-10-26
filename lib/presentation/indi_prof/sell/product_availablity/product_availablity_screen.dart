@@ -34,7 +34,7 @@ class ProductAvailabliity extends ConsumerWidget {
           centerTitle: false,
           leadingicon: true,
           centerwidget: CommonText(
-              text: AppText.productaval,
+              text: AppText.productAval,
               style: ptSansTextStyle(
                   color: AppColors.black,
                   fontSize: h * 0.025,
@@ -72,7 +72,7 @@ class ProductAvailabliity extends ConsumerWidget {
                                     fontWeight: FontWeight.w800),
                                 subimg: false,
                                 preimg: true,
-                                preimgname: AppImg.editnote,
+                                preimgname: AppImg.editNote,
                                 preiconsize: h * 0.035,
                               ),
                             ],

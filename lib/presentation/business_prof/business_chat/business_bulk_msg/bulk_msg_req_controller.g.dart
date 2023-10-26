@@ -7,7 +7,7 @@ part of 'bulk_msg_req_controller.dart';
 // **************************************************************************
 
 String _$bulkMsgReqControllerHash() =>
-    r'ff44a0c0829e5ebe57ca143a7f5c6256e8056456';
+    r'ff20f0945344ce1ed0afb770ac1c5c9281fb354e';
 
 /// See also [BulkMsgReqController].
 @ProviderFor(BulkMsgReqController)

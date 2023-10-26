@@ -4,7 +4,6 @@ import '../../../data/indi_prof/review/review_repo.dart';
 import '../../../model/indi_prof/review/get_review/get_review.dart';
 
 abstract class ReviewService {
-  @override
   Future<GetReview?> getReviewData();
 }
 

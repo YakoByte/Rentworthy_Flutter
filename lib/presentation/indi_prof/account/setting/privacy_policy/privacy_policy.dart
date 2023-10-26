@@ -36,7 +36,7 @@ class PrivacyPolicy extends ConsumerWidget {
                 fontSize: w * 0.05,
                 color: AppColors.black.withOpacity(0.8),
                 fontWeight: FontWeight.w700),
-            text: AppText.privacypolcy,
+            text: AppText.privacyPolicyShort,
           ),
         ),
       ),
@@ -47,7 +47,7 @@ class PrivacyPolicy extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset(
-                AppImg.privacypolicy,
+                AppImg.privacyPolicy,
                 height: h * 0.4,
                 width: w,
                 fit: BoxFit.contain,

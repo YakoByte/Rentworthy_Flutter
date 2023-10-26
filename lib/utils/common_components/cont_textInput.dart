@@ -36,7 +36,7 @@ class ContTextInputField extends StatelessWidget {
 
   // Color? iconcolor;
   Color? containercolor;
-  Color? bordercolor;
+  Color? borderColor;
   TextStyle textstyle;
   TextStyle titletextstyle;
   TextStyle hintStyle;
@@ -70,7 +70,7 @@ class ContTextInputField extends StatelessWidget {
     this.containerheight,
     // this.iconcolor,
     required this.containercolor,
-    this.bordercolor,
+    this.borderColor,
     this.titleText,
     required this.textstyle,
     required this.titletextstyle,

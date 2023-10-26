@@ -7,7 +7,7 @@ part of 'category_details_screen_controller.dart';
 // **************************************************************************
 
 String _$categoryDetailsControllerHash() =>
-    r'cea1a9300224a352793e6626d07013d2e34acb82';
+    r'eafd22544448cb6576a806ce3de0a8bdd7a31d5f';
 
 /// See also [CategoryDetailsController].
 @ProviderFor(CategoryDetailsController)

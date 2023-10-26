@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:cookie_jar/cookie_jar.dart';
 
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:rentworthy/utils/color.dart';
@@ -25,7 +24,7 @@ class ApiClient {
     );
 
     List<Cookie> results =
-        await cookieJar.loadForRequest(Uri.parse(ApiConfig.mainurl));
+        await cookieJar.loadForRequest(Uri.parse(ApiConfig.mainUrl));
     log("sfgsgfs ${results[0].toString().split("=")[1].split(";")[0]}");
     sessionId(results[0].toString().split("=")[1].split(";")[0]);
   }
@@ -78,9 +77,9 @@ class ApiClient {
             .add(Cookie(cookies[0].split("=")[0], cookies[0].split("=")[1]));
         log("savedCookies ${savedCookies[0]}");
         await cookieJar.saveFromResponse(
-            Uri.parse(ApiConfig.mainurl), savedCookies);
+            Uri.parse(ApiConfig.mainUrl), savedCookies);
 
-        log('Load Cookie ${await cookieJar.loadForRequest(Uri.parse(ApiConfig.mainurl))}');
+        log('Load Cookie ${await cookieJar.loadForRequest(Uri.parse(ApiConfig.mainUrl))}');
       } else {
         log('Set-Cookie header not found in the response.');
       }

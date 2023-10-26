@@ -33,7 +33,7 @@ class BusinessSandReport extends ConsumerWidget {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: Globals.sandRkey,
+      key: Globals.sandRepKey,
       backgroundColor: AppColors.white,
       drawer: AdminNavDrawer(
         selectedindex: 1,
@@ -56,15 +56,16 @@ class BusinessSandReport extends ConsumerWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: w * 0.035),
-                      child: BusinessSearch(adminscaffoldKey: Globals.sandRkey)
-                          .animate()
-                          .fadeIn(duration: 100.ms)
-                          .then(delay: 100.ms)
-                          .slideX(
-                              begin: 1,
-                              end: 0,
-                              curve: Curves.easeInOutCubic,
-                              duration: 400.ms),
+                      child:
+                          BusinessSearch(adminscaffoldKey: Globals.sandRepKey)
+                              .animate()
+                              .fadeIn(duration: 100.ms)
+                              .then(delay: 100.ms)
+                              .slideX(
+                                  begin: 1,
+                                  end: 0,
+                                  curve: Curves.easeInOutCubic,
+                                  duration: 400.ms),
                     ),
                     Container(
                       height: h * 0.89,
@@ -104,7 +105,7 @@ class BusinessSandReport extends ConsumerWidget {
                                                   top: Radius.circular(8),
                                                 ),
                                                 color: AppColors
-                                                    .colorSecondarydark
+                                                    .colorSecondaryDark
                                                     .withOpacity(0.3),
                                               ),
                                             ),
@@ -113,7 +114,7 @@ class BusinessSandReport extends ConsumerWidget {
                                             bottom: 0,
                                             left: h * 0.015,
                                             child: Image.asset(
-                                                AppImg.statisticcharacter,
+                                                AppImg.statisticCharacter,
                                                 height: h * 0.19,
                                                 width: w * 0.4),
                                           ),
@@ -126,8 +127,8 @@ class BusinessSandReport extends ConsumerWidget {
                                               isColExpanded: false,
                                               isExpanded: false,
                                               onTap: () {},
-                                              title: AppText.welcomeback,
-                                              subtitle: AppText.yourstatistics,
+                                              title: AppText.welcomeBack,
+                                              subtitle: AppText.yourStatistics,
                                               subtitleStyle: ptSansTextStyle(
                                                   fontSize: w * 0.06,
                                                   color: AppColors.black
@@ -202,7 +203,7 @@ class BusinessSandReport extends ConsumerWidget {
                                                     children: [
                                                       Image.asset(
                                                           AppImg
-                                                              .accountmultiple,
+                                                              .accountMultiple,
                                                           height: h * 0.025,
                                                           width: w * 0.1),
                                                       CommonText(
@@ -246,7 +247,7 @@ class BusinessSandReport extends ConsumerWidget {
                                                             .start,
                                                     children: [
                                                       Image.asset(
-                                                          AppImg.accountarrow,
+                                                          AppImg.accountArrow,
                                                           height: h * 0.025,
                                                           width: w * 0.1),
                                                       CommonText(
@@ -291,7 +292,7 @@ class BusinessSandReport extends ConsumerWidget {
                                                             .start,
                                                     children: [
                                                       Image.asset(
-                                                          AppImg.handcoin,
+                                                          AppImg.handCoin,
                                                           height: h * 0.025,
                                                           width: w * 0.1),
                                                       CommonText(
@@ -335,7 +336,7 @@ class BusinessSandReport extends ConsumerWidget {
                                                             .start,
                                                     children: [
                                                       Image.asset(
-                                                          AppImg.accountarrowup,
+                                                          AppImg.accountArrowUp,
                                                           height: h * 0.025,
                                                           width: w * 0.1),
                                                       CommonText(
@@ -422,7 +423,7 @@ class BusinessSandReport extends ConsumerWidget {
                                         child: CommonButton(
                                             containerwidth: w * 0.22,
                                             containerheight: h * 0.05,
-                                            backgroundColor: AppColors.starcolor
+                                            backgroundColor: AppColors.starColor
                                                 .withOpacity(0.6),
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
@@ -492,7 +493,7 @@ class BusinessSandReport extends ConsumerWidget {
                                   // ),
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: AppColors.lightback,
+                                      color: AppColors.lightBack,
                                       border: GradientBoxBorder(
                                           gradient: LinearGradient(colors: [
                                         AppColors.colorPrimary,
@@ -788,7 +789,7 @@ class BusinessSandReport extends ConsumerWidget {
                                 controller().onFavTap(index, 0);
                               },
                               isextended: false,
-                              title: AppText.featuredads,
+                              title: AppText.featuredAds,
                               isViewAll: false,
                               isCategory: false,
                               shrinkWrap: false,
@@ -822,7 +823,7 @@ class BusinessSandReport extends ConsumerWidget {
                                 onFavPressed: (index) {
                                   controller().onFavTap(index, 1);
                                 },
-                                title: AppText.nearbyads,
+                                title: AppText.nearByAds,
                                 isViewAll: true,
                                 isextended: false,
                                 isCategory: false,
@@ -869,7 +870,7 @@ class BusinessSandReport extends ConsumerWidget {
                                 isFavIcon: true,
                                 isFeature: false,
                                 isextended: false,
-                                title: AppText.popularads,
+                                title: AppText.popularAds,
                                 isViewAll: true,
                                 isTopPadding: false,
                                 type: 2,

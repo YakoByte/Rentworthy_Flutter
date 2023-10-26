@@ -16,10 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$OnBoardingScreenState {
-  List<OnBoardingitem>? get onBoardinglist =>
+  List<OnBoardingitem>? get onBoardingList =>
       throw _privateConstructorUsedError;
   PageController? get pageController => throw _privateConstructorUsedError;
-  int? get currentpageIndex => throw _privateConstructorUsedError;
+  int? get currentPageIndex => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OnBoardingScreenStateCopyWith<OnBoardingScreenState> get copyWith =>
@@ -33,9 +33,9 @@ abstract class $OnBoardingScreenStateCopyWith<$Res> {
       _$OnBoardingScreenStateCopyWithImpl<$Res, OnBoardingScreenState>;
   @useResult
   $Res call(
-      {List<OnBoardingitem>? onBoardinglist,
+      {List<OnBoardingitem>? onBoardingList,
       PageController? pageController,
-      int? currentpageIndex});
+      int? currentPageIndex});
 }
 
 /// @nodoc
@@ -52,22 +52,22 @@ class _$OnBoardingScreenStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? onBoardinglist = freezed,
+    Object? onBoardingList = freezed,
     Object? pageController = freezed,
-    Object? currentpageIndex = freezed,
+    Object? currentPageIndex = freezed,
   }) {
     return _then(_value.copyWith(
-      onBoardinglist: freezed == onBoardinglist
-          ? _value.onBoardinglist
-          : onBoardinglist // ignore: cast_nullable_to_non_nullable
+      onBoardingList: freezed == onBoardingList
+          ? _value.onBoardingList
+          : onBoardingList // ignore: cast_nullable_to_non_nullable
               as List<OnBoardingitem>?,
       pageController: freezed == pageController
           ? _value.pageController
           : pageController // ignore: cast_nullable_to_non_nullable
               as PageController?,
-      currentpageIndex: freezed == currentpageIndex
-          ? _value.currentpageIndex
-          : currentpageIndex // ignore: cast_nullable_to_non_nullable
+      currentPageIndex: freezed == currentPageIndex
+          ? _value.currentPageIndex
+          : currentPageIndex // ignore: cast_nullable_to_non_nullable
               as int?,
     ) as $Val);
   }
@@ -83,9 +83,9 @@ abstract class _$$OnBoardingScreenStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<OnBoardingitem>? onBoardinglist,
+      {List<OnBoardingitem>? onBoardingList,
       PageController? pageController,
-      int? currentpageIndex});
+      int? currentPageIndex});
 }
 
 /// @nodoc
@@ -100,22 +100,22 @@ class __$$OnBoardingScreenStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? onBoardinglist = freezed,
+    Object? onBoardingList = freezed,
     Object? pageController = freezed,
-    Object? currentpageIndex = freezed,
+    Object? currentPageIndex = freezed,
   }) {
     return _then(_$OnBoardingScreenStateImpl(
-      onBoardinglist: freezed == onBoardinglist
-          ? _value._onBoardinglist
-          : onBoardinglist // ignore: cast_nullable_to_non_nullable
+      onBoardingList: freezed == onBoardingList
+          ? _value._onBoardingList
+          : onBoardingList // ignore: cast_nullable_to_non_nullable
               as List<OnBoardingitem>?,
       pageController: freezed == pageController
           ? _value.pageController
           : pageController // ignore: cast_nullable_to_non_nullable
               as PageController?,
-      currentpageIndex: freezed == currentpageIndex
-          ? _value.currentpageIndex
-          : currentpageIndex // ignore: cast_nullable_to_non_nullable
+      currentPageIndex: freezed == currentPageIndex
+          ? _value.currentPageIndex
+          : currentPageIndex // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -125,18 +125,18 @@ class __$$OnBoardingScreenStateImplCopyWithImpl<$Res>
 
 class _$OnBoardingScreenStateImpl extends _OnBoardingScreenState {
   const _$OnBoardingScreenStateImpl(
-      {required final List<OnBoardingitem>? onBoardinglist,
+      {required final List<OnBoardingitem>? onBoardingList,
       required this.pageController,
-      required this.currentpageIndex})
-      : _onBoardinglist = onBoardinglist,
+      required this.currentPageIndex})
+      : _onBoardingList = onBoardingList,
         super._();
 
-  final List<OnBoardingitem>? _onBoardinglist;
+  final List<OnBoardingitem>? _onBoardingList;
   @override
-  List<OnBoardingitem>? get onBoardinglist {
-    final value = _onBoardinglist;
+  List<OnBoardingitem>? get onBoardingList {
+    final value = _onBoardingList;
     if (value == null) return null;
-    if (_onBoardinglist is EqualUnmodifiableListView) return _onBoardinglist;
+    if (_onBoardingList is EqualUnmodifiableListView) return _onBoardingList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -144,11 +144,11 @@ class _$OnBoardingScreenStateImpl extends _OnBoardingScreenState {
   @override
   final PageController? pageController;
   @override
-  final int? currentpageIndex;
+  final int? currentPageIndex;
 
   @override
   String toString() {
-    return 'OnBoardingScreenState(onBoardinglist: $onBoardinglist, pageController: $pageController, currentpageIndex: $currentpageIndex)';
+    return 'OnBoardingScreenState(onBoardingList: $onBoardingList, pageController: $pageController, currentPageIndex: $currentPageIndex)';
   }
 
   @override
@@ -157,19 +157,19 @@ class _$OnBoardingScreenStateImpl extends _OnBoardingScreenState {
         (other.runtimeType == runtimeType &&
             other is _$OnBoardingScreenStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._onBoardinglist, _onBoardinglist) &&
+                .equals(other._onBoardingList, _onBoardingList) &&
             (identical(other.pageController, pageController) ||
                 other.pageController == pageController) &&
-            (identical(other.currentpageIndex, currentpageIndex) ||
-                other.currentpageIndex == currentpageIndex));
+            (identical(other.currentPageIndex, currentPageIndex) ||
+                other.currentPageIndex == currentPageIndex));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_onBoardinglist),
+      const DeepCollectionEquality().hash(_onBoardingList),
       pageController,
-      currentpageIndex);
+      currentPageIndex);
 
   @JsonKey(ignore: true)
   @override
@@ -181,17 +181,17 @@ class _$OnBoardingScreenStateImpl extends _OnBoardingScreenState {
 
 abstract class _OnBoardingScreenState extends OnBoardingScreenState {
   const factory _OnBoardingScreenState(
-      {required final List<OnBoardingitem>? onBoardinglist,
+      {required final List<OnBoardingitem>? onBoardingList,
       required final PageController? pageController,
-      required final int? currentpageIndex}) = _$OnBoardingScreenStateImpl;
+      required final int? currentPageIndex}) = _$OnBoardingScreenStateImpl;
   const _OnBoardingScreenState._() : super._();
 
   @override
-  List<OnBoardingitem>? get onBoardinglist;
+  List<OnBoardingitem>? get onBoardingList;
   @override
   PageController? get pageController;
   @override
-  int? get currentpageIndex;
+  int? get currentPageIndex;
   @override
   @JsonKey(ignore: true)
   _$$OnBoardingScreenStateImplCopyWith<_$OnBoardingScreenStateImpl>

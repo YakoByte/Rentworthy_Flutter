@@ -14,7 +14,7 @@ class DetectOtpShimmer extends ConsumerWidget {
     final w = MediaQuery.of(context).size.width;
 
     return Shimmer.fromColors(
-      baseColor: AppColors.shimmergrey,
+      baseColor: AppColors.shimmerGrey,
       highlightColor: AppColors.white,
       enabled: true,
       child: Padding(

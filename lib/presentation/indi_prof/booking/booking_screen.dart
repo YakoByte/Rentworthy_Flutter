@@ -187,7 +187,7 @@ class BookingScreen extends ConsumerWidget {
                                                 borderRadius:
                                                     BorderRadius.circular(1000),
                                                 child: Image.asset(
-                                                  AppImg.homelist,
+                                                  AppImg.homeList,
                                                   height: h * 0.035,
                                                   width: h * 0.035,
                                                   fit: BoxFit.cover,
@@ -369,7 +369,7 @@ class BookingScreen extends ConsumerWidget {
                                     ),
                                   ),
                                   onChangedsearch: (str) {
-                                    print("sdfs $str");
+                                    debugPrint("sdfs $str");
                                     controller().onchangefilter(str!);
                                   },
                                   enabled: true,
@@ -506,7 +506,7 @@ class BookingScreen extends ConsumerWidget {
                                     ),
                                   ),
                                   onChangedsearch: (str) {
-                                    print("sdfs $str");
+                                    debugPrint("sdfs $str");
                                     controller().onchangesorting(str);
                                   },
                                   enabled: true,

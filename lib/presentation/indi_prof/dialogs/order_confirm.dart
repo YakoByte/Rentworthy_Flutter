@@ -37,19 +37,19 @@ class OrderConfirmAlertDialog extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(AppImg.confirmorder,
+            Image.asset(AppImg.confirmOrder,
                 height: h * 0.3, width: w * 0.6, fit: BoxFit.cover),
             Padding(
               padding: EdgeInsets.symmetric(vertical: h * 0.01),
               child: CommonText(
-                  text: AppText.orderconfirm,
+                  text: AppText.orderConfirm,
                   style: ptSansTextStyle(
                       color: AppColors.black.withOpacity(0.8),
                       fontSize: h * 0.022,
                       fontWeight: FontWeight.w600)),
             ),
             CommonText(
-                text: AppText.thanksfororder,
+                text: AppText.thanksForOrder,
                 style: ptSansTextStyle(
                     color: AppColors.black.withOpacity(0.8),
                     fontSize: h * 0.02,

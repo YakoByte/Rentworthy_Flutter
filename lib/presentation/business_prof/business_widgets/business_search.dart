@@ -48,7 +48,7 @@ class BusinessSearch extends ConsumerWidget {
             containercolor: AppColors.black.withOpacity(0.1),
             borderRadius: BorderRadius.circular(10),
             suffixicon: SizedBox(),
-            bordercolor: AppColors.black.withOpacity(0.1),
+            borderColor: AppColors.black.withOpacity(0.1),
             searchController: controller().searchController,
             onsearchChanged: (str) {
               controller()
@@ -65,7 +65,7 @@ class BusinessSearch extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset(
-                    AppImg.bell_outline,
+                    AppImg.bellOutline,
                     height: h * 0.03,
                     width: h * 0.03,
                   ),

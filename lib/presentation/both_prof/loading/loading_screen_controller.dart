@@ -103,27 +103,6 @@ class LoadingScreenController extends _$LoadingScreenController {
                     (Route<dynamic> route) => false);
                 break;
             }
-
-            // print("Loading Screen");
-            // Navigator.pushAndRemoveUntil(
-            //     Globals.navigatorKey.currentContext!,
-            //     PageTransition(
-            //         child: onBoard == true
-            //             ? const RegisterScreen()
-            //             : const OnBoardingScreen(),
-            //         type: PageTransitionType.fade,
-            //         duration: const Duration(milliseconds: 400)),
-            //     (Route<dynamic> route) => false);
-            // } else {
-            //   print("Loading Screen1");
-            //   Navigator.pushAndRemoveUntil(
-            //       Globals.navigatorKey.currentContext!,
-            //       PageTransition(
-            //           child: const OnBoardingScreen(),
-            //           type: PageTransitionType.rightToLeftWithFade,
-            //           duration: const Duration(milliseconds: 400)),
-            //       (Route<dynamic> route) => false);
-            // }
           });
         });
       });

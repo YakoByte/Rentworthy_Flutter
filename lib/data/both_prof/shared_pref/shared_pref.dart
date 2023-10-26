@@ -2,8 +2,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferenceManagerUtils {
   static String isLogin = "is_login";
-  static String isonboarding = "is_onboarding";
-  static String isindividual = "is_individual";
+  static String isOnBoarding = "is_onBoarding";
+  static String isIndividual = "is_individual";
   static String userId = "userId";
   static String token = "Token";
   static String email = "Email";
@@ -23,23 +23,23 @@ class PreferenceManagerUtils {
   ///setIsIndividual
   static Future setIsIndividual(int value) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(isindividual, value);
+    await prefs.setInt(isIndividual, value);
   }
 
   static Future<int?> getIsIndividual() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getInt(isindividual);
+    return prefs.getInt(isIndividual);
   }
 
   ///setIsOnboarding
   static Future setIsOnboarding(bool value) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(isonboarding, value);
+    await prefs.setBool(isOnBoarding, value);
   }
 
   static Future<bool?> getIsOnboarding() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(isonboarding);
+    return prefs.getBool(isOnBoarding);
   }
 
   ///setUserId

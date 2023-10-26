@@ -7,7 +7,7 @@ part of 'track_item_screen_controller.dart';
 // **************************************************************************
 
 String _$trackItemControllerHash() =>
-    r'510a70969212965f995784bfd7d54d07a1a8b5b1';
+    r'9f5115adba2ef24c7149e298e3cf8592a30dbae0';
 
 /// See also [TrackItemController].
 @ProviderFor(TrackItemController)

@@ -26,16 +26,17 @@ class HomeSearch extends ConsumerWidget {
     final w = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: w * 0.05),
-      child: Container(
+      child: SizedBox(
         height: h * 0.3,
         width: w,
         child: Stack(
           children: [
+            ///Gradient container
             Container(
               height: h * 0.25,
               width: w,
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                       colors: [
@@ -49,19 +50,20 @@ class HomeSearch extends ConsumerWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
+                    ///Text
+                    SizedBox(
                       width: w * 0.4,
                       child: RichText(
                         textAlign: TextAlign.start,
                         text: TextSpan(
-                          text: AppText.letsstart,
+                          text: AppText.letsStart,
                           style: ptSansTextStyle(
                               color: AppColors.white,
                               fontSize: h * 0.026,
                               fontWeight: FontWeight.w400),
                           children: <TextSpan>[
                             TextSpan(
-                                text: AppText.outofthings,
+                                text: AppText.outOfThings,
                                 style: ptSansTextStyle(
                                     color: AppColors.yellow,
                                     fontSize: h * 0.026,
@@ -70,7 +72,9 @@ class HomeSearch extends ConsumerWidget {
                         ),
                       ),
                     ),
-                    Image.asset(AppImg.homeimg,
+
+                    ///Image
+                    Image.asset(AppImg.homeImg,
                         height: h * 0.25, width: w * 0.45)
                   ],
                 ),
@@ -85,6 +89,7 @@ class HomeSearch extends ConsumerWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  ///Search bar
                   Card(
                     elevation: 3,
                     color: AppColors.transparent,
@@ -108,15 +113,18 @@ class HomeSearch extends ConsumerWidget {
                               onPressed: () {
                                 if (controller().speechRecognitionAvailable &&
                                     !controller().isListening) {
-                                  print(
+                                  debugPrint(
                                       "ssdsdpeechRecognitionAvailable ${controller().speechRecognitionAvailable}");
-                                  print(
+                                  debugPrint(
                                       "isListeningisListening ${controller().isListening}");
+
+                                  ///start listening
                                   controller().start();
                                 }
                               })
                           : GestureDetector(
                               onTap: () {
+                                ///stop listening
                                 controller().stop();
                               },
                               child: CustomPaint(
@@ -160,6 +168,7 @@ class HomeSearch extends ConsumerWidget {
   }
 }
 
+/// mic animation
 class CirclePainter extends CustomPainter {
   CirclePainter(
     this._animation, {

@@ -7,24 +7,15 @@ part 'business_all_controller.g.dart';
 
 @riverpod
 class BusinessAllController extends _$BusinessAllController {
-  bool _isbusinessreg = false;
-
   late TabController tabController;
   List<AnimationController>? animatecontrollerlist = [];
 
-  bool get isbusinessreg => _isbusinessreg;
-  bool _iseyehide = false;
   int _selectedTab = 0;
+
+  int get selectedtab => _selectedTab;
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
-
-  int get selectedtab => _selectedTab;
-
-  bool get iseyehide => _iseyehide;
-  bool _issignin = false;
-
-  bool get issignin => _issignin;
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();

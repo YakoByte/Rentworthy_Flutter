@@ -63,20 +63,20 @@ class _BusinessAddAnotherAccState extends ConsumerState<BusinessAddAnotherAcc> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Image.asset(
-                          AppImg.appicon,
+                          AppImg.appIcon,
                           height: h * 0.07,
                           width: w,
                           fit: BoxFit.contain,
                         ),
                         CommonText(
-                            text: AppText.enterphone,
+                            text: AppText.enterPhone,
                             style: ptSansTextStyle(
                               color: AppColors.black,
                               fontSize: h * 0.028,
                               fontWeight: FontWeight.w500,
                             )),
                         CommonText(
-                            text: AppText.wesendotp,
+                            text: AppText.weSendOtp,
                             textAlign: TextAlign.center,
                             style: ptSansTextStyle(
                               color: AppColors.black.withOpacity(0.4),

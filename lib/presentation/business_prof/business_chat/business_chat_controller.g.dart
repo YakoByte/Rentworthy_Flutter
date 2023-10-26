@@ -7,7 +7,7 @@ part of 'business_chat_controller.dart';
 // **************************************************************************
 
 String _$businessChatControllerHash() =>
-    r'bedf16daeb3f4df7265e65acaeb88bda6647e5ab';
+    r'755c1ae36b9603ee6963884fc3e445285a1f49ac';
 
 /// See also [BusinessChatController].
 @ProviderFor(BusinessChatController)

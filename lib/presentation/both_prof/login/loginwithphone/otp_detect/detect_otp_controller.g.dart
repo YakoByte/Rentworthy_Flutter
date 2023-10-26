@@ -7,7 +7,7 @@ part of 'detect_otp_controller.dart';
 // **************************************************************************
 
 String _$detectOtpControllerHash() =>
-    r'abf588e22e5a80646118e927a847f09b3ed74afb';
+    r'f205ed93a692449e05e2c01d7f3b11bd02aeb742';
 
 /// See also [DetectOtpController].
 @ProviderFor(DetectOtpController)

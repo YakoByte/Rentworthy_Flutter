@@ -18,75 +18,33 @@ class CategoryDetailsController extends _$CategoryDetailsController {
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
-  final List<String> _locationList = [
-    'Wagle state',
-    'Mumbra',
-    'Mulund',
-    'Dadar',
-    'Mahim',
-  ];
-  List<bool>? featureadfavlist;
+
   DateRangePickerController _pickerController = DateRangePickerController();
 
   DateRangePickerController get pickerController => _pickerController;
 
-  List<bool> get getfeatureadfavlist => featureadfavlist!;
-
-  List<bool>? nearbyadfavlist;
-
-  List<bool> get getnearbyadfavlist => nearbyadfavlist!;
-  List<bool>? popularfavlist;
-
-  List<bool> get getpopularfavlist => popularfavlist!;
-
-  List<String> get locationList => _locationList;
-
   CarouselController carouselController = CarouselController();
-  PageController pageController = PageController();
   List<PopupMenuItem> _popupitemList = [];
 
   List<PopupMenuItem> get popupitemList => _popupitemList;
   final List<String> _imgList = [
     AppImg.movie,
     AppImg.party,
-    AppImg.homeoutdoor,
+    AppImg.homeOutDoor,
     AppImg.electronics,
     AppImg.star,
     AppImg.guitar,
     AppImg.cleaner,
     AppImg.clothing,
     AppImg.setting,
-    AppImg.newtag,
+    AppImg.newTag,
   ];
 
   List<String> get imgList => _imgList;
-  final List<String> _nameList = [
-    AppText.film,
-    AppText.partyevents,
-    AppText.homeoutdoor,
-    AppText.electronics,
-    AppText.toprent,
-    AppText.music,
-    AppText.cleaning,
-    AppText.clothing,
-    AppText.heavymachine,
-    AppText.newmarket,
-  ];
 
-  List<String> get nameList => _nameList;
-  String? _selectedLocation;
-
-  String? get selectedLocation => _selectedLocation;
-  TextEditingController searchController = TextEditingController();
-  List<String> searchitems = [];
   int currentpageIndex = 0;
 
   int get getcurrentPageIndex => currentpageIndex;
-
-  List<String> get getsearchitems => searchitems;
-  int _selectedreason = 0;
-
-  int get selectedreason => _selectedreason;
 
   @override
   FutureOr<void> build() async {
@@ -101,7 +59,7 @@ class CategoryDetailsController extends _$CategoryDetailsController {
         value: 1,
         child: IconText(
           isCenter: false,
-          title: AppText.addtofavorite,
+          title: AppText.addToFavorite,
           textStyle: ptSansTextStyle(
               fontSize: w * 0.035,
               overflow: TextOverflow.ellipsis,
@@ -137,11 +95,11 @@ class CategoryDetailsController extends _$CategoryDetailsController {
       PopupMenuItem(
         value: 3,
         onTap: () {
-          ref.read(dialogServiceProvider).reportimgtitledialog();
+          ref.read(dialogServiceProvider).reportImgTitleDialog();
         },
         child: IconText(
           isCenter: false,
-          title: AppText.reportthisad,
+          title: AppText.reportThisAd,
           textStyle: ptSansTextStyle(
               fontSize: w * 0.035,
               overflow: TextOverflow.ellipsis,
@@ -155,67 +113,16 @@ class CategoryDetailsController extends _$CategoryDetailsController {
         ),
       ),
     ];
-    _selectedLocation = _locationList[0];
-    popularfavlist = List.generate(_imgList.length, (index) => false);
-    featureadfavlist = List.generate(_imgList.length, (index) => false);
-    nearbyadfavlist = List.generate(_imgList.length, (index) => false);
     Future.delayed(const Duration(seconds: 1), () {
       _isLoading = false;
       state = const AsyncValue.data(null);
     });
   }
 
-  onFavTap(int index, int type) {
-    state = const AsyncLoading();
-    if (type == 0) {
-      if (featureadfavlist![index] == true) {
-        featureadfavlist![index] = false;
-      } else {
-        featureadfavlist![index] = true;
-      }
-    } else if (type == 1) {
-      if (nearbyadfavlist![index] == true) {
-        nearbyadfavlist![index] = false;
-      } else {
-        nearbyadfavlist![index] = true;
-      }
-    } else if (type == 2) {
-      if (popularfavlist![index] == true) {
-        popularfavlist![index] = false;
-      } else {
-        popularfavlist![index] = true;
-      }
-    }
-
-    state = const AsyncValue.data(null);
-  }
-
-  onReasonval(
-    val,
-  ) {
-    state = const AsyncLoading();
-    _selectedreason = val;
-    state = const AsyncValue.data(null);
-  }
-
+  /// This function is used to change the current page index of the carousel
   onPageChanged(int index) async {
     state = const AsyncLoading();
     currentpageIndex = index;
-    state = const AsyncValue.data(null);
-  }
-
-  void filterSearchResults(String query) {
-    state = const AsyncLoading();
-    // searchitems = carlist
-    //     .where((item) => item.toLowerCase().contains(query.toLowerCase()))
-    //     .toList();
-    print("searchitems $searchitems");
-    state = const AsyncValue.data(null);
-  }
-
-  onValSelect({required String val}) async {
-    state = const AsyncLoading();
-    _selectedLocation = val;
     state = const AsyncValue.data(null);
   }
 }

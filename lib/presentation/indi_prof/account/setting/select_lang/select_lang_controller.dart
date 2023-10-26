@@ -12,6 +12,7 @@ class SelectLanController extends _$SelectLanController {
   @override
   FutureOr<void> build() async {}
 
+  /// Language selection
   onlangTap({required bool val}) async {
     state = const AsyncLoading();
 

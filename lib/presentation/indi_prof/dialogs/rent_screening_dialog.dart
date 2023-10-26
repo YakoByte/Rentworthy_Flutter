@@ -59,7 +59,7 @@ class _RentScreeningDialogState extends ConsumerState<RentScreeningDialog> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CommonText(
-                      text: AppText.prerent,
+                      text: AppText.preRent,
                       style: ptSansTextStyle(
                           color: AppColors.black.withOpacity(0.8),
                           fontSize: h * 0.022,
@@ -77,7 +77,7 @@ class _RentScreeningDialogState extends ConsumerState<RentScreeningDialog> {
               Padding(
                 padding: EdgeInsets.only(top: h * 0.01),
                 child: CommonText(
-                    text: AppText.verifystatus,
+                    text: AppText.verifyStatus,
                     style: ptSansTextStyle(
                         foreground: Paint()
                           ..shader = const LinearGradient(
@@ -100,7 +100,7 @@ class _RentScreeningDialogState extends ConsumerState<RentScreeningDialog> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CommonText(
-                      text: AppText.cosmeticissue,
+                      text: AppText.cosmeticIssue,
                       style: ptSansTextStyle(
                           color: AppColors.black.withOpacity(0.8),
                           fontSize: h * 0.022,
@@ -162,8 +162,8 @@ class _RentScreeningDialogState extends ConsumerState<RentScreeningDialog> {
                     ],
                   ),
                   TextInputField(
-                      hintText: AppText.aestheticprob,
-                      lableText: AppText.aestheticprob,
+                      hintText: AppText.aestheticProb,
+                      lableText: AppText.aestheticProb,
                       maxLength: 60,
                       isCounter: true,
                       onChanged: (value) {
@@ -204,14 +204,14 @@ class _RentScreeningDialogState extends ConsumerState<RentScreeningDialog> {
                   Row(
                     children: [
                       IconText(
-                        title: AppText.uploadimg,
+                        title: AppText.uploadImg,
                         textStyle: ptSansTextStyle(
                             color: AppColors.black.withOpacity(0.8),
                             fontSize: h * 0.019,
                             fontWeight: FontWeight.w600),
                         subimg: false,
                         preimg: true,
-                        preimgname: AppImg.uploadimg,
+                        preimgname: AppImg.uploadImg,
                         preiconsize: h * 0.025,
                       ),
                     ],
@@ -223,7 +223,7 @@ class _RentScreeningDialogState extends ConsumerState<RentScreeningDialog> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CommonText(
-                      text: AppText.itemwork,
+                      text: AppText.itemWork,
                       style: ptSansTextStyle(
                           color: AppColors.black.withOpacity(0.8),
                           fontSize: h * 0.022,
@@ -284,8 +284,8 @@ class _RentScreeningDialogState extends ConsumerState<RentScreeningDialog> {
                     ],
                   ),
                   TextInputField(
-                      hintText: AppText.whatsprob,
-                      lableText: AppText.whatsprob,
+                      hintText: AppText.whatsProb,
+                      lableText: AppText.whatsProb,
                       maxLength: 60,
                       isCounter: true,
                       onChanged: (value) {
@@ -326,14 +326,14 @@ class _RentScreeningDialogState extends ConsumerState<RentScreeningDialog> {
                   Row(
                     children: [
                       IconText(
-                        title: AppText.uploadimg,
+                        title: AppText.uploadImg,
                         textStyle: ptSansTextStyle(
                             color: AppColors.black.withOpacity(0.8),
                             fontSize: h * 0.019,
                             fontWeight: FontWeight.w600),
                         subimg: false,
                         preimg: true,
-                        preimgname: AppImg.uploadimg,
+                        preimgname: AppImg.uploadImg,
                         preiconsize: h * 0.025,
                       ),
                     ],
@@ -345,7 +345,7 @@ class _RentScreeningDialogState extends ConsumerState<RentScreeningDialog> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CommonText(
-                      text: AppText.missingpart,
+                      text: AppText.missingPart,
                       style: ptSansTextStyle(
                           color: AppColors.black.withOpacity(0.8),
                           fontSize: h * 0.022,
@@ -406,8 +406,8 @@ class _RentScreeningDialogState extends ConsumerState<RentScreeningDialog> {
                     ],
                   ),
                   TextInputField(
-                      hintText: AppText.whatmissingpart,
-                      lableText: AppText.whatmissingpart,
+                      hintText: AppText.whatMissingPart,
+                      lableText: AppText.whatMissingPart,
                       maxLength: 60,
                       isCounter: true,
                       onChanged: (value) {
@@ -448,14 +448,14 @@ class _RentScreeningDialogState extends ConsumerState<RentScreeningDialog> {
                   Row(
                     children: [
                       IconText(
-                        title: AppText.uploadimg,
+                        title: AppText.uploadImg,
                         textStyle: ptSansTextStyle(
                             color: AppColors.black.withOpacity(0.8),
                             fontSize: h * 0.019,
                             fontWeight: FontWeight.w600),
                         subimg: false,
                         preimg: true,
-                        preimgname: AppImg.uploadimg,
+                        preimgname: AppImg.uploadImg,
                         preiconsize: h * 0.025,
                       ),
                     ],

@@ -407,7 +407,7 @@ class _MonthViewState extends State<MonthView> {
     switch (widget.selectionMode) {
       case DateRangePickerSelectionMode.single:
         {
-          print(
+          debugPrint(
               'grtgrt ${widget.startRangeSelectionColor} ${widget.endRangeSelectionColor}');
           return _MonthViewSingleSelectionRenderWidget(
               widget.visibleDates,
@@ -490,7 +490,7 @@ class _MonthViewState extends State<MonthView> {
               widgets: _children);
         }
       case DateRangePickerSelectionMode.range:
-        print(
+        debugPrint(
             'sdfsdf ${widget.startRangeSelectionColor} ${widget.endRangeSelectionColor}');
         return _MonthViewRangeSelectionRenderWidget(
             widget.visibleDates,
@@ -1131,7 +1131,7 @@ class _MonthViewRangeSelectionRenderWidget
   @override
   _MonthViewRangeSelectionRenderObject createRenderObject(
       BuildContext context) {
-    print(
+    debugPrint(
         'sdsdsdsdfvcbfsdf ${startRangeSelectionColor} ${endRangeSelectionColor}');
 
     return _MonthViewRangeSelectionRenderObject(
@@ -3832,7 +3832,7 @@ void _drawStartAndEndRange(
       break;
     case DateRangePickerSelectionShape.rectangle:
       {
-        print("object");
+        debugPrint("object");
         view._selectionPainter.isAntiAlias = true;
         view._selectionPainter.color = color;
 
@@ -3864,7 +3864,7 @@ TextStyle _drawBetweenSelection(
     case DateRangePickerSelectionShape.circle:
       break;
   }
-  print("object1");
+  debugPrint("object1");
 
   view._selectionPainter.color =
       view.rangeSelectionColor ?? view.datePickerTheme.rangeSelectionColor!;
@@ -4034,7 +4034,7 @@ void _drawRectRangeSelection(Canvas canvas, double left, double top,
     double right, double bottom, Paint selectionPainter) {
   Paint selectionPainter1 = Paint();
   selectionPainter.color = AppColors.transparent;
-  selectionPainter1.color = AppColors.dotcolor.withOpacity(0.4);
+  selectionPainter1.color = AppColors.dotColor.withOpacity(0.4);
   canvas.drawRect(Rect.fromLTRB(left, top, right, bottom), selectionPainter1);
 }
 

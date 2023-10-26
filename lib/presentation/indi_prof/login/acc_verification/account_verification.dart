@@ -41,7 +41,7 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
               centerTitle: false,
               leadingicon: true,
               centerwidget: CommonText(
-                  text: AppText.signin,
+                  text: AppText.signIn,
                   style: ptSansTextStyle(
                       color: AppColors.black,
                       fontSize: h * 0.025,
@@ -85,7 +85,7 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
                                   RichText(
                                     textAlign: TextAlign.start,
                                     text: TextSpan(
-                                      text: AppText.sentotp,
+                                      text: AppText.sentOtp,
                                       style: ptSansTextStyle(
                                           color:
                                               AppColors.black.withOpacity(0.4),
@@ -110,7 +110,7 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
                                         height: h * 0.03,
                                         width: w * 0.05,
                                         child: Image.asset(
-                                          AppImg.editoutline,
+                                          AppImg.editOutline,
                                           height: h * 0.025,
                                           width: w * 0.045,
                                         )),
@@ -119,7 +119,7 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
                               ),
 
                               /// otp detect
-                              ///
+
                               Padding(
                                 padding: EdgeInsets.only(
                                     top: h * 0.05, bottom: h * 0.03),
@@ -151,7 +151,7 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
                                 ),
                               ),
                               CommonText(
-                                  text: AppText.reqnewcode,
+                                  text: AppText.reqNewCode,
                                   style: ptSansTextStyle(
                                       color: AppColors.black.withOpacity(0.8),
                                       fontSize: h * 0.017,
@@ -167,6 +167,8 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
                         ),
                       ],
                     ),
+
+                    /// verify button
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: w * 0.05),
                       child: CommonButton(
@@ -185,7 +187,7 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(h * 0.005),
                           ),
-                          text: AppText.verfy,
+                          text: AppText.verify,
                           textStyle: ptSansTextStyle(
                               color: AppColors.white,
                               fontSize: h * 0.02,
@@ -207,7 +209,7 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Center(
-                            child: Image.asset(AppImg.detectotpimg,
+                            child: Image.asset(AppImg.detectOtpImg,
                                 height: h * 0.35,
                                 width: w * 0.5,
                                 fit: BoxFit.contain),
@@ -215,6 +217,7 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              ///LinearPercentIndicator
                               LinearPercentIndicator(
                                 width: w * 0.9,
                                 animation: true,
@@ -237,7 +240,7 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
                                             .toStringAsFixed(1))
                                     : 1.0,
                                 backgroundColor:
-                                    AppColors.blueindicator.withOpacity(0.2),
+                                    AppColors.blueIndicator.withOpacity(0.2),
                                 linearStrokeCap: LinearStrokeCap.roundAll,
                               ),
                             ],
@@ -281,7 +284,7 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CommonText(
-                                text: AppText.wearetrying,
+                                text: AppText.weAreTrying,
                                 style: ptSansTextStyle(
                                   color: AppColors.black.withOpacity(0.8),
                                   fontSize: h * 0.024,

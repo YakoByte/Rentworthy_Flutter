@@ -7,26 +7,15 @@ part 'all_chat_controller.g.dart';
 
 @riverpod
 class AllChatController extends _$AllChatController {
-  bool _isbusinessreg = false;
-
   late TabController tabController;
   List<AnimationController>? animatecontrollerlist = [];
-
-  bool get isbusinessreg => _isbusinessreg;
-  bool _iseyehide = false;
   int _selectedTab = 0;
 
   int get selectedtab => _selectedTab;
 
-  bool get iseyehide => _iseyehide;
-  bool _issignin = false;
-
-  bool get issignin => _issignin;
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passController = TextEditingController();
 
   @override
   FutureOr<void> build() async {

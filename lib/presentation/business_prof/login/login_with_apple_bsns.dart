@@ -60,13 +60,13 @@ class _BusinessLoginAppleState extends ConsumerState<BusinessLoginApple> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image.asset(
-                      AppImg.appicon,
+                      AppImg.appIcon,
                       height: h * 0.07,
                       width: w,
                       fit: BoxFit.contain,
                     ),
                     CommonText(
-                        text: AppText.enterappidtosignin,
+                        text: AppText.enterAppIdToSignIn,
                         style: ptSansTextStyle(
                           color: AppColors.black,
                           fontSize: h * 0.025,
@@ -77,7 +77,7 @@ class _BusinessLoginAppleState extends ConsumerState<BusinessLoginApple> {
                         containerborder:
                             Border.all(color: AppColors.black.withOpacity(0.4)),
                         borderRadius: BorderRadius.circular(4),
-                        hintText: AppText.enterappid,
+                        hintText: AppText.enterAppId,
                         hintStyle: ptSansTextStyle(
                             color: AppColors.black.withOpacity(0.5),
                             fontSize: h * 0.021,
@@ -142,8 +142,8 @@ class _BusinessLoginAppleState extends ConsumerState<BusinessLoginApple> {
                           child: Center(
                             child: Image.asset(
                               !controller().iseyehide
-                                  ? AppImg.eye_hide
-                                  : AppImg.eye_view,
+                                  ? AppImg.eyeHide
+                                  : AppImg.eyeView,
                               fit: BoxFit.cover,
                               color: AppColors.black.withOpacity(0.6),
                               width: h * 0.032,
@@ -181,7 +181,7 @@ class _BusinessLoginAppleState extends ConsumerState<BusinessLoginApple> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(h * 0.006),
                         ),
-                        text: AppText.signin,
+                        text: AppText.signIn,
                         textStyle: ptSansTextStyle(
                             color: AppColors.white,
                             fontSize: h * 0.019,

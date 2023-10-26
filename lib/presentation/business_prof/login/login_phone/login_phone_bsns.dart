@@ -67,20 +67,20 @@ class _BusinessLoginPhoneState extends ConsumerState<BusinessLoginPhone> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Image.asset(
-                                    AppImg.appicon,
+                                    AppImg.appIcon,
                                     height: h * 0.07,
                                     width: w,
                                     fit: BoxFit.contain,
                                   ),
                                   CommonText(
-                                      text: AppText.enterphone,
+                                      text: AppText.enterPhone,
                                       style: ptSansTextStyle(
                                         color: AppColors.black,
                                         fontSize: h * 0.028,
                                         fontWeight: FontWeight.w500,
                                       )),
                                   CommonText(
-                                      text: AppText.wesendotp,
+                                      text: AppText.weSendOtp,
                                       textAlign: TextAlign.center,
                                       style: ptSansTextStyle(
                                         color: AppColors.black.withOpacity(0.4),
@@ -119,7 +119,7 @@ class _BusinessLoginPhoneState extends ConsumerState<BusinessLoginPhone> {
                                           ),
                                         ),
                                       ),
-                                      hintText: AppText.phoneno,
+                                      hintText: AppText.phoneNo,
                                       hintStyle: ptSansTextStyle(
                                           color:
                                               AppColors.black.withOpacity(0.5),
@@ -136,13 +136,13 @@ class _BusinessLoginPhoneState extends ConsumerState<BusinessLoginPhone> {
                                           fontSize: h * 0.021,
                                           fontWeight: FontWeight.w400),
                                       errorText: controller().issubmit == true
-                                          ? validatephone(
+                                          ? validatePhone(
                                               controller().phoneController.text)
                                           : null,
                                       onChanged: (value) {
                                         setState(() {
                                           controller().issubmit == true
-                                              ? validatephone(controller()
+                                              ? validatePhone(controller()
                                                   .phoneController
                                                   .text)
                                               : null;
@@ -209,15 +209,15 @@ class _BusinessLoginPhoneState extends ConsumerState<BusinessLoginPhone> {
                                   //     //         underline: false,
                                   //     //         hintText: AppText.countrycode,
                                   //     //         hintStyle: ptSansTextStyle(
-                                  //     //             color: AppColors.textcolor1,
+                                  //     //             color: AppColors.textColor1,
                                   //     //             fontSize: h * 0.018,
                                   //     //             fontWeight: FontWeight.w400),
                                   //     //         textstyle: ptSansTextStyle(
-                                  //     //             color: AppColors.textcolor1,
+                                  //     //             color: AppColors.textColor1,
                                   //     //             fontSize: h * 0.019,
                                   //     //             fontWeight: FontWeight.w500),
                                   //     //         lableStyle: ptSansTextStyle(
-                                  //     //             color: AppColors.textcolor1,
+                                  //     //             color: AppColors.textColor1,
                                   //     //             fontSize: h * 0.021,
                                   //     //             fontWeight: FontWeight.w400),
                                   //     //         errorText: controller().issubmit == true

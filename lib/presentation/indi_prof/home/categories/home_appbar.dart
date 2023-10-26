@@ -27,7 +27,8 @@ class HomeAppBar extends ConsumerWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
+        /// Menu Icon
+        SizedBox(
           height: h * 0.07,
           width: w * 0.08,
           child: Column(
@@ -47,6 +48,8 @@ class HomeAppBar extends ConsumerWidget {
             ],
           ),
         ),
+
+        /// Location Dropdown
         CommonDropdown(
           selectedItem: controller().selectedLocation!,
           items: controller().locationList,

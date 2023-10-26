@@ -345,7 +345,7 @@ class SfPyramidChart extends StatefulWidget {
   ///    );
   ///}
   ///void select(SelectionArgs args) {
-  ///   print(args.selectedBorderColor);
+  ///   debugPrint(args.selectedBorderColor);
   ///}
   ///```
   final PyramidSelectionCallback? onSelectionChanged;
@@ -364,7 +364,7 @@ class SfPyramidChart extends StatefulWidget {
   ///    return Container(
   ///        child: SfPyramidChart(
   ///            onDataLabelTapped: (DataLabelTapDetails args) {
-  ///                 print(arg.seriesIndex);
+  ///                 debugPrint(arg.seriesIndex);
   ///                  }
   ///        )
   ///    );
@@ -379,8 +379,8 @@ class SfPyramidChart extends StatefulWidget {
   ///    return Container(
   ///        child: SfPyramidChart(
   ///            onChartTouchInteractionUp: (ChartTouchInteractionArgs args){
-  ///               print(args.position.dx.toString());
-  ///               print(args.position.dy.toString());
+  ///               debugPrint(args.position.dx.toString());
+  ///               debugPrint(args.position.dy.toString());
   ///             }
   ///        )
   ///    );
@@ -394,8 +394,8 @@ class SfPyramidChart extends StatefulWidget {
   ///    return Container(
   ///        child: SfPyramidChart(
   ///            onChartTouchInteractionMove: (ChartTouchInteractionArgs args){
-  ///               print(args.position.dx.toString());
-  ///               print(args.position.dy.toString());
+  ///               debugPrint(args.position.dx.toString());
+  ///               debugPrint(args.position.dy.toString());
   ///             }
   ///        )
   ///    );
@@ -409,8 +409,8 @@ class SfPyramidChart extends StatefulWidget {
   ///    return Container(
   ///        child: SfPyramidChart(
   ///            onChartTouchInteractionDown: (ChartTouchInteractionArgs args){
-  ///               print(args.position.dx.toString());
-  ///               print(args.position.dy.toString());
+  ///               debugPrint(args.position.dx.toString());
+  ///               debugPrint(args.position.dy.toString());
   ///             }
   ///        )
   ///    );

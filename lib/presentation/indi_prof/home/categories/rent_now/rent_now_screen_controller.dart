@@ -1,89 +1,34 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:carousel_slider/carousel_controller.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:http/http.dart' as http;
 import 'package:rentworthy/utils/common_components/icon_text.dart';
 import 'package:rentworthy/utils/globals.dart';
 import 'package:rentworthy/utils/images.dart';
 import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:share_plus/share_plus.dart';
+
 import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_text.dart';
 import '../../../dialogs/widgets/date_picker/date_picker_manager.dart';
 
 part 'rent_now_screen_controller.g.dart';
 
+final kApiUrl = defaultTargetPlatform == TargetPlatform.android
+    ? 'http://10.0.2.2:4242'
+    : 'http://localhost:4242';
+
 @riverpod
 class RentNowController extends _$RentNowController {
-  final List<String> _locationList = [
-    'Wagle state',
-    'Mumbra',
-    'Mulund',
-    'Dadar',
-    'Mahim',
-  ];
-  List<bool>? featureadfavlist;
-  final DateRangePickerController _pickerController =
-      DateRangePickerController();
-
-  DateRangePickerController get pickerController => _pickerController;
-
-  List<bool> get getfeatureadfavlist => featureadfavlist!;
-
-  List<bool>? nearbyadfavlist;
-
-  List<bool> get getnearbyadfavlist => nearbyadfavlist!;
-  List<bool>? popularfavlist;
-
-  List<bool> get getpopularfavlist => popularfavlist!;
-
-  List<String> get locationList => _locationList;
-
-  CarouselController carouselController = CarouselController();
-  PageController pageController = PageController();
-  List<PopupMenuItem> _popupitemList = [];
-
-  List<PopupMenuItem> get popupitemList => _popupitemList;
-  final List<String> _imgList = [
-    AppImg.movie,
-    AppImg.party,
-    AppImg.homeoutdoor,
-    AppImg.electronics,
-    AppImg.star,
-    AppImg.guitar,
-    AppImg.cleaner,
-    AppImg.clothing,
-    AppImg.setting,
-    AppImg.newtag,
-  ];
+  Map<String, dynamic>? paymentIntentData;
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
-
-  List<String> get imgList => _imgList;
-  final List<String> _nameList = [
-    AppText.film,
-    AppText.partyevents,
-    AppText.homeoutdoor,
-    AppText.electronics,
-    AppText.toprent,
-    AppText.music,
-    AppText.cleaning,
-    AppText.clothing,
-    AppText.heavymachine,
-    AppText.newmarket,
-  ];
-
-  List<String> get nameList => _nameList;
-  String? _selectedLocation;
-
-  String? get selectedLocation => _selectedLocation;
-  TextEditingController searchController = TextEditingController();
-  List<String> searchitems = [];
-  int currentpageIndex = 0;
-
-  int get getcurrentPageIndex => currentpageIndex;
-
-  List<String> get getsearchitems => searchitems;
 
   @override
   FutureOr<void> build() async {
@@ -91,120 +36,101 @@ class RentNowController extends _$RentNowController {
     final h = MediaQuery.of(Globals.navigatorKey.currentContext!).size.height;
     final w = MediaQuery.of(Globals.navigatorKey.currentContext!).size.width;
     _isLoading = true;
-    _popupitemList = [
-      PopupMenuItem(
-        value: 1,
-        child: IconText(
-          isCenter: false,
-          title: AppText.addtofavorite,
-          textStyle: ptSansTextStyle(
-              fontSize: w * 0.035,
-              overflow: TextOverflow.ellipsis,
-              color: AppColors.black,
-              fontWeight: FontWeight.w600),
-          subimg: false,
-          preimg: true,
-          preicon: Icons.star_border,
-          preiconsize: h * 0.03,
-          preimgcolor: AppColors.black.withOpacity(0.8),
-        ),
-      ),
-      PopupMenuItem(
-        value: 2,
-        onTap: () {
-          Share.share('check out my website https://example.com');
-        },
-        child: IconText(
-          isCenter: false,
-          title: AppText.share,
-          textStyle: ptSansTextStyle(
-              fontSize: w * 0.035,
-              overflow: TextOverflow.ellipsis,
-              color: AppColors.black,
-              fontWeight: FontWeight.w600),
-          subimg: false,
-          preimg: true,
-          preicon: Icons.share_outlined,
-          preiconsize: h * 0.03,
-          preimgcolor: AppColors.black.withOpacity(0.8),
-        ),
-      ),
-      PopupMenuItem(
-        value: 3,
-        child: IconText(
-          isCenter: false,
-          title: AppText.reportthisad,
-          textStyle: ptSansTextStyle(
-              fontSize: w * 0.035,
-              overflow: TextOverflow.ellipsis,
-              color: AppColors.black,
-              fontWeight: FontWeight.w600),
-          subimg: false,
-          preimg: true,
-          preicon: Icons.block_flipped,
-          preiconsize: h * 0.03,
-          preimgcolor: AppColors.black.withOpacity(0.8),
-        ),
-      ),
-    ];
-    _selectedLocation = _locationList[0];
-    popularfavlist = List.generate(_imgList.length, (index) => false);
-    featureadfavlist = List.generate(_imgList.length, (index) => false);
-    nearbyadfavlist = List.generate(_imgList.length, (index) => false);
+    // initPaymentSheet();
     Future.delayed(const Duration(seconds: 1), () {
       _isLoading = false;
       state = const AsyncValue.data(null);
     });
+
     state = const AsyncValue.data(null);
   }
 
-  onFavTap(int index, int type) {
-    state = const AsyncLoading();
-    if (type == 0) {
-      if (featureadfavlist![index] == true) {
-        featureadfavlist![index] = false;
-      } else {
-        featureadfavlist![index] = true;
-      }
-    } else if (type == 1) {
-      if (nearbyadfavlist![index] == true) {
-        nearbyadfavlist![index] = false;
-      } else {
-        nearbyadfavlist![index] = true;
-      }
-    } else if (type == 2) {
-      if (popularfavlist![index] == true) {
-        popularfavlist![index] = false;
-      } else {
-        popularfavlist![index] = true;
-      }
+  ///create payment intent
+  Future<void> makePayment() async {
+    try {
+      paymentIntentData =
+          await createPaymentIntent('20', 'USD'); //json.decode(response.body);
+      // print('Response body==>${response.body.toString()}');
+      await Stripe.instance
+          .initPaymentSheet(
+              paymentSheetParameters: SetupPaymentSheetParameters(
+            setupIntentClientSecret:
+                'sk_test_51MFuOjSBUkFSnwGbIKmJDVAFVuFYFXJkCZi1NdaOtHF9z1IQPyON9LjIoHeVA4CvRwqI83PQqCRiDaopV3Jyz20800UYcjAtTL',
+            paymentIntentClientSecret: paymentIntentData!['client_secret'],
+            style: ThemeMode.dark,
+            merchantDisplayName: 'ASIF',
+            googlePay: const PaymentSheetGooglePay(
+              merchantCountryCode: "US",
+              currencyCode: "USD",
+              amount: "20",
+              testEnv: true,
+            ),
+            customFlow: true,
+          ))
+          .then((value) {});
+
+      ///now finally display payment sheeet
+      displayPaymentSheet();
+    } catch (e, s) {
+      print('Payment exception:$e$s');
     }
-
-    state = const AsyncValue.data(null);
   }
 
-  onPageChanged() async {
-    state = const AsyncLoading();
-    _isLoading = true;
-    Future.delayed(const Duration(seconds: 1), () {
-      _isLoading = false;
-      state = const AsyncValue.data(null);
-    });
-    state = const AsyncValue.data(null);
+  ///display payment sheet
+  displayPaymentSheet() async {
+    try {
+      await Stripe.instance.presentPaymentSheet().then((newValue) {
+        print('payment intent${paymentIntentData!['id']}');
+        print('payment intent${paymentIntentData!['client_secret']}');
+        print('payment intent${paymentIntentData!['20']}');
+        print('payment intent$paymentIntentData');
+        //orderPlaceApi(paymentIntentData!['id'].toString());
+        ScaffoldMessenger.of(Globals.navigatorKey.currentContext!).showSnackBar(
+            const SnackBar(content: Text("Payment Successfully")));
+
+        paymentIntentData = null;
+      }).onError((error, stackTrace) {
+        print('Exception/DISPLAYPAYMENTSHEET==> $error $stackTrace');
+      });
+    } on StripeException catch (e) {
+      print('Exception/DISPLAYPAYMENTSHEET1==> $e');
+      showDialog(
+          context: Globals.navigatorKey.currentContext!,
+          builder: (_) => const AlertDialog(
+                content: Text("Cancelled "),
+              ));
+    } catch (e) {
+      print('$e');
+    }
   }
 
-  void filterSearchResults(String query) {
-    state = const AsyncLoading();
-    // searchitems = carlist
-    //     .where((item) => item.toLowerCase().contains(query.toLowerCase()))
-    //     .toList();
-    print("searchitems $searchitems");
-    state = const AsyncValue.data(null);
+  ///create payment intent
+  //  Future<Map<String, dynamic>>
+  createPaymentIntent(String amount, String currency) async {
+    try {
+      Map<String, dynamic> body = {
+        'amount': calculateAmount('20'),
+        'currency': currency,
+      };
+      print(body);
+      var response = await http.post(
+          Uri.parse('https://api.stripe.com/v1/payment_intents'),
+          body: body,
+          headers: {
+            'Authorization':
+                'Bearer sk_test_51MFuOjSBUkFSnwGbIKmJDVAFVuFYFXJkCZi1NdaOtHF9z1IQPyON9LjIoHeVA4CvRwqI83PQqCRiDaopV3Jyz20800UYcjAtTL',
+            'Content-Type': 'application/x-www-form-urlencoded'
+          });
+      log('Create Intent response ===> ${response.body.toString()}');
+      return jsonDecode(response.body);
+    } catch (err) {
+      print('err charging user: ${err.toString()}');
+    }
   }
 
-  onValSelect({required String val}) async {
-    state = const AsyncLoading();
-    _selectedLocation = val;
-    state = const AsyncValue.data(null);
+  ///calculate amount
+  calculateAmount(String amount) {
+    final a = (int.parse(amount)) * 100;
+    return a.toString();
   }
 }

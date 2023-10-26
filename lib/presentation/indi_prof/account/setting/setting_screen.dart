@@ -58,14 +58,16 @@ class SettingScreen extends ConsumerWidget {
               end: 0,
               curve: Curves.easeInOutCubic,
               duration: 1000.ms),
+
+          /// This is the first setting option Statistics Report
           Padding(
             padding:
                 EdgeInsets.symmetric(horizontal: w * 0.04, vertical: h * 0.012),
             child: TitleSubtitle(
               isExpanded: false,
               isColExpanded: true,
-              title: AppText.statisticsreport,
-              subtitle: AppText.useract,
+              title: AppText.statisticsReport,
+              subtitle: AppText.userAct,
               titleStyle: ptSansTextStyle(
                   fontSize: w * 0.05,
                   color: AppColors.black.withOpacity(0.6),
@@ -96,6 +98,8 @@ class SettingScreen extends ConsumerWidget {
               end: 0,
               curve: Curves.easeInOutCubic,
               duration: 1000.ms),
+
+          /// This is the second setting option Create Password
           Padding(
             padding:
                 EdgeInsets.symmetric(horizontal: w * 0.04, vertical: h * 0.012),
@@ -109,8 +113,8 @@ class SettingScreen extends ConsumerWidget {
                   type: PageTransitionType.rightToLeftWithFade,
                 );
               },
-              title: AppText.privacylogout,
-              subtitle: AppText.createpass,
+              title: AppText.privacyLogout,
+              subtitle: AppText.createPass,
               titleStyle: ptSansTextStyle(
                   fontSize: w * 0.05,
                   color: AppColors.black.withOpacity(0.6),
@@ -134,6 +138,8 @@ class SettingScreen extends ConsumerWidget {
               end: 0,
               curve: Curves.easeInOutCubic,
               duration: 1000.ms),
+
+          /// This is the third setting option Notification
           Padding(
             padding:
                 EdgeInsets.symmetric(horizontal: w * 0.04, vertical: h * 0.012),
@@ -172,6 +178,8 @@ class SettingScreen extends ConsumerWidget {
               end: 0,
               curve: Curves.easeInOutCubic,
               duration: 1000.ms),
+
+          /// This is the fourth setting option Logout
           GestureDetector(
             onTap: () {
               ref.read(dialogServiceProvider).areYouSureDialog(
@@ -225,6 +233,8 @@ class SettingScreen extends ConsumerWidget {
               end: 0,
               curve: Curves.easeInOutCubic,
               duration: 1000.ms),
+
+          /// This is the fifth setting option Logout All
           GestureDetector(
             onTap: () {},
             child: Row(
@@ -234,7 +244,7 @@ class SettingScreen extends ConsumerWidget {
                     padding: EdgeInsets.symmetric(
                         horizontal: w * 0.04, vertical: h * 0.012),
                     child: CommonText(
-                      text: AppText.logoutall,
+                      text: AppText.logoutAll,
                       style: ptSansTextStyle(
                           fontSize: w * 0.05,
                           color: AppColors.black.withOpacity(0.6),

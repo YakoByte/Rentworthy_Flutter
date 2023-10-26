@@ -7,7 +7,7 @@ part of 'chat_screen_controller.dart';
 // **************************************************************************
 
 String _$chatScreenControllerHash() =>
-    r'3f9a1a9fe8f1c15decb007f08b923117a9f95de3';
+    r'3d3576cf68ac800ab83eeacc2003eb0dab0f569b';
 
 /// See also [ChatScreenController].
 @ProviderFor(ChatScreenController)

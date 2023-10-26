@@ -34,7 +34,7 @@ class MemberShipPlan extends ConsumerWidget {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: Globals.memberkey,
+      key: Globals.memberKey,
       backgroundColor: AppColors.white,
       drawer: AdminNavDrawer(
         selectedindex: 3,
@@ -53,7 +53,7 @@ class MemberShipPlan extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      BusinessSearch(adminscaffoldKey: Globals.memberkey)
+                      BusinessSearch(adminscaffoldKey: Globals.memberKey)
                           .animate()
                           .fadeIn(duration: 400.ms)
                           .then(delay: 400.ms)

@@ -55,7 +55,7 @@ class BusinessAllSubAll extends ConsumerWidget {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(4),
                                     child: Image.asset(
-                                      AppImg.homelist,
+                                      AppImg.homeList,
                                       height: h * 0.065,
                                       width: h * 0.065,
                                       fit: BoxFit.cover,
@@ -78,7 +78,7 @@ class BusinessAllSubAll extends ConsumerWidget {
                                         borderRadius:
                                             BorderRadius.circular(100),
                                         child: Image.asset(
-                                          AppImg.homelist,
+                                          AppImg.homeList,
                                           height: h * 0.05,
                                           width: h * 0.05,
                                           fit: BoxFit.cover,
@@ -124,7 +124,7 @@ class BusinessAllSubAll extends ConsumerWidget {
                                       Padding(
                                         padding:
                                             EdgeInsets.only(right: w * 0.02),
-                                        child: Image.asset(AppImg.checkall,
+                                        child: Image.asset(AppImg.checkAll,
                                             height: h * 0.02,
                                             width: h * 0.02,
                                             fit: BoxFit.cover),

@@ -7,7 +7,7 @@ part of 'all_review_controller.dart';
 // **************************************************************************
 
 String _$allReviewControllerHash() =>
-    r'a8c5e241143ee03c4d8a285400fec6143e019d42';
+    r'60e0eaf233f94cca4ff2350633eeea524d6be614';
 
 /// See also [AllReviewController].
 @ProviderFor(AllReviewController)

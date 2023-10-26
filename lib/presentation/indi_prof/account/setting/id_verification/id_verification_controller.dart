@@ -13,14 +13,13 @@ part 'id_verification_controller.g.dart';
 @riverpod
 class IdVerificationController extends _$IdVerificationController {
   bool _isVerified = false;
+  bool get isVerified => _isVerified;
   bool _onverify = false;
+  bool get onverify => _onverify;
   bool _isSubmit = false;
 
   bool get isSubmit => _isSubmit;
 
-  bool get isVerified => _isVerified;
-
-  bool get onverify => _onverify;
   TextEditingController einController = TextEditingController();
 
   @override

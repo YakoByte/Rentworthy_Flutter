@@ -26,7 +26,7 @@ class GoogleMapWidget extends ConsumerWidget {
       child: ClipRRect(
         borderRadius: borderRadius,
         child: GoogleMap(
-          onMapCreated: controller().onMapCreated1,
+          onMapCreated: controller().onMapCreated,
 
           initialCameraPosition: const CameraPosition(
             target: LatLng(41.8781, -87.623177),

@@ -69,7 +69,7 @@ class _ProfileCreatedState extends ConsumerState<ProfileCreated> {
       builder: (context, setState1) {
         return AlertDialog(
           surfaceTintColor: AppColors.white,
-          backgroundColor: AppColors.backpopup,
+          backgroundColor: AppColors.backPopup,
           titlePadding: EdgeInsets.only(
               left: w * 0.055, right: w * 0.055, top: h * 0.02, bottom: 0),
           shape: RoundedRectangleBorder(
@@ -89,7 +89,7 @@ class _ProfileCreatedState extends ConsumerState<ProfileCreated> {
           content: Container(
             height: h * 0.4,
             width: w,
-            color: AppColors.backpopup,
+            color: AppColors.backPopup,
             child: Stack(
               children: [
                 Positioned(

@@ -84,7 +84,7 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                   fontWeight: FontWeight.w700),
               text: widget.productResponse != null
                   ? "Edit Address"
-                  : AppText.addaddress,
+                  : AppText.addAddress,
             ),
           ),
         ),
@@ -110,6 +110,7 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            ///Full name
                             TextInputField(
                                 hintText: "Full name (Required)*",
                                 lableText: "Full name (Required)*",
@@ -161,6 +162,8 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                 containerheight: h * 0.065,
                                 containercolor: AppColors.white,
                                 textCapitalization: TextCapitalization.none),
+
+                            ///Phone number
                             TextInputField(
                                 hintText: "Phone number (Required)*",
                                 lableText: "Phone number (Required)*",
@@ -189,12 +192,12 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                     fontSize: h * 0.021,
                                     fontWeight: FontWeight.w500),
                                 errorText: controller().isSubmit
-                                    ? validatephone(
+                                    ? validatePhone(
                                         controller().phoneController.text)
                                     : null,
                                 onChanged: (value) {
                                   setState(() {
-                                    validatephone(
+                                    validatePhone(
                                         controller().phoneController.text);
                                   });
                                 },
@@ -212,6 +215,8 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                 containerheight: h * 0.065,
                                 containercolor: AppColors.white,
                                 textCapitalization: TextCapitalization.none),
+
+                            ///Zip code
                             TextInputField(
                                 hintText: "Zipcode (Required)*",
                                 lableText: "Zipcode (Required)*",
@@ -263,6 +268,8 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                 containerheight: h * 0.065,
                                 containercolor: AppColors.white,
                                 textCapitalization: TextCapitalization.none),
+
+                            ///State
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -374,6 +381,8 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                         TextCapitalization.none),
                               ],
                             ),
+
+                            ///Full Address
                             TextInputField(
                                 hintText: "Full Address*",
                                 lableText: "Full Address*",
@@ -425,6 +434,8 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                 containerheight: h * 0.065,
                                 containercolor: AppColors.white,
                                 textCapitalization: TextCapitalization.none),
+
+                            ///Unit Number
                             TextInputField(
                                 hintText: "Unit number (only for apartments)",
                                 lableText: "Unit number (only for apartments)",
@@ -476,6 +487,8 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                                 containerheight: h * 0.065,
                                 containercolor: AppColors.white,
                                 textCapitalization: TextCapitalization.none),
+
+                            ///Type of Address
                             Row(
                               children: [
                                 CommonText(
@@ -720,6 +733,8 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                         ),
                       ),
                     ),
+
+                    ///Save Button
                     Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: w * 0.035, vertical: h * 0.045),
@@ -739,7 +754,7 @@ class _AddAddressScreenState extends ConsumerState<AddAddressScreen> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(h * 0.005),
                           ),
-                          text: AppText.saveaddress,
+                          text: AppText.saveAddress,
                           textStyle: ptSansTextStyle(
                               color: AppColors.white,
                               fontSize: h * 0.019,

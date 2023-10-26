@@ -5,28 +5,28 @@ import 'package:rentworthy/utils/text.dart';
 import '../../../model/onboarding/onboarding.dart';
 
 abstract class OnBoardingRepository {
-  Future<List<OnBoardingitem>?> getboardingdata();
+  Future<List<OnBoardingitem>?> getBoardingData();
 }
 
 class OnBoardingRepositoryV1 extends OnBoardingRepository {
   List<OnBoardingitem>? get onBoardingModelList => onBoardinglist;
   List<OnBoardingitem>? onBoardinglist = [
     const OnBoardingModel(
-        img: AppImg.boardimg,
-        titletext: AppText.loremipsum,
-        subtitletext: AppText.loremipsum2),
+        img: AppImg.boardImg,
+        titletext: AppText.loremIpsum,
+        subtitletext: AppText.loremIpsum2),
     const OnBoardingModel(
-        img: AppImg.boardimg1,
-        titletext: AppText.loremipsum,
-        subtitletext: AppText.loremipsum2),
+        img: AppImg.boardImg1,
+        titletext: AppText.loremIpsum,
+        subtitletext: AppText.loremIpsum2),
     const OnBoardingModel(
-        img: AppImg.boardimg2,
-        titletext: AppText.loremipsum,
-        subtitletext: AppText.loremipsum2),
+        img: AppImg.boardImg2,
+        titletext: AppText.loremIpsum,
+        subtitletext: AppText.loremIpsum2),
   ];
 
   @override
-  Future<List<OnBoardingitem>?> getboardingdata() async {
+  Future<List<OnBoardingitem>?> getBoardingData() async {
     return onBoardingModelList;
   }
 }

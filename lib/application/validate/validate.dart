@@ -49,7 +49,7 @@ String? validate(String value) {
   }
 }
 
-String? validatephone(String value) {
+String? validatePhone(String value) {
   if (value.isEmpty) {
     return "Please Enter Your Phone No.";
   } else if (!RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\/0-9]+$')

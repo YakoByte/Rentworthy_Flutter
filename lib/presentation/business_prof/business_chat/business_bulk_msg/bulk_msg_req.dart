@@ -38,7 +38,7 @@ class _BulkMsgReqState extends ConsumerState<BulkMsgReq> {
     final w = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      key: Globals.bulkchatkey,
+      key: Globals.bulkChatKey,
       backgroundColor: AppColors.white,
       drawer: AdminNavDrawer(
         selectedindex: 4,
@@ -55,7 +55,7 @@ class _BulkMsgReqState extends ConsumerState<BulkMsgReq> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      BusinessSearch(adminscaffoldKey: Globals.bulkchatkey)
+                      BusinessSearch(adminscaffoldKey: Globals.bulkChatKey)
                           .animate()
                           .fadeIn(duration: 300.ms)
                           .then(delay: 300.ms)
@@ -75,14 +75,11 @@ class _BulkMsgReqState extends ConsumerState<BulkMsgReq> {
                             fontWeight: FontWeight.w700),
                         containercolor: AppColors.black.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(10),
-                        bordercolor: AppColors.black.withOpacity(0.1),
+                        borderColor: AppColors.black.withOpacity(0.1),
                         searchController: controller().searchController,
                         suffixicon: Icon(Icons.search,
                             color: AppColors.black, size: h * 0.035),
-                        onsearchChanged: (str) {
-                          controller().filterSearchResults(
-                              controller().searchController.text);
-                        },
+                        onsearchChanged: (str) {},
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(
@@ -121,7 +118,7 @@ class _BulkMsgReqState extends ConsumerState<BulkMsgReq> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(1000),
                                     child: Image.asset(
-                                      AppImg.homelist,
+                                      AppImg.homeList,
                                       height: h * 0.06,
                                       width: h * 0.06,
                                       fit: BoxFit.cover,
@@ -129,7 +126,7 @@ class _BulkMsgReqState extends ConsumerState<BulkMsgReq> {
                                   ),
                                 ),
                                 CommonText(
-                                    text: AppText.hamzaali,
+                                    text: AppText.hamzaAli,
                                     maxLines: 1,
                                     style: ptSansTextStyle(
                                       color: AppColors.black.withOpacity(0.8),
@@ -164,7 +161,7 @@ class _BulkMsgReqState extends ConsumerState<BulkMsgReq> {
                                           color:
                                               controller().getselectuser[index]
                                                   ? AppColors.transparent
-                                                  : AppColors.dotcolor,
+                                                  : AppColors.dotColor,
                                           width: 1.5),
                                       value: controller().getselectuser[index],
                                       tristate: true,

@@ -26,8 +26,11 @@ class LoadingScreen extends ConsumerWidget {
         color: AppColors.white,
         child: Stack(
           children: [
+            /// Back gradient
             const Positioned(
                 left: 0, right: 0, top: 0, bottom: 0, child: BackGradient()),
+
+            /// RentLendEnjoyIcon
             Positioned(
                 top: h * 0.45,
                 bottom: h * 0.4,

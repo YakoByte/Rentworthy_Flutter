@@ -4,8 +4,7 @@ import '../../data/both_prof/onboarding/onboarding_repo.dart';
 import '../../model/onboarding/onboarding.dart';
 
 abstract class OnBoardingService {
-  @override
-  Future<List<OnBoardingitem>?> getboardingdata();
+  Future<List<OnBoardingitem>?> getBoardingData();
 }
 
 class OnBoardingServiceV1 implements OnBoardingService {
@@ -16,8 +15,8 @@ class OnBoardingServiceV1 implements OnBoardingService {
   final OnBoardingRepository onBoardingRepository;
 
   @override
-  Future<List<OnBoardingitem>?> getboardingdata() async {
-    return await onBoardingRepository.getboardingdata();
+  Future<List<OnBoardingitem>?> getBoardingData() async {
+    return await onBoardingRepository.getBoardingData();
   }
 }
 

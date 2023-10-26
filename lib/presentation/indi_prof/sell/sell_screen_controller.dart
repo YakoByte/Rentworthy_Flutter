@@ -10,26 +10,26 @@ class SellScreenController extends _$SellScreenController {
   final List<String> _imgList = [
     AppImg.movie,
     AppImg.party,
-    AppImg.homeoutdoor,
+    AppImg.homeOutDoor,
     AppImg.electronics,
     AppImg.guitar,
     AppImg.cleaner,
     AppImg.clothing,
     AppImg.setting,
-    AppImg.newtag,
+    AppImg.newTag,
   ];
 
   List<String> get imgList => _imgList;
   final List<String> _nameList = [
     AppText.film,
-    AppText.partyevents,
-    AppText.homeoutdoor,
+    AppText.partyEvents,
+    AppText.homeOutDoor,
     AppText.electronics,
     AppText.music,
     AppText.cleaning,
     AppText.clothing,
-    AppText.heavymachine,
-    AppText.newmarket,
+    AppText.heavyMachine,
+    AppText.newMarket,
   ];
 
   List<String> get nameList => _nameList;

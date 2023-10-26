@@ -6,7 +6,7 @@ part of 'g_map_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$gMapControllerHash() => r'1243460289af453d466ee5028015cc2ba521463e';
+String _$gMapControllerHash() => r'95bab0179c00ef1e333ac79d22498291a256146c';
 
 /// See also [GMapController].
 @ProviderFor(GMapController)

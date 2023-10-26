@@ -7,7 +7,7 @@ part of 'selling_chat_controller.dart';
 // **************************************************************************
 
 String _$sellingChatControllerHash() =>
-    r'afa3eb3b6ddcf25a752ec7d502ef395184358a22';
+    r'537a5195b5e812e01bba09d6278ada30e2c121db';
 
 /// See also [SellingChatController].
 @ProviderFor(SellingChatController)

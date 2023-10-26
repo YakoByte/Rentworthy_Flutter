@@ -17,9 +17,9 @@ part 'onboarding_screen_controller.g.dart';
 @freezed
 class OnBoardingScreenState with _$OnBoardingScreenState {
   const factory OnBoardingScreenState({
-    required List<OnBoardingitem>? onBoardinglist,
+    required List<OnBoardingitem>? onBoardingList,
     required PageController? pageController,
-    required int? currentpageIndex,
+    required int? currentPageIndex,
   }) = _OnBoardingScreenState;
 
   const OnBoardingScreenState._();
@@ -28,35 +28,42 @@ class OnBoardingScreenState with _$OnBoardingScreenState {
 @riverpod
 class OnBoardingScreenController extends _$OnBoardingScreenController {
   PageController pageController = PageController(initialPage: 0);
-  int currentpageIndex = 0;
+  int currentPageIndex = 0;
 
-  int get getcurrentPageIndex => currentpageIndex;
+  int get getCurrentPageIndex => currentPageIndex;
 
   @override
   FutureOr<OnBoardingScreenState> build() async {
     state = const AsyncLoading();
-    List<OnBoardingitem>? onBoardinglist =
-        await ref.watch(onBoardingServiceProvider).getboardingdata();
+
+    /// Get the onBoarding data from the [OnBoardingService]
+    List<OnBoardingitem>? onBoardingList =
+        await ref.watch(onBoardingServiceProvider).getBoardingData();
 
     return OnBoardingScreenState(
-        onBoardinglist: onBoardinglist!,
+        onBoardingList: onBoardingList!,
         pageController: pageController,
-        currentpageIndex: currentpageIndex);
+        currentPageIndex: currentPageIndex);
   }
 
+  /// This method is called when the [PageView] is changed
   onPageChanged(int index) async {
     state = const AsyncLoading();
-    currentpageIndex = index;
+    currentPageIndex = index;
     state = AsyncValue.data(
-        state.value!.copyWith(currentpageIndex: currentpageIndex));
+        state.value!.copyWith(currentPageIndex: currentPageIndex));
   }
 
+  /// This method is called when the [Get Started] button is tapped
   onBtnTap() async {
     state = const AsyncLoading();
-    if (currentpageIndex == 2) {
+    if (currentPageIndex == 2) {
+      /// Set the onBoarding to false
       PreferenceManagerUtils.setIsOnboarding(true);
       FocusScope.of(Globals.navigatorKey.currentContext!)
           .requestFocus(FocusNode());
+
+      /// Navigate to the [RegisterScreen]
       Navigator.pushAndRemoveUntil(
           Globals.navigatorKey.currentContext!,
           PageTransition(
@@ -65,13 +72,14 @@ class OnBoardingScreenController extends _$OnBoardingScreenController {
               duration: const Duration(milliseconds: 400)),
           (Route<dynamic> route) => false);
     } else {
-      pageController.animateToPage(currentpageIndex + 1,
+      /// Animate to the next page
+      pageController.animateToPage(currentPageIndex + 1,
           duration: const Duration(milliseconds: 400),
           curve: Curves.easeInOutCubic);
-      currentpageIndex++;
+      currentPageIndex++;
     }
 
     state = AsyncValue.data(
-        state.value!.copyWith(currentpageIndex: currentpageIndex));
+        state.value!.copyWith(currentPageIndex: currentPageIndex));
   }
 }

@@ -49,13 +49,13 @@ class BusinessCategoryDetails extends ConsumerWidget {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: isfromNavDrawer != true ? null : Globals.catdetkey,
+      key: isfromNavDrawer != true ? null : Globals.catDetKey,
       backgroundColor: AppColors.white,
       appBar: isfromNavDrawer != true
           ? CommonAppBar(
               backgroundColor: AppColors.white,
               centerTitle: true,
-              title: AppText.subcat,
+              title: AppText.subCat,
               leadingicon: false,
               padding: EdgeInsets.symmetric(
                 horizontal: w * 0.035,
@@ -163,7 +163,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                     children: [
                       isfromNavDrawer != true
                           ? SizedBox()
-                          : BusinessSearch(adminscaffoldKey: Globals.catdetkey)
+                          : BusinessSearch(adminscaffoldKey: Globals.catDetKey)
                               .animate()
                               .fadeIn(duration: 50.ms)
                               .then(delay: 50.ms)
@@ -291,7 +291,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                         onPressed: () {
                                           ref
                                               .read(dialogServiceProvider)
-                                              .businessrentScreeningDialog();
+                                              .businessRentScreeningDialog();
                                         }),
                                   ],
                                 ),
@@ -320,7 +320,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                         )),
                                   ),
                                   CommonText(
-                                      text: AppText.dummytext,
+                                      text: AppText.dummyText,
                                       style: ptSansTextStyle(
                                         color: AppColors.black.withOpacity(0.4),
                                         fontSize: h * 0.023,
@@ -445,7 +445,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                 borderRadius:
                                                     BorderRadius.circular(1000),
                                                 child: Image.asset(
-                                                  AppImg.homelist,
+                                                  AppImg.homeList,
                                                   height: h * 0.075,
                                                   width: h * 0.075,
                                                   fit: BoxFit.cover,
@@ -465,7 +465,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                       Expanded(
                                                         child: CommonText(
                                                             text: AppText
-                                                                .postedby,
+                                                                .postedBy,
                                                             maxLines: 1,
                                                             style:
                                                                 ptSansTextStyle(
@@ -490,7 +490,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                       Expanded(
                                                         child: CommonText(
                                                             text: AppText
-                                                                .hamzaali,
+                                                                .hamzaAli,
                                                             maxLines: 1,
                                                             style:
                                                                 ptSansTextStyle(
@@ -515,7 +515,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                       Expanded(
                                                         child: CommonText(
                                                             text: AppText
-                                                                .postedon,
+                                                                .postedOn,
                                                             maxLines: 1,
                                                             style:
                                                                 ptSansTextStyle(
@@ -808,9 +808,9 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                               axisLineWidth: 0,
                                               // 69DE94
                                               // lowPointColor: ,
-                                              color: AppColors.darkgreen
+                                              color: AppColors.darkGreen
                                                   .withOpacity(0.4),
-                                              borderColor: AppColors.darkgreen,
+                                              borderColor: AppColors.darkGreen,
                                               borderWidth: 2,
                                               lowPointColor:
                                                   AppColors.colorSecondary,
@@ -855,10 +855,10 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                     decoration: BoxDecoration(
                                                         border: Border.all(
                                                             color: AppColors
-                                                                .lightgreen,
+                                                                .lightGreen,
                                                             width: 3.5),
                                                         color:
-                                                            AppColors.darkgreen,
+                                                            AppColors.darkGreen,
                                                         shape: BoxShape.circle),
                                                   ),
                                                 ),
@@ -908,7 +908,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                     decoration: BoxDecoration(
                                                         border: Border.all(
                                                             color: AppColors
-                                                                .lightred,
+                                                                .lightRed,
                                                             width: 3.5),
                                                         color: AppColors.red,
                                                         shape: BoxShape.circle),
@@ -1036,7 +1036,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                           name: 'Traffic by Device',
                                           spacing: 0.4,
                                           width: 0.4,
-                                          color: AppColors.fbblue,
+                                          color: AppColors.fbBlue,
                                           xValueMapper:
                                               (ChartSampleData sales, _) =>
                                                   sales.x.toString(),
@@ -1067,7 +1067,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                           width: 0.4,
                                           animationDuration: 2000,
                                           animationDelay: 2000,
-                                          color: AppColors.darkgreen,
+                                          color: AppColors.darkGreen,
                                           xValueMapper:
                                               (ChartSampleData sales, _) =>
                                                   sales.x.toString(),
@@ -1192,26 +1192,27 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                         x: 'David',
                                                         y: 25,
                                                         color:
-                                                            AppColors.fbblue),
+                                                            AppColors.fbBlue),
                                                     ChartData(
                                                         x: 'Steve',
                                                         y: 28.9,
                                                         color: AppColors
-                                                            .darkgreen),
+                                                            .darkGreen),
                                                     ChartData(
                                                         x: 'Others',
                                                         y: 21.81,
                                                         color: AppColors
-                                                            .amberdark),
+                                                            .amberDark),
                                                     ChartData(
                                                         x: 'Jack',
                                                         y: 13.59,
-                                                        color: AppColors.orng),
+                                                        color:
+                                                            AppColors.orange),
                                                     ChartData(
                                                         x: 'Jack',
                                                         y: 10.93,
                                                         color: AppColors
-                                                            .colorSecondarydark),
+                                                            .colorSecondaryDark),
                                                   ],
                                                   animationDuration: 3500,
                                                   animationDelay: 3500,
@@ -1285,7 +1286,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                                           1),
                                                                   width: 3.5),
                                                               color: AppColors
-                                                                  .fbblue,
+                                                                  .fbBlue,
                                                               shape: BoxShape
                                                                   .circle),
                                                         ),
@@ -1309,7 +1310,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                 IconText(
                                                     title: "43.29%",
                                                     textStyle: ptSansTextStyle(
-                                                      color: AppColors.fbblue,
+                                                      color: AppColors.fbBlue,
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       fontSize: h * 0.023,
@@ -1319,7 +1320,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                     preicon: Icons
                                                         .trending_up_rounded,
                                                     preimgcolor:
-                                                        AppColors.fbblue,
+                                                        AppColors.fbBlue,
                                                     subimg: false,
                                                     preimg: true),
                                               ],
@@ -1359,10 +1360,10 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                           decoration: BoxDecoration(
                                                               border: Border.all(
                                                                   color: AppColors
-                                                                      .lightgreen,
+                                                                      .lightGreen,
                                                                   width: 3.5),
                                                               color: AppColors
-                                                                  .darkgreen,
+                                                                  .darkGreen,
                                                               shape: BoxShape
                                                                   .circle),
                                                         ),
@@ -1387,7 +1388,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                     title: "36.16%",
                                                     textStyle: ptSansTextStyle(
                                                       color:
-                                                          AppColors.darkgreen,
+                                                          AppColors.darkGreen,
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       fontSize: h * 0.023,
@@ -1397,7 +1398,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                     preicon: Icons
                                                         .trending_up_rounded,
                                                     preimgcolor:
-                                                        AppColors.darkgreen,
+                                                        AppColors.darkGreen,
                                                     subimg: false,
                                                     preimg: true),
                                               ],
@@ -1437,7 +1438,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                           decoration: BoxDecoration(
                                                               border: Border.all(
                                                                   color: AppColors
-                                                                      .lightred,
+                                                                      .lightRed,
                                                                   width: 3.5),
                                                               color:
                                                                   AppColors.red,
@@ -1520,7 +1521,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                                           1),
                                                                   width: 3.5),
                                                               color: AppColors
-                                                                  .orng,
+                                                                  .orange,
                                                               shape: BoxShape
                                                                   .circle),
                                                         ),
@@ -1544,7 +1545,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                 IconText(
                                                     title: "25.53%",
                                                     textStyle: ptSansTextStyle(
-                                                      color: AppColors.orng,
+                                                      color: AppColors.orange,
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       fontSize: h * 0.023,
@@ -1553,7 +1554,8 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                     ),
                                                     preicon: Icons
                                                         .trending_up_rounded,
-                                                    preimgcolor: AppColors.orng,
+                                                    preimgcolor:
+                                                        AppColors.orange,
                                                     subimg: false,
                                                     preimg: true),
                                               ],
@@ -1600,7 +1602,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                                           1),
                                                                   width: 3.5),
                                                               color: AppColors
-                                                                  .amberdark,
+                                                                  .amberDark,
                                                               shape: BoxShape
                                                                   .circle),
                                                         ),
@@ -1625,7 +1627,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                     title: "25.53%",
                                                     textStyle: ptSansTextStyle(
                                                       color:
-                                                          AppColors.amberdark,
+                                                          AppColors.amberDark,
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       fontSize: h * 0.023,
@@ -1635,7 +1637,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                     preicon: Icons
                                                         .trending_up_rounded,
                                                     preimgcolor:
-                                                        AppColors.amberdark,
+                                                        AppColors.amberDark,
                                                     subimg: false,
                                                     preimg: true),
                                               ],
@@ -1782,7 +1784,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                   backgroundColor: AppColors
                                                       .black
                                                       .withOpacity(0.2),
-                                                  color: AppColors.greendark,
+                                                  color: AppColors.greenDark,
                                                   semanticsLabel:
                                                       'Linear progress indicator',
                                                   semanticsValue:
@@ -1790,7 +1792,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                   valueColor:
                                                       AlwaysStoppedAnimation<
                                                               Color>(
-                                                          AppColors.greendark),
+                                                          AppColors.greenDark),
                                                 ),
                                               ),
                                               CommonText(
@@ -1833,7 +1835,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                   backgroundColor: AppColors
                                                       .black
                                                       .withOpacity(0.2),
-                                                  color: AppColors.greendark,
+                                                  color: AppColors.greenDark,
                                                   semanticsLabel:
                                                       'Linear progress indicator',
                                                   semanticsValue:
@@ -1841,7 +1843,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                   valueColor:
                                                       AlwaysStoppedAnimation<
                                                               Color>(
-                                                          AppColors.greendark),
+                                                          AppColors.greenDark),
                                                 ),
                                               ),
                                               CommonText(
@@ -1884,7 +1886,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                   backgroundColor: AppColors
                                                       .black
                                                       .withOpacity(0.2),
-                                                  color: AppColors.greendark,
+                                                  color: AppColors.greenDark,
                                                   semanticsLabel:
                                                       'Linear progress indicator',
                                                   semanticsValue:
@@ -1892,7 +1894,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                   valueColor:
                                                       AlwaysStoppedAnimation<
                                                               Color>(
-                                                          AppColors.greendark),
+                                                          AppColors.greenDark),
                                                 ),
                                               ),
                                               CommonText(
@@ -1935,7 +1937,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                   backgroundColor: AppColors
                                                       .black
                                                       .withOpacity(0.2),
-                                                  color: AppColors.amberdark,
+                                                  color: AppColors.amberDark,
                                                   semanticsLabel:
                                                       'Linear progress indicator',
                                                   semanticsValue:
@@ -1943,7 +1945,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                   valueColor:
                                                       AlwaysStoppedAnimation<
                                                               Color>(
-                                                          AppColors.amberdark),
+                                                          AppColors.amberDark),
                                                 ),
                                               ),
                                               CommonText(
@@ -2067,7 +2069,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                             height: h * 0.05,
                                                             decoration: BoxDecoration(
                                                                 color: AppColors
-                                                                    .greendark,
+                                                                    .greenDark,
                                                                 borderRadius:
                                                                     BorderRadius
                                                                         .circular(
@@ -2156,7 +2158,7 @@ class BusinessCategoryDetails extends ConsumerWidget {
                                                             .spaceBetween,
                                                     children: [
                                                       CommonText(
-                                                        text: AppText.hamzaali,
+                                                        text: AppText.hamzaAli,
                                                         maxLines: 1,
                                                         style: ptSansTextStyle(
                                                             fontSize: w * 0.025,

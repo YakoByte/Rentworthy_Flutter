@@ -27,7 +27,7 @@ class PyramidSeriesController {
   ///                    onRendererCreated: (PyramidSeriesController controller) {
   ///                       _chartSeriesController = controller;
   ///                       // prints series yAxisName
-  ///                      print(_chartSeriesController.seriesRenderer.seriesRendererDetails.series.yAxisName);
+  ///                      debugPrint(_chartSeriesController.seriesRenderer.seriesRendererDetails.series.yAxisName);
   ///                    },
   ///                ),
   ///        )

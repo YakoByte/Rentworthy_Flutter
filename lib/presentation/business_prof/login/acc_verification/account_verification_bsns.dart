@@ -57,7 +57,7 @@ class _BusinessAccountVerificationState
                   : MainAxisAlignment.start,
               children: [
                 Image.asset(
-                  AppImg.appicon,
+                  AppImg.appIcon,
                   height: h * 0.07,
                   width: w,
                   fit: BoxFit.contain,
@@ -89,7 +89,7 @@ class _BusinessAccountVerificationState
                                       RichText(
                                         textAlign: TextAlign.start,
                                         text: TextSpan(
-                                          text: AppText.sentotp,
+                                          text: AppText.sentOtp,
                                           style: ptSansTextStyle(
                                               color: AppColors.black
                                                   .withOpacity(0.4),
@@ -115,7 +115,7 @@ class _BusinessAccountVerificationState
                                             height: h * 0.03,
                                             width: w * 0.05,
                                             child: Image.asset(
-                                              AppImg.editoutline,
+                                              AppImg.editOutline,
                                               height: h * 0.025,
                                               width: w * 0.045,
                                             )),
@@ -209,7 +209,7 @@ class _BusinessAccountVerificationState
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Center(
-                                  child: Image.asset(AppImg.detectotpimg,
+                                  child: Image.asset(AppImg.detectOtpImg,
                                       height: h * 0.3,
                                       width: w * 0.4,
                                       fit: BoxFit.contain),
@@ -239,7 +239,7 @@ class _BusinessAccountVerificationState
                                                       60)
                                                   .toStringAsFixed(1))
                                           : 1.0,
-                                      backgroundColor: AppColors.blueindicator
+                                      backgroundColor: AppColors.blueIndicator
                                           .withOpacity(0.2),
                                       linearStrokeCap: LinearStrokeCap.roundAll,
                                     ),
@@ -298,7 +298,7 @@ class _BusinessAccountVerificationState
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   CommonText(
-                                      text: AppText.wearetrying,
+                                      text: AppText.weAreTrying,
                                       style: ptSansTextStyle(
                                         color: AppColors.black.withOpacity(0.8),
                                         fontSize: h * 0.024,

@@ -24,10 +24,11 @@ class BusinessCatDetailsController extends _$BusinessCatDetailsController {
     'Monthly',
     'Weekly',
   ];
+
+  List<String> get sortList => _sortList;
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
-  List<bool>? featureadfavlist;
   DateRangePickerController _pickerController = DateRangePickerController();
 
   int _selectedcosmetic = 0;
@@ -45,16 +46,12 @@ class BusinessCatDetailsController extends _$BusinessCatDetailsController {
 
   DateRangePickerController get pickerController => _pickerController;
 
-  List<bool> get getfeatureadfavlist => featureadfavlist!;
-
   List<bool>? nearbyadfavlist;
 
   List<bool> get getnearbyadfavlist => nearbyadfavlist!;
   List<bool>? popularfavlist;
 
   List<bool> get getpopularfavlist => popularfavlist!;
-
-  List<String> get sortList => _sortList;
 
   CarouselController carouselController = CarouselController();
   PageController pageController = PageController();
@@ -64,28 +61,28 @@ class BusinessCatDetailsController extends _$BusinessCatDetailsController {
   final List<String> _imgList = [
     AppImg.movie,
     AppImg.party,
-    AppImg.homeoutdoor,
+    AppImg.homeOutDoor,
     AppImg.electronics,
     AppImg.star,
     AppImg.guitar,
     AppImg.cleaner,
     AppImg.clothing,
     AppImg.setting,
-    AppImg.newtag,
+    AppImg.newTag,
   ];
 
   List<String> get imgList => _imgList;
   final List<String> _nameList = [
     AppText.film,
-    AppText.partyevents,
-    AppText.homeoutdoor,
+    AppText.partyEvents,
+    AppText.homeOutDoor,
     AppText.electronics,
-    AppText.toprent,
+    AppText.topRent,
     AppText.music,
     AppText.cleaning,
     AppText.clothing,
-    AppText.heavymachine,
-    AppText.newmarket,
+    AppText.heavyMachine,
+    AppText.newMarket,
   ];
 
   List<String> get nameList => _nameList;
@@ -117,7 +114,7 @@ class BusinessCatDetailsController extends _$BusinessCatDetailsController {
         value: 1,
         child: IconText(
           isCenter: false,
-          title: AppText.addtofavorite,
+          title: AppText.addToFavorite,
           textStyle: ptSansTextStyle(
               fontSize: w * 0.035,
               overflow: TextOverflow.ellipsis,
@@ -153,11 +150,11 @@ class BusinessCatDetailsController extends _$BusinessCatDetailsController {
       PopupMenuItem(
         value: 3,
         onTap: () {
-          ref.read(dialogServiceProvider).reportimgtitledialog();
+          ref.read(dialogServiceProvider).reportImgTitleDialog();
         },
         child: IconText(
           isCenter: false,
-          title: AppText.reportthisad,
+          title: AppText.reportThisAd,
           textStyle: ptSansTextStyle(
               fontSize: w * 0.035,
               overflow: TextOverflow.ellipsis,
@@ -173,7 +170,6 @@ class BusinessCatDetailsController extends _$BusinessCatDetailsController {
     ];
 
     popularfavlist = List.generate(_imgList.length, (index) => false);
-    featureadfavlist = List.generate(_imgList.length, (index) => false);
     nearbyadfavlist = List.generate(_imgList.length, (index) => false);
     _productDetailsData =
         await ref.read(productDetailServiceProvider).getProductDetails();
@@ -210,13 +206,7 @@ class BusinessCatDetailsController extends _$BusinessCatDetailsController {
 
   onFavTap(int index, int type) {
     state = const AsyncLoading();
-    if (type == 0) {
-      if (featureadfavlist![index] == true) {
-        featureadfavlist![index] = false;
-      } else {
-        featureadfavlist![index] = true;
-      }
-    } else if (type == 1) {
+    if (type == 1) {
       if (nearbyadfavlist![index] == true) {
         nearbyadfavlist![index] = false;
       } else {

@@ -9,23 +9,7 @@ part 'write_review_controller.g.dart';
 
 @riverpod
 class WriteReviewController extends _$WriteReviewController {
-  List<String> title = [
-    "Earnings",
-    "Expenses",
-    AppText.request,
-    AppText.requested,
-    AppText.rental,
-    AppText.rented,
-  ];
   TextEditingController reviewController = TextEditingController();
-  List<String> subtitle = [
-    "US\$0 ",
-    "US\$0 ",
-    "0 ",
-    "0 ",
-    "0 ",
-    "0 ",
-  ];
 
   bool _isLoading = false;
 
@@ -34,10 +18,6 @@ class WriteReviewController extends _$WriteReviewController {
 
   bool get isSubmit => _isSubmit;
 
-  List<String> get getTitle => title;
-
-  List<String> get getsubtitle => subtitle;
-
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
@@ -45,6 +25,7 @@ class WriteReviewController extends _$WriteReviewController {
     state = const AsyncValue.data(null);
   }
 
+  /// This method is used to submit the review
   onSubmit() async {
     state = const AsyncLoading();
     _isSubmit = true;

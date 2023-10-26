@@ -7,7 +7,7 @@ part of 'my_address_controller.dart';
 // **************************************************************************
 
 String _$myAddressesScreenControllerHash() =>
-    r'98742ed9ca4a13cd6354e75ab82ef1ed41f0686c';
+    r'2a521923ce58dea6525c94d5d04dfbb94f75ff09';
 
 /// See also [MyAddressesScreenController].
 @ProviderFor(MyAddressesScreenController)

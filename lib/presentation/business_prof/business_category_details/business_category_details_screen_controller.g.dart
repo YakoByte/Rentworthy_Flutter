@@ -7,7 +7,7 @@ part of 'business_category_details_screen_controller.dart';
 // **************************************************************************
 
 String _$businessCatDetailsControllerHash() =>
-    r'b82611fcb21ab67da30cceb1666a3115f3c3648c';
+    r'cfe91e0e6b7fb5369a66ceba7b7e4cb4d8d116de';
 
 /// See also [BusinessCatDetailsController].
 @ProviderFor(BusinessCatDetailsController)

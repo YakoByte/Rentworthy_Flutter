@@ -10,7 +10,7 @@ class ReviewRepositoryV1 extends ReviewRepository {
   final List<ReviewDetails> _onReviewDetailsList = [
     const ReviewDetails(
         user_name: "User 1",
-        user_img: AppImg.homelist,
+        user_img: AppImg.homeList,
         review: "Review 1",
         rating: "5",
         review_date: "10:00 AM"),

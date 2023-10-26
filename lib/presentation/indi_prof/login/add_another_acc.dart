@@ -42,7 +42,7 @@ class _AddAnotherAccState extends ConsumerState<AddAnotherAcc> {
         centerTitle: false,
         leadingicon: true,
         centerwidget: CommonText(
-            text: AppText.signin,
+            text: AppText.signIn,
             style: ptSansTextStyle(
                 color: AppColors.black,
                 fontSize: h * 0.025,
@@ -81,13 +81,13 @@ class _AddAnotherAccState extends ConsumerState<AddAnotherAcc> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Image.asset(
-                                    AppImg.loginimg,
+                                    AppImg.loginImg,
                                     height: h * 0.4,
                                     width: w,
                                     fit: BoxFit.cover,
                                   ),
                                   CommonText(
-                                      text: AppText.enteremailtosignin,
+                                      text: AppText.enterEmailToSignIn,
                                       style: ptSansTextStyle(
                                         color: AppColors.black,
                                         fontSize: h * 0.025,
@@ -97,11 +97,11 @@ class _AddAnotherAccState extends ConsumerState<AddAnotherAcc> {
                                       hintText: AppText.enterEmail,
                                       titleText: AppText.email,
                                       titletextstyle: ptSansTextStyle(
-                                          color: AppColors.textcolor1,
+                                          color: AppColors.textColor1,
                                           fontSize: h * 0.018,
                                           fontWeight: FontWeight.w400),
                                       hintStyle: ptSansTextStyle(
-                                          color: AppColors.textcolor1,
+                                          color: AppColors.textColor1,
                                           fontSize: h * 0.018,
                                           fontWeight: FontWeight.w400),
                                       textstyle: ptSansTextStyle(
@@ -112,13 +112,13 @@ class _AddAnotherAccState extends ConsumerState<AddAnotherAcc> {
                                           color: AppColors.colorPrimary,
                                           fontSize: h * 0.021,
                                           fontWeight: FontWeight.w400),
-                                      errorText: controller().issubmit == true
+                                      errorText: controller().isSubmit == true
                                           ? validateEmail(
                                               controller().emailController.text)
                                           : null,
                                       onChanged: (value) {
                                         setState(() {
-                                          controller().issubmit == true
+                                          controller().isSubmit == true
                                               ? validateEmail(controller()
                                                   .emailController
                                                   .text)

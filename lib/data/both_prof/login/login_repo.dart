@@ -35,7 +35,7 @@ abstract class LoginRepository {
 
   Future<UserCredential?> signInWithFacebook();
 
-  Future<UserCredential?> signoutWithFacebook();
+  Future<UserCredential?> signOutWithFacebook();
 }
 
 class LoginRepositoryV1 extends LoginRepository {
@@ -45,18 +45,6 @@ class LoginRepositoryV1 extends LoginRepository {
     math.Random random = math.Random();
     return (1000 + random.nextInt(9999)).toString();
   }
-
-  // @override
-  // Future<ConfirmationResult> sendOTP({
-  //   required String countryCode,
-  //   required String phone,
-  // }) async {
-  //   String? otp = await generateOTP();
-  //   ConfirmationResult result = await auth.signInWithPhoneNumber(
-  //     '${countryCode ?? '91'} $phone',
-  //   );
-  //   return result;
-  // }
 
   @override
   Future<void> sendOTP({
@@ -105,19 +93,17 @@ class LoginRepositoryV1 extends LoginRepository {
           idToken: googleSignInAuthentication.idToken,
           accessToken: googleSignInAuthentication.accessToken);
 
-      // Getting users credential
-
       UserCredential result = await auth.signInWithCredential(authCredential);
 
       User? user = result.user;
 
-      print('userdata $user');
+      debugPrint('userdata $user');
 
       log(" =============: RES123 :=============  ${googleSignInAuthentication.accessToken}");
 
       log(" =============: RES123ger :=============  ${googleSignInAuthentication.idToken}");
 
-      print('userdatatoken  ${googleSignInAuthentication.accessToken}');
+      debugPrint('userdatatoken  ${googleSignInAuthentication.accessToken}');
 
       if (result != null) {
         DialogServiceV1().showSnackBar(
@@ -165,12 +151,8 @@ class LoginRepositoryV1 extends LoginRepository {
     );
     User user;
     if (result.status == LoginStatus.success) {
-      //Create a credential from the access token
-
       final OAuthCredential credential =
           FacebookAuthProvider.credential(result.accessToken!.token);
-
-      // Once signed in, return the UserCredential
 
       return await FirebaseAuth.instance.signInWithCredential(credential);
     }
@@ -179,7 +161,7 @@ class LoginRepositoryV1 extends LoginRepository {
   }
 
   @override
-  Future<UserCredential?> signoutWithFacebook() async {
+  Future<UserCredential?> signOutWithFacebook() async {
     await FacebookAuth.instance.logOut();
     return null;
   }

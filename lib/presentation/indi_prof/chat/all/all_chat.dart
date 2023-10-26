@@ -25,7 +25,7 @@ class _AllChatState extends ConsumerState<AllChat> {
     final w = MediaQuery.of(context).size.width;
     final asyncState = ref.watch(allChatControllerProvider);
     controller() => ref.read(allChatControllerProvider.notifier);
-    print("tab is ${controller().tabController.index}");
+    debugPrint("tab is ${controller().tabController.index}");
     return SingleChildScrollView(
       physics: NeverScrollableScrollPhysics(),
       child: Column(

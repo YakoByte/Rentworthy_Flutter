@@ -40,7 +40,7 @@ class AccountScreen extends ConsumerWidget {
                     ),
                     child: ProfileImgName(
                         verified: false,
-                        name: AppText.viewandeditprof,
+                        name: AppText.viewAndEditProf,
                         onTap: () {
                           commonNavigator(
                             context: context,
@@ -68,7 +68,7 @@ class AccountScreen extends ConsumerWidget {
                     imgName: Icons.settings,
                     title: AppText.setting,
                     isDivider: true,
-                    subTitle: AppText.privacylogout,
+                    subTitle: AppText.privacyLogout,
                   )
                       .animate()
                       .fadeIn(duration: 150.ms)
@@ -87,9 +87,9 @@ class AccountScreen extends ConsumerWidget {
                       );
                     },
                     imgName: Icons.help,
-                    title: AppText.helpsupport,
+                    title: AppText.helpSupport,
                     isDivider: false,
-                    subTitle: AppText.helplegalterms,
+                    subTitle: AppText.helpLegalTerms,
                   )
                       .animate()
                       .fadeIn(duration: 200.ms)
@@ -147,14 +147,14 @@ class AccountScreen extends ConsumerWidget {
                               child: RichText(
                                 textAlign: TextAlign.start,
                                 text: TextSpan(
-                                  text: "${AppText.plantrip}\n",
+                                  text: "${AppText.planTrip}\n",
                                   style: ptSansTextStyle(
                                       color: AppColors.white,
                                       fontSize: h * 0.022,
                                       fontWeight: FontWeight.w700),
                                   children: <TextSpan>[
                                     TextSpan(
-                                      text: AppText.wehavecovered,
+                                      text: AppText.weHaveCovered,
                                       style: ptSansTextStyle(
                                           color: AppColors.white,
                                           fontSize: h * 0.014,
@@ -178,7 +178,7 @@ class AccountScreen extends ConsumerWidget {
                                 backgroundColor: AppColors.white,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50)),
-                                text: AppText.startrent,
+                                text: AppText.startRent,
                                 textStyle: ptSansTextStyle(
                                     foreground: Paint()
                                       ..shader = const LinearGradient(
@@ -199,7 +199,7 @@ class AccountScreen extends ConsumerWidget {
                           bottom: h * 0.08,
                           top: 0,
                           child: Center(
-                            child: Image.asset(AppImg.accoutimg,
+                            child: Image.asset(AppImg.accountImg,
                                 height: h * 0.17, width: w * 0.55),
                           ),
                         )

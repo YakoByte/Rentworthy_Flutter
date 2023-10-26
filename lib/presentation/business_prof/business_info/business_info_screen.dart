@@ -51,7 +51,7 @@ class _BusinessInfoScreenState extends ConsumerState<BusinessInfoScreen> {
         .size
         .width;
     return Scaffold(
-      key: Globals.profverified,
+      key: Globals.profVerified,
       drawer: AdminNavDrawer(
         selectedindex: 8,
       ).animate().fadeIn(duration: 30.ms).then(delay: 20.ms).slideX(
@@ -120,7 +120,7 @@ class _BusinessInfoScreenState extends ConsumerState<BusinessInfoScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     BusinessSearch(
-                        adminscaffoldKey: Globals.profverified),
+                        adminscaffoldKey: Globals.profVerified),
                     // .animate()
                     // .fadeIn(duration: 300.ms)
                     // .then(delay: 300.ms)
@@ -227,7 +227,7 @@ class _BusinessInfoScreenState extends ConsumerState<BusinessInfoScreen> {
                               controller().onBanned(val: true);
                             },
                             child: Image.asset(
-                                AppImg.underreview,
+                                AppImg.underReview,
                                 height: h * 0.3,
                                 width: w * 0.6,
                                 fit: BoxFit.cover),
@@ -879,7 +879,7 @@ class _BusinessInfoScreenState extends ConsumerState<BusinessInfoScreen> {
                                 borderRadius:
                                 BorderRadius.circular(h * 0.006),
                               ),
-                              text: AppText.continueeng,
+                              text: AppText.continueEng,
                               textStyle: ptSansTextStyle(
                                   color: AppColors.white,
                                   fontSize: h * 0.023,

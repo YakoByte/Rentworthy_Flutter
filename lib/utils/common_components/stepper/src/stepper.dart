@@ -288,10 +288,10 @@ class _CupertinoStepperState extends State<CupertinoStepper>
                   colors: [
                     widget.steps[index].isActive
                         ? AppColors.colorPrimary
-                        : AppColors.stepcolor,
+                        : AppColors.stepColor,
                     widget.steps[index].isActive
                         ? AppColors.colorSecondary
-                        : AppColors.stepcolor,
+                        : AppColors.stepColor,
                   ],
                 ),
               ),
