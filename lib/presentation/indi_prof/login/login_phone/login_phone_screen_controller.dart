@@ -7,10 +7,7 @@ import '../../../../application/both_prof/login/login_service.dart';
 import '../../../../application/dialog/dialog_service.dart';
 import '../../../../application/validate/validate.dart';
 import '../../../../data/both_prof/shared_pref/shared_pref.dart';
-import '../../../../utils/color.dart';
-import '../../../../utils/common_components/common_navigator.dart';
-import '../../../../utils/globals.dart';
-import '../../../both_prof/login/loginwithphone/otp_detect/detect_otp.dart';
+import '../../../../utils/import_utils.dart';
 import '../../bottombar/bottom_bar.dart';
 import '../acc_verification/account_verification.dart';
 
@@ -23,7 +20,7 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
   TextEditingController passwordController = TextEditingController();
   TextEditingController countryCodeController =
       TextEditingController(text: "+91");
-
+  String verificationId = '';
   bool _isSubmit = false;
 
   bool get isSubmit => _isSubmit;
@@ -44,7 +41,7 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
   /// This is the function that is called when the eye icon is tapped
   onEyeTap({required bool val}) async {
     state = const AsyncLoading();
-    debugPrint('onEyeTap $val');
+    //  debugPrint('onEyeTap $val');
     _isEyeHide = val;
 
     state = const AsyncValue.data(null);
@@ -53,7 +50,7 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
   /// This is the function that is called when the submit button is tapped
   onSendOtp({required int index}) async {
     state = const AsyncLoading();
-    debugPrint('onSendOtp');
+    // debugPrint('onSendOtp');
     _isSubmit = true;
 
     if (validatePhone(phoneController.text) == null ||
@@ -67,40 +64,49 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
         state = const AsyncLoading();
 
         if (index == 0) {
+          //  debugPrint(
+          //      'phoneNumber ${countryCodeController.text + phoneController.text}');
+
           /// Send OTP to the user
           ref.read(loginServiceProvider).sendOTP(
                 phoneNumber: countryCodeController.text + phoneController.text,
-                verificationCompleted: (PhoneAuthCredential credential) {
-                  debugPrint('verificationCompleted');
+                verificationCompleted: (PhoneAuthCredential credential) async {
+                  //   debugPrint('verificationCompleted ${credential.smsCode}');
+                  state = const AsyncLoading();
+
+                  await FirebaseAuth.instance.signInWithCredential(credential);
                 },
                 verificationFailed: (FirebaseAuthException e) {
-                  debugPrint('verificationFailed');
+                  //     debugPrint('verificationFailed $e');
                 },
-                // codeSent: (String verificationId, int? resendToken) {},
-                codeAutoRetrievalTimeout: (String verificationId) {
-                  debugPrint('codeAutoRetrievalTimeout');
+                codeAutoRetrievalTimeout: (String verifId) {
+                  verificationId = verifId;
+                  //  debugPrint('codeAutoRetrievalTimeout');
                 },
-                // You can use the `codeSent` callback to display the generated OTP to the user
-                codeSent: (String verificationId, int? resendToken) {
+                codeSent: (String verifId, int? resendToken) async {
+                  verificationId = verifId;
+                  //   print("resendToken $resendToken");
                   commonNavigator(
                       type: PageTransitionType.rightToLeftWithFade,
                       context: Globals.navigatorKey.currentContext!,
                       child: AccountVerification(
+                        // verificationId: verificationId,
                         email:
                             countryCodeController.text + phoneController.text,
                       ));
-                  debugPrint('Verification code: $verificationId');
+                  //   debugPrint('Verification code: $verificationId');
                 },
               );
         } else if (index == 1) {
           /// Google Sign-in
-          commonNavigator(
-            context: Globals.navigatorKey.currentContext!,
-            child: AccountVerification(
-              email: emailController.text,
-            ),
-            type: PageTransitionType.rightToLeftWithFade,
-          );
+          // commonNavigator(
+          //   context: Globals.navigatorKey.currentContext!,
+          //   child: AccountVerification(
+          //     verificationId: verificationId,
+          //     email: emailController.text,
+          //   ),
+          //   type: PageTransitionType.rightToLeftWithFade,
+          // );
         } else if (index == 2) {
           /// Apple Sign-in
           DialogServiceV1().showSnackBar(
@@ -140,7 +146,7 @@ class LoginPhoneScreenController extends _$LoginPhoneScreenController {
       });
     }
 
-    debugPrint('onSendOtp1');
+    // debugPrint('onSendOtp1');
     state = const AsyncValue.data(null);
   }
 }

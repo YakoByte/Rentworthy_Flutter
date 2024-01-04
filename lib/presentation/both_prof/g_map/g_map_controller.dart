@@ -45,7 +45,7 @@ class GMapController extends _$GMapController {
     GMapResponse? googleOffices =
         await ref.read(gMapServiceProvider).getMapData();
 
-    debugPrint("huyu $googleOffices");
+    // debugPrint("huyu $googleOffices");
 
     _markers.clear();
     for (final office in googleOffices!.offices!) {

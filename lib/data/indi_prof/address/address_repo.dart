@@ -2,73 +2,118 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rentworthy/utils/globals.dart';
+
 import '../../../application/dialog/dialog_service.dart';
-import '../../../model/indi_prof/address/get_address/get_address.dart';
-import '../../../model/indi_prof/address/get_product.dart';
-import '../../../utils/color.dart';
+import '../../../utils/import_utils.dart';
 import '../../api_client/api_client.dart';
 
 abstract class AddressRepository {
-  Future<GetAddress?> getAddressData();
+  Future<Map<String, dynamic>?> createAddress({
+    required String phoneNo,
+    required String zipcode,
+    required String state,
+    required String city,
+    required String fullAddress,
+    required String fullName,
+    required String unitNumber,
+    required String typeOfAddress,
+    required String isdefault,
+    required String authtoken,
+  });
 
-  Future<ProductData?> updateUserInformation(
-      {required String id,
-      required String title,
-      required String description,
-      required String brand,
-      required String category});
+  Future<Map<String, dynamic>?> getAllAddress({
+    required String userid,
+    required String authtoken,
+  });
 
-  Future<Map<String, dynamic>?> getUserInformation();
+  Future<Map<String, dynamic>?> updateUserAddress({
+    required String addId,
+    required String phoneNo,
+    required String zipcode,
+    required String state,
+    required String city,
+    required String fullAddress,
+    required String fullName,
+    required String unitNumber,
+    required String typeOfAddress,
+    required String isdefault,
+    required String authtoken,
+  });
 
-  Future<ProductData?> deleteUserInformation({required String id});
+  Future<Map<String, dynamic>?> deleteUserAddress({
+    required String addId,
+    required String authtoken,
+  });
 }
 
 class AddressRepositoryV1 extends AddressRepository {
   AddressRepositoryV1(this.api);
 
   final ApiClient api;
-  final List<AddressData> _onAddressData = [
-    const AddressData(
-        id: "1",
-        name: "Mukesh Kumar",
-        address_type: "Home",
-        address_line_1: "B-1/10, Sector-18",
-        address_line_2: "Rohini",
-        city: "New Delhi",
-        state: "Delhi",
-        phone_no: "9999999999",
-        zip_code: "110089"),
-    const AddressData(
-        id: "2",
-        name: "Anil Kumar",
-        address_type: "Office",
-        address_line_1: "A-1/10, Sector-18",
-        address_line_2: "Sector-18",
-        city: "New Delhi",
-        state: "Delhi",
-        phone_no: "8888888888",
-        zip_code: "110089"),
-  ];
-
-  List<AddressData>? get onAddressData => _onAddressData;
 
   @override
-  Future<GetAddress?> getAddressData() async {
-    return GetAddress(success: true, message: "OK", data: _onAddressData);
+  Future<Map<String, dynamic>?> createAddress({
+    required String phoneNo,
+    required String zipcode,
+    required String state,
+    required String city,
+    required String fullAddress,
+    required String fullName,
+    required String unitNumber,
+    required String typeOfAddress,
+    required String isdefault,
+    required String authtoken,
+  }) async {
+    try {
+      final body = {
+        'phoneNo': phoneNo,
+        'zipcode': zipcode,
+        'state': state,
+        'city': city,
+        'fullAddress': fullAddress,
+        'fullName': fullName,
+        'unitNumber': unitNumber,
+        'typeOfAddress': typeOfAddress,
+        'isdefault': isdefault
+      };
+      return api.postData(
+        uri: Uri.parse(ApiConfig.userCreateAddress),
+        body: body,
+        headers: api.createHeaders(authtoken: authtoken, sessionId: ""),
+        builder: (data) {
+          Map<String, dynamic> jsonMap = json.decode(data);
+
+          if (jsonMap['existingAddress'] != null) {
+            DialogServiceV1().showSnackBar(
+                content: "Address Added Successfully!!",
+                color: AppColors.colorPrimary.withOpacity(0.7),
+                textclr: AppColors.white);
+            return jsonMap;
+          } else {
+            throw Exception('Failed..');
+          }
+        },
+      );
+    } catch (e) {
+      // throw _determineError(e);
+      //    print("eeeee $e ");
+
+      return null;
+    }
   }
 
   @override
-  Future<Map<String, dynamic>?> getUserInformation() {
+  Future<Map<String, dynamic>?> getAllAddress({
+    required String userid,
+    required String authtoken,
+  }) {
     return api.getData(
-      uri: Uri.parse("https://dummyjson.com/products"),
-      headers: api.createHeaders(authtoken: "", sessionId: ""),
+      uri: Uri.parse("${ApiConfig.userGetAddress}$userid"),
+      headers: api.createHeaders(authtoken: authtoken, sessionId: ""),
       builder: (data) {
         Map<String, dynamic> jsonMap = json.decode(data);
-        ProductResponse productResponse = ProductResponse.fromJson(jsonMap);
-        debugPrint("ProductResponse data is =- $productResponse");
 
-        if (jsonMap["products"] != null) {
+        if (jsonMap['data'] != []) {
           return jsonMap;
         } else {
           throw Exception('Failed..');
@@ -78,33 +123,24 @@ class AddressRepositoryV1 extends AddressRepository {
   }
 
   @override
-  Future<ProductData?> updateUserInformation(
-      {required String id,
-      required String title,
-      required String description,
-      required String brand,
-      required String category}) {
-    return api.putData(
-      uri: Uri.parse("https://dummyjson.com/products/$id"),
-      body: {
-        "id": id,
-        "title": title,
-        "description": description,
-        "brand": brand,
-        "category": category
-      },
+  Future<Map<String, dynamic>?> deleteUserAddress({
+    required String addId,
+    required String authtoken,
+  }) {
+    return api.deleteData(
+      uri: Uri.parse("${ApiConfig.userDeleteAddress}$addId"),
       headers: api.createHeaders(authtoken: "", sessionId: ""),
+      body: {},
       builder: (data) {
         Map<String, dynamic> jsonMap = json.decode(data);
-        ProductData productResponse = ProductData.fromJson(jsonMap);
-        debugPrint("ProductResponse data is =- $productResponse");
 
-        if (productResponse != null) {
+        if (jsonMap != {}) {
           DialogServiceV1().showSnackBar(
-              content: "Product Updated Successfully",
+              content: "Address Deleted Successfully",
               color: AppColors.colorPrimary.withOpacity(0.7),
               textclr: AppColors.white);
-          return productResponse;
+          Navigator.pop(Globals.navigatorKey.currentContext!);
+          return jsonMap;
         } else {
           throw Exception('Failed..');
         }
@@ -113,22 +149,43 @@ class AddressRepositoryV1 extends AddressRepository {
   }
 
   @override
-  Future<ProductData?> deleteUserInformation({required String id}) {
-    return api.deleteData(
-      uri: Uri.parse("https://dummyjson.com/products/$id"),
+  Future<Map<String, dynamic>?> updateUserAddress({
+    required String addId,
+    required String phoneNo,
+    required String zipcode,
+    required String state,
+    required String city,
+    required String fullAddress,
+    required String fullName,
+    required String unitNumber,
+    required String typeOfAddress,
+    required String isdefault,
+    required String authtoken,
+  }) {
+    final body = {
+      'phoneNo': phoneNo,
+      'zipcode': zipcode,
+      'state': state,
+      'city': city,
+      'fullAddress': fullAddress,
+      'fullName': fullName,
+      'unitNumber': unitNumber,
+      'typeOfAddress': typeOfAddress,
+      'isdefault': isdefault
+    };
+    return api.putData(
+      uri: Uri.parse("${ApiConfig.userUpdateAddress}$addId"),
+      body: body,
       headers: api.createHeaders(authtoken: "", sessionId: ""),
       builder: (data) {
         Map<String, dynamic> jsonMap = json.decode(data);
-        ProductData productResponse = ProductData.fromJson(jsonMap);
-        debugPrint("ProductResponse data is =- $productResponse");
 
-        if (productResponse != null) {
+        if (jsonMap['existingAddress'] != null) {
           DialogServiceV1().showSnackBar(
-              content: "Product Deleted Successfully",
+              content: "Address Updated Successfully",
               color: AppColors.colorPrimary.withOpacity(0.7),
               textclr: AppColors.white);
-          Navigator.pop(Globals.navigatorKey.currentContext!);
-          return productResponse;
+          return jsonMap;
         } else {
           throw Exception('Failed..');
         }

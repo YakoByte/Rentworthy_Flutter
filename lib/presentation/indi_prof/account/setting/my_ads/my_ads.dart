@@ -460,7 +460,7 @@ class MyAds extends ConsumerWidget {
                                                         ),
                                                       ),
                                                       onChangedsearch: (str) {
-                                                        debugPrint("sdfs $str");
+                                                        //     debugPrint("sdfs $str");
                                                         controller()
                                                             .onchangefilter(
                                                                 str);

@@ -1,57 +1,115 @@
+import 'dart:convert';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rentworthy/model/indi_prof/booking/get_booked_order/get_booked_order.dart';
-import '../../../model/indi_prof/booking/booking_del_status/booking_del_status.dart';
-import '../../../utils/images.dart';
 
-abstract class BookingRepository {
-  Future<GetBookedOrder?> getBookedOrder();
+import '../../../application/dialog/dialog_service.dart';
+import '../../../utils/import_utils.dart';
+import '../../api_client/api_client.dart';
 
-  Future<GetBookingDelStatus?> getBookingDelStatus();
-}
+abstract class BookingRepository {}
 
 class BookingRepositoryV1 extends BookingRepository {
-  final List<BookedProduct> _onBookProductList = [
-    const BookedProduct(
-      id: "1",
-      name: "Apple iPhone 12 Pro Max",
-      thumbnail: AppImg.homeList,
-      desc: "Apple iPhone 12 Pro Max (128GB) - Pacific Blue",
-      delivery_location: "B-1/10, Sector-18, Rohini, New Delhi, Delhi",
-      lat: "28.732260",
-      long: "77.116130",
-      price: "1,29,900",
-      product_chat_id: "1",
-      seller_id: "1",
-      seller_name: "Mukesh Kumar",
-      seller_img: AppImg.homeList,
-      posted_on: "2021-08-01 12:00:00",
-    )
-  ];
+  BookingRepositoryV1(this.api);
 
-  List<BookedProduct>? get onBookProductList => _onBookProductList;
-  final List<BookingDelStatusData> _onBookingDelStatuslist = [
-    const BookingDelStatusData(
-        status: "Confirm",
-        desc: "Order Confirmed",
-        date: "2023-08-01 12:00:00",
-        active_status: true),
-  ];
-
-  List<BookingDelStatusData>? get onBookingDelStatuslist =>
-      _onBookingDelStatuslist;
+  final ApiClient api;
 
   @override
-  Future<GetBookedOrder?> getBookedOrder() async {
-    return GetBookedOrder(
-        success: true, message: "OK", data: _onBookProductList);
+  Future<Map<String, dynamic>?> userCreateBooking({
+    required String productId,
+    required String startDate,
+    required String endDate,
+    required String quantity,
+    required String addressId,
+    required String price,
+    required String totalAmount,
+    required String authtoken,
+    required String imagepath,
+  }) async {
+    try {
+      final body = {
+        'productId': productId,
+        'startDate': startDate,
+        'endDate': endDate,
+        'quantity': quantity,
+        'addressId': addressId,
+        'price': price,
+        'totalAmount': totalAmount
+      };
+      return api.multipartData(
+        imagepath: imagepath,
+        imageparam: "images",
+        uri: Uri.parse(ApiConfig.userCreateBooking),
+        body: body,
+        headers: api.createHeaders(authtoken: authtoken, sessionId: ""),
+        builder: (data) {
+          Map<String, dynamic> jsonMap = json.decode(data);
+
+          if (jsonMap['_id'] != null) {
+            //   print("here1");
+            // DialogServiceV1().showSnackBar(
+            //     content: email != "" ? "Please Verify Your Email!!" : "Please Verify Your Phone No!!",
+            //     color: AppColors.colorPrimary.withOpacity(0.7),
+            //     textclr: AppColors.white);
+
+            return jsonMap;
+          } else {
+            //    print("here2");
+            DialogServiceV1().showSnackBar(
+                content: jsonMap["data"]["message"] ?? jsonMap["message"],
+                color: AppColors.colorPrimary.withOpacity(0.7),
+                textclr: AppColors.white);
+
+            return {};
+          }
+        },
+      );
+    } catch (e) {
+      throw Exception('Failed..');
+      //   print("eeeee $e ");
+
+      return null;
+    }
   }
 
   @override
-  Future<GetBookingDelStatus?> getBookingDelStatus() async {
-    return GetBookingDelStatus(
-        success: true, message: "OK", data: _onBookingDelStatuslist);
+  Future<Map<String, dynamic>?> userGetBooking({
+    required String authtoken,
+  }) {
+    return api.getData(
+      uri: Uri.parse("${ApiConfig.userGetBooking}"),
+      headers: api.createHeaders(authtoken: authtoken, sessionId: ""),
+      builder: (data) {
+        Map<String, dynamic> jsonMap = json.decode(data);
+
+        if (jsonMap['data']['existingProduct']['data'] != []) {
+          return jsonMap;
+        } else {
+          throw Exception('Failed..');
+        }
+      },
+    );
+  }
+
+  @override
+  Future<Map<String, dynamic>?> userVerifyStripeId({
+    required String authtoken,
+    required String stripeId,
+  }) {
+    return api.getData(
+      uri: Uri.parse("${ApiConfig.userVerifyStripeId}$stripeId"),
+      headers: api.createHeaders(authtoken: authtoken, sessionId: ""),
+      builder: (data) {
+        Map<String, dynamic> jsonMap = json.decode(data);
+
+        if (jsonMap['data']['existingProduct']['data'] != []) {
+          return jsonMap;
+        } else {
+          throw Exception('Failed..');
+        }
+      },
+    );
   }
 }
 
 final bookingRepositoryProvider =
-    Provider<BookingRepository>((ref) => BookingRepositoryV1());
+    Provider<BookingRepository>((ref) => BookingRepositoryV1(ApiClient()));

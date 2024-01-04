@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
@@ -5,8 +7,10 @@ import 'package:flutter_native_splash/cli_commands.dart';
 import 'package:flutter_speech/flutter_speech.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:rentworthy/application/indi_prof/home/home_service.dart';
 import 'package:rentworthy/utils/import_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import '../../../application/dialog/dialog_service.dart';
 
 part 'home_screen_controller.g.dart';
@@ -21,11 +25,12 @@ class HomeScreenController extends _$HomeScreenController {
     'San Diego',
     'Dallas',
   ];
+
   List<String> get locationList => _locationList;
 
-  List<bool>? featureadfavlist;
+  List<bool> featureadfavlist = [];
 
-  List<bool> get getfeatureadfavlist => featureadfavlist!;
+  List<bool> get getfeatureadfavlist => featureadfavlist;
 
   List<bool>? nearbyadfavlist;
 
@@ -67,6 +72,12 @@ class HomeScreenController extends _$HomeScreenController {
     AppText.heavyMachine,
     AppText.newMarket,
   ];
+  List<String> _productimgList = [];
+
+  List<String> get productimgList => _productimgList;
+  List<String> _productList = [];
+
+  List<String> get productList => _productList;
   final SpeechRecognition _speech = SpeechRecognition();
 
   SpeechRecognition get speech => _speech;
@@ -89,6 +100,9 @@ class HomeScreenController extends _$HomeScreenController {
   String? get selectedLocation => _selectedLocation;
   TextEditingController searchController = TextEditingController();
   int currentpageIndex = 0;
+  Map<String, dynamic>? _categoryData;
+
+  Map<String, dynamic>? get categoryData => _categoryData;
 
   int get getcurrentPageIndex => currentpageIndex;
 
@@ -116,9 +130,10 @@ class HomeScreenController extends _$HomeScreenController {
       vsync: CommonTickerProvider(),
     )..repeat();
     // animationController!.stop();
-
+    onGetCategory();
+    onGetProduct();
     popularfavlist = List.generate(_imgList.length, (index) => false);
-    featureadfavlist = List.generate(_imgList.length, (index) => false);
+
     nearbyadfavlist = List.generate(_imgList.length, (index) => false);
     appbaranimationcontroller = AnimationController(
       vsync: CommonTickerProvider(),
@@ -194,7 +209,7 @@ class HomeScreenController extends _$HomeScreenController {
   }
 
   void activateSpeechRecognizer() {
-    debugPrint('_MyAppState.activateSpeechRecognizer... ');
+    // debugPrint('_MyAppState.activateSpeechRecognizer... ');
     state = const AsyncLoading();
     _speech.setAvailabilityHandler(onSpeechAvailability);
     _speech.setRecognitionStartedHandler(onRecognitionStarted);
@@ -203,14 +218,14 @@ class HomeScreenController extends _$HomeScreenController {
     _speech.setErrorHandler(errorHandler);
     _speech.activate('en_US').then((res) {
       _speechRecognitionAvailable = res;
-      debugPrint("resres $res");
+      //  debugPrint("resres $res");
     });
     state = const AsyncValue.data(null);
   }
 
   void start() => _speech.activate("en_US").then((_) {
         return _speech.listen().then((result) {
-          debugPrint('_MyAppState.start => result $result');
+          //     debugPrint('_MyAppState.start => result $result');
           state = const AsyncLoading();
           // animationController!.forward();
           _isListening = result;
@@ -221,35 +236,36 @@ class HomeScreenController extends _$HomeScreenController {
 
   void cancel() => _speech.cancel().then((_) {
         state = const AsyncLoading();
-        debugPrint("cancel");
+        //   debugPrint("cancel");
         _isListening = false;
         state = const AsyncValue.data(null);
       });
 
   void stop() => _speech.stop().then((_) {
         state = const AsyncLoading();
-        debugPrint("stop");
+        // debugPrint("stop");
+        searchController.text = "";
         _isListening = false;
         state = const AsyncValue.data(null);
       });
 
   void onSpeechAvailability(bool result) {
     state = const AsyncLoading();
-    debugPrint("onSpeechAvailability");
+    // debugPrint("onSpeechAvailability");
     _speechRecognitionAvailable = result;
     state = const AsyncValue.data(null);
   }
 
   void onRecognitionStarted() {
     state = const AsyncLoading();
-    debugPrint("Listening");
+    // debugPrint("Listening");
     _isListening = true;
     searchController.text = 'Listening...';
     state = const AsyncValue.data(null);
   }
 
   void onRecognitionResult(String text) {
-    debugPrint('_MyAppState.onRecognitionResult... $text');
+    // debugPrint('_MyAppState.onRecognitionResult... $text');
     //  state = const AsyncLoading();
     transcription = text;
 
@@ -259,7 +275,7 @@ class HomeScreenController extends _$HomeScreenController {
   }
 
   void onRecognitionComplete(String text) {
-    debugPrint('_MyAppState.onRecognitionComplete... $text');
+    // debugPrint('_MyAppState.onRecognitionComplete... $text');
     state = const AsyncLoading();
 
     Future.delayed(const Duration(milliseconds: 400), () {
@@ -307,10 +323,10 @@ class HomeScreenController extends _$HomeScreenController {
         .then((Position position) {
       _currentPosition = position;
 
-      debugPrint("position $position");
-      debugPrint("_currentPosition $_currentPosition");
+      // debugPrint("position $position");
+      // debugPrint("_currentPosition $_currentPosition");
     }).catchError((e) {
-      debugPrint(e);
+      //  debugPrint(e);
     });
     state = const AsyncValue.data(null);
   }
@@ -327,9 +343,9 @@ class HomeScreenController extends _$HomeScreenController {
       _currentAddress =
           '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}';
       state = const AsyncValue.data(null);
-      debugPrint("_currentAddress ${place}");
+      //  debugPrint("_currentAddress ${place}");
     }).catchError((e) {
-      debugPrint(e);
+      //  debugPrint(e);
     });
     // state = const AsyncValue.data(null);
   }
@@ -348,5 +364,74 @@ class HomeScreenController extends _$HomeScreenController {
     _selectedLocation = val;
 
     state = const AsyncValue.data(null);
+  }
+
+  /// This method is used to get the category list
+  Future<void> onGetCategory() async {
+    state = const AsyncLoading();
+
+    final link = ref.keepAlive();
+    Timer? timer;
+
+    _isLoading = true;
+    // Future.delayed(const Duration(seconds: 1), () async {
+    state = const AsyncLoading();
+    // _isVerify = true;
+    // startTimer();
+    // ref.read(loginServiceProvider).verifyOTP(
+    //     verificationId: verificationId, smsCode: otpController!.text);
+    _categoryData = await ref.read(homeServiceProvider).userGetCategory();
+    _nameList.clear();
+    _imgList.clear();
+    for (int i = 0;
+        i < _categoryData!["existingCategory"]['data'].length;
+        i++) {
+      _nameList.add(_categoryData!["existingCategory"]['data'][i]['name']);
+      _imgList.add(_categoryData!["existingCategory"]['data'][i]['image']);
+    }
+
+    state = AsyncValue.data(null);
+    ref.onCancel(() {
+      // start a 30 second timer
+      timer = Timer(const Duration(seconds: 30), () {
+        // dispose on timeout
+        link.close();
+      });
+    });
+    _isLoading = false;
+  }
+
+  Future<void> onGetProduct() async {
+    state = const AsyncLoading();
+
+    final link = ref.keepAlive();
+    Timer? timer;
+
+    _isLoading = true;
+    // Future.delayed(const Duration(seconds: 1), () async {
+    state = const AsyncLoading();
+    // _isVerify = true;
+    // startTimer();
+    // ref.read(loginServiceProvider).verifyOTP(
+    //     verificationId: verificationId, smsCode: otpController!.text);
+    _categoryData = await ref.read(homeServiceProvider).userGetProduct();
+    _productList.clear();
+    _productimgList.clear();
+    for (int i = 0; i < _categoryData!['data'].length; i++) {
+      _productList.add(_categoryData!['data'][i]['name']);
+      _productimgList.add(_categoryData!['data'][i]['images'][0]["path"]);
+    }
+
+    state = AsyncValue.data(null);
+    featureadfavlist = List.generate(_productimgList.length, (index) => false);
+    ref.onCancel(() {
+      // start a 30 second timer
+      timer = Timer(const Duration(seconds: 30), () {
+        // dispose on timeout
+        link.close();
+      });
+    });
+    _isLoading = false;
+    state = AsyncValue.data(null);
   }
 }

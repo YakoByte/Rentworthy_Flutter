@@ -7,7 +7,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../../utils/globals.dart';
 
 part 'detect_otp_controller.freezed.dart';
-
 part 'detect_otp_controller.g.dart';
 
 @freezed
@@ -45,9 +44,9 @@ class DetectOtpController extends _$DetectOtpController {
               .requestFocus(FocusNode());
         } else {
           _start--;
-          debugPrint("_start $_start");
-          debugPrint("_timer ${timer!.tick}");
-          debugPrint("_timer ${((timer!.tick * 1) / 10).toStringAsFixed(1)}");
+          //   debugPrint("_start $_start");
+          //   debugPrint("_timer ${timer!.tick}");
+          //   debugPrint("_timer ${((timer!.tick * 1) / 10).toStringAsFixed(1)}");
         }
         state = AsyncValue.data(state.value!.copyWith(start: _start));
       },

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:page_transition/page_transition.dart';
@@ -13,9 +11,7 @@ import '../../../../data/both_prof/shared_pref/shared_pref.dart';
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_navigator.dart';
 import '../../../../utils/globals.dart';
-import '../../../indi_prof/bottombar/bottom_bar.dart';
 import '../../admin_panel/admin_panel.dart';
-import '../otp_detect/detect_otp_bsns.dart';
 
 part 'login_phone_bsns_controller.g.dart';
 
@@ -27,6 +23,7 @@ class BusinessLoginPhoneController extends _$BusinessLoginPhoneController {
   TextEditingController countryCodeController =
       TextEditingController(text: "+91");
   bool _isLoading = false;
+  String verificationId = '';
 
   bool get isLoading => _isLoading;
   bool _issubmit = false;
@@ -46,7 +43,7 @@ class BusinessLoginPhoneController extends _$BusinessLoginPhoneController {
 
   onEyeTap({required bool val}) async {
     state = const AsyncLoading();
-    debugPrint('onEyeTap $val');
+    //  debugPrint('onEyeTap $val');
     _iseyehide = val;
 
     state = const AsyncValue.data(null);
@@ -54,7 +51,7 @@ class BusinessLoginPhoneController extends _$BusinessLoginPhoneController {
 
   onSendOtp({required int index}) async {
     state = const AsyncLoading();
-    debugPrint('onSendOtp');
+    // debugPrint('onSendOtp');
     _issubmit = true;
 
     if (validatePhone(phoneController.text) == null ||
@@ -71,25 +68,29 @@ class BusinessLoginPhoneController extends _$BusinessLoginPhoneController {
           ref.read(loginServiceProvider).sendOTP(
                 phoneNumber: countryCodeController.text + phoneController.text,
                 verificationCompleted: (PhoneAuthCredential credential) {
-                  debugPrint('verificationCompleted');
+                  //     debugPrint('verificationCompleted');
                 },
                 verificationFailed: (FirebaseAuthException e) {
-                  debugPrint('verificationFailed');
+                  //   debugPrint('verificationFailed');
                 },
                 // codeSent: (String verificationId, int? resendToken) {},
-                codeAutoRetrievalTimeout: (String verificationId) {
-                  debugPrint('codeAutoRetrievalTimeout');
+                codeAutoRetrievalTimeout: (String verifId) {
+                  verificationId = verifId;
+
+                  //   debugPrint('codeAutoRetrievalTimeout');
                 },
                 // You can use the `codeSent` callback to display the generated OTP to the user
-                codeSent: (String verificationId, int? resendToken) {
+                codeSent: (String verifId, int? resendToken) {
+                  verificationId = verifId;
                   commonNavigator(
                       type: PageTransitionType.rightToLeftWithFade,
                       context: Globals.navigatorKey.currentContext!,
                       child: BusinessAccountVerification(
+                        verificationId: verificationId,
                         email:
                             countryCodeController.text + phoneController.text,
                       ));
-                  debugPrint('Verification code: $verificationId');
+                  //    debugPrint('Verification code: $verificationId');
                 },
               );
 
@@ -100,13 +101,14 @@ class BusinessLoginPhoneController extends _$BusinessLoginPhoneController {
           //       email: countryCodeController.text + phoneController.text,
           //     ));
         } else if (index == 1) {
-          commonNavigator(
-            context: Globals.navigatorKey.currentContext!,
-            child: BusinessAccountVerification(
-              email: emailController.text,
-            ),
-            type: PageTransitionType.rightToLeftWithFade,
-          );
+          // commonNavigator(
+          //   context: Globals.navigatorKey.currentContext!,
+          //   child: BusinessAccountVerification(
+          //     verificationId: verificationId,
+          //     email: emailController.text,
+          //   ),
+          //   type: PageTransitionType.rightToLeftWithFade,
+          // );
         } else if (index == 2) {
           PreferenceManagerUtils.setIsLogin(true);
           PreferenceManagerUtils.setIsIndividual(2);
@@ -139,7 +141,7 @@ class BusinessLoginPhoneController extends _$BusinessLoginPhoneController {
       });
     }
 
-    debugPrint('onSendOtp1');
+    // debugPrint('onSendOtp2');
     state = const AsyncValue.data(null);
   }
 }

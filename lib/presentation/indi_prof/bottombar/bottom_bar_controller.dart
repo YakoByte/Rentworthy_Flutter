@@ -34,7 +34,7 @@ class BottomBarController extends _$BottomBarController {
   @override
   FutureOr<void> build({int? index}) async {
     state = AsyncLoading();
-    debugPrint("indexindex $index");
+    //  debugPrint("indexindex $index");
 
     _selectedIndex = index!;
     pageController = PageController(initialPage: _selectedIndex);
@@ -93,7 +93,7 @@ class BottomBarController extends _$BottomBarController {
 
     _selectedIndex = index;
 
-    debugPrint('selectedIndex ${_selectedIndex}');
+    //debugPrint('selectedIndex ${_selectedIndex}');
     state = AsyncValue.data(null);
   }
 }

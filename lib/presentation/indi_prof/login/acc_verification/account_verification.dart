@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:pinput/pinput.dart';
 
 import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_appbar.dart';
@@ -11,13 +11,17 @@ import '../../../../../utils/common_components/common_text.dart';
 import '../../../../../utils/images.dart';
 import '../../../../../utils/text.dart';
 import '../../../indi_prof/error/error_screen.dart';
-import '../../../shimmers/detect_otp_shimmer.dart';
 import 'account_verification_controller.dart';
 
 class AccountVerification extends ConsumerStatefulWidget {
   String email;
 
-  AccountVerification({super.key, required this.email});
+  // String? verificationId;
+  AccountVerification({
+    super.key,
+    required this.email,
+    // required this.verificationId
+  });
 
   @override
   ConsumerState createState() => _AccountVerificationState();
@@ -82,23 +86,33 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
                                   )),
                               Row(
                                 children: [
-                                  RichText(
-                                    textAlign: TextAlign.start,
-                                    text: TextSpan(
-                                      text: AppText.sentOtp,
-                                      style: ptSansTextStyle(
-                                          color:
-                                              AppColors.black.withOpacity(0.4),
-                                          fontSize: h * 0.016,
-                                          fontWeight: FontWeight.w400),
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                            text: widget.email,
-                                            style: ptSansTextStyle(
-                                                color: AppColors.black
-                                                    .withOpacity(0.6),
-                                                fontSize: h * 0.018,
-                                                fontWeight: FontWeight.w700)),
+                                  Container(
+                                    width: w * 0.85,
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: RichText(
+                                            textAlign: TextAlign.start,
+                                            text: TextSpan(
+                                              text: AppText.sentOtp,
+                                              style: ptSansTextStyle(
+                                                  color: AppColors.black
+                                                      .withOpacity(0.4),
+                                                  fontSize: w * 0.035,
+                                                  fontWeight: FontWeight.w400),
+                                              children: <TextSpan>[
+                                                TextSpan(
+                                                    text: widget.email,
+                                                    style: ptSansTextStyle(
+                                                        color: AppColors.black
+                                                            .withOpacity(0.6),
+                                                        fontSize: w * 0.037,
+                                                        fontWeight:
+                                                            FontWeight.w700)),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -119,37 +133,43 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
                               ),
 
                               /// otp detect
-
                               Padding(
                                 padding: EdgeInsets.only(
                                     top: h * 0.05, bottom: h * 0.03),
-                                child: PinCodeTextField(
+                                child: Pinput(
                                   length: 6,
                                   obscureText: false,
-                                  animationType: AnimationType.fade,
-                                  pinTheme: controller().isPinTheme!,
+                                  androidSmsAutofillMethod:
+                                      AndroidSmsAutofillMethod.none,
+                                  controller: controller().otpController,
+                                  pinAnimationType: PinAnimationType.slide,
+                                  animationCurve: Curves.easeInOut,
+                                  defaultPinTheme: controller().isPinTheme!,
+                                  disabledPinTheme: controller().isPinTheme!,
+                                  errorPinTheme: controller().isPinTheme!,
+                                  focusedPinTheme: controller().isPinTheme!,
+                                  followingPinTheme: controller().isPinTheme!,
+                                  submittedPinTheme: controller().isPinTheme!,
                                   keyboardType: TextInputType.number,
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   showCursor: true,
-                                  cursorColor: AppColors.black,
                                   animationDuration:
-                                      Duration(milliseconds: 300),
-                                  enablePinAutofill: true,
-                                  backgroundColor: AppColors.white,
-                                  enableActiveFill: false,
-                                  controller: controller().otpController,
-                                  onCompleted: (v) {},
-                                  onChanged: (value) {},
-                                  beforeTextPaste: (text) {
-                                    print("Allowing to paste $text");
-                                    //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
-                                    //but you can show anything you want here, like your pop up saying wrong paste format or etc
-                                    return true;
+                                      const Duration(milliseconds: 300),
+                                  isCursorAnimationEnabled: true,
+                                  onChanged: (value) {
+                                    // print(value);
                                   },
-                                  appContext: context,
+                                  onCompleted: (value) {
+                                    //    print(value);
+
+                                    controller().onVerify(email: widget.email);
+                                  },
+                                  closeKeyboardWhenCompleted: true,
                                 ),
                               ),
+
                               CommonText(
                                   text: AppText.reqNewCode,
                                   style: ptSansTextStyle(
@@ -193,7 +213,7 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
                               fontSize: h * 0.02,
                               fontWeight: FontWeight.w600),
                           onPressed: () {
-                            controller().onVerify();
+                            controller().onVerify(email: widget.email);
                           }),
                     ),
                   ],
@@ -221,12 +241,12 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
                               LinearPercentIndicator(
                                 width: w * 0.9,
                                 animation: true,
-                                barRadius: Radius.circular(4),
+                                barRadius: const Radius.circular(4),
                                 lineHeight: h * 0.045,
                                 animateFromLastPercent: true,
                                 animationDuration: 2000,
                                 addAutomaticKeepAlive: true,
-                                linearGradient: LinearGradient(
+                                linearGradient: const LinearGradient(
                                     begin: Alignment.centerLeft,
                                     end: Alignment.centerRight,
                                     colors: [
@@ -253,7 +273,7 @@ class _AccountVerificationState extends ConsumerState<AccountVerification> {
                                 if (state.start != 0)
                                   Padding(
                                     padding: EdgeInsets.all(w * 0.01),
-                                    child: Icon(
+                                    child: const Icon(
                                       Icons.watch_later,
                                       color: AppColors.yellow,
                                     ),

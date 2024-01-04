@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:rentworthy/utils/globals.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -56,7 +54,7 @@ class AddAddressController extends _$AddAddressController {
   /// This function is used to select the address
   onSelectAddress({required int val}) async {
     state = const AsyncLoading();
-    debugPrint('selectedaddress $val');
+    // debugPrint('selectedaddress $val');
     _selectedaddress = val;
 
     state = const AsyncValue.data(null);

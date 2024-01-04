@@ -4,16 +4,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../utils/color.dart';
 import '../../../utils/common_components/common_text.dart';
 import '../../../utils/text.dart';
+import '../booking/my_booking/my_booking_del_status_controller.dart';
 
 class CancelBookingDialog extends ConsumerWidget {
-  String groupValue;
-  void Function(String) onChangedval;
-
-  CancelBookingDialog(
-      {super.key, required this.groupValue, required this.onChangedval});
+  CancelBookingDialog({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final asyncState = ref.watch(myBookingDelStatusControllerProvider);
+    controller() => ref.read(myBookingDelStatusControllerProvider.notifier);
+
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     return AlertDialog(
@@ -67,10 +69,10 @@ class CancelBookingDialog extends ConsumerWidget {
                       fontSize: h * 0.02,
                       fontWeight: FontWeight.w500)),
               leading: Radio(
-                value: AppText.noLongNeed,
-                groupValue: groupValue,
+                value: 1,
+                groupValue: controller().selectedreason,
                 onChanged: (value) {
-                  onChangedval!(value!);
+                  controller().oncosmeticval!(value!);
                 },
               ),
             ),
@@ -82,10 +84,10 @@ class CancelBookingDialog extends ConsumerWidget {
                       fontSize: h * 0.02,
                       fontWeight: FontWeight.w500)),
               leading: Radio(
-                value: AppText.noRental,
-                groupValue: groupValue,
+                value: 2,
+                groupValue: controller().selectedreason,
                 onChanged: (value) {
-                  onChangedval!(value!);
+                  controller().oncosmeticval!(value!);
                 },
               ),
             ),
@@ -97,10 +99,10 @@ class CancelBookingDialog extends ConsumerWidget {
                       fontSize: h * 0.02,
                       fontWeight: FontWeight.w500)),
               leading: Radio(
-                value: AppText.noLongWork,
-                groupValue: groupValue,
+                value: 3,
+                groupValue: controller().selectedreason,
                 onChanged: (value) {
-                  onChangedval!(value!);
+                  controller().oncosmeticval!(value!);
                 },
               ),
             ),
@@ -112,10 +114,10 @@ class CancelBookingDialog extends ConsumerWidget {
                       fontSize: h * 0.02,
                       fontWeight: FontWeight.w500)),
               leading: Radio(
-                value: AppText.giveTextBox,
-                groupValue: groupValue,
+                value: 4,
+                groupValue: controller().selectedreason,
                 onChanged: (value) {
-                  onChangedval!(value!);
+                  controller().oncosmeticval!(value!);
                 },
               ),
             ),

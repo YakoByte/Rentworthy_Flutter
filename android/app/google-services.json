@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "1073180144883-idi26ss5lv1dkqtqk16an5qh5lm0v9jj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rentworthy.app",
+            "certificate_hash": "aad1c54b643d9ce7565efb4d65c1fed99bc49954"
+          }
+        },
+        {
           "client_id": "1073180144883-k88rvihvqgtck6i48ukfq18pkotjtr42.apps.googleusercontent.com",
           "client_type": 3
         }

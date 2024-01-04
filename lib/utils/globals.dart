@@ -17,5 +17,6 @@ class Globals {
   static final GlobalKey<ScaffoldState> chatKey = GlobalKey();
   static final GlobalKey<ScaffoldState> bulkChatKey = GlobalKey();
   static final GlobalKey<ScaffoldState> userProfKey = GlobalKey();
+  static final GlobalKey<ScaffoldState> currentstatusKey = GlobalKey();
   static final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 }

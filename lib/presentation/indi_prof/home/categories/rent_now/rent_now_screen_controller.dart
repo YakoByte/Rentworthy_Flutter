@@ -1,21 +1,11 @@
 import 'dart:convert';
-import 'dart:developer';
 
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:http/http.dart' as http;
-import 'package:rentworthy/utils/common_components/icon_text.dart';
 import 'package:rentworthy/utils/globals.dart';
-import 'package:rentworthy/utils/images.dart';
-import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:share_plus/share_plus.dart';
-
-import '../../../../../utils/color.dart';
-import '../../../../../utils/common_components/common_text.dart';
-import '../../../dialogs/widgets/date_picker/date_picker_manager.dart';
 
 part 'rent_now_screen_controller.g.dart';
 
@@ -72,7 +62,7 @@ class RentNowController extends _$RentNowController {
       ///now finally display payment sheeet
       displayPaymentSheet();
     } catch (e, s) {
-      print('Payment exception:$e$s');
+      // print('Payment exception:$e$s');
     }
   }
 
@@ -80,27 +70,27 @@ class RentNowController extends _$RentNowController {
   displayPaymentSheet() async {
     try {
       await Stripe.instance.presentPaymentSheet().then((newValue) {
-        print('payment intent${paymentIntentData!['id']}');
-        print('payment intent${paymentIntentData!['client_secret']}');
-        print('payment intent${paymentIntentData!['20']}');
-        print('payment intent$paymentIntentData');
+        // print('payment intent${paymentIntentData!['id']}');
+        // print('payment intent${paymentIntentData!['client_secret']}');
+        // print('payment intent${paymentIntentData!['20']}');
+        // print('payment intent$paymentIntentData');
         //orderPlaceApi(paymentIntentData!['id'].toString());
         ScaffoldMessenger.of(Globals.navigatorKey.currentContext!).showSnackBar(
             const SnackBar(content: Text("Payment Successfully")));
 
         paymentIntentData = null;
       }).onError((error, stackTrace) {
-        print('Exception/DISPLAYPAYMENTSHEET==> $error $stackTrace');
+        // print('Exception/DISPLAYPAYMENTSHEET==> $error $stackTrace');
       });
     } on StripeException catch (e) {
-      print('Exception/DISPLAYPAYMENTSHEET1==> $e');
+      // print('Exception/DISPLAYPAYMENTSHEET1==> $e');
       showDialog(
           context: Globals.navigatorKey.currentContext!,
           builder: (_) => const AlertDialog(
                 content: Text("Cancelled "),
               ));
     } catch (e) {
-      print('$e');
+      // print('$e');
     }
   }
 
@@ -112,7 +102,7 @@ class RentNowController extends _$RentNowController {
         'amount': calculateAmount('20'),
         'currency': currency,
       };
-      print(body);
+      // print(body);
       var response = await http.post(
           Uri.parse('https://api.stripe.com/v1/payment_intents'),
           body: body,
@@ -121,10 +111,10 @@ class RentNowController extends _$RentNowController {
                 'Bearer sk_test_51MFuOjSBUkFSnwGbIKmJDVAFVuFYFXJkCZi1NdaOtHF9z1IQPyON9LjIoHeVA4CvRwqI83PQqCRiDaopV3Jyz20800UYcjAtTL',
             'Content-Type': 'application/x-www-form-urlencoded'
           });
-      log('Create Intent response ===> ${response.body.toString()}');
+      // log('Create Intent response ===> ${response.body.toString()}');
       return jsonDecode(response.body);
     } catch (err) {
-      print('err charging user: ${err.toString()}');
+      // print('err charging user: ${err.toString()}');
     }
   }
 

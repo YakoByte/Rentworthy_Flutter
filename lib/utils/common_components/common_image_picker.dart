@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../color.dart';
-import '../text.dart';
 import 'common_button.dart';
 import 'common_text.dart';
 
@@ -111,7 +110,7 @@ class CommonImagePicker extends ConsumerWidget {
                       if (pickedImg != null) {
                         pickedImage(File(pickedImg.path));
 
-                        debugPrint('imageimage33 ${pickedImg.path}');
+                        //  debugPrint('imageimage33 ${pickedImg.path}');
                         Navigator.pop(context);
                       }
                     }),
@@ -147,7 +146,7 @@ class CommonImagePicker extends ConsumerWidget {
                       if (pickedImg != null) {
                         pickedImage(File(pickedImg.path));
 
-                        debugPrint('imageimage33 ${pickedImg.path}');
+                        //    debugPrint('imageimage33 ${pickedImg.path}');
                         Navigator.pop(context);
                       }
                     }),

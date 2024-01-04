@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:rentworthy/application/dialog/dialog_service.dart';
 import 'package:rentworthy/presentation/indi_prof/sell/post_add/post_ur_ad_controller.dart';
 import 'package:rentworthy/utils/common_components/common_gridview.dart';
@@ -11,19 +10,15 @@ import '../../../../application/validate/validate.dart';
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_appbar.dart';
 import '../../../../utils/common_components/common_button.dart';
-import '../../../../utils/common_components/common_dropdown.dart';
 import '../../../../utils/common_components/common_dropdown_multiselect.dart';
 import '../../../../utils/common_components/common_loader.dart';
-import '../../../../utils/common_components/common_navigator.dart';
 import '../../../../utils/common_components/common_text.dart';
 import '../../../../utils/common_components/dropdown/dropdown_search.dart';
 import '../../../../utils/common_components/gradient_track_shape.dart';
 import '../../../../utils/common_components/text_input_field.dart';
 import '../../../../utils/images.dart';
 import '../../../../utils/text.dart';
-import '../../../shimmers/post_ur_ad.dart';
 import '../../error/error_screen.dart';
-import '../product_availablity/product_availablity_screen.dart';
 
 class PostUrAds extends ConsumerStatefulWidget {
   String type;
@@ -82,61 +77,71 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                                 fontSize: h * 0.025,
                                 fontWeight: FontWeight.w600)),
                         Container(
-                          height: h * 0.175,
+                          height: h * 0.15,
                           child: Stack(
                             children: [
-                              TextInputField(
-                                  hintText: "",
-                                  titleText: AppText.adTitle,
-                                  enableunderlinecolor:
-                                      AppColors.black.withOpacity(0.6),
-                                  disableunderlinecolor:
-                                      AppColors.black.withOpacity(0.6),
-                                  focusunderlinecolor:
-                                      AppColors.black.withOpacity(0.6),
-                                  underlinecolor:
-                                      AppColors.black.withOpacity(0.6),
-                                  hintStyle: ptSansTextStyle(
-                                      color: AppColors.black.withOpacity(0.6),
-                                      fontSize: h * 0.019,
-                                      fontWeight: FontWeight.w400),
-                                  textstyle: ptSansTextStyle(
-                                      color: AppColors.black,
-                                      fontSize: h * 0.019,
-                                      fontWeight: FontWeight.w500),
-                                  titletextstyle: ptSansTextStyle(
-                                      color: AppColors.black.withOpacity(0.6),
-                                      fontSize: h * 0.021,
-                                      fontWeight: FontWeight.w500),
-                                  errorText: controller().issubmit == true
-                                      ? validate(
-                                          controller().addtitleController.text)
-                                      : null,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      validate(
-                                          controller().addtitleController.text);
-                                    });
-                                  },
-                                  errorStyle: ptSansTextStyle(
-                                      color: AppColors.red,
-                                      fontSize: h * 0.019,
-                                      fontWeight: FontWeight.w400),
-                                  controller: controller().addtitleController,
-                                  keyboardType: TextInputType.text,
-                                  isCounter: true,
-                                  maxLength: 70,
-                                  containerwidth: w,
-                                  underline: false,
-                                  borderRadius: BorderRadius.circular(4),
-                                  containerborder: Border.all(
-                                      color: AppColors.black.withOpacity(0.4)),
-                                  containerheight: h * 0.06,
-                                  containercolor: AppColors.white,
-                                  textCapitalization: TextCapitalization.none),
                               Positioned(
+                                top: 0,
+                                right: 0,
+                                left: 0,
+                                child: TextInputField(
+                                    hintText: "",
+                                    titleText: AppText.adTitle,
+                                    enableunderlinecolor:
+                                        AppColors.black.withOpacity(0.6),
+                                    disableunderlinecolor:
+                                        AppColors.black.withOpacity(0.6),
+                                    focusunderlinecolor:
+                                        AppColors.black.withOpacity(0.6),
+                                    underlinecolor:
+                                        AppColors.black.withOpacity(0.6),
+                                    hintStyle: ptSansTextStyle(
+                                        color: AppColors.black.withOpacity(0.6),
+                                        fontSize: h * 0.019,
+                                        fontWeight: FontWeight.w400),
+                                    textstyle: ptSansTextStyle(
+                                        color: AppColors.black,
+                                        fontSize: h * 0.019,
+                                        fontWeight: FontWeight.w500),
+                                    titletextstyle: ptSansTextStyle(
+                                        color: AppColors.black.withOpacity(0.6),
+                                        fontSize: h * 0.021,
+                                        fontWeight: FontWeight.w500),
+                                    errorText: controller().issubmit == true
+                                        ? validate(controller()
+                                            .addtitleController
+                                            .text)
+                                        : null,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        validate(controller()
+                                            .addtitleController
+                                            .text);
+                                      });
+                                    },
+                                    errorStyle: ptSansTextStyle(
+                                        color: AppColors.red,
+                                        fontSize: h * 0.019,
+                                        fontWeight: FontWeight.w400),
+                                    controller: controller().addtitleController,
+                                    keyboardType: TextInputType.text,
+                                    isCounter: true,
+                                    maxLength: 70,
+                                    containerwidth: w,
+                                    underline: false,
+                                    borderRadius: BorderRadius.circular(4),
+                                    containerborder: Border.all(
+                                        color:
+                                            AppColors.black.withOpacity(0.4)),
+                                    containerheight: h * 0.06,
+                                    containercolor: AppColors.white,
+                                    textCapitalization:
+                                        TextCapitalization.none),
+                              ),
+                              Positioned(
+                                top: h * 0.1,
                                 bottom: 0,
-                                right: w * 0.1,
+                                right: 0,
                                 left: 0,
                                 child: CommonText(
                                     text:
@@ -348,7 +353,7 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                                   ),
                                 ),
                                 onChangedsearch: (str) {
-                                  print("sdfs $str");
+                                  // print("sdfs $str");
                                   controller().onValSelect(val: str!);
                                 },
                                 enabled: true,
@@ -370,60 +375,67 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                           height: h * 0.25,
                           child: Stack(
                             children: [
-                              TextInputField(
-                                  isCounter: true,
-                                  maxLines: 10,
-                                  center: false,
-                                  hintText: "",
-                                  titleText: "${AppText.desc}*",
-                                  underline: false,
-                                  lableText: "",
-                                  enableunderlinecolor:
-                                      AppColors.black.withOpacity(0.6),
-                                  disableunderlinecolor:
-                                      AppColors.black.withOpacity(0.6),
-                                  focusunderlinecolor:
-                                      AppColors.black.withOpacity(0.6),
-                                  underlinecolor:
-                                      AppColors.black.withOpacity(0.6),
-                                  hintStyle: ptSansTextStyle(
-                                      color: AppColors.black.withOpacity(0.6),
-                                      fontSize: h * 0.019,
-                                      fontWeight: FontWeight.w400),
-                                  textstyle: ptSansTextStyle(
-                                      color: AppColors.black,
-                                      fontSize: h * 0.019,
-                                      fontWeight: FontWeight.w500),
-                                  titletextstyle: ptSansTextStyle(
-                                      color: AppColors.black.withOpacity(0.6),
-                                      fontSize: h * 0.021,
-                                      fontWeight: FontWeight.w500),
-                                  errorText: controller().issubmit == true
-                                      ? validate(
-                                          controller().descController.text)
-                                      : null,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      validate(
-                                          controller().descController.text);
-                                    });
-                                  },
-                                  maxLength: 4096,
-                                  errorStyle: ptSansTextStyle(
-                                      color: AppColors.red,
-                                      fontSize: h * 0.019,
-                                      fontWeight: FontWeight.w400),
-                                  controller: controller().descController,
-                                  keyboardType: TextInputType.text,
-                                  containerwidth: w,
-                                  borderRadius: BorderRadius.circular(4),
-                                  containerborder: Border.all(
-                                      color: AppColors.black.withOpacity(0.4)),
-                                  containerheight: h * 0.16,
-                                  containercolor: AppColors.white,
-                                  textCapitalization: TextCapitalization.none),
                               Positioned(
-                                bottom: h * 0.012,
+                                top: 0,
+                                right: 0,
+                                left: 0,
+                                child: TextInputField(
+                                    isCounter: true,
+                                    maxLines: 10,
+                                    center: false,
+                                    hintText: "",
+                                    titleText: "${AppText.desc}*",
+                                    underline: false,
+                                    lableText: "",
+                                    enableunderlinecolor:
+                                        AppColors.black.withOpacity(0.6),
+                                    disableunderlinecolor:
+                                        AppColors.black.withOpacity(0.6),
+                                    focusunderlinecolor:
+                                        AppColors.black.withOpacity(0.6),
+                                    underlinecolor:
+                                        AppColors.black.withOpacity(0.6),
+                                    hintStyle: ptSansTextStyle(
+                                        color: AppColors.black.withOpacity(0.6),
+                                        fontSize: h * 0.019,
+                                        fontWeight: FontWeight.w400),
+                                    textstyle: ptSansTextStyle(
+                                        color: AppColors.black,
+                                        fontSize: h * 0.019,
+                                        fontWeight: FontWeight.w500),
+                                    titletextstyle: ptSansTextStyle(
+                                        color: AppColors.black.withOpacity(0.6),
+                                        fontSize: h * 0.021,
+                                        fontWeight: FontWeight.w500),
+                                    errorText: controller().issubmit == true
+                                        ? validate(
+                                            controller().descController.text)
+                                        : null,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        validate(
+                                            controller().descController.text);
+                                      });
+                                    },
+                                    maxLength: 4096,
+                                    errorStyle: ptSansTextStyle(
+                                        color: AppColors.red,
+                                        fontSize: h * 0.019,
+                                        fontWeight: FontWeight.w400),
+                                    controller: controller().descController,
+                                    keyboardType: TextInputType.text,
+                                    containerwidth: w,
+                                    borderRadius: BorderRadius.circular(4),
+                                    containerborder: Border.all(
+                                        color:
+                                            AppColors.black.withOpacity(0.4)),
+                                    containerheight: h * 0.16,
+                                    containercolor: AppColors.white,
+                                    textCapitalization:
+                                        TextCapitalization.none),
+                              ),
+                              Positioned(
+                                top: h * 0.2,
                                 right: w * 0.11,
                                 left: 0,
                                 child: CommonText(
@@ -554,7 +566,7 @@ class _PostUrAdsState extends ConsumerState<PostUrAds> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       CommonText(
-                                          text: "Upload up to 12 photos",
+                                          text: "Upload up to 6 photos",
                                           style: ptSansTextStyle(
                                               color: AppColors.black,
                                               fontSize: h * 0.025,

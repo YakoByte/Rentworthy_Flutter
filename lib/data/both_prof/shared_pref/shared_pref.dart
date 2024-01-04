@@ -8,6 +8,7 @@ class PreferenceManagerUtils {
   static String token = "Token";
   static String email = "Email";
   static String userName = "UserName";
+  static String asGuest = "asGuest";
 
   ///setIsLogin
   static Future setIsLogin(bool value) async {
@@ -18,6 +19,17 @@ class PreferenceManagerUtils {
   static Future<bool?> getIsLogin() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getBool(isLogin);
+  }
+
+  ///setAGuest
+  static Future setAsGuest(bool value) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(asGuest, value);
+  }
+
+  static Future<bool?> getAsGuest() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(asGuest);
   }
 
   ///setIsIndividual
@@ -90,6 +102,8 @@ class PreferenceManagerUtils {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     setIsLogin(false);
+    setAsGuest(false);
+
     setIsIndividual(0);
     setIsOnboarding(false);
     setUserId("");
@@ -104,6 +118,7 @@ class PreferenceManagerUtils {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     setIsLogin(false);
+    setAsGuest(false);
     setIsIndividual(0);
     setUserId("");
     setUsername("");

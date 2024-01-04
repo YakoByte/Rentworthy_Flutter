@@ -1,18 +1,10 @@
+import 'dart:math' as math show sin, pi, sqrt;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../utils/color.dart';
-import '../../../../utils/common_components/common_searchbar.dart';
-import '../../../../utils/common_components/common_text.dart';
-import '../../../../utils/images.dart';
 import '../../../../utils/import_utils.dart';
-import '../../../../utils/text.dart';
 import '../home_screen_controller.dart';
-import 'package:flutter/material.dart';
-
-import 'dart:math' as math show sin, pi, sqrt;
-import 'package:flutter/animation.dart';
-
 import 'curve_wave.dart';
 
 class HomeSearch extends ConsumerWidget {
@@ -113,10 +105,10 @@ class HomeSearch extends ConsumerWidget {
                               onPressed: () {
                                 if (controller().speechRecognitionAvailable &&
                                     !controller().isListening) {
-                                  debugPrint(
-                                      "ssdsdpeechRecognitionAvailable ${controller().speechRecognitionAvailable}");
-                                  debugPrint(
-                                      "isListeningisListening ${controller().isListening}");
+                                  // debugPrint(
+                                  //     "ssdsdpeechRecognitionAvailable ${controller().speechRecognitionAvailable}");
+                                  // debugPrint(
+                                  //     "isListeningisListening ${controller().isListening}");
 
                                   ///start listening
                                   controller().start();

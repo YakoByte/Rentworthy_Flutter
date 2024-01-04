@@ -23,7 +23,7 @@ class CommonMultiSelectDrop extends ConsumerWidget {
   Future<List<String>> Function(String)? asyncItems;
   Widget Function(BuildContext, String?)? dropdownBuilder;
   DropDownDecoratorProps dropdownDecoratorProps =
-      const DropDownDecoratorProps();
+  const DropDownDecoratorProps();
   ClearButtonProps clearButtonProps = const ClearButtonProps();
   DropdownButtonProps dropdownButtonProps = const DropdownButtonProps();
   bool enabled = true;
@@ -78,8 +78,14 @@ class CommonMultiSelectDrop extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    final width = MediaQuery
+        .of(context)
+        .size
+        .width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -123,12 +129,11 @@ class CommonMultiSelectDrop extends ConsumerWidget {
                       fit: FlexFit.loose,
                       title: dropdowntitle,
                       onItemAdded: (selectedItems, addedItem) {
-                        print('addedItem $addedItem');
-                        print('selectedItems $selectedItems');
+                        // print('selectedItems $selectedItems');
                       },
                       onItemRemoved: (selectedItems, removedItem) {
-                        print('removedItem $removedItem');
-                        print('selectedItems $selectedItems');
+                        // print('removedItem $removedItem');
+                        // print('selectedItems $selectedItems');
                       },
                       emptyBuilder: (context, searchEntry) {
                         return Container(
@@ -204,8 +209,14 @@ class CommonMultiSelectDrop extends ConsumerWidget {
   }
 
   Widget _style(BuildContext context, List<String>? selectedItem) {
-    final h = MediaQuery.of(context).size.height;
-    final w = MediaQuery.of(context).size.width;
+    final h = MediaQuery
+        .of(context)
+        .size
+        .height;
+    final w = MediaQuery
+        .of(context)
+        .size
+        .width;
     return Padding(
       padding: EdgeInsets.only(left: w * 0.02),
       child: Text(
@@ -221,8 +232,14 @@ class CommonMultiSelectDrop extends ConsumerWidget {
   }
 
   Widget _style1(BuildContext context, String? item, bool isSelected) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    final width = MediaQuery
+        .of(context)
+        .size
+        .width;
     return Container(
       height: height * 0.025,
       child: Row(

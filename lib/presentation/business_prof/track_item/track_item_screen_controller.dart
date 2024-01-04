@@ -53,7 +53,7 @@ class TrackItemController extends _$TrackItemController {
 
   onTabTap({required int val}) async {
     state = const AsyncLoading();
-    debugPrint('_selectedTab $val');
+    //  debugPrint('_selectedTab $val');
     _selectedTab = val;
 
     state = const AsyncValue.data(null);
@@ -63,7 +63,7 @@ class TrackItemController extends _$TrackItemController {
     state = const AsyncLoading();
 
     _isInvoiceTap![index] = !_isInvoiceTap![index];
-    debugPrint('_isInvoiceTap $_isInvoiceTap');
+    //debugPrint('_isInvoiceTap $_isInvoiceTap');
     state = const AsyncValue.data(null);
   }
 }

@@ -6,7 +6,7 @@ part of 'rent_now_screen_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$rentNowControllerHash() => r'900fc4fb8359b7b6f5e0354dd04cc3f7d34e806f';
+String _$rentNowControllerHash() => r'f590efb3f2a20af1e310268d9f9a2a5b7bb8778a';
 
 /// See also [RentNowController].
 @ProviderFor(RentNowController)

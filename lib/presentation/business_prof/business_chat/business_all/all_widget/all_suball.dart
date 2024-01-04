@@ -7,7 +7,7 @@ import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_navigator.dart';
 import '../../../../../utils/common_components/common_text.dart';
 import '../../../../../utils/images.dart';
-import '../../../../indi_prof/chat/chat_widget/message_screen.dart';
+import '../../../../indi_prof/chat/chat_widget/message/message_screen.dart';
 import '../../../../indi_prof/chat/chatlist/chat_list.dart';
 import '../business_all_controller.dart';
 
@@ -35,7 +35,10 @@ class BusinessAllSubAll extends ConsumerWidget {
                       commonNavigator(
                         context: context,
                         child: MessageScreen(
-                            title: "Ashish Sharma",
+                            conid: '',
+                            recid: '',
+                            senderid: '',
+                            title: "ABC Sharma",
                             subtitle: "iphone 11 64 GB"),
                         type: PageTransitionType.rightToLeftWithFade,
                       );
@@ -103,7 +106,7 @@ class BusinessAllSubAll extends ConsumerWidget {
                                         fontSize: w * 0.04,
                                         color: AppColors.black.withOpacity(0.6),
                                         fontWeight: FontWeight.w700),
-                                    text: "Ashish Sharma",
+                                    text: "ABC Sharma",
                                   ),
                                   Row(
                                     mainAxisAlignment:

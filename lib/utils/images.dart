@@ -3,7 +3,8 @@ class AppImg {
 
   static const String imgPath = "assets/images/";
   static const String iconPath = "assets/icons/";
-
+  static const String accountImg = "${imgPath}accountImg.png";
+  static const String announcement = "${imgPath}announcement.png";
   static const String appIcon = "${imgPath}appIcon.png";
   static const String appIconWhite = "${imgPath}appIconWhite.png";
   static const String appLogo = "${imgPath}appLogo.png";
@@ -17,7 +18,7 @@ class AppImg {
   static const String detectOtpImg = "${imgPath}detectOtpImg.png";
   static const String loginImg = "${imgPath}loginImg.png";
   static const String homeImg = "${imgPath}homeImg.png";
-  static const String announcement = "${imgPath}announcement.png";
+
   static const String banner1 = "${imgPath}banner1.png";
   static const String homeList = "${imgPath}homeList.png";
   static const String footer = "${imgPath}footer.png";
@@ -30,7 +31,7 @@ class AppImg {
   static const String banned = "${imgPath}banned.png";
   static const String underReview = "${imgPath}underReview.png";
   static const String searchEngines = "${imgPath}searchEngines.png";
-  static const String accountImg = "${imgPath}accountImg.png";
+
   static const String statisticCharacter = "${imgPath}statisticCharacter.png";
   static const String idVerGreen = "${imgPath}idVerGreen.png";
   static const String idVerPurple = "${imgPath}idVerPurple.png";

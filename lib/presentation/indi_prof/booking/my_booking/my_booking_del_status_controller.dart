@@ -105,6 +105,9 @@ class MyBookingDelStatusController extends _$MyBookingDelStatusController {
     AppText.heavyMachine,
     AppText.newMarket,
   ];
+  int? _selectedreason;
+
+  int? get selectedreason => _selectedreason;
 
   List<String> get nameList => _nameList;
   String? _selectedLocation;
@@ -163,7 +166,15 @@ class MyBookingDelStatusController extends _$MyBookingDelStatusController {
   ) {
     state = const AsyncLoading();
     checkboxitems = val;
-    print("checkboxitems $checkboxitems");
+    // print("checkboxitems $checkboxitems");
+    state = const AsyncValue.data(null);
+  }
+
+  oncosmeticval(
+    val,
+  ) {
+    state = const AsyncLoading();
+    _selectedreason = val;
     state = const AsyncValue.data(null);
   }
 

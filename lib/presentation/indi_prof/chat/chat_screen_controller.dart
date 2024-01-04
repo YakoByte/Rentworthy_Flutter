@@ -128,7 +128,7 @@ class ChatScreenController extends _$ChatScreenController {
   }
 
   void activateSpeechRecognizer() {
-    print('_MyAppState.activateSpeechRecognizer... ');
+    // print('_MyAppState.activateSp/eechRecognizer... ');
     state = const AsyncLoading();
 
     _speech.setAvailabilityHandler(onSpeechAvailability);
@@ -138,14 +138,14 @@ class ChatScreenController extends _$ChatScreenController {
     _speech.setErrorHandler(errorHandler);
     _speech.activate('en_US').then((res) {
       _speechRecognitionAvailable = res;
-      print("resres $res");
+      // print("resres $res");
     });
     state = const AsyncValue.data(null);
   }
 
   void start() => _speech.activate("en_US").then((_) {
         return _speech.listen().then((result) {
-          print('_MyAppState.start => result $result');
+          // print('_MyAppState.start => result $result');
 
           state = const AsyncLoading();
           // animationController!.forward();
@@ -157,35 +157,36 @@ class ChatScreenController extends _$ChatScreenController {
 
   void cancel() => _speech.cancel().then((_) {
         state = const AsyncLoading();
-        print("cancel");
+        // print("cancel");
         _isListening = false;
         state = const AsyncValue.data(null);
       });
 
   void stop() => _speech.stop().then((_) {
         state = const AsyncLoading();
-        print("stop");
+        // print("stop");
+        messageController.text = "";
         _isListening = false;
         state = const AsyncValue.data(null);
       });
 
   void onSpeechAvailability(bool result) {
     state = const AsyncLoading();
-    print("onSpeechAvailability");
+    // print("onSpeechAvailability");
     _speechRecognitionAvailable = result;
     state = const AsyncValue.data(null);
   }
 
   void onRecognitionStarted() {
     state = const AsyncLoading();
-    print("Listening");
+    // print("Listening");
     _isListening = true;
     messageController.text = 'Listening...';
     state = const AsyncValue.data(null);
   }
 
   void onRecognitionResult(String text) {
-    print('_MyAppState.onRecognitionResult... $text');
+    // print('_MyAppState.onRecognitionResult... $text');
     //  state = const AsyncLoading();
     transcription = text;
 
@@ -195,7 +196,7 @@ class ChatScreenController extends _$ChatScreenController {
   }
 
   void onRecognitionComplete(String text) {
-    print('_MyAppState.onRecognitionComplete... $text');
+    // print('_MyAppState.onRecognitionComplete... $text');
     state = const AsyncLoading();
 
     Future.delayed(const Duration(milliseconds: 400), () {
@@ -230,10 +231,10 @@ class ChatScreenController extends _$ChatScreenController {
 
   onSend() async {
     state = const AsyncLoading();
-    print("messageController ${messageController.text}");
+    // print("messageController ${messageController.text}");
 
     msgList!.add(messageController.text);
-    print("msgList ${msgList}");
+    // print("msgList ${msgList}");
     messageController.text = "";
     WidgetsBinding.instance!.addPostFrameCallback((_) => _scrollToEnd());
 

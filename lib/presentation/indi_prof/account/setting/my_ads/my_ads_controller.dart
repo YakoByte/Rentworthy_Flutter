@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:rentworthy/utils/images.dart';
 import 'package:rentworthy/utils/text.dart';
@@ -111,7 +110,7 @@ class MyAdsController extends _$MyAdsController {
 
   onTabTap({required int val}) async {
     state = const AsyncLoading();
-    debugPrint('_selectedTab $val');
+    // debugPrint('_selectedTab $val');
 
     for (int i = 0; i < _nameList.length; i++) {
       animatecontrollerlist!.add(AnimationController(
@@ -134,9 +133,9 @@ class MyAdsController extends _$MyAdsController {
     val,
   ) {
     state = const AsyncLoading();
-    debugPrint("val $val");
+    // debugPrint("val $val");
     selectedfilter = val;
-    debugPrint("selectedfilter $selectedfilter");
+    // debugPrint("selectedfilter $selectedfilter");
     state = const AsyncValue.data(null);
   }
 

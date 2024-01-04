@@ -5,7 +5,6 @@ import 'package:rentworthy/application/validate/validate.dart';
 import 'package:rentworthy/presentation/indi_prof/account/setting/review/write_review/write_review_controller.dart';
 
 import '../../../../../../utils/import_utils.dart';
-import '../../../../../shimmers/write_review_shimmer.dart';
 import '../../../../error/error_screen.dart';
 
 class WriteReviewScreen extends ConsumerStatefulWidget {
@@ -139,7 +138,7 @@ class _WriteReviewScreenState extends ConsumerState<WriteReviewScreen> {
                               color: AppColors.amber,
                             ),
                             onRatingUpdate: (rating) {
-                              print(rating);
+                              // print(rating);
                             },
                           ),
                         ],

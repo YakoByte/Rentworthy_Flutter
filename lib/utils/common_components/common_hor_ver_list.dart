@@ -113,14 +113,25 @@ class HorizonVertList extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               ClipRRect(
-                                borderRadius: BorderRadius.circular(h * 0.025),
-                                child: Image.asset(
-                                  AppImg.homeList,
-                                  height: h * 0.2,
-                                  width: contwidth * 0.85,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+                                  borderRadius:
+                                      BorderRadius.circular(h * 0.025),
+                                  child: Container(
+                                    height: h * 0.2,
+                                    width: contwidth * 0.85,
+                                    child: imgList[index] != ""
+                                        ? Image.network(
+                                            imgList[index],
+                                            height: h * 0.2,
+                                            width: contwidth * 0.85,
+                                            fit: BoxFit.cover,
+                                          )
+                                        : Image.asset(
+                                            AppImg.homeList,
+                                            height: h * 0.2,
+                                            width: contwidth * 0.85,
+                                            fit: BoxFit.cover,
+                                          ),
+                                  )),
                             ],
                           ),
                           Positioned(
@@ -300,15 +311,29 @@ class HorizonVertList extends ConsumerWidget {
                                 height: favrow != null ? h * 0.14 : h * 0.12,
                                 width: w * 0.24,
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(14),
-                                  child: Image.asset(
-                                    AppImg.homeList,
-                                    height:
-                                        favrow != null ? h * 0.14 : h * 0.12,
-                                    width: w * 0.24,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
+                                    borderRadius: BorderRadius.circular(14),
+                                    child: Container(
+                                      height:
+                                          favrow != null ? h * 0.14 : h * 0.12,
+                                      width: w * 0.24,
+                                      child: imgList[index] != ""
+                                          ? Image.network(
+                                              imgList[index],
+                                              height: favrow != null
+                                                  ? h * 0.14
+                                                  : h * 0.12,
+                                              width: w * 0.24,
+                                              fit: BoxFit.cover,
+                                            )
+                                          : Image.asset(
+                                              AppImg.homeList,
+                                              height: favrow != null
+                                                  ? h * 0.14
+                                                  : h * 0.12,
+                                              width: w * 0.24,
+                                              fit: BoxFit.cover,
+                                            ),
+                                    )),
                               ),
                               Container(
                                 width: w * 0.5,

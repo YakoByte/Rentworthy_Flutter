@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'notification_controller.g.dart';
@@ -16,6 +15,7 @@ class NotificationController extends _$NotificationController {
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
+
   @override
   FutureOr<void> build() async {
     state = const AsyncLoading();
@@ -31,7 +31,7 @@ class NotificationController extends _$NotificationController {
   /// onSwitchTap
   onSwitchTap({required bool val}) async {
     state = const AsyncLoading();
-    debugPrint('onEyeTap $val');
+    // debugPrint('onEyeTap $val');
     _switched = val;
 
     state = const AsyncValue.data(null);
@@ -40,7 +40,7 @@ class NotificationController extends _$NotificationController {
   /// onSwitchrecTap
   onSwitchrecTap({required bool val}) async {
     state = const AsyncLoading();
-    debugPrint('onSwitchrecTap $val');
+    //  debugPrint('onSwitchrecTap $val');
     _recswitched = val;
 
     state = const AsyncValue.data(null);

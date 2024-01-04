@@ -21,7 +21,7 @@ class BusinessAll extends ConsumerWidget {
     final w = MediaQuery.of(context).size.width;
     final asyncState = ref.watch(businessAllControllerProvider);
     controller() => ref.read(businessAllControllerProvider.notifier);
-    print("tab is ${controller().tabController.index}");
+    //print("tab is ${controller().tabController.index}");
     return SingleChildScrollView(
       physics: NeverScrollableScrollPhysics(),
       child: Column(

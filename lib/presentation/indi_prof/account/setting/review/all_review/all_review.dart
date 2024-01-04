@@ -3,14 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../../../../../../utils/color.dart';
-import '../../../../../../utils/common_components/common_appbar.dart';
-import '../../../../../../utils/common_components/common_button.dart';
-import '../../../../../../utils/common_components/common_navigator.dart';
-import '../../../../../../utils/common_components/common_text.dart';
-import '../../../../../../utils/common_components/text_input_field.dart';
 import '../../../../../../utils/import_utils.dart';
-import '../../../../../../utils/text.dart';
 import '../../../../../shimmers/review_shimmer.dart';
 import '../../../../error/error_screen.dart';
 import '../write_review/write_review.dart';
@@ -141,7 +134,7 @@ class _AllReviewScreenState extends ConsumerState<AllReviewScreen> {
                                           color: AppColors.amber,
                                         ),
                                         onRatingUpdate: (rating) {
-                                          print(rating);
+                                          // print(rating);
                                         },
                                       )
                                     ],
@@ -509,7 +502,7 @@ class _AllReviewScreenState extends ConsumerState<AllReviewScreen> {
                                                 color: AppColors.amber,
                                               ),
                                               onRatingUpdate: (rating) {
-                                                print(rating);
+                                                // print(rating);
                                               },
                                             )
                                           ],

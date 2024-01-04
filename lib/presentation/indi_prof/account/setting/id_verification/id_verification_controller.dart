@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:rentworthy/utils/common_components/common_navigator.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../application/validate/validate.dart';
-import '../../../../../data/both_prof/shared_pref/shared_pref.dart';
 import '../../../../../utils/globals.dart';
 import '../../../bottombar/bottom_bar.dart';
 
@@ -13,8 +11,10 @@ part 'id_verification_controller.g.dart';
 @riverpod
 class IdVerificationController extends _$IdVerificationController {
   bool _isVerified = false;
+
   bool get isVerified => _isVerified;
   bool _onverify = false;
+
   bool get onverify => _onverify;
   bool _isSubmit = false;
 
@@ -46,7 +46,7 @@ class IdVerificationController extends _$IdVerificationController {
       _isVerified = false;
       _onverify = false;
     }
-    debugPrint('_isVerified $_isVerified');
+    // debugPrint('_isVerified $_isVerified');
     state = const AsyncValue.data(null);
   }
 }

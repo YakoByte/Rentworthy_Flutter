@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:rentworthy/utils/globals.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../utils/common_components/common_tickerprovider.dart';
 import '../../../application/dialog/dialog_service.dart';
 import '../../../application/validate/validate.dart';
 
@@ -40,7 +39,7 @@ class BusinessInfoScreenController extends _$BusinessInfoScreenController {
 
   onVerified({required bool val}) async {
     state = const AsyncLoading();
-    debugPrint('_verified $val');
+    // debugPrint('_verified $val');
     _verified = val;
     Navigator.pop(Globals.navigatorKey.currentContext!);
     state = const AsyncValue.data(null);
@@ -71,14 +70,14 @@ class BusinessInfoScreenController extends _$BusinessInfoScreenController {
 
   onUnderReview({required bool val}) async {
     state = const AsyncLoading();
-    debugPrint('onUnderReview $val');
+    // debugPrint('onUnderReview $val');
     _underreview = val;
     state = const AsyncValue.data(null);
   }
 
   onBanned({required bool val}) async {
     state = const AsyncLoading();
-    debugPrint('onBanned $val');
+    // debugPrint('onBanned $val');
     _banned = val;
     state = const AsyncValue.data(null);
   }

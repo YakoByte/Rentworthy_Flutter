@@ -5,11 +5,10 @@ import 'package:rentworthy/utils/common_components/common_iconbutton.dart';
 import 'package:rentworthy/utils/common_components/common_listview.dart';
 import 'package:rentworthy/utils/common_components/common_navigator.dart';
 import 'package:rentworthy/utils/common_components/icon_text.dart';
+
 import '../../../../../application/dialog/dialog_service.dart';
 import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_appbar.dart';
-import '../../../../../utils/common_components/common_button.dart';
-import '../../../../../utils/common_components/common_popup.dart';
 import '../../../../../utils/common_components/common_text.dart';
 import '../../../../../utils/text.dart';
 import '../../../../shimmers/my_address_shimmer.dart';
@@ -175,7 +174,14 @@ class MyAddressesScreen extends ConsumerWidget {
                                                 Icons.edit_outlined,
                                                 color: AppColors.black,
                                                 size: h * 0.03),
-                                            onPressed: () {}),
+                                            onPressed: () {
+                                              commonNavigator(
+                                                context: context,
+                                                child: AddAddressScreen(),
+                                                type: PageTransitionType
+                                                    .rightToLeftWithFade,
+                                              );
+                                            }),
 
                                         /// Delete Address
                                         CommonIconButton(

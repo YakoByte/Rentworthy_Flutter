@@ -6,7 +6,6 @@ import 'package:page_transition/page_transition.dart';
 import 'package:rentworthy/utils/import_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../utils/common_components/common_tickerprovider.dart';
 import '../../../application/validate/validate.dart';
 import '../admin_panel/admin_panel.dart';
 
@@ -56,7 +55,7 @@ class BusinessPostAdController extends _$BusinessPostAdController {
   onImgSelect({required val, required index}) async {
     state = const AsyncLoading();
     selectedImage![index] = val;
-    print("selectedImage =-=- ${selectedImage![index]}");
+    // print("selectedImage =-=- ${selectedImage![index]}");
     state = const AsyncValue.data(null);
   }
 

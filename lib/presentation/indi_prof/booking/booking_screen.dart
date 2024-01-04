@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rentworthy/presentation/shimmers/my_booking_shimmer.dart';
-import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../../../utils/color.dart';
 import '../../../utils/common_components/common_appbar.dart';
-import '../../../utils/common_components/common_dropdown.dart';
 import '../../../utils/common_components/common_dropdown_multiselect.dart';
 import '../../../utils/common_components/common_iconbutton.dart';
 import '../../../utils/common_components/common_text.dart';
@@ -168,7 +166,7 @@ class BookingScreen extends ConsumerWidget {
                               Container(
                                 height: fromNav == true ? h * 0.82 : h * 0.9,
                                 child: SingleChildScrollView(
-                                  physics: NeverScrollableScrollPhysics(),
+                                  physics: const NeverScrollableScrollPhysics(),
                                   child: Column(
                                     children: [
                                       Categories(
@@ -211,7 +209,8 @@ class BookingScreen extends ConsumerWidget {
                                           animatecontrollerlist: controller()
                                               .animatecontrollerlist!,
                                           isTopPadding: false,
-                                          onCardPressed: MyBookingDelStatus(),
+                                          onCardPressed:
+                                              const MyBookingDelStatus(),
                                           height: fromNav == true
                                               ? controller().imgList.length *
                                                   h *
@@ -220,7 +219,7 @@ class BookingScreen extends ConsumerWidget {
                                                   h *
                                                   0.08,
                                           favList:
-                                              controller().getfeatureadfavlist!,
+                                              controller().getfeatureadfavlist,
                                           scrollDirection: Axis.vertical,
                                           nameList: controller().nameList,
                                           imgList: controller().imgList,
@@ -264,7 +263,7 @@ class BookingScreen extends ConsumerWidget {
                                             MainAxisAlignment.start,
                                         children: [
                                           Container(
-                                            width: w * 0.44,
+                                            width: w * 0.43,
                                             height: h * 0.03,
                                             color: AppColors.white,
                                             child: SliderTheme(
@@ -369,7 +368,7 @@ class BookingScreen extends ConsumerWidget {
                                     ),
                                   ),
                                   onChangedsearch: (str) {
-                                    debugPrint("sdfs $str");
+                                    //     debugPrint("sdfs $str");
                                     controller().onchangefilter(str!);
                                   },
                                   enabled: true,
@@ -401,7 +400,7 @@ class BookingScreen extends ConsumerWidget {
                                             MainAxisAlignment.start,
                                         children: [
                                           Container(
-                                            width: w * 0.44,
+                                            width: w * 0.43,
                                             height: h * 0.03,
                                             color: AppColors.white,
                                             child: SliderTheme(
@@ -506,7 +505,7 @@ class BookingScreen extends ConsumerWidget {
                                     ),
                                   ),
                                   onChangedsearch: (str) {
-                                    debugPrint("sdfs $str");
+                                    // debugPrint("sdfs $str");
                                     controller().onchangesorting(str);
                                   },
                                   enabled: true,

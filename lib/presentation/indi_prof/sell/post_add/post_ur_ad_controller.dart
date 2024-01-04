@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:rentworthy/presentation/indi_prof/home/categories/cat_details/category_details_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../application/validate/validate.dart';
@@ -57,7 +56,7 @@ class PostUrAdsController extends _$PostUrAdsController {
   onImgSelect({required val, required index}) async {
     state = const AsyncLoading();
     selectedImage![index] = val;
-    print("selectedImage =-=- ${selectedImage![index]}");
+    // print("selectedImage =-=- ${selectedImage![index]}");
     state = const AsyncValue.data(null);
   }
 

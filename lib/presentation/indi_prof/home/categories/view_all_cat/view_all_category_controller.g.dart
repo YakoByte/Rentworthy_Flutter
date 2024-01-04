@@ -7,7 +7,7 @@ part of 'view_all_category_controller.dart';
 // **************************************************************************
 
 String _$viewAllCategoryControllerHash() =>
-    r'adce39e3fdd78de0fe2bcb69bcc6e8d8cbc84ae5';
+    r'1f50c3d917d4f2e8011891591dd338233e7e636d';
 
 /// See also [ViewAllCategoryController].
 @ProviderFor(ViewAllCategoryController)

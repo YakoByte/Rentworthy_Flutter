@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:rentworthy/utils/common_components/common_iconbutton.dart';
-import 'package:rentworthy/utils/common_components/common_navigator.dart';
 import 'package:rentworthy/utils/globals.dart';
 
 import '../../../../utils/color.dart';
@@ -10,7 +7,6 @@ import '../../../../utils/common_components/common_dropdown.dart';
 import '../../../../utils/common_components/common_text.dart';
 import '../../../../utils/common_components/dropdown/dropdown_search.dart';
 import '../../../../utils/images.dart';
-import '../../account/setting/notification/notification.dart';
 import '../home_screen_controller.dart';
 
 class HomeAppBar extends ConsumerWidget {
@@ -132,7 +128,7 @@ class HomeAppBar extends ConsumerWidget {
           enabled: true,
           isExpanded: true,
           containerwidth: w * 0.5,
-          containerheight: h * 0.07,
+          containerheight: h * 0.06,
           containercolor: AppColors.white,
           elevation: 0,
         ),

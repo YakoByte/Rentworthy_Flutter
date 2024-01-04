@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:rentworthy/presentation/business_prof/admin_panel/admin_panel.dart';
-import 'package:rentworthy/presentation/shimmers/post_ur_ad.dart';
 import 'package:rentworthy/utils/common_components/common_iconbutton.dart';
 
 import '../../../application/dialog/dialog_service.dart';
@@ -14,18 +11,14 @@ import '../../../utils/common_components/common_button.dart';
 import '../../../utils/common_components/common_dropdown_multiselect.dart';
 import '../../../utils/common_components/common_gridview.dart';
 import '../../../utils/common_components/common_loader.dart';
-import '../../../utils/common_components/common_navigator.dart';
 import '../../../utils/common_components/common_text.dart';
 import '../../../utils/common_components/dropdown/src/properties/clear_button_props.dart';
 import '../../../utils/common_components/dropdown/src/properties/dropdown_button_props.dart';
 import '../../../utils/common_components/dropdown/src/properties/dropdown_decorator_props.dart';
-import '../../../utils/common_components/gradient_track_shape.dart';
 import '../../../utils/common_components/text_input_field.dart';
 import '../../../utils/images.dart';
 import '../../../utils/text.dart';
 import '../../indi_prof/error/error_screen.dart';
-import '../../indi_prof/sell/product_availablity/product_availablity_screen.dart';
-import '../../shimmers/category_details_shimmer.dart';
 import 'business_post_ur_ad_controller.dart';
 
 class BusinessPostUrAd extends ConsumerStatefulWidget {
@@ -247,7 +240,7 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                                   ),
                                 ),
                                 onChangedsearch: (str) {
-                                  print("sdfs $str");
+                                  // print/("sdfs $str");
                                   controller().onValSelect(val: str!);
                                 },
                                 enabled: true,
@@ -868,7 +861,7 @@ class _BusinessPostUrAdState extends ConsumerState<BusinessPostUrAd> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   CommonText(
-                                      text: "Upload Up To 12 Photos",
+                                      text: "Upload Up To 6 Photos",
                                       style: ptSansTextStyle(
                                           color: AppColors.black,
                                           fontSize: h * 0.025,

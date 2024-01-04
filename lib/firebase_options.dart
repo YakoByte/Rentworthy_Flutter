@@ -65,6 +65,7 @@ class DefaultFirebaseOptions {
     projectId: 'rentworthy-340fd',
     databaseURL: 'https://rentworthy-340fd-default-rtdb.firebaseio.com',
     storageBucket: 'rentworthy-340fd.appspot.com',
+    androidClientId: '1073180144883-34brsgrqhckc1d7llsg0d8i1nain5mug.apps.googleusercontent.com',
     iosClientId: '1073180144883-u5k9s4t7l2gqoanjgrliju9l5ped3p7r.apps.googleusercontent.com',
     iosBundleId: 'com.rentworthy.app',
   );

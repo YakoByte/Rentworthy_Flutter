@@ -5,9 +5,7 @@ import '../../../model/indi_prof/booking/booking_del_status/booking_del_status.d
 import '../../../model/indi_prof/booking/get_booked_order/get_booked_order.dart';
 
 abstract class BookingService {
-  Future<GetBookedOrder?> getBookedOrder();
 
-  Future<GetBookingDelStatus?> getBookingDelStatus();
 }
 
 class BookingServiceV1 implements BookingService {
@@ -17,15 +15,7 @@ class BookingServiceV1 implements BookingService {
 
   final BookingRepository bookingRepository;
 
-  @override
-  Future<GetBookedOrder?> getBookedOrder() async {
-    return await bookingRepository.getBookedOrder();
-  }
 
-  @override
-  Future<GetBookingDelStatus?> getBookingDelStatus() async {
-    return await bookingRepository.getBookingDelStatus();
-  }
 }
 
 final bookingServiceProvider = Provider.autoDispose<BookingService>((ref) {

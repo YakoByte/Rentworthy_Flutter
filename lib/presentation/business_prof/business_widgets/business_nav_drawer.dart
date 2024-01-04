@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:rentworthy/presentation/both_prof/register/register_screen.dart';
+import 'package:rentworthy/presentation/business_prof/current_status/current_status.dart';
 import 'package:rentworthy/presentation/business_prof/membership_plan/membership_plan_screen.dart';
 import 'package:rentworthy/presentation/business_prof/statistics_reports/statistics_reports_screen.dart';
 import 'package:rentworthy/utils/common_components/common_navigator.dart';
@@ -10,9 +10,7 @@ import 'package:rentworthy/utils/common_components/icon_text.dart';
 
 import '../../../../application/dialog/dialog_service.dart';
 import '../../../../utils/color.dart';
-import '../../../../utils/common_components/common_button.dart';
 import '../../../../utils/common_components/common_text.dart';
-import '../../../../utils/common_components/common_title_subtitle.dart';
 import '../../../../utils/images.dart';
 import '../../../../utils/text.dart';
 import '../../../application/both_prof/login/login_service.dart';
@@ -42,7 +40,6 @@ class AdminNavDrawer extends ConsumerWidget {
       width: w * 0.8,
       shape: LinearBorder.none,
       child: SingleChildScrollView(
-        physics: const NeverScrollableScrollPhysics(),
         child: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: w * 0.04),
@@ -1201,6 +1198,98 @@ class AdminNavDrawer extends ConsumerWidget {
                                 ),
                                 IconText(
                                     title: "Post Ad",
+                                    textStyle: ptSansTextStyle(
+                                        color: AppColors.black,
+                                        fontSize: w * 0.045,
+                                        fontWeight: FontWeight.w500),
+                                    subimg: false,
+                                    preimgname: AppImg.copy,
+                                    preimgcolor: AppColors.black,
+                                    preiconsize: w * 0.07,
+                                    preimg: false),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    if (selectedindex == 12) {
+                      Navigator.pop(context);
+                    } else {
+                      Navigator.pop(context);
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          PageTransition(
+                              child: const CurrentStatus(),
+                              type: PageTransitionType.rightToLeftWithFade,
+                              duration: const Duration(milliseconds: 400)),
+                          (Route<dynamic> route) => false);
+                    }
+                  },
+                  child: Container(
+                    width: w,
+                    height: h * 0.06,
+                    margin: EdgeInsets.symmetric(vertical: h * 0.002),
+                    decoration: BoxDecoration(
+                      color: selectedindex == 12
+                          ? AppColors.black.withOpacity(0.1)
+                          : AppColors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: h * 0.01),
+                      child: Stack(
+                        children: [
+                          if (selectedindex == 12)
+                            Positioned(
+                              left: w * 0.001,
+                              right: 0,
+                              top: 0,
+                              bottom: 0,
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: w * 0.018,
+                                    height: h * 0.035,
+                                    decoration: const BoxDecoration(
+                                      color: AppColors.black,
+                                      borderRadius: BorderRadius.vertical(
+                                          top: Radius.circular(18),
+                                          bottom: Radius.circular(18)),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          Positioned(
+                            left: w * 0.05,
+                            right: 0,
+                            top: 0,
+                            bottom: 0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(right: h * 0.01),
+                                  child: selectedindex == 12
+                                      ? SizedBox(
+                                          height: h * 0.02,
+                                          width: h * 0.02,
+                                        )
+                                      : SizedBox(
+                                          width: w * 0.065,
+                                        ),
+                                ),
+                                SizedBox(
+                                  height: h * 0.02,
+                                  width: w * 0.08,
+                                ),
+                                IconText(
+                                    title: "Status",
                                     textStyle: ptSansTextStyle(
                                         color: AppColors.black,
                                         fontSize: w * 0.045,

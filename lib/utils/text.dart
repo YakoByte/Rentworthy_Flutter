@@ -138,7 +138,7 @@ class AppText {
   static const String welcomeRent = "Welcome to Rentworthy";
   static const String wheresUrLoc = "Where is your location?";
   static const String weAreTrying = "We are trying to detect code";
-  static const String sentOtp = "We sent a 4-digit code to ";
+  static const String sentOtp = "We sent a 6-digit code to ";
   static const String regIndividual = "  Register as Individual";
   static const String regBusiness = "  Register as Business";
   static const String enterEmailOrUname = "Enter email or username";
@@ -198,6 +198,7 @@ class AppText {
   static const String weHaveCovered =
       "We have covered you, no need to worry about that anymore. Book and schedule the things you need to make your next trip worthy of remembering.";
   static const String addToFavorite = "Add to favorite";
+  static const String like = "Like";
   static const String share = "Share";
   static const String brand = "Brand";
   static const String subCat = "Subcategory";
@@ -253,6 +254,8 @@ class AppText {
   static const String regNow = "Register now";
   static const String signIn = "Sign in";
   static const String list = "List";
+  static const String guest = "Guest";
+  static const String as = "as a";
   static const String postUrAd = "Post your ad";
   static const String productAval = "Product Availability";
   static const String setPrice = "Set A Price";

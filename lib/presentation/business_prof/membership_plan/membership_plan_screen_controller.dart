@@ -1,10 +1,6 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:rentworthy/utils/images.dart';
-import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import '../../../utils/common_components/common_tickerprovider.dart';
 
 part 'membership_plan_screen_controller.g.dart';
 
@@ -35,7 +31,11 @@ class MemberShipPlanController extends _$MemberShipPlanController {
   FutureOr<void> build() async {
     state = const AsyncLoading();
     _isLoading = true;
+    Future.delayed(const Duration(seconds: 1), () {
+      _isLoading = false;
 
+      state = const AsyncValue.data(null);
+    });
     state = const AsyncValue.data(null);
   }
 

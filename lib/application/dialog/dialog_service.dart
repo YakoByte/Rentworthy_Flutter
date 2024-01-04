@@ -6,8 +6,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rentworthy/utils/color.dart';
-import '../../../utils/globals.dart';
 
+import '../../../utils/globals.dart';
 import '../../presentation/business_prof/business_dialogs/pre_rent_screen_que.dart';
 import '../../presentation/business_prof/business_dialogs/profile_created.dart';
 import '../../presentation/business_prof/business_dialogs/register_complaint.dart';
@@ -38,10 +38,7 @@ abstract class DialogService {
 
   Future<void> selectDateDialog();
 
-  Future<void> cancelBookingAlertDialog({
-    required String groupValue,
-    required void Function(String) onChangedval,
-  });
+  Future<void> cancelBookingAlertDialog();
 
   Future<void> profileCreatedDialog({
     required void Function(bool verfied) profVerified,
@@ -120,18 +117,12 @@ class DialogServiceV1 implements DialogService {
   }
 
   @override
-  Future<void> cancelBookingAlertDialog({
-    required String groupValue,
-    required void Function(String) onChangedval,
-  }) async {
+  Future<void> cancelBookingAlertDialog() async {
     return (await showDialog(
         context: Globals.navigatorKey.currentContext!,
         barrierDismissible: true,
         builder: (BuildContext context) {
-          return CancelBookingDialog(
-            groupValue: groupValue,
-            onChangedval: onChangedval,
-          );
+          return CancelBookingDialog();
         }));
   }
 

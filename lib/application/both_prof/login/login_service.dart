@@ -16,11 +16,16 @@ abstract class LoginService {
     int? forceResendingToken,
     MultiFactorSession? multiFactorSession,
   });
-
+  Future<void> verifyOTP(
+      {required String verificationId, required String smsCode});
   Future<User?> loginWithGoogle({required int index});
-
+  Future<Map<String, dynamic>?> loginWithEmailAndPassword({
+    required String email,
+    required String password,
+    required String phoneNo,
+  });
   Future<User?> logoutWithGoogle();
-
+  Future<UserCredential?> signInWithApple({required int index});
   Future<UserCredential?> signOutWithFacebook();
 
   Future<UserCredential?> signInWithFacebook();
@@ -55,8 +60,27 @@ class LoginServiceV1 implements LoginService {
   }
 
   @override
+  Future<void> verifyOTP(
+      {required String verificationId, required String smsCode}) async {
+    return await loginRepository.verifyOTP(
+        verificationId: verificationId, smsCode: smsCode);
+  }
+
+  @override
   Future<User?> loginWithGoogle({required int index}) async {
     return await loginRepository.loginWithGoogle(index: index);
+  }
+
+  @override
+  Future<UserCredential?> signInWithApple({required int index}) async {
+    return await loginRepository.signInWithApple(index: index);
+  }@override
+  Future<Map<String, dynamic>?> loginWithEmailAndPassword({
+    required String email,
+    required String password,
+    required String phoneNo,
+  })  async {
+    return await loginRepository.loginWithEmailAndPassword(email: email, password: password, phoneNo: phoneNo);
   }
 
   @override

@@ -18,6 +18,7 @@ class EditProfileController extends _$EditProfileController {
   TextEditingController countryCodeController =
       TextEditingController(text: "+91");
   bool _isLoading = false;
+
   bool get isLoading => _isLoading;
   ImagePicker imagePicker = ImagePicker();
   File? selectedImage;
@@ -33,7 +34,7 @@ class EditProfileController extends _$EditProfileController {
   onImgSelect({required val}) async {
     state = const AsyncLoading();
     selectedImage = val;
-    print("selectedImage =-=- ${selectedImage}");
+    // print("selectedImage =-=- ${selectedImage}");
     state = const AsyncValue.data(null);
   }
 

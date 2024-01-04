@@ -7,7 +7,7 @@ import 'package:rentworthy/utils/common_components/common_navigator.dart';
 
 import '../../../../../utils/common_components/common_text.dart';
 import '../../../../../utils/images.dart';
-import '../../chat_widget/message_screen.dart';
+import '../../chat_widget/message/message_screen.dart';
 import '../../chatlist/chat_list.dart';
 import '../all_chat_controller.dart';
 
@@ -35,7 +35,10 @@ class AllSubAll extends ConsumerWidget {
                       commonNavigator(
                         context: context,
                         child: MessageScreen(
-                            title: "Ashish Sharma",
+                            conid: '',
+                            recid: '',
+                            senderid: '',
+                            title: "ABC Sharma",
                             subtitle: "iphone 11 64 GB"),
                         type: PageTransitionType.rightToLeftWithFade,
                       );
@@ -47,7 +50,7 @@ class AllSubAll extends ConsumerWidget {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
+                            SizedBox(
                               height: h * 0.085,
                               width: h * 0.09,
                               child: Stack(
@@ -103,7 +106,7 @@ class AllSubAll extends ConsumerWidget {
                                         fontSize: w * 0.04,
                                         color: AppColors.black.withOpacity(0.6),
                                         fontWeight: FontWeight.w700),
-                                    text: "Ashish Sharma",
+                                    text: "ABC Sharma",
                                   ),
                                   Row(
                                     mainAxisAlignment:

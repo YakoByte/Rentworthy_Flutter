@@ -2,27 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:pinput/pinput.dart';
 import 'package:rentworthy/presentation/business_prof/admin_panel/admin_panel.dart';
 
-import '../../../../../utils/color.dart';
-import '../../../../../utils/common_components/common_appbar.dart';
-import '../../../../../utils/common_components/common_button.dart';
-import '../../../../../utils/common_components/common_loader.dart';
-import '../../../../../utils/common_components/common_text.dart';
-import '../../../../../utils/images.dart';
-import '../../../../../utils/text.dart';
 import '../../../../application/dialog/dialog_service.dart';
 import '../../../../data/both_prof/shared_pref/shared_pref.dart';
-import '../../../../utils/common_components/common_navigator.dart';
+import '../../../../utils/import_utils.dart';
 import '../../../indi_prof/error/error_screen.dart';
-import '../../../indi_prof/login/acc_verification/account_verification_controller.dart';
 import 'account_verification_bsns_controller.dart';
 
 class BusinessAccountVerification extends ConsumerStatefulWidget {
   String email;
+  String verificationId;
 
-  BusinessAccountVerification({super.key, required this.email});
+  BusinessAccountVerification(
+      {super.key, required this.email, required this.verificationId});
 
   @override
   ConsumerState createState() => _BusinessAccountVerificationState();
@@ -122,36 +116,70 @@ class _BusinessAccountVerificationState
                                       )
                                     ],
                                   ),
-                                  PinCodeTextField(
+                                  // PinCodeTextField(
+                                  //   length: 6,
+                                  //   obscureText: false,
+                                  //
+                                  //   animationType: AnimationType.fade,
+                                  //   pinTheme: controller().isPinTheme!,
+                                  //   keyboardType: TextInputType.number,
+                                  //   mainAxisAlignment:
+                                  //       MainAxisAlignment.spaceBetween,
+                                  //   showCursor: true,
+                                  //   cursorColor: AppColors.black,
+                                  //
+                                  //   animationDuration:
+                                  //       const Duration(milliseconds: 300),
+                                  //   enablePinAutofill: true,
+                                  //   backgroundColor: AppColors.white,
+                                  //   enableActiveFill: false,
+                                  //   controller: controller().otpController,
+                                  //   // controller:
+                                  //   //     controller().otpController,
+                                  //   onCompleted: (v) {
+                                  //     controller().onVerify();
+                                  //   },
+                                  //   onChanged: (value) {},
+                                  //   beforeTextPaste: (text) {
+                                  //     print("Allowing to paste $text");
+                                  //     return true;
+                                  //   },
+                                  //
+                                  //   appContext: context,
+                                  // ),
+                                  Pinput(
                                     length: 6,
                                     obscureText: false,
-
-                                    animationType: AnimationType.fade,
-                                    pinTheme: controller().isPinTheme!,
+                                    androidSmsAutofillMethod:
+                                        AndroidSmsAutofillMethod.none,
+                                    controller: controller().otpController,
+                                    pinAnimationType: PinAnimationType.slide,
+                                    animationCurve: Curves.easeInOut,
+                                    defaultPinTheme: controller().isPinTheme!,
+                                    disabledPinTheme: controller().isPinTheme!,
+                                    errorPinTheme: controller().isPinTheme!,
+                                    focusedPinTheme: controller().isPinTheme!,
+                                    followingPinTheme: controller().isPinTheme!,
+                                    submittedPinTheme: controller().isPinTheme!,
                                     keyboardType: TextInputType.number,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     showCursor: true,
-                                    cursorColor: AppColors.black,
-
                                     animationDuration:
                                         const Duration(milliseconds: 300),
-                                    enablePinAutofill: true,
-                                    backgroundColor: AppColors.white,
-                                    enableActiveFill: false,
-                                    controller: controller().otpController,
-                                    // controller:
-                                    //     controller().otpController,
-                                    onCompleted: (v) {
-                                      controller().onVerify();
+                                    isCursorAnimationEnabled: true,
+                                    onChanged: (value) {
+                                      // print(value);
                                     },
-                                    onChanged: (value) {},
-                                    beforeTextPaste: (text) {
-                                      print("Allowing to paste $text");
-                                      return true;
+                                    onCompleted: (value) {
+                                      controller().onVerify(
+                                          verificationId:
+                                              widget.verificationId!);
+                                      // print(value);
                                     },
-
-                                    appContext: context,
+                                    closeKeyboardWhenCompleted: true,
                                   ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -191,6 +219,36 @@ class _BusinessAccountVerificationState
                                               fontWeight: FontWeight.w700)),
                                     ],
                                   ),
+
+                                  /// verify button
+                                  CommonButton(
+                                      containerwidth: w,
+                                      containerheight: h * 0.06,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(h * 0.005),
+                                          gradient: const LinearGradient(
+                                              begin: Alignment.centerLeft,
+                                              end: Alignment.centerRight,
+                                              colors: [
+                                                AppColors.colorPrimary,
+                                                AppColors.colorSecondary
+                                              ])),
+                                      backgroundColor: AppColors.transparent,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(h * 0.005),
+                                      ),
+                                      text: AppText.verify,
+                                      textStyle: ptSansTextStyle(
+                                          color: AppColors.white,
+                                          fontSize: h * 0.02,
+                                          fontWeight: FontWeight.w600),
+                                      onPressed: () {
+                                        controller().onVerify(
+                                            verificationId:
+                                                widget.verificationId!);
+                                      }),
                                 ],
                               ),
                             ),

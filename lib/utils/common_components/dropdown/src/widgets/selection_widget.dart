@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rentworthy/utils/globals.dart';
 
 import '../../dropdown_search.dart';
 import 'checkbox_widget.dart';
@@ -83,7 +82,7 @@ class SelectionWidgetState<T> extends State<SelectionWidget<T>> {
   @override
   void dispose() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      print("on dis drop ");
+      // print("on dis drop ");
       if (widget.isMultiSelectionMode == true) {
         onValidate();
       }
@@ -235,7 +234,7 @@ class SelectionWidgetState<T> extends State<SelectionWidget<T>> {
 
   ///close popup
   void closePopup() {
-    print("close popup ");
+    // print("close popup ");
     if (widget.onChanged != null) widget.onChanged!(_selectedItems);
     if (mounted) {
       Navigator.pop(context);

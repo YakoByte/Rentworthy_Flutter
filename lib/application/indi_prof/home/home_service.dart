@@ -1,16 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../data/indi_prof/home/home_repo.dart';
-import '../../../model/indi_prof/home/get_cat/get_category.dart';
-import '../../../model/indi_prof/home/get_items/get_items.dart';
-import '../../../model/indi_prof/home/get_loc/get_location.dart';
 
 abstract class HomeService {
-  Future<GetCategory?> getCategoryData();
-
-  Future<GetItem?> getItemData();
-
-  Future<GetLocation?> getLocationData();
+  Future<Map<String, dynamic>?> userGetCategory();
+  Future<Map<String, dynamic>?> userGetProduct();
 }
 
 class HomeServiceV1 implements HomeService {
@@ -19,20 +13,12 @@ class HomeServiceV1 implements HomeService {
   );
 
   final HomeRepository homeRepository;
-
-  @override
-  Future<GetCategory?> getCategoryData() async {
-    return await homeRepository.getCategoryData();
-  }
-
-  @override
-  Future<GetItem?> getItemData() async {
-    return await homeRepository.getItemData();
-  }
-
-  @override
-  Future<GetLocation?> getLocationData() async {
-    return await homeRepository.getLocationData();
+@override
+  Future<Map<String, dynamic>?> userGetCategory(){
+    return homeRepository.userGetCategory();
+  }@override
+  Future<Map<String, dynamic>?> userGetProduct(){
+    return homeRepository.userGetProduct();
   }
 }
 

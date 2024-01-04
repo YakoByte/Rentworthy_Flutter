@@ -164,7 +164,7 @@ mixin CircularSeriesRendererExtension implements CircularSeriesRenderer {
     /// Below lines for dynamic dataSource changes.
     if (isDynamicUpdate) {
       if (!oldPoint.isVisible && point.isVisible) {
-        debugPrint("object   1");
+        //  debugPrint("object   1");
         final num val = point.startAngle ==
                 seriesRenderer.segmentRenderingValues['start']!
             ? seriesRenderer.segmentRenderingValues['start']!
@@ -729,14 +729,14 @@ class RadialBarSeriesRendererExtension extends RadialBarSeriesRenderer
     final CornerStyle cornerStyle = series.cornerStyle;
     if (cornerStyle == CornerStyle.bothCurve ||
         cornerStyle == CornerStyle.startCurve) {
-      print("sdf innerRadius sddf  $innerRadius ");
+      //     print("sdf innerRadius sddf  $innerRadius ");
       hide
           ? oldStart = oldPoint!.startAngle! + angleDeviation
           : pointStartAngle += angleDeviation;
     }
     if (cornerStyle == CornerStyle.bothCurve ||
         cornerStyle == CornerStyle.endCurve) {
-      print("xcvx innerRadius  sd $innerRadius  ");
+      //   print("xcvx innerRadius  sd $innerRadius  ");
       hide
           ? oldEnd = oldPoint!.endAngle! - angleDeviation
           : pointEndAngle = pointEndAngle! + angleDeviation;
@@ -946,7 +946,7 @@ class RadialBarSeriesRendererExtension extends RadialBarSeriesRenderer
 
         if (series.cornerStyle == CornerStyle.endCurve ||
             series.cornerStyle == CornerStyle.bothCurve) {
-          print("exsd innerRadiusqw   $innerRadius ");
+          // print("exsd innerRadiusqw   $innerRadius ");
           pointEndAngle =
               (pointEndAngle > 360 ? pointEndAngle : (pointEndAngle - 360)) +
                   11.5;

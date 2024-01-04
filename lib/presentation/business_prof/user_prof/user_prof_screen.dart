@@ -6,7 +6,6 @@ import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../../../utils/color.dart';
-import '../../../utils/common_components/common_button.dart';
 import '../../../utils/common_components/common_navigator.dart';
 import '../../../utils/common_components/common_outline_button.dart';
 import '../../../utils/common_components/common_text.dart';
@@ -32,7 +31,7 @@ class BusinessUserProf extends ConsumerWidget {
     final asyncState = ref.watch(businessUserProfControllerProvider);
     controller() => ref.read(businessUserProfControllerProvider.notifier);
     final h = MediaQuery.of(context).size.height;
-    print("user prof ${controller().tabController.index}");
+    // print("user prof ${controller().tabController.index}");
     final w = MediaQuery.of(context).size.width;
     return Scaffold(
       key: Globals.userProfKey,

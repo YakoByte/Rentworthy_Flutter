@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'select_lang_controller.g.dart';
@@ -17,7 +16,7 @@ class SelectLanController extends _$SelectLanController {
     state = const AsyncLoading();
 
     _isEng = val;
-    debugPrint('_isEng $val');
+    // debugPrint('_isEng $val');
     state = const AsyncValue.data(null);
   }
 }

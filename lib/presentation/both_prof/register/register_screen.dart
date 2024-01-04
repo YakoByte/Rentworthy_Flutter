@@ -2,22 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:rentworthy/application/validate/validate.dart';
 import 'package:rentworthy/presentation/both_prof/register/reg_widget/reg_widget.dart';
 import 'package:rentworthy/utils/common_components/back_gradient.dart';
-import 'package:rentworthy/utils/common_components/common_button.dart';
 import 'package:rentworthy/utils/common_components/common_navigator.dart';
-import 'package:rentworthy/utils/common_components/text_input_field.dart';
 import 'package:rentworthy/utils/text.dart';
 
 import '../../../utils/color.dart';
 import '../../../utils/common_components/common_loader.dart';
 import '../../../utils/common_components/common_text.dart';
 import '../../../utils/common_components/rent_lend_enjoy_icon.dart';
-import '../../../utils/images.dart';
 import '../../indi_prof/account/setting/privacy_policy/privacy_policy.dart';
 import '../../indi_prof/error/error_screen.dart';
-import '../../shimmers/register_shimmer.dart';
 import 'login_method/login_method_screen.dart';
 import 'register_screen_controller.dart';
 
@@ -35,7 +30,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
     controller() => ref.read(registerScreenControllerProvider.notifier);
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
-    print("tab is ${controller().tabController.index}");
+    // print("tab is ${controller().tabController.index}");
 
     return Scaffold(
       backgroundColor: AppColors.white,

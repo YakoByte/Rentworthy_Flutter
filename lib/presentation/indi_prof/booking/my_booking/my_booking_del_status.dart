@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:rentworthy/utils/common_components/common_navigator.dart';
+
+import '../../../../application/dialog/dialog_service.dart';
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_appbar.dart';
 import '../../../../utils/common_components/common_button.dart';
@@ -336,7 +338,11 @@ class MyBookingDelStatus extends ConsumerWidget {
                                 const Rect.fromLTRB(100, 0, 250, 20)),
                           fontSize: h * 0.022,
                           fontWeight: FontWeight.w700),
-                      onPressed: () {},
+                      onPressed: () {
+                        ref
+                            .read(dialogServiceProvider)
+                            .cancelBookingAlertDialog();
+                      },
                       side: BorderSide.none,
                     ),
                   )

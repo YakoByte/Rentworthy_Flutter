@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:rentworthy/presentation/indi_prof/chat/all/suball/all_suball.dart';
 import 'package:rentworthy/presentation/indi_prof/chat/all/subunread/all_subunread.dart';
+
 import '../../../../utils/color.dart';
 import '../../../../utils/common_components/common_text.dart';
 import '../../../../utils/text.dart';
@@ -25,7 +26,7 @@ class _AllChatState extends ConsumerState<AllChat> {
     final w = MediaQuery.of(context).size.width;
     final asyncState = ref.watch(allChatControllerProvider);
     controller() => ref.read(allChatControllerProvider.notifier);
-    debugPrint("tab is ${controller().tabController.index}");
+    //   debugPrint("tab is ${controller().tabController.index}");
     return SingleChildScrollView(
       physics: NeverScrollableScrollPhysics(),
       child: Column(

@@ -1,66 +1,192 @@
+import 'dart:convert';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../model/indi_prof/home/get_cat/get_category.dart';
-import '../../../model/indi_prof/home/get_items/get_items.dart';
-import '../../../model/indi_prof/home/get_loc/get_location.dart';
+
 import '../../../utils/import_utils.dart';
+import '../../api_client/api_client.dart';
 
 abstract class HomeRepository {
-  Future<GetCategory?> getCategoryData();
+  Future<Map<String, dynamic>?> userGetCategory();
 
-  Future<GetItem?> getItemData();
+  Future<Map<String, dynamic>?> createLocation({
+    required int lat,
+    required int long,
+    required String authtoken,
+  });
 
-  Future<GetLocation?> getLocationData();
+  Future<Map<String, dynamic>?> userGetProduct();
+
+  Future<Map<String, dynamic>?> getAllLocation({
+    required String userid,
+    required String authtoken,
+  });
 }
 
 class HomeRepositoryV1 extends HomeRepository {
-  final List<ItemData> _onItemData = [
-    const ItemData(
-        id: "1",
-        name: "Product 1",
-        imgs: [AppImg.xbox, AppImg.xbox, AppImg.xbox],
-        thumbnail: AppImg.xbox,
-        desc: "Product 1 Description",
-        location: "Location 1",
-        time_period: "Time Period 1",
-        lat: "1.0",
-        long: "1.0",
-        link: "Link 1",
-        price: "100",
-        isfav: false),
-  ];
+  HomeRepositoryV1(this.api);
 
-  List<ItemData>? get onItemData => _onItemData;
-  final List<GetLocData> _onGetLocDatalist = [
-    const GetLocData(
-      loc_id: "1",
-      location: "Location 1",
-      lat: "1.0",
-      long: "1.0",
-    ),
-  ];
-
-  List<GetLocData>? get onGetLocDatalist => _onGetLocDatalist;
-  final List<CategoryData> _onCategoryDatalist = [
-    const CategoryData(id: "1", name: "Cat1", img: AppImg.xbox),
-  ];
-
-  List<CategoryData>? get onCategoryDatalist => _onCategoryDatalist;
+  final ApiClient api;
 
   @override
-  Future<GetCategory?> getCategoryData() async {
-    return GetCategory(success: true, message: "OK", data: _onCategoryDatalist);
+  Future<Map<String, dynamic>?> createLocation({
+    required int lat,
+    required int long,
+    required String authtoken,
+  }) async {
+    try {
+      final body = {
+        "location": {
+          "coordinates": [lat, long]
+        }
+      };
+      return api.postData(
+        uri: Uri.parse(ApiConfig.userCreateLocation),
+        body: body,
+        headers: api.createHeaders(authtoken: authtoken, sessionId: ""),
+        builder: (data) {
+          Map<String, dynamic> jsonMap = json.decode(data);
+
+          if (jsonMap['_id'] != null) {
+            return jsonMap;
+          } else {
+            throw Exception('Failed..');
+          }
+        },
+      );
+    } catch (e) {
+      // throw _determineError(e);
+      //  print("eeeee $e ");
+
+      return null;
+    }
   }
 
   @override
-  Future<GetItem?> getItemData() async {
-    return GetItem(success: true, message: "OK", data: _onItemData);
+  Future<Map<String, dynamic>?> getAllLocation({
+    required String userid,
+    required String authtoken,
+  }) {
+    return api.getData(
+      uri: Uri.parse("${ApiConfig.userGetLocation}$userid"),
+      headers: api.createHeaders(authtoken: authtoken, sessionId: ""),
+      builder: (data) {
+        Map<String, dynamic> jsonMap = json.decode(data);
+
+        if (jsonMap['data'] != []) {
+          return jsonMap;
+        } else {
+          throw Exception('Failed..');
+        }
+      },
+    );
   }
 
   @override
-  Future<GetLocation?> getLocationData() async {
-    return GetLocation(success: true, message: "OK", data: _onGetLocDatalist);
+  Future<Map<String, dynamic>?> userGetCategory() {
+    return api.getData(
+      uri: Uri.parse(ApiConfig.userGetCategory),
+      headers: api.createHeaders(authtoken: '', sessionId: ""),
+      builder: (data) {
+        Map<String, dynamic> jsonMap = json.decode(data);
+
+        if (jsonMap['existingCategory']['data'] != []) {
+          return jsonMap;
+        } else {
+          throw Exception('Failed..');
+        }
+      },
+    );
+  }
+
+  @override
+  Future<Map<String, dynamic>?> userGetProduct() {
+    return api.getData(
+      uri: Uri.parse(ApiConfig.userGetProduct),
+      headers: api.createHeaders(authtoken: '', sessionId: ""),
+      builder: (data) {
+        Map<String, dynamic> jsonMap = json.decode(data);
+
+        if (jsonMap['data'] != []) {
+          return jsonMap;
+        } else {
+          throw Exception('Failed..');
+        }
+      },
+    );
+  }
+
+  @override
+  Future<Map<String, dynamic>?> userGetSubCategory({
+    required String authtoken,
+  }) {
+    return api.getData(
+      uri: Uri.parse(ApiConfig.userGetSubCategory),
+      headers: api.createHeaders(authtoken: authtoken, sessionId: ""),
+      builder: (data) {
+        Map<String, dynamic> jsonMap = json.decode(data);
+
+        if (jsonMap['existingSubCategory']['data'] != []) {
+          return jsonMap;
+        } else {
+          throw Exception('Failed..');
+        }
+      },
+    );
+  }
+
+  @override
+  Future<Map<String, dynamic>?> addProductLike({
+    required String authtoken,
+    required String userId,
+    required String productId,
+    required bool isFav,
+  }) async {
+    try {
+      final body = {"userId": userId, "productId": productId, "isFav": isFav};
+      return api.postData(
+        uri: Uri.parse(ApiConfig.userCreateProductLike),
+        body: body,
+        headers: api.createHeaders(authtoken: authtoken, sessionId: ""),
+        builder: (data) {
+          Map<String, dynamic> jsonMap = json.decode(data);
+
+          if (jsonMap['existingProduct']['data'] != null) {
+            return jsonMap;
+          } else {
+            throw Exception('Failed..');
+          }
+        },
+      );
+    } catch (e) {
+      // throw _determineError(e);
+      //  print("eeeee $e ");
+
+      return null;
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>?> userGetProductLike({
+    required String authtoken,
+    required String userId,
+    required String productId,
+  }) {
+    return api.getData(
+      uri: Uri.parse(
+          "${ApiConfig.userGetProductLike}$userId&productId=$productId"),
+      headers: api.createHeaders(authtoken: authtoken, sessionId: ""),
+      builder: (data) {
+        Map<String, dynamic> jsonMap = json.decode(data);
+
+        if (jsonMap['data']['existingProduct']['data'] != []) {
+          return jsonMap;
+        } else {
+          throw Exception('Failed..');
+        }
+      },
+    );
   }
 }
 
 final homeRepositoryProvider =
-    Provider<HomeRepository>((ref) => HomeRepositoryV1());
+    Provider<HomeRepository>((ref) => HomeRepositoryV1(ApiClient()));

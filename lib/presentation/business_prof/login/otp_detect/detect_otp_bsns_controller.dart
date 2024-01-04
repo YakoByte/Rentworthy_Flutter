@@ -7,7 +7,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../../utils/globals.dart';
 
 part 'detect_otp_bsns_controller.freezed.dart';
-
 part 'detect_otp_bsns_controller.g.dart';
 
 @freezed
@@ -45,9 +44,9 @@ class BusinessDetectOtpController extends _$BusinessDetectOtpController {
               .requestFocus(FocusNode());
         } else {
           _start--;
-          print("_start $_start");
-          print("_timer ${timer!.tick}");
-          print("_timer ${((timer!.tick * 1) / 10).toStringAsFixed(1)}");
+          // print("_start $_start");
+          // print("_timer ${timer!.tick}");
+          // print("_timer ${((timer!.tick * 1) / 10).toStringAsFixed(1)}");
         }
         state = AsyncValue.data(state.value!.copyWith(start: _start));
       },

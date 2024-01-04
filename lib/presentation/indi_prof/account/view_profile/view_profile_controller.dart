@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:rentworthy/application/indi_prof/user_prof/user_prof_service.dart';
 import 'package:rentworthy/utils/images.dart';
 import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../data/both_prof/shared_pref/shared_pref.dart';
 import '../../../../utils/common_components/common_tickerprovider.dart';
 
 part 'view_profile_controller.g.dart';
@@ -10,6 +14,7 @@ part 'view_profile_controller.g.dart';
 @riverpod
 class ViewProfileController extends _$ViewProfileController {
   List<bool>? favlist;
+
   List<bool> get getfavlist => favlist!;
   bool _isLoading = false;
 
@@ -45,6 +50,8 @@ class ViewProfileController extends _$ViewProfileController {
     AppText.heavyMachine,
     AppText.newMarket,
   ];
+  String authToken = '';
+  Map<String, dynamic>? _profileData;
 
   List<String> get nameList => _nameList;
   List<AnimationController>? animatecontrollerlist = [];
@@ -53,6 +60,11 @@ class ViewProfileController extends _$ViewProfileController {
   FutureOr<void> build() async {
     state = const AsyncLoading();
     _isLoading = true;
+    PreferenceManagerUtils.getToken().then((token) {
+      authToken = token;
+      // print("authToke/n $authToken");
+    });
+    onGetProfile();
     for (int i = 0; i < _nameList.length; i++) {
       animatecontrollerlist!.add(AnimationController(
         vsync: CommonTickerProvider(),
@@ -73,5 +85,35 @@ class ViewProfileController extends _$ViewProfileController {
     }
     favlist = List.generate(nameList.length, (index) => false);
     state = const AsyncValue.data(null);
+  }
+
+  /// This method is used to get the category list
+  Future<void> onGetProfile() async {
+    state = const AsyncLoading();
+
+    final link = ref.keepAlive();
+    Timer? timer;
+
+    _isLoading = true;
+    // Future.delayed(const Duration(seconds: 1), () async {
+    state = const AsyncLoading();
+    // _isVerify = true;
+    // startTimer();
+    // ref.read(loginServiceProvider).verifyOTP(
+    //     verificationId: verificationId, smsCode: otpController!.text);
+    _profileData = await ref
+        .read(userProfServiceProvider)
+        .userGetProfile(authtoken: authToken);
+    // log("_profileData $_profileData");
+
+    state = AsyncValue.data(null);
+    ref.onCancel(() {
+      // start a 30 second timer
+      timer = Timer(const Duration(seconds: 30), () {
+        // dispose on timeout
+        link.close();
+      });
+    });
+    _isLoading = false;
   }
 }

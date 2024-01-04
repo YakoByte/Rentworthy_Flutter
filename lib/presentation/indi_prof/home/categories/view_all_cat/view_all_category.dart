@@ -4,11 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rentworthy/presentation/indi_prof/home/categories/view_all_cat/view_all_category_controller.dart';
 import 'package:rentworthy/presentation/shimmers/view_all_cat_shimmer.dart';
 import 'package:rentworthy/utils/images.dart';
-import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_appbar.dart';
-import '../../../../../utils/common_components/common_dropdown.dart';
 import '../../../../../utils/common_components/common_dropdown_multiselect.dart';
 import '../../../../../utils/common_components/common_iconbutton.dart';
 import '../../../../../utils/common_components/common_searchbar.dart';
@@ -362,10 +360,10 @@ class ViewAllCategory extends ConsumerWidget {
                                         if (controller()
                                                 .speechRecognitionAvailable &&
                                             !controller().isListening) {
-                                          debugPrint(
-                                              "ssdsdpeechRecognitionAvailable ${controller().speechRecognitionAvailable}");
-                                          debugPrint(
-                                              "isListeningisListening ${controller().isListening}");
+                                          // debugPrint(
+                                          //     "ssdsdpeechRecognitionAvailable ${controller().speechRecognitionAvailable}");
+                                          // debugPrint(
+                                          //     "isListeningisListening ${controller().isListening}");
                                           controller().start();
                                         }
                                       })
@@ -539,7 +537,7 @@ class ViewAllCategory extends ConsumerWidget {
                                 ),
                               ),
                               onChangedsearch: (str) {
-                                debugPrint("sdfs $str");
+                                //  debugPrint("sdfs $str");
                                 controller().onchangefilter(str!);
                               },
                               enabled: true,
@@ -607,7 +605,7 @@ class ViewAllCategory extends ConsumerWidget {
                                 ),
                               ),
                               onChangedsearch: (str) {
-                                debugPrint("sdfs $str");
+                                //    debugPrint("sdfs $str");
                                 controller().onchangesorting(str);
                               },
                               enabled: true,

@@ -10,6 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rentworthy/presentation/both_prof/loading/loading_screen.dart';
+
 import 'firebase_options.dart';
 import 'utils/import_utils.dart';
 
@@ -80,25 +81,25 @@ class _MyAppState extends ConsumerState<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       locale: DevicePreview.locale(context),
-      navigatorKey: Globals.navigatorKey,
 
       /// Navigator key for global navigation
-      debugShowCheckedModeBanner: false,
+      navigatorKey: Globals.navigatorKey,
 
       /// Remove debug banner
-      builder: DevicePreview.appBuilder,
+      debugShowCheckedModeBanner: false,
 
       /// Device preview builder
-      title: AppText.appName,
+      builder: DevicePreview.appBuilder,
 
       /// App name
-      useInheritedMediaQuery: true,
+      title: AppText.appName,
 
       /// Use inherited media query
+      useInheritedMediaQuery: true,
+
       /// Theme data
       theme: ThemeData(
           fontFamily: GoogleFonts.ptSans().fontFamily, useMaterial3: true),
-
       home: const LoadingScreen(),
     );
   }

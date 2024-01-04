@@ -6,6 +6,7 @@ import 'package:rentworthy/utils/images.dart';
 import 'package:rentworthy/utils/text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:share_plus/share_plus.dart';
+
 import '../../../../../application/dialog/dialog_service.dart';
 import '../../../../../utils/color.dart';
 import '../../../../../utils/common_components/common_text.dart';
@@ -74,6 +75,24 @@ class CategoryDetailsController extends _$CategoryDetailsController {
       ),
       PopupMenuItem(
         value: 2,
+        onTap: () {},
+        child: IconText(
+          isCenter: false,
+          title: AppText.like,
+          textStyle: ptSansTextStyle(
+              fontSize: w * 0.035,
+              overflow: TextOverflow.ellipsis,
+              color: AppColors.black,
+              fontWeight: FontWeight.w600),
+          subimg: false,
+          preimg: true,
+          preicon: Icons.favorite_outline,
+          preiconsize: h * 0.03,
+          preimgcolor: AppColors.black.withOpacity(0.8),
+        ),
+      ),
+      PopupMenuItem(
+        value: 3,
         onTap: () {
           Share.share('check out my website https://example.com');
         },
@@ -93,7 +112,7 @@ class CategoryDetailsController extends _$CategoryDetailsController {
         ),
       ),
       PopupMenuItem(
-        value: 3,
+        value: 4,
         onTap: () {
           ref.read(dialogServiceProvider).reportImgTitleDialog();
         },

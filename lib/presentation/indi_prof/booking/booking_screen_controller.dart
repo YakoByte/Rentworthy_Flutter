@@ -156,7 +156,7 @@ class BookingScreenController extends _$BookingScreenController {
   ) {
     state = const AsyncLoading();
     checkboxitems = val;
-    print("checkboxitems $checkboxitems");
+    // print("checkboxitems $checkboxitems");
     state = const AsyncValue.data(null);
   }
 

@@ -32,6 +32,7 @@ class Categories extends ConsumerWidget {
   List nameList;
   List<AnimationController> animatecontrollerlist;
   List favList;
+  // List rentedTypeList;
   Axis scrollDirection;
 
   void Function(int) onFavPressed;
@@ -54,6 +55,7 @@ class Categories extends ConsumerWidget {
       required this.animatecontrollerlist,
       required this.isTopPadding,
       required this.isextended,
+      // required this.rentedTypeList,
       required this.onFavPressed,
       this.type,
       this.onCardPressed,

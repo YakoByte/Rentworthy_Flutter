@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../application/dialog/dialog_service.dart';
 import '../../../utils/color.dart';
+import '../../../utils/config.dart';
+import '../../api_client/api_client.dart';
 
 enum AuthError {
   invalidEmail,
@@ -21,9 +25,37 @@ abstract class RegisterRepository {
     required String email,
     required String password,
   });
+
+  Future<Map<String, dynamic>?> registerWithEmailAndPassword({
+    required String email,
+    required String password,
+    required String phoneNo,
+    required String businessType,
+    required String loginType,
+  });
+
+  Future<Map<String, dynamic>?> createOTP({
+    required String email,
+  });
+
+  Future<Map<String, dynamic>?> verifyOTP({
+    required String email,
+    required String otp,
+  });
+
+  Future<Map<String, dynamic>?> registerWithSocial({
+    required String email,
+    required String phoneNo,
+    required String businessType,
+    required String loginType,
+  });
 }
 
 class RegisterRepositoryV1 extends RegisterRepository {
+  RegisterRepositoryV1(this.api);
+
+  final ApiClient api;
+
   @override
   Future<User?> signInWithEmailAndPassword({
     required String email,
@@ -31,43 +63,202 @@ class RegisterRepositoryV1 extends RegisterRepository {
   }) async {
     try {
       final list =
-          await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
+      await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
 
-      print("list $list");
+      //   print("list $list");
       if (list.isEmpty) {
-        print("Sign up");
+        //   print("Sign up");
         final userCredential =
-            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
-        print("Sign up userCredential $userCredential");
+        //  print("Sign up userCredential $userCredential");
         if (userCredential.additionalUserInfo!.isNewUser) {
           final userCredential =
-              await FirebaseAuth.instance.signInWithEmailAndPassword(
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: email,
             password: password,
           );
 
-          print("Sign up-> Sign in userCredential $userCredential");
+          //   print("Sign up-> Sign in userCredential $userCredential");
           return userCredential.user;
         }
         return userCredential.user;
       } else {
-        print("Sign in");
+        // print("Sign in");
         final userCredential =
-            await FirebaseAuth.instance.signInWithEmailAndPassword(
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: email,
           password: password,
         );
 
-        print("Sign in userCredential $userCredential");
+        //print("Sign in userCredential $userCredential");
         return userCredential.user;
       }
     } on FirebaseAuthException catch (e) {
       // throw _determineError(e);
-      print("eeeee $e ");
+      // print("eeeee $e ");
       _determineError(e);
+      return null;
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>?> registerWithEmailAndPassword({
+    required String email,
+    required String password,
+    required String phoneNo,
+    required String businessType,
+    required String loginType,
+  }) async {
+    try {
+      final body = {
+        if (email != "") 'email': email,
+        'password': password,
+        if (phoneNo != "") 'phoneNo': phoneNo,
+        'bussinessType': businessType,
+        'loginType': loginType,
+      };
+      return api.postData(
+        uri: Uri.parse(ApiConfig.userSignup),
+        body: body,
+        headers: api.createHeaders(authtoken: "", sessionId: ""),
+        builder: (data) {
+          Map<String, dynamic> jsonMap = json.decode(data);
+
+          if (jsonMap['_id'] != null) {
+            // print("here1");
+            // DialogServiceV1().showSnackBar(
+            //     content: email != "" ? "Please Verify Your Email!!" : "Please Verify Your Phone No!!",
+            //     color: AppColors.colorPrimary.withOpacity(0.7),
+            //     textclr: AppColors.white);
+
+            return jsonMap;
+          }
+          else {
+            //  print("here2");
+            DialogServiceV1().showSnackBar(
+                content: jsonMap["data"]["message"] ?? jsonMap["message"],
+                color: AppColors.colorPrimary.withOpacity(0.7),
+                textclr: AppColors.white);
+
+            return {};
+          }
+        },
+      );
+    } catch (e) {
+      throw Exception('Failed..');
+      // print("eeeee $e ");
+
+      return null;
+    }
+  }
+
+
+  @override
+  Future<Map<String, dynamic>?> createOTP({
+    required String email,
+  }) async {
+    try {
+      final body = {
+        'email': email,
+      };
+      return api.postData(
+        uri: Uri.parse(ApiConfig.userCreateOtp),
+        body: body,
+        headers: api.createHeaders(authtoken: "", sessionId: ""),
+        builder: (data) {
+          Map<String, dynamic> jsonMap = json.decode(data);
+
+          if (jsonMap['existingOTP']["otp"] != null) {
+            DialogServiceV1().showSnackBar(
+                content: "OTP has been successfully sent to your email!!",
+                color: AppColors.colorPrimary.withOpacity(0.7),
+                textclr: AppColors.white);
+            return jsonMap;
+          } else {
+            throw Exception('Failed..');
+          }
+        },
+      );
+    } catch (e) {
+      // throw _determineError(e);
+      //  print("eeeee $e ");
+
+      return null;
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>?> verifyOTP({
+    required String email,
+    required String otp,
+  }) async {
+    try {
+      final body = {'email': email, "otp": otp};
+      return api.postData(
+        uri: Uri.parse(ApiConfig.userVerifyOtp),
+        body: body,
+        headers: api.createHeaders(authtoken: "", sessionId: ""),
+        builder: (data) {
+          Map<String, dynamic> jsonMap = json.decode(data);
+
+          if (jsonMap['token'] != null) {
+            DialogServiceV1().showSnackBar(
+                content: "OTP verified successfully!!",
+                color: AppColors.colorPrimary.withOpacity(0.7),
+                textclr: AppColors.white);
+            return jsonMap;
+          } else {
+            throw Exception('Failed..');
+          }
+        },
+      );
+    } catch (e) {
+      // throw _determineError(e);
+      //   print("eeeee $e ");
+
+      return null;
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>?> registerWithSocial({
+    required String email,
+    required String phoneNo,
+    required String businessType,
+    required String loginType,
+  }) async {
+    try {
+      final body = {
+        if (email != "") 'email': email,
+        if (phoneNo != "") 'phoneNo': phoneNo,
+        'bussinessType': businessType,
+        'loginType': loginType,
+      };
+      return api.postData(
+        uri: Uri.parse(ApiConfig.userSocialSignup),
+        body: body,
+        headers: api.createHeaders(authtoken: "", sessionId: ""),
+        builder: (data) {
+          Map<String, dynamic> jsonMap = json.decode(data);
+
+          if (jsonMap['_id'] != null) {
+            DialogServiceV1().showSnackBar(
+                content: "User Registered Successfully!!",
+                color: AppColors.colorPrimary.withOpacity(0.7),
+                textclr: AppColors.white);
+            return jsonMap;
+          } else {
+            throw Exception('Failed..');
+          }
+        },
+      );
+    } catch (e) {
+      // throw _determineError(e);
+      // print("eeeee $e ");
+
       return null;
     }
   }
@@ -136,4 +327,4 @@ class RegisterRepositoryV1 extends RegisterRepository {
 }
 
 final registerRepositoryProvider =
-    Provider<RegisterRepository>((ref) => RegisterRepositoryV1());
+Provider<RegisterRepository>((ref) => RegisterRepositoryV1(ApiClient()));

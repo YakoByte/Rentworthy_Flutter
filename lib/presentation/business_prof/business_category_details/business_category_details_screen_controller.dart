@@ -2,8 +2,8 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:share_plus/share_plus.dart';
+
 import '../../../application/business_prof/product_details/product_details_service.dart';
-import '../../../application/business_prof/track_item/track_item_service.dart';
 import '../../../application/dialog/dialog_service.dart';
 import '../../../model/business_prof/product_details/get_product_details/get_product_details.dart';
 import '../../../utils/color.dart';
@@ -40,6 +40,7 @@ class BusinessCatDetailsController extends _$BusinessCatDetailsController {
   TextEditingController missingcontroller = TextEditingController();
 
   int get selecteditemwork => _selecteditemwork;
+
   int _selectedmssing = 0;
 
   int get selectedmssing => _selectedmssing;
@@ -173,7 +174,7 @@ class BusinessCatDetailsController extends _$BusinessCatDetailsController {
     nearbyadfavlist = List.generate(_imgList.length, (index) => false);
     _productDetailsData =
         await ref.read(productDetailServiceProvider).getProductDetails();
-    print("_productDetailsData $_productDetailsData");
+    //  print("_productDetailsData $_productDetailsData");
     Future.delayed(const Duration(seconds: 1), () {
       _isLoading = false;
       state = const AsyncValue.data(null);
@@ -242,7 +243,7 @@ class BusinessCatDetailsController extends _$BusinessCatDetailsController {
     // searchitems = carlist
     //     .where((item) => item.toLowerCase().contains(query.toLowerCase()))
     //     .toList();
-    print("searchitems $searchitems");
+    // print("searchitems $searchitems");
     state = const AsyncValue.data(null);
   }
 

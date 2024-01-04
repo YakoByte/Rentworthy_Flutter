@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_native_splash/cli_commands.dart';
 import 'package:flutter_speech/flutter_speech.dart';
@@ -125,7 +124,7 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
 
   /// This function is used to activate speech recognizer
   void activateSpeechRecognizer() {
-    debugPrint('_MyAppState.activateSpeechRecognizer... ');
+    // debugPrint('_MyAppState.activateSpeechRecognizer... ');
     state = const AsyncLoading();
     _speech.setAvailabilityHandler(onSpeechAvailability);
     _speech.setRecognitionStartedHandler(onRecognitionStarted);
@@ -134,7 +133,7 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
     _speech.setErrorHandler(errorHandler);
     _speech.activate('en_US').then((res) {
       _speechRecognitionAvailable = res;
-      debugPrint("resres $res");
+      //  debugPrint("resres $res");
     });
     state = const AsyncValue.data(null);
   }
@@ -142,7 +141,7 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
   /// This function is used to start speech recognizer
   void start() => _speech.activate("en_US").then((_) {
         return _speech.listen().then((result) {
-          debugPrint('_MyAppState.start => result $result');
+          // debugPrint('_MyAppState.start => result $result');
           state = const AsyncLoading();
           // animationController!.forward();
           _isListening = result;
@@ -154,7 +153,7 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
   /// This function is used to cancel speech recognizer
   void cancel() => _speech.cancel().then((_) {
         state = const AsyncLoading();
-        debugPrint("cancel");
+        // debugPrint("cancel");
         _isListening = false;
         state = const AsyncValue.data(null);
       });
@@ -162,15 +161,16 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
   /// This function is used to stop speech recognizer
   void stop() => _speech.stop().then((_) {
         state = const AsyncLoading();
-        debugPrint("stop");
+        //  debugPrint("stop");
         _isListening = false;
+        searchController.text = "";
         state = const AsyncValue.data(null);
       });
 
   /// This function is used to check speech recognizer availability
   void onSpeechAvailability(bool result) {
     state = const AsyncLoading();
-    debugPrint("onSpeechAvailability");
+    //  debugPrint("onSpeechAvailability");
     _speechRecognitionAvailable = result;
     state = const AsyncValue.data(null);
   }
@@ -178,7 +178,7 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
   /// This function is used to speech recognizer start
   void onRecognitionStarted() {
     state = const AsyncLoading();
-    debugPrint("Listening");
+    // debugPrint("Listening");
     _isListening = true;
     searchController.text = 'Listening...';
     state = const AsyncValue.data(null);
@@ -186,7 +186,7 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
 
   /// This function is used to speech recognizer result
   void onRecognitionResult(String text) {
-    debugPrint('_MyAppState.onRecognitionResult... $text');
+    //  debugPrint('_MyAppState.onRecognitionResult... $text');
     //  state = const AsyncLoading();
     transcription = text;
 
@@ -197,7 +197,7 @@ class ViewAllCategoryController extends _$ViewAllCategoryController {
 
   /// This function is used to speech recognizer complete
   void onRecognitionComplete(String text) {
-    debugPrint('_MyAppState.onRecognitionComplete... $text');
+    // debugPrint('_MyAppState.onRecognitionComplete... $text');
     state = const AsyncLoading();
 
     Future.delayed(const Duration(milliseconds: 400), () {

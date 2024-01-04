@@ -32,7 +32,7 @@ class CreatePasswordController extends _$CreatePasswordController {
   /// This method is used to hide and show password
   onEyeTap({required bool val}) async {
     state = const AsyncLoading();
-    debugPrint('onEyeTap $val');
+    // debugPrint('onEyeTap $val');
     _iseyehide = val;
 
     state = const AsyncValue.data(null);
@@ -63,7 +63,7 @@ class CreatePasswordController extends _$CreatePasswordController {
   /// This method is used to hide and show confirm password
   onconfirmEyeTap({required bool val}) async {
     state = const AsyncLoading();
-    debugPrint('onEyeTap $val');
+    //  debugPrint('onEyeTap $val');
     _confirmiseyehide = val;
 
     state = const AsyncValue.data(null);
